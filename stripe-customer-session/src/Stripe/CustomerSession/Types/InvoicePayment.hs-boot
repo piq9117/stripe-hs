@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.InvoicePayment where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_payment
+instance Show Invoice_payment
+instance Eq Invoice_payment
+instance Data.Aeson.FromJSON Invoice_payment
+instance Data.Aeson.ToJSON Invoice_payment
+data Invoice_paymentInvoiceVariants
+instance Show Invoice_paymentInvoiceVariants
+instance Eq Invoice_paymentInvoiceVariants
+instance Data.Aeson.FromJSON Invoice_paymentInvoiceVariants
+instance Data.Aeson.ToJSON Invoice_paymentInvoiceVariants

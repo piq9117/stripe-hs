@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoicesResourceStatusTransitions where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoices_resource_status_transitions
+instance Show Invoices_resource_status_transitions
+instance Eq Invoices_resource_status_transitions
+instance Data.Aeson.FromJSON Invoices_resource_status_transitions
+instance Data.Aeson.ToJSON Invoices_resource_status_transitions

@@ -1,0 +1,18 @@
+module Stripe.CustomerSession.Types.MandateBacsDebit where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Mandate_bacs_debit
+instance Show Mandate_bacs_debit
+instance Eq Mandate_bacs_debit
+instance Data.Aeson.FromJSON Mandate_bacs_debit
+instance Data.Aeson.ToJSON Mandate_bacs_debit
+data Mandate_bacs_debitNetwork_status
+instance Show Mandate_bacs_debitNetwork_status
+instance Eq Mandate_bacs_debitNetwork_status
+instance Data.Aeson.FromJSON Mandate_bacs_debitNetwork_status
+instance Data.Aeson.ToJSON Mandate_bacs_debitNetwork_status
+data Mandate_bacs_debitRevocation_reasonNonNullable
+instance Show Mandate_bacs_debitRevocation_reasonNonNullable
+instance Eq Mandate_bacs_debitRevocation_reasonNonNullable
+instance Data.Aeson.FromJSON Mandate_bacs_debitRevocation_reasonNonNullable
+instance Data.Aeson.ToJSON Mandate_bacs_debitRevocation_reasonNonNullable

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingCardholderAddress where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_cardholder_address
+instance Show Issuing_cardholder_address
+instance Eq Issuing_cardholder_address
+instance Data.Aeson.FromJSON Issuing_cardholder_address
+instance Data.Aeson.ToJSON Issuing_cardholder_address

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.BillingCreditGrantsResourceMonetaryAmount where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Billing_credit_grants_resource_monetary_amount
+instance Show Billing_credit_grants_resource_monetary_amount
+instance Eq Billing_credit_grants_resource_monetary_amount
+instance Data.Aeson.FromJSON Billing_credit_grants_resource_monetary_amount
+instance Data.Aeson.ToJSON Billing_credit_grants_resource_monetary_amount

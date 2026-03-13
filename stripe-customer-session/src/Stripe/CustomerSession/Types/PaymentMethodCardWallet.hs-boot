@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodCardWallet where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_card_wallet
+instance Show Payment_method_card_wallet
+instance Eq Payment_method_card_wallet
+instance Data.Aeson.FromJSON Payment_method_card_wallet
+instance Data.Aeson.ToJSON Payment_method_card_wallet
+data Payment_method_card_walletType
+instance Show Payment_method_card_walletType
+instance Eq Payment_method_card_walletType
+instance Data.Aeson.FromJSON Payment_method_card_walletType
+instance Data.Aeson.ToJSON Payment_method_card_walletType

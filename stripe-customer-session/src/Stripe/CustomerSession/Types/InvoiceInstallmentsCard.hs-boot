@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoiceInstallmentsCard where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_installments_card
+instance Show Invoice_installments_card
+instance Eq Invoice_installments_card
+instance Data.Aeson.FromJSON Invoice_installments_card
+instance Data.Aeson.ToJSON Invoice_installments_card

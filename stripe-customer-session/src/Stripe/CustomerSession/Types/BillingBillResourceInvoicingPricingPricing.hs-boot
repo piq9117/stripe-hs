@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.BillingBillResourceInvoicingPricingPricing where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Billing_bill_resource_invoicing_pricing_pricing
+instance Show Billing_bill_resource_invoicing_pricing_pricing
+instance Eq Billing_bill_resource_invoicing_pricing_pricing
+instance Data.Aeson.FromJSON Billing_bill_resource_invoicing_pricing_pricing
+instance Data.Aeson.ToJSON Billing_bill_resource_invoicing_pricing_pricing

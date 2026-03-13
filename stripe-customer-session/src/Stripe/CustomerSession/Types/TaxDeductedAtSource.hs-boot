@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.TaxDeductedAtSource where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Tax_deducted_at_source
+instance Show Tax_deducted_at_source
+instance Eq Tax_deducted_at_source
+instance Data.Aeson.FromJSON Tax_deducted_at_source
+instance Data.Aeson.ToJSON Tax_deducted_at_source

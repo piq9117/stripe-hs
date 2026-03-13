@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsIdeal where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_ideal
+instance Show Payment_method_options_ideal
+instance Eq Payment_method_options_ideal
+instance Data.Aeson.FromJSON Payment_method_options_ideal
+instance Data.Aeson.ToJSON Payment_method_options_ideal
+data Payment_method_options_idealSetup_future_usage
+instance Show Payment_method_options_idealSetup_future_usage
+instance Eq Payment_method_options_idealSetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_idealSetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_idealSetup_future_usage

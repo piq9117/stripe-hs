@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.MandateUsBankAccount where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Mandate_us_bank_account
+instance Show Mandate_us_bank_account
+instance Eq Mandate_us_bank_account
+instance Data.Aeson.FromJSON Mandate_us_bank_account
+instance Data.Aeson.ToJSON Mandate_us_bank_account
+data Mandate_us_bank_accountCollection_method
+instance Show Mandate_us_bank_accountCollection_method
+instance Eq Mandate_us_bank_accountCollection_method
+instance Data.Aeson.FromJSON Mandate_us_bank_accountCollection_method
+instance Data.Aeson.ToJSON Mandate_us_bank_accountCollection_method

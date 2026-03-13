@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.TransferData where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Transfer_data
+instance Show Transfer_data
+instance Eq Transfer_data
+instance Data.Aeson.FromJSON Transfer_data
+instance Data.Aeson.ToJSON Transfer_data
+data Transfer_dataDestinationVariants
+instance Show Transfer_dataDestinationVariants
+instance Eq Transfer_dataDestinationVariants
+instance Data.Aeson.FromJSON Transfer_dataDestinationVariants
+instance Data.Aeson.ToJSON Transfer_dataDestinationVariants

@@ -1,0 +1,18 @@
+module Stripe.CustomerSession.Types.ChargeOutcome where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Charge_outcome
+instance Show Charge_outcome
+instance Eq Charge_outcome
+instance Data.Aeson.FromJSON Charge_outcome
+instance Data.Aeson.ToJSON Charge_outcome
+data Charge_outcomeAdvice_codeNonNullable
+instance Show Charge_outcomeAdvice_codeNonNullable
+instance Eq Charge_outcomeAdvice_codeNonNullable
+instance Data.Aeson.FromJSON Charge_outcomeAdvice_codeNonNullable
+instance Data.Aeson.ToJSON Charge_outcomeAdvice_codeNonNullable
+data Charge_outcomeRuleVariants
+instance Show Charge_outcomeRuleVariants
+instance Eq Charge_outcomeRuleVariants
+instance Data.Aeson.FromJSON Charge_outcomeRuleVariants
+instance Data.Aeson.ToJSON Charge_outcomeRuleVariants

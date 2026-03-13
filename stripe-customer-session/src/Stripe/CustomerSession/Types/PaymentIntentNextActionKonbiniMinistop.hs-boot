@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentIntentNextActionKonbiniMinistop where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_intent_next_action_konbini_ministop
+instance Show Payment_intent_next_action_konbini_ministop
+instance Eq Payment_intent_next_action_konbini_ministop
+instance Data.Aeson.FromJSON Payment_intent_next_action_konbini_ministop
+instance Data.Aeson.ToJSON Payment_intent_next_action_konbini_ministop

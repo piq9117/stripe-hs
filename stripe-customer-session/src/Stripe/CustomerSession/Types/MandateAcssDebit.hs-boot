@@ -1,0 +1,23 @@
+module Stripe.CustomerSession.Types.MandateAcssDebit where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Mandate_acss_debit
+instance Show Mandate_acss_debit
+instance Eq Mandate_acss_debit
+instance Data.Aeson.FromJSON Mandate_acss_debit
+instance Data.Aeson.ToJSON Mandate_acss_debit
+data Mandate_acss_debitDefault_for
+instance Show Mandate_acss_debitDefault_for
+instance Eq Mandate_acss_debitDefault_for
+instance Data.Aeson.FromJSON Mandate_acss_debitDefault_for
+instance Data.Aeson.ToJSON Mandate_acss_debitDefault_for
+data Mandate_acss_debitPayment_schedule
+instance Show Mandate_acss_debitPayment_schedule
+instance Eq Mandate_acss_debitPayment_schedule
+instance Data.Aeson.FromJSON Mandate_acss_debitPayment_schedule
+instance Data.Aeson.ToJSON Mandate_acss_debitPayment_schedule
+data Mandate_acss_debitTransaction_type
+instance Show Mandate_acss_debitTransaction_type
+instance Eq Mandate_acss_debitTransaction_type
+instance Data.Aeson.FromJSON Mandate_acss_debitTransaction_type
+instance Data.Aeson.ToJSON Mandate_acss_debitTransaction_type

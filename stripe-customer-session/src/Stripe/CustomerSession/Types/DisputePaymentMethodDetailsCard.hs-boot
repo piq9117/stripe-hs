@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.DisputePaymentMethodDetailsCard where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Dispute_payment_method_details_card
+instance Show Dispute_payment_method_details_card
+instance Eq Dispute_payment_method_details_card
+instance Data.Aeson.FromJSON Dispute_payment_method_details_card
+instance Data.Aeson.ToJSON Dispute_payment_method_details_card
+data Dispute_payment_method_details_cardCase_type
+instance Show Dispute_payment_method_details_cardCase_type
+instance Eq Dispute_payment_method_details_cardCase_type
+instance Data.Aeson.FromJSON Dispute_payment_method_details_cardCase_type
+instance Data.Aeson.ToJSON Dispute_payment_method_details_cardCase_type

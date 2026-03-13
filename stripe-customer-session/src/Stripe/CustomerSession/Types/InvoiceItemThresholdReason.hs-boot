@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoiceItemThresholdReason where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_item_threshold_reason
+instance Show Invoice_item_threshold_reason
+instance Eq Invoice_item_threshold_reason
+instance Data.Aeson.FromJSON Invoice_item_threshold_reason
+instance Data.Aeson.ToJSON Invoice_item_threshold_reason

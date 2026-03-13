@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsBillie where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_billie
+instance Show Payment_method_options_billie
+instance Eq Payment_method_options_billie
+instance Data.Aeson.FromJSON Payment_method_options_billie
+instance Data.Aeson.ToJSON Payment_method_options_billie
+data Payment_method_options_billieCapture_method
+instance Show Payment_method_options_billieCapture_method
+instance Eq Payment_method_options_billieCapture_method
+instance Data.Aeson.FromJSON Payment_method_options_billieCapture_method
+instance Data.Aeson.ToJSON Payment_method_options_billieCapture_method

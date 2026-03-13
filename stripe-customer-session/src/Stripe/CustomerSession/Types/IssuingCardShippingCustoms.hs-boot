@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingCardShippingCustoms where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_card_shipping_customs
+instance Show Issuing_card_shipping_customs
+instance Eq Issuing_card_shipping_customs
+instance Data.Aeson.FromJSON Issuing_card_shipping_customs
+instance Data.Aeson.ToJSON Issuing_card_shipping_customs

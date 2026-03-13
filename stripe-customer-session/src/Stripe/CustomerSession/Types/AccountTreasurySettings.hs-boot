@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountTreasurySettings where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_treasury_settings
+instance Show Account_treasury_settings
+instance Eq Account_treasury_settings
+instance Data.Aeson.FromJSON Account_treasury_settings
+instance Data.Aeson.ToJSON Account_treasury_settings

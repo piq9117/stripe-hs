@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingAuthorizationAmountDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_authorization_amount_details
+instance Show Issuing_authorization_amount_details
+instance Eq Issuing_authorization_amount_details
+instance Data.Aeson.FromJSON Issuing_authorization_amount_details
+instance Data.Aeson.ToJSON Issuing_authorization_amount_details

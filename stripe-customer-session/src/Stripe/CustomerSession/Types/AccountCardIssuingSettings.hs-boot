@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountCardIssuingSettings where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_card_issuing_settings
+instance Show Account_card_issuing_settings
+instance Eq Account_card_issuing_settings
+instance Data.Aeson.FromJSON Account_card_issuing_settings
+instance Data.Aeson.ToJSON Account_card_issuing_settings

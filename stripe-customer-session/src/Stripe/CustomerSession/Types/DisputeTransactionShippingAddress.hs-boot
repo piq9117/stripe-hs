@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.DisputeTransactionShippingAddress where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Dispute_transaction_shipping_address
+instance Show Dispute_transaction_shipping_address
+instance Eq Dispute_transaction_shipping_address
+instance Data.Aeson.FromJSON Dispute_transaction_shipping_address
+instance Data.Aeson.ToJSON Dispute_transaction_shipping_address

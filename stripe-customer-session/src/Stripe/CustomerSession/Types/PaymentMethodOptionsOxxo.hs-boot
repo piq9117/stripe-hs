@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsOxxo where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_oxxo
+instance Show Payment_method_options_oxxo
+instance Eq Payment_method_options_oxxo
+instance Data.Aeson.FromJSON Payment_method_options_oxxo
+instance Data.Aeson.ToJSON Payment_method_options_oxxo
+data Payment_method_options_oxxoSetup_future_usage
+instance Show Payment_method_options_oxxoSetup_future_usage
+instance Eq Payment_method_options_oxxoSetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_oxxoSetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_oxxoSetup_future_usage

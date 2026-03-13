@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SourceTypeThreeDSecure where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Source_type_three_d_secure
+instance Show Source_type_three_d_secure
+instance Eq Source_type_three_d_secure
+instance Data.Aeson.FromJSON Source_type_three_d_secure
+instance Data.Aeson.ToJSON Source_type_three_d_secure

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountMonthlyEstimatedRevenue where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_monthly_estimated_revenue
+instance Show Account_monthly_estimated_revenue
+instance Eq Account_monthly_estimated_revenue
+instance Data.Aeson.FromJSON Account_monthly_estimated_revenue
+instance Data.Aeson.ToJSON Account_monthly_estimated_revenue

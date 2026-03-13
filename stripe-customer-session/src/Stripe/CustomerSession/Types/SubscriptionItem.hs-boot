@@ -1,0 +1,18 @@
+module Stripe.CustomerSession.Types.SubscriptionItem where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Subscription_item
+instance Show Subscription_item
+instance Eq Subscription_item
+instance Data.Aeson.FromJSON Subscription_item
+instance Data.Aeson.ToJSON Subscription_item
+data Subscription_itemBilling_thresholdsNonNullable
+instance Show Subscription_itemBilling_thresholdsNonNullable
+instance Eq Subscription_itemBilling_thresholdsNonNullable
+instance Data.Aeson.FromJSON Subscription_itemBilling_thresholdsNonNullable
+instance Data.Aeson.ToJSON Subscription_itemBilling_thresholdsNonNullable
+data Subscription_itemDiscountsVariants
+instance Show Subscription_itemDiscountsVariants
+instance Eq Subscription_itemDiscountsVariants
+instance Data.Aeson.FromJSON Subscription_itemDiscountsVariants
+instance Data.Aeson.ToJSON Subscription_itemDiscountsVariants

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountSepaDebitPaymentsSettings where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_sepa_debit_payments_settings
+instance Show Account_sepa_debit_payments_settings
+instance Eq Account_sepa_debit_payments_settings
+instance Data.Aeson.FromJSON Account_sepa_debit_payments_settings
+instance Data.Aeson.ToJSON Account_sepa_debit_payments_settings

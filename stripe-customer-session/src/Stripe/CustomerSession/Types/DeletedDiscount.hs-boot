@@ -1,0 +1,18 @@
+module Stripe.CustomerSession.Types.DeletedDiscount where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Deleted_discount
+instance Show Deleted_discount
+instance Eq Deleted_discount
+instance Data.Aeson.FromJSON Deleted_discount
+instance Data.Aeson.ToJSON Deleted_discount
+data Deleted_discountCustomerNonNullableVariants
+instance Show Deleted_discountCustomerNonNullableVariants
+instance Eq Deleted_discountCustomerNonNullableVariants
+instance Data.Aeson.FromJSON Deleted_discountCustomerNonNullableVariants
+instance Data.Aeson.ToJSON Deleted_discountCustomerNonNullableVariants
+data Deleted_discountPromotion_codeNonNullableVariants
+instance Show Deleted_discountPromotion_codeNonNullableVariants
+instance Eq Deleted_discountPromotion_codeNonNullableVariants
+instance Data.Aeson.FromJSON Deleted_discountPromotion_codeNonNullableVariants
+instance Data.Aeson.ToJSON Deleted_discountPromotion_codeNonNullableVariants

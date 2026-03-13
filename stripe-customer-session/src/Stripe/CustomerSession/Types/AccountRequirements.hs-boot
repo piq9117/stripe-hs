@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.AccountRequirements where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_requirements
+instance Show Account_requirements
+instance Eq Account_requirements
+instance Data.Aeson.FromJSON Account_requirements
+instance Data.Aeson.ToJSON Account_requirements
+data Account_requirementsDisabled_reasonNonNullable
+instance Show Account_requirementsDisabled_reasonNonNullable
+instance Eq Account_requirementsDisabled_reasonNonNullable
+instance Data.Aeson.FromJSON Account_requirementsDisabled_reasonNonNullable
+instance Data.Aeson.ToJSON Account_requirementsDisabled_reasonNonNullable

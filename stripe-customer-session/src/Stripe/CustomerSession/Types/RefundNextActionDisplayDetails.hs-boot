@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RefundNextActionDisplayDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Refund_next_action_display_details
+instance Show Refund_next_action_display_details
+instance Eq Refund_next_action_display_details
+instance Data.Aeson.FromJSON Refund_next_action_display_details
+instance Data.Aeson.ToJSON Refund_next_action_display_details

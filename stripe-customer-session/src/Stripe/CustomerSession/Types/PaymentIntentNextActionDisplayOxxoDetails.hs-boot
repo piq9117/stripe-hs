@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentIntentNextActionDisplayOxxoDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_intent_next_action_display_oxxo_details
+instance Show Payment_intent_next_action_display_oxxo_details
+instance Eq Payment_intent_next_action_display_oxxo_details
+instance Data.Aeson.FromJSON Payment_intent_next_action_display_oxxo_details
+instance Data.Aeson.ToJSON Payment_intent_next_action_display_oxxo_details

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountCardPaymentsSettings where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_card_payments_settings
+instance Show Account_card_payments_settings
+instance Eq Account_card_payments_settings
+instance Data.Aeson.FromJSON Account_card_payments_settings
+instance Data.Aeson.ToJSON Account_card_payments_settings

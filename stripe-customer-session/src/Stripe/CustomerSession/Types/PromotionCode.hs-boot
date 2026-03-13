@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PromotionCode where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Promotion_code
+instance Show Promotion_code
+instance Eq Promotion_code
+instance Data.Aeson.FromJSON Promotion_code
+instance Data.Aeson.ToJSON Promotion_code
+data Promotion_codeCustomerNonNullableVariants
+instance Show Promotion_codeCustomerNonNullableVariants
+instance Eq Promotion_codeCustomerNonNullableVariants
+instance Data.Aeson.FromJSON Promotion_codeCustomerNonNullableVariants
+instance Data.Aeson.ToJSON Promotion_codeCustomerNonNullableVariants

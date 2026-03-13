@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.IssuingAuthorizationThreeDSecure where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_authorization_three_d_secure
+instance Show Issuing_authorization_three_d_secure
+instance Eq Issuing_authorization_three_d_secure
+instance Data.Aeson.FromJSON Issuing_authorization_three_d_secure
+instance Data.Aeson.ToJSON Issuing_authorization_three_d_secure
+data Issuing_authorization_three_d_secureResult
+instance Show Issuing_authorization_three_d_secureResult
+instance Eq Issuing_authorization_three_d_secureResult
+instance Data.Aeson.FromJSON Issuing_authorization_three_d_secureResult
+instance Data.Aeson.ToJSON Issuing_authorization_three_d_secureResult

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RefundDestinationDetailsBlik where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Refund_destination_details_blik
+instance Show Refund_destination_details_blik
+instance Eq Refund_destination_details_blik
+instance Data.Aeson.FromJSON Refund_destination_details_blik
+instance Data.Aeson.ToJSON Refund_destination_details_blik

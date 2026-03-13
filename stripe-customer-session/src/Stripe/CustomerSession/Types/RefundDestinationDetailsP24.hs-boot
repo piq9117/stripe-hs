@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RefundDestinationDetailsP24 where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Refund_destination_details_p24
+instance Show Refund_destination_details_p24
+instance Eq Refund_destination_details_p24
+instance Data.Aeson.FromJSON Refund_destination_details_p24
+instance Data.Aeson.ToJSON Refund_destination_details_p24

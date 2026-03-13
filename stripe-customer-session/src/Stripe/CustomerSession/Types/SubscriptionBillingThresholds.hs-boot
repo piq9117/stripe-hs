@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SubscriptionBillingThresholds where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Subscription_billing_thresholds
+instance Show Subscription_billing_thresholds
+instance Eq Subscription_billing_thresholds
+instance Data.Aeson.FromJSON Subscription_billing_thresholds
+instance Data.Aeson.ToJSON Subscription_billing_thresholds

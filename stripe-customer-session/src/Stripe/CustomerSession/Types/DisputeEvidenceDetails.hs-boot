@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.DisputeEvidenceDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Dispute_evidence_details
+instance Show Dispute_evidence_details
+instance Eq Dispute_evidence_details
+instance Data.Aeson.FromJSON Dispute_evidence_details
+instance Data.Aeson.ToJSON Dispute_evidence_details

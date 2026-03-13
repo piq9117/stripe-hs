@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.ShippingRateDeliveryEstimateBound where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Shipping_rate_delivery_estimate_bound
+instance Show Shipping_rate_delivery_estimate_bound
+instance Eq Shipping_rate_delivery_estimate_bound
+instance Data.Aeson.FromJSON Shipping_rate_delivery_estimate_bound
+instance Data.Aeson.ToJSON Shipping_rate_delivery_estimate_bound
+data Shipping_rate_delivery_estimate_boundUnit
+instance Show Shipping_rate_delivery_estimate_boundUnit
+instance Eq Shipping_rate_delivery_estimate_boundUnit
+instance Data.Aeson.FromJSON Shipping_rate_delivery_estimate_boundUnit
+instance Data.Aeson.ToJSON Shipping_rate_delivery_estimate_boundUnit

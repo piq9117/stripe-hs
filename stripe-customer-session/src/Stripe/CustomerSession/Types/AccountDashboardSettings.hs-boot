@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountDashboardSettings where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_dashboard_settings
+instance Show Account_dashboard_settings
+instance Eq Account_dashboard_settings
+instance Data.Aeson.FromJSON Account_dashboard_settings
+instance Data.Aeson.ToJSON Account_dashboard_settings

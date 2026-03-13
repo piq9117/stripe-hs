@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.KlarnaPayerDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Klarna_payer_details
+instance Show Klarna_payer_details
+instance Eq Klarna_payer_details
+instance Data.Aeson.FromJSON Klarna_payer_details
+instance Data.Aeson.ToJSON Klarna_payer_details
+data Klarna_payer_detailsAddressNonNullable
+instance Show Klarna_payer_detailsAddressNonNullable
+instance Eq Klarna_payer_detailsAddressNonNullable
+instance Data.Aeson.FromJSON Klarna_payer_detailsAddressNonNullable
+instance Data.Aeson.ToJSON Klarna_payer_detailsAddressNonNullable

@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodCustom where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_custom
+instance Show Payment_method_custom
+instance Eq Payment_method_custom
+instance Data.Aeson.FromJSON Payment_method_custom
+instance Data.Aeson.ToJSON Payment_method_custom
+data Payment_method_customLogoNonNullable
+instance Show Payment_method_customLogoNonNullable
+instance Eq Payment_method_customLogoNonNullable
+instance Data.Aeson.FromJSON Payment_method_customLogoNonNullable
+instance Data.Aeson.ToJSON Payment_method_customLogoNonNullable

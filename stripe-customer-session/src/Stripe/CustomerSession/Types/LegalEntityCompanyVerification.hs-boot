@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.LegalEntityCompanyVerification where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Legal_entity_company_verification
+instance Show Legal_entity_company_verification
+instance Eq Legal_entity_company_verification
+instance Data.Aeson.FromJSON Legal_entity_company_verification
+instance Data.Aeson.ToJSON Legal_entity_company_verification

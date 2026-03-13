@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SourceTypeAchCreditTransfer where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Source_type_ach_credit_transfer
+instance Show Source_type_ach_credit_transfer
+instance Eq Source_type_ach_credit_transfer
+instance Data.Aeson.FromJSON Source_type_ach_credit_transfer
+instance Data.Aeson.ToJSON Source_type_ach_credit_transfer

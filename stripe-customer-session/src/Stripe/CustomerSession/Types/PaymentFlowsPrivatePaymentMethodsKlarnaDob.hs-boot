@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentFlowsPrivatePaymentMethodsKlarnaDob where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_private_payment_methods_klarna_dob
+instance Show Payment_flows_private_payment_methods_klarna_dob
+instance Eq Payment_flows_private_payment_methods_klarna_dob
+instance Data.Aeson.FromJSON Payment_flows_private_payment_methods_klarna_dob
+instance Data.Aeson.ToJSON Payment_flows_private_payment_methods_klarna_dob

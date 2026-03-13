@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoiceSettingCustomField where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_setting_custom_field
+instance Show Invoice_setting_custom_field
+instance Eq Invoice_setting_custom_field
+instance Data.Aeson.FromJSON Invoice_setting_custom_field
+instance Data.Aeson.ToJSON Invoice_setting_custom_field

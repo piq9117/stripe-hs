@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.CustomerSessionResourceComponents where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Customer_session_resource_components
+instance Show Customer_session_resource_components
+instance Eq Customer_session_resource_components
+instance Data.Aeson.FromJSON Customer_session_resource_components
+instance Data.Aeson.ToJSON Customer_session_resource_components

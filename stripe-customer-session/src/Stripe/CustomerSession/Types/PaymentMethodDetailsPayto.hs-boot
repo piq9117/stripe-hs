@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsPayto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_payto
+instance Show Payment_method_details_payto
+instance Eq Payment_method_details_payto
+instance Data.Aeson.FromJSON Payment_method_details_payto
+instance Data.Aeson.ToJSON Payment_method_details_payto

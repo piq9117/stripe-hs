@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingAuthorizationFleetTaxData where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_authorization_fleet_tax_data
+instance Show Issuing_authorization_fleet_tax_data
+instance Eq Issuing_authorization_fleet_tax_data
+instance Data.Aeson.FromJSON Issuing_authorization_fleet_tax_data
+instance Data.Aeson.ToJSON Issuing_authorization_fleet_tax_data

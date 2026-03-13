@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentFlowsPaymentIntentAsyncWorkflows where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_payment_intent_async_workflows
+instance Show Payment_flows_payment_intent_async_workflows
+instance Eq Payment_flows_payment_intent_async_workflows
+instance Data.Aeson.FromJSON Payment_flows_payment_intent_async_workflows
+instance Data.Aeson.ToJSON Payment_flows_payment_intent_async_workflows

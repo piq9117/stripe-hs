@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsAlipay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_alipay
+instance Show Payment_method_options_alipay
+instance Eq Payment_method_options_alipay
+instance Data.Aeson.FromJSON Payment_method_options_alipay
+instance Data.Aeson.ToJSON Payment_method_options_alipay
+data Payment_method_options_alipaySetup_future_usage
+instance Show Payment_method_options_alipaySetup_future_usage
+instance Eq Payment_method_options_alipaySetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_alipaySetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_alipaySetup_future_usage

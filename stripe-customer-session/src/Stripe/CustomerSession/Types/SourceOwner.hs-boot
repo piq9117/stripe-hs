@@ -1,0 +1,18 @@
+module Stripe.CustomerSession.Types.SourceOwner where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Source_owner
+instance Show Source_owner
+instance Eq Source_owner
+instance Data.Aeson.FromJSON Source_owner
+instance Data.Aeson.ToJSON Source_owner
+data Source_ownerAddressNonNullable
+instance Show Source_ownerAddressNonNullable
+instance Eq Source_ownerAddressNonNullable
+instance Data.Aeson.FromJSON Source_ownerAddressNonNullable
+instance Data.Aeson.ToJSON Source_ownerAddressNonNullable
+data Source_ownerVerified_addressNonNullable
+instance Show Source_ownerVerified_addressNonNullable
+instance Eq Source_ownerVerified_addressNonNullable
+instance Data.Aeson.FromJSON Source_ownerVerified_addressNonNullable
+instance Data.Aeson.ToJSON Source_ownerVerified_addressNonNullable

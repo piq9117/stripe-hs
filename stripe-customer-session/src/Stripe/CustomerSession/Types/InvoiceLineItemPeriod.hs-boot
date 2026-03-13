@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoiceLineItemPeriod where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_line_item_period
+instance Show Invoice_line_item_period
+instance Eq Invoice_line_item_period
+instance Data.Aeson.FromJSON Invoice_line_item_period
+instance Data.Aeson.ToJSON Invoice_line_item_period

@@ -1,0 +1,28 @@
+module Stripe.CustomerSession.Types.TaxIDsOwner where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Tax_i_ds_owner
+instance Show Tax_i_ds_owner
+instance Eq Tax_i_ds_owner
+instance Data.Aeson.FromJSON Tax_i_ds_owner
+instance Data.Aeson.ToJSON Tax_i_ds_owner
+data Tax_i_ds_ownerAccountVariants
+instance Show Tax_i_ds_ownerAccountVariants
+instance Eq Tax_i_ds_ownerAccountVariants
+instance Data.Aeson.FromJSON Tax_i_ds_ownerAccountVariants
+instance Data.Aeson.ToJSON Tax_i_ds_ownerAccountVariants
+data Tax_i_ds_ownerApplicationVariants
+instance Show Tax_i_ds_ownerApplicationVariants
+instance Eq Tax_i_ds_ownerApplicationVariants
+instance Data.Aeson.FromJSON Tax_i_ds_ownerApplicationVariants
+instance Data.Aeson.ToJSON Tax_i_ds_ownerApplicationVariants
+data Tax_i_ds_ownerCustomerVariants
+instance Show Tax_i_ds_ownerCustomerVariants
+instance Eq Tax_i_ds_ownerCustomerVariants
+instance Data.Aeson.FromJSON Tax_i_ds_ownerCustomerVariants
+instance Data.Aeson.ToJSON Tax_i_ds_ownerCustomerVariants
+data Tax_i_ds_ownerType
+instance Show Tax_i_ds_ownerType
+instance Eq Tax_i_ds_ownerType
+instance Data.Aeson.FromJSON Tax_i_ds_ownerType
+instance Data.Aeson.ToJSON Tax_i_ds_ownerType

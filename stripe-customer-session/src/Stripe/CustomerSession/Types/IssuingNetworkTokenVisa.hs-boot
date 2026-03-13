@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingNetworkTokenVisa where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_network_token_visa
+instance Show Issuing_network_token_visa
+instance Eq Issuing_network_token_visa
+instance Data.Aeson.FromJSON Issuing_network_token_visa
+instance Data.Aeson.ToJSON Issuing_network_token_visa

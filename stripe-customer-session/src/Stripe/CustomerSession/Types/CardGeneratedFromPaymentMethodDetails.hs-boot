@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.CardGeneratedFromPaymentMethodDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Card_generated_from_payment_method_details
+instance Show Card_generated_from_payment_method_details
+instance Eq Card_generated_from_payment_method_details
+instance Data.Aeson.FromJSON Card_generated_from_payment_method_details
+instance Data.Aeson.ToJSON Card_generated_from_payment_method_details

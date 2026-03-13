@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SourceTypeAchDebit where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Source_type_ach_debit
+instance Show Source_type_ach_debit
+instance Eq Source_type_ach_debit
+instance Data.Aeson.FromJSON Source_type_ach_debit
+instance Data.Aeson.ToJSON Source_type_ach_debit

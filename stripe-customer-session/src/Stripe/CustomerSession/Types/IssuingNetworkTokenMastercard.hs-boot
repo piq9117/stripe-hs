@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingNetworkTokenMastercard where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_network_token_mastercard
+instance Show Issuing_network_token_mastercard
+instance Eq Issuing_network_token_mastercard
+instance Data.Aeson.FromJSON Issuing_network_token_mastercard
+instance Data.Aeson.ToJSON Issuing_network_token_mastercard

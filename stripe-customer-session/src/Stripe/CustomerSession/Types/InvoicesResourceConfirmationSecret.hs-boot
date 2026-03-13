@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoicesResourceConfirmationSecret where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoices_resource_confirmation_secret
+instance Show Invoices_resource_confirmation_secret
+instance Eq Invoices_resource_confirmation_secret
+instance Data.Aeson.FromJSON Invoices_resource_confirmation_secret
+instance Data.Aeson.ToJSON Invoices_resource_confirmation_secret

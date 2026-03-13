@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsCrypto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_crypto
+instance Show Payment_method_options_crypto
+instance Eq Payment_method_options_crypto
+instance Data.Aeson.FromJSON Payment_method_options_crypto
+instance Data.Aeson.ToJSON Payment_method_options_crypto
+data Payment_method_options_cryptoSetup_future_usage
+instance Show Payment_method_options_cryptoSetup_future_usage
+instance Eq Payment_method_options_cryptoSetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_cryptoSetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_cryptoSetup_future_usage

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingNetworkTokenAddress where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_network_token_address
+instance Show Issuing_network_token_address
+instance Eq Issuing_network_token_address
+instance Data.Aeson.FromJSON Issuing_network_token_address
+instance Data.Aeson.ToJSON Issuing_network_token_address

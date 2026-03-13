@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountDeclineChargeOn where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_decline_charge_on
+instance Show Account_decline_charge_on
+instance Eq Account_decline_charge_on
+instance Data.Aeson.FromJSON Account_decline_charge_on
+instance Data.Aeson.ToJSON Account_decline_charge_on

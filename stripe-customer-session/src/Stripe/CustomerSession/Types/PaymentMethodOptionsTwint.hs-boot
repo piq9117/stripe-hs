@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsTwint where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_twint
+instance Show Payment_method_options_twint
+instance Eq Payment_method_options_twint
+instance Data.Aeson.FromJSON Payment_method_options_twint
+instance Data.Aeson.ToJSON Payment_method_options_twint
+data Payment_method_options_twintSetup_future_usage
+instance Show Payment_method_options_twintSetup_future_usage
+instance Eq Payment_method_options_twintSetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_twintSetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_twintSetup_future_usage

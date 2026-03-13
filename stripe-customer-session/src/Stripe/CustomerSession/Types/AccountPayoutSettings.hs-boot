@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountPayoutSettings where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_payout_settings
+instance Show Account_payout_settings
+instance Eq Account_payout_settings
+instance Data.Aeson.FromJSON Account_payout_settings
+instance Data.Aeson.ToJSON Account_payout_settings

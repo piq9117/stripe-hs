@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsAlma where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_alma
+instance Show Payment_method_details_alma
+instance Eq Payment_method_details_alma
+instance Data.Aeson.FromJSON Payment_method_details_alma
+instance Data.Aeson.ToJSON Payment_method_details_alma

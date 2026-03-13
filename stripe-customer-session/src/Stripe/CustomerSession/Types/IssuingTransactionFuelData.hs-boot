@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingTransactionFuelData where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_transaction_fuel_data
+instance Show Issuing_transaction_fuel_data
+instance Eq Issuing_transaction_fuel_data
+instance Data.Aeson.FromJSON Issuing_transaction_fuel_data
+instance Data.Aeson.ToJSON Issuing_transaction_fuel_data

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountAnnualRevenue where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_annual_revenue
+instance Show Account_annual_revenue
+instance Eq Account_annual_revenue
+instance Data.Aeson.FromJSON Account_annual_revenue
+instance Data.Aeson.ToJSON Account_annual_revenue

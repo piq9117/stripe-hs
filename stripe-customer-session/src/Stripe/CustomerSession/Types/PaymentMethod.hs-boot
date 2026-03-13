@@ -1,0 +1,23 @@
+module Stripe.CustomerSession.Types.PaymentMethod where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method
+instance Show Payment_method
+instance Eq Payment_method
+instance Data.Aeson.FromJSON Payment_method
+instance Data.Aeson.ToJSON Payment_method
+data Payment_methodAllow_redisplay
+instance Show Payment_methodAllow_redisplay
+instance Eq Payment_methodAllow_redisplay
+instance Data.Aeson.FromJSON Payment_methodAllow_redisplay
+instance Data.Aeson.ToJSON Payment_methodAllow_redisplay
+data Payment_methodCustomerNonNullableVariants
+instance Show Payment_methodCustomerNonNullableVariants
+instance Eq Payment_methodCustomerNonNullableVariants
+instance Data.Aeson.FromJSON Payment_methodCustomerNonNullableVariants
+instance Data.Aeson.ToJSON Payment_methodCustomerNonNullableVariants
+data Payment_methodType
+instance Show Payment_methodType
+instance Eq Payment_methodType
+instance Data.Aeson.FromJSON Payment_methodType
+instance Data.Aeson.ToJSON Payment_methodType

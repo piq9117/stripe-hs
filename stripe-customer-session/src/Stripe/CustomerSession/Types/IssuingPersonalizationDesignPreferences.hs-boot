@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingPersonalizationDesignPreferences where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_personalization_design_preferences
+instance Show Issuing_personalization_design_preferences
+instance Eq Issuing_personalization_design_preferences
+instance Data.Aeson.FromJSON Issuing_personalization_design_preferences
+instance Data.Aeson.ToJSON Issuing_personalization_design_preferences

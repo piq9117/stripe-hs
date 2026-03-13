@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.CustomerSession where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Customer_session
+instance Show Customer_session
+instance Eq Customer_session
+instance Data.Aeson.FromJSON Customer_session
+instance Data.Aeson.ToJSON Customer_session
+data Customer_sessionCustomerVariants
+instance Show Customer_sessionCustomerVariants
+instance Eq Customer_sessionCustomerVariants
+instance Data.Aeson.FromJSON Customer_sessionCustomerVariants
+instance Data.Aeson.ToJSON Customer_sessionCustomerVariants

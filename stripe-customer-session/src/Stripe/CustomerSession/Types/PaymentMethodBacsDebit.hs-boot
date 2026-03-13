@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodBacsDebit where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_bacs_debit
+instance Show Payment_method_bacs_debit
+instance Eq Payment_method_bacs_debit
+instance Data.Aeson.FromJSON Payment_method_bacs_debit
+instance Data.Aeson.ToJSON Payment_method_bacs_debit

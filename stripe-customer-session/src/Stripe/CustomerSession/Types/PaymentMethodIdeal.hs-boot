@@ -1,0 +1,18 @@
+module Stripe.CustomerSession.Types.PaymentMethodIdeal where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_ideal
+instance Show Payment_method_ideal
+instance Eq Payment_method_ideal
+instance Data.Aeson.FromJSON Payment_method_ideal
+instance Data.Aeson.ToJSON Payment_method_ideal
+data Payment_method_idealBankNonNullable
+instance Show Payment_method_idealBankNonNullable
+instance Eq Payment_method_idealBankNonNullable
+instance Data.Aeson.FromJSON Payment_method_idealBankNonNullable
+instance Data.Aeson.ToJSON Payment_method_idealBankNonNullable
+data Payment_method_idealBicNonNullable
+instance Show Payment_method_idealBicNonNullable
+instance Eq Payment_method_idealBicNonNullable
+instance Data.Aeson.FromJSON Payment_method_idealBicNonNullable
+instance Data.Aeson.ToJSON Payment_method_idealBicNonNullable

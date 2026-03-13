@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.InvoicesResourceFromInvoice where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoices_resource_from_invoice
+instance Show Invoices_resource_from_invoice
+instance Eq Invoices_resource_from_invoice
+instance Data.Aeson.FromJSON Invoices_resource_from_invoice
+instance Data.Aeson.ToJSON Invoices_resource_from_invoice
+data Invoices_resource_from_invoiceInvoiceVariants
+instance Show Invoices_resource_from_invoiceInvoiceVariants
+instance Eq Invoices_resource_from_invoiceInvoiceVariants
+instance Data.Aeson.FromJSON Invoices_resource_from_invoiceInvoiceVariants
+instance Data.Aeson.ToJSON Invoices_resource_from_invoiceInvoiceVariants

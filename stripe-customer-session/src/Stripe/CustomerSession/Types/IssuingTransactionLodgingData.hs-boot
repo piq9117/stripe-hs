@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingTransactionLodgingData where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_transaction_lodging_data
+instance Show Issuing_transaction_lodging_data
+instance Eq Issuing_transaction_lodging_data
+instance Data.Aeson.FromJSON Issuing_transaction_lodging_data
+instance Data.Aeson.ToJSON Issuing_transaction_lodging_data

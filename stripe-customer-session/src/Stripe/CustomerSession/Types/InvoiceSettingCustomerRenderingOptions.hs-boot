@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoiceSettingCustomerRenderingOptions where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_setting_customer_rendering_options
+instance Show Invoice_setting_customer_rendering_options
+instance Eq Invoice_setting_customer_rendering_options
+instance Data.Aeson.FromJSON Invoice_setting_customer_rendering_options
+instance Data.Aeson.ToJSON Invoice_setting_customer_rendering_options

@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsSatispay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_satispay
+instance Show Payment_method_options_satispay
+instance Eq Payment_method_options_satispay
+instance Data.Aeson.FromJSON Payment_method_options_satispay
+instance Data.Aeson.ToJSON Payment_method_options_satispay
+data Payment_method_options_satispayCapture_method
+instance Show Payment_method_options_satispayCapture_method
+instance Eq Payment_method_options_satispayCapture_method
+instance Data.Aeson.FromJSON Payment_method_options_satispayCapture_method
+instance Data.Aeson.ToJSON Payment_method_options_satispayCapture_method

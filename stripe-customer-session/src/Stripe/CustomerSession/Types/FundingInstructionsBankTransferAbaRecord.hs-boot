@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.FundingInstructionsBankTransferAbaRecord where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Funding_instructions_bank_transfer_aba_record
+instance Show Funding_instructions_bank_transfer_aba_record
+instance Eq Funding_instructions_bank_transfer_aba_record
+instance Data.Aeson.FromJSON Funding_instructions_bank_transfer_aba_record
+instance Data.Aeson.ToJSON Funding_instructions_bank_transfer_aba_record

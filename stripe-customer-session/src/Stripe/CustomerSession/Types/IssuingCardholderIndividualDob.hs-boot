@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingCardholderIndividualDob where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_cardholder_individual_dob
+instance Show Issuing_cardholder_individual_dob
+instance Eq Issuing_cardholder_individual_dob
+instance Data.Aeson.FromJSON Issuing_cardholder_individual_dob
+instance Data.Aeson.ToJSON Issuing_cardholder_individual_dob

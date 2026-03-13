@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentFlowsAmountDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_amount_details
+instance Show Payment_flows_amount_details
+instance Eq Payment_flows_amount_details
+instance Data.Aeson.FromJSON Payment_flows_amount_details
+instance Data.Aeson.ToJSON Payment_flows_amount_details
+data Payment_flows_amount_detailsLine_items
+instance Show Payment_flows_amount_detailsLine_items
+instance Eq Payment_flows_amount_detailsLine_items
+instance Data.Aeson.FromJSON Payment_flows_amount_detailsLine_items
+instance Data.Aeson.ToJSON Payment_flows_amount_detailsLine_items

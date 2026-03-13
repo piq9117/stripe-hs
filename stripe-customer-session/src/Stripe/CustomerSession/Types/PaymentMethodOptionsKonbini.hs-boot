@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsKonbini where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_konbini
+instance Show Payment_method_options_konbini
+instance Eq Payment_method_options_konbini
+instance Data.Aeson.FromJSON Payment_method_options_konbini
+instance Data.Aeson.ToJSON Payment_method_options_konbini
+data Payment_method_options_konbiniSetup_future_usage
+instance Show Payment_method_options_konbiniSetup_future_usage
+instance Eq Payment_method_options_konbiniSetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_konbiniSetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_konbiniSetup_future_usage

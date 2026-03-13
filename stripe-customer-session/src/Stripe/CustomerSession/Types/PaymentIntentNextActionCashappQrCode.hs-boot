@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentIntentNextActionCashappQrCode where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_intent_next_action_cashapp_qr_code
+instance Show Payment_intent_next_action_cashapp_qr_code
+instance Eq Payment_intent_next_action_cashapp_qr_code
+instance Data.Aeson.FromJSON Payment_intent_next_action_cashapp_qr_code
+instance Data.Aeson.ToJSON Payment_intent_next_action_cashapp_qr_code

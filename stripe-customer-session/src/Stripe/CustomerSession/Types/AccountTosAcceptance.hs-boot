@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountTosAcceptance where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_tos_acceptance
+instance Show Account_tos_acceptance
+instance Eq Account_tos_acceptance
+instance Data.Aeson.FromJSON Account_tos_acceptance
+instance Data.Aeson.ToJSON Account_tos_acceptance

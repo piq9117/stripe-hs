@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.MandatePaymentMethodDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Mandate_payment_method_details
+instance Show Mandate_payment_method_details
+instance Eq Mandate_payment_method_details
+instance Data.Aeson.FromJSON Mandate_payment_method_details
+instance Data.Aeson.ToJSON Mandate_payment_method_details

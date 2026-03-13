@@ -1,0 +1,28 @@
+module Stripe.CustomerSession.Types.CustomerTax where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Customer_tax
+instance Show Customer_tax
+instance Eq Customer_tax
+instance Data.Aeson.FromJSON Customer_tax
+instance Data.Aeson.ToJSON Customer_tax
+data Customer_taxAutomatic_tax
+instance Show Customer_taxAutomatic_tax
+instance Eq Customer_taxAutomatic_tax
+instance Data.Aeson.FromJSON Customer_taxAutomatic_tax
+instance Data.Aeson.ToJSON Customer_taxAutomatic_tax
+data Customer_taxLocationNonNullable
+instance Show Customer_taxLocationNonNullable
+instance Eq Customer_taxLocationNonNullable
+instance Data.Aeson.FromJSON Customer_taxLocationNonNullable
+instance Data.Aeson.ToJSON Customer_taxLocationNonNullable
+data Customer_taxLocationNonNullableSource
+instance Show Customer_taxLocationNonNullableSource
+instance Eq Customer_taxLocationNonNullableSource
+instance Data.Aeson.FromJSON Customer_taxLocationNonNullableSource
+instance Data.Aeson.ToJSON Customer_taxLocationNonNullableSource
+data Customer_taxProvider
+instance Show Customer_taxProvider
+instance Eq Customer_taxProvider
+instance Data.Aeson.FromJSON Customer_taxProvider
+instance Data.Aeson.ToJSON Customer_taxProvider

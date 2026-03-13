@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SubscriptionScheduleCurrentPhase where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Subscription_schedule_current_phase
+instance Show Subscription_schedule_current_phase
+instance Eq Subscription_schedule_current_phase
+instance Data.Aeson.FromJSON Subscription_schedule_current_phase
+instance Data.Aeson.ToJSON Subscription_schedule_current_phase

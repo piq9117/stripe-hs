@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordPromptpay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_payment_record_promptpay
+instance Show Payment_method_details_payment_record_promptpay
+instance Eq Payment_method_details_payment_record_promptpay
+instance Data.Aeson.FromJSON Payment_method_details_payment_record_promptpay
+instance Data.Aeson.ToJSON Payment_method_details_payment_record_promptpay

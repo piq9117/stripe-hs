@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RefundDestinationDetailsSwish where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Refund_destination_details_swish
+instance Show Refund_destination_details_swish
+instance Eq Refund_destination_details_swish
+instance Data.Aeson.FromJSON Refund_destination_details_swish
+instance Data.Aeson.ToJSON Refund_destination_details_swish

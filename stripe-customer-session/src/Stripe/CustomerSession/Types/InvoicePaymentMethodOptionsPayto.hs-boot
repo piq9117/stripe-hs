@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.InvoicePaymentMethodOptionsPayto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_payment_method_options_payto
+instance Show Invoice_payment_method_options_payto
+instance Eq Invoice_payment_method_options_payto
+instance Data.Aeson.FromJSON Invoice_payment_method_options_payto
+instance Data.Aeson.ToJSON Invoice_payment_method_options_payto

@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.TransferSchedule where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Transfer_schedule
+instance Show Transfer_schedule
+instance Eq Transfer_schedule
+instance Data.Aeson.FromJSON Transfer_schedule
+instance Data.Aeson.ToJSON Transfer_schedule
+data Transfer_scheduleWeekly_payout_days
+instance Show Transfer_scheduleWeekly_payout_days
+instance Eq Transfer_scheduleWeekly_payout_days
+instance Data.Aeson.FromJSON Transfer_scheduleWeekly_payout_days
+instance Data.Aeson.ToJSON Transfer_scheduleWeekly_payout_days

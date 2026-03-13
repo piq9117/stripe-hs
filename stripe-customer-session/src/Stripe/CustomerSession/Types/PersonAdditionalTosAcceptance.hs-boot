@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PersonAdditionalTosAcceptance where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Person_additional_tos_acceptance
+instance Show Person_additional_tos_acceptance
+instance Eq Person_additional_tos_acceptance
+instance Data.Aeson.FromJSON Person_additional_tos_acceptance
+instance Data.Aeson.ToJSON Person_additional_tos_acceptance

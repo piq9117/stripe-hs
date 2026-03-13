@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentFlowsPaymentIntentPresentmentDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_payment_intent_presentment_details
+instance Show Payment_flows_payment_intent_presentment_details
+instance Eq Payment_flows_payment_intent_presentment_details
+instance Data.Aeson.FromJSON Payment_flows_payment_intent_presentment_details
+instance Data.Aeson.ToJSON Payment_flows_payment_intent_presentment_details

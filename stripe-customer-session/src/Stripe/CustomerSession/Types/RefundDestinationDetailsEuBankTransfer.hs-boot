@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RefundDestinationDetailsEuBankTransfer where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Refund_destination_details_eu_bank_transfer
+instance Show Refund_destination_details_eu_bank_transfer
+instance Eq Refund_destination_details_eu_bank_transfer
+instance Data.Aeson.FromJSON Refund_destination_details_eu_bank_transfer
+instance Data.Aeson.ToJSON Refund_destination_details_eu_bank_transfer

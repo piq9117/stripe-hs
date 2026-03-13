@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.DisputePaymentMethodDetailsKlarna where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Dispute_payment_method_details_klarna
+instance Show Dispute_payment_method_details_klarna
+instance Eq Dispute_payment_method_details_klarna
+instance Data.Aeson.FromJSON Dispute_payment_method_details_klarna
+instance Data.Aeson.ToJSON Dispute_payment_method_details_klarna

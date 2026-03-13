@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsPayto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Setup_intent_payment_method_options_payto
+instance Show Setup_intent_payment_method_options_payto
+instance Eq Setup_intent_payment_method_options_payto
+instance Data.Aeson.FromJSON Setup_intent_payment_method_options_payto
+instance Data.Aeson.ToJSON Setup_intent_payment_method_options_payto

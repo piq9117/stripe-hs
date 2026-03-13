@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsBoleto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_boleto
+instance Show Payment_method_options_boleto
+instance Eq Payment_method_options_boleto
+instance Data.Aeson.FromJSON Payment_method_options_boleto
+instance Data.Aeson.ToJSON Payment_method_options_boleto
+data Payment_method_options_boletoSetup_future_usage
+instance Show Payment_method_options_boletoSetup_future_usage
+instance Eq Payment_method_options_boletoSetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_boletoSetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_boletoSetup_future_usage

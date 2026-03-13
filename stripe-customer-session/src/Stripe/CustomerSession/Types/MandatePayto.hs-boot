@@ -1,0 +1,23 @@
+module Stripe.CustomerSession.Types.MandatePayto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Mandate_payto
+instance Show Mandate_payto
+instance Eq Mandate_payto
+instance Data.Aeson.FromJSON Mandate_payto
+instance Data.Aeson.ToJSON Mandate_payto
+data Mandate_paytoAmount_type
+instance Show Mandate_paytoAmount_type
+instance Eq Mandate_paytoAmount_type
+instance Data.Aeson.FromJSON Mandate_paytoAmount_type
+instance Data.Aeson.ToJSON Mandate_paytoAmount_type
+data Mandate_paytoPayment_schedule
+instance Show Mandate_paytoPayment_schedule
+instance Eq Mandate_paytoPayment_schedule
+instance Data.Aeson.FromJSON Mandate_paytoPayment_schedule
+instance Data.Aeson.ToJSON Mandate_paytoPayment_schedule
+data Mandate_paytoPurposeNonNullable
+instance Show Mandate_paytoPurposeNonNullable
+instance Eq Mandate_paytoPurposeNonNullable
+instance Data.Aeson.FromJSON Mandate_paytoPurposeNonNullable
+instance Data.Aeson.ToJSON Mandate_paytoPurposeNonNullable

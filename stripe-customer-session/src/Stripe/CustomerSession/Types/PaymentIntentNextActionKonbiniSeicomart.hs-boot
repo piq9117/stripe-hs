@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentIntentNextActionKonbiniSeicomart where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_intent_next_action_konbini_seicomart
+instance Show Payment_intent_next_action_konbini_seicomart
+instance Eq Payment_intent_next_action_konbini_seicomart
+instance Data.Aeson.FromJSON Payment_intent_next_action_konbini_seicomart
+instance Data.Aeson.ToJSON Payment_intent_next_action_konbini_seicomart

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsKlarna where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Setup_intent_payment_method_options_klarna
+instance Show Setup_intent_payment_method_options_klarna
+instance Eq Setup_intent_payment_method_options_klarna
+instance Data.Aeson.FromJSON Setup_intent_payment_method_options_klarna
+instance Data.Aeson.ToJSON Setup_intent_payment_method_options_klarna

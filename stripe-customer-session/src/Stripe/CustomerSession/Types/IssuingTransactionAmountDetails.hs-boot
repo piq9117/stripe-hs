@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingTransactionAmountDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_transaction_amount_details
+instance Show Issuing_transaction_amount_details
+instance Eq Issuing_transaction_amount_details
+instance Data.Aeson.FromJSON Issuing_transaction_amount_details
+instance Data.Aeson.ToJSON Issuing_transaction_amount_details

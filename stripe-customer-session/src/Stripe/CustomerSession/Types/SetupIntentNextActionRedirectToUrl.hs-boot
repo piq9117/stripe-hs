@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SetupIntentNextActionRedirectToUrl where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Setup_intent_next_action_redirect_to_url
+instance Show Setup_intent_next_action_redirect_to_url
+instance Eq Setup_intent_next_action_redirect_to_url
+instance Data.Aeson.FromJSON Setup_intent_next_action_redirect_to_url
+instance Data.Aeson.ToJSON Setup_intent_next_action_redirect_to_url

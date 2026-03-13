@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsMobilepay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_mobilepay
+instance Show Payment_method_details_mobilepay
+instance Eq Payment_method_details_mobilepay
+instance Data.Aeson.FromJSON Payment_method_details_mobilepay
+instance Data.Aeson.ToJSON Payment_method_details_mobilepay
+data Payment_method_details_mobilepayCardNonNullable
+instance Show Payment_method_details_mobilepayCardNonNullable
+instance Eq Payment_method_details_mobilepayCardNonNullable
+instance Data.Aeson.FromJSON Payment_method_details_mobilepayCardNonNullable
+instance Data.Aeson.ToJSON Payment_method_details_mobilepayCardNonNullable

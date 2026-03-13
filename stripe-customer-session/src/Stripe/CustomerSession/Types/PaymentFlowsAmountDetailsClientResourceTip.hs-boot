@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentFlowsAmountDetailsClientResourceTip where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_amount_details_client_resource_tip
+instance Show Payment_flows_amount_details_client_resource_tip
+instance Eq Payment_flows_amount_details_client_resource_tip
+instance Data.Aeson.FromJSON Payment_flows_amount_details_client_resource_tip
+instance Data.Aeson.ToJSON Payment_flows_amount_details_client_resource_tip

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.ProductMarketingFeature where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Product_marketing_feature
+instance Show Product_marketing_feature
+instance Eq Product_marketing_feature
+instance Data.Aeson.FromJSON Product_marketing_feature
+instance Data.Aeson.ToJSON Product_marketing_feature

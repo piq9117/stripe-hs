@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingPersonalizationDesignCarrierText where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_personalization_design_carrier_text
+instance Show Issuing_personalization_design_carrier_text
+instance Eq Issuing_personalization_design_carrier_text
+instance Data.Aeson.FromJSON Issuing_personalization_design_carrier_text
+instance Data.Aeson.ToJSON Issuing_personalization_design_carrier_text

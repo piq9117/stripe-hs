@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsFpx where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_fpx
+instance Show Payment_method_details_fpx
+instance Eq Payment_method_details_fpx
+instance Data.Aeson.FromJSON Payment_method_details_fpx
+instance Data.Aeson.ToJSON Payment_method_details_fpx
+data Payment_method_details_fpxBank
+instance Show Payment_method_details_fpxBank
+instance Eq Payment_method_details_fpxBank
+instance Data.Aeson.FromJSON Payment_method_details_fpxBank
+instance Data.Aeson.ToJSON Payment_method_details_fpxBank

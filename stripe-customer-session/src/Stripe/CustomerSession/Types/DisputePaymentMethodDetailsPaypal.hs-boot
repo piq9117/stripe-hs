@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.DisputePaymentMethodDetailsPaypal where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Dispute_payment_method_details_paypal
+instance Show Dispute_payment_method_details_paypal
+instance Eq Dispute_payment_method_details_paypal
+instance Data.Aeson.FromJSON Dispute_payment_method_details_paypal
+instance Data.Aeson.ToJSON Dispute_payment_method_details_paypal

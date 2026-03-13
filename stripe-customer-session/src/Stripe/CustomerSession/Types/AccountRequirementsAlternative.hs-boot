@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.AccountRequirementsAlternative where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_requirements_alternative
+instance Show Account_requirements_alternative
+instance Eq Account_requirements_alternative
+instance Data.Aeson.FromJSON Account_requirements_alternative
+instance Data.Aeson.ToJSON Account_requirements_alternative

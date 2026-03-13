@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.InvoiceMandateOptionsCard where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Invoice_mandate_options_card
+instance Show Invoice_mandate_options_card
+instance Eq Invoice_mandate_options_card
+instance Data.Aeson.FromJSON Invoice_mandate_options_card
+instance Data.Aeson.ToJSON Invoice_mandate_options_card
+data Invoice_mandate_options_cardAmount_typeNonNullable
+instance Show Invoice_mandate_options_cardAmount_typeNonNullable
+instance Eq Invoice_mandate_options_cardAmount_typeNonNullable
+instance Data.Aeson.FromJSON Invoice_mandate_options_cardAmount_typeNonNullable
+instance Data.Aeson.ToJSON Invoice_mandate_options_cardAmount_typeNonNullable

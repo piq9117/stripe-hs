@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.AccountFutureRequirements where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_future_requirements
+instance Show Account_future_requirements
+instance Eq Account_future_requirements
+instance Data.Aeson.FromJSON Account_future_requirements
+instance Data.Aeson.ToJSON Account_future_requirements
+data Account_future_requirementsDisabled_reasonNonNullable
+instance Show Account_future_requirementsDisabled_reasonNonNullable
+instance Eq Account_future_requirementsDisabled_reasonNonNullable
+instance Data.Aeson.FromJSON Account_future_requirementsDisabled_reasonNonNullable
+instance Data.Aeson.ToJSON Account_future_requirementsDisabled_reasonNonNullable

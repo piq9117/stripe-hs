@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.LegalEntityJapanAddress where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Legal_entity_japan_address
+instance Show Legal_entity_japan_address
+instance Eq Legal_entity_japan_address
+instance Data.Aeson.FromJSON Legal_entity_japan_address
+instance Data.Aeson.ToJSON Legal_entity_japan_address

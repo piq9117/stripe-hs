@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RadarReviewResourceLocation where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Radar_review_resource_location
+instance Show Radar_review_resource_location
+instance Eq Radar_review_resource_location
+instance Data.Aeson.FromJSON Radar_review_resource_location
+instance Data.Aeson.ToJSON Radar_review_resource_location

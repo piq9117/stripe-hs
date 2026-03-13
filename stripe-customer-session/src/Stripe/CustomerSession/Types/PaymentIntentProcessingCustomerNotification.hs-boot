@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentIntentProcessingCustomerNotification where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_intent_processing_customer_notification
+instance Show Payment_intent_processing_customer_notification
+instance Eq Payment_intent_processing_customer_notification
+instance Data.Aeson.FromJSON Payment_intent_processing_customer_notification
+instance Data.Aeson.ToJSON Payment_intent_processing_customer_notification

@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.AccountRequirementsError where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Account_requirements_error
+instance Show Account_requirements_error
+instance Eq Account_requirements_error
+instance Data.Aeson.FromJSON Account_requirements_error
+instance Data.Aeson.ToJSON Account_requirements_error
+data Account_requirements_errorCode
+instance Show Account_requirements_errorCode
+instance Eq Account_requirements_errorCode
+instance Data.Aeson.FromJSON Account_requirements_errorCode
+instance Data.Aeson.ToJSON Account_requirements_errorCode

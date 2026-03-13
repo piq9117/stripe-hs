@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodCardPresentNetworks where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_card_present_networks
+instance Show Payment_method_card_present_networks
+instance Eq Payment_method_card_present_networks
+instance Data.Aeson.FromJSON Payment_method_card_present_networks
+instance Data.Aeson.ToJSON Payment_method_card_present_networks

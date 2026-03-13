@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SubscriptionScheduleAddInvoiceItemPeriod where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Subscription_schedule_add_invoice_item_period
+instance Show Subscription_schedule_add_invoice_item_period
+instance Eq Subscription_schedule_add_invoice_item_period
+instance Data.Aeson.FromJSON Subscription_schedule_add_invoice_item_period
+instance Data.Aeson.ToJSON Subscription_schedule_add_invoice_item_period

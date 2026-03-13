@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodUsBankAccountStatusDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_us_bank_account_status_details
+instance Show Payment_method_us_bank_account_status_details
+instance Eq Payment_method_us_bank_account_status_details
+instance Data.Aeson.FromJSON Payment_method_us_bank_account_status_details
+instance Data.Aeson.ToJSON Payment_method_us_bank_account_status_details

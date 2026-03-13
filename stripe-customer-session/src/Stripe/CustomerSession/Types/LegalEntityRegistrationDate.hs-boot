@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.LegalEntityRegistrationDate where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Legal_entity_registration_date
+instance Show Legal_entity_registration_date
+instance Eq Legal_entity_registration_date
+instance Data.Aeson.FromJSON Legal_entity_registration_date
+instance Data.Aeson.ToJSON Legal_entity_registration_date

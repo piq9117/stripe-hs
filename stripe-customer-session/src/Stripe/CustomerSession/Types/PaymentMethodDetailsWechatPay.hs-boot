@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsWechatPay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_wechat_pay
+instance Show Payment_method_details_wechat_pay
+instance Eq Payment_method_details_wechat_pay
+instance Data.Aeson.FromJSON Payment_method_details_wechat_pay
+instance Data.Aeson.ToJSON Payment_method_details_wechat_pay

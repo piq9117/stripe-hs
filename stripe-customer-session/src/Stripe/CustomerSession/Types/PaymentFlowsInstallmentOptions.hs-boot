@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentFlowsInstallmentOptions where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_installment_options
+instance Show Payment_flows_installment_options
+instance Eq Payment_flows_installment_options
+instance Data.Aeson.FromJSON Payment_flows_installment_options
+instance Data.Aeson.ToJSON Payment_flows_installment_options

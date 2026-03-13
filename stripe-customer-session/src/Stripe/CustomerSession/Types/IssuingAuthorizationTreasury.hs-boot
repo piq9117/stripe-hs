@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingAuthorizationTreasury where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_authorization_treasury
+instance Show Issuing_authorization_treasury
+instance Eq Issuing_authorization_treasury
+instance Data.Aeson.FromJSON Issuing_authorization_treasury
+instance Data.Aeson.ToJSON Issuing_authorization_treasury

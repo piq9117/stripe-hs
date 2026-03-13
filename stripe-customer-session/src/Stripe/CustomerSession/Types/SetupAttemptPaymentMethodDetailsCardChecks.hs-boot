@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SetupAttemptPaymentMethodDetailsCardChecks where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Setup_attempt_payment_method_details_card_checks
+instance Show Setup_attempt_payment_method_details_card_checks
+instance Eq Setup_attempt_payment_method_details_card_checks
+instance Data.Aeson.FromJSON Setup_attempt_payment_method_details_card_checks
+instance Data.Aeson.ToJSON Setup_attempt_payment_method_details_card_checks

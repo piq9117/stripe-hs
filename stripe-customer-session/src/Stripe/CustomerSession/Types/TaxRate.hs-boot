@@ -1,0 +1,28 @@
+module Stripe.CustomerSession.Types.TaxRate where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Tax_rate
+instance Show Tax_rate
+instance Eq Tax_rate
+instance Data.Aeson.FromJSON Tax_rate
+instance Data.Aeson.ToJSON Tax_rate
+data Tax_rateFlat_amountNonNullable
+instance Show Tax_rateFlat_amountNonNullable
+instance Eq Tax_rateFlat_amountNonNullable
+instance Data.Aeson.FromJSON Tax_rateFlat_amountNonNullable
+instance Data.Aeson.ToJSON Tax_rateFlat_amountNonNullable
+data Tax_rateJurisdiction_levelNonNullable
+instance Show Tax_rateJurisdiction_levelNonNullable
+instance Eq Tax_rateJurisdiction_levelNonNullable
+instance Data.Aeson.FromJSON Tax_rateJurisdiction_levelNonNullable
+instance Data.Aeson.ToJSON Tax_rateJurisdiction_levelNonNullable
+data Tax_rateRate_typeNonNullable
+instance Show Tax_rateRate_typeNonNullable
+instance Eq Tax_rateRate_typeNonNullable
+instance Data.Aeson.FromJSON Tax_rateRate_typeNonNullable
+instance Data.Aeson.ToJSON Tax_rateRate_typeNonNullable
+data Tax_rateTax_typeNonNullable
+instance Show Tax_rateTax_typeNonNullable
+instance Eq Tax_rateTax_typeNonNullable
+instance Data.Aeson.FromJSON Tax_rateTax_typeNonNullable
+instance Data.Aeson.ToJSON Tax_rateTax_typeNonNullable

@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.SubscriptionTransferData where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Subscription_transfer_data
+instance Show Subscription_transfer_data
+instance Eq Subscription_transfer_data
+instance Data.Aeson.FromJSON Subscription_transfer_data
+instance Data.Aeson.ToJSON Subscription_transfer_data
+data Subscription_transfer_dataDestinationVariants
+instance Show Subscription_transfer_dataDestinationVariants
+instance Eq Subscription_transfer_dataDestinationVariants
+instance Data.Aeson.FromJSON Subscription_transfer_dataDestinationVariants
+instance Data.Aeson.ToJSON Subscription_transfer_dataDestinationVariants

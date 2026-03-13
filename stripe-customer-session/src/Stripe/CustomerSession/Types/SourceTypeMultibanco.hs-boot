@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SourceTypeMultibanco where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Source_type_multibanco
+instance Show Source_type_multibanco
+instance Eq Source_type_multibanco
+instance Data.Aeson.FromJSON Source_type_multibanco
+instance Data.Aeson.ToJSON Source_type_multibanco

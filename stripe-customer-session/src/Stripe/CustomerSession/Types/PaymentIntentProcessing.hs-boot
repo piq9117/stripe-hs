@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentIntentProcessing where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_intent_processing
+instance Show Payment_intent_processing
+instance Eq Payment_intent_processing
+instance Data.Aeson.FromJSON Payment_intent_processing
+instance Data.Aeson.ToJSON Payment_intent_processing

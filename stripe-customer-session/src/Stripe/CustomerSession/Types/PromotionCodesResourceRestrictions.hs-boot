@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PromotionCodesResourceRestrictions where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Promotion_codes_resource_restrictions
+instance Show Promotion_codes_resource_restrictions
+instance Eq Promotion_codes_resource_restrictions
+instance Data.Aeson.FromJSON Promotion_codes_resource_restrictions
+instance Data.Aeson.ToJSON Promotion_codes_resource_restrictions

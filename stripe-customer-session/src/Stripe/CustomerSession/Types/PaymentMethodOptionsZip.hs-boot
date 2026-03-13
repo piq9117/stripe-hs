@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsZip where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_zip
+instance Show Payment_method_options_zip
+instance Eq Payment_method_options_zip
+instance Data.Aeson.FromJSON Payment_method_options_zip
+instance Data.Aeson.ToJSON Payment_method_options_zip
+data Payment_method_options_zipSetup_future_usage
+instance Show Payment_method_options_zipSetup_future_usage
+instance Eq Payment_method_options_zipSetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_zipSetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_zipSetup_future_usage

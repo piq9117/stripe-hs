@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentFlowsAmountDetailsResourceShipping where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_amount_details_resource_shipping
+instance Show Payment_flows_amount_details_resource_shipping
+instance Eq Payment_flows_amount_details_resource_shipping
+instance Data.Aeson.FromJSON Payment_flows_amount_details_resource_shipping
+instance Data.Aeson.ToJSON Payment_flows_amount_details_resource_shipping

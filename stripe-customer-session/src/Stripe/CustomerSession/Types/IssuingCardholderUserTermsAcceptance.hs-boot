@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingCardholderUserTermsAcceptance where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_cardholder_user_terms_acceptance
+instance Show Issuing_cardholder_user_terms_acceptance
+instance Eq Issuing_cardholder_user_terms_acceptance
+instance Data.Aeson.FromJSON Issuing_cardholder_user_terms_acceptance
+instance Data.Aeson.ToJSON Issuing_cardholder_user_terms_acceptance

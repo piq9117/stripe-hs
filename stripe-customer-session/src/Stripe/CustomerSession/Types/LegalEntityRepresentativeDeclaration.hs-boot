@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.LegalEntityRepresentativeDeclaration where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Legal_entity_representative_declaration
+instance Show Legal_entity_representative_declaration
+instance Eq Legal_entity_representative_declaration
+instance Data.Aeson.FromJSON Legal_entity_representative_declaration
+instance Data.Aeson.ToJSON Legal_entity_representative_declaration

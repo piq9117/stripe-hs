@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingTransactionFlightData where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_transaction_flight_data
+instance Show Issuing_transaction_flight_data
+instance Eq Issuing_transaction_flight_data
+instance Data.Aeson.FromJSON Issuing_transaction_flight_data
+instance Data.Aeson.ToJSON Issuing_transaction_flight_data

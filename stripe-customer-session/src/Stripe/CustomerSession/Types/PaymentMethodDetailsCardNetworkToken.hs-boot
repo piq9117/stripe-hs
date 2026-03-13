@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsCardNetworkToken where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_card_network_token
+instance Show Payment_method_details_card_network_token
+instance Eq Payment_method_details_card_network_token
+instance Data.Aeson.FromJSON Payment_method_details_card_network_token
+instance Data.Aeson.ToJSON Payment_method_details_card_network_token

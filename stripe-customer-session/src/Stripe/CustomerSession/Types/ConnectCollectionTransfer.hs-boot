@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.ConnectCollectionTransfer where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Connect_collection_transfer
+instance Show Connect_collection_transfer
+instance Eq Connect_collection_transfer
+instance Data.Aeson.FromJSON Connect_collection_transfer
+instance Data.Aeson.ToJSON Connect_collection_transfer
+data Connect_collection_transferDestinationVariants
+instance Show Connect_collection_transferDestinationVariants
+instance Eq Connect_collection_transferDestinationVariants
+instance Data.Aeson.FromJSON Connect_collection_transferDestinationVariants
+instance Data.Aeson.ToJSON Connect_collection_transferDestinationVariants

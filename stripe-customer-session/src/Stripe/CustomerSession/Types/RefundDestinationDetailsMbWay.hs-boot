@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RefundDestinationDetailsMbWay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Refund_destination_details_mb_way
+instance Show Refund_destination_details_mb_way
+instance Eq Refund_destination_details_mb_way
+instance Data.Aeson.FromJSON Refund_destination_details_mb_way
+instance Data.Aeson.ToJSON Refund_destination_details_mb_way

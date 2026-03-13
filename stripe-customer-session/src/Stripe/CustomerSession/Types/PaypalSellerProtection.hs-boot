@@ -1,0 +1,18 @@
+module Stripe.CustomerSession.Types.PaypalSellerProtection where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Paypal_seller_protection
+instance Show Paypal_seller_protection
+instance Eq Paypal_seller_protection
+instance Data.Aeson.FromJSON Paypal_seller_protection
+instance Data.Aeson.ToJSON Paypal_seller_protection
+data Paypal_seller_protectionDispute_categoriesNonNullable
+instance Show Paypal_seller_protectionDispute_categoriesNonNullable
+instance Eq Paypal_seller_protectionDispute_categoriesNonNullable
+instance Data.Aeson.FromJSON Paypal_seller_protectionDispute_categoriesNonNullable
+instance Data.Aeson.ToJSON Paypal_seller_protectionDispute_categoriesNonNullable
+data Paypal_seller_protectionStatus
+instance Show Paypal_seller_protectionStatus
+instance Eq Paypal_seller_protectionStatus
+instance Data.Aeson.FromJSON Paypal_seller_protectionStatus
+instance Data.Aeson.ToJSON Paypal_seller_protectionStatus

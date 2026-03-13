@@ -1,0 +1,53 @@
+module Stripe.CustomerSession.Types.TaxId where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Tax_id
+instance Show Tax_id
+instance Eq Tax_id
+instance Data.Aeson.FromJSON Tax_id
+instance Data.Aeson.ToJSON Tax_id
+data Tax_idCustomerNonNullableVariants
+instance Show Tax_idCustomerNonNullableVariants
+instance Eq Tax_idCustomerNonNullableVariants
+instance Data.Aeson.FromJSON Tax_idCustomerNonNullableVariants
+instance Data.Aeson.ToJSON Tax_idCustomerNonNullableVariants
+data Tax_idOwnerNonNullable
+instance Show Tax_idOwnerNonNullable
+instance Eq Tax_idOwnerNonNullable
+instance Data.Aeson.FromJSON Tax_idOwnerNonNullable
+instance Data.Aeson.ToJSON Tax_idOwnerNonNullable
+data Tax_idOwnerNonNullableAccountVariants
+instance Show Tax_idOwnerNonNullableAccountVariants
+instance Eq Tax_idOwnerNonNullableAccountVariants
+instance Data.Aeson.FromJSON Tax_idOwnerNonNullableAccountVariants
+instance Data.Aeson.ToJSON Tax_idOwnerNonNullableAccountVariants
+data Tax_idOwnerNonNullableApplicationVariants
+instance Show Tax_idOwnerNonNullableApplicationVariants
+instance Eq Tax_idOwnerNonNullableApplicationVariants
+instance Data.Aeson.FromJSON Tax_idOwnerNonNullableApplicationVariants
+instance Data.Aeson.ToJSON Tax_idOwnerNonNullableApplicationVariants
+data Tax_idOwnerNonNullableCustomerVariants
+instance Show Tax_idOwnerNonNullableCustomerVariants
+instance Eq Tax_idOwnerNonNullableCustomerVariants
+instance Data.Aeson.FromJSON Tax_idOwnerNonNullableCustomerVariants
+instance Data.Aeson.ToJSON Tax_idOwnerNonNullableCustomerVariants
+data Tax_idOwnerNonNullableType
+instance Show Tax_idOwnerNonNullableType
+instance Eq Tax_idOwnerNonNullableType
+instance Data.Aeson.FromJSON Tax_idOwnerNonNullableType
+instance Data.Aeson.ToJSON Tax_idOwnerNonNullableType
+data Tax_idType
+instance Show Tax_idType
+instance Eq Tax_idType
+instance Data.Aeson.FromJSON Tax_idType
+instance Data.Aeson.ToJSON Tax_idType
+data Tax_idVerificationNonNullable
+instance Show Tax_idVerificationNonNullable
+instance Eq Tax_idVerificationNonNullable
+instance Data.Aeson.FromJSON Tax_idVerificationNonNullable
+instance Data.Aeson.ToJSON Tax_idVerificationNonNullable
+data Tax_idVerificationNonNullableStatus
+instance Show Tax_idVerificationNonNullableStatus
+instance Eq Tax_idVerificationNonNullableStatus
+instance Data.Aeson.FromJSON Tax_idVerificationNonNullableStatus
+instance Data.Aeson.ToJSON Tax_idVerificationNonNullableStatus

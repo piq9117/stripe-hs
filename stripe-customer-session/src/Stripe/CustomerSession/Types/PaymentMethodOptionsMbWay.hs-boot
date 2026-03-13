@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsMbWay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_mb_way
+instance Show Payment_method_options_mb_way
+instance Eq Payment_method_options_mb_way
+instance Data.Aeson.FromJSON Payment_method_options_mb_way
+instance Data.Aeson.ToJSON Payment_method_options_mb_way
+data Payment_method_options_mb_waySetup_future_usage
+instance Show Payment_method_options_mb_waySetup_future_usage
+instance Eq Payment_method_options_mb_waySetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_mb_waySetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_mb_waySetup_future_usage

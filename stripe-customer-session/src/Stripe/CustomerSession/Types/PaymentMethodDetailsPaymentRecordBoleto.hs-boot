@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordBoleto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_payment_record_boleto
+instance Show Payment_method_details_payment_record_boleto
+instance Eq Payment_method_details_payment_record_boleto
+instance Data.Aeson.FromJSON Payment_method_details_payment_record_boleto
+instance Data.Aeson.ToJSON Payment_method_details_payment_record_boleto

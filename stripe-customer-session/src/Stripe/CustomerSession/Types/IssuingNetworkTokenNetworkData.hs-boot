@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.IssuingNetworkTokenNetworkData where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_network_token_network_data
+instance Show Issuing_network_token_network_data
+instance Eq Issuing_network_token_network_data
+instance Data.Aeson.FromJSON Issuing_network_token_network_data
+instance Data.Aeson.ToJSON Issuing_network_token_network_data
+data Issuing_network_token_network_dataType
+instance Show Issuing_network_token_network_dataType
+instance Eq Issuing_network_token_network_dataType
+instance Data.Aeson.FromJSON Issuing_network_token_network_dataType
+instance Data.Aeson.ToJSON Issuing_network_token_network_dataType

@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.PaymentMethodOptionsGiropay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_options_giropay
+instance Show Payment_method_options_giropay
+instance Eq Payment_method_options_giropay
+instance Data.Aeson.FromJSON Payment_method_options_giropay
+instance Data.Aeson.ToJSON Payment_method_options_giropay
+data Payment_method_options_giropaySetup_future_usage
+instance Show Payment_method_options_giropaySetup_future_usage
+instance Eq Payment_method_options_giropaySetup_future_usage
+instance Data.Aeson.FromJSON Payment_method_options_giropaySetup_future_usage
+instance Data.Aeson.ToJSON Payment_method_options_giropaySetup_future_usage

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.ExternalAccountRequirements where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data External_account_requirements
+instance Show External_account_requirements
+instance Eq External_account_requirements
+instance Data.Aeson.FromJSON External_account_requirements
+instance Data.Aeson.ToJSON External_account_requirements

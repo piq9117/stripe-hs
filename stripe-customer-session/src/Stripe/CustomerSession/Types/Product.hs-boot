@@ -1,0 +1,23 @@
+module Stripe.CustomerSession.Types.Product where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Product
+instance Show Product
+instance Eq Product
+instance Data.Aeson.FromJSON Product
+instance Data.Aeson.ToJSON Product
+data ProductDefault_priceNonNullableVariants
+instance Show ProductDefault_priceNonNullableVariants
+instance Eq ProductDefault_priceNonNullableVariants
+instance Data.Aeson.FromJSON ProductDefault_priceNonNullableVariants
+instance Data.Aeson.ToJSON ProductDefault_priceNonNullableVariants
+data ProductPackage_dimensionsNonNullable
+instance Show ProductPackage_dimensionsNonNullable
+instance Eq ProductPackage_dimensionsNonNullable
+instance Data.Aeson.FromJSON ProductPackage_dimensionsNonNullable
+instance Data.Aeson.ToJSON ProductPackage_dimensionsNonNullable
+data ProductTax_codeNonNullableVariants
+instance Show ProductTax_codeNonNullableVariants
+instance Eq ProductTax_codeNonNullableVariants
+instance Data.Aeson.FromJSON ProductTax_codeNonNullableVariants
+instance Data.Aeson.ToJSON ProductTax_codeNonNullableVariants

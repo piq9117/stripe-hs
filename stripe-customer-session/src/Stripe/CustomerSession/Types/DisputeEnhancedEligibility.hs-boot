@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.DisputeEnhancedEligibility where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Dispute_enhanced_eligibility
+instance Show Dispute_enhanced_eligibility
+instance Eq Dispute_enhanced_eligibility
+instance Data.Aeson.FromJSON Dispute_enhanced_eligibility
+instance Data.Aeson.ToJSON Dispute_enhanced_eligibility

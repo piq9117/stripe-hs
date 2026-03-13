@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingDisputeTreasury where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_dispute_treasury
+instance Show Issuing_dispute_treasury
+instance Eq Issuing_dispute_treasury
+instance Data.Aeson.FromJSON Issuing_dispute_treasury
+instance Data.Aeson.ToJSON Issuing_dispute_treasury

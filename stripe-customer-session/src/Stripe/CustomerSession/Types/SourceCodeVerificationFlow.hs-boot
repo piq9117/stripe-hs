@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SourceCodeVerificationFlow where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Source_code_verification_flow
+instance Show Source_code_verification_flow
+instance Eq Source_code_verification_flow
+instance Data.Aeson.FromJSON Source_code_verification_flow
+instance Data.Aeson.ToJSON Source_code_verification_flow

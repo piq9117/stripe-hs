@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.RefundDestinationDetailsCrypto where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Refund_destination_details_crypto
+instance Show Refund_destination_details_crypto
+instance Eq Refund_destination_details_crypto
+instance Data.Aeson.FromJSON Refund_destination_details_crypto
+instance Data.Aeson.ToJSON Refund_destination_details_crypto

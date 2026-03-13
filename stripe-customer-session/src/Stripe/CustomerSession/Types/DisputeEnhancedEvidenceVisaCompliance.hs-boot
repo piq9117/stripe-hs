@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.DisputeEnhancedEvidenceVisaCompliance where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Dispute_enhanced_evidence_visa_compliance
+instance Show Dispute_enhanced_evidence_visa_compliance
+instance Eq Dispute_enhanced_evidence_visa_compliance
+instance Data.Aeson.FromJSON Dispute_enhanced_evidence_visa_compliance
+instance Data.Aeson.ToJSON Dispute_enhanced_evidence_visa_compliance

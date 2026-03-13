@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.BillingDetails where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Billing_details
+instance Show Billing_details
+instance Eq Billing_details
+instance Data.Aeson.FromJSON Billing_details
+instance Data.Aeson.ToJSON Billing_details
+data Billing_detailsAddressNonNullable
+instance Show Billing_detailsAddressNonNullable
+instance Eq Billing_detailsAddressNonNullable
+instance Data.Aeson.FromJSON Billing_detailsAddressNonNullable
+instance Data.Aeson.ToJSON Billing_detailsAddressNonNullable

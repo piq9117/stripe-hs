@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.ShippingRateFixedAmount where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Shipping_rate_fixed_amount
+instance Show Shipping_rate_fixed_amount
+instance Eq Shipping_rate_fixed_amount
+instance Data.Aeson.FromJSON Shipping_rate_fixed_amount
+instance Data.Aeson.ToJSON Shipping_rate_fixed_amount

@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentFlowsAmountDetailsResourceTax where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_flows_amount_details_resource_tax
+instance Show Payment_flows_amount_details_resource_tax
+instance Eq Payment_flows_amount_details_resource_tax
+instance Data.Aeson.FromJSON Payment_flows_amount_details_resource_tax
+instance Data.Aeson.ToJSON Payment_flows_amount_details_resource_tax

@@ -1,0 +1,13 @@
+module Stripe.CustomerSession.Types.IssuingCardGooglePay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_card_google_pay
+instance Show Issuing_card_google_pay
+instance Eq Issuing_card_google_pay
+instance Data.Aeson.FromJSON Issuing_card_google_pay
+instance Data.Aeson.ToJSON Issuing_card_google_pay
+data Issuing_card_google_payIneligible_reasonNonNullable
+instance Show Issuing_card_google_payIneligible_reasonNonNullable
+instance Eq Issuing_card_google_payIneligible_reasonNonNullable
+instance Data.Aeson.FromJSON Issuing_card_google_payIneligible_reasonNonNullable
+instance Data.Aeson.ToJSON Issuing_card_google_payIneligible_reasonNonNullable

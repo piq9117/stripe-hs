@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.BillingCreditGrantsResourceApplicablePrice where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Billing_credit_grants_resource_applicable_price
+instance Show Billing_credit_grants_resource_applicable_price
+instance Eq Billing_credit_grants_resource_applicable_price
+instance Data.Aeson.FromJSON Billing_credit_grants_resource_applicable_price
+instance Data.Aeson.ToJSON Billing_credit_grants_resource_applicable_price

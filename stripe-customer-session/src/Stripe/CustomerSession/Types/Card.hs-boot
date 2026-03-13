@@ -1,0 +1,33 @@
+module Stripe.CustomerSession.Types.Card where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Card
+instance Show Card
+instance Eq Card
+instance Data.Aeson.FromJSON Card
+instance Data.Aeson.ToJSON Card
+data CardAccountNonNullableVariants
+instance Show CardAccountNonNullableVariants
+instance Eq CardAccountNonNullableVariants
+instance Data.Aeson.FromJSON CardAccountNonNullableVariants
+instance Data.Aeson.ToJSON CardAccountNonNullableVariants
+data CardAllow_redisplayNonNullable
+instance Show CardAllow_redisplayNonNullable
+instance Eq CardAllow_redisplayNonNullable
+instance Data.Aeson.FromJSON CardAllow_redisplayNonNullable
+instance Data.Aeson.ToJSON CardAllow_redisplayNonNullable
+data CardAvailable_payout_methodsNonNullable
+instance Show CardAvailable_payout_methodsNonNullable
+instance Eq CardAvailable_payout_methodsNonNullable
+instance Data.Aeson.FromJSON CardAvailable_payout_methodsNonNullable
+instance Data.Aeson.ToJSON CardAvailable_payout_methodsNonNullable
+data CardCustomerNonNullableVariants
+instance Show CardCustomerNonNullableVariants
+instance Eq CardCustomerNonNullableVariants
+instance Data.Aeson.FromJSON CardCustomerNonNullableVariants
+instance Data.Aeson.ToJSON CardCustomerNonNullableVariants
+data CardRegulated_statusNonNullable
+instance Show CardRegulated_statusNonNullable
+instance Eq CardRegulated_statusNonNullable
+instance Data.Aeson.FromJSON CardRegulated_statusNonNullable
+instance Data.Aeson.ToJSON CardRegulated_statusNonNullable

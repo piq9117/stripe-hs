@@ -1,0 +1,33 @@
+module Stripe.CustomerSession.Types.Source where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Source
+instance Show Source
+instance Eq Source
+instance Data.Aeson.FromJSON Source
+instance Data.Aeson.ToJSON Source
+data SourceAllow_redisplayNonNullable
+instance Show SourceAllow_redisplayNonNullable
+instance Eq SourceAllow_redisplayNonNullable
+instance Data.Aeson.FromJSON SourceAllow_redisplayNonNullable
+instance Data.Aeson.ToJSON SourceAllow_redisplayNonNullable
+data SourceOwnerNonNullable
+instance Show SourceOwnerNonNullable
+instance Eq SourceOwnerNonNullable
+instance Data.Aeson.FromJSON SourceOwnerNonNullable
+instance Data.Aeson.ToJSON SourceOwnerNonNullable
+data SourceOwnerNonNullableAddressNonNullable
+instance Show SourceOwnerNonNullableAddressNonNullable
+instance Eq SourceOwnerNonNullableAddressNonNullable
+instance Data.Aeson.FromJSON SourceOwnerNonNullableAddressNonNullable
+instance Data.Aeson.ToJSON SourceOwnerNonNullableAddressNonNullable
+data SourceOwnerNonNullableVerified_addressNonNullable
+instance Show SourceOwnerNonNullableVerified_addressNonNullable
+instance Eq SourceOwnerNonNullableVerified_addressNonNullable
+instance Data.Aeson.FromJSON SourceOwnerNonNullableVerified_addressNonNullable
+instance Data.Aeson.ToJSON SourceOwnerNonNullableVerified_addressNonNullable
+data SourceType
+instance Show SourceType
+instance Eq SourceType
+instance Data.Aeson.FromJSON SourceType
+instance Data.Aeson.ToJSON SourceType

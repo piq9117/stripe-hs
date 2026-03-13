@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.CardIssuingAccountTermsOfService where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Card_issuing_account_terms_of_service
+instance Show Card_issuing_account_terms_of_service
+instance Eq Card_issuing_account_terms_of_service
+instance Data.Aeson.FromJSON Card_issuing_account_terms_of_service
+instance Data.Aeson.ToJSON Card_issuing_account_terms_of_service

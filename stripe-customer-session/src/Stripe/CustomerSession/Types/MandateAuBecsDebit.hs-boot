@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.MandateAuBecsDebit where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Mandate_au_becs_debit
+instance Show Mandate_au_becs_debit
+instance Eq Mandate_au_becs_debit
+instance Data.Aeson.FromJSON Mandate_au_becs_debit
+instance Data.Aeson.ToJSON Mandate_au_becs_debit

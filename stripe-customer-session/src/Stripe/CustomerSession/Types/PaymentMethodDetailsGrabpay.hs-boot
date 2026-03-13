@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.PaymentMethodDetailsGrabpay where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Payment_method_details_grabpay
+instance Show Payment_method_details_grabpay
+instance Eq Payment_method_details_grabpay
+instance Data.Aeson.FromJSON Payment_method_details_grabpay
+instance Data.Aeson.ToJSON Payment_method_details_grabpay
