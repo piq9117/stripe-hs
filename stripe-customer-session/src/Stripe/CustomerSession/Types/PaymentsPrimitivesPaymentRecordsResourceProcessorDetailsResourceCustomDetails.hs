@@ -52,7 +52,7 @@ data Payments_primitives_payment_records_resource_processor_details_resource_cus
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payments_primitives_payment_records_resource_processor_details_resource_custom_detailsPayment_reference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payments_primitives_payment_records_resource_processor_details_resource_custom_detailsPayment_reference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_processor_details_resource_custom_details

@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_amount_details_resource_error = Payment_flows_amount_details_resource_error {
   -- | code: The code of the error that occurred when validating the current amount details.
-  payment_flows_amount_details_resource_errorCode :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_flows_amount_details_resource_errorCodeNonNullable))
+  payment_flows_amount_details_resource_errorCode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | message: A message providing more details about the error.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_flows_amount_details_resource_errorMessage :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_amount_details_resource_errorMessage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_amount_details_resource_error
@@ -64,21 +64,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_amount_details_resourc
 mkPayment_flows_amount_details_resource_error :: Payment_flows_amount_details_resource_error
 mkPayment_flows_amount_details_resource_error = Payment_flows_amount_details_resource_error{payment_flows_amount_details_resource_errorCode = GHC.Maybe.Nothing,
                                                                                             payment_flows_amount_details_resource_errorMessage = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_flows_amount_details_resource_error.properties.code@ in the specification.
--- 
--- The code of the error that occurred when validating the current amount details.
-data Payment_flows_amount_details_resource_errorCodeNonNullable =
-   Payment_flows_amount_details_resource_errorCodeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_amount_details_resource_errorCodeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_amount_details_resource_errorCodeNonNullableEnumAmount_details_amount_mismatch -- ^ Represents the JSON value @"amount_details_amount_mismatch"@
-  | Payment_flows_amount_details_resource_errorCodeNonNullableEnumAmount_details_tax_shipping_discount_greater_than_amount -- ^ Represents the JSON value @"amount_details_tax_shipping_discount_greater_than_amount"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_amount_details_resource_errorCodeNonNullable
-    where {toJSON (Payment_flows_amount_details_resource_errorCodeNonNullableOther val) = val;
-           toJSON (Payment_flows_amount_details_resource_errorCodeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_amount_details_resource_errorCodeNonNullableEnumAmount_details_amount_mismatch) = "amount_details_amount_mismatch";
-           toJSON (Payment_flows_amount_details_resource_errorCodeNonNullableEnumAmount_details_tax_shipping_discount_greater_than_amount) = "amount_details_tax_shipping_discount_greater_than_amount"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_amount_details_resource_errorCodeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amount_details_amount_mismatch" -> Payment_flows_amount_details_resource_errorCodeNonNullableEnumAmount_details_amount_mismatch
-                                             | val GHC.Classes.== "amount_details_tax_shipping_discount_greater_than_amount" -> Payment_flows_amount_details_resource_errorCodeNonNullableEnumAmount_details_tax_shipping_discount_greater_than_amount
-                                             | GHC.Base.otherwise -> Payment_flows_amount_details_resource_errorCodeNonNullableOther val)}

@@ -47,37 +47,41 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.BillingCreditGrantsResourceMo
 -- 
 data Billing_credit_grants_resource_amount = Billing_credit_grants_resource_amount {
   -- | monetary: The monetary amount.
-  billing_credit_grants_resource_amountMonetary :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_credit_grants_resource_amountMonetaryNonNullable))
+  billing_credit_grants_resource_amountMonetary :: (GHC.Maybe.Maybe Billing_credit_grants_resource_amountMonetary)
+  -- | type: The type of this amount. We currently only support \`monetary\` billing credits.
+  , billing_credit_grants_resource_amountType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_amount
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monetary" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetary obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "monetary"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monetary" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetary obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "monetary"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monetary" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetary obj) : ["type" Data.Aeson.Types.ToJSON..= billing_credit_grants_resource_amountType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monetary" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetary obj) : ["type" Data.Aeson.Types.ToJSON..= billing_credit_grants_resource_amountType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_amount
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_amount" (\obj -> GHC.Base.pure Billing_credit_grants_resource_amount GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "monetary"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_amount" (\obj -> (GHC.Base.pure Billing_credit_grants_resource_amount GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "monetary")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Billing_credit_grants_resource_amount' with all required fields.
-mkBilling_credit_grants_resource_amount :: Billing_credit_grants_resource_amount
-mkBilling_credit_grants_resource_amount = Billing_credit_grants_resource_amount{billing_credit_grants_resource_amountMonetary = GHC.Maybe.Nothing}
+mkBilling_credit_grants_resource_amount :: Data.Text.Internal.Text -- ^ 'billing_credit_grants_resource_amountType'
+  -> Billing_credit_grants_resource_amount
+mkBilling_credit_grants_resource_amount billing_credit_grants_resource_amountType = Billing_credit_grants_resource_amount{billing_credit_grants_resource_amountMonetary = GHC.Maybe.Nothing,
+                                                                                                                          billing_credit_grants_resource_amountType = billing_credit_grants_resource_amountType}
 -- | Defines the object schema located at @components.schemas.billing_credit_grants_resource_amount.properties.monetary.anyOf@ in the specification.
 -- 
 -- The monetary amount.
-data Billing_credit_grants_resource_amountMonetaryNonNullable = Billing_credit_grants_resource_amountMonetaryNonNullable {
+data Billing_credit_grants_resource_amountMonetary = Billing_credit_grants_resource_amountMonetary {
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  billing_credit_grants_resource_amountMonetaryNonNullableCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  billing_credit_grants_resource_amountMonetaryCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | value: A positive integer representing the amount.
-  , billing_credit_grants_resource_amountMonetaryNonNullableValue :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , billing_credit_grants_resource_amountMonetaryValue :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_amountMonetaryNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryNonNullableValue obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryNonNullableValue obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_amountMonetaryNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_amountMonetaryNonNullable" (\obj -> (GHC.Base.pure Billing_credit_grants_resource_amountMonetaryNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
--- | Create a new 'Billing_credit_grants_resource_amountMonetaryNonNullable' with all required fields.
-mkBilling_credit_grants_resource_amountMonetaryNonNullable :: Billing_credit_grants_resource_amountMonetaryNonNullable
-mkBilling_credit_grants_resource_amountMonetaryNonNullable = Billing_credit_grants_resource_amountMonetaryNonNullable{billing_credit_grants_resource_amountMonetaryNonNullableCurrency = GHC.Maybe.Nothing,
-                                                                                                                      billing_credit_grants_resource_amountMonetaryNonNullableValue = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_amountMonetary
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryValue obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_amountMonetaryValue obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_amountMonetary
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_amountMonetary" (\obj -> (GHC.Base.pure Billing_credit_grants_resource_amountMonetary GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
+-- | Create a new 'Billing_credit_grants_resource_amountMonetary' with all required fields.
+mkBilling_credit_grants_resource_amountMonetary :: Billing_credit_grants_resource_amountMonetary
+mkBilling_credit_grants_resource_amountMonetary = Billing_credit_grants_resource_amountMonetary{billing_credit_grants_resource_amountMonetaryCurrency = GHC.Maybe.Nothing,
+                                                                                                billing_credit_grants_resource_amountMonetaryValue = GHC.Maybe.Nothing}

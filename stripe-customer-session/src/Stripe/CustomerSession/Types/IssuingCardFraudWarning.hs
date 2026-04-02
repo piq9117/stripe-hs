@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_card_fraud_warning = Issuing_card_fraud_warning {
   -- | started_at: Timestamp of the most recent fraud warning.
-  issuing_card_fraud_warningStarted_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_card_fraud_warningStarted_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | type: The type of fraud warning that most recently took place on this card. This field updates with every new fraud warning, so the value changes over time. If populated, cancel and reissue the card.
-  , issuing_card_fraud_warningType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_card_fraud_warningTypeNonNullable))
+  , issuing_card_fraud_warningType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_card_fraud_warning
@@ -60,27 +60,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Issuing_card_fraud_warning
 mkIssuing_card_fraud_warning :: Issuing_card_fraud_warning
 mkIssuing_card_fraud_warning = Issuing_card_fraud_warning{issuing_card_fraud_warningStarted_at = GHC.Maybe.Nothing,
                                                           issuing_card_fraud_warningType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_card_fraud_warning.properties.type@ in the specification.
--- 
--- The type of fraud warning that most recently took place on this card. This field updates with every new fraud warning, so the value changes over time. If populated, cancel and reissue the card.
-data Issuing_card_fraud_warningTypeNonNullable =
-   Issuing_card_fraud_warningTypeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_card_fraud_warningTypeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_card_fraud_warningTypeNonNullableEnumCard_testing_exposure -- ^ Represents the JSON value @"card_testing_exposure"@
-  | Issuing_card_fraud_warningTypeNonNullableEnumFraud_dispute_filed -- ^ Represents the JSON value @"fraud_dispute_filed"@
-  | Issuing_card_fraud_warningTypeNonNullableEnumThird_party_reported -- ^ Represents the JSON value @"third_party_reported"@
-  | Issuing_card_fraud_warningTypeNonNullableEnumUser_indicated_fraud -- ^ Represents the JSON value @"user_indicated_fraud"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_card_fraud_warningTypeNonNullable
-    where {toJSON (Issuing_card_fraud_warningTypeNonNullableOther val) = val;
-           toJSON (Issuing_card_fraud_warningTypeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_card_fraud_warningTypeNonNullableEnumCard_testing_exposure) = "card_testing_exposure";
-           toJSON (Issuing_card_fraud_warningTypeNonNullableEnumFraud_dispute_filed) = "fraud_dispute_filed";
-           toJSON (Issuing_card_fraud_warningTypeNonNullableEnumThird_party_reported) = "third_party_reported";
-           toJSON (Issuing_card_fraud_warningTypeNonNullableEnumUser_indicated_fraud) = "user_indicated_fraud"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_card_fraud_warningTypeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "card_testing_exposure" -> Issuing_card_fraud_warningTypeNonNullableEnumCard_testing_exposure
-                                             | val GHC.Classes.== "fraud_dispute_filed" -> Issuing_card_fraud_warningTypeNonNullableEnumFraud_dispute_filed
-                                             | val GHC.Classes.== "third_party_reported" -> Issuing_card_fraud_warningTypeNonNullableEnumThird_party_reported
-                                             | val GHC.Classes.== "user_indicated_fraud" -> Issuing_card_fraud_warningTypeNonNullableEnumUser_indicated_fraud
-                                             | GHC.Base.otherwise -> Issuing_card_fraud_warningTypeNonNullableOther val)}

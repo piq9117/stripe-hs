@@ -49,7 +49,7 @@ data Invoice_payment_method_options_customer_balance = Invoice_payment_method_op
   -- | bank_transfer: 
   invoice_payment_method_options_customer_balanceBank_transfer :: (GHC.Maybe.Maybe Invoice_payment_method_options_customer_balance_bank_transfer)
   -- | funding_type: The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: \`bank_transfer\`.
-  , invoice_payment_method_options_customer_balanceFunding_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_payment_method_options_customer_balanceFunding_typeNonNullable))
+  , invoice_payment_method_options_customer_balanceFunding_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_customer_balance
@@ -61,18 +61,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_custo
 mkInvoice_payment_method_options_customer_balance :: Invoice_payment_method_options_customer_balance
 mkInvoice_payment_method_options_customer_balance = Invoice_payment_method_options_customer_balance{invoice_payment_method_options_customer_balanceBank_transfer = GHC.Maybe.Nothing,
                                                                                                     invoice_payment_method_options_customer_balanceFunding_type = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_customer_balance.properties.funding_type@ in the specification.
--- 
--- The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: \`bank_transfer\`.
-data Invoice_payment_method_options_customer_balanceFunding_typeNonNullable =
-   Invoice_payment_method_options_customer_balanceFunding_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_customer_balanceFunding_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_customer_balanceFunding_typeNonNullableEnumBank_transfer -- ^ Represents the JSON value @"bank_transfer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_customer_balanceFunding_typeNonNullable
-    where {toJSON (Invoice_payment_method_options_customer_balanceFunding_typeNonNullableOther val) = val;
-           toJSON (Invoice_payment_method_options_customer_balanceFunding_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_customer_balanceFunding_typeNonNullableEnumBank_transfer) = "bank_transfer"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_customer_balanceFunding_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_transfer" -> Invoice_payment_method_options_customer_balanceFunding_typeNonNullableEnumBank_transfer
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_customer_balanceFunding_typeNonNullableOther val)}

@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_personalization_design_rejection_reasons = Issuing_personalization_design_rejection_reasons {
   -- | card_logo: The reason(s) the card logo was rejected.
-  issuing_personalization_design_rejection_reasonsCard_logo :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Issuing_personalization_design_rejection_reasonsCard_logoNonNullable]))
+  issuing_personalization_design_rejection_reasonsCard_logo :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | carrier_text: The reason(s) the carrier text was rejected.
-  , issuing_personalization_design_rejection_reasonsCarrier_text :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Issuing_personalization_design_rejection_reasonsCarrier_textNonNullable]))
+  , issuing_personalization_design_rejection_reasonsCarrier_text :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_personalization_design_rejection_reasons
@@ -60,72 +60,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Issuing_personalization_design_rejec
 mkIssuing_personalization_design_rejection_reasons :: Issuing_personalization_design_rejection_reasons
 mkIssuing_personalization_design_rejection_reasons = Issuing_personalization_design_rejection_reasons{issuing_personalization_design_rejection_reasonsCard_logo = GHC.Maybe.Nothing,
                                                                                                       issuing_personalization_design_rejection_reasonsCarrier_text = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_personalization_design_rejection_reasons.properties.card_logo.items@ in the specification.
--- 
--- 
-data Issuing_personalization_design_rejection_reasonsCard_logoNonNullable =
-   Issuing_personalization_design_rejection_reasonsCard_logoNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumGeographic_location -- ^ Represents the JSON value @"geographic_location"@
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumInappropriate -- ^ Represents the JSON value @"inappropriate"@
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNetwork_name -- ^ Represents the JSON value @"network_name"@
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNon_binary_image -- ^ Represents the JSON value @"non_binary_image"@
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNon_fiat_currency -- ^ Represents the JSON value @"non_fiat_currency"@
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumOther_entity -- ^ Represents the JSON value @"other_entity"@
-  | Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumPromotional_material -- ^ Represents the JSON value @"promotional_material"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_personalization_design_rejection_reasonsCard_logoNonNullable
-    where {toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableOther val) = val;
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumGeographic_location) = "geographic_location";
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumInappropriate) = "inappropriate";
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNetwork_name) = "network_name";
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNon_binary_image) = "non_binary_image";
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNon_fiat_currency) = "non_fiat_currency";
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumOther) = "other";
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumOther_entity) = "other_entity";
-           toJSON (Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumPromotional_material) = "promotional_material"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_personalization_design_rejection_reasonsCard_logoNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "geographic_location" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumGeographic_location
-                                             | val GHC.Classes.== "inappropriate" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumInappropriate
-                                             | val GHC.Classes.== "network_name" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNetwork_name
-                                             | val GHC.Classes.== "non_binary_image" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNon_binary_image
-                                             | val GHC.Classes.== "non_fiat_currency" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumNon_fiat_currency
-                                             | val GHC.Classes.== "other" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumOther
-                                             | val GHC.Classes.== "other_entity" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumOther_entity
-                                             | val GHC.Classes.== "promotional_material" -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableEnumPromotional_material
-                                             | GHC.Base.otherwise -> Issuing_personalization_design_rejection_reasonsCard_logoNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.issuing_personalization_design_rejection_reasons.properties.carrier_text.items@ in the specification.
--- 
--- 
-data Issuing_personalization_design_rejection_reasonsCarrier_textNonNullable =
-   Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumGeographic_location -- ^ Represents the JSON value @"geographic_location"@
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumInappropriate -- ^ Represents the JSON value @"inappropriate"@
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumNetwork_name -- ^ Represents the JSON value @"network_name"@
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumNon_fiat_currency -- ^ Represents the JSON value @"non_fiat_currency"@
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumOther_entity -- ^ Represents the JSON value @"other_entity"@
-  | Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumPromotional_material -- ^ Represents the JSON value @"promotional_material"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_personalization_design_rejection_reasonsCarrier_textNonNullable
-    where {toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableOther val) = val;
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumGeographic_location) = "geographic_location";
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumInappropriate) = "inappropriate";
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumNetwork_name) = "network_name";
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumNon_fiat_currency) = "non_fiat_currency";
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumOther) = "other";
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumOther_entity) = "other_entity";
-           toJSON (Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumPromotional_material) = "promotional_material"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_personalization_design_rejection_reasonsCarrier_textNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "geographic_location" -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumGeographic_location
-                                             | val GHC.Classes.== "inappropriate" -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumInappropriate
-                                             | val GHC.Classes.== "network_name" -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumNetwork_name
-                                             | val GHC.Classes.== "non_fiat_currency" -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumNon_fiat_currency
-                                             | val GHC.Classes.== "other" -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumOther
-                                             | val GHC.Classes.== "other_entity" -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumOther_entity
-                                             | val GHC.Classes.== "promotional_material" -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableEnumPromotional_material
-                                             | GHC.Base.otherwise -> Issuing_personalization_design_rejection_reasonsCarrier_textNonNullableOther val)}

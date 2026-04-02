@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.KlarnaAddress
 -- 
 data Klarna_payer_details = Klarna_payer_details {
   -- | address: The payer\'s address
-  klarna_payer_detailsAddress :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Klarna_payer_detailsAddressNonNullable))
+  klarna_payer_detailsAddress :: (GHC.Maybe.Maybe Klarna_payer_detailsAddress)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Klarna_payer_details
@@ -61,20 +61,20 @@ mkKlarna_payer_details = Klarna_payer_details{klarna_payer_detailsAddress = GHC.
 -- | Defines the object schema located at @components.schemas.klarna_payer_details.properties.address.anyOf@ in the specification.
 -- 
 -- The payer\\\'s address
-data Klarna_payer_detailsAddressNonNullable = Klarna_payer_detailsAddressNonNullable {
+data Klarna_payer_detailsAddress = Klarna_payer_detailsAddress {
   -- | country: The payer address country
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  klarna_payer_detailsAddressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  klarna_payer_detailsAddressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Klarna_payer_detailsAddressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (klarna_payer_detailsAddressNonNullableCountry obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (klarna_payer_detailsAddressNonNullableCountry obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Klarna_payer_detailsAddressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Klarna_payer_detailsAddressNonNullable" (\obj -> GHC.Base.pure Klarna_payer_detailsAddressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country"))}
--- | Create a new 'Klarna_payer_detailsAddressNonNullable' with all required fields.
-mkKlarna_payer_detailsAddressNonNullable :: Klarna_payer_detailsAddressNonNullable
-mkKlarna_payer_detailsAddressNonNullable = Klarna_payer_detailsAddressNonNullable{klarna_payer_detailsAddressNonNullableCountry = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Klarna_payer_detailsAddress
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (klarna_payer_detailsAddressCountry obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (klarna_payer_detailsAddressCountry obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Klarna_payer_detailsAddress
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Klarna_payer_detailsAddress" (\obj -> GHC.Base.pure Klarna_payer_detailsAddress GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country"))}
+-- | Create a new 'Klarna_payer_detailsAddress' with all required fields.
+mkKlarna_payer_detailsAddress :: Klarna_payer_detailsAddress
+mkKlarna_payer_detailsAddress = Klarna_payer_detailsAddress{klarna_payer_detailsAddressCountry = GHC.Maybe.Nothing}

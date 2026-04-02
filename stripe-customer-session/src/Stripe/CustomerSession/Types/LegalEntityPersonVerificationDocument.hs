@@ -47,21 +47,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.File
 -- 
 data Legal_entity_person_verification_document = Legal_entity_person_verification_document {
   -- | back: The back of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  legal_entity_person_verification_documentBack :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Legal_entity_person_verification_documentBackNonNullableVariants))
+  legal_entity_person_verification_documentBack :: (GHC.Maybe.Maybe Legal_entity_person_verification_documentBackVariants)
   -- | details: A user-displayable string describing the verification state of this document. For example, if a document is uploaded and the picture is too fuzzy, this may say \"Identity document is too unclear to read\".
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_person_verification_documentDetails :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_person_verification_documentDetails :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | details_code: One of \`document_corrupt\`, \`document_country_not_supported\`, \`document_expired\`, \`document_failed_copy\`, \`document_failed_other\`, \`document_failed_test_mode\`, \`document_fraudulent\`, \`document_failed_greyscale\`, \`document_incomplete\`, \`document_invalid\`, \`document_manipulated\`, \`document_missing_back\`, \`document_missing_front\`, \`document_not_readable\`, \`document_not_uploaded\`, \`document_photo_mismatch\`, \`document_too_large\`, or \`document_type_not_supported\`. A machine-readable code specifying the verification state for this document.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_person_verification_documentDetails_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_person_verification_documentDetails_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | front: The front of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  , legal_entity_person_verification_documentFront :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Legal_entity_person_verification_documentFrontNonNullableVariants))
+  , legal_entity_person_verification_documentFront :: (GHC.Maybe.Maybe Legal_entity_person_verification_documentFrontVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verification_document
@@ -78,28 +78,28 @@ mkLegal_entity_person_verification_document = Legal_entity_person_verification_d
 -- | Defines the oneOf schema located at @components.schemas.legal_entity_person_verification_document.properties.back.anyOf@ in the specification.
 -- 
 -- The back of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Legal_entity_person_verification_documentBackNonNullableVariants =
-   Legal_entity_person_verification_documentBackNonNullableText Data.Text.Internal.Text
-  | Legal_entity_person_verification_documentBackNonNullableFile File
+data Legal_entity_person_verification_documentBackVariants =
+   Legal_entity_person_verification_documentBackText Data.Text.Internal.Text
+  | Legal_entity_person_verification_documentBackFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verification_documentBackNonNullableVariants
-    where {toJSON (Legal_entity_person_verification_documentBackNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Legal_entity_person_verification_documentBackNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verification_documentBackNonNullableVariants
-    where {parseJSON val = case (Legal_entity_person_verification_documentBackNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verification_documentBackNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verification_documentBackVariants
+    where {toJSON (Legal_entity_person_verification_documentBackText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Legal_entity_person_verification_documentBackFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verification_documentBackVariants
+    where {parseJSON val = case (Legal_entity_person_verification_documentBackText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verification_documentBackFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.legal_entity_person_verification_document.properties.front.anyOf@ in the specification.
 -- 
 -- The front of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Legal_entity_person_verification_documentFrontNonNullableVariants =
-   Legal_entity_person_verification_documentFrontNonNullableText Data.Text.Internal.Text
-  | Legal_entity_person_verification_documentFrontNonNullableFile File
+data Legal_entity_person_verification_documentFrontVariants =
+   Legal_entity_person_verification_documentFrontText Data.Text.Internal.Text
+  | Legal_entity_person_verification_documentFrontFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verification_documentFrontNonNullableVariants
-    where {toJSON (Legal_entity_person_verification_documentFrontNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Legal_entity_person_verification_documentFrontNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verification_documentFrontNonNullableVariants
-    where {parseJSON val = case (Legal_entity_person_verification_documentFrontNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verification_documentFrontNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verification_documentFrontVariants
+    where {toJSON (Legal_entity_person_verification_documentFrontText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Legal_entity_person_verification_documentFrontFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verification_documentFrontVariants
+    where {parseJSON val = case (Legal_entity_person_verification_documentFrontText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verification_documentFrontFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

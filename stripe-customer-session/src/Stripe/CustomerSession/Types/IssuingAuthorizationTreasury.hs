@@ -54,7 +54,7 @@ data Issuing_authorization_treasury = Issuing_authorization_treasury {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_treasuryTransaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_treasuryTransaction :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_treasury

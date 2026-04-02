@@ -48,7 +48,7 @@ data Source_type_klarna = Source_type_klarna {
   -- | background_image_url
   source_type_klarnaBackground_image_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | client_token
-  , source_type_klarnaClient_token :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_klarnaClient_token :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | first_name
   , source_type_klarnaFirst_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last_name

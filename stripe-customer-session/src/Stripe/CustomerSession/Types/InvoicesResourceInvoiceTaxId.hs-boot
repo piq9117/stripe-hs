@@ -6,8 +6,3 @@ instance Show Invoices_resource_invoice_tax_id
 instance Eq Invoices_resource_invoice_tax_id
 instance Data.Aeson.FromJSON Invoices_resource_invoice_tax_id
 instance Data.Aeson.ToJSON Invoices_resource_invoice_tax_id
-data Invoices_resource_invoice_tax_idType
-instance Show Invoices_resource_invoice_tax_idType
-instance Eq Invoices_resource_invoice_tax_idType
-instance Data.Aeson.FromJSON Invoices_resource_invoice_tax_idType
-instance Data.Aeson.ToJSON Invoices_resource_invoice_tax_idType

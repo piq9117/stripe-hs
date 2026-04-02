@@ -59,7 +59,7 @@ data Price = Price {
   -- | active: Whether the price can be used for new purchases.
   priceActive :: GHC.Types.Bool
   -- | billing_scheme: Describes how to compute the price per period. Either \`per_unit\` or \`tiered\`. \`per_unit\` indicates that the fixed amount (specified in \`unit_amount\` or \`unit_amount_decimal\`) will be charged per unit in \`quantity\` (for prices with \`usage_type=licensed\`), or per unit of total usage (for prices with \`usage_type=metered\`). \`tiered\` indicates that the unit pricing will be computed using a tiering strategy as defined using the \`tiers\` and \`tiers_mode\` attributes.
-  , priceBilling_scheme :: PriceBilling_scheme
+  , priceBilling_scheme :: Data.Text.Internal.Text
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , priceCreated :: GHC.Types.Int
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
@@ -67,21 +67,21 @@ data Price = Price {
   -- | currency_options: Prices defined in each available currency option. Each key must be a three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html) and a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   , priceCurrency_options :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | custom_unit_amount: When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
-  , priceCustom_unit_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PriceCustom_unit_amountNonNullable))
+  , priceCustom_unit_amount :: (GHC.Maybe.Maybe PriceCustom_unit_amount)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , priceId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , priceLivemode :: GHC.Types.Bool
   -- | lookup_key: A lookup key used to retrieve prices dynamically from a static string. This may be up to 200 characters.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , priceLookup_key :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , priceLookup_key :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , priceMetadata :: Data.Aeson.Types.Internal.Object
   -- | nickname: A brief description of the price, hidden from customers.
@@ -89,103 +89,89 @@ data Price = Price {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , priceNickname :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , priceNickname :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , priceObject :: Data.Text.Internal.Text
   -- | product: The ID of the product this price is associated with.
   , priceProduct :: PriceProductVariants
   -- | recurring: The recurring components of a price such as \`interval\` and \`usage_type\`.
-  , priceRecurring :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PriceRecurringNonNullable))
+  , priceRecurring :: (GHC.Maybe.Maybe PriceRecurring)
   -- | tax_behavior: Only required if a [default tax behavior](https:\/\/docs.stripe.com\/tax\/products-prices-tax-categories-tax-behavior\#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of \`inclusive\`, \`exclusive\`, or \`unspecified\`. Once specified as either \`inclusive\` or \`exclusive\`, it cannot be changed.
-  , priceTax_behavior :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PriceTax_behaviorNonNullable))
+  , priceTax_behavior :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tiers: Each element represents a pricing tier. This parameter requires \`billing_scheme\` to be set to \`tiered\`. See also the documentation for \`billing_scheme\`.
   , priceTiers :: (GHC.Maybe.Maybe [Price_tier])
   -- | tiers_mode: Defines if the tiering price should be \`graduated\` or \`volume\` based. In \`volume\`-based tiering, the maximum quantity within a period determines the per unit price. In \`graduated\` tiering, pricing can change as the quantity grows.
-  , priceTiers_mode :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PriceTiers_modeNonNullable))
+  , priceTiers_mode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transform_quantity: Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with \`tiers\`.
-  , priceTransform_quantity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PriceTransform_quantityNonNullable))
+  , priceTransform_quantity :: (GHC.Maybe.Maybe PriceTransform_quantity)
   -- | type: One of \`one_time\` or \`recurring\` depending on whether the price is for a one-time purchase or a recurring (subscription) purchase.
-  , priceType :: PriceType
+  , priceType :: Data.Text.Internal.Text
   -- | unit_amount: The unit amount in cents (or local equivalent) to be charged, represented as a whole integer if possible. Only set if \`billing_scheme=per_unit\`.
-  , priceUnit_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , priceUnit_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | unit_amount_decimal: The unit amount in cents (or local equivalent) to be charged, represented as a decimal string with at most 12 decimal places. Only set if \`billing_scheme=per_unit\`.
-  , priceUnit_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , priceUnit_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Price
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= priceActive obj] : ["billing_scheme" Data.Aeson.Types.ToJSON..= priceBilling_scheme obj] : ["created" Data.Aeson.Types.ToJSON..= priceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= priceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency_options" Data.Aeson.Types.ToJSON..=)) (priceCurrency_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_unit_amount" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amount obj) : ["id" Data.Aeson.Types.ToJSON..= priceId obj] : ["livemode" Data.Aeson.Types.ToJSON..= priceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("lookup_key" Data.Aeson.Types.ToJSON..=)) (priceLookup_key obj) : ["metadata" Data.Aeson.Types.ToJSON..= priceMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nickname" Data.Aeson.Types.ToJSON..=)) (priceNickname obj) : ["product" Data.Aeson.Types.ToJSON..= priceProduct obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("recurring" Data.Aeson.Types.ToJSON..=)) (priceRecurring obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_behavior" Data.Aeson.Types.ToJSON..=)) (priceTax_behavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers" Data.Aeson.Types.ToJSON..=)) (priceTiers obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers_mode" Data.Aeson.Types.ToJSON..=)) (priceTiers_mode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transform_quantity" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantity obj) : ["type" Data.Aeson.Types.ToJSON..= priceType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount_decimal obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "price"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= priceActive obj] : ["billing_scheme" Data.Aeson.Types.ToJSON..= priceBilling_scheme obj] : ["created" Data.Aeson.Types.ToJSON..= priceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= priceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency_options" Data.Aeson.Types.ToJSON..=)) (priceCurrency_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_unit_amount" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amount obj) : ["id" Data.Aeson.Types.ToJSON..= priceId obj] : ["livemode" Data.Aeson.Types.ToJSON..= priceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("lookup_key" Data.Aeson.Types.ToJSON..=)) (priceLookup_key obj) : ["metadata" Data.Aeson.Types.ToJSON..= priceMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nickname" Data.Aeson.Types.ToJSON..=)) (priceNickname obj) : ["product" Data.Aeson.Types.ToJSON..= priceProduct obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("recurring" Data.Aeson.Types.ToJSON..=)) (priceRecurring obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_behavior" Data.Aeson.Types.ToJSON..=)) (priceTax_behavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers" Data.Aeson.Types.ToJSON..=)) (priceTiers obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers_mode" Data.Aeson.Types.ToJSON..=)) (priceTiers_mode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transform_quantity" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantity obj) : ["type" Data.Aeson.Types.ToJSON..= priceType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount_decimal obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "price"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= priceActive obj] : ["billing_scheme" Data.Aeson.Types.ToJSON..= priceBilling_scheme obj] : ["created" Data.Aeson.Types.ToJSON..= priceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= priceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency_options" Data.Aeson.Types.ToJSON..=)) (priceCurrency_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_unit_amount" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amount obj) : ["id" Data.Aeson.Types.ToJSON..= priceId obj] : ["livemode" Data.Aeson.Types.ToJSON..= priceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("lookup_key" Data.Aeson.Types.ToJSON..=)) (priceLookup_key obj) : ["metadata" Data.Aeson.Types.ToJSON..= priceMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nickname" Data.Aeson.Types.ToJSON..=)) (priceNickname obj) : ["object" Data.Aeson.Types.ToJSON..= priceObject obj] : ["product" Data.Aeson.Types.ToJSON..= priceProduct obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("recurring" Data.Aeson.Types.ToJSON..=)) (priceRecurring obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_behavior" Data.Aeson.Types.ToJSON..=)) (priceTax_behavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers" Data.Aeson.Types.ToJSON..=)) (priceTiers obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers_mode" Data.Aeson.Types.ToJSON..=)) (priceTiers_mode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transform_quantity" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantity obj) : ["type" Data.Aeson.Types.ToJSON..= priceType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount_decimal obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= priceActive obj] : ["billing_scheme" Data.Aeson.Types.ToJSON..= priceBilling_scheme obj] : ["created" Data.Aeson.Types.ToJSON..= priceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= priceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency_options" Data.Aeson.Types.ToJSON..=)) (priceCurrency_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_unit_amount" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amount obj) : ["id" Data.Aeson.Types.ToJSON..= priceId obj] : ["livemode" Data.Aeson.Types.ToJSON..= priceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("lookup_key" Data.Aeson.Types.ToJSON..=)) (priceLookup_key obj) : ["metadata" Data.Aeson.Types.ToJSON..= priceMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nickname" Data.Aeson.Types.ToJSON..=)) (priceNickname obj) : ["object" Data.Aeson.Types.ToJSON..= priceObject obj] : ["product" Data.Aeson.Types.ToJSON..= priceProduct obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("recurring" Data.Aeson.Types.ToJSON..=)) (priceRecurring obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_behavior" Data.Aeson.Types.ToJSON..=)) (priceTax_behavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers" Data.Aeson.Types.ToJSON..=)) (priceTiers obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tiers_mode" Data.Aeson.Types.ToJSON..=)) (priceTiers_mode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transform_quantity" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantity obj) : ["type" Data.Aeson.Types.ToJSON..= priceType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (priceUnit_amount_decimal obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Price
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Price" (\obj -> (((((((((((((((((((GHC.Base.pure Price GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "active")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_scheme")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "custom_unit_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "lookup_key")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nickname")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "product")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "recurring")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_behavior")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tiers")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tiers_mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transform_quantity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_amount_decimal"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Price" (\obj -> ((((((((((((((((((((GHC.Base.pure Price GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "active")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_scheme")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "custom_unit_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "lookup_key")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nickname")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "product")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "recurring")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_behavior")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tiers")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tiers_mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transform_quantity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_amount_decimal"))}
 -- | Create a new 'Price' with all required fields.
 mkPrice :: GHC.Types.Bool -- ^ 'priceActive'
-  -> PriceBilling_scheme -- ^ 'priceBilling_scheme'
+  -> Data.Text.Internal.Text -- ^ 'priceBilling_scheme'
   -> GHC.Types.Int -- ^ 'priceCreated'
   -> Data.Text.Internal.Text -- ^ 'priceCurrency'
   -> Data.Text.Internal.Text -- ^ 'priceId'
   -> GHC.Types.Bool -- ^ 'priceLivemode'
   -> Data.Aeson.Types.Internal.Object -- ^ 'priceMetadata'
+  -> Data.Text.Internal.Text -- ^ 'priceObject'
   -> PriceProductVariants -- ^ 'priceProduct'
-  -> PriceType -- ^ 'priceType'
+  -> Data.Text.Internal.Text -- ^ 'priceType'
   -> Price
-mkPrice priceActive priceBilling_scheme priceCreated priceCurrency priceId priceLivemode priceMetadata priceProduct priceType = Price{priceActive = priceActive,
-                                                                                                                                      priceBilling_scheme = priceBilling_scheme,
-                                                                                                                                      priceCreated = priceCreated,
-                                                                                                                                      priceCurrency = priceCurrency,
-                                                                                                                                      priceCurrency_options = GHC.Maybe.Nothing,
-                                                                                                                                      priceCustom_unit_amount = GHC.Maybe.Nothing,
-                                                                                                                                      priceId = priceId,
-                                                                                                                                      priceLivemode = priceLivemode,
-                                                                                                                                      priceLookup_key = GHC.Maybe.Nothing,
-                                                                                                                                      priceMetadata = priceMetadata,
-                                                                                                                                      priceNickname = GHC.Maybe.Nothing,
-                                                                                                                                      priceProduct = priceProduct,
-                                                                                                                                      priceRecurring = GHC.Maybe.Nothing,
-                                                                                                                                      priceTax_behavior = GHC.Maybe.Nothing,
-                                                                                                                                      priceTiers = GHC.Maybe.Nothing,
-                                                                                                                                      priceTiers_mode = GHC.Maybe.Nothing,
-                                                                                                                                      priceTransform_quantity = GHC.Maybe.Nothing,
-                                                                                                                                      priceType = priceType,
-                                                                                                                                      priceUnit_amount = GHC.Maybe.Nothing,
-                                                                                                                                      priceUnit_amount_decimal = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.price.properties.billing_scheme@ in the specification.
--- 
--- Describes how to compute the price per period. Either \`per_unit\` or \`tiered\`. \`per_unit\` indicates that the fixed amount (specified in \`unit_amount\` or \`unit_amount_decimal\`) will be charged per unit in \`quantity\` (for prices with \`usage_type=licensed\`), or per unit of total usage (for prices with \`usage_type=metered\`). \`tiered\` indicates that the unit pricing will be computed using a tiering strategy as defined using the \`tiers\` and \`tiers_mode\` attributes.
-data PriceBilling_scheme =
-   PriceBilling_schemeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PriceBilling_schemeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PriceBilling_schemeEnumPer_unit -- ^ Represents the JSON value @"per_unit"@
-  | PriceBilling_schemeEnumTiered -- ^ Represents the JSON value @"tiered"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceBilling_scheme
-    where {toJSON (PriceBilling_schemeOther val) = val;
-           toJSON (PriceBilling_schemeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PriceBilling_schemeEnumPer_unit) = "per_unit";
-           toJSON (PriceBilling_schemeEnumTiered) = "tiered"}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceBilling_scheme
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "per_unit" -> PriceBilling_schemeEnumPer_unit
-                                             | val GHC.Classes.== "tiered" -> PriceBilling_schemeEnumTiered
-                                             | GHC.Base.otherwise -> PriceBilling_schemeOther val)}
+mkPrice priceActive priceBilling_scheme priceCreated priceCurrency priceId priceLivemode priceMetadata priceObject priceProduct priceType = Price{priceActive = priceActive,
+                                                                                                                                                  priceBilling_scheme = priceBilling_scheme,
+                                                                                                                                                  priceCreated = priceCreated,
+                                                                                                                                                  priceCurrency = priceCurrency,
+                                                                                                                                                  priceCurrency_options = GHC.Maybe.Nothing,
+                                                                                                                                                  priceCustom_unit_amount = GHC.Maybe.Nothing,
+                                                                                                                                                  priceId = priceId,
+                                                                                                                                                  priceLivemode = priceLivemode,
+                                                                                                                                                  priceLookup_key = GHC.Maybe.Nothing,
+                                                                                                                                                  priceMetadata = priceMetadata,
+                                                                                                                                                  priceNickname = GHC.Maybe.Nothing,
+                                                                                                                                                  priceObject = priceObject,
+                                                                                                                                                  priceProduct = priceProduct,
+                                                                                                                                                  priceRecurring = GHC.Maybe.Nothing,
+                                                                                                                                                  priceTax_behavior = GHC.Maybe.Nothing,
+                                                                                                                                                  priceTiers = GHC.Maybe.Nothing,
+                                                                                                                                                  priceTiers_mode = GHC.Maybe.Nothing,
+                                                                                                                                                  priceTransform_quantity = GHC.Maybe.Nothing,
+                                                                                                                                                  priceType = priceType,
+                                                                                                                                                  priceUnit_amount = GHC.Maybe.Nothing,
+                                                                                                                                                  priceUnit_amount_decimal = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.price.properties.custom_unit_amount.anyOf@ in the specification.
 -- 
 -- When set, provides configuration for the amount to be adjusted by the customer during Checkout Sessions and Payment Links.
-data PriceCustom_unit_amountNonNullable = PriceCustom_unit_amountNonNullable {
+data PriceCustom_unit_amount = PriceCustom_unit_amount {
   -- | maximum: The maximum unit amount the customer can specify for this item.
-  priceCustom_unit_amountNonNullableMaximum :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  priceCustom_unit_amountMaximum :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | minimum: The minimum unit amount the customer can specify for this item. Must be at least the minimum charge amount.
-  , priceCustom_unit_amountNonNullableMinimum :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , priceCustom_unit_amountMinimum :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | preset: The starting unit amount which can be updated by the customer.
-  , priceCustom_unit_amountNonNullablePreset :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , priceCustom_unit_amountPreset :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceCustom_unit_amountNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maximum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountNonNullableMaximum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minimum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountNonNullableMinimum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preset" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountNonNullablePreset obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maximum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountNonNullableMaximum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minimum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountNonNullableMinimum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preset" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountNonNullablePreset obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceCustom_unit_amountNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PriceCustom_unit_amountNonNullable" (\obj -> ((GHC.Base.pure PriceCustom_unit_amountNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "maximum")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "minimum")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preset"))}
--- | Create a new 'PriceCustom_unit_amountNonNullable' with all required fields.
-mkPriceCustom_unit_amountNonNullable :: PriceCustom_unit_amountNonNullable
-mkPriceCustom_unit_amountNonNullable = PriceCustom_unit_amountNonNullable{priceCustom_unit_amountNonNullableMaximum = GHC.Maybe.Nothing,
-                                                                          priceCustom_unit_amountNonNullableMinimum = GHC.Maybe.Nothing,
-                                                                          priceCustom_unit_amountNonNullablePreset = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON PriceCustom_unit_amount
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maximum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountMaximum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minimum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountMinimum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preset" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountPreset obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maximum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountMaximum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minimum" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountMinimum obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preset" Data.Aeson.Types.ToJSON..=)) (priceCustom_unit_amountPreset obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PriceCustom_unit_amount
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PriceCustom_unit_amount" (\obj -> ((GHC.Base.pure PriceCustom_unit_amount GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "maximum")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "minimum")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preset"))}
+-- | Create a new 'PriceCustom_unit_amount' with all required fields.
+mkPriceCustom_unit_amount :: PriceCustom_unit_amount
+mkPriceCustom_unit_amount = PriceCustom_unit_amount{priceCustom_unit_amountMaximum = GHC.Maybe.Nothing,
+                                                    priceCustom_unit_amountMinimum = GHC.Maybe.Nothing,
+                                                    priceCustom_unit_amountPreset = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.price.properties.product.anyOf@ in the specification.
 -- 
 -- The ID of the product this price is associated with.
@@ -205,165 +191,48 @@ instance Data.Aeson.Types.FromJSON.FromJSON PriceProductVariants
 -- | Defines the object schema located at @components.schemas.price.properties.recurring.anyOf@ in the specification.
 -- 
 -- The recurring components of a price such as \\\`interval\\\` and \\\`usage_type\\\`.
-data PriceRecurringNonNullable = PriceRecurringNonNullable {
+data PriceRecurring = PriceRecurring {
   -- | interval: The frequency at which a subscription is billed. One of \`day\`, \`week\`, \`month\` or \`year\`.
-  priceRecurringNonNullableInterval :: (GHC.Maybe.Maybe PriceRecurringNonNullableInterval)
+  priceRecurringInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | interval_count: The number of intervals (specified in the \`interval\` attribute) between subscription billings. For example, \`interval=month\` and \`interval_count=3\` bills every 3 months.
-  , priceRecurringNonNullableInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , priceRecurringInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | meter: The meter tracking the usage of a metered price
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , priceRecurringNonNullableMeter :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , priceRecurringMeter :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | usage_type: Configures how the quantity per period should be determined. Can be either \`metered\` or \`licensed\`. \`licensed\` automatically bills the \`quantity\` set when adding it to a subscription. \`metered\` aggregates the total usage based on usage records. Defaults to \`licensed\`.
-  , priceRecurringNonNullableUsage_type :: (GHC.Maybe.Maybe PriceRecurringNonNullableUsage_type)
+  , priceRecurringUsage_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceRecurringNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("meter" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableMeter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_type" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableUsage_type obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("meter" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableMeter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_type" Data.Aeson.Types.ToJSON..=)) (priceRecurringNonNullableUsage_type obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceRecurringNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PriceRecurringNonNullable" (\obj -> (((GHC.Base.pure PriceRecurringNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "meter")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage_type"))}
--- | Create a new 'PriceRecurringNonNullable' with all required fields.
-mkPriceRecurringNonNullable :: PriceRecurringNonNullable
-mkPriceRecurringNonNullable = PriceRecurringNonNullable{priceRecurringNonNullableInterval = GHC.Maybe.Nothing,
-                                                        priceRecurringNonNullableInterval_count = GHC.Maybe.Nothing,
-                                                        priceRecurringNonNullableMeter = GHC.Maybe.Nothing,
-                                                        priceRecurringNonNullableUsage_type = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.price.properties.recurring.anyOf.properties.interval@ in the specification.
--- 
--- The frequency at which a subscription is billed. One of \`day\`, \`week\`, \`month\` or \`year\`.
-data PriceRecurringNonNullableInterval =
-   PriceRecurringNonNullableIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PriceRecurringNonNullableIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PriceRecurringNonNullableIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | PriceRecurringNonNullableIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | PriceRecurringNonNullableIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | PriceRecurringNonNullableIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceRecurringNonNullableInterval
-    where {toJSON (PriceRecurringNonNullableIntervalOther val) = val;
-           toJSON (PriceRecurringNonNullableIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PriceRecurringNonNullableIntervalEnumDay) = "day";
-           toJSON (PriceRecurringNonNullableIntervalEnumMonth) = "month";
-           toJSON (PriceRecurringNonNullableIntervalEnumWeek) = "week";
-           toJSON (PriceRecurringNonNullableIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceRecurringNonNullableInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> PriceRecurringNonNullableIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> PriceRecurringNonNullableIntervalEnumMonth
-                                             | val GHC.Classes.== "week" -> PriceRecurringNonNullableIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> PriceRecurringNonNullableIntervalEnumYear
-                                             | GHC.Base.otherwise -> PriceRecurringNonNullableIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.price.properties.recurring.anyOf.properties.usage_type@ in the specification.
--- 
--- Configures how the quantity per period should be determined. Can be either \`metered\` or \`licensed\`. \`licensed\` automatically bills the \`quantity\` set when adding it to a subscription. \`metered\` aggregates the total usage based on usage records. Defaults to \`licensed\`.
-data PriceRecurringNonNullableUsage_type =
-   PriceRecurringNonNullableUsage_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PriceRecurringNonNullableUsage_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PriceRecurringNonNullableUsage_typeEnumLicensed -- ^ Represents the JSON value @"licensed"@
-  | PriceRecurringNonNullableUsage_typeEnumMetered -- ^ Represents the JSON value @"metered"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceRecurringNonNullableUsage_type
-    where {toJSON (PriceRecurringNonNullableUsage_typeOther val) = val;
-           toJSON (PriceRecurringNonNullableUsage_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PriceRecurringNonNullableUsage_typeEnumLicensed) = "licensed";
-           toJSON (PriceRecurringNonNullableUsage_typeEnumMetered) = "metered"}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceRecurringNonNullableUsage_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "licensed" -> PriceRecurringNonNullableUsage_typeEnumLicensed
-                                             | val GHC.Classes.== "metered" -> PriceRecurringNonNullableUsage_typeEnumMetered
-                                             | GHC.Base.otherwise -> PriceRecurringNonNullableUsage_typeOther val)}
--- | Defines the enum schema located at @components.schemas.price.properties.tax_behavior@ in the specification.
--- 
--- Only required if a [default tax behavior](https:\/\/docs.stripe.com\/tax\/products-prices-tax-categories-tax-behavior\#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of \`inclusive\`, \`exclusive\`, or \`unspecified\`. Once specified as either \`inclusive\` or \`exclusive\`, it cannot be changed.
-data PriceTax_behaviorNonNullable =
-   PriceTax_behaviorNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PriceTax_behaviorNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PriceTax_behaviorNonNullableEnumExclusive -- ^ Represents the JSON value @"exclusive"@
-  | PriceTax_behaviorNonNullableEnumInclusive -- ^ Represents the JSON value @"inclusive"@
-  | PriceTax_behaviorNonNullableEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceTax_behaviorNonNullable
-    where {toJSON (PriceTax_behaviorNonNullableOther val) = val;
-           toJSON (PriceTax_behaviorNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PriceTax_behaviorNonNullableEnumExclusive) = "exclusive";
-           toJSON (PriceTax_behaviorNonNullableEnumInclusive) = "inclusive";
-           toJSON (PriceTax_behaviorNonNullableEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceTax_behaviorNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "exclusive" -> PriceTax_behaviorNonNullableEnumExclusive
-                                             | val GHC.Classes.== "inclusive" -> PriceTax_behaviorNonNullableEnumInclusive
-                                             | val GHC.Classes.== "unspecified" -> PriceTax_behaviorNonNullableEnumUnspecified
-                                             | GHC.Base.otherwise -> PriceTax_behaviorNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.price.properties.tiers_mode@ in the specification.
--- 
--- Defines if the tiering price should be \`graduated\` or \`volume\` based. In \`volume\`-based tiering, the maximum quantity within a period determines the per unit price. In \`graduated\` tiering, pricing can change as the quantity grows.
-data PriceTiers_modeNonNullable =
-   PriceTiers_modeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PriceTiers_modeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PriceTiers_modeNonNullableEnumGraduated -- ^ Represents the JSON value @"graduated"@
-  | PriceTiers_modeNonNullableEnumVolume -- ^ Represents the JSON value @"volume"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceTiers_modeNonNullable
-    where {toJSON (PriceTiers_modeNonNullableOther val) = val;
-           toJSON (PriceTiers_modeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PriceTiers_modeNonNullableEnumGraduated) = "graduated";
-           toJSON (PriceTiers_modeNonNullableEnumVolume) = "volume"}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceTiers_modeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "graduated" -> PriceTiers_modeNonNullableEnumGraduated
-                                             | val GHC.Classes.== "volume" -> PriceTiers_modeNonNullableEnumVolume
-                                             | GHC.Base.otherwise -> PriceTiers_modeNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON PriceRecurring
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (priceRecurringInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (priceRecurringInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("meter" Data.Aeson.Types.ToJSON..=)) (priceRecurringMeter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_type" Data.Aeson.Types.ToJSON..=)) (priceRecurringUsage_type obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (priceRecurringInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (priceRecurringInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("meter" Data.Aeson.Types.ToJSON..=)) (priceRecurringMeter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_type" Data.Aeson.Types.ToJSON..=)) (priceRecurringUsage_type obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PriceRecurring
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PriceRecurring" (\obj -> (((GHC.Base.pure PriceRecurring GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "meter")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage_type"))}
+-- | Create a new 'PriceRecurring' with all required fields.
+mkPriceRecurring :: PriceRecurring
+mkPriceRecurring = PriceRecurring{priceRecurringInterval = GHC.Maybe.Nothing,
+                                  priceRecurringInterval_count = GHC.Maybe.Nothing,
+                                  priceRecurringMeter = GHC.Maybe.Nothing,
+                                  priceRecurringUsage_type = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.price.properties.transform_quantity.anyOf@ in the specification.
 -- 
 -- Apply a transformation to the reported usage or set quantity before computing the amount billed. Cannot be combined with \\\`tiers\\\`.
-data PriceTransform_quantityNonNullable = PriceTransform_quantityNonNullable {
+data PriceTransform_quantity = PriceTransform_quantity {
   -- | divide_by: Divide usage by this number.
-  priceTransform_quantityNonNullableDivide_by :: (GHC.Maybe.Maybe GHC.Types.Int)
+  priceTransform_quantityDivide_by :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | round: After division, either round the result \`up\` or \`down\`.
-  , priceTransform_quantityNonNullableRound :: (GHC.Maybe.Maybe PriceTransform_quantityNonNullableRound)
+  , priceTransform_quantityRound :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceTransform_quantityNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("divide_by" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityNonNullableDivide_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("round" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityNonNullableRound obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("divide_by" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityNonNullableDivide_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("round" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityNonNullableRound obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceTransform_quantityNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PriceTransform_quantityNonNullable" (\obj -> (GHC.Base.pure PriceTransform_quantityNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "divide_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "round"))}
--- | Create a new 'PriceTransform_quantityNonNullable' with all required fields.
-mkPriceTransform_quantityNonNullable :: PriceTransform_quantityNonNullable
-mkPriceTransform_quantityNonNullable = PriceTransform_quantityNonNullable{priceTransform_quantityNonNullableDivide_by = GHC.Maybe.Nothing,
-                                                                          priceTransform_quantityNonNullableRound = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.price.properties.transform_quantity.anyOf.properties.round@ in the specification.
--- 
--- After division, either round the result \`up\` or \`down\`.
-data PriceTransform_quantityNonNullableRound =
-   PriceTransform_quantityNonNullableRoundOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PriceTransform_quantityNonNullableRoundTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PriceTransform_quantityNonNullableRoundEnumDown -- ^ Represents the JSON value @"down"@
-  | PriceTransform_quantityNonNullableRoundEnumUp -- ^ Represents the JSON value @"up"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceTransform_quantityNonNullableRound
-    where {toJSON (PriceTransform_quantityNonNullableRoundOther val) = val;
-           toJSON (PriceTransform_quantityNonNullableRoundTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PriceTransform_quantityNonNullableRoundEnumDown) = "down";
-           toJSON (PriceTransform_quantityNonNullableRoundEnumUp) = "up"}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceTransform_quantityNonNullableRound
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "down" -> PriceTransform_quantityNonNullableRoundEnumDown
-                                             | val GHC.Classes.== "up" -> PriceTransform_quantityNonNullableRoundEnumUp
-                                             | GHC.Base.otherwise -> PriceTransform_quantityNonNullableRoundOther val)}
--- | Defines the enum schema located at @components.schemas.price.properties.type@ in the specification.
--- 
--- One of \`one_time\` or \`recurring\` depending on whether the price is for a one-time purchase or a recurring (subscription) purchase.
-data PriceType =
-   PriceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PriceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PriceTypeEnumOne_time -- ^ Represents the JSON value @"one_time"@
-  | PriceTypeEnumRecurring -- ^ Represents the JSON value @"recurring"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PriceType
-    where {toJSON (PriceTypeOther val) = val;
-           toJSON (PriceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PriceTypeEnumOne_time) = "one_time";
-           toJSON (PriceTypeEnumRecurring) = "recurring"}
-instance Data.Aeson.Types.FromJSON.FromJSON PriceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "one_time" -> PriceTypeEnumOne_time
-                                             | val GHC.Classes.== "recurring" -> PriceTypeEnumRecurring
-                                             | GHC.Base.otherwise -> PriceTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON PriceTransform_quantity
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("divide_by" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityDivide_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("round" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityRound obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("divide_by" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityDivide_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("round" Data.Aeson.Types.ToJSON..=)) (priceTransform_quantityRound obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PriceTransform_quantity
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PriceTransform_quantity" (\obj -> (GHC.Base.pure PriceTransform_quantity GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "divide_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "round"))}
+-- | Create a new 'PriceTransform_quantity' with all required fields.
+mkPriceTransform_quantity :: PriceTransform_quantity
+mkPriceTransform_quantity = PriceTransform_quantity{priceTransform_quantityDivide_by = GHC.Maybe.Nothing,
+                                                    priceTransform_quantityRound = GHC.Maybe.Nothing}

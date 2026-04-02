@@ -50,13 +50,13 @@ data Payment_method_details_payto = Payment_method_details_payto {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_paytoBsb_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_paytoBsb_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_paytoLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_paytoLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate: ID of the mandate used to make this payment.
   -- 
   -- Constraints:
@@ -68,7 +68,7 @@ data Payment_method_details_payto = Payment_method_details_payto {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_paytoPay_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_paytoPay_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_payto

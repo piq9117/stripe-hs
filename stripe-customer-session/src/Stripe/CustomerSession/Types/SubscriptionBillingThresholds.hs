@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Subscription_billing_thresholds = Subscription_billing_thresholds {
   -- | amount_gte: Monetary threshold that triggers the subscription to create an invoice
-  subscription_billing_thresholdsAmount_gte :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscription_billing_thresholdsAmount_gte :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reset_billing_cycle_anchor: Indicates if the \`billing_cycle_anchor\` should be reset when a threshold is reached. If true, \`billing_cycle_anchor\` will be updated to the date\/time the threshold was last reached; otherwise, the value will remain unchanged. This value may not be \`true\` if the subscription contains items with plans that have \`aggregate_usage=last_ever\`.
-  , subscription_billing_thresholdsReset_billing_cycle_anchor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , subscription_billing_thresholdsReset_billing_cycle_anchor :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_billing_thresholds

@@ -6,8 +6,8 @@ instance Show Billing_details
 instance Eq Billing_details
 instance Data.Aeson.FromJSON Billing_details
 instance Data.Aeson.ToJSON Billing_details
-data Billing_detailsAddressNonNullable
-instance Show Billing_detailsAddressNonNullable
-instance Eq Billing_detailsAddressNonNullable
-instance Data.Aeson.FromJSON Billing_detailsAddressNonNullable
-instance Data.Aeson.ToJSON Billing_detailsAddressNonNullable
+data Billing_detailsAddress
+instance Show Billing_detailsAddress
+instance Eq Billing_detailsAddress
+instance Data.Aeson.FromJSON Billing_detailsAddress
+instance Data.Aeson.ToJSON Billing_detailsAddress

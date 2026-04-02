@@ -50,13 +50,13 @@ data Account_bacs_debit_payments_settings = Account_bacs_debit_payments_settings
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  account_bacs_debit_payments_settingsDisplay_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  account_bacs_debit_payments_settingsDisplay_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | service_user_number: The Bacs Direct Debit Service user number for this account. For payments made with Bacs Direct Debit, this number is a unique identifier of the account with our banking partners.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_bacs_debit_payments_settingsService_user_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_bacs_debit_payments_settingsService_user_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_bacs_debit_payments_settings

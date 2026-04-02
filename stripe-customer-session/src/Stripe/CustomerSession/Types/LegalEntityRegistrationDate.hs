@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Legal_entity_registration_date = Legal_entity_registration_date {
   -- | day: The day of registration, between 1 and 31.
-  legal_entity_registration_dateDay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  legal_entity_registration_dateDay :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month of registration, between 1 and 12.
-  , legal_entity_registration_dateMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , legal_entity_registration_dateMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | year: The four-digit year of registration.
-  , legal_entity_registration_dateYear :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , legal_entity_registration_dateYear :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_registration_date

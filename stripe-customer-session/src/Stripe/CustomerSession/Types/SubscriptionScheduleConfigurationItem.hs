@@ -51,17 +51,17 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.TaxRate
 -- A phase item describes the price and quantity of a phase.
 data Subscription_schedule_configuration_item = Subscription_schedule_configuration_item {
   -- | billing_thresholds: Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
-  subscription_schedule_configuration_itemBilling_thresholds :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_configuration_itemBilling_thresholdsNonNullable))
+  subscription_schedule_configuration_itemBilling_thresholds :: (GHC.Maybe.Maybe Subscription_schedule_configuration_itemBilling_thresholds)
   -- | discounts: The discounts applied to the subscription item. Subscription item discounts are applied before subscription discounts. Use \`expand[]=discounts\` to expand each discount.
   , subscription_schedule_configuration_itemDiscounts :: [Stackable_discount_with_discount_settings]
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an item. Metadata on this item will update the underlying subscription item\'s \`metadata\` when the phase is entered.
-  , subscription_schedule_configuration_itemMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , subscription_schedule_configuration_itemMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | price: ID of the price to which the customer should be subscribed.
   , subscription_schedule_configuration_itemPrice :: Subscription_schedule_configuration_itemPriceVariants
   -- | quantity: Quantity of the plan to which the customer should be subscribed.
   , subscription_schedule_configuration_itemQuantity :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | tax_rates: The tax rates which apply to this \`phase_item\`. When set, the \`default_tax_rates\` on the phase do not apply to this \`phase_item\`.
-  , subscription_schedule_configuration_itemTax_rates :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Tax_rate]))
+  , subscription_schedule_configuration_itemTax_rates :: (GHC.Maybe.Maybe [Tax_rate])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_configuration_item
@@ -82,19 +82,19 @@ mkSubscription_schedule_configuration_item subscription_schedule_configuration_i
 -- | Defines the object schema located at @components.schemas.subscription_schedule_configuration_item.properties.billing_thresholds.anyOf@ in the specification.
 -- 
 -- Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
-data Subscription_schedule_configuration_itemBilling_thresholdsNonNullable = Subscription_schedule_configuration_itemBilling_thresholdsNonNullable {
+data Subscription_schedule_configuration_itemBilling_thresholds = Subscription_schedule_configuration_itemBilling_thresholds {
   -- | usage_gte: Usage threshold that triggers the subscription to create an invoice
-  subscription_schedule_configuration_itemBilling_thresholdsNonNullableUsage_gte :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscription_schedule_configuration_itemBilling_thresholdsUsage_gte :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_configuration_itemBilling_thresholdsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_configuration_itemBilling_thresholdsNonNullableUsage_gte obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_configuration_itemBilling_thresholdsNonNullableUsage_gte obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_configuration_itemBilling_thresholdsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_configuration_itemBilling_thresholdsNonNullable" (\obj -> GHC.Base.pure Subscription_schedule_configuration_itemBilling_thresholdsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage_gte"))}
--- | Create a new 'Subscription_schedule_configuration_itemBilling_thresholdsNonNullable' with all required fields.
-mkSubscription_schedule_configuration_itemBilling_thresholdsNonNullable :: Subscription_schedule_configuration_itemBilling_thresholdsNonNullable
-mkSubscription_schedule_configuration_itemBilling_thresholdsNonNullable = Subscription_schedule_configuration_itemBilling_thresholdsNonNullable{subscription_schedule_configuration_itemBilling_thresholdsNonNullableUsage_gte = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_configuration_itemBilling_thresholds
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_configuration_itemBilling_thresholdsUsage_gte obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_configuration_itemBilling_thresholdsUsage_gte obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_configuration_itemBilling_thresholds
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_configuration_itemBilling_thresholds" (\obj -> GHC.Base.pure Subscription_schedule_configuration_itemBilling_thresholds GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage_gte"))}
+-- | Create a new 'Subscription_schedule_configuration_itemBilling_thresholds' with all required fields.
+mkSubscription_schedule_configuration_itemBilling_thresholds :: Subscription_schedule_configuration_itemBilling_thresholds
+mkSubscription_schedule_configuration_itemBilling_thresholds = Subscription_schedule_configuration_itemBilling_thresholds{subscription_schedule_configuration_itemBilling_thresholdsUsage_gte = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedule_configuration_item.properties.price.anyOf@ in the specification.
 -- 
 -- ID of the price to which the customer should be subscribed.

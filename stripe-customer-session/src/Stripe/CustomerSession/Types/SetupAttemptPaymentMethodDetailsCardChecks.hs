@@ -50,19 +50,19 @@ data Setup_attempt_payment_method_details_card_checks = Setup_attempt_payment_me
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_attempt_payment_method_details_card_checksAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_attempt_payment_method_details_card_checksAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_postal_code_check: If a address postal code was provided, results of the check, one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_card_checksAddress_postal_code_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_card_checksAddress_postal_code_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cvc_check: If a CVC was provided, results of the check, one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_card_checksCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_card_checksCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_card_checks

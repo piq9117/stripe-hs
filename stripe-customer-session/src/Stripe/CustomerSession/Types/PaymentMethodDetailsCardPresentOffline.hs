@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_details_card_present_offline = Payment_method_details_card_present_offline {
   -- | stored_at: Time at which the payment was collected while offline
-  payment_method_details_card_present_offlineStored_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_method_details_card_present_offlineStored_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | type: The method used to process this payment method offline. Only deferred is allowed.
-  , payment_method_details_card_present_offlineType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_card_present_offlineTypeNonNullable))
+  , payment_method_details_card_present_offlineType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_card_present_offline
@@ -60,18 +60,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_card_present_
 mkPayment_method_details_card_present_offline :: Payment_method_details_card_present_offline
 mkPayment_method_details_card_present_offline = Payment_method_details_card_present_offline{payment_method_details_card_present_offlineStored_at = GHC.Maybe.Nothing,
                                                                                             payment_method_details_card_present_offlineType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_details_card_present_offline.properties.type@ in the specification.
--- 
--- The method used to process this payment method offline. Only deferred is allowed.
-data Payment_method_details_card_present_offlineTypeNonNullable =
-   Payment_method_details_card_present_offlineTypeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_card_present_offlineTypeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_card_present_offlineTypeNonNullableEnumDeferred -- ^ Represents the JSON value @"deferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_card_present_offlineTypeNonNullable
-    where {toJSON (Payment_method_details_card_present_offlineTypeNonNullableOther val) = val;
-           toJSON (Payment_method_details_card_present_offlineTypeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_card_present_offlineTypeNonNullableEnumDeferred) = "deferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_card_present_offlineTypeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "deferred" -> Payment_method_details_card_present_offlineTypeNonNullableEnumDeferred
-                                             | GHC.Base.otherwise -> Payment_method_details_card_present_offlineTypeNonNullableOther val)}

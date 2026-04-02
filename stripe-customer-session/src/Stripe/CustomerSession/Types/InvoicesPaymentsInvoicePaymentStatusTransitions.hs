@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoices_payments_invoice_payment_status_transitions = Invoices_payments_invoice_payment_status_transitions {
   -- | canceled_at: The time that the payment was canceled.
-  invoices_payments_invoice_payment_status_transitionsCanceled_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  invoices_payments_invoice_payment_status_transitionsCanceled_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | paid_at: The time that the payment succeeded.
-  , invoices_payments_invoice_payment_status_transitionsPaid_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoices_payments_invoice_payment_status_transitionsPaid_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoices_payments_invoice_payment_status_transitions

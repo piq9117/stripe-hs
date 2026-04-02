@@ -50,13 +50,13 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentIntentNextActionKonbin
 -- 
 data Payment_intent_next_action_konbini_stores = Payment_intent_next_action_konbini_stores {
   -- | familymart: FamilyMart instruction details.
-  payment_intent_next_action_konbini_storesFamilymart :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_next_action_konbini_storesFamilymartNonNullable))
+  payment_intent_next_action_konbini_storesFamilymart :: (GHC.Maybe.Maybe Payment_intent_next_action_konbini_storesFamilymart)
   -- | lawson: Lawson instruction details.
-  , payment_intent_next_action_konbini_storesLawson :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_next_action_konbini_storesLawsonNonNullable))
+  , payment_intent_next_action_konbini_storesLawson :: (GHC.Maybe.Maybe Payment_intent_next_action_konbini_storesLawson)
   -- | ministop: Ministop instruction details.
-  , payment_intent_next_action_konbini_storesMinistop :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_next_action_konbini_storesMinistopNonNullable))
+  , payment_intent_next_action_konbini_storesMinistop :: (GHC.Maybe.Maybe Payment_intent_next_action_konbini_storesMinistop)
   -- | seicomart: Seicomart instruction details.
-  , payment_intent_next_action_konbini_storesSeicomart :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_next_action_konbini_storesSeicomartNonNullable))
+  , payment_intent_next_action_konbini_storesSeicomart :: (GHC.Maybe.Maybe Payment_intent_next_action_konbini_storesSeicomart)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_stores
@@ -73,108 +73,108 @@ mkPayment_intent_next_action_konbini_stores = Payment_intent_next_action_konbini
 -- | Defines the object schema located at @components.schemas.payment_intent_next_action_konbini_stores.properties.familymart.anyOf@ in the specification.
 -- 
 -- FamilyMart instruction details.
-data Payment_intent_next_action_konbini_storesFamilymartNonNullable = Payment_intent_next_action_konbini_storesFamilymartNonNullable {
+data Payment_intent_next_action_konbini_storesFamilymart = Payment_intent_next_action_konbini_storesFamilymart {
   -- | confirmation_number: The confirmation number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_next_action_konbini_storesFamilymartNonNullableConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  payment_intent_next_action_konbini_storesFamilymartConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_code: The payment code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_konbini_storesFamilymartNonNullablePayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , payment_intent_next_action_konbini_storesFamilymartPayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesFamilymartNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartNonNullablePayment_code obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartNonNullablePayment_code obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesFamilymartNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesFamilymartNonNullable" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesFamilymartNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
--- | Create a new 'Payment_intent_next_action_konbini_storesFamilymartNonNullable' with all required fields.
-mkPayment_intent_next_action_konbini_storesFamilymartNonNullable :: Payment_intent_next_action_konbini_storesFamilymartNonNullable
-mkPayment_intent_next_action_konbini_storesFamilymartNonNullable = Payment_intent_next_action_konbini_storesFamilymartNonNullable{payment_intent_next_action_konbini_storesFamilymartNonNullableConfirmation_number = GHC.Maybe.Nothing,
-                                                                                                                                  payment_intent_next_action_konbini_storesFamilymartNonNullablePayment_code = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesFamilymart
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartPayment_code obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesFamilymartPayment_code obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesFamilymart
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesFamilymart" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesFamilymart GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
+-- | Create a new 'Payment_intent_next_action_konbini_storesFamilymart' with all required fields.
+mkPayment_intent_next_action_konbini_storesFamilymart :: Payment_intent_next_action_konbini_storesFamilymart
+mkPayment_intent_next_action_konbini_storesFamilymart = Payment_intent_next_action_konbini_storesFamilymart{payment_intent_next_action_konbini_storesFamilymartConfirmation_number = GHC.Maybe.Nothing,
+                                                                                                            payment_intent_next_action_konbini_storesFamilymartPayment_code = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_intent_next_action_konbini_stores.properties.lawson.anyOf@ in the specification.
 -- 
 -- Lawson instruction details.
-data Payment_intent_next_action_konbini_storesLawsonNonNullable = Payment_intent_next_action_konbini_storesLawsonNonNullable {
+data Payment_intent_next_action_konbini_storesLawson = Payment_intent_next_action_konbini_storesLawson {
   -- | confirmation_number: The confirmation number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_next_action_konbini_storesLawsonNonNullableConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  payment_intent_next_action_konbini_storesLawsonConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_code: The payment code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_konbini_storesLawsonNonNullablePayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , payment_intent_next_action_konbini_storesLawsonPayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesLawsonNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonNonNullablePayment_code obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonNonNullablePayment_code obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesLawsonNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesLawsonNonNullable" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesLawsonNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
--- | Create a new 'Payment_intent_next_action_konbini_storesLawsonNonNullable' with all required fields.
-mkPayment_intent_next_action_konbini_storesLawsonNonNullable :: Payment_intent_next_action_konbini_storesLawsonNonNullable
-mkPayment_intent_next_action_konbini_storesLawsonNonNullable = Payment_intent_next_action_konbini_storesLawsonNonNullable{payment_intent_next_action_konbini_storesLawsonNonNullableConfirmation_number = GHC.Maybe.Nothing,
-                                                                                                                          payment_intent_next_action_konbini_storesLawsonNonNullablePayment_code = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesLawson
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonPayment_code obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesLawsonPayment_code obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesLawson
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesLawson" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesLawson GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
+-- | Create a new 'Payment_intent_next_action_konbini_storesLawson' with all required fields.
+mkPayment_intent_next_action_konbini_storesLawson :: Payment_intent_next_action_konbini_storesLawson
+mkPayment_intent_next_action_konbini_storesLawson = Payment_intent_next_action_konbini_storesLawson{payment_intent_next_action_konbini_storesLawsonConfirmation_number = GHC.Maybe.Nothing,
+                                                                                                    payment_intent_next_action_konbini_storesLawsonPayment_code = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_intent_next_action_konbini_stores.properties.ministop.anyOf@ in the specification.
 -- 
 -- Ministop instruction details.
-data Payment_intent_next_action_konbini_storesMinistopNonNullable = Payment_intent_next_action_konbini_storesMinistopNonNullable {
+data Payment_intent_next_action_konbini_storesMinistop = Payment_intent_next_action_konbini_storesMinistop {
   -- | confirmation_number: The confirmation number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_next_action_konbini_storesMinistopNonNullableConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  payment_intent_next_action_konbini_storesMinistopConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_code: The payment code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_konbini_storesMinistopNonNullablePayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , payment_intent_next_action_konbini_storesMinistopPayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesMinistopNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopNonNullablePayment_code obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopNonNullablePayment_code obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesMinistopNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesMinistopNonNullable" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesMinistopNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
--- | Create a new 'Payment_intent_next_action_konbini_storesMinistopNonNullable' with all required fields.
-mkPayment_intent_next_action_konbini_storesMinistopNonNullable :: Payment_intent_next_action_konbini_storesMinistopNonNullable
-mkPayment_intent_next_action_konbini_storesMinistopNonNullable = Payment_intent_next_action_konbini_storesMinistopNonNullable{payment_intent_next_action_konbini_storesMinistopNonNullableConfirmation_number = GHC.Maybe.Nothing,
-                                                                                                                              payment_intent_next_action_konbini_storesMinistopNonNullablePayment_code = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesMinistop
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopPayment_code obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesMinistopPayment_code obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesMinistop
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesMinistop" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesMinistop GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
+-- | Create a new 'Payment_intent_next_action_konbini_storesMinistop' with all required fields.
+mkPayment_intent_next_action_konbini_storesMinistop :: Payment_intent_next_action_konbini_storesMinistop
+mkPayment_intent_next_action_konbini_storesMinistop = Payment_intent_next_action_konbini_storesMinistop{payment_intent_next_action_konbini_storesMinistopConfirmation_number = GHC.Maybe.Nothing,
+                                                                                                        payment_intent_next_action_konbini_storesMinistopPayment_code = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_intent_next_action_konbini_stores.properties.seicomart.anyOf@ in the specification.
 -- 
 -- Seicomart instruction details.
-data Payment_intent_next_action_konbini_storesSeicomartNonNullable = Payment_intent_next_action_konbini_storesSeicomartNonNullable {
+data Payment_intent_next_action_konbini_storesSeicomart = Payment_intent_next_action_konbini_storesSeicomart {
   -- | confirmation_number: The confirmation number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_next_action_konbini_storesSeicomartNonNullableConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  payment_intent_next_action_konbini_storesSeicomartConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_code: The payment code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_konbini_storesSeicomartNonNullablePayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , payment_intent_next_action_konbini_storesSeicomartPayment_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesSeicomartNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartNonNullablePayment_code obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartNonNullableConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartNonNullablePayment_code obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesSeicomartNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesSeicomartNonNullable" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesSeicomartNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
--- | Create a new 'Payment_intent_next_action_konbini_storesSeicomartNonNullable' with all required fields.
-mkPayment_intent_next_action_konbini_storesSeicomartNonNullable :: Payment_intent_next_action_konbini_storesSeicomartNonNullable
-mkPayment_intent_next_action_konbini_storesSeicomartNonNullable = Payment_intent_next_action_konbini_storesSeicomartNonNullable{payment_intent_next_action_konbini_storesSeicomartNonNullableConfirmation_number = GHC.Maybe.Nothing,
-                                                                                                                                payment_intent_next_action_konbini_storesSeicomartNonNullablePayment_code = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_konbini_storesSeicomart
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartPayment_code obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_number" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartConfirmation_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_code" Data.Aeson.Types.ToJSON..=)) (payment_intent_next_action_konbini_storesSeicomartPayment_code obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_konbini_storesSeicomart
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_konbini_storesSeicomart" (\obj -> (GHC.Base.pure Payment_intent_next_action_konbini_storesSeicomart GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_code"))}
+-- | Create a new 'Payment_intent_next_action_konbini_storesSeicomart' with all required fields.
+mkPayment_intent_next_action_konbini_storesSeicomart :: Payment_intent_next_action_konbini_storesSeicomart
+mkPayment_intent_next_action_konbini_storesSeicomart = Payment_intent_next_action_konbini_storesSeicomart{payment_intent_next_action_konbini_storesSeicomartConfirmation_number = GHC.Maybe.Nothing,
+                                                                                                          payment_intent_next_action_konbini_storesSeicomartPayment_code = GHC.Maybe.Nothing}

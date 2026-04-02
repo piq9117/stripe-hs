@@ -52,17 +52,17 @@ data Setup_intent_payment_method_options_mandate_options_acss_debit = Setup_inte
   -- * Maximum length of 5000
   setup_intent_payment_method_options_mandate_options_acss_debitCustom_mandate_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | default_for: List of Stripe products where this mandate can be selected automatically.
-  , setup_intent_payment_method_options_mandate_options_acss_debitDefault_for :: (GHC.Maybe.Maybe [Setup_intent_payment_method_options_mandate_options_acss_debitDefault_for])
+  , setup_intent_payment_method_options_mandate_options_acss_debitDefault_for :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | interval_description: Description of the interval. Only required if the \'payment_schedule\' parameter is \'interval\' or \'combined\'.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intent_payment_method_options_mandate_options_acss_debitInterval_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intent_payment_method_options_mandate_options_acss_debitInterval_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_schedule: Payment schedule for the mandate.
-  , setup_intent_payment_method_options_mandate_options_acss_debitPayment_schedule :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullable))
+  , setup_intent_payment_method_options_mandate_options_acss_debitPayment_schedule :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_type: Transaction type of the mandate.
-  , setup_intent_payment_method_options_mandate_options_acss_debitTransaction_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullable))
+  , setup_intent_payment_method_options_mandate_options_acss_debitTransaction_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_mandate_options_acss_debit
@@ -77,60 +77,3 @@ mkSetup_intent_payment_method_options_mandate_options_acss_debit = Setup_intent_
                                                                                                                                   setup_intent_payment_method_options_mandate_options_acss_debitInterval_description = GHC.Maybe.Nothing,
                                                                                                                                   setup_intent_payment_method_options_mandate_options_acss_debitPayment_schedule = GHC.Maybe.Nothing,
                                                                                                                                   setup_intent_payment_method_options_mandate_options_acss_debitTransaction_type = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_mandate_options_acss_debit.properties.default_for.items@ in the specification.
--- 
--- 
-data Setup_intent_payment_method_options_mandate_options_acss_debitDefault_for =
-   Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forEnumInvoice -- ^ Represents the JSON value @"invoice"@
-  | Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forEnumSubscription -- ^ Represents the JSON value @"subscription"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_mandate_options_acss_debitDefault_for
-    where {toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forOther val) = val;
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forEnumInvoice) = "invoice";
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forEnumSubscription) = "subscription"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_mandate_options_acss_debitDefault_for
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "invoice" -> Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forEnumInvoice
-                                             | val GHC.Classes.== "subscription" -> Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forEnumSubscription
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_mandate_options_acss_debitDefault_forOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_mandate_options_acss_debit.properties.payment_schedule@ in the specification.
--- 
--- Payment schedule for the mandate.
-data Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullable =
-   Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumCombined -- ^ Represents the JSON value @"combined"@
-  | Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumInterval -- ^ Represents the JSON value @"interval"@
-  | Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullable
-    where {toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumCombined) = "combined";
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumInterval) = "interval";
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumSporadic) = "sporadic"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "combined" -> Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumCombined
-                                             | val GHC.Classes.== "interval" -> Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumInterval
-                                             | val GHC.Classes.== "sporadic" -> Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableEnumSporadic
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_mandate_options_acss_debitPayment_scheduleNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_mandate_options_acss_debit.properties.transaction_type@ in the specification.
--- 
--- Transaction type of the mandate.
-data Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullable =
-   Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableEnumBusiness -- ^ Represents the JSON value @"business"@
-  | Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableEnumPersonal -- ^ Represents the JSON value @"personal"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullable
-    where {toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableEnumBusiness) = "business";
-           toJSON (Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableEnumPersonal) = "personal"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "business" -> Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableEnumBusiness
-                                             | val GHC.Classes.== "personal" -> Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableEnumPersonal
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_mandate_options_acss_debitTransaction_typeNonNullableOther val)}

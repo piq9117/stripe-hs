@@ -47,23 +47,23 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingTransactionFlightDataL
 -- 
 data Issuing_transaction_flight_data = Issuing_transaction_flight_data {
   -- | departure_at: The time that the flight departed.
-  issuing_transaction_flight_dataDeparture_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_transaction_flight_dataDeparture_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | passenger_name: The name of the passenger.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_flight_dataPassenger_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_flight_dataPassenger_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refundable: Whether the ticket is refundable.
-  , issuing_transaction_flight_dataRefundable :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , issuing_transaction_flight_dataRefundable :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | segments: The legs of the trip.
-  , issuing_transaction_flight_dataSegments :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Issuing_transaction_flight_data_leg]))
+  , issuing_transaction_flight_dataSegments :: (GHC.Maybe.Maybe [Issuing_transaction_flight_data_leg])
   -- | travel_agency: The travel agency that issued the ticket.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_flight_dataTravel_agency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_flight_dataTravel_agency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_flight_data

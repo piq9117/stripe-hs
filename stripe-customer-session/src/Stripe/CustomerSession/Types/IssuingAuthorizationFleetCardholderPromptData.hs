@@ -50,33 +50,33 @@ data Issuing_authorization_fleet_cardholder_prompt_data = Issuing_authorization_
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_authorization_fleet_cardholder_prompt_dataAlphanumeric_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_authorization_fleet_cardholder_prompt_dataAlphanumeric_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | driver_id: Driver ID.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_fleet_cardholder_prompt_dataDriver_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_fleet_cardholder_prompt_dataDriver_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | odometer: Odometer reading.
-  , issuing_authorization_fleet_cardholder_prompt_dataOdometer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_authorization_fleet_cardholder_prompt_dataOdometer :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | unspecified_id: An alphanumeric ID. This field is used when a vehicle ID, driver ID, or generic ID is entered by the cardholder, but the merchant or card network did not specify the prompt type.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_fleet_cardholder_prompt_dataUnspecified_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_fleet_cardholder_prompt_dataUnspecified_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_id: User ID.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_fleet_cardholder_prompt_dataUser_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_fleet_cardholder_prompt_dataUser_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | vehicle_number: Vehicle number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_fleet_cardholder_prompt_dataVehicle_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_fleet_cardholder_prompt_dataVehicle_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fleet_cardholder_prompt_data

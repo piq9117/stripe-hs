@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan = Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan {
   -- | count: For \`fixed_count\` installment plans, this is the number of installment payments your customer will make to their credit card.
-  payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planCount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planCount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: For \`fixed_count\` installment plans, this is the interval between installment payments your customer will make to their credit card. One of \`month\`.
-  , payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planInterval :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullable))
+  , payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Type of installment plan, one of \`fixed_count\`, \`revolving\`, or \`bonus\`.
-  , payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType :: Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType
+  , payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan
@@ -59,44 +59,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_reso
 instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan" (\obj -> ((GHC.Base.pure Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan' with all required fields.
-mkPayments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan :: Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType -- ^ 'payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType'
+mkPayments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan :: Data.Text.Internal.Text -- ^ 'payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType'
   -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan
 mkPayments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType = Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan{payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planCount = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                                                                                                  payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planInterval = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                                                                                                  payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType = payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType}
--- | Defines the enum schema located at @components.schemas.payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan.properties.interval@ in the specification.
--- 
--- For \`fixed_count\` installment plans, this is the interval between installment payments your customer will make to their credit card. One of \`month\`.
-data Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullable =
-   Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableEnumMonth -- ^ Represents the JSON value @"month"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullable
-    where {toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableOther val) = val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableEnumMonth) = "month"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "month" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableEnumMonth
-                                             | GHC.Base.otherwise -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planIntervalNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_plan.properties.type@ in the specification.
--- 
--- Type of installment plan, one of \`fixed_count\`, \`revolving\`, or \`bonus\`.
-data Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType =
-   Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumBonus -- ^ Represents the JSON value @"bonus"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumFixed_count -- ^ Represents the JSON value @"fixed_count"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumRevolving -- ^ Represents the JSON value @"revolving"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType
-    where {toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeOther val) = val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumBonus) = "bonus";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumFixed_count) = "fixed_count";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumRevolving) = "revolving"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bonus" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumBonus
-                                             | val GHC.Classes.== "fixed_count" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumFixed_count
-                                             | val GHC.Classes.== "revolving" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeEnumRevolving
-                                             | GHC.Base.otherwise -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_installment_planTypeOther val)}

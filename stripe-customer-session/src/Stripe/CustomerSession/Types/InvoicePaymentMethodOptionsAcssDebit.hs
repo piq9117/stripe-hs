@@ -48,8 +48,8 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.InvoicePaymentMethodOptionsAc
 data Invoice_payment_method_options_acss_debit = Invoice_payment_method_options_acss_debit {
   -- | mandate_options: 
   invoice_payment_method_options_acss_debitMandate_options :: (GHC.Maybe.Maybe Invoice_payment_method_options_acss_debit_mandate_options)
-  -- | verification_method: Bank account verification method.
-  , invoice_payment_method_options_acss_debitVerification_method :: (GHC.Maybe.Maybe Invoice_payment_method_options_acss_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , invoice_payment_method_options_acss_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_acss_debit
@@ -61,24 +61,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_acss_
 mkInvoice_payment_method_options_acss_debit :: Invoice_payment_method_options_acss_debit
 mkInvoice_payment_method_options_acss_debit = Invoice_payment_method_options_acss_debit{invoice_payment_method_options_acss_debitMandate_options = GHC.Maybe.Nothing,
                                                                                         invoice_payment_method_options_acss_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_acss_debit.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Invoice_payment_method_options_acss_debitVerification_method =
-   Invoice_payment_method_options_acss_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_acss_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_acss_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Invoice_payment_method_options_acss_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Invoice_payment_method_options_acss_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_acss_debitVerification_method
-    where {toJSON (Invoice_payment_method_options_acss_debitVerification_methodOther val) = val;
-           toJSON (Invoice_payment_method_options_acss_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_acss_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Invoice_payment_method_options_acss_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Invoice_payment_method_options_acss_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_acss_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Invoice_payment_method_options_acss_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Invoice_payment_method_options_acss_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Invoice_payment_method_options_acss_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_acss_debitVerification_methodOther val)}

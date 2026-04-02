@@ -48,11 +48,11 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.ConnectAccountReference
 -- 
 data Schedules_phase_automatic_tax = Schedules_phase_automatic_tax {
   -- | disabled_reason: If Stripe disabled automatic tax, this enum describes why.
-  schedules_phase_automatic_taxDisabled_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Schedules_phase_automatic_taxDisabled_reasonNonNullable))
+  schedules_phase_automatic_taxDisabled_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | enabled: Whether Stripe automatically computes tax on invoices created during this phase.
   , schedules_phase_automatic_taxEnabled :: GHC.Types.Bool
   -- | liability: The account that\'s liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
-  , schedules_phase_automatic_taxLiability :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Schedules_phase_automatic_taxLiabilityNonNullable))
+  , schedules_phase_automatic_taxLiability :: (GHC.Maybe.Maybe Schedules_phase_automatic_taxLiability)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Schedules_phase_automatic_tax
@@ -66,69 +66,36 @@ mkSchedules_phase_automatic_tax :: GHC.Types.Bool -- ^ 'schedules_phase_automati
 mkSchedules_phase_automatic_tax schedules_phase_automatic_taxEnabled = Schedules_phase_automatic_tax{schedules_phase_automatic_taxDisabled_reason = GHC.Maybe.Nothing,
                                                                                                      schedules_phase_automatic_taxEnabled = schedules_phase_automatic_taxEnabled,
                                                                                                      schedules_phase_automatic_taxLiability = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.schedules_phase_automatic_tax.properties.disabled_reason@ in the specification.
--- 
--- If Stripe disabled automatic tax, this enum describes why.
-data Schedules_phase_automatic_taxDisabled_reasonNonNullable =
-   Schedules_phase_automatic_taxDisabled_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Schedules_phase_automatic_taxDisabled_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Schedules_phase_automatic_taxDisabled_reasonNonNullableEnumRequires_location_inputs -- ^ Represents the JSON value @"requires_location_inputs"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Schedules_phase_automatic_taxDisabled_reasonNonNullable
-    where {toJSON (Schedules_phase_automatic_taxDisabled_reasonNonNullableOther val) = val;
-           toJSON (Schedules_phase_automatic_taxDisabled_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Schedules_phase_automatic_taxDisabled_reasonNonNullableEnumRequires_location_inputs) = "requires_location_inputs"}
-instance Data.Aeson.Types.FromJSON.FromJSON Schedules_phase_automatic_taxDisabled_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "requires_location_inputs" -> Schedules_phase_automatic_taxDisabled_reasonNonNullableEnumRequires_location_inputs
-                                             | GHC.Base.otherwise -> Schedules_phase_automatic_taxDisabled_reasonNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.schedules_phase_automatic_tax.properties.liability.anyOf@ in the specification.
 -- 
 -- The account that\\\'s liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
-data Schedules_phase_automatic_taxLiabilityNonNullable = Schedules_phase_automatic_taxLiabilityNonNullable {
+data Schedules_phase_automatic_taxLiability = Schedules_phase_automatic_taxLiability {
   -- | account: The connected account being referenced when \`type\` is \`account\`.
-  schedules_phase_automatic_taxLiabilityNonNullableAccount :: (GHC.Maybe.Maybe Schedules_phase_automatic_taxLiabilityNonNullableAccountVariants)
+  schedules_phase_automatic_taxLiabilityAccount :: (GHC.Maybe.Maybe Schedules_phase_automatic_taxLiabilityAccountVariants)
   -- | type: Type of the account referenced.
-  , schedules_phase_automatic_taxLiabilityNonNullableType :: (GHC.Maybe.Maybe Schedules_phase_automatic_taxLiabilityNonNullableType)
+  , schedules_phase_automatic_taxLiabilityType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Schedules_phase_automatic_taxLiabilityNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Schedules_phase_automatic_taxLiabilityNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Schedules_phase_automatic_taxLiabilityNonNullable" (\obj -> (GHC.Base.pure Schedules_phase_automatic_taxLiabilityNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Schedules_phase_automatic_taxLiabilityNonNullable' with all required fields.
-mkSchedules_phase_automatic_taxLiabilityNonNullable :: Schedules_phase_automatic_taxLiabilityNonNullable
-mkSchedules_phase_automatic_taxLiabilityNonNullable = Schedules_phase_automatic_taxLiabilityNonNullable{schedules_phase_automatic_taxLiabilityNonNullableAccount = GHC.Maybe.Nothing,
-                                                                                                        schedules_phase_automatic_taxLiabilityNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Schedules_phase_automatic_taxLiability
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (schedules_phase_automatic_taxLiabilityType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Schedules_phase_automatic_taxLiability
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Schedules_phase_automatic_taxLiability" (\obj -> (GHC.Base.pure Schedules_phase_automatic_taxLiability GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Schedules_phase_automatic_taxLiability' with all required fields.
+mkSchedules_phase_automatic_taxLiability :: Schedules_phase_automatic_taxLiability
+mkSchedules_phase_automatic_taxLiability = Schedules_phase_automatic_taxLiability{schedules_phase_automatic_taxLiabilityAccount = GHC.Maybe.Nothing,
+                                                                                  schedules_phase_automatic_taxLiabilityType = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.schedules_phase_automatic_tax.properties.liability.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The connected account being referenced when \`type\` is \`account\`.
-data Schedules_phase_automatic_taxLiabilityNonNullableAccountVariants =
-   Schedules_phase_automatic_taxLiabilityNonNullableAccountText Data.Text.Internal.Text
-  | Schedules_phase_automatic_taxLiabilityNonNullableAccountAccount Account
+data Schedules_phase_automatic_taxLiabilityAccountVariants =
+   Schedules_phase_automatic_taxLiabilityAccountText Data.Text.Internal.Text
+  | Schedules_phase_automatic_taxLiabilityAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Schedules_phase_automatic_taxLiabilityNonNullableAccountVariants
-    where {toJSON (Schedules_phase_automatic_taxLiabilityNonNullableAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Schedules_phase_automatic_taxLiabilityNonNullableAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Schedules_phase_automatic_taxLiabilityNonNullableAccountVariants
-    where {parseJSON val = case (Schedules_phase_automatic_taxLiabilityNonNullableAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Schedules_phase_automatic_taxLiabilityNonNullableAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Schedules_phase_automatic_taxLiabilityAccountVariants
+    where {toJSON (Schedules_phase_automatic_taxLiabilityAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Schedules_phase_automatic_taxLiabilityAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Schedules_phase_automatic_taxLiabilityAccountVariants
+    where {parseJSON val = case (Schedules_phase_automatic_taxLiabilityAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Schedules_phase_automatic_taxLiabilityAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.schedules_phase_automatic_tax.properties.liability.anyOf.properties.type@ in the specification.
--- 
--- Type of the account referenced.
-data Schedules_phase_automatic_taxLiabilityNonNullableType =
-   Schedules_phase_automatic_taxLiabilityNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Schedules_phase_automatic_taxLiabilityNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Schedules_phase_automatic_taxLiabilityNonNullableTypeEnumAccount -- ^ Represents the JSON value @"account"@
-  | Schedules_phase_automatic_taxLiabilityNonNullableTypeEnumSelf -- ^ Represents the JSON value @"self"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Schedules_phase_automatic_taxLiabilityNonNullableType
-    where {toJSON (Schedules_phase_automatic_taxLiabilityNonNullableTypeOther val) = val;
-           toJSON (Schedules_phase_automatic_taxLiabilityNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Schedules_phase_automatic_taxLiabilityNonNullableTypeEnumAccount) = "account";
-           toJSON (Schedules_phase_automatic_taxLiabilityNonNullableTypeEnumSelf) = "self"}
-instance Data.Aeson.Types.FromJSON.FromJSON Schedules_phase_automatic_taxLiabilityNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Schedules_phase_automatic_taxLiabilityNonNullableTypeEnumAccount
-                                             | val GHC.Classes.== "self" -> Schedules_phase_automatic_taxLiabilityNonNullableTypeEnumSelf
-                                             | GHC.Base.otherwise -> Schedules_phase_automatic_taxLiabilityNonNullableTypeOther val)}

@@ -50,7 +50,7 @@ data Issuing_network_token_visa = Issuing_network_token_visa {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_network_token_visaCard_reference_id :: Data.Text.Internal.Text
+  issuing_network_token_visaCard_reference_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | token_reference_id: The network-unique identifier for the token.
   -- 
   -- Constraints:
@@ -72,16 +72,15 @@ data Issuing_network_token_visa = Issuing_network_token_visa {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_network_token_visa
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["card_reference_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaCard_reference_id obj] : ["token_reference_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_reference_id obj] : ["token_requestor_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_requestor_id obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("token_risk_score" Data.Aeson.Types.ToJSON..=)) (issuing_network_token_visaToken_risk_score obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["card_reference_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaCard_reference_id obj] : ["token_reference_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_reference_id obj] : ["token_requestor_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_requestor_id obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("token_risk_score" Data.Aeson.Types.ToJSON..=)) (issuing_network_token_visaToken_risk_score obj) : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_reference_id" Data.Aeson.Types.ToJSON..=)) (issuing_network_token_visaCard_reference_id obj) : ["token_reference_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_reference_id obj] : ["token_requestor_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_requestor_id obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("token_risk_score" Data.Aeson.Types.ToJSON..=)) (issuing_network_token_visaToken_risk_score obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_reference_id" Data.Aeson.Types.ToJSON..=)) (issuing_network_token_visaCard_reference_id obj) : ["token_reference_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_reference_id obj] : ["token_requestor_id" Data.Aeson.Types.ToJSON..= issuing_network_token_visaToken_requestor_id obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("token_risk_score" Data.Aeson.Types.ToJSON..=)) (issuing_network_token_visaToken_risk_score obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing_network_token_visa
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_network_token_visa" (\obj -> (((GHC.Base.pure Issuing_network_token_visa GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "card_reference_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "token_reference_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "token_requestor_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "token_risk_score"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_network_token_visa" (\obj -> (((GHC.Base.pure Issuing_network_token_visa GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_reference_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "token_reference_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "token_requestor_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "token_risk_score"))}
 -- | Create a new 'Issuing_network_token_visa' with all required fields.
-mkIssuing_network_token_visa :: Data.Text.Internal.Text -- ^ 'issuing_network_token_visaCard_reference_id'
-  -> Data.Text.Internal.Text -- ^ 'issuing_network_token_visaToken_reference_id'
+mkIssuing_network_token_visa :: Data.Text.Internal.Text -- ^ 'issuing_network_token_visaToken_reference_id'
   -> Data.Text.Internal.Text -- ^ 'issuing_network_token_visaToken_requestor_id'
   -> Issuing_network_token_visa
-mkIssuing_network_token_visa issuing_network_token_visaCard_reference_id issuing_network_token_visaToken_reference_id issuing_network_token_visaToken_requestor_id = Issuing_network_token_visa{issuing_network_token_visaCard_reference_id = issuing_network_token_visaCard_reference_id,
-                                                                                                                                                                                                issuing_network_token_visaToken_reference_id = issuing_network_token_visaToken_reference_id,
-                                                                                                                                                                                                issuing_network_token_visaToken_requestor_id = issuing_network_token_visaToken_requestor_id,
-                                                                                                                                                                                                issuing_network_token_visaToken_risk_score = GHC.Maybe.Nothing}
+mkIssuing_network_token_visa issuing_network_token_visaToken_reference_id issuing_network_token_visaToken_requestor_id = Issuing_network_token_visa{issuing_network_token_visaCard_reference_id = GHC.Maybe.Nothing,
+                                                                                                                                                    issuing_network_token_visaToken_reference_id = issuing_network_token_visaToken_reference_id,
+                                                                                                                                                    issuing_network_token_visaToken_requestor_id = issuing_network_token_visaToken_requestor_id,
+                                                                                                                                                    issuing_network_token_visaToken_risk_score = GHC.Maybe.Nothing}

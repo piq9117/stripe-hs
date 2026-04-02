@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Account_tos_acceptance = Account_tos_acceptance {
   -- | date: The Unix timestamp marking when the account representative accepted their service agreement
-  account_tos_acceptanceDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  account_tos_acceptanceDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the account representative accepted their service agreement
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_tos_acceptanceIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_tos_acceptanceIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | service_agreement: The user\'s service agreement type
   -- 
   -- Constraints:
@@ -64,7 +64,7 @@ data Account_tos_acceptance = Account_tos_acceptance {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_tos_acceptanceUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_tos_acceptanceUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_tos_acceptance

@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_intent_next_action_card_await_notification = Payment_intent_next_action_card_await_notification {
   -- | charge_attempt_at: The time that payment will be attempted. If customer approval is required, they need to provide approval before this time.
-  payment_intent_next_action_card_await_notificationCharge_attempt_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_intent_next_action_card_await_notificationCharge_attempt_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | customer_approval_required: For payments greater than INR 15000, the customer must provide explicit approval of the payment with their bank. For payments of lower amount, no customer action is required.
-  , payment_intent_next_action_card_await_notificationCustomer_approval_required :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , payment_intent_next_action_card_await_notificationCustomer_approval_required :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_card_await_notification

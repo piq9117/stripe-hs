@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Account_unification_account_controller_losses = Account_unification_account_controller_losses {
   -- | payments: A value indicating who is liable when this account can\'t pay back negative balances from payments.
-  account_unification_account_controller_lossesPayments :: Account_unification_account_controller_lossesPayments
+  account_unification_account_controller_lossesPayments :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_losses
@@ -55,24 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_l
 instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controller_losses
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_unification_account_controller_losses" (\obj -> GHC.Base.pure Account_unification_account_controller_losses GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payments"))}
 -- | Create a new 'Account_unification_account_controller_losses' with all required fields.
-mkAccount_unification_account_controller_losses :: Account_unification_account_controller_lossesPayments -- ^ 'account_unification_account_controller_lossesPayments'
+mkAccount_unification_account_controller_losses :: Data.Text.Internal.Text -- ^ 'account_unification_account_controller_lossesPayments'
   -> Account_unification_account_controller_losses
 mkAccount_unification_account_controller_losses account_unification_account_controller_lossesPayments = Account_unification_account_controller_losses{account_unification_account_controller_lossesPayments = account_unification_account_controller_lossesPayments}
--- | Defines the enum schema located at @components.schemas.account_unification_account_controller_losses.properties.payments@ in the specification.
--- 
--- A value indicating who is liable when this account can\'t pay back negative balances from payments.
-data Account_unification_account_controller_lossesPayments =
-   Account_unification_account_controller_lossesPaymentsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_unification_account_controller_lossesPaymentsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_unification_account_controller_lossesPaymentsEnumApplication -- ^ Represents the JSON value @"application"@
-  | Account_unification_account_controller_lossesPaymentsEnumStripe -- ^ Represents the JSON value @"stripe"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_lossesPayments
-    where {toJSON (Account_unification_account_controller_lossesPaymentsOther val) = val;
-           toJSON (Account_unification_account_controller_lossesPaymentsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_unification_account_controller_lossesPaymentsEnumApplication) = "application";
-           toJSON (Account_unification_account_controller_lossesPaymentsEnumStripe) = "stripe"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controller_lossesPayments
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "application" -> Account_unification_account_controller_lossesPaymentsEnumApplication
-                                             | val GHC.Classes.== "stripe" -> Account_unification_account_controller_lossesPaymentsEnumStripe
-                                             | GHC.Base.otherwise -> Account_unification_account_controller_lossesPaymentsOther val)}

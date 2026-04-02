@@ -51,6 +51,8 @@ data Tax_deducted_at_source = Tax_deducted_at_source {
   -- 
   -- * Maximum length of 5000
   tax_deducted_at_sourceId :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , tax_deducted_at_sourceObject :: Data.Text.Internal.Text
   -- | period_end: The end of the invoicing period. This TDS applies to Stripe fees collected during this invoicing period.
   , tax_deducted_at_sourcePeriod_end :: GHC.Types.Int
   -- | period_start: The start of the invoicing period. This TDS applies to Stripe fees collected during this invoicing period.
@@ -64,17 +66,19 @@ data Tax_deducted_at_source = Tax_deducted_at_source {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Tax_deducted_at_source
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceId obj] : ["period_end" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_start obj] : ["tax_deduction_account_number" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceTax_deduction_account_number obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_deducted_at_source"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceId obj] : ["period_end" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_start obj] : ["tax_deduction_account_number" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceTax_deduction_account_number obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_deducted_at_source"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceId obj] : ["object" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceObject obj] : ["period_end" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_start obj] : ["tax_deduction_account_number" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceTax_deduction_account_number obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceId obj] : ["object" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceObject obj] : ["period_end" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourcePeriod_start obj] : ["tax_deduction_account_number" Data.Aeson.Types.ToJSON..= tax_deducted_at_sourceTax_deduction_account_number obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Tax_deducted_at_source
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Tax_deducted_at_source" (\obj -> (((GHC.Base.pure Tax_deducted_at_source GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_start")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "tax_deduction_account_number"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Tax_deducted_at_source" (\obj -> ((((GHC.Base.pure Tax_deducted_at_source GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_start")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "tax_deduction_account_number"))}
 -- | Create a new 'Tax_deducted_at_source' with all required fields.
 mkTax_deducted_at_source :: Data.Text.Internal.Text -- ^ 'tax_deducted_at_sourceId'
+  -> Data.Text.Internal.Text -- ^ 'tax_deducted_at_sourceObject'
   -> GHC.Types.Int -- ^ 'tax_deducted_at_sourcePeriod_end'
   -> GHC.Types.Int -- ^ 'tax_deducted_at_sourcePeriod_start'
   -> Data.Text.Internal.Text -- ^ 'tax_deducted_at_sourceTax_deduction_account_number'
   -> Tax_deducted_at_source
-mkTax_deducted_at_source tax_deducted_at_sourceId tax_deducted_at_sourcePeriod_end tax_deducted_at_sourcePeriod_start tax_deducted_at_sourceTax_deduction_account_number = Tax_deducted_at_source{tax_deducted_at_sourceId = tax_deducted_at_sourceId,
-                                                                                                                                                                                                  tax_deducted_at_sourcePeriod_end = tax_deducted_at_sourcePeriod_end,
-                                                                                                                                                                                                  tax_deducted_at_sourcePeriod_start = tax_deducted_at_sourcePeriod_start,
-                                                                                                                                                                                                  tax_deducted_at_sourceTax_deduction_account_number = tax_deducted_at_sourceTax_deduction_account_number}
+mkTax_deducted_at_source tax_deducted_at_sourceId tax_deducted_at_sourceObject tax_deducted_at_sourcePeriod_end tax_deducted_at_sourcePeriod_start tax_deducted_at_sourceTax_deduction_account_number = Tax_deducted_at_source{tax_deducted_at_sourceId = tax_deducted_at_sourceId,
+                                                                                                                                                                                                                               tax_deducted_at_sourceObject = tax_deducted_at_sourceObject,
+                                                                                                                                                                                                                               tax_deducted_at_sourcePeriod_end = tax_deducted_at_sourcePeriod_end,
+                                                                                                                                                                                                                               tax_deducted_at_sourcePeriod_start = tax_deducted_at_sourcePeriod_start,
+                                                                                                                                                                                                                               tax_deducted_at_sourceTax_deduction_account_number = tax_deducted_at_sourceTax_deduction_account_number}

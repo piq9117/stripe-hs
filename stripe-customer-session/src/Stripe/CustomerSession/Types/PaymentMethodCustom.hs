@@ -51,9 +51,9 @@ data Payment_method_custom = Payment_method_custom {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_customDisplay_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_customDisplay_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | logo: Contains information about the Dashboard-only CustomPaymentMethodType logo.
-  , payment_method_customLogo :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_customLogoNonNullable))
+  , payment_method_customLogo :: (GHC.Maybe.Maybe Payment_method_customLogo)
   -- | type: ID of the Dashboard-only CustomPaymentMethodType. Not expandable.
   -- 
   -- Constraints:
@@ -76,27 +76,27 @@ mkPayment_method_custom payment_method_customType = Payment_method_custom{paymen
 -- | Defines the object schema located at @components.schemas.payment_method_custom.properties.logo.anyOf@ in the specification.
 -- 
 -- Contains information about the Dashboard-only CustomPaymentMethodType logo.
-data Payment_method_customLogoNonNullable = Payment_method_customLogoNonNullable {
+data Payment_method_customLogo = Payment_method_customLogo {
   -- | content_type: Content type of the Dashboard-only CustomPaymentMethodType logo.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_customLogoNonNullableContent_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_customLogoContent_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: URL of the Dashboard-only CustomPaymentMethodType logo.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_customLogoNonNullableUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , payment_method_customLogoUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_customLogoNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("content_type" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoNonNullableContent_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoNonNullableUrl obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("content_type" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoNonNullableContent_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoNonNullableUrl obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_customLogoNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_customLogoNonNullable" (\obj -> (GHC.Base.pure Payment_method_customLogoNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "content_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
--- | Create a new 'Payment_method_customLogoNonNullable' with all required fields.
-mkPayment_method_customLogoNonNullable :: Payment_method_customLogoNonNullable
-mkPayment_method_customLogoNonNullable = Payment_method_customLogoNonNullable{payment_method_customLogoNonNullableContent_type = GHC.Maybe.Nothing,
-                                                                              payment_method_customLogoNonNullableUrl = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_customLogo
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("content_type" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoContent_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoUrl obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("content_type" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoContent_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (payment_method_customLogoUrl obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_customLogo
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_customLogo" (\obj -> (GHC.Base.pure Payment_method_customLogo GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "content_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
+-- | Create a new 'Payment_method_customLogo' with all required fields.
+mkPayment_method_customLogo :: Payment_method_customLogo
+mkPayment_method_customLogo = Payment_method_customLogo{payment_method_customLogoContent_type = GHC.Maybe.Nothing,
+                                                        payment_method_customLogoUrl = GHC.Maybe.Nothing}

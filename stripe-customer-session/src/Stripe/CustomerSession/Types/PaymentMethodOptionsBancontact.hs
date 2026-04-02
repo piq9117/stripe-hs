@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_options_bancontact = Payment_method_options_bancontact {
   -- | preferred_language: Preferred language of the Bancontact authorization page that the customer is redirected to.
-  payment_method_options_bancontactPreferred_language :: Payment_method_options_bancontactPreferred_language
+  payment_method_options_bancontactPreferred_language :: Data.Text.Internal.Text
   -- | setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
   -- 
   -- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
@@ -54,7 +54,7 @@ data Payment_method_options_bancontact = Payment_method_options_bancontact {
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_method_options_bancontactSetup_future_usage :: (GHC.Maybe.Maybe Payment_method_options_bancontactSetup_future_usage)
+  , payment_method_options_bancontactSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_bancontact
@@ -63,55 +63,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_bancontact
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_bancontact
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_options_bancontact" (\obj -> (GHC.Base.pure Payment_method_options_bancontact GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "preferred_language")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_future_usage"))}
 -- | Create a new 'Payment_method_options_bancontact' with all required fields.
-mkPayment_method_options_bancontact :: Payment_method_options_bancontactPreferred_language -- ^ 'payment_method_options_bancontactPreferred_language'
+mkPayment_method_options_bancontact :: Data.Text.Internal.Text -- ^ 'payment_method_options_bancontactPreferred_language'
   -> Payment_method_options_bancontact
 mkPayment_method_options_bancontact payment_method_options_bancontactPreferred_language = Payment_method_options_bancontact{payment_method_options_bancontactPreferred_language = payment_method_options_bancontactPreferred_language,
                                                                                                                             payment_method_options_bancontactSetup_future_usage = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_bancontact.properties.preferred_language@ in the specification.
--- 
--- Preferred language of the Bancontact authorization page that the customer is redirected to.
-data Payment_method_options_bancontactPreferred_language =
-   Payment_method_options_bancontactPreferred_languageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_bancontactPreferred_languageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_bancontactPreferred_languageEnumDe -- ^ Represents the JSON value @"de"@
-  | Payment_method_options_bancontactPreferred_languageEnumEn -- ^ Represents the JSON value @"en"@
-  | Payment_method_options_bancontactPreferred_languageEnumFr -- ^ Represents the JSON value @"fr"@
-  | Payment_method_options_bancontactPreferred_languageEnumNl -- ^ Represents the JSON value @"nl"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_bancontactPreferred_language
-    where {toJSON (Payment_method_options_bancontactPreferred_languageOther val) = val;
-           toJSON (Payment_method_options_bancontactPreferred_languageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_bancontactPreferred_languageEnumDe) = "de";
-           toJSON (Payment_method_options_bancontactPreferred_languageEnumEn) = "en";
-           toJSON (Payment_method_options_bancontactPreferred_languageEnumFr) = "fr";
-           toJSON (Payment_method_options_bancontactPreferred_languageEnumNl) = "nl"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_bancontactPreferred_language
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "de" -> Payment_method_options_bancontactPreferred_languageEnumDe
-                                             | val GHC.Classes.== "en" -> Payment_method_options_bancontactPreferred_languageEnumEn
-                                             | val GHC.Classes.== "fr" -> Payment_method_options_bancontactPreferred_languageEnumFr
-                                             | val GHC.Classes.== "nl" -> Payment_method_options_bancontactPreferred_languageEnumNl
-                                             | GHC.Base.otherwise -> Payment_method_options_bancontactPreferred_languageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_options_bancontact.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_method_options_bancontactSetup_future_usage =
-   Payment_method_options_bancontactSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_bancontactSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_bancontactSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_method_options_bancontactSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_bancontactSetup_future_usage
-    where {toJSON (Payment_method_options_bancontactSetup_future_usageOther val) = val;
-           toJSON (Payment_method_options_bancontactSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_bancontactSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_method_options_bancontactSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_bancontactSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_method_options_bancontactSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_method_options_bancontactSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_method_options_bancontactSetup_future_usageOther val)}

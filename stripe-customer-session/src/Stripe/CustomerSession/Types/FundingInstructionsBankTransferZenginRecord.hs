@@ -53,19 +53,19 @@ data Funding_instructions_bank_transfer_zengin_record = Funding_instructions_ban
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , funding_instructions_bank_transfer_zengin_recordAccount_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , funding_instructions_bank_transfer_zengin_recordAccount_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_number: The account number
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , funding_instructions_bank_transfer_zengin_recordAccount_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , funding_instructions_bank_transfer_zengin_recordAccount_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_type: The bank account type. In Japan, this can only be \`futsu\` or \`toza\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , funding_instructions_bank_transfer_zengin_recordAccount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , funding_instructions_bank_transfer_zengin_recordAccount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_address: 
   , funding_instructions_bank_transfer_zengin_recordBank_address :: Address
   -- | bank_code: The bank code of the account
@@ -73,25 +73,25 @@ data Funding_instructions_bank_transfer_zengin_record = Funding_instructions_ban
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , funding_instructions_bank_transfer_zengin_recordBank_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , funding_instructions_bank_transfer_zengin_recordBank_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name: The bank name of the account
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , funding_instructions_bank_transfer_zengin_recordBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , funding_instructions_bank_transfer_zengin_recordBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | branch_code: The branch code of the account
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , funding_instructions_bank_transfer_zengin_recordBranch_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , funding_instructions_bank_transfer_zengin_recordBranch_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | branch_name: The branch name of the account
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , funding_instructions_bank_transfer_zengin_recordBranch_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , funding_instructions_bank_transfer_zengin_recordBranch_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Funding_instructions_bank_transfer_zengin_record

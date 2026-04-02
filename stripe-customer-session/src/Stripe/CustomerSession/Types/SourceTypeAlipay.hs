@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_alipay = Source_type_alipay {
   -- | data_string
-  source_type_alipayData_string :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_alipayData_string :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | native_url
-  , source_type_alipayNative_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_alipayNative_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor
-  , source_type_alipayStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_alipayStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_alipay

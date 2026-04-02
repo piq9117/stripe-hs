@@ -48,19 +48,19 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.ConnectAccountReference
 -- 
 data Automatic_tax = Automatic_tax {
   -- | disabled_reason: If Stripe disabled automatic tax, this enum describes why.
-  automatic_taxDisabled_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Automatic_taxDisabled_reasonNonNullable))
+  automatic_taxDisabled_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | enabled: Whether Stripe automatically computes tax on this invoice. Note that incompatible invoice items (invoice items with manually specified [tax rates](https:\/\/docs.stripe.com\/api\/tax_rates), negative amounts, or \`tax_behavior=unspecified\`) cannot be added to automatic tax invoices.
   , automatic_taxEnabled :: GHC.Types.Bool
   -- | liability: The account that\'s liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
-  , automatic_taxLiability :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Automatic_taxLiabilityNonNullable))
+  , automatic_taxLiability :: (GHC.Maybe.Maybe Automatic_taxLiability)
   -- | provider: The tax provider powering automatic tax.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , automatic_taxProvider :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , automatic_taxProvider :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: The status of the most recent automated tax calculation for this invoice.
-  , automatic_taxStatus :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Automatic_taxStatusNonNullable))
+  , automatic_taxStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Automatic_tax
@@ -76,93 +76,36 @@ mkAutomatic_tax automatic_taxEnabled = Automatic_tax{automatic_taxDisabled_reaso
                                                      automatic_taxLiability = GHC.Maybe.Nothing,
                                                      automatic_taxProvider = GHC.Maybe.Nothing,
                                                      automatic_taxStatus = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.automatic_tax.properties.disabled_reason@ in the specification.
--- 
--- If Stripe disabled automatic tax, this enum describes why.
-data Automatic_taxDisabled_reasonNonNullable =
-   Automatic_taxDisabled_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Automatic_taxDisabled_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Automatic_taxDisabled_reasonNonNullableEnumFinalization_requires_location_inputs -- ^ Represents the JSON value @"finalization_requires_location_inputs"@
-  | Automatic_taxDisabled_reasonNonNullableEnumFinalization_system_error -- ^ Represents the JSON value @"finalization_system_error"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Automatic_taxDisabled_reasonNonNullable
-    where {toJSON (Automatic_taxDisabled_reasonNonNullableOther val) = val;
-           toJSON (Automatic_taxDisabled_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Automatic_taxDisabled_reasonNonNullableEnumFinalization_requires_location_inputs) = "finalization_requires_location_inputs";
-           toJSON (Automatic_taxDisabled_reasonNonNullableEnumFinalization_system_error) = "finalization_system_error"}
-instance Data.Aeson.Types.FromJSON.FromJSON Automatic_taxDisabled_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "finalization_requires_location_inputs" -> Automatic_taxDisabled_reasonNonNullableEnumFinalization_requires_location_inputs
-                                             | val GHC.Classes.== "finalization_system_error" -> Automatic_taxDisabled_reasonNonNullableEnumFinalization_system_error
-                                             | GHC.Base.otherwise -> Automatic_taxDisabled_reasonNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.automatic_tax.properties.liability.anyOf@ in the specification.
 -- 
 -- The account that\\\'s liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
-data Automatic_taxLiabilityNonNullable = Automatic_taxLiabilityNonNullable {
+data Automatic_taxLiability = Automatic_taxLiability {
   -- | account: The connected account being referenced when \`type\` is \`account\`.
-  automatic_taxLiabilityNonNullableAccount :: (GHC.Maybe.Maybe Automatic_taxLiabilityNonNullableAccountVariants)
+  automatic_taxLiabilityAccount :: (GHC.Maybe.Maybe Automatic_taxLiabilityAccountVariants)
   -- | type: Type of the account referenced.
-  , automatic_taxLiabilityNonNullableType :: (GHC.Maybe.Maybe Automatic_taxLiabilityNonNullableType)
+  , automatic_taxLiabilityType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Automatic_taxLiabilityNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Automatic_taxLiabilityNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Automatic_taxLiabilityNonNullable" (\obj -> (GHC.Base.pure Automatic_taxLiabilityNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Automatic_taxLiabilityNonNullable' with all required fields.
-mkAutomatic_taxLiabilityNonNullable :: Automatic_taxLiabilityNonNullable
-mkAutomatic_taxLiabilityNonNullable = Automatic_taxLiabilityNonNullable{automatic_taxLiabilityNonNullableAccount = GHC.Maybe.Nothing,
-                                                                        automatic_taxLiabilityNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Automatic_taxLiability
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (automatic_taxLiabilityType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Automatic_taxLiability
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Automatic_taxLiability" (\obj -> (GHC.Base.pure Automatic_taxLiability GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Automatic_taxLiability' with all required fields.
+mkAutomatic_taxLiability :: Automatic_taxLiability
+mkAutomatic_taxLiability = Automatic_taxLiability{automatic_taxLiabilityAccount = GHC.Maybe.Nothing,
+                                                  automatic_taxLiabilityType = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.automatic_tax.properties.liability.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The connected account being referenced when \`type\` is \`account\`.
-data Automatic_taxLiabilityNonNullableAccountVariants =
-   Automatic_taxLiabilityNonNullableAccountText Data.Text.Internal.Text
-  | Automatic_taxLiabilityNonNullableAccountAccount Account
+data Automatic_taxLiabilityAccountVariants =
+   Automatic_taxLiabilityAccountText Data.Text.Internal.Text
+  | Automatic_taxLiabilityAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Automatic_taxLiabilityNonNullableAccountVariants
-    where {toJSON (Automatic_taxLiabilityNonNullableAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Automatic_taxLiabilityNonNullableAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Automatic_taxLiabilityNonNullableAccountVariants
-    where {parseJSON val = case (Automatic_taxLiabilityNonNullableAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Automatic_taxLiabilityNonNullableAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Automatic_taxLiabilityAccountVariants
+    where {toJSON (Automatic_taxLiabilityAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Automatic_taxLiabilityAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Automatic_taxLiabilityAccountVariants
+    where {parseJSON val = case (Automatic_taxLiabilityAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Automatic_taxLiabilityAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.automatic_tax.properties.liability.anyOf.properties.type@ in the specification.
--- 
--- Type of the account referenced.
-data Automatic_taxLiabilityNonNullableType =
-   Automatic_taxLiabilityNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Automatic_taxLiabilityNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Automatic_taxLiabilityNonNullableTypeEnumAccount -- ^ Represents the JSON value @"account"@
-  | Automatic_taxLiabilityNonNullableTypeEnumSelf -- ^ Represents the JSON value @"self"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Automatic_taxLiabilityNonNullableType
-    where {toJSON (Automatic_taxLiabilityNonNullableTypeOther val) = val;
-           toJSON (Automatic_taxLiabilityNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Automatic_taxLiabilityNonNullableTypeEnumAccount) = "account";
-           toJSON (Automatic_taxLiabilityNonNullableTypeEnumSelf) = "self"}
-instance Data.Aeson.Types.FromJSON.FromJSON Automatic_taxLiabilityNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Automatic_taxLiabilityNonNullableTypeEnumAccount
-                                             | val GHC.Classes.== "self" -> Automatic_taxLiabilityNonNullableTypeEnumSelf
-                                             | GHC.Base.otherwise -> Automatic_taxLiabilityNonNullableTypeOther val)}
--- | Defines the enum schema located at @components.schemas.automatic_tax.properties.status@ in the specification.
--- 
--- The status of the most recent automated tax calculation for this invoice.
-data Automatic_taxStatusNonNullable =
-   Automatic_taxStatusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Automatic_taxStatusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Automatic_taxStatusNonNullableEnumComplete -- ^ Represents the JSON value @"complete"@
-  | Automatic_taxStatusNonNullableEnumFailed -- ^ Represents the JSON value @"failed"@
-  | Automatic_taxStatusNonNullableEnumRequires_location_inputs -- ^ Represents the JSON value @"requires_location_inputs"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Automatic_taxStatusNonNullable
-    where {toJSON (Automatic_taxStatusNonNullableOther val) = val;
-           toJSON (Automatic_taxStatusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Automatic_taxStatusNonNullableEnumComplete) = "complete";
-           toJSON (Automatic_taxStatusNonNullableEnumFailed) = "failed";
-           toJSON (Automatic_taxStatusNonNullableEnumRequires_location_inputs) = "requires_location_inputs"}
-instance Data.Aeson.Types.FromJSON.FromJSON Automatic_taxStatusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "complete" -> Automatic_taxStatusNonNullableEnumComplete
-                                             | val GHC.Classes.== "failed" -> Automatic_taxStatusNonNullableEnumFailed
-                                             | val GHC.Classes.== "requires_location_inputs" -> Automatic_taxStatusNonNullableEnumRequires_location_inputs
-                                             | GHC.Base.otherwise -> Automatic_taxStatusNonNullableOther val)}

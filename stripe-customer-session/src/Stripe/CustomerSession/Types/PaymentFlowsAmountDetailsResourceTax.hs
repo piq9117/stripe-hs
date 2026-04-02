@@ -48,7 +48,7 @@ data Payment_flows_amount_details_resource_tax = Payment_flows_amount_details_re
   -- | total_tax_amount: The total amount of tax on the transaction represented in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal). Required for L2 rates. An integer greater than or equal to 0.
   -- 
   -- This field is mutually exclusive with the \`amount_details[line_items][\#][tax][total_tax_amount]\` field.
-  payment_flows_amount_details_resource_taxTotal_tax_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_flows_amount_details_resource_taxTotal_tax_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_amount_details_resource_tax

@@ -46,19 +46,19 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_sepa_debit = Source_type_sepa_debit {
   -- | bank_code
-  source_type_sepa_debitBank_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_sepa_debitBank_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | branch_code
-  , source_type_sepa_debitBranch_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sepa_debitBranch_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country
-  , source_type_sepa_debitCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sepa_debitCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint
-  , source_type_sepa_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sepa_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4
-  , source_type_sepa_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sepa_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_reference
-  , source_type_sepa_debitMandate_reference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sepa_debitMandate_reference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_url
-  , source_type_sepa_debitMandate_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sepa_debitMandate_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_sepa_debit

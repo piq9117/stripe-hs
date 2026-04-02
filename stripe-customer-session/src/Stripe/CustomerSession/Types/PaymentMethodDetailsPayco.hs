@@ -50,13 +50,13 @@ data Payment_method_details_payco = Payment_method_details_payco {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_paycoBuyer_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_paycoBuyer_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: The Payco transaction ID associated with this payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_paycoTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_paycoTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_payco

@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoice_payment_method_options_bancontact = Invoice_payment_method_options_bancontact {
   -- | preferred_language: Preferred language of the Bancontact authorization page that the customer is redirected to.
-  invoice_payment_method_options_bancontactPreferred_language :: Invoice_payment_method_options_bancontactPreferred_language
+  invoice_payment_method_options_bancontactPreferred_language :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_bancontact
@@ -55,30 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_bancontac
 instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_bancontact
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoice_payment_method_options_bancontact" (\obj -> GHC.Base.pure Invoice_payment_method_options_bancontact GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "preferred_language"))}
 -- | Create a new 'Invoice_payment_method_options_bancontact' with all required fields.
-mkInvoice_payment_method_options_bancontact :: Invoice_payment_method_options_bancontactPreferred_language -- ^ 'invoice_payment_method_options_bancontactPreferred_language'
+mkInvoice_payment_method_options_bancontact :: Data.Text.Internal.Text -- ^ 'invoice_payment_method_options_bancontactPreferred_language'
   -> Invoice_payment_method_options_bancontact
 mkInvoice_payment_method_options_bancontact invoice_payment_method_options_bancontactPreferred_language = Invoice_payment_method_options_bancontact{invoice_payment_method_options_bancontactPreferred_language = invoice_payment_method_options_bancontactPreferred_language}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_bancontact.properties.preferred_language@ in the specification.
--- 
--- Preferred language of the Bancontact authorization page that the customer is redirected to.
-data Invoice_payment_method_options_bancontactPreferred_language =
-   Invoice_payment_method_options_bancontactPreferred_languageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_bancontactPreferred_languageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_bancontactPreferred_languageEnumDe -- ^ Represents the JSON value @"de"@
-  | Invoice_payment_method_options_bancontactPreferred_languageEnumEn -- ^ Represents the JSON value @"en"@
-  | Invoice_payment_method_options_bancontactPreferred_languageEnumFr -- ^ Represents the JSON value @"fr"@
-  | Invoice_payment_method_options_bancontactPreferred_languageEnumNl -- ^ Represents the JSON value @"nl"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_bancontactPreferred_language
-    where {toJSON (Invoice_payment_method_options_bancontactPreferred_languageOther val) = val;
-           toJSON (Invoice_payment_method_options_bancontactPreferred_languageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_bancontactPreferred_languageEnumDe) = "de";
-           toJSON (Invoice_payment_method_options_bancontactPreferred_languageEnumEn) = "en";
-           toJSON (Invoice_payment_method_options_bancontactPreferred_languageEnumFr) = "fr";
-           toJSON (Invoice_payment_method_options_bancontactPreferred_languageEnumNl) = "nl"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_bancontactPreferred_language
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "de" -> Invoice_payment_method_options_bancontactPreferred_languageEnumDe
-                                             | val GHC.Classes.== "en" -> Invoice_payment_method_options_bancontactPreferred_languageEnumEn
-                                             | val GHC.Classes.== "fr" -> Invoice_payment_method_options_bancontactPreferred_languageEnumFr
-                                             | val GHC.Classes.== "nl" -> Invoice_payment_method_options_bancontactPreferred_languageEnumNl
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_bancontactPreferred_languageOther val)}

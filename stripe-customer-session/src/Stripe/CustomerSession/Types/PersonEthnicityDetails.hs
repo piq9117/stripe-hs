@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Person_ethnicity_details = Person_ethnicity_details {
   -- | ethnicity: The persons ethnicity
-  person_ethnicity_detailsEthnicity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Person_ethnicity_detailsEthnicityNonNullable]))
+  person_ethnicity_detailsEthnicity :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | ethnicity_other: Please specify your origin, when other is selected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_ethnicity_detailsEthnicity_other :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_ethnicity_detailsEthnicity_other :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Person_ethnicity_details
@@ -64,36 +64,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Person_ethnicity_details
 mkPerson_ethnicity_details :: Person_ethnicity_details
 mkPerson_ethnicity_details = Person_ethnicity_details{person_ethnicity_detailsEthnicity = GHC.Maybe.Nothing,
                                                       person_ethnicity_detailsEthnicity_other = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.person_ethnicity_details.properties.ethnicity.items@ in the specification.
--- 
--- 
-data Person_ethnicity_detailsEthnicityNonNullable =
-   Person_ethnicity_detailsEthnicityNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Person_ethnicity_detailsEthnicityNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Person_ethnicity_detailsEthnicityNonNullableEnumCuban -- ^ Represents the JSON value @"cuban"@
-  | Person_ethnicity_detailsEthnicityNonNullableEnumHispanic_or_latino -- ^ Represents the JSON value @"hispanic_or_latino"@
-  | Person_ethnicity_detailsEthnicityNonNullableEnumMexican -- ^ Represents the JSON value @"mexican"@
-  | Person_ethnicity_detailsEthnicityNonNullableEnumNot_hispanic_or_latino -- ^ Represents the JSON value @"not_hispanic_or_latino"@
-  | Person_ethnicity_detailsEthnicityNonNullableEnumOther_hispanic_or_latino -- ^ Represents the JSON value @"other_hispanic_or_latino"@
-  | Person_ethnicity_detailsEthnicityNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | Person_ethnicity_detailsEthnicityNonNullableEnumPuerto_rican -- ^ Represents the JSON value @"puerto_rican"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Person_ethnicity_detailsEthnicityNonNullable
-    where {toJSON (Person_ethnicity_detailsEthnicityNonNullableOther val) = val;
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableEnumCuban) = "cuban";
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableEnumHispanic_or_latino) = "hispanic_or_latino";
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableEnumMexican) = "mexican";
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableEnumNot_hispanic_or_latino) = "not_hispanic_or_latino";
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableEnumOther_hispanic_or_latino) = "other_hispanic_or_latino";
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (Person_ethnicity_detailsEthnicityNonNullableEnumPuerto_rican) = "puerto_rican"}
-instance Data.Aeson.Types.FromJSON.FromJSON Person_ethnicity_detailsEthnicityNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cuban" -> Person_ethnicity_detailsEthnicityNonNullableEnumCuban
-                                             | val GHC.Classes.== "hispanic_or_latino" -> Person_ethnicity_detailsEthnicityNonNullableEnumHispanic_or_latino
-                                             | val GHC.Classes.== "mexican" -> Person_ethnicity_detailsEthnicityNonNullableEnumMexican
-                                             | val GHC.Classes.== "not_hispanic_or_latino" -> Person_ethnicity_detailsEthnicityNonNullableEnumNot_hispanic_or_latino
-                                             | val GHC.Classes.== "other_hispanic_or_latino" -> Person_ethnicity_detailsEthnicityNonNullableEnumOther_hispanic_or_latino
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> Person_ethnicity_detailsEthnicityNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "puerto_rican" -> Person_ethnicity_detailsEthnicityNonNullableEnumPuerto_rican
-                                             | GHC.Base.otherwise -> Person_ethnicity_detailsEthnicityNonNullableOther val)}

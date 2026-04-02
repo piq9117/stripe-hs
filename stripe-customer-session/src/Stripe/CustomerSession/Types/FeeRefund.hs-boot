@@ -6,11 +6,11 @@ instance Show Fee_refund
 instance Eq Fee_refund
 instance Data.Aeson.FromJSON Fee_refund
 instance Data.Aeson.ToJSON Fee_refund
-data Fee_refundBalance_transactionNonNullableVariants
-instance Show Fee_refundBalance_transactionNonNullableVariants
-instance Eq Fee_refundBalance_transactionNonNullableVariants
-instance Data.Aeson.FromJSON Fee_refundBalance_transactionNonNullableVariants
-instance Data.Aeson.ToJSON Fee_refundBalance_transactionNonNullableVariants
+data Fee_refundBalance_transactionVariants
+instance Show Fee_refundBalance_transactionVariants
+instance Eq Fee_refundBalance_transactionVariants
+instance Data.Aeson.FromJSON Fee_refundBalance_transactionVariants
+instance Data.Aeson.ToJSON Fee_refundBalance_transactionVariants
 data Fee_refundFeeVariants
 instance Show Fee_refundFeeVariants
 instance Eq Fee_refundFeeVariants

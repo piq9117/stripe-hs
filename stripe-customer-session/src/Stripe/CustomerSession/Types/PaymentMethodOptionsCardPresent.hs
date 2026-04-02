@@ -47,11 +47,11 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsCardPrese
 -- 
 data Payment_method_options_card_present = Payment_method_options_card_present {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_method_options_card_presentCapture_method :: (GHC.Maybe.Maybe Payment_method_options_card_presentCapture_method)
+  payment_method_options_card_presentCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_extended_authorization: Request ability to capture this payment beyond the standard [authorization validity window](https:\/\/docs.stripe.com\/terminal\/features\/extended-authorizations\#authorization-validity)
-  , payment_method_options_card_presentRequest_extended_authorization :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , payment_method_options_card_presentRequest_extended_authorization :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
-  , payment_method_options_card_presentRequest_incremental_authorization_support :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , payment_method_options_card_presentRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | routing: 
   , payment_method_options_card_presentRouting :: (GHC.Maybe.Maybe Payment_method_options_card_present_routing)
   } deriving (GHC.Show.Show
@@ -67,21 +67,3 @@ mkPayment_method_options_card_present = Payment_method_options_card_present{paym
                                                                             payment_method_options_card_presentRequest_extended_authorization = GHC.Maybe.Nothing,
                                                                             payment_method_options_card_presentRequest_incremental_authorization_support = GHC.Maybe.Nothing,
                                                                             payment_method_options_card_presentRouting = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_card_present.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_method_options_card_presentCapture_method =
-   Payment_method_options_card_presentCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_card_presentCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_card_presentCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_method_options_card_presentCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_presentCapture_method
-    where {toJSON (Payment_method_options_card_presentCapture_methodOther val) = val;
-           toJSON (Payment_method_options_card_presentCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_card_presentCapture_methodEnumManual) = "manual";
-           toJSON (Payment_method_options_card_presentCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_presentCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_method_options_card_presentCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_method_options_card_presentCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_method_options_card_presentCapture_methodOther val)}

@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_authorization_three_d_secure = Issuing_authorization_three_d_secure {
   -- | result: The outcome of the 3D Secure authentication request.
-  issuing_authorization_three_d_secureResult :: Issuing_authorization_three_d_secureResult
+  issuing_authorization_three_d_secureResult :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_three_d_secure
@@ -55,30 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_three_d_secure
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_three_d_secure
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_three_d_secure" (\obj -> GHC.Base.pure Issuing_authorization_three_d_secure GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "result"))}
 -- | Create a new 'Issuing_authorization_three_d_secure' with all required fields.
-mkIssuing_authorization_three_d_secure :: Issuing_authorization_three_d_secureResult -- ^ 'issuing_authorization_three_d_secureResult'
+mkIssuing_authorization_three_d_secure :: Data.Text.Internal.Text -- ^ 'issuing_authorization_three_d_secureResult'
   -> Issuing_authorization_three_d_secure
 mkIssuing_authorization_three_d_secure issuing_authorization_three_d_secureResult = Issuing_authorization_three_d_secure{issuing_authorization_three_d_secureResult = issuing_authorization_three_d_secureResult}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_three_d_secure.properties.result@ in the specification.
--- 
--- The outcome of the 3D Secure authentication request.
-data Issuing_authorization_three_d_secureResult =
-   Issuing_authorization_three_d_secureResultOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_three_d_secureResultTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_three_d_secureResultEnumAttempt_acknowledged -- ^ Represents the JSON value @"attempt_acknowledged"@
-  | Issuing_authorization_three_d_secureResultEnumAuthenticated -- ^ Represents the JSON value @"authenticated"@
-  | Issuing_authorization_three_d_secureResultEnumFailed -- ^ Represents the JSON value @"failed"@
-  | Issuing_authorization_three_d_secureResultEnumRequired -- ^ Represents the JSON value @"required"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_three_d_secureResult
-    where {toJSON (Issuing_authorization_three_d_secureResultOther val) = val;
-           toJSON (Issuing_authorization_three_d_secureResultTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_three_d_secureResultEnumAttempt_acknowledged) = "attempt_acknowledged";
-           toJSON (Issuing_authorization_three_d_secureResultEnumAuthenticated) = "authenticated";
-           toJSON (Issuing_authorization_three_d_secureResultEnumFailed) = "failed";
-           toJSON (Issuing_authorization_three_d_secureResultEnumRequired) = "required"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_three_d_secureResult
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "attempt_acknowledged" -> Issuing_authorization_three_d_secureResultEnumAttempt_acknowledged
-                                             | val GHC.Classes.== "authenticated" -> Issuing_authorization_three_d_secureResultEnumAuthenticated
-                                             | val GHC.Classes.== "failed" -> Issuing_authorization_three_d_secureResultEnumFailed
-                                             | val GHC.Classes.== "required" -> Issuing_authorization_three_d_secureResultEnumRequired
-                                             | GHC.Base.otherwise -> Issuing_authorization_three_d_secureResultOther val)}

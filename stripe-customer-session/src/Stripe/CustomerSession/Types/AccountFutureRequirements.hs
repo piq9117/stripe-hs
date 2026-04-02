@@ -48,21 +48,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.AccountRequirementsError
 -- 
 data Account_future_requirements = Account_future_requirements {
   -- | alternatives: Fields that are due and can be resolved by providing the corresponding alternative fields instead. Many alternatives can list the same \`original_fields_due\`, and any of these alternatives can serve as a pathway for attempting to resolve the fields again. Re-providing \`original_fields_due\` also serves as a pathway for attempting to resolve the fields again.
-  account_future_requirementsAlternatives :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_alternative]))
+  account_future_requirementsAlternatives :: (GHC.Maybe.Maybe [Account_requirements_alternative])
   -- | current_deadline: Date on which \`future_requirements\` becomes the main \`requirements\` hash and \`future_requirements\` becomes empty. After the transition, \`currently_due\` requirements may immediately become \`past_due\`, but the account may also be given a grace period depending on its enablement state prior to transitioning.
-  , account_future_requirementsCurrent_deadline :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , account_future_requirementsCurrent_deadline :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currently_due: Fields that need to be resolved to keep the account enabled. If not resolved by \`future_requirements[current_deadline]\`, these fields will transition to the main \`requirements\` hash.
-  , account_future_requirementsCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , account_future_requirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | disabled_reason: This is typed as an enum for consistency with \`requirements.disabled_reason\`.
-  , account_future_requirementsDisabled_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Account_future_requirementsDisabled_reasonNonNullable))
+  , account_future_requirementsDisabled_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , account_future_requirementsErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , account_future_requirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | eventually_due: Fields you must collect when all thresholds are reached. As they become required, they appear in \`currently_due\` as well.
-  , account_future_requirementsEventually_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , account_future_requirementsEventually_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | past_due: Fields that haven\'t been resolved by \`requirements.current_deadline\`. These fields need to be resolved to enable the capability on the account. \`future_requirements.past_due\` is a subset of \`requirements.past_due\`.
-  , account_future_requirementsPast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , account_future_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , account_future_requirementsPending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , account_future_requirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_future_requirements
@@ -80,60 +80,3 @@ mkAccount_future_requirements = Account_future_requirements{account_future_requi
                                                             account_future_requirementsEventually_due = GHC.Maybe.Nothing,
                                                             account_future_requirementsPast_due = GHC.Maybe.Nothing,
                                                             account_future_requirementsPending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.account_future_requirements.properties.disabled_reason@ in the specification.
--- 
--- This is typed as an enum for consistency with \`requirements.disabled_reason\`.
-data Account_future_requirementsDisabled_reasonNonNullable =
-   Account_future_requirementsDisabled_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_future_requirementsDisabled_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_future_requirementsDisabled_reasonNonNullableEnumAction_required'requested_capabilities -- ^ Represents the JSON value @"action_required.requested_capabilities"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumListed -- ^ Represents the JSON value @"listed"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumPlatform_paused -- ^ Represents the JSON value @"platform_paused"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'fraud -- ^ Represents the JSON value @"rejected.fraud"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'incomplete_verification -- ^ Represents the JSON value @"rejected.incomplete_verification"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'listed -- ^ Represents the JSON value @"rejected.listed"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'other -- ^ Represents the JSON value @"rejected.other"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_fraud -- ^ Represents the JSON value @"rejected.platform_fraud"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_other -- ^ Represents the JSON value @"rejected.platform_other"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_terms_of_service -- ^ Represents the JSON value @"rejected.platform_terms_of_service"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRejected'terms_of_service -- ^ Represents the JSON value @"rejected.terms_of_service"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRequirements'past_due -- ^ Represents the JSON value @"requirements.past_due"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumRequirements'pending_verification -- ^ Represents the JSON value @"requirements.pending_verification"@
-  | Account_future_requirementsDisabled_reasonNonNullableEnumUnder_review -- ^ Represents the JSON value @"under_review"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_future_requirementsDisabled_reasonNonNullable
-    where {toJSON (Account_future_requirementsDisabled_reasonNonNullableOther val) = val;
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumAction_required'requested_capabilities) = "action_required.requested_capabilities";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumListed) = "listed";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumOther) = "other";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumPlatform_paused) = "platform_paused";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'fraud) = "rejected.fraud";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'incomplete_verification) = "rejected.incomplete_verification";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'listed) = "rejected.listed";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'other) = "rejected.other";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_fraud) = "rejected.platform_fraud";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_other) = "rejected.platform_other";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_terms_of_service) = "rejected.platform_terms_of_service";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRejected'terms_of_service) = "rejected.terms_of_service";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRequirements'past_due) = "requirements.past_due";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumRequirements'pending_verification) = "requirements.pending_verification";
-           toJSON (Account_future_requirementsDisabled_reasonNonNullableEnumUnder_review) = "under_review"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_future_requirementsDisabled_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "action_required.requested_capabilities" -> Account_future_requirementsDisabled_reasonNonNullableEnumAction_required'requested_capabilities
-                                             | val GHC.Classes.== "listed" -> Account_future_requirementsDisabled_reasonNonNullableEnumListed
-                                             | val GHC.Classes.== "other" -> Account_future_requirementsDisabled_reasonNonNullableEnumOther
-                                             | val GHC.Classes.== "platform_paused" -> Account_future_requirementsDisabled_reasonNonNullableEnumPlatform_paused
-                                             | val GHC.Classes.== "rejected.fraud" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'fraud
-                                             | val GHC.Classes.== "rejected.incomplete_verification" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'incomplete_verification
-                                             | val GHC.Classes.== "rejected.listed" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'listed
-                                             | val GHC.Classes.== "rejected.other" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'other
-                                             | val GHC.Classes.== "rejected.platform_fraud" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_fraud
-                                             | val GHC.Classes.== "rejected.platform_other" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_other
-                                             | val GHC.Classes.== "rejected.platform_terms_of_service" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'platform_terms_of_service
-                                             | val GHC.Classes.== "rejected.terms_of_service" -> Account_future_requirementsDisabled_reasonNonNullableEnumRejected'terms_of_service
-                                             | val GHC.Classes.== "requirements.past_due" -> Account_future_requirementsDisabled_reasonNonNullableEnumRequirements'past_due
-                                             | val GHC.Classes.== "requirements.pending_verification" -> Account_future_requirementsDisabled_reasonNonNullableEnumRequirements'pending_verification
-                                             | val GHC.Classes.== "under_review" -> Account_future_requirementsDisabled_reasonNonNullableEnumUnder_review
-                                             | GHC.Base.otherwise -> Account_future_requirementsDisabled_reasonNonNullableOther val)}

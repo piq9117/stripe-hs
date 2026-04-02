@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_private_payment_methods_klarna_dob = Payment_flows_private_payment_methods_klarna_dob {
   -- | day: The day of birth, between 1 and 31.
-  payment_flows_private_payment_methods_klarna_dobDay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_flows_private_payment_methods_klarna_dobDay :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month of birth, between 1 and 12.
-  , payment_flows_private_payment_methods_klarna_dobMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_flows_private_payment_methods_klarna_dobMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | year: The four-digit year of birth.
-  , payment_flows_private_payment_methods_klarna_dobYear :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_flows_private_payment_methods_klarna_dobYear :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_klarna_dob

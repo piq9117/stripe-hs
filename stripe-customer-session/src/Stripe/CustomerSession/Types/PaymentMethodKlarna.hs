@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentFlowsPrivatePaymentMet
 -- 
 data Payment_method_klarna = Payment_method_klarna {
   -- | dob: The customer\'s date of birth, if provided.
-  payment_method_klarnaDob :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_klarnaDobNonNullable))
+  payment_method_klarnaDob :: (GHC.Maybe.Maybe Payment_method_klarnaDob)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_klarna
@@ -61,22 +61,22 @@ mkPayment_method_klarna = Payment_method_klarna{payment_method_klarnaDob = GHC.M
 -- | Defines the object schema located at @components.schemas.payment_method_klarna.properties.dob.anyOf@ in the specification.
 -- 
 -- The customer\\\'s date of birth, if provided.
-data Payment_method_klarnaDobNonNullable = Payment_method_klarnaDobNonNullable {
+data Payment_method_klarnaDob = Payment_method_klarnaDob {
   -- | day: The day of birth, between 1 and 31.
-  payment_method_klarnaDobNonNullableDay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_method_klarnaDobDay :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month of birth, between 1 and 12.
-  , payment_method_klarnaDobNonNullableMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_klarnaDobMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | year: The four-digit year of birth.
-  , payment_method_klarnaDobNonNullableYear :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_klarnaDobYear :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_klarnaDobNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobNonNullableDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobNonNullableMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobNonNullableYear obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobNonNullableDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobNonNullableMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobNonNullableYear obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_klarnaDobNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_klarnaDobNonNullable" (\obj -> ((GHC.Base.pure Payment_method_klarnaDobNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "day")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "year"))}
--- | Create a new 'Payment_method_klarnaDobNonNullable' with all required fields.
-mkPayment_method_klarnaDobNonNullable :: Payment_method_klarnaDobNonNullable
-mkPayment_method_klarnaDobNonNullable = Payment_method_klarnaDobNonNullable{payment_method_klarnaDobNonNullableDay = GHC.Maybe.Nothing,
-                                                                            payment_method_klarnaDobNonNullableMonth = GHC.Maybe.Nothing,
-                                                                            payment_method_klarnaDobNonNullableYear = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_klarnaDob
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobYear obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (payment_method_klarnaDobYear obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_klarnaDob
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_klarnaDob" (\obj -> ((GHC.Base.pure Payment_method_klarnaDob GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "day")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "year"))}
+-- | Create a new 'Payment_method_klarnaDob' with all required fields.
+mkPayment_method_klarnaDob :: Payment_method_klarnaDob
+mkPayment_method_klarnaDob = Payment_method_klarnaDob{payment_method_klarnaDobDay = GHC.Maybe.Nothing,
+                                                      payment_method_klarnaDobMonth = GHC.Maybe.Nothing,
+                                                      payment_method_klarnaDobYear = GHC.Maybe.Nothing}

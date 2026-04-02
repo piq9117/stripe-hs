@@ -48,15 +48,15 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionItem
 -- to the Subscription upon successful payment.
 data Subscriptions_resource_pending_update = Subscriptions_resource_pending_update {
   -- | billing_cycle_anchor: If the update is applied, determines the date of the first full invoice, and, for plans with \`month\` or \`year\` intervals, the day of the month for subsequent invoices. The timestamp is in UTC format.
-  subscriptions_resource_pending_updateBilling_cycle_anchor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscriptions_resource_pending_updateBilling_cycle_anchor :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | expires_at: The point after which the changes reflected by this update will be discarded and no longer applied.
   , subscriptions_resource_pending_updateExpires_at :: GHC.Types.Int
   -- | subscription_items: List of subscription items, each with an attached plan, that will be set if the update is applied.
-  , subscriptions_resource_pending_updateSubscription_items :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Subscription_item]))
+  , subscriptions_resource_pending_updateSubscription_items :: (GHC.Maybe.Maybe [Subscription_item])
   -- | trial_end: Unix timestamp representing the end of the trial period the customer will get before being charged for the first time, if the update is applied.
-  , subscriptions_resource_pending_updateTrial_end :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptions_resource_pending_updateTrial_end :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | trial_from_plan: Indicates if a plan\'s \`trial_period_days\` should be applied to the subscription. Setting \`trial_end\` per subscription is preferred, and this defaults to \`false\`. Setting this flag to \`true\` together with \`trial_end\` is not allowed. See [Using trial periods on subscriptions](https:\/\/docs.stripe.com\/billing\/subscriptions\/trials) to learn more.
-  , subscriptions_resource_pending_updateTrial_from_plan :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , subscriptions_resource_pending_updateTrial_from_plan :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_pending_update

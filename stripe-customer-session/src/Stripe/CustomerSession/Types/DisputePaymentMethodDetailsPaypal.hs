@@ -50,13 +50,13 @@ data Dispute_payment_method_details_paypal = Dispute_payment_method_details_payp
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  dispute_payment_method_details_paypalCase_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  dispute_payment_method_details_paypalCase_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reason_code: The reason for the dispute as defined by PayPal
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_payment_method_details_paypalReason_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_payment_method_details_paypalReason_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details_paypal

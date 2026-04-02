@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_physical_bundle_features = Issuing_physical_bundle_features {
   -- | card_logo: The policy for how to use card logo images in a card design with this physical bundle.
-  issuing_physical_bundle_featuresCard_logo :: Issuing_physical_bundle_featuresCard_logo
+  issuing_physical_bundle_featuresCard_logo :: Data.Text.Internal.Text
   -- | carrier_text: The policy for how to use carrier letter text in a card design with this physical bundle.
-  , issuing_physical_bundle_featuresCarrier_text :: Issuing_physical_bundle_featuresCarrier_text
+  , issuing_physical_bundle_featuresCarrier_text :: Data.Text.Internal.Text
   -- | second_line: The policy for how to use a second line on a card with this physical bundle.
-  , issuing_physical_bundle_featuresSecond_line :: Issuing_physical_bundle_featuresSecond_line
+  , issuing_physical_bundle_featuresSecond_line :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_physical_bundle_features
@@ -59,73 +59,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON Issuing_physical_bundle_features
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing_physical_bundle_features
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_physical_bundle_features" (\obj -> ((GHC.Base.pure Issuing_physical_bundle_features GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "card_logo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "carrier_text")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "second_line"))}
 -- | Create a new 'Issuing_physical_bundle_features' with all required fields.
-mkIssuing_physical_bundle_features :: Issuing_physical_bundle_featuresCard_logo -- ^ 'issuing_physical_bundle_featuresCard_logo'
-  -> Issuing_physical_bundle_featuresCarrier_text -- ^ 'issuing_physical_bundle_featuresCarrier_text'
-  -> Issuing_physical_bundle_featuresSecond_line -- ^ 'issuing_physical_bundle_featuresSecond_line'
+mkIssuing_physical_bundle_features :: Data.Text.Internal.Text -- ^ 'issuing_physical_bundle_featuresCard_logo'
+  -> Data.Text.Internal.Text -- ^ 'issuing_physical_bundle_featuresCarrier_text'
+  -> Data.Text.Internal.Text -- ^ 'issuing_physical_bundle_featuresSecond_line'
   -> Issuing_physical_bundle_features
 mkIssuing_physical_bundle_features issuing_physical_bundle_featuresCard_logo issuing_physical_bundle_featuresCarrier_text issuing_physical_bundle_featuresSecond_line = Issuing_physical_bundle_features{issuing_physical_bundle_featuresCard_logo = issuing_physical_bundle_featuresCard_logo,
                                                                                                                                                                                                          issuing_physical_bundle_featuresCarrier_text = issuing_physical_bundle_featuresCarrier_text,
                                                                                                                                                                                                          issuing_physical_bundle_featuresSecond_line = issuing_physical_bundle_featuresSecond_line}
--- | Defines the enum schema located at @components.schemas.issuing_physical_bundle_features.properties.card_logo@ in the specification.
--- 
--- The policy for how to use card logo images in a card design with this physical bundle.
-data Issuing_physical_bundle_featuresCard_logo =
-   Issuing_physical_bundle_featuresCard_logoOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_physical_bundle_featuresCard_logoTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_physical_bundle_featuresCard_logoEnumOptional -- ^ Represents the JSON value @"optional"@
-  | Issuing_physical_bundle_featuresCard_logoEnumRequired -- ^ Represents the JSON value @"required"@
-  | Issuing_physical_bundle_featuresCard_logoEnumUnsupported -- ^ Represents the JSON value @"unsupported"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_physical_bundle_featuresCard_logo
-    where {toJSON (Issuing_physical_bundle_featuresCard_logoOther val) = val;
-           toJSON (Issuing_physical_bundle_featuresCard_logoTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_physical_bundle_featuresCard_logoEnumOptional) = "optional";
-           toJSON (Issuing_physical_bundle_featuresCard_logoEnumRequired) = "required";
-           toJSON (Issuing_physical_bundle_featuresCard_logoEnumUnsupported) = "unsupported"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_physical_bundle_featuresCard_logo
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "optional" -> Issuing_physical_bundle_featuresCard_logoEnumOptional
-                                             | val GHC.Classes.== "required" -> Issuing_physical_bundle_featuresCard_logoEnumRequired
-                                             | val GHC.Classes.== "unsupported" -> Issuing_physical_bundle_featuresCard_logoEnumUnsupported
-                                             | GHC.Base.otherwise -> Issuing_physical_bundle_featuresCard_logoOther val)}
--- | Defines the enum schema located at @components.schemas.issuing_physical_bundle_features.properties.carrier_text@ in the specification.
--- 
--- The policy for how to use carrier letter text in a card design with this physical bundle.
-data Issuing_physical_bundle_featuresCarrier_text =
-   Issuing_physical_bundle_featuresCarrier_textOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_physical_bundle_featuresCarrier_textTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_physical_bundle_featuresCarrier_textEnumOptional -- ^ Represents the JSON value @"optional"@
-  | Issuing_physical_bundle_featuresCarrier_textEnumRequired -- ^ Represents the JSON value @"required"@
-  | Issuing_physical_bundle_featuresCarrier_textEnumUnsupported -- ^ Represents the JSON value @"unsupported"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_physical_bundle_featuresCarrier_text
-    where {toJSON (Issuing_physical_bundle_featuresCarrier_textOther val) = val;
-           toJSON (Issuing_physical_bundle_featuresCarrier_textTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_physical_bundle_featuresCarrier_textEnumOptional) = "optional";
-           toJSON (Issuing_physical_bundle_featuresCarrier_textEnumRequired) = "required";
-           toJSON (Issuing_physical_bundle_featuresCarrier_textEnumUnsupported) = "unsupported"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_physical_bundle_featuresCarrier_text
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "optional" -> Issuing_physical_bundle_featuresCarrier_textEnumOptional
-                                             | val GHC.Classes.== "required" -> Issuing_physical_bundle_featuresCarrier_textEnumRequired
-                                             | val GHC.Classes.== "unsupported" -> Issuing_physical_bundle_featuresCarrier_textEnumUnsupported
-                                             | GHC.Base.otherwise -> Issuing_physical_bundle_featuresCarrier_textOther val)}
--- | Defines the enum schema located at @components.schemas.issuing_physical_bundle_features.properties.second_line@ in the specification.
--- 
--- The policy for how to use a second line on a card with this physical bundle.
-data Issuing_physical_bundle_featuresSecond_line =
-   Issuing_physical_bundle_featuresSecond_lineOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_physical_bundle_featuresSecond_lineTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_physical_bundle_featuresSecond_lineEnumOptional -- ^ Represents the JSON value @"optional"@
-  | Issuing_physical_bundle_featuresSecond_lineEnumRequired -- ^ Represents the JSON value @"required"@
-  | Issuing_physical_bundle_featuresSecond_lineEnumUnsupported -- ^ Represents the JSON value @"unsupported"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_physical_bundle_featuresSecond_line
-    where {toJSON (Issuing_physical_bundle_featuresSecond_lineOther val) = val;
-           toJSON (Issuing_physical_bundle_featuresSecond_lineTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_physical_bundle_featuresSecond_lineEnumOptional) = "optional";
-           toJSON (Issuing_physical_bundle_featuresSecond_lineEnumRequired) = "required";
-           toJSON (Issuing_physical_bundle_featuresSecond_lineEnumUnsupported) = "unsupported"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_physical_bundle_featuresSecond_line
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "optional" -> Issuing_physical_bundle_featuresSecond_lineEnumOptional
-                                             | val GHC.Classes.== "required" -> Issuing_physical_bundle_featuresSecond_lineEnumRequired
-                                             | val GHC.Classes.== "unsupported" -> Issuing_physical_bundle_featuresSecond_lineEnumUnsupported
-                                             | GHC.Base.otherwise -> Issuing_physical_bundle_featuresSecond_lineOther val)}

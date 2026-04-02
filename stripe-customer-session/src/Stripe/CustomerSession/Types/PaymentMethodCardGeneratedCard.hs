@@ -53,11 +53,11 @@ data Payment_method_card_generated_card = Payment_method_card_generated_card {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_card_generated_cardCharge :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_card_generated_cardCharge :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_method_details: Transaction-specific details of the payment method used in the payment.
-  , payment_method_card_generated_cardPayment_method_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_card_generated_cardPayment_method_detailsNonNullable))
+  , payment_method_card_generated_cardPayment_method_details :: (GHC.Maybe.Maybe Payment_method_card_generated_cardPayment_method_details)
   -- | setup_attempt: The ID of the SetupAttempt that generated this PaymentMethod, if any.
-  , payment_method_card_generated_cardSetup_attempt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_card_generated_cardSetup_attemptNonNullableVariants))
+  , payment_method_card_generated_cardSetup_attempt :: (GHC.Maybe.Maybe Payment_method_card_generated_cardSetup_attemptVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_generated_card
@@ -73,37 +73,37 @@ mkPayment_method_card_generated_card = Payment_method_card_generated_card{paymen
 -- | Defines the object schema located at @components.schemas.payment_method_card_generated_card.properties.payment_method_details.anyOf@ in the specification.
 -- 
 -- Transaction-specific details of the payment method used in the payment.
-data Payment_method_card_generated_cardPayment_method_detailsNonNullable = Payment_method_card_generated_cardPayment_method_detailsNonNullable {
+data Payment_method_card_generated_cardPayment_method_details = Payment_method_card_generated_cardPayment_method_details {
   -- | card_present: 
-  payment_method_card_generated_cardPayment_method_detailsNonNullableCard_present :: (GHC.Maybe.Maybe Payment_method_details_card_present)
+  payment_method_card_generated_cardPayment_method_detailsCard_present :: (GHC.Maybe.Maybe Payment_method_details_card_present)
   -- | type: The type of payment method transaction-specific details from the transaction that generated this \`card\` payment method. Always \`card_present\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_generated_cardPayment_method_detailsNonNullableType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , payment_method_card_generated_cardPayment_method_detailsType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_generated_cardPayment_method_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsNonNullableCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsNonNullableCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_generated_cardPayment_method_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_generated_cardPayment_method_detailsNonNullable" (\obj -> (GHC.Base.pure Payment_method_card_generated_cardPayment_method_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Payment_method_card_generated_cardPayment_method_detailsNonNullable' with all required fields.
-mkPayment_method_card_generated_cardPayment_method_detailsNonNullable :: Payment_method_card_generated_cardPayment_method_detailsNonNullable
-mkPayment_method_card_generated_cardPayment_method_detailsNonNullable = Payment_method_card_generated_cardPayment_method_detailsNonNullable{payment_method_card_generated_cardPayment_method_detailsNonNullableCard_present = GHC.Maybe.Nothing,
-                                                                                                                                            payment_method_card_generated_cardPayment_method_detailsNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_generated_cardPayment_method_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_card_generated_cardPayment_method_detailsType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_generated_cardPayment_method_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_generated_cardPayment_method_details" (\obj -> (GHC.Base.pure Payment_method_card_generated_cardPayment_method_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Payment_method_card_generated_cardPayment_method_details' with all required fields.
+mkPayment_method_card_generated_cardPayment_method_details :: Payment_method_card_generated_cardPayment_method_details
+mkPayment_method_card_generated_cardPayment_method_details = Payment_method_card_generated_cardPayment_method_details{payment_method_card_generated_cardPayment_method_detailsCard_present = GHC.Maybe.Nothing,
+                                                                                                                      payment_method_card_generated_cardPayment_method_detailsType = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.payment_method_card_generated_card.properties.setup_attempt.anyOf@ in the specification.
 -- 
 -- The ID of the SetupAttempt that generated this PaymentMethod, if any.
-data Payment_method_card_generated_cardSetup_attemptNonNullableVariants =
-   Payment_method_card_generated_cardSetup_attemptNonNullableText Data.Text.Internal.Text
-  | Payment_method_card_generated_cardSetup_attemptNonNullableSetup_attempt Setup_attempt
+data Payment_method_card_generated_cardSetup_attemptVariants =
+   Payment_method_card_generated_cardSetup_attemptText Data.Text.Internal.Text
+  | Payment_method_card_generated_cardSetup_attemptSetup_attempt Setup_attempt
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_generated_cardSetup_attemptNonNullableVariants
-    where {toJSON (Payment_method_card_generated_cardSetup_attemptNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Payment_method_card_generated_cardSetup_attemptNonNullableSetup_attempt a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_generated_cardSetup_attemptNonNullableVariants
-    where {parseJSON val = case (Payment_method_card_generated_cardSetup_attemptNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Payment_method_card_generated_cardSetup_attemptNonNullableSetup_attempt Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_generated_cardSetup_attemptVariants
+    where {toJSON (Payment_method_card_generated_cardSetup_attemptText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Payment_method_card_generated_cardSetup_attemptSetup_attempt a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_generated_cardSetup_attemptVariants
+    where {parseJSON val = case (Payment_method_card_generated_cardSetup_attemptText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Payment_method_card_generated_cardSetup_attemptSetup_attempt Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

@@ -6,18 +6,8 @@ instance Show Balance_transaction
 instance Eq Balance_transaction
 instance Data.Aeson.FromJSON Balance_transaction
 instance Data.Aeson.ToJSON Balance_transaction
-data Balance_transactionBalance_type
-instance Show Balance_transactionBalance_type
-instance Eq Balance_transactionBalance_type
-instance Data.Aeson.FromJSON Balance_transactionBalance_type
-instance Data.Aeson.ToJSON Balance_transactionBalance_type
-data Balance_transactionSourceNonNullableVariants
-instance Show Balance_transactionSourceNonNullableVariants
-instance Eq Balance_transactionSourceNonNullableVariants
-instance Data.Aeson.FromJSON Balance_transactionSourceNonNullableVariants
-instance Data.Aeson.ToJSON Balance_transactionSourceNonNullableVariants
-data Balance_transactionType
-instance Show Balance_transactionType
-instance Eq Balance_transactionType
-instance Data.Aeson.FromJSON Balance_transactionType
-instance Data.Aeson.ToJSON Balance_transactionType
+data Balance_transactionSourceVariants
+instance Show Balance_transactionSourceVariants
+instance Eq Balance_transactionSourceVariants
+instance Data.Aeson.FromJSON Balance_transactionSourceVariants
+instance Data.Aeson.ToJSON Balance_transactionSourceVariants

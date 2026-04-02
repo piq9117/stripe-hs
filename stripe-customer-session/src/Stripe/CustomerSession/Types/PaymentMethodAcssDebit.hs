@@ -50,31 +50,31 @@ data Payment_method_acss_debit = Payment_method_acss_debit {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_acss_debitBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_acss_debitBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint: Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_acss_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_acss_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | institution_number: Institution number of the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_acss_debitInstitution_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_acss_debitInstitution_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_acss_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_acss_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transit_number: Transit number of the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_acss_debitTransit_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_acss_debitTransit_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_acss_debit

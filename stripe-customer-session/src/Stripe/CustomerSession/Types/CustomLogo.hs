@@ -50,7 +50,7 @@ data Custom_logo = Custom_logo {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  custom_logoContent_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  custom_logoContent_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: URL of the Dashboard-only CustomPaymentMethodType logo.
   -- 
   -- Constraints:

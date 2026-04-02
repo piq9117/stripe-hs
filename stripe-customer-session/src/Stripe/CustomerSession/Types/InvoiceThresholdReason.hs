@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.InvoiceItemThresholdReason
 -- 
 data Invoice_threshold_reason = Invoice_threshold_reason {
   -- | amount_gte: The total invoice amount threshold boundary if it triggered the threshold invoice.
-  invoice_threshold_reasonAmount_gte :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  invoice_threshold_reasonAmount_gte :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | item_reasons: Indicates which line items triggered a threshold invoice.
   , invoice_threshold_reasonItem_reasons :: [Invoice_item_threshold_reason]
   } deriving (GHC.Show.Show

@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Account_terms_of_service = Account_terms_of_service {
   -- | date: The Unix timestamp marking when the account representative accepted the service agreement.
-  account_terms_of_serviceDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  account_terms_of_serviceDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the account representative accepted the service agreement.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_terms_of_serviceIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_terms_of_serviceIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The user agent of the browser from which the account representative accepted the service agreement.
   -- 
   -- Constraints:

@@ -50,37 +50,37 @@ data Payments_primitives_payment_records_resource_address = Payments_primitives_
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payments_primitives_payment_records_resource_addressCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payments_primitives_payment_records_resource_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_addressCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_addressLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_addressLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_addressPostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_addressState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_address

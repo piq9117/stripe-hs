@@ -150,15 +150,15 @@ data Invoice = Invoice {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceAccount_country :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoiceAccount_country :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_name: The public name of the business associated with this invoice, most often the business creating the invoice.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceAccount_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceAccount_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_tax_ids: The account tax IDs associated with the invoice. Only editable when the invoice is a draft.
-  , invoiceAccount_tax_ids :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [InvoiceAccount_tax_idsNonNullableVariants]))
+  , invoiceAccount_tax_ids :: (GHC.Maybe.Maybe [InvoiceAccount_tax_idsVariants])
   -- | amount_due: Final amount due at this time for this invoice. If the invoice\'s total is smaller than the minimum charge amount, for example, or if there is account credit that can be applied to the invoice, the \`amount_due\` may be 0. If there is a positive \`starting_balance\` for the invoice (the customer owes money), the \`amount_due\` will also take that into account. The charge that gets generated for the invoice will be for the amount specified in \`amount_due\`.
   , invoiceAmount_due :: GHC.Types.Int
   -- | amount_overpaid: Amount that was overpaid on the invoice. The amount overpaid is credited to the customer\'s credit balance.
@@ -170,7 +170,7 @@ data Invoice = Invoice {
   -- | amount_shipping: This is the sum of all the shipping amounts.
   , invoiceAmount_shipping :: GHC.Types.Int
   -- | application: ID of the Connect Application that created the invoice.
-  , invoiceApplication :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceApplicationNonNullableVariants))
+  , invoiceApplication :: (GHC.Maybe.Maybe InvoiceApplicationVariants)
   -- | attempt_count: Number of payment attempts made for this invoice, from the perspective of the payment retry schedule. Any payment attempt counts as the first attempt, and subsequently only automatic retries increment the attempt count. In other words, manual payment attempts after the first attempt do not affect the retry schedule. If a failure is returned with a non-retryable return code, the invoice can no longer be retried unless a new payment method is obtained. Retries will continue to be scheduled, and attempt_count will continue to increment, but retries will only be executed if a new payment method is obtained.
   , invoiceAttempt_count :: GHC.Types.Int
   -- | attempted: Whether an attempt has been made to pay the invoice. An invoice is not attempted until 1 hour after the \`invoice.created\` webhook, for example, so you might not want to display that invoice as unpaid to your users.
@@ -180,7 +180,7 @@ data Invoice = Invoice {
   -- | automatic_tax: 
   , invoiceAutomatic_tax :: Automatic_tax
   -- | automatically_finalizes_at: The time when this invoice is currently scheduled to be automatically finalized. The field will be \`null\` if the invoice is not scheduled to finalize in the future. If the invoice is not in the draft state, this field will always be \`null\` - see \`finalized_at\` for the time when an already-finalized invoice was finalized.
-  , invoiceAutomatically_finalizes_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceAutomatically_finalizes_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | billing_reason: Indicates the reason why the invoice was created.
   -- 
   -- * \`manual\`: Unrelated to a subscription, for example, created via the invoice editor.
@@ -190,17 +190,17 @@ data Invoice = Invoice {
   -- * \`subscription_threshold\`: A subscription reached a billing threshold.
   -- * \`subscription_update\`: A subscription was updated.
   -- * \`upcoming\`: Reserved for upcoming invoices created through the Create Preview Invoice API or when an \`invoice.upcoming\` event is generated for an upcoming invoice on a subscription.
-  , invoiceBilling_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceBilling_reasonNonNullable))
+  , invoiceBilling_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | collection_method: Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay this invoice using the default source attached to the customer. When sending an invoice, Stripe will email this invoice to the customer with payment instructions.
-  , invoiceCollection_method :: InvoiceCollection_method
+  , invoiceCollection_method :: Data.Text.Internal.Text
   -- | confirmation_secret: The confirmation secret associated with this invoice. Currently, this contains the client_secret of the PaymentIntent that Stripe creates during invoice finalization.
-  , invoiceConfirmation_secret :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceConfirmation_secretNonNullable))
+  , invoiceConfirmation_secret :: (GHC.Maybe.Maybe InvoiceConfirmation_secret)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , invoiceCreated :: GHC.Types.Int
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   , invoiceCurrency :: Data.Text.Internal.Text
   -- | custom_fields: Custom fields displayed on the invoice.
-  , invoiceCustom_fields :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Invoice_setting_custom_field]))
+  , invoiceCustom_fields :: (GHC.Maybe.Maybe [Invoice_setting_custom_field])
   -- | customer: The ID of the customer to bill.
   , invoiceCustomer :: InvoiceCustomerVariants
   -- | customer_account: The ID of the account representing the customer to bill.
@@ -208,37 +208,37 @@ data Invoice = Invoice {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_address: The customer\'s address. Until the invoice is finalized, this field will equal \`customer.address\`. Once the invoice is finalized, this field will no longer be updated.
-  , invoiceCustomer_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceCustomer_addressNonNullable))
+  , invoiceCustomer_address :: (GHC.Maybe.Maybe InvoiceCustomer_address)
   -- | customer_email: The customer\'s email. Until the invoice is finalized, this field will equal \`customer.email\`. Once the invoice is finalized, this field will no longer be updated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_name: The customer\'s name. Until the invoice is finalized, this field will equal \`customer.name\`. Once the invoice is finalized, this field will no longer be updated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_phone: The customer\'s phone number. Until the invoice is finalized, this field will equal \`customer.phone\`. Once the invoice is finalized, this field will no longer be updated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_phone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_phone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_shipping: The customer\'s shipping information. Until the invoice is finalized, this field will equal \`customer.shipping\`. Once the invoice is finalized, this field will no longer be updated.
-  , invoiceCustomer_shipping :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceCustomer_shippingNonNullable))
+  , invoiceCustomer_shipping :: (GHC.Maybe.Maybe InvoiceCustomer_shipping)
   -- | customer_tax_exempt: The customer\'s tax exempt status. Until the invoice is finalized, this field will equal \`customer.tax_exempt\`. Once the invoice is finalized, this field will no longer be updated.
-  , invoiceCustomer_tax_exempt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceCustomer_tax_exemptNonNullable))
+  , invoiceCustomer_tax_exempt :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_tax_ids: The customer\'s tax IDs. Until the invoice is finalized, this field will contain the same tax IDs as \`customer.tax_ids\`. Once the invoice is finalized, this field will no longer be updated.
-  , invoiceCustomer_tax_ids :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Invoices_resource_invoice_tax_id]))
+  , invoiceCustomer_tax_ids :: (GHC.Maybe.Maybe [Invoices_resource_invoice_tax_id])
   -- | default_payment_method: ID of the default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription\'s default payment method, if any, or to the default payment method in the customer\'s invoice settings.
-  , invoiceDefault_payment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceDefault_payment_methodNonNullableVariants))
+  , invoiceDefault_payment_method :: (GHC.Maybe.Maybe InvoiceDefault_payment_methodVariants)
   -- | default_source: ID of the default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription\'s default source, if any, or to the customer\'s default source.
-  , invoiceDefault_source :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceDefault_sourceNonNullableVariants))
+  , invoiceDefault_source :: (GHC.Maybe.Maybe InvoiceDefault_sourceVariants)
   -- | default_tax_rates: The tax rates applied to this invoice, if any.
   , invoiceDefault_tax_rates :: [Tax_rate]
   -- | description: An arbitrary string attached to the object. Often useful for displaying to users. Referenced as \'memo\' in the Dashboard.
@@ -246,29 +246,29 @@ data Invoice = Invoice {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | discounts: The discounts applied to the invoice. Line item discounts are applied before invoice discounts. Use \`expand[]=discounts\` to expand each discount.
   , invoiceDiscounts :: [InvoiceDiscountsVariants]
   -- | due_date: The date on which payment for this invoice is due. This value will be \`null\` for invoices where \`collection_method=charge_automatically\`.
-  , invoiceDue_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceDue_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | effective_at: The date when this invoice is in effect. Same as \`finalized_at\` unless overwritten. When defined, this value replaces the system-generated \'Date of issue\' printed on the invoice PDF and receipt.
-  , invoiceEffective_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceEffective_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ending_balance: Ending customer balance after the invoice is finalized. Invoices are finalized approximately an hour after successful webhook delivery or when payment collection is attempted for the invoice. If the invoice has not been finalized yet, this will be null.
-  , invoiceEnding_balance :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceEnding_balance :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | footer: Footer displayed on the invoice.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceFooter :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceFooter :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | from_invoice: Details of the invoice that was cloned. See the [revision documentation](https:\/\/docs.stripe.com\/invoicing\/invoice-revisions) for more details.
-  , invoiceFrom_invoice :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceFrom_invoiceNonNullable))
+  , invoiceFrom_invoice :: (GHC.Maybe.Maybe InvoiceFrom_invoice)
   -- | hosted_invoice_url: The URL for the hosted invoice page, which allows customers to view and pay an invoice. If the invoice has not been finalized yet, this will be null.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceHosted_invoice_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceHosted_invoice_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object. For preview invoices created using the [create preview](https:\/\/stripe.com\/docs\/api\/invoices\/create_preview) endpoint, this id will be prefixed with \`upcoming_in\`.
   -- 
   -- Constraints:
@@ -280,31 +280,33 @@ data Invoice = Invoice {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceInvoice_pdf :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceInvoice_pdf :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | issuer: 
   , invoiceIssuer :: Connect_account_reference
   -- | last_finalization_error: The error encountered during the previous attempt to finalize the invoice. This field is cleared when the invoice is successfully finalized.
-  , invoiceLast_finalization_error :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullable))
+  , invoiceLast_finalization_error :: (GHC.Maybe.Maybe InvoiceLast_finalization_error)
   -- | latest_revision: The ID of the most recent non-draft revision of this invoice
-  , invoiceLatest_revision :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLatest_revisionNonNullableVariants))
+  , invoiceLatest_revision :: (GHC.Maybe.Maybe InvoiceLatest_revisionVariants)
   -- | lines: The individual line items that make up the invoice. \`lines\` is sorted as follows: (1) pending invoice items (including prorations) in reverse chronological order, (2) subscription items in reverse chronological order, and (3) invoice items added after invoice creation in chronological order.
   , invoiceLines :: InvoiceLines
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , invoiceLivemode :: GHC.Types.Bool
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , invoiceMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , invoiceMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | next_payment_attempt: The time at which payment will next be attempted. This value will be \`null\` for invoices where \`collection_method=send_invoice\`.
-  , invoiceNext_payment_attempt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceNext_payment_attempt :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | number: A unique, identifying string that appears on emails sent to the customer for this invoice. This starts with the customer\'s unique invoice_prefix if it is specified.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceNumber :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceNumber :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , invoiceObject :: Data.Text.Internal.Text
   -- | on_behalf_of: The account (if any) for which the funds of the invoice payment are intended. If set, the invoice will be presented with the branding and support information of the specified account. See the [Invoices with Connect](https:\/\/docs.stripe.com\/billing\/invoices\/connect) documentation for details.
-  , invoiceOn_behalf_of :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceOn_behalf_ofNonNullableVariants))
+  , invoiceOn_behalf_of :: (GHC.Maybe.Maybe InvoiceOn_behalf_ofVariants)
   -- | parent: The parent that generated this invoice
-  , invoiceParent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceParentNonNullable))
+  , invoiceParent :: (GHC.Maybe.Maybe InvoiceParent)
   -- | payment_settings: 
   , invoicePayment_settings :: Invoices_payment_settings
   -- | payments: Payments for this invoice. Use [invoice payment](\/api\/invoice-payment) to get more details.
@@ -322,13 +324,13 @@ data Invoice = Invoice {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceReceipt_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceReceipt_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | rendering: The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
-  , invoiceRendering :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceRenderingNonNullable))
+  , invoiceRendering :: (GHC.Maybe.Maybe InvoiceRendering)
   -- | shipping_cost: The details of the cost of shipping, including the ShippingRate applied on the invoice.
-  , invoiceShipping_cost :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceShipping_costNonNullable))
+  , invoiceShipping_cost :: (GHC.Maybe.Maybe InvoiceShipping_cost)
   -- | shipping_details: Shipping details for the invoice. The Invoice PDF will use the \`shipping_details\` value if it is set, otherwise the PDF will render the shipping address from the customer.
-  , invoiceShipping_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceShipping_detailsNonNullable))
+  , invoiceShipping_details :: (GHC.Maybe.Maybe InvoiceShipping_details)
   -- | starting_balance: Starting customer balance before the invoice is finalized. If the invoice has not been finalized yet, this will be the current customer balance. For revision invoices, this also includes any customer balance that was applied to the original invoice.
   , invoiceStarting_balance :: GHC.Types.Int
   -- | statement_descriptor: Extra information about an invoice for the customer\'s credit card statement.
@@ -336,38 +338,38 @@ data Invoice = Invoice {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: The status of the invoice, one of \`draft\`, \`open\`, \`paid\`, \`uncollectible\`, or \`void\`. [Learn more](https:\/\/docs.stripe.com\/billing\/invoices\/workflow\#workflow-overview)
-  , invoiceStatus :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceStatusNonNullable))
+  , invoiceStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status_transitions: 
   , invoiceStatus_transitions :: Invoices_resource_status_transitions
   -- | subtotal: Total of all subscriptions, invoice items, and prorations on the invoice before any invoice level discount or exclusive tax is applied. Item discounts are already incorporated
   , invoiceSubtotal :: GHC.Types.Int
   -- | subtotal_excluding_tax: The integer amount in cents (or local equivalent) representing the subtotal of the invoice before any invoice level discount or tax is applied. Item discounts are already incorporated
-  , invoiceSubtotal_excluding_tax :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceSubtotal_excluding_tax :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | test_clock: ID of the test clock this invoice belongs to.
-  , invoiceTest_clock :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceTest_clockNonNullableVariants))
+  , invoiceTest_clock :: (GHC.Maybe.Maybe InvoiceTest_clockVariants)
   -- | threshold_reason: 
   , invoiceThreshold_reason :: (GHC.Maybe.Maybe Invoice_threshold_reason)
   -- | total: Total after discounts and taxes.
   , invoiceTotal :: GHC.Types.Int
   -- | total_discount_amounts: The aggregate amounts calculated per discount across all line items.
-  , invoiceTotal_discount_amounts :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Discounts_resource_discount_amount]))
+  , invoiceTotal_discount_amounts :: (GHC.Maybe.Maybe [Discounts_resource_discount_amount])
   -- | total_excluding_tax: The integer amount in cents (or local equivalent) representing the total amount of the invoice including all discounts but excluding all tax.
-  , invoiceTotal_excluding_tax :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceTotal_excluding_tax :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | total_pretax_credit_amounts: Contains pretax credit amounts (ex: discount, credit grants, etc) that apply to this invoice. This is a combined list of total_pretax_credit_amounts across all invoice line items.
-  , invoiceTotal_pretax_credit_amounts :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Invoices_resource_pretax_credit_amount]))
+  , invoiceTotal_pretax_credit_amounts :: (GHC.Maybe.Maybe [Invoices_resource_pretax_credit_amount])
   -- | total_taxes: The aggregate tax information of all line items.
-  , invoiceTotal_taxes :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Billing_bill_resource_invoicing_taxes_tax]))
+  , invoiceTotal_taxes :: (GHC.Maybe.Maybe [Billing_bill_resource_invoicing_taxes_tax])
   -- | webhooks_delivered_at: Invoices are automatically paid or sent 1 hour after webhooks are delivered, or until all webhook delivery attempts have [been exhausted](https:\/\/docs.stripe.com\/billing\/webhooks\#understand). This field tracks the time when webhooks for this invoice were successfully delivered. If the invoice had no webhooks to deliver, this will be set while the invoice is being created.
-  , invoiceWebhooks_delivered_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceWebhooks_delivered_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_country" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_name" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_tax_ids obj) : ["amount_due" Data.Aeson.Types.ToJSON..= invoiceAmount_due obj] : ["amount_overpaid" Data.Aeson.Types.ToJSON..= invoiceAmount_overpaid obj] : ["amount_paid" Data.Aeson.Types.ToJSON..= invoiceAmount_paid obj] : ["amount_remaining" Data.Aeson.Types.ToJSON..= invoiceAmount_remaining obj] : ["amount_shipping" Data.Aeson.Types.ToJSON..= invoiceAmount_shipping obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (invoiceApplication obj) : ["attempt_count" Data.Aeson.Types.ToJSON..= invoiceAttempt_count obj] : ["attempted" Data.Aeson.Types.ToJSON..= invoiceAttempted obj] : ["auto_advance" Data.Aeson.Types.ToJSON..= invoiceAuto_advance obj] : ["automatic_tax" Data.Aeson.Types.ToJSON..= invoiceAutomatic_tax obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatically_finalizes_at" Data.Aeson.Types.ToJSON..=)) (invoiceAutomatically_finalizes_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_reason" Data.Aeson.Types.ToJSON..=)) (invoiceBilling_reason obj) : ["collection_method" Data.Aeson.Types.ToJSON..= invoiceCollection_method obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secret obj) : ["created" Data.Aeson.Types.ToJSON..= invoiceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= invoiceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_fields" Data.Aeson.Types.ToJSON..=)) (invoiceCustom_fields obj) : ["customer" Data.Aeson.Types.ToJSON..= invoiceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_email" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_shipping" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_exempt" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_exempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_source obj) : ["default_tax_rates" Data.Aeson.Types.ToJSON..= invoiceDefault_tax_rates obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (invoiceDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= invoiceDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("due_date" Data.Aeson.Types.ToJSON..=)) (invoiceDue_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("effective_at" Data.Aeson.Types.ToJSON..=)) (invoiceEffective_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ending_balance" Data.Aeson.Types.ToJSON..=)) (invoiceEnding_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("footer" Data.Aeson.Types.ToJSON..=)) (invoiceFooter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("from_invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hosted_invoice_url" Data.Aeson.Types.ToJSON..=)) (invoiceHosted_invoice_url obj) : ["id" Data.Aeson.Types.ToJSON..= invoiceId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_pdf" Data.Aeson.Types.ToJSON..=)) (invoiceInvoice_pdf obj) : ["issuer" Data.Aeson.Types.ToJSON..= invoiceIssuer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_finalization_error" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_revision" Data.Aeson.Types.ToJSON..=)) (invoiceLatest_revision obj) : ["lines" Data.Aeson.Types.ToJSON..= invoiceLines obj] : ["livemode" Data.Aeson.Types.ToJSON..= invoiceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_payment_attempt" Data.Aeson.Types.ToJSON..=)) (invoiceNext_payment_attempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (invoiceNumber obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (invoiceOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (invoiceParent obj) : ["payment_settings" Data.Aeson.Types.ToJSON..= invoicePayment_settings obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (invoicePayments obj) : ["period_end" Data.Aeson.Types.ToJSON..= invoicePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= invoicePeriod_start obj] : ["post_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePost_payment_credit_notes_amount obj] : ["pre_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePre_payment_credit_notes_amount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (invoiceReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rendering" Data.Aeson.Types.ToJSON..=)) (invoiceRendering obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_cost" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_cost obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_details" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_details obj) : ["starting_balance" Data.Aeson.Types.ToJSON..= invoiceStarting_balance obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceStatus obj) : ["status_transitions" Data.Aeson.Types.ToJSON..= invoiceStatus_transitions obj] : ["subtotal" Data.Aeson.Types.ToJSON..= invoiceSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subtotal_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceSubtotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (invoiceTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("threshold_reason" Data.Aeson.Types.ToJSON..=)) (invoiceThreshold_reason obj) : ["total" Data.Aeson.Types.ToJSON..= invoiceTotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_discount_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_discount_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_pretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_taxes" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_taxes obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("webhooks_delivered_at" Data.Aeson.Types.ToJSON..=)) (invoiceWebhooks_delivered_at obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "invoice"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_country" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_name" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_tax_ids obj) : ["amount_due" Data.Aeson.Types.ToJSON..= invoiceAmount_due obj] : ["amount_overpaid" Data.Aeson.Types.ToJSON..= invoiceAmount_overpaid obj] : ["amount_paid" Data.Aeson.Types.ToJSON..= invoiceAmount_paid obj] : ["amount_remaining" Data.Aeson.Types.ToJSON..= invoiceAmount_remaining obj] : ["amount_shipping" Data.Aeson.Types.ToJSON..= invoiceAmount_shipping obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (invoiceApplication obj) : ["attempt_count" Data.Aeson.Types.ToJSON..= invoiceAttempt_count obj] : ["attempted" Data.Aeson.Types.ToJSON..= invoiceAttempted obj] : ["auto_advance" Data.Aeson.Types.ToJSON..= invoiceAuto_advance obj] : ["automatic_tax" Data.Aeson.Types.ToJSON..= invoiceAutomatic_tax obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatically_finalizes_at" Data.Aeson.Types.ToJSON..=)) (invoiceAutomatically_finalizes_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_reason" Data.Aeson.Types.ToJSON..=)) (invoiceBilling_reason obj) : ["collection_method" Data.Aeson.Types.ToJSON..= invoiceCollection_method obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secret obj) : ["created" Data.Aeson.Types.ToJSON..= invoiceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= invoiceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_fields" Data.Aeson.Types.ToJSON..=)) (invoiceCustom_fields obj) : ["customer" Data.Aeson.Types.ToJSON..= invoiceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_email" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_shipping" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_exempt" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_exempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_source obj) : ["default_tax_rates" Data.Aeson.Types.ToJSON..= invoiceDefault_tax_rates obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (invoiceDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= invoiceDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("due_date" Data.Aeson.Types.ToJSON..=)) (invoiceDue_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("effective_at" Data.Aeson.Types.ToJSON..=)) (invoiceEffective_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ending_balance" Data.Aeson.Types.ToJSON..=)) (invoiceEnding_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("footer" Data.Aeson.Types.ToJSON..=)) (invoiceFooter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("from_invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hosted_invoice_url" Data.Aeson.Types.ToJSON..=)) (invoiceHosted_invoice_url obj) : ["id" Data.Aeson.Types.ToJSON..= invoiceId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_pdf" Data.Aeson.Types.ToJSON..=)) (invoiceInvoice_pdf obj) : ["issuer" Data.Aeson.Types.ToJSON..= invoiceIssuer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_finalization_error" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_revision" Data.Aeson.Types.ToJSON..=)) (invoiceLatest_revision obj) : ["lines" Data.Aeson.Types.ToJSON..= invoiceLines obj] : ["livemode" Data.Aeson.Types.ToJSON..= invoiceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_payment_attempt" Data.Aeson.Types.ToJSON..=)) (invoiceNext_payment_attempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (invoiceNumber obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (invoiceOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (invoiceParent obj) : ["payment_settings" Data.Aeson.Types.ToJSON..= invoicePayment_settings obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (invoicePayments obj) : ["period_end" Data.Aeson.Types.ToJSON..= invoicePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= invoicePeriod_start obj] : ["post_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePost_payment_credit_notes_amount obj] : ["pre_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePre_payment_credit_notes_amount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (invoiceReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rendering" Data.Aeson.Types.ToJSON..=)) (invoiceRendering obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_cost" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_cost obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_details" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_details obj) : ["starting_balance" Data.Aeson.Types.ToJSON..= invoiceStarting_balance obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceStatus obj) : ["status_transitions" Data.Aeson.Types.ToJSON..= invoiceStatus_transitions obj] : ["subtotal" Data.Aeson.Types.ToJSON..= invoiceSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subtotal_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceSubtotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (invoiceTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("threshold_reason" Data.Aeson.Types.ToJSON..=)) (invoiceThreshold_reason obj) : ["total" Data.Aeson.Types.ToJSON..= invoiceTotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_discount_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_discount_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_pretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_taxes" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_taxes obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("webhooks_delivered_at" Data.Aeson.Types.ToJSON..=)) (invoiceWebhooks_delivered_at obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "invoice"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_country" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_name" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_tax_ids obj) : ["amount_due" Data.Aeson.Types.ToJSON..= invoiceAmount_due obj] : ["amount_overpaid" Data.Aeson.Types.ToJSON..= invoiceAmount_overpaid obj] : ["amount_paid" Data.Aeson.Types.ToJSON..= invoiceAmount_paid obj] : ["amount_remaining" Data.Aeson.Types.ToJSON..= invoiceAmount_remaining obj] : ["amount_shipping" Data.Aeson.Types.ToJSON..= invoiceAmount_shipping obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (invoiceApplication obj) : ["attempt_count" Data.Aeson.Types.ToJSON..= invoiceAttempt_count obj] : ["attempted" Data.Aeson.Types.ToJSON..= invoiceAttempted obj] : ["auto_advance" Data.Aeson.Types.ToJSON..= invoiceAuto_advance obj] : ["automatic_tax" Data.Aeson.Types.ToJSON..= invoiceAutomatic_tax obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatically_finalizes_at" Data.Aeson.Types.ToJSON..=)) (invoiceAutomatically_finalizes_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_reason" Data.Aeson.Types.ToJSON..=)) (invoiceBilling_reason obj) : ["collection_method" Data.Aeson.Types.ToJSON..= invoiceCollection_method obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secret obj) : ["created" Data.Aeson.Types.ToJSON..= invoiceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= invoiceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_fields" Data.Aeson.Types.ToJSON..=)) (invoiceCustom_fields obj) : ["customer" Data.Aeson.Types.ToJSON..= invoiceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_email" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_shipping" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_exempt" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_exempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_source obj) : ["default_tax_rates" Data.Aeson.Types.ToJSON..= invoiceDefault_tax_rates obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (invoiceDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= invoiceDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("due_date" Data.Aeson.Types.ToJSON..=)) (invoiceDue_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("effective_at" Data.Aeson.Types.ToJSON..=)) (invoiceEffective_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ending_balance" Data.Aeson.Types.ToJSON..=)) (invoiceEnding_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("footer" Data.Aeson.Types.ToJSON..=)) (invoiceFooter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("from_invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hosted_invoice_url" Data.Aeson.Types.ToJSON..=)) (invoiceHosted_invoice_url obj) : ["id" Data.Aeson.Types.ToJSON..= invoiceId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_pdf" Data.Aeson.Types.ToJSON..=)) (invoiceInvoice_pdf obj) : ["issuer" Data.Aeson.Types.ToJSON..= invoiceIssuer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_finalization_error" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_revision" Data.Aeson.Types.ToJSON..=)) (invoiceLatest_revision obj) : ["lines" Data.Aeson.Types.ToJSON..= invoiceLines obj] : ["livemode" Data.Aeson.Types.ToJSON..= invoiceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_payment_attempt" Data.Aeson.Types.ToJSON..=)) (invoiceNext_payment_attempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (invoiceNumber obj) : ["object" Data.Aeson.Types.ToJSON..= invoiceObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (invoiceOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (invoiceParent obj) : ["payment_settings" Data.Aeson.Types.ToJSON..= invoicePayment_settings obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (invoicePayments obj) : ["period_end" Data.Aeson.Types.ToJSON..= invoicePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= invoicePeriod_start obj] : ["post_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePost_payment_credit_notes_amount obj] : ["pre_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePre_payment_credit_notes_amount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (invoiceReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rendering" Data.Aeson.Types.ToJSON..=)) (invoiceRendering obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_cost" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_cost obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_details" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_details obj) : ["starting_balance" Data.Aeson.Types.ToJSON..= invoiceStarting_balance obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceStatus obj) : ["status_transitions" Data.Aeson.Types.ToJSON..= invoiceStatus_transitions obj] : ["subtotal" Data.Aeson.Types.ToJSON..= invoiceSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subtotal_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceSubtotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (invoiceTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("threshold_reason" Data.Aeson.Types.ToJSON..=)) (invoiceThreshold_reason obj) : ["total" Data.Aeson.Types.ToJSON..= invoiceTotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_discount_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_discount_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_pretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_taxes" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_taxes obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("webhooks_delivered_at" Data.Aeson.Types.ToJSON..=)) (invoiceWebhooks_delivered_at obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_country" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_name" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceAccount_tax_ids obj) : ["amount_due" Data.Aeson.Types.ToJSON..= invoiceAmount_due obj] : ["amount_overpaid" Data.Aeson.Types.ToJSON..= invoiceAmount_overpaid obj] : ["amount_paid" Data.Aeson.Types.ToJSON..= invoiceAmount_paid obj] : ["amount_remaining" Data.Aeson.Types.ToJSON..= invoiceAmount_remaining obj] : ["amount_shipping" Data.Aeson.Types.ToJSON..= invoiceAmount_shipping obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (invoiceApplication obj) : ["attempt_count" Data.Aeson.Types.ToJSON..= invoiceAttempt_count obj] : ["attempted" Data.Aeson.Types.ToJSON..= invoiceAttempted obj] : ["auto_advance" Data.Aeson.Types.ToJSON..= invoiceAuto_advance obj] : ["automatic_tax" Data.Aeson.Types.ToJSON..= invoiceAutomatic_tax obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatically_finalizes_at" Data.Aeson.Types.ToJSON..=)) (invoiceAutomatically_finalizes_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_reason" Data.Aeson.Types.ToJSON..=)) (invoiceBilling_reason obj) : ["collection_method" Data.Aeson.Types.ToJSON..= invoiceCollection_method obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("confirmation_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secret obj) : ["created" Data.Aeson.Types.ToJSON..= invoiceCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= invoiceCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom_fields" Data.Aeson.Types.ToJSON..=)) (invoiceCustom_fields obj) : ["customer" Data.Aeson.Types.ToJSON..= invoiceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_email" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_shipping" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_exempt" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_exempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_tax_ids" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (invoiceDefault_source obj) : ["default_tax_rates" Data.Aeson.Types.ToJSON..= invoiceDefault_tax_rates obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (invoiceDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= invoiceDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("due_date" Data.Aeson.Types.ToJSON..=)) (invoiceDue_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("effective_at" Data.Aeson.Types.ToJSON..=)) (invoiceEffective_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ending_balance" Data.Aeson.Types.ToJSON..=)) (invoiceEnding_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("footer" Data.Aeson.Types.ToJSON..=)) (invoiceFooter obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("from_invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hosted_invoice_url" Data.Aeson.Types.ToJSON..=)) (invoiceHosted_invoice_url obj) : ["id" Data.Aeson.Types.ToJSON..= invoiceId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_pdf" Data.Aeson.Types.ToJSON..=)) (invoiceInvoice_pdf obj) : ["issuer" Data.Aeson.Types.ToJSON..= invoiceIssuer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_finalization_error" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_revision" Data.Aeson.Types.ToJSON..=)) (invoiceLatest_revision obj) : ["lines" Data.Aeson.Types.ToJSON..= invoiceLines obj] : ["livemode" Data.Aeson.Types.ToJSON..= invoiceLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_payment_attempt" Data.Aeson.Types.ToJSON..=)) (invoiceNext_payment_attempt obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (invoiceNumber obj) : ["object" Data.Aeson.Types.ToJSON..= invoiceObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (invoiceOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (invoiceParent obj) : ["payment_settings" Data.Aeson.Types.ToJSON..= invoicePayment_settings obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (invoicePayments obj) : ["period_end" Data.Aeson.Types.ToJSON..= invoicePeriod_end obj] : ["period_start" Data.Aeson.Types.ToJSON..= invoicePeriod_start obj] : ["post_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePost_payment_credit_notes_amount obj] : ["pre_payment_credit_notes_amount" Data.Aeson.Types.ToJSON..= invoicePre_payment_credit_notes_amount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (invoiceReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rendering" Data.Aeson.Types.ToJSON..=)) (invoiceRendering obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_cost" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_cost obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_details" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_details obj) : ["starting_balance" Data.Aeson.Types.ToJSON..= invoiceStarting_balance obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceStatus obj) : ["status_transitions" Data.Aeson.Types.ToJSON..= invoiceStatus_transitions obj] : ["subtotal" Data.Aeson.Types.ToJSON..= invoiceSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subtotal_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceSubtotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (invoiceTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("threshold_reason" Data.Aeson.Types.ToJSON..=)) (invoiceThreshold_reason obj) : ["total" Data.Aeson.Types.ToJSON..= invoiceTotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_discount_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_discount_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_excluding_tax" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_excluding_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_pretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("total_taxes" Data.Aeson.Types.ToJSON..=)) (invoiceTotal_taxes obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("webhooks_delivered_at" Data.Aeson.Types.ToJSON..=)) (invoiceWebhooks_delivered_at obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Invoice
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoice" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Invoice GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_tax_ids")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_overpaid")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_paid")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_remaining")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "attempt_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "attempted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "auto_advance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "automatically_finalizes_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "collection_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "custom_fields")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_tax_exempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_tax_ids")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "default_tax_rates")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "due_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "effective_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ending_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "footer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "from_invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "hosted_invoice_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_pdf")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "issuer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_finalization_error")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_revision")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "lines")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "next_payment_attempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "parent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_start")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "post_payment_credit_notes_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "pre_payment_credit_notes_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "rendering")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping_cost")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "starting_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status_transitions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subtotal_excluding_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "test_clock")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "threshold_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "total")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_discount_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_excluding_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_pretax_credit_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_taxes")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "webhooks_delivered_at"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoice" (\obj -> ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Invoice GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_tax_ids")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_overpaid")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_paid")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_remaining")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "attempt_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "attempted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "auto_advance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "automatically_finalizes_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "collection_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "confirmation_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "custom_fields")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_tax_exempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_tax_ids")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "default_tax_rates")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "due_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "effective_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ending_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "footer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "from_invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "hosted_invoice_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_pdf")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "issuer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_finalization_error")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_revision")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "lines")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "next_payment_attempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "parent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period_start")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "post_payment_credit_notes_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "pre_payment_credit_notes_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "rendering")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping_cost")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "starting_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status_transitions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subtotal_excluding_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "test_clock")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "threshold_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "total")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_discount_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_excluding_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_pretax_credit_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "total_taxes")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "webhooks_delivered_at"))}
 -- | Create a new 'Invoice' with all required fields.
 mkInvoice :: GHC.Types.Int -- ^ 'invoiceAmount_due'
   -> GHC.Types.Int -- ^ 'invoiceAmount_overpaid'
@@ -378,7 +380,7 @@ mkInvoice :: GHC.Types.Int -- ^ 'invoiceAmount_due'
   -> GHC.Types.Bool -- ^ 'invoiceAttempted'
   -> GHC.Types.Bool -- ^ 'invoiceAuto_advance'
   -> Automatic_tax -- ^ 'invoiceAutomatic_tax'
-  -> InvoiceCollection_method -- ^ 'invoiceCollection_method'
+  -> Data.Text.Internal.Text -- ^ 'invoiceCollection_method'
   -> GHC.Types.Int -- ^ 'invoiceCreated'
   -> Data.Text.Internal.Text -- ^ 'invoiceCurrency'
   -> InvoiceCustomerVariants -- ^ 'invoiceCustomer'
@@ -388,6 +390,7 @@ mkInvoice :: GHC.Types.Int -- ^ 'invoiceAmount_due'
   -> Connect_account_reference -- ^ 'invoiceIssuer'
   -> InvoiceLines -- ^ 'invoiceLines'
   -> GHC.Types.Bool -- ^ 'invoiceLivemode'
+  -> Data.Text.Internal.Text -- ^ 'invoiceObject'
   -> Invoices_payment_settings -- ^ 'invoicePayment_settings'
   -> GHC.Types.Int -- ^ 'invoicePeriod_end'
   -> GHC.Types.Int -- ^ 'invoicePeriod_start'
@@ -398,206 +401,142 @@ mkInvoice :: GHC.Types.Int -- ^ 'invoiceAmount_due'
   -> GHC.Types.Int -- ^ 'invoiceSubtotal'
   -> GHC.Types.Int -- ^ 'invoiceTotal'
   -> Invoice
-mkInvoice invoiceAmount_due invoiceAmount_overpaid invoiceAmount_paid invoiceAmount_remaining invoiceAmount_shipping invoiceAttempt_count invoiceAttempted invoiceAuto_advance invoiceAutomatic_tax invoiceCollection_method invoiceCreated invoiceCurrency invoiceCustomer invoiceDefault_tax_rates invoiceDiscounts invoiceId invoiceIssuer invoiceLines invoiceLivemode invoicePayment_settings invoicePeriod_end invoicePeriod_start invoicePost_payment_credit_notes_amount invoicePre_payment_credit_notes_amount invoiceStarting_balance invoiceStatus_transitions invoiceSubtotal invoiceTotal = Invoice{invoiceAccount_country = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAccount_name = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAccount_tax_ids = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAmount_due = invoiceAmount_due,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAmount_overpaid = invoiceAmount_overpaid,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAmount_paid = invoiceAmount_paid,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAmount_remaining = invoiceAmount_remaining,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAmount_shipping = invoiceAmount_shipping,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceApplication = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAttempt_count = invoiceAttempt_count,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAttempted = invoiceAttempted,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAuto_advance = invoiceAuto_advance,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAutomatic_tax = invoiceAutomatic_tax,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceAutomatically_finalizes_at = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceBilling_reason = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCollection_method = invoiceCollection_method,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceConfirmation_secret = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCreated = invoiceCreated,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCurrency = invoiceCurrency,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustom_fields = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer = invoiceCustomer,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_account = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_address = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_email = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_name = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_phone = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_shipping = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_tax_exempt = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceCustomer_tax_ids = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceDefault_payment_method = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceDefault_source = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceDefault_tax_rates = invoiceDefault_tax_rates,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceDescription = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceDiscounts = invoiceDiscounts,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceDue_date = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceEffective_at = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceEnding_balance = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceFooter = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceFrom_invoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceHosted_invoice_url = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceId = invoiceId,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceInvoice_pdf = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceIssuer = invoiceIssuer,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceLast_finalization_error = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceLatest_revision = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceLines = invoiceLines,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceLivemode = invoiceLivemode,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceMetadata = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceNext_payment_attempt = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceNumber = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceOn_behalf_of = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceParent = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoicePayment_settings = invoicePayment_settings,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoicePayments = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoicePeriod_end = invoicePeriod_end,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoicePeriod_start = invoicePeriod_start,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoicePost_payment_credit_notes_amount = invoicePost_payment_credit_notes_amount,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoicePre_payment_credit_notes_amount = invoicePre_payment_credit_notes_amount,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceReceipt_number = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceRendering = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceShipping_cost = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceShipping_details = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceStarting_balance = invoiceStarting_balance,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceStatement_descriptor = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceStatus = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceStatus_transitions = invoiceStatus_transitions,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceSubtotal = invoiceSubtotal,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceSubtotal_excluding_tax = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceTest_clock = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceThreshold_reason = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceTotal = invoiceTotal,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceTotal_discount_amounts = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceTotal_excluding_tax = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceTotal_pretax_credit_amounts = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceTotal_taxes = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 invoiceWebhooks_delivered_at = GHC.Maybe.Nothing}
+mkInvoice invoiceAmount_due invoiceAmount_overpaid invoiceAmount_paid invoiceAmount_remaining invoiceAmount_shipping invoiceAttempt_count invoiceAttempted invoiceAuto_advance invoiceAutomatic_tax invoiceCollection_method invoiceCreated invoiceCurrency invoiceCustomer invoiceDefault_tax_rates invoiceDiscounts invoiceId invoiceIssuer invoiceLines invoiceLivemode invoiceObject invoicePayment_settings invoicePeriod_end invoicePeriod_start invoicePost_payment_credit_notes_amount invoicePre_payment_credit_notes_amount invoiceStarting_balance invoiceStatus_transitions invoiceSubtotal invoiceTotal = Invoice{invoiceAccount_country = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAccount_name = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAccount_tax_ids = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAmount_due = invoiceAmount_due,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAmount_overpaid = invoiceAmount_overpaid,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAmount_paid = invoiceAmount_paid,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAmount_remaining = invoiceAmount_remaining,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAmount_shipping = invoiceAmount_shipping,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceApplication = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAttempt_count = invoiceAttempt_count,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAttempted = invoiceAttempted,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAuto_advance = invoiceAuto_advance,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAutomatic_tax = invoiceAutomatic_tax,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceAutomatically_finalizes_at = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceBilling_reason = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCollection_method = invoiceCollection_method,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceConfirmation_secret = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCreated = invoiceCreated,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCurrency = invoiceCurrency,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustom_fields = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer = invoiceCustomer,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_account = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_address = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_email = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_name = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_phone = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_shipping = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_tax_exempt = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceCustomer_tax_ids = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceDefault_payment_method = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceDefault_source = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceDefault_tax_rates = invoiceDefault_tax_rates,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceDiscounts = invoiceDiscounts,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceDue_date = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceEffective_at = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceEnding_balance = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceFooter = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceFrom_invoice = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceHosted_invoice_url = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceId = invoiceId,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceInvoice_pdf = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceIssuer = invoiceIssuer,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceLast_finalization_error = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceLatest_revision = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceLines = invoiceLines,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceLivemode = invoiceLivemode,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceMetadata = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceNext_payment_attempt = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceNumber = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceObject = invoiceObject,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceOn_behalf_of = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceParent = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoicePayment_settings = invoicePayment_settings,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoicePayments = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoicePeriod_end = invoicePeriod_end,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoicePeriod_start = invoicePeriod_start,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoicePost_payment_credit_notes_amount = invoicePost_payment_credit_notes_amount,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoicePre_payment_credit_notes_amount = invoicePre_payment_credit_notes_amount,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceReceipt_number = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceRendering = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceShipping_cost = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceShipping_details = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceStarting_balance = invoiceStarting_balance,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceStatement_descriptor = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceStatus = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceStatus_transitions = invoiceStatus_transitions,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceSubtotal = invoiceSubtotal,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceSubtotal_excluding_tax = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceTest_clock = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceThreshold_reason = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceTotal = invoiceTotal,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceTotal_discount_amounts = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceTotal_excluding_tax = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceTotal_pretax_credit_amounts = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceTotal_taxes = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               invoiceWebhooks_delivered_at = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.account_tax_ids.items.anyOf@ in the specification.
 -- 
 -- 
-data InvoiceAccount_tax_idsNonNullableVariants =
-   InvoiceAccount_tax_idsNonNullableText Data.Text.Internal.Text
-  | InvoiceAccount_tax_idsNonNullableTax_id Tax_id
-  | InvoiceAccount_tax_idsNonNullableDeleted_tax_id Deleted_tax_id
+data InvoiceAccount_tax_idsVariants =
+   InvoiceAccount_tax_idsText Data.Text.Internal.Text
+  | InvoiceAccount_tax_idsTax_id Tax_id
+  | InvoiceAccount_tax_idsDeleted_tax_id Deleted_tax_id
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceAccount_tax_idsNonNullableVariants
-    where {toJSON (InvoiceAccount_tax_idsNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceAccount_tax_idsNonNullableTax_id a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceAccount_tax_idsNonNullableDeleted_tax_id a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceAccount_tax_idsNonNullableVariants
-    where {parseJSON val = case (InvoiceAccount_tax_idsNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceAccount_tax_idsNonNullableTax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceAccount_tax_idsNonNullableDeleted_tax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceAccount_tax_idsVariants
+    where {toJSON (InvoiceAccount_tax_idsText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceAccount_tax_idsTax_id a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceAccount_tax_idsDeleted_tax_id a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceAccount_tax_idsVariants
+    where {parseJSON val = case (InvoiceAccount_tax_idsText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceAccount_tax_idsTax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceAccount_tax_idsDeleted_tax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.application.anyOf@ in the specification.
 -- 
 -- ID of the Connect Application that created the invoice.
-data InvoiceApplicationNonNullableVariants =
-   InvoiceApplicationNonNullableText Data.Text.Internal.Text
-  | InvoiceApplicationNonNullableApplication Application
-  | InvoiceApplicationNonNullableDeleted_application Deleted_application
+data InvoiceApplicationVariants =
+   InvoiceApplicationText Data.Text.Internal.Text
+  | InvoiceApplicationApplication Application
+  | InvoiceApplicationDeleted_application Deleted_application
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceApplicationNonNullableVariants
-    where {toJSON (InvoiceApplicationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceApplicationNonNullableApplication a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceApplicationNonNullableDeleted_application a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceApplicationNonNullableVariants
-    where {parseJSON val = case (InvoiceApplicationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceApplicationNonNullableApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceApplicationNonNullableDeleted_application Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceApplicationVariants
+    where {toJSON (InvoiceApplicationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceApplicationApplication a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceApplicationDeleted_application a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceApplicationVariants
+    where {parseJSON val = case (InvoiceApplicationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceApplicationApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceApplicationDeleted_application Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.invoice.properties.billing_reason@ in the specification.
--- 
--- Indicates the reason why the invoice was created.
--- 
--- * \`manual\`: Unrelated to a subscription, for example, created via the invoice editor.
--- * \`subscription\`: No longer in use. Applies to subscriptions from before May 2018 where no distinction was made between updates, cycles, and thresholds.
--- * \`subscription_create\`: A new subscription was created.
--- * \`subscription_cycle\`: A subscription advanced into a new period.
--- * \`subscription_threshold\`: A subscription reached a billing threshold.
--- * \`subscription_update\`: A subscription was updated.
--- * \`upcoming\`: Reserved for upcoming invoices created through the Create Preview Invoice API or when an \`invoice.upcoming\` event is generated for an upcoming invoice on a subscription.
-data InvoiceBilling_reasonNonNullable =
-   InvoiceBilling_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceBilling_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceBilling_reasonNonNullableEnumAutomatic_pending_invoice_item_invoice -- ^ Represents the JSON value @"automatic_pending_invoice_item_invoice"@
-  | InvoiceBilling_reasonNonNullableEnumManual -- ^ Represents the JSON value @"manual"@
-  | InvoiceBilling_reasonNonNullableEnumQuote_accept -- ^ Represents the JSON value @"quote_accept"@
-  | InvoiceBilling_reasonNonNullableEnumSubscription -- ^ Represents the JSON value @"subscription"@
-  | InvoiceBilling_reasonNonNullableEnumSubscription_create -- ^ Represents the JSON value @"subscription_create"@
-  | InvoiceBilling_reasonNonNullableEnumSubscription_cycle -- ^ Represents the JSON value @"subscription_cycle"@
-  | InvoiceBilling_reasonNonNullableEnumSubscription_threshold -- ^ Represents the JSON value @"subscription_threshold"@
-  | InvoiceBilling_reasonNonNullableEnumSubscription_update -- ^ Represents the JSON value @"subscription_update"@
-  | InvoiceBilling_reasonNonNullableEnumUpcoming -- ^ Represents the JSON value @"upcoming"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceBilling_reasonNonNullable
-    where {toJSON (InvoiceBilling_reasonNonNullableOther val) = val;
-           toJSON (InvoiceBilling_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceBilling_reasonNonNullableEnumAutomatic_pending_invoice_item_invoice) = "automatic_pending_invoice_item_invoice";
-           toJSON (InvoiceBilling_reasonNonNullableEnumManual) = "manual";
-           toJSON (InvoiceBilling_reasonNonNullableEnumQuote_accept) = "quote_accept";
-           toJSON (InvoiceBilling_reasonNonNullableEnumSubscription) = "subscription";
-           toJSON (InvoiceBilling_reasonNonNullableEnumSubscription_create) = "subscription_create";
-           toJSON (InvoiceBilling_reasonNonNullableEnumSubscription_cycle) = "subscription_cycle";
-           toJSON (InvoiceBilling_reasonNonNullableEnumSubscription_threshold) = "subscription_threshold";
-           toJSON (InvoiceBilling_reasonNonNullableEnumSubscription_update) = "subscription_update";
-           toJSON (InvoiceBilling_reasonNonNullableEnumUpcoming) = "upcoming"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceBilling_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic_pending_invoice_item_invoice" -> InvoiceBilling_reasonNonNullableEnumAutomatic_pending_invoice_item_invoice
-                                             | val GHC.Classes.== "manual" -> InvoiceBilling_reasonNonNullableEnumManual
-                                             | val GHC.Classes.== "quote_accept" -> InvoiceBilling_reasonNonNullableEnumQuote_accept
-                                             | val GHC.Classes.== "subscription" -> InvoiceBilling_reasonNonNullableEnumSubscription
-                                             | val GHC.Classes.== "subscription_create" -> InvoiceBilling_reasonNonNullableEnumSubscription_create
-                                             | val GHC.Classes.== "subscription_cycle" -> InvoiceBilling_reasonNonNullableEnumSubscription_cycle
-                                             | val GHC.Classes.== "subscription_threshold" -> InvoiceBilling_reasonNonNullableEnumSubscription_threshold
-                                             | val GHC.Classes.== "subscription_update" -> InvoiceBilling_reasonNonNullableEnumSubscription_update
-                                             | val GHC.Classes.== "upcoming" -> InvoiceBilling_reasonNonNullableEnumUpcoming
-                                             | GHC.Base.otherwise -> InvoiceBilling_reasonNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.invoice.properties.collection_method@ in the specification.
--- 
--- Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay this invoice using the default source attached to the customer. When sending an invoice, Stripe will email this invoice to the customer with payment instructions.
-data InvoiceCollection_method =
-   InvoiceCollection_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceCollection_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceCollection_methodEnumCharge_automatically -- ^ Represents the JSON value @"charge_automatically"@
-  | InvoiceCollection_methodEnumSend_invoice -- ^ Represents the JSON value @"send_invoice"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceCollection_method
-    where {toJSON (InvoiceCollection_methodOther val) = val;
-           toJSON (InvoiceCollection_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceCollection_methodEnumCharge_automatically) = "charge_automatically";
-           toJSON (InvoiceCollection_methodEnumSend_invoice) = "send_invoice"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceCollection_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "charge_automatically" -> InvoiceCollection_methodEnumCharge_automatically
-                                             | val GHC.Classes.== "send_invoice" -> InvoiceCollection_methodEnumSend_invoice
-                                             | GHC.Base.otherwise -> InvoiceCollection_methodOther val)}
 -- | Defines the object schema located at @components.schemas.invoice.properties.confirmation_secret.anyOf@ in the specification.
 -- 
 -- The confirmation secret associated with this invoice. Currently, this contains the client_secret of the PaymentIntent that Stripe creates during invoice finalization.
-data InvoiceConfirmation_secretNonNullable = InvoiceConfirmation_secretNonNullable {
+data InvoiceConfirmation_secret = InvoiceConfirmation_secret {
   -- | client_secret: The client_secret of the payment that Stripe creates for the invoice after finalization.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceConfirmation_secretNonNullableClient_secret :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  invoiceConfirmation_secretClient_secret :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The type of client_secret. Currently this is always payment_intent, referencing the default payment_intent that Stripe creates during invoice finalization
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceConfirmation_secretNonNullableType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceConfirmation_secretType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceConfirmation_secretNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretNonNullableClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretNonNullableClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceConfirmation_secretNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceConfirmation_secretNonNullable" (\obj -> (GHC.Base.pure InvoiceConfirmation_secretNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'InvoiceConfirmation_secretNonNullable' with all required fields.
-mkInvoiceConfirmation_secretNonNullable :: InvoiceConfirmation_secretNonNullable
-mkInvoiceConfirmation_secretNonNullable = InvoiceConfirmation_secretNonNullable{invoiceConfirmation_secretNonNullableClient_secret = GHC.Maybe.Nothing,
-                                                                                invoiceConfirmation_secretNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceConfirmation_secret
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceConfirmation_secretType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceConfirmation_secret
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceConfirmation_secret" (\obj -> (GHC.Base.pure InvoiceConfirmation_secret GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'InvoiceConfirmation_secret' with all required fields.
+mkInvoiceConfirmation_secret :: InvoiceConfirmation_secret
+mkInvoiceConfirmation_secret = InvoiceConfirmation_secret{invoiceConfirmation_secretClient_secret = GHC.Maybe.Nothing,
+                                                          invoiceConfirmation_secretType = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.customer.anyOf@ in the specification.
 -- 
 -- The ID of the customer to bill.
@@ -617,153 +556,132 @@ instance Data.Aeson.Types.FromJSON.FromJSON InvoiceCustomerVariants
 -- | Defines the object schema located at @components.schemas.invoice.properties.customer_address.anyOf@ in the specification.
 -- 
 -- The customer\\\'s address. Until the invoice is finalized, this field will equal \\\`customer.address\\\`. Once the invoice is finalized, this field will no longer be updated.
-data InvoiceCustomer_addressNonNullable = InvoiceCustomer_addressNonNullable {
+data InvoiceCustomer_address = InvoiceCustomer_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceCustomer_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoiceCustomer_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceCustomer_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceCustomer_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceCustomer_addressNonNullable" (\obj -> (((((GHC.Base.pure InvoiceCustomer_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'InvoiceCustomer_addressNonNullable' with all required fields.
-mkInvoiceCustomer_addressNonNullable :: InvoiceCustomer_addressNonNullable
-mkInvoiceCustomer_addressNonNullable = InvoiceCustomer_addressNonNullable{invoiceCustomer_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                          invoiceCustomer_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                          invoiceCustomer_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                          invoiceCustomer_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                          invoiceCustomer_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                          invoiceCustomer_addressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceCustomer_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceCustomer_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceCustomer_address" (\obj -> (((((GHC.Base.pure InvoiceCustomer_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'InvoiceCustomer_address' with all required fields.
+mkInvoiceCustomer_address :: InvoiceCustomer_address
+mkInvoiceCustomer_address = InvoiceCustomer_address{invoiceCustomer_addressCity = GHC.Maybe.Nothing,
+                                                    invoiceCustomer_addressCountry = GHC.Maybe.Nothing,
+                                                    invoiceCustomer_addressLine1 = GHC.Maybe.Nothing,
+                                                    invoiceCustomer_addressLine2 = GHC.Maybe.Nothing,
+                                                    invoiceCustomer_addressPostal_code = GHC.Maybe.Nothing,
+                                                    invoiceCustomer_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.customer_shipping.anyOf@ in the specification.
 -- 
 -- The customer\\\'s shipping information. Until the invoice is finalized, this field will equal \\\`customer.shipping\\\`. Once the invoice is finalized, this field will no longer be updated.
-data InvoiceCustomer_shippingNonNullable = InvoiceCustomer_shippingNonNullable {
+data InvoiceCustomer_shipping = InvoiceCustomer_shipping {
   -- | address: 
-  invoiceCustomer_shippingNonNullableAddress :: (GHC.Maybe.Maybe Address)
+  invoiceCustomer_shippingAddress :: (GHC.Maybe.Maybe Address)
   -- | carrier: The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_shippingNonNullableCarrier :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_shippingCarrier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Recipient name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_shippingNonNullableName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceCustomer_shippingName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: Recipient phone (including extension).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_shippingNonNullablePhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_shippingPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tracking_number: The tracking number for a physical product, obtained from the delivery service. If multiple tracking numbers were generated for this purchase, please separate them with commas.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceCustomer_shippingNonNullableTracking_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceCustomer_shippingTracking_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceCustomer_shippingNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableTracking_number obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingNonNullableTracking_number obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceCustomer_shippingNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceCustomer_shippingNonNullable" (\obj -> ((((GHC.Base.pure InvoiceCustomer_shippingNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number"))}
--- | Create a new 'InvoiceCustomer_shippingNonNullable' with all required fields.
-mkInvoiceCustomer_shippingNonNullable :: InvoiceCustomer_shippingNonNullable
-mkInvoiceCustomer_shippingNonNullable = InvoiceCustomer_shippingNonNullable{invoiceCustomer_shippingNonNullableAddress = GHC.Maybe.Nothing,
-                                                                            invoiceCustomer_shippingNonNullableCarrier = GHC.Maybe.Nothing,
-                                                                            invoiceCustomer_shippingNonNullableName = GHC.Maybe.Nothing,
-                                                                            invoiceCustomer_shippingNonNullablePhone = GHC.Maybe.Nothing,
-                                                                            invoiceCustomer_shippingNonNullableTracking_number = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice.properties.customer_tax_exempt@ in the specification.
--- 
--- The customer\'s tax exempt status. Until the invoice is finalized, this field will equal \`customer.tax_exempt\`. Once the invoice is finalized, this field will no longer be updated.
-data InvoiceCustomer_tax_exemptNonNullable =
-   InvoiceCustomer_tax_exemptNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceCustomer_tax_exemptNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceCustomer_tax_exemptNonNullableEnumExempt -- ^ Represents the JSON value @"exempt"@
-  | InvoiceCustomer_tax_exemptNonNullableEnumNone -- ^ Represents the JSON value @"none"@
-  | InvoiceCustomer_tax_exemptNonNullableEnumReverse -- ^ Represents the JSON value @"reverse"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceCustomer_tax_exemptNonNullable
-    where {toJSON (InvoiceCustomer_tax_exemptNonNullableOther val) = val;
-           toJSON (InvoiceCustomer_tax_exemptNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceCustomer_tax_exemptNonNullableEnumExempt) = "exempt";
-           toJSON (InvoiceCustomer_tax_exemptNonNullableEnumNone) = "none";
-           toJSON (InvoiceCustomer_tax_exemptNonNullableEnumReverse) = "reverse"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceCustomer_tax_exemptNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "exempt" -> InvoiceCustomer_tax_exemptNonNullableEnumExempt
-                                             | val GHC.Classes.== "none" -> InvoiceCustomer_tax_exemptNonNullableEnumNone
-                                             | val GHC.Classes.== "reverse" -> InvoiceCustomer_tax_exemptNonNullableEnumReverse
-                                             | GHC.Base.otherwise -> InvoiceCustomer_tax_exemptNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceCustomer_shipping
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingTracking_number obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceCustomer_shippingTracking_number obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceCustomer_shipping
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceCustomer_shipping" (\obj -> ((((GHC.Base.pure InvoiceCustomer_shipping GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number"))}
+-- | Create a new 'InvoiceCustomer_shipping' with all required fields.
+mkInvoiceCustomer_shipping :: InvoiceCustomer_shipping
+mkInvoiceCustomer_shipping = InvoiceCustomer_shipping{invoiceCustomer_shippingAddress = GHC.Maybe.Nothing,
+                                                      invoiceCustomer_shippingCarrier = GHC.Maybe.Nothing,
+                                                      invoiceCustomer_shippingName = GHC.Maybe.Nothing,
+                                                      invoiceCustomer_shippingPhone = GHC.Maybe.Nothing,
+                                                      invoiceCustomer_shippingTracking_number = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.default_payment_method.anyOf@ in the specification.
 -- 
 -- ID of the default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription\'s default payment method, if any, or to the default payment method in the customer\'s invoice settings.
-data InvoiceDefault_payment_methodNonNullableVariants =
-   InvoiceDefault_payment_methodNonNullableText Data.Text.Internal.Text
-  | InvoiceDefault_payment_methodNonNullablePayment_method Payment_method
+data InvoiceDefault_payment_methodVariants =
+   InvoiceDefault_payment_methodText Data.Text.Internal.Text
+  | InvoiceDefault_payment_methodPayment_method Payment_method
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceDefault_payment_methodNonNullableVariants
-    where {toJSON (InvoiceDefault_payment_methodNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceDefault_payment_methodNonNullablePayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceDefault_payment_methodNonNullableVariants
-    where {parseJSON val = case (InvoiceDefault_payment_methodNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_payment_methodNonNullablePayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceDefault_payment_methodVariants
+    where {toJSON (InvoiceDefault_payment_methodText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceDefault_payment_methodPayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceDefault_payment_methodVariants
+    where {parseJSON val = case (InvoiceDefault_payment_methodText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_payment_methodPayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.default_source.anyOf@ in the specification.
 -- 
 -- ID of the default payment source for the invoice. It must belong to the customer associated with the invoice and be in a chargeable state. If not set, defaults to the subscription\'s default source, if any, or to the customer\'s default source.
-data InvoiceDefault_sourceNonNullableVariants =
-   InvoiceDefault_sourceNonNullableText Data.Text.Internal.Text
-  | InvoiceDefault_sourceNonNullableBank_account Bank_account
-  | InvoiceDefault_sourceNonNullableCard Card
-  | InvoiceDefault_sourceNonNullableSource Source
+data InvoiceDefault_sourceVariants =
+   InvoiceDefault_sourceText Data.Text.Internal.Text
+  | InvoiceDefault_sourceBank_account Bank_account
+  | InvoiceDefault_sourceCard Card
+  | InvoiceDefault_sourceSource Source
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceDefault_sourceNonNullableVariants
-    where {toJSON (InvoiceDefault_sourceNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceDefault_sourceNonNullableBank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceDefault_sourceNonNullableCard a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceDefault_sourceNonNullableSource a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceDefault_sourceNonNullableVariants
-    where {parseJSON val = case (InvoiceDefault_sourceNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_sourceNonNullableBank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_sourceNonNullableCard Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_sourceNonNullableSource Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched"))) of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceDefault_sourceVariants
+    where {toJSON (InvoiceDefault_sourceText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceDefault_sourceBank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceDefault_sourceCard a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceDefault_sourceSource a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceDefault_sourceVariants
+    where {parseJSON val = case (InvoiceDefault_sourceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_sourceBank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_sourceCard Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceDefault_sourceSource Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched"))) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.discounts.items.anyOf@ in the specification.
@@ -785,98 +703,98 @@ instance Data.Aeson.Types.FromJSON.FromJSON InvoiceDiscountsVariants
 -- | Defines the object schema located at @components.schemas.invoice.properties.from_invoice.anyOf@ in the specification.
 -- 
 -- Details of the invoice that was cloned. See the [revision documentation](https:\\\/\\\/docs.stripe.com\\\/invoicing\\\/invoice-revisions) for more details.
-data InvoiceFrom_invoiceNonNullable = InvoiceFrom_invoiceNonNullable {
+data InvoiceFrom_invoice = InvoiceFrom_invoice {
   -- | action: The relation between this invoice and the cloned invoice
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceFrom_invoiceNonNullableAction :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  invoiceFrom_invoiceAction :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | invoice: The invoice that was cloned.
-  , invoiceFrom_invoiceNonNullableInvoice :: (GHC.Maybe.Maybe InvoiceFrom_invoiceNonNullableInvoiceVariants)
+  , invoiceFrom_invoiceInvoice :: (GHC.Maybe.Maybe InvoiceFrom_invoiceInvoiceVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceFrom_invoiceNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("action" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceNonNullableAction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceNonNullableInvoice obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("action" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceNonNullableAction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceNonNullableInvoice obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceFrom_invoiceNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceFrom_invoiceNonNullable" (\obj -> (GHC.Base.pure InvoiceFrom_invoiceNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "action")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice"))}
--- | Create a new 'InvoiceFrom_invoiceNonNullable' with all required fields.
-mkInvoiceFrom_invoiceNonNullable :: InvoiceFrom_invoiceNonNullable
-mkInvoiceFrom_invoiceNonNullable = InvoiceFrom_invoiceNonNullable{invoiceFrom_invoiceNonNullableAction = GHC.Maybe.Nothing,
-                                                                  invoiceFrom_invoiceNonNullableInvoice = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceFrom_invoice
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("action" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceAction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceInvoice obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("action" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceAction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (invoiceFrom_invoiceInvoice obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceFrom_invoice
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceFrom_invoice" (\obj -> (GHC.Base.pure InvoiceFrom_invoice GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "action")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice"))}
+-- | Create a new 'InvoiceFrom_invoice' with all required fields.
+mkInvoiceFrom_invoice :: InvoiceFrom_invoice
+mkInvoiceFrom_invoice = InvoiceFrom_invoice{invoiceFrom_invoiceAction = GHC.Maybe.Nothing,
+                                            invoiceFrom_invoiceInvoice = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.from_invoice.anyOf.properties.invoice.anyOf@ in the specification.
 -- 
 -- The invoice that was cloned.
-data InvoiceFrom_invoiceNonNullableInvoiceVariants =
-   InvoiceFrom_invoiceNonNullableInvoiceText Data.Text.Internal.Text
-  | InvoiceFrom_invoiceNonNullableInvoiceInvoice Invoice
+data InvoiceFrom_invoiceInvoiceVariants =
+   InvoiceFrom_invoiceInvoiceText Data.Text.Internal.Text
+  | InvoiceFrom_invoiceInvoiceInvoice Invoice
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceFrom_invoiceNonNullableInvoiceVariants
-    where {toJSON (InvoiceFrom_invoiceNonNullableInvoiceText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceFrom_invoiceNonNullableInvoiceInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceFrom_invoiceNonNullableInvoiceVariants
-    where {parseJSON val = case (InvoiceFrom_invoiceNonNullableInvoiceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceFrom_invoiceNonNullableInvoiceInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceFrom_invoiceInvoiceVariants
+    where {toJSON (InvoiceFrom_invoiceInvoiceText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceFrom_invoiceInvoiceInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceFrom_invoiceInvoiceVariants
+    where {parseJSON val = case (InvoiceFrom_invoiceInvoiceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceFrom_invoiceInvoiceInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf@ in the specification.
 -- 
 -- The error encountered during the previous attempt to finalize the invoice. This field is cleared when the invoice is successfully finalized.
-data InvoiceLast_finalization_errorNonNullable = InvoiceLast_finalization_errorNonNullable {
+data InvoiceLast_finalization_error = InvoiceLast_finalization_error {
   -- | advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https:\/\/docs.stripe.com\/declines\#retrying-issuer-declines) if they provide one.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceLast_finalization_errorNonNullableAdvice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  invoiceLast_finalization_errorAdvice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | charge: For card errors, the ID of the failed charge.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableCharge :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorCharge :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | code: For some errors that could be handled programmatically, a short string indicating the [error code](https:\/\/docs.stripe.com\/error-codes) reported.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableCode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorCode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | decline_code: For card errors resulting from a card issuer decline, a short string indicating the [card issuer\'s reason for the decline](https:\/\/docs.stripe.com\/declines\#issuer-declines) if they provide one.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableDecline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorDecline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | doc_url: A URL to more information about the [error code](https:\/\/docs.stripe.com\/error-codes) reported.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableDoc_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorDoc_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | message: A human-readable message providing more details about the error. For card errors, these messages can be shown to your users.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 40000
-  , invoiceLast_finalization_errorNonNullableMessage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorMessage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_advice_code: For card errors resulting from a card issuer decline, a 2 digit code which indicates the advice given to merchant by the card network on how to proceed with an error.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableNetwork_advice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorNetwork_advice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_decline_code: For payments declined by the network, an alphanumeric code which indicates the reason the payment failed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | param: If the error is parameter-specific, the parameter related to the error. For example, you can use this to display a message near the correct form field.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableParam :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorParam :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_intent: A PaymentIntent guides you through the process of collecting a payment from your customer.
   -- We recommend that you create exactly one PaymentIntent for each order or
   -- customer session in your system. You can reference the PaymentIntent later to
@@ -888,25 +806,25 @@ data InvoiceLast_finalization_errorNonNullable = InvoiceLast_finalization_errorN
   -- authentication flows and ultimately creates at most one successful charge.
   -- 
   -- Related guide: [Payment Intents API](https:\/\/docs.stripe.com\/payments\/payment-intents)
-  , invoiceLast_finalization_errorNonNullablePayment_intent :: (GHC.Maybe.Maybe Payment_intent)
+  , invoiceLast_finalization_errorPayment_intent :: (GHC.Maybe.Maybe Payment_intent)
   -- | payment_method: PaymentMethod objects represent your customer\'s payment instruments.
   -- You can use them with [PaymentIntents](https:\/\/docs.stripe.com\/payments\/payment-intents) to collect payments or save them to
   -- Customer objects to store instrument details for future payments.
   -- 
   -- Related guides: [Payment Methods](https:\/\/docs.stripe.com\/payments\/payment-methods) and [More Payment Scenarios](https:\/\/docs.stripe.com\/payments\/more-payment-scenarios).
-  , invoiceLast_finalization_errorNonNullablePayment_method :: (GHC.Maybe.Maybe Payment_method)
+  , invoiceLast_finalization_errorPayment_method :: (GHC.Maybe.Maybe Payment_method)
   -- | payment_method_type: If the error is specific to the type of payment method, the payment method type that had a problem. This field is only populated for invoice-related errors.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullablePayment_method_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorPayment_method_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_log_url: A URL to the request log entry in your dashboard.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableRequest_log_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorRequest_log_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | setup_intent: A SetupIntent guides you through the process of setting up and saving a customer\'s payment credentials for future payments.
   -- For example, you can use a SetupIntent to set up and save your customer\'s card without immediately collecting a payment.
   -- Later, you can use [PaymentIntents](https:\/\/api.stripe.com\#payment_intents) to drive the payment flow.
@@ -928,272 +846,272 @@ data InvoiceLast_finalization_errorNonNullable = InvoiceLast_finalization_errorN
   -- By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
   -- 
   -- Related guide: [Setup Intents API](https:\/\/docs.stripe.com\/payments\/setup-intents)
-  , invoiceLast_finalization_errorNonNullableSetup_intent :: (GHC.Maybe.Maybe Setup_intent)
+  , invoiceLast_finalization_errorSetup_intent :: (GHC.Maybe.Maybe Setup_intent)
   -- | source: The [source object](https:\/\/docs.stripe.com\/api\/sources\/object) for errors returned on a request involving a source.
-  , invoiceLast_finalization_errorNonNullableSource :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorNonNullableSource)
+  , invoiceLast_finalization_errorSource :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSource)
   -- | type: The type of error returned. One of \`api_error\`, \`card_error\`, \`idempotency_error\`, or \`invalid_request_error\`
-  , invoiceLast_finalization_errorNonNullableType :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorNonNullableType)
+  , invoiceLast_finalization_errorType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullablePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullablePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullablePayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullablePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullablePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullablePayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorNonNullable" (\obj -> (((((((((((((((GHC.Base.pure InvoiceLast_finalization_errorNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "doc_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "param")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_log_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'InvoiceLast_finalization_errorNonNullable' with all required fields.
-mkInvoiceLast_finalization_errorNonNullable :: InvoiceLast_finalization_errorNonNullable
-mkInvoiceLast_finalization_errorNonNullable = InvoiceLast_finalization_errorNonNullable{invoiceLast_finalization_errorNonNullableAdvice_code = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableCharge = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableCode = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableDecline_code = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableDoc_url = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableMessage = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableNetwork_advice_code = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableNetwork_decline_code = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableParam = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullablePayment_intent = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullablePayment_method = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullablePayment_method_type = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableRequest_log_url = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableSetup_intent = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableSource = GHC.Maybe.Nothing,
-                                                                                        invoiceLast_finalization_errorNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_error
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorPayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorPayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorPayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorPayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_error
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_error" (\obj -> (((((((((((((((GHC.Base.pure InvoiceLast_finalization_error GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "doc_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "param")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_log_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'InvoiceLast_finalization_error' with all required fields.
+mkInvoiceLast_finalization_error :: InvoiceLast_finalization_error
+mkInvoiceLast_finalization_error = InvoiceLast_finalization_error{invoiceLast_finalization_errorAdvice_code = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorCharge = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorCode = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorDecline_code = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorDoc_url = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorMessage = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorNetwork_advice_code = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorNetwork_decline_code = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorParam = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorPayment_intent = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorPayment_method = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorPayment_method_type = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorRequest_log_url = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorSetup_intent = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorSource = GHC.Maybe.Nothing,
+                                                                  invoiceLast_finalization_errorType = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf@ in the specification.
 -- 
 -- The [source object](https:\\\/\\\/docs.stripe.com\\\/api\\\/sources\\\/object) for errors returned on a request involving a source.
-data InvoiceLast_finalization_errorNonNullableSource = InvoiceLast_finalization_errorNonNullableSource {
+data InvoiceLast_finalization_errorSource = InvoiceLast_finalization_errorSource {
   -- | account: The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-  invoiceLast_finalization_errorNonNullableSourceAccount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableVariants))
+  invoiceLast_finalization_errorSourceAccount :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSourceAccountVariants)
   -- | account_holder_name: The name of the person or business that owns the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAccount_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAccount_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_holder_type: The type of entity that holds the account. This can be either \`individual\` or \`company\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAccount_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAccount_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_type: The bank account type. This can only be \`checking\` or \`savings\` in most countries. In Japan, this can only be \`futsu\` or \`toza\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAccount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAccount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | ach_credit_transfer
-  , invoiceLast_finalization_errorNonNullableSourceAch_credit_transfer :: (GHC.Maybe.Maybe Source_type_ach_credit_transfer)
+  , invoiceLast_finalization_errorSourceAch_credit_transfer :: (GHC.Maybe.Maybe Source_type_ach_credit_transfer)
   -- | ach_debit
-  , invoiceLast_finalization_errorNonNullableSourceAch_debit :: (GHC.Maybe.Maybe Source_type_ach_debit)
+  , invoiceLast_finalization_errorSourceAch_debit :: (GHC.Maybe.Maybe Source_type_ach_debit)
   -- | acss_debit
-  , invoiceLast_finalization_errorNonNullableSourceAcss_debit :: (GHC.Maybe.Maybe Source_type_acss_debit)
+  , invoiceLast_finalization_errorSourceAcss_debit :: (GHC.Maybe.Maybe Source_type_acss_debit)
   -- | address_city: City\/District\/Suburb\/Town\/Village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_city :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_city :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_country: Billing address country, if provided when creating card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_country :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_country :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1: Address line 1 (Street address\/PO Box\/Company name).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_line1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1_check: If \`address_line1\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line2: Address line 2 (Apartment\/Suite\/Unit\/Building).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_line2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_line2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_state: State\/County\/Province\/Region.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_state :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_state :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_zip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_zip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip_check: If \`address_zip\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceAddress_zip_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceAddress_zip_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | alipay
-  , invoiceLast_finalization_errorNonNullableSourceAlipay :: (GHC.Maybe.Maybe Source_type_alipay)
+  , invoiceLast_finalization_errorSourceAlipay :: (GHC.Maybe.Maybe Source_type_alipay)
   -- | allow_redisplay: This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-  , invoiceLast_finalization_errorNonNullableSourceAllow_redisplay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullable))
+  , invoiceLast_finalization_errorSourceAllow_redisplay :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | amount: A positive integer in the smallest currency unit (that is, 100 cents for \$1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the total amount associated with the source. This is the amount for which the source will be chargeable once ready. Required for \`single_use\` sources.
-  , invoiceLast_finalization_errorNonNullableSourceAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceLast_finalization_errorSourceAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | au_becs_debit
-  , invoiceLast_finalization_errorNonNullableSourceAu_becs_debit :: (GHC.Maybe.Maybe Source_type_au_becs_debit)
+  , invoiceLast_finalization_errorSourceAu_becs_debit :: (GHC.Maybe.Maybe Source_type_au_becs_debit)
   -- | available_payout_methods: A set of available payout methods for this bank account. Only values from this set should be passed as the \`method\` when creating a payout.
-  , invoiceLast_finalization_errorNonNullableSourceAvailable_payout_methods :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullable]))
+  , invoiceLast_finalization_errorSourceAvailable_payout_methods :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | bancontact
-  , invoiceLast_finalization_errorNonNullableSourceBancontact :: (GHC.Maybe.Maybe Source_type_bancontact)
+  , invoiceLast_finalization_errorSourceBancontact :: (GHC.Maybe.Maybe Source_type_bancontact)
   -- | bank_name: Name of the bank associated with the routing number (e.g., \`WELLS FARGO\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | brand: Card brand. Can be \`American Express\`, \`Cartes Bancaires\`, \`Diners Club\`, \`Discover\`, \`Eftpos Australia\`, \`Girocard\`, \`JCB\`, \`MasterCard\`, \`UnionPay\`, \`Visa\`, or \`Unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | card
-  , invoiceLast_finalization_errorNonNullableSourceCard :: (GHC.Maybe.Maybe Source_type_card)
+  , invoiceLast_finalization_errorSourceCard :: (GHC.Maybe.Maybe Source_type_card)
   -- | card_present
-  , invoiceLast_finalization_errorNonNullableSourceCard_present :: (GHC.Maybe.Maybe Source_type_card_present)
+  , invoiceLast_finalization_errorSourceCard_present :: (GHC.Maybe.Maybe Source_type_card_present)
   -- | client_secret: The client secret of the source. Used for client-side retrieval using a publishable key.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceClient_secret :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceClient_secret :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | code_verification: 
-  , invoiceLast_finalization_errorNonNullableSourceCode_verification :: (GHC.Maybe.Maybe Source_code_verification_flow)
+  , invoiceLast_finalization_errorSourceCode_verification :: (GHC.Maybe.Maybe Source_code_verification_flow)
   -- | country: Two-letter ISO code representing the country the bank account is located in.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
-  , invoiceLast_finalization_errorNonNullableSourceCreated :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , invoiceLast_finalization_errorSourceCreated :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currency: Three-letter [ISO code for the currency](https:\/\/stripe.com\/docs\/payouts) paid out to the bank account.
-  , invoiceLast_finalization_errorNonNullableSourceCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer: The ID of the customer that the bank account is associated with.
-  , invoiceLast_finalization_errorNonNullableSourceCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableVariants))
+  , invoiceLast_finalization_errorSourceCustomer :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSourceCustomerVariants)
   -- | cvc_check: If a CVC was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`. A result of unchecked indicates that CVC was provided but hasn\'t been checked yet. Checks are typically performed when attaching a card to a Customer object, or when creating a charge. For more details, see [Check if a card is valid without a charge](https:\/\/support.stripe.com\/questions\/check-if-a-card-is-valid-without-a-charge).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | default_for_currency: Whether this bank account is the default external account for its currency.
-  , invoiceLast_finalization_errorNonNullableSourceDefault_for_currency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , invoiceLast_finalization_errorSourceDefault_for_currency :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | dynamic_last4: (For tokenized numbers only.) The last four digits of the device account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceDynamic_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceDynamic_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | eps
-  , invoiceLast_finalization_errorNonNullableSourceEps :: (GHC.Maybe.Maybe Source_type_eps)
+  , invoiceLast_finalization_errorSourceEps :: (GHC.Maybe.Maybe Source_type_eps)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
-  , invoiceLast_finalization_errorNonNullableSourceExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , invoiceLast_finalization_errorSourceExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year: Four-digit number representing the card\'s expiration year.
-  , invoiceLast_finalization_errorNonNullableSourceExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , invoiceLast_finalization_errorSourceExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | fingerprint: Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | flow: The authentication \`flow\` of the source. \`flow\` is one of \`redirect\`, \`receiver\`, \`code_verification\`, \`none\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceFlow :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceFlow :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding: Card funding type. Can be \`credit\`, \`debit\`, \`prepaid\`, or \`unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | future_requirements: Information about the [upcoming new requirements for the bank account](https:\/\/docs.stripe.com\/connect\/custom-accounts\/future-requirements), including what information needs to be collected, and by when.
-  , invoiceLast_finalization_errorNonNullableSourceFuture_requirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable))
+  , invoiceLast_finalization_errorSourceFuture_requirements :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSourceFuture_requirements)
   -- | giropay
-  , invoiceLast_finalization_errorNonNullableSourceGiropay :: (GHC.Maybe.Maybe Source_type_giropay)
+  , invoiceLast_finalization_errorSourceGiropay :: (GHC.Maybe.Maybe Source_type_giropay)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceId :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceId :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | ideal
-  , invoiceLast_finalization_errorNonNullableSourceIdeal :: (GHC.Maybe.Maybe Source_type_ideal)
+  , invoiceLast_finalization_errorSourceIdeal :: (GHC.Maybe.Maybe Source_type_ideal)
   -- | iin: Issuer identification number of the card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceIin :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceIin :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | klarna
-  , invoiceLast_finalization_errorNonNullableSourceKlarna :: (GHC.Maybe.Maybe Source_type_klarna)
+  , invoiceLast_finalization_errorSourceKlarna :: (GHC.Maybe.Maybe Source_type_klarna)
   -- | last4: The last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
-  , invoiceLast_finalization_errorNonNullableSourceLivemode :: (GHC.Maybe.Maybe GHC.Types.Bool)
+  , invoiceLast_finalization_errorSourceLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
+  , invoiceLast_finalization_errorSourceLivemode :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , invoiceLast_finalization_errorNonNullableSourceMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , invoiceLast_finalization_errorSourceMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | multibanco
-  , invoiceLast_finalization_errorNonNullableSourceMultibanco :: (GHC.Maybe.Maybe Source_type_multibanco)
+  , invoiceLast_finalization_errorSourceMultibanco :: (GHC.Maybe.Maybe Source_type_multibanco)
   -- | name: Cardholder name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | networks: 
-  , invoiceLast_finalization_errorNonNullableSourceNetworks :: (GHC.Maybe.Maybe Token_card_networks)
+  , invoiceLast_finalization_errorSourceNetworks :: (GHC.Maybe.Maybe Token_card_networks)
   -- | object: String representing the object\'s type. Objects of the same type share the same value.
-  , invoiceLast_finalization_errorNonNullableSourceObject :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorNonNullableSourceObject)
+  , invoiceLast_finalization_errorSourceObject :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | owner: Information about the owner of the payment instrument that may be used or required by particular source types.
-  , invoiceLast_finalization_errorNonNullableSourceOwner :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable))
+  , invoiceLast_finalization_errorSourceOwner :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSourceOwner)
   -- | p24
-  , invoiceLast_finalization_errorNonNullableSourceP24 :: (GHC.Maybe.Maybe Source_type_p24)
+  , invoiceLast_finalization_errorSourceP24 :: (GHC.Maybe.Maybe Source_type_p24)
   -- | receiver: 
-  , invoiceLast_finalization_errorNonNullableSourceReceiver :: (GHC.Maybe.Maybe Source_receiver_flow)
+  , invoiceLast_finalization_errorSourceReceiver :: (GHC.Maybe.Maybe Source_receiver_flow)
   -- | redirect: 
-  , invoiceLast_finalization_errorNonNullableSourceRedirect :: (GHC.Maybe.Maybe Source_redirect_flow)
+  , invoiceLast_finalization_errorSourceRedirect :: (GHC.Maybe.Maybe Source_redirect_flow)
   -- | regulated_status: Status of a card based on the card issuer.
-  , invoiceLast_finalization_errorNonNullableSourceRegulated_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullable))
+  , invoiceLast_finalization_errorSourceRegulated_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | requirements: Information about the requirements for the bank account, including what information needs to be collected.
-  , invoiceLast_finalization_errorNonNullableSourceRequirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable))
+  , invoiceLast_finalization_errorSourceRequirements :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSourceRequirements)
   -- | routing_number: The routing transit number for the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | sepa_debit
-  , invoiceLast_finalization_errorNonNullableSourceSepa_debit :: (GHC.Maybe.Maybe Source_type_sepa_debit)
+  , invoiceLast_finalization_errorSourceSepa_debit :: (GHC.Maybe.Maybe Source_type_sepa_debit)
   -- | sofort
-  , invoiceLast_finalization_errorNonNullableSourceSofort :: (GHC.Maybe.Maybe Source_type_sofort)
+  , invoiceLast_finalization_errorSourceSofort :: (GHC.Maybe.Maybe Source_type_sofort)
   -- | source_order: 
-  , invoiceLast_finalization_errorNonNullableSourceSource_order :: (GHC.Maybe.Maybe Source_order)
+  , invoiceLast_finalization_errorSourceSource_order :: (GHC.Maybe.Maybe Source_order)
   -- | statement_descriptor: Extra information about a source. This will appear on your customer\'s statement every time you charge the source.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: For bank accounts, possible values are \`new\`, \`validated\`, \`verified\`, \`verification_failed\`, \`tokenized_account_number_deactivated\` or \`errored\`. A bank account that hasn\'t had any activity or validation performed is \`new\`. If Stripe can determine that the bank account exists, its status will be \`validated\`. Note that there often isn’t enough information to know (e.g., for smaller credit unions), and the validation is not always run. If customer bank account verification has succeeded, the bank account status will be \`verified\`. If the verification failed for any reason, such as microdeposit failure, the status will be \`verification_failed\`. If the status is \`tokenized_account_number_deactivated\`, the account utilizes a tokenized account number which has been deactivated due to expiration or revocation. This account will need to be reverified to continue using it for money movement. If a payout sent to this bank account fails, we\'ll set the status to \`errored\` and will not continue to send [scheduled payouts](https:\/\/stripe.com\/docs\/payouts\#payout-schedule) until the bank details are updated.
   -- 
   -- For external accounts, possible values are \`new\`, \`errored\`, \`verification_failed\`, and \`tokenized_account_number_deactivated\`. If a payout fails, the status is set to \`errored\` and scheduled payouts are stopped until account details are updated. In the US and India, if we can\'t [verify the owner of the bank account](https:\/\/support.stripe.com\/questions\/bank-account-ownership-verification), we\'ll set the status to \`verification_failed\`. Other validations aren\'t run against external accounts because they\'re only used for payouts. This means the other statuses don\'t apply.
@@ -1201,529 +1119,367 @@ data InvoiceLast_finalization_errorNonNullableSource = InvoiceLast_finalization_
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceLast_finalization_errorSourceStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | three_d_secure
-  , invoiceLast_finalization_errorNonNullableSourceThree_d_secure :: (GHC.Maybe.Maybe Source_type_three_d_secure)
+  , invoiceLast_finalization_errorSourceThree_d_secure :: (GHC.Maybe.Maybe Source_type_three_d_secure)
   -- | tokenization_method: If the card number is tokenized, this is the method that was used. Can be \`android_pay\` (includes Google Pay), \`apple_pay\`, \`masterpass\`, \`visa_checkout\`, or null.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceTokenization_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceTokenization_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The \`type\` of the source. The \`type\` is a payment method, one of \`ach_credit_transfer\`, \`ach_debit\`, \`alipay\`, \`bancontact\`, \`card\`, \`card_present\`, \`eps\`, \`giropay\`, \`ideal\`, \`multibanco\`, \`klarna\`, \`p24\`, \`sepa_debit\`, \`sofort\`, \`three_d_secure\`, or \`wechat\`. An additional hash is included on the source with a name matching this value. It contains additional information specific to the [payment method](https:\/\/docs.stripe.com\/sources) used.
-  , invoiceLast_finalization_errorNonNullableSourceType :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorNonNullableSourceType)
+  , invoiceLast_finalization_errorSourceType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | usage: Either \`reusable\` or \`single_use\`. Whether this source should be reusable or not. Some source types may or may not be reusable by construction, while others may leave the option at creation. If an incompatible value is passed, an error will be returned.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceUsage :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceUsage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | wechat
-  , invoiceLast_finalization_errorNonNullableSourceWechat :: (GHC.Maybe.Maybe Source_type_wechat)
+  , invoiceLast_finalization_errorSourceWechat :: (GHC.Maybe.Maybe Source_type_wechat)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSource
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceWechat obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceWechat obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSource
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorNonNullableSource" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure InvoiceLast_finalization_errorNonNullableSource GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_credit_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redisplay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_payout_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bank_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code_verification")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_for_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dynamic_last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "iin")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "networks")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "owner")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receiver")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "redirect")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "regulated_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "routing_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_order")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "three_d_secure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tokenization_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat"))}
--- | Create a new 'InvoiceLast_finalization_errorNonNullableSource' with all required fields.
-mkInvoiceLast_finalization_errorNonNullableSource :: InvoiceLast_finalization_errorNonNullableSource
-mkInvoiceLast_finalization_errorNonNullableSource = InvoiceLast_finalization_errorNonNullableSource{invoiceLast_finalization_errorNonNullableSourceAccount = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAccount_holder_name = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAccount_holder_type = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAccount_type = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAch_credit_transfer = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAch_debit = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAcss_debit = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_city = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_country = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_line1 = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_line1_check = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_line2 = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_state = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_zip = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAddress_zip_check = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAlipay = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAllow_redisplay = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAmount = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAu_becs_debit = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceAvailable_payout_methods = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceBancontact = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceBank_name = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceBrand = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCard = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCard_present = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceClient_secret = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCode_verification = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCountry = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCreated = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCurrency = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCustomer = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceCvc_check = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceDefault_for_currency = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceDynamic_last4 = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceEps = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceExp_month = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceExp_year = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceFingerprint = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceFlow = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceFunding = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceFuture_requirements = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceGiropay = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceId = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceIdeal = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceIin = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceKlarna = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceLast4 = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceLivemode = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceMetadata = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceMultibanco = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceName = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceNetworks = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceObject = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwner = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceP24 = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceReceiver = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceRedirect = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceRegulated_status = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceRequirements = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceRouting_number = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceSepa_debit = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceSofort = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceSource_order = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceStatement_descriptor = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceStatus = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceThree_d_secure = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceTokenization_method = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceType = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceUsage = GHC.Maybe.Nothing,
-                                                                                                    invoiceLast_finalization_errorNonNullableSourceWechat = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSource
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceWechat obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceWechat obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSource
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorSource" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure InvoiceLast_finalization_errorSource GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_credit_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redisplay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_payout_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bank_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code_verification")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_for_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dynamic_last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "iin")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "networks")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "owner")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receiver")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "redirect")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "regulated_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "routing_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_order")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "three_d_secure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tokenization_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat"))}
+-- | Create a new 'InvoiceLast_finalization_errorSource' with all required fields.
+mkInvoiceLast_finalization_errorSource :: InvoiceLast_finalization_errorSource
+mkInvoiceLast_finalization_errorSource = InvoiceLast_finalization_errorSource{invoiceLast_finalization_errorSourceAccount = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAccount_holder_name = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAccount_holder_type = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAccount_type = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAch_credit_transfer = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAch_debit = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAcss_debit = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_city = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_country = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_line1 = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_line1_check = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_line2 = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_state = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_zip = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAddress_zip_check = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAlipay = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAllow_redisplay = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAmount = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAu_becs_debit = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceAvailable_payout_methods = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceBancontact = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceBank_name = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceBrand = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCard = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCard_present = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceClient_secret = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCode_verification = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCountry = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCreated = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCurrency = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCustomer = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceCvc_check = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceDefault_for_currency = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceDynamic_last4 = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceEps = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceExp_month = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceExp_year = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceFingerprint = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceFlow = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceFunding = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceFuture_requirements = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceGiropay = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceId = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceIdeal = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceIin = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceKlarna = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceLast4 = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceLivemode = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceMetadata = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceMultibanco = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceName = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceNetworks = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceObject = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceOwner = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceP24 = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceReceiver = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceRedirect = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceRegulated_status = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceRequirements = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceRouting_number = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceSepa_debit = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceSofort = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceSource_order = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceStatement_descriptor = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceStatus = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceThree_d_secure = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceTokenization_method = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceType = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceUsage = GHC.Maybe.Nothing,
+                                                                              invoiceLast_finalization_errorSourceWechat = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-data InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableVariants =
-   InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableText Data.Text.Internal.Text
-  | InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableAccount Account
+data InvoiceLast_finalization_errorSourceAccountVariants =
+   InvoiceLast_finalization_errorSourceAccountText Data.Text.Internal.Text
+  | InvoiceLast_finalization_errorSourceAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableVariants
-    where {toJSON (InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableVariants
-    where {parseJSON val = case (InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLast_finalization_errorNonNullableSourceAccountNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSourceAccountVariants
+    where {toJSON (InvoiceLast_finalization_errorSourceAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceLast_finalization_errorSourceAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSourceAccountVariants
+    where {parseJSON val = case (InvoiceLast_finalization_errorSourceAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLast_finalization_errorSourceAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.allow_redisplay@ in the specification.
--- 
--- This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-data InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullable =
-   InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumAlways -- ^ Represents the JSON value @"always"@
-  | InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumLimited -- ^ Represents the JSON value @"limited"@
-  | InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullable
-    where {toJSON (InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableOther val) = val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumAlways) = "always";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumLimited) = "limited";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumAlways
-                                             | val GHC.Classes.== "limited" -> InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumLimited
-                                             | val GHC.Classes.== "unspecified" -> InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableEnumUnspecified
-                                             | GHC.Base.otherwise -> InvoiceLast_finalization_errorNonNullableSourceAllow_redisplayNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.available_payout_methods.items@ in the specification.
--- 
--- 
-data InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullable =
-   InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumInstant -- ^ Represents the JSON value @"instant"@
-  | InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullable
-    where {toJSON (InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableOther val) = val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumInstant) = "instant";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "instant" -> InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumInstant
-                                             | val GHC.Classes.== "standard" -> InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumStandard
-                                             | GHC.Base.otherwise -> InvoiceLast_finalization_errorNonNullableSourceAvailable_payout_methodsNonNullableOther val)}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.customer.anyOf@ in the specification.
 -- 
 -- The ID of the customer that the bank account is associated with.
-data InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableVariants =
-   InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableText Data.Text.Internal.Text
-  | InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableCustomer Customer
-  | InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableDeleted_customer Deleted_customer
+data InvoiceLast_finalization_errorSourceCustomerVariants =
+   InvoiceLast_finalization_errorSourceCustomerText Data.Text.Internal.Text
+  | InvoiceLast_finalization_errorSourceCustomerCustomer Customer
+  | InvoiceLast_finalization_errorSourceCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableVariants
-    where {toJSON (InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableVariants
-    where {parseJSON val = case (InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLast_finalization_errorNonNullableSourceCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSourceCustomerVariants
+    where {toJSON (InvoiceLast_finalization_errorSourceCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceLast_finalization_errorSourceCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceLast_finalization_errorSourceCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSourceCustomerVariants
+    where {parseJSON val = case (InvoiceLast_finalization_errorSourceCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLast_finalization_errorSourceCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLast_finalization_errorSourceCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.future_requirements.anyOf@ in the specification.
 -- 
 -- Information about the [upcoming new requirements for the bank account](https:\\\/\\\/docs.stripe.com\\\/connect\\\/custom-accounts\\\/future-requirements), including what information needs to be collected, and by when.
-data InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable = InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable {
+data InvoiceLast_finalization_errorSourceFuture_requirements = InvoiceLast_finalization_errorSourceFuture_requirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  invoiceLast_finalization_errorSourceFuture_requirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , invoiceLast_finalization_errorSourceFuture_requirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , invoiceLast_finalization_errorSourceFuture_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , invoiceLast_finalization_errorSourceFuture_requirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable" (\obj -> (((GHC.Base.pure InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable' with all required fields.
-mkInvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable :: InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable
-mkInvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable = InvoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullable{invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                                                                                                invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                                                                                                invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                                                                                                invoiceLast_finalization_errorNonNullableSourceFuture_requirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.object@ in the specification.
--- 
--- String representing the object\'s type. Objects of the same type share the same value.
-data InvoiceLast_finalization_errorNonNullableSourceObject =
-   InvoiceLast_finalization_errorNonNullableSourceObjectOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceLast_finalization_errorNonNullableSourceObjectTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceLast_finalization_errorNonNullableSourceObjectEnumBank_account -- ^ Represents the JSON value @"bank_account"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceObject
-    where {toJSON (InvoiceLast_finalization_errorNonNullableSourceObjectOther val) = val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceObjectTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceObjectEnumBank_account) = "bank_account"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceObject
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_account" -> InvoiceLast_finalization_errorNonNullableSourceObjectEnumBank_account
-                                             | GHC.Base.otherwise -> InvoiceLast_finalization_errorNonNullableSourceObjectOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSourceFuture_requirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceFuture_requirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSourceFuture_requirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorSourceFuture_requirements" (\obj -> (((GHC.Base.pure InvoiceLast_finalization_errorSourceFuture_requirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'InvoiceLast_finalization_errorSourceFuture_requirements' with all required fields.
+mkInvoiceLast_finalization_errorSourceFuture_requirements :: InvoiceLast_finalization_errorSourceFuture_requirements
+mkInvoiceLast_finalization_errorSourceFuture_requirements = InvoiceLast_finalization_errorSourceFuture_requirements{invoiceLast_finalization_errorSourceFuture_requirementsCurrently_due = GHC.Maybe.Nothing,
+                                                                                                                    invoiceLast_finalization_errorSourceFuture_requirementsErrors = GHC.Maybe.Nothing,
+                                                                                                                    invoiceLast_finalization_errorSourceFuture_requirementsPast_due = GHC.Maybe.Nothing,
+                                                                                                                    invoiceLast_finalization_errorSourceFuture_requirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.owner.anyOf@ in the specification.
 -- 
 -- Information about the owner of the payment instrument that may be used or required by particular source types.
-data InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable = InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable {
+data InvoiceLast_finalization_errorSourceOwner = InvoiceLast_finalization_errorSourceOwner {
   -- | address: Owner\'s address.
-  invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddress :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable))
+  invoiceLast_finalization_errorSourceOwnerAddress :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSourceOwnerAddress)
   -- | email: Owner\'s email address.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Owner\'s full name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: Owner\'s phone number (including extension).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullablePhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_address: Verified owner\'s address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable))
+  , invoiceLast_finalization_errorSourceOwnerVerified_address :: (GHC.Maybe.Maybe InvoiceLast_finalization_errorSourceOwnerVerified_address)
   -- | verified_email: Verified owner\'s email address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_name: Verified owner\'s full name. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_phone: Verified owner\'s phone number (including extension). Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_phone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_phone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_phone obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_phone obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable" (\obj -> (((((((GHC.Base.pure InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_phone"))}
--- | Create a new 'InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable' with all required fields.
-mkInvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable :: InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable
-mkInvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable = InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullable{invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddress = GHC.Maybe.Nothing,
-                                                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableEmail = GHC.Maybe.Nothing,
-                                                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableName = GHC.Maybe.Nothing,
-                                                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwnerNonNullablePhone = GHC.Maybe.Nothing,
-                                                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_address = GHC.Maybe.Nothing,
-                                                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_email = GHC.Maybe.Nothing,
-                                                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_name = GHC.Maybe.Nothing,
-                                                                                                                                    invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_phone = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSourceOwner
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_phone obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_phone obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSourceOwner
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorSourceOwner" (\obj -> (((((((GHC.Base.pure InvoiceLast_finalization_errorSourceOwner GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_phone"))}
+-- | Create a new 'InvoiceLast_finalization_errorSourceOwner' with all required fields.
+mkInvoiceLast_finalization_errorSourceOwner :: InvoiceLast_finalization_errorSourceOwner
+mkInvoiceLast_finalization_errorSourceOwner = InvoiceLast_finalization_errorSourceOwner{invoiceLast_finalization_errorSourceOwnerAddress = GHC.Maybe.Nothing,
+                                                                                        invoiceLast_finalization_errorSourceOwnerEmail = GHC.Maybe.Nothing,
+                                                                                        invoiceLast_finalization_errorSourceOwnerName = GHC.Maybe.Nothing,
+                                                                                        invoiceLast_finalization_errorSourceOwnerPhone = GHC.Maybe.Nothing,
+                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_address = GHC.Maybe.Nothing,
+                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_email = GHC.Maybe.Nothing,
+                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_name = GHC.Maybe.Nothing,
+                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_phone = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.owner.anyOf.properties.address.anyOf@ in the specification.
 -- 
 -- Owner\\\'s address.
-data InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable = InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable {
+data InvoiceLast_finalization_errorSourceOwnerAddress = InvoiceLast_finalization_errorSourceOwnerAddress {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoiceLast_finalization_errorSourceOwnerAddressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerAddressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerAddressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerAddressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerAddressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerAddressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable" (\obj -> (((((GHC.Base.pure InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable' with all required fields.
-mkInvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable :: InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable
-mkInvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable = InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullable{invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                                                        invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                                                        invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                                                        invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                                                        invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                                                        invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableAddressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSourceOwnerAddress
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerAddressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSourceOwnerAddress
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorSourceOwnerAddress" (\obj -> (((((GHC.Base.pure InvoiceLast_finalization_errorSourceOwnerAddress GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'InvoiceLast_finalization_errorSourceOwnerAddress' with all required fields.
+mkInvoiceLast_finalization_errorSourceOwnerAddress :: InvoiceLast_finalization_errorSourceOwnerAddress
+mkInvoiceLast_finalization_errorSourceOwnerAddress = InvoiceLast_finalization_errorSourceOwnerAddress{invoiceLast_finalization_errorSourceOwnerAddressCity = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceOwnerAddressCountry = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceOwnerAddressLine1 = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceOwnerAddressLine2 = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceOwnerAddressPostal_code = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceOwnerAddressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.owner.anyOf.properties.verified_address.anyOf@ in the specification.
 -- 
 -- Verified owner\\\'s address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
-data InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable = InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable {
+data InvoiceLast_finalization_errorSourceOwnerVerified_address = InvoiceLast_finalization_errorSourceOwnerVerified_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoiceLast_finalization_errorSourceOwnerVerified_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceLast_finalization_errorSourceOwnerVerified_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable" (\obj -> (((((GHC.Base.pure InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable' with all required fields.
-mkInvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable :: InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable
-mkInvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable = InvoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable{invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                                                                          invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                                                                          invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                                                                          invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                                                                          invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                                                                          invoiceLast_finalization_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.regulated_status@ in the specification.
--- 
--- Status of a card based on the card issuer.
-data InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullable =
-   InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableEnumRegulated -- ^ Represents the JSON value @"regulated"@
-  | InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableEnumUnregulated -- ^ Represents the JSON value @"unregulated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullable
-    where {toJSON (InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableOther val) = val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableEnumRegulated) = "regulated";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableEnumUnregulated) = "unregulated"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "regulated" -> InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableEnumRegulated
-                                             | val GHC.Classes.== "unregulated" -> InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableEnumUnregulated
-                                             | GHC.Base.otherwise -> InvoiceLast_finalization_errorNonNullableSourceRegulated_statusNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSourceOwnerVerified_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceOwnerVerified_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSourceOwnerVerified_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorSourceOwnerVerified_address" (\obj -> (((((GHC.Base.pure InvoiceLast_finalization_errorSourceOwnerVerified_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'InvoiceLast_finalization_errorSourceOwnerVerified_address' with all required fields.
+mkInvoiceLast_finalization_errorSourceOwnerVerified_address :: InvoiceLast_finalization_errorSourceOwnerVerified_address
+mkInvoiceLast_finalization_errorSourceOwnerVerified_address = InvoiceLast_finalization_errorSourceOwnerVerified_address{invoiceLast_finalization_errorSourceOwnerVerified_addressCity = GHC.Maybe.Nothing,
+                                                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_addressCountry = GHC.Maybe.Nothing,
+                                                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                                        invoiceLast_finalization_errorSourceOwnerVerified_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.requirements.anyOf@ in the specification.
 -- 
 -- Information about the requirements for the bank account, including what information needs to be collected.
-data InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable = InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable {
+data InvoiceLast_finalization_errorSourceRequirements = InvoiceLast_finalization_errorSourceRequirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  invoiceLast_finalization_errorSourceRequirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , invoiceLast_finalization_errorSourceRequirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , invoiceLast_finalization_errorSourceRequirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , invoiceLast_finalization_errorSourceRequirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable" (\obj -> (((GHC.Base.pure InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable' with all required fields.
-mkInvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable :: InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable
-mkInvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable = InvoiceLast_finalization_errorNonNullableSourceRequirementsNonNullable{invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                                                                                  invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                                                                                  invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                                                                                  invoiceLast_finalization_errorNonNullableSourceRequirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.source.anyOf.properties.type@ in the specification.
--- 
--- The \`type\` of the source. The \`type\` is a payment method, one of \`ach_credit_transfer\`, \`ach_debit\`, \`alipay\`, \`bancontact\`, \`card\`, \`card_present\`, \`eps\`, \`giropay\`, \`ideal\`, \`multibanco\`, \`klarna\`, \`p24\`, \`sepa_debit\`, \`sofort\`, \`three_d_secure\`, or \`wechat\`. An additional hash is included on the source with a name matching this value. It contains additional information specific to the [payment method](https:\/\/docs.stripe.com\/sources) used.
-data InvoiceLast_finalization_errorNonNullableSourceType =
-   InvoiceLast_finalization_errorNonNullableSourceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceLast_finalization_errorNonNullableSourceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumAch_credit_transfer -- ^ Represents the JSON value @"ach_credit_transfer"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumAch_debit -- ^ Represents the JSON value @"ach_debit"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumAcss_debit -- ^ Represents the JSON value @"acss_debit"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumAlipay -- ^ Represents the JSON value @"alipay"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumAu_becs_debit -- ^ Represents the JSON value @"au_becs_debit"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumBancontact -- ^ Represents the JSON value @"bancontact"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumCard -- ^ Represents the JSON value @"card"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumCard_present -- ^ Represents the JSON value @"card_present"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumEps -- ^ Represents the JSON value @"eps"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumGiropay -- ^ Represents the JSON value @"giropay"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumIdeal -- ^ Represents the JSON value @"ideal"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumKlarna -- ^ Represents the JSON value @"klarna"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumMultibanco -- ^ Represents the JSON value @"multibanco"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumP24 -- ^ Represents the JSON value @"p24"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumSepa_debit -- ^ Represents the JSON value @"sepa_debit"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumSofort -- ^ Represents the JSON value @"sofort"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumThree_d_secure -- ^ Represents the JSON value @"three_d_secure"@
-  | InvoiceLast_finalization_errorNonNullableSourceTypeEnumWechat -- ^ Represents the JSON value @"wechat"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableSourceType
-    where {toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeOther val) = val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumAch_credit_transfer) = "ach_credit_transfer";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumAch_debit) = "ach_debit";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumAcss_debit) = "acss_debit";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumAlipay) = "alipay";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumAu_becs_debit) = "au_becs_debit";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumBancontact) = "bancontact";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumCard) = "card";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumCard_present) = "card_present";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumEps) = "eps";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumGiropay) = "giropay";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumIdeal) = "ideal";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumKlarna) = "klarna";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumMultibanco) = "multibanco";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumP24) = "p24";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumSepa_debit) = "sepa_debit";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumSofort) = "sofort";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumThree_d_secure) = "three_d_secure";
-           toJSON (InvoiceLast_finalization_errorNonNullableSourceTypeEnumWechat) = "wechat"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableSourceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "ach_credit_transfer" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumAch_credit_transfer
-                                             | val GHC.Classes.== "ach_debit" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumAch_debit
-                                             | val GHC.Classes.== "acss_debit" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumAcss_debit
-                                             | val GHC.Classes.== "alipay" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumAlipay
-                                             | val GHC.Classes.== "au_becs_debit" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumAu_becs_debit
-                                             | val GHC.Classes.== "bancontact" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumBancontact
-                                             | val GHC.Classes.== "card" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumCard
-                                             | val GHC.Classes.== "card_present" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumCard_present
-                                             | val GHC.Classes.== "eps" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumEps
-                                             | val GHC.Classes.== "giropay" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumGiropay
-                                             | val GHC.Classes.== "ideal" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumIdeal
-                                             | val GHC.Classes.== "klarna" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumKlarna
-                                             | val GHC.Classes.== "multibanco" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumMultibanco
-                                             | val GHC.Classes.== "p24" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumP24
-                                             | val GHC.Classes.== "sepa_debit" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumSepa_debit
-                                             | val GHC.Classes.== "sofort" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumSofort
-                                             | val GHC.Classes.== "three_d_secure" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumThree_d_secure
-                                             | val GHC.Classes.== "wechat" -> InvoiceLast_finalization_errorNonNullableSourceTypeEnumWechat
-                                             | GHC.Base.otherwise -> InvoiceLast_finalization_errorNonNullableSourceTypeOther val)}
--- | Defines the enum schema located at @components.schemas.invoice.properties.last_finalization_error.anyOf.properties.type@ in the specification.
--- 
--- The type of error returned. One of \`api_error\`, \`card_error\`, \`idempotency_error\`, or \`invalid_request_error\`
-data InvoiceLast_finalization_errorNonNullableType =
-   InvoiceLast_finalization_errorNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceLast_finalization_errorNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceLast_finalization_errorNonNullableTypeEnumApi_error -- ^ Represents the JSON value @"api_error"@
-  | InvoiceLast_finalization_errorNonNullableTypeEnumCard_error -- ^ Represents the JSON value @"card_error"@
-  | InvoiceLast_finalization_errorNonNullableTypeEnumIdempotency_error -- ^ Represents the JSON value @"idempotency_error"@
-  | InvoiceLast_finalization_errorNonNullableTypeEnumInvalid_request_error -- ^ Represents the JSON value @"invalid_request_error"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorNonNullableType
-    where {toJSON (InvoiceLast_finalization_errorNonNullableTypeOther val) = val;
-           toJSON (InvoiceLast_finalization_errorNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceLast_finalization_errorNonNullableTypeEnumApi_error) = "api_error";
-           toJSON (InvoiceLast_finalization_errorNonNullableTypeEnumCard_error) = "card_error";
-           toJSON (InvoiceLast_finalization_errorNonNullableTypeEnumIdempotency_error) = "idempotency_error";
-           toJSON (InvoiceLast_finalization_errorNonNullableTypeEnumInvalid_request_error) = "invalid_request_error"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "api_error" -> InvoiceLast_finalization_errorNonNullableTypeEnumApi_error
-                                             | val GHC.Classes.== "card_error" -> InvoiceLast_finalization_errorNonNullableTypeEnumCard_error
-                                             | val GHC.Classes.== "idempotency_error" -> InvoiceLast_finalization_errorNonNullableTypeEnumIdempotency_error
-                                             | val GHC.Classes.== "invalid_request_error" -> InvoiceLast_finalization_errorNonNullableTypeEnumInvalid_request_error
-                                             | GHC.Base.otherwise -> InvoiceLast_finalization_errorNonNullableTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLast_finalization_errorSourceRequirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (invoiceLast_finalization_errorSourceRequirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLast_finalization_errorSourceRequirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLast_finalization_errorSourceRequirements" (\obj -> (((GHC.Base.pure InvoiceLast_finalization_errorSourceRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'InvoiceLast_finalization_errorSourceRequirements' with all required fields.
+mkInvoiceLast_finalization_errorSourceRequirements :: InvoiceLast_finalization_errorSourceRequirements
+mkInvoiceLast_finalization_errorSourceRequirements = InvoiceLast_finalization_errorSourceRequirements{invoiceLast_finalization_errorSourceRequirementsCurrently_due = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceRequirementsErrors = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceRequirementsPast_due = GHC.Maybe.Nothing,
+                                                                                                      invoiceLast_finalization_errorSourceRequirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.latest_revision.anyOf@ in the specification.
 -- 
 -- The ID of the most recent non-draft revision of this invoice
-data InvoiceLatest_revisionNonNullableVariants =
-   InvoiceLatest_revisionNonNullableText Data.Text.Internal.Text
-  | InvoiceLatest_revisionNonNullableInvoice Invoice
+data InvoiceLatest_revisionVariants =
+   InvoiceLatest_revisionText Data.Text.Internal.Text
+  | InvoiceLatest_revisionInvoice Invoice
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLatest_revisionNonNullableVariants
-    where {toJSON (InvoiceLatest_revisionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceLatest_revisionNonNullableInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLatest_revisionNonNullableVariants
-    where {parseJSON val = case (InvoiceLatest_revisionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLatest_revisionNonNullableInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLatest_revisionVariants
+    where {toJSON (InvoiceLatest_revisionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceLatest_revisionInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLatest_revisionVariants
+    where {parseJSON val = case (InvoiceLatest_revisionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceLatest_revisionInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.invoice.properties.lines@ in the specification.
@@ -1734,6 +1490,8 @@ data InvoiceLines = InvoiceLines {
   invoiceLinesData :: [Line_item]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
   , invoiceLinesHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , invoiceLinesObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
@@ -1743,129 +1501,113 @@ data InvoiceLines = InvoiceLines {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON InvoiceLines
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoiceLinesData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoiceLinesHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= invoiceLinesUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoiceLinesData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoiceLinesHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= invoiceLinesUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoiceLinesData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoiceLinesHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= invoiceLinesObject obj] : ["url" Data.Aeson.Types.ToJSON..= invoiceLinesUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoiceLinesData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoiceLinesHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= invoiceLinesObject obj] : ["url" Data.Aeson.Types.ToJSON..= invoiceLinesUrl obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON InvoiceLines
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLines" (\obj -> ((GHC.Base.pure InvoiceLines GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceLines" (\obj -> (((GHC.Base.pure InvoiceLines GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
 -- | Create a new 'InvoiceLines' with all required fields.
 mkInvoiceLines :: [Line_item] -- ^ 'invoiceLinesData'
   -> GHC.Types.Bool -- ^ 'invoiceLinesHas_more'
+  -> Data.Text.Internal.Text -- ^ 'invoiceLinesObject'
   -> Data.Text.Internal.Text -- ^ 'invoiceLinesUrl'
   -> InvoiceLines
-mkInvoiceLines invoiceLinesData invoiceLinesHas_more invoiceLinesUrl = InvoiceLines{invoiceLinesData = invoiceLinesData,
-                                                                                    invoiceLinesHas_more = invoiceLinesHas_more,
-                                                                                    invoiceLinesUrl = invoiceLinesUrl}
+mkInvoiceLines invoiceLinesData invoiceLinesHas_more invoiceLinesObject invoiceLinesUrl = InvoiceLines{invoiceLinesData = invoiceLinesData,
+                                                                                                       invoiceLinesHas_more = invoiceLinesHas_more,
+                                                                                                       invoiceLinesObject = invoiceLinesObject,
+                                                                                                       invoiceLinesUrl = invoiceLinesUrl}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.on_behalf_of.anyOf@ in the specification.
 -- 
 -- The account (if any) for which the funds of the invoice payment are intended. If set, the invoice will be presented with the branding and support information of the specified account. See the [Invoices with Connect](https:\/\/docs.stripe.com\/billing\/invoices\/connect) documentation for details.
-data InvoiceOn_behalf_ofNonNullableVariants =
-   InvoiceOn_behalf_ofNonNullableText Data.Text.Internal.Text
-  | InvoiceOn_behalf_ofNonNullableAccount Account
+data InvoiceOn_behalf_ofVariants =
+   InvoiceOn_behalf_ofText Data.Text.Internal.Text
+  | InvoiceOn_behalf_ofAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceOn_behalf_ofNonNullableVariants
-    where {toJSON (InvoiceOn_behalf_ofNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceOn_behalf_ofNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceOn_behalf_ofNonNullableVariants
-    where {parseJSON val = case (InvoiceOn_behalf_ofNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceOn_behalf_ofNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceOn_behalf_ofVariants
+    where {toJSON (InvoiceOn_behalf_ofText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceOn_behalf_ofAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceOn_behalf_ofVariants
+    where {parseJSON val = case (InvoiceOn_behalf_ofText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceOn_behalf_ofAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.invoice.properties.parent.anyOf@ in the specification.
 -- 
 -- The parent that generated this invoice
-data InvoiceParentNonNullable = InvoiceParentNonNullable {
+data InvoiceParent = InvoiceParent {
   -- | quote_details: Details about the quote that generated this invoice
-  invoiceParentNonNullableQuote_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceParentNonNullableQuote_detailsNonNullable))
+  invoiceParentQuote_details :: (GHC.Maybe.Maybe InvoiceParentQuote_details)
   -- | subscription_details: Details about the subscription that generated this invoice
-  , invoiceParentNonNullableSubscription_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceParentNonNullableSubscription_detailsNonNullable))
+  , invoiceParentSubscription_details :: (GHC.Maybe.Maybe InvoiceParentSubscription_details)
   -- | type: The type of parent that generated this invoice
-  , invoiceParentNonNullableType :: (GHC.Maybe.Maybe InvoiceParentNonNullableType)
+  , invoiceParentType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableQuote_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableQuote_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceParentNonNullable" (\obj -> ((GHC.Base.pure InvoiceParentNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quote_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'InvoiceParentNonNullable' with all required fields.
-mkInvoiceParentNonNullable :: InvoiceParentNonNullable
-mkInvoiceParentNonNullable = InvoiceParentNonNullable{invoiceParentNonNullableQuote_details = GHC.Maybe.Nothing,
-                                                      invoiceParentNonNullableSubscription_details = GHC.Maybe.Nothing,
-                                                      invoiceParentNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParent
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentQuote_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceParentType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentQuote_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_details" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (invoiceParentType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParent
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceParent" (\obj -> ((GHC.Base.pure InvoiceParent GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quote_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'InvoiceParent' with all required fields.
+mkInvoiceParent :: InvoiceParent
+mkInvoiceParent = InvoiceParent{invoiceParentQuote_details = GHC.Maybe.Nothing,
+                                invoiceParentSubscription_details = GHC.Maybe.Nothing,
+                                invoiceParentType = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.parent.anyOf.properties.quote_details.anyOf@ in the specification.
 -- 
 -- Details about the quote that generated this invoice
-data InvoiceParentNonNullableQuote_detailsNonNullable = InvoiceParentNonNullableQuote_detailsNonNullable {
+data InvoiceParentQuote_details = InvoiceParentQuote_details {
   -- | quote: The quote that generated this invoice
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceParentNonNullableQuote_detailsNonNullableQuote :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  invoiceParentQuote_detailsQuote :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentNonNullableQuote_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableQuote_detailsNonNullableQuote obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableQuote_detailsNonNullableQuote obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentNonNullableQuote_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceParentNonNullableQuote_detailsNonNullable" (\obj -> GHC.Base.pure InvoiceParentNonNullableQuote_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quote"))}
--- | Create a new 'InvoiceParentNonNullableQuote_detailsNonNullable' with all required fields.
-mkInvoiceParentNonNullableQuote_detailsNonNullable :: InvoiceParentNonNullableQuote_detailsNonNullable
-mkInvoiceParentNonNullableQuote_detailsNonNullable = InvoiceParentNonNullableQuote_detailsNonNullable{invoiceParentNonNullableQuote_detailsNonNullableQuote = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentQuote_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (invoiceParentQuote_detailsQuote obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (invoiceParentQuote_detailsQuote obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentQuote_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceParentQuote_details" (\obj -> GHC.Base.pure InvoiceParentQuote_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quote"))}
+-- | Create a new 'InvoiceParentQuote_details' with all required fields.
+mkInvoiceParentQuote_details :: InvoiceParentQuote_details
+mkInvoiceParentQuote_details = InvoiceParentQuote_details{invoiceParentQuote_detailsQuote = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.parent.anyOf.properties.subscription_details.anyOf@ in the specification.
 -- 
 -- Details about the subscription that generated this invoice
-data InvoiceParentNonNullableSubscription_detailsNonNullable = InvoiceParentNonNullableSubscription_detailsNonNullable {
+data InvoiceParentSubscription_details = InvoiceParentSubscription_details {
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) defined as subscription metadata when an invoice is created. Becomes an immutable snapshot of the subscription metadata at the time of invoice finalization.
   --  *Note: This attribute is populated only for invoices created on or after June 29, 2023.*
-  invoiceParentNonNullableSubscription_detailsNonNullableMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  invoiceParentSubscription_detailsMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | subscription: The subscription that generated this invoice
-  , invoiceParentNonNullableSubscription_detailsNonNullableSubscription :: (GHC.Maybe.Maybe InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionVariants)
+  , invoiceParentSubscription_detailsSubscription :: (GHC.Maybe.Maybe InvoiceParentSubscription_detailsSubscriptionVariants)
   -- | subscription_proration_date: Only set for upcoming invoices that preview prorations. The time used to calculate prorations.
-  , invoiceParentNonNullableSubscription_detailsNonNullableSubscription_proration_date :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , invoiceParentSubscription_detailsSubscription_proration_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentNonNullableSubscription_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_detailsNonNullableMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_detailsNonNullableSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_detailsNonNullableSubscription_proration_date obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_detailsNonNullableMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_detailsNonNullableSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (invoiceParentNonNullableSubscription_detailsNonNullableSubscription_proration_date obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentNonNullableSubscription_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceParentNonNullableSubscription_detailsNonNullable" (\obj -> ((GHC.Base.pure InvoiceParentNonNullableSubscription_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_proration_date"))}
--- | Create a new 'InvoiceParentNonNullableSubscription_detailsNonNullable' with all required fields.
-mkInvoiceParentNonNullableSubscription_detailsNonNullable :: InvoiceParentNonNullableSubscription_detailsNonNullable
-mkInvoiceParentNonNullableSubscription_detailsNonNullable = InvoiceParentNonNullableSubscription_detailsNonNullable{invoiceParentNonNullableSubscription_detailsNonNullableMetadata = GHC.Maybe.Nothing,
-                                                                                                                    invoiceParentNonNullableSubscription_detailsNonNullableSubscription = GHC.Maybe.Nothing,
-                                                                                                                    invoiceParentNonNullableSubscription_detailsNonNullableSubscription_proration_date = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentSubscription_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_detailsMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_detailsSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_detailsSubscription_proration_date obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_detailsMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_detailsSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (invoiceParentSubscription_detailsSubscription_proration_date obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentSubscription_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceParentSubscription_details" (\obj -> ((GHC.Base.pure InvoiceParentSubscription_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_proration_date"))}
+-- | Create a new 'InvoiceParentSubscription_details' with all required fields.
+mkInvoiceParentSubscription_details :: InvoiceParentSubscription_details
+mkInvoiceParentSubscription_details = InvoiceParentSubscription_details{invoiceParentSubscription_detailsMetadata = GHC.Maybe.Nothing,
+                                                                        invoiceParentSubscription_detailsSubscription = GHC.Maybe.Nothing,
+                                                                        invoiceParentSubscription_detailsSubscription_proration_date = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.parent.anyOf.properties.subscription_details.anyOf.properties.subscription.anyOf@ in the specification.
 -- 
 -- The subscription that generated this invoice
-data InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionVariants =
-   InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionText Data.Text.Internal.Text
-  | InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionSubscription Subscription
+data InvoiceParentSubscription_detailsSubscriptionVariants =
+   InvoiceParentSubscription_detailsSubscriptionText Data.Text.Internal.Text
+  | InvoiceParentSubscription_detailsSubscriptionSubscription Subscription
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionVariants
-    where {toJSON (InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionSubscription a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionVariants
-    where {parseJSON val = case (InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceParentNonNullableSubscription_detailsNonNullableSubscriptionSubscription Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentSubscription_detailsSubscriptionVariants
+    where {toJSON (InvoiceParentSubscription_detailsSubscriptionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceParentSubscription_detailsSubscriptionSubscription a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentSubscription_detailsSubscriptionVariants
+    where {parseJSON val = case (InvoiceParentSubscription_detailsSubscriptionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceParentSubscription_detailsSubscriptionSubscription Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.invoice.properties.parent.anyOf.properties.type@ in the specification.
--- 
--- The type of parent that generated this invoice
-data InvoiceParentNonNullableType =
-   InvoiceParentNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceParentNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceParentNonNullableTypeEnumQuote_details -- ^ Represents the JSON value @"quote_details"@
-  | InvoiceParentNonNullableTypeEnumSubscription_details -- ^ Represents the JSON value @"subscription_details"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceParentNonNullableType
-    where {toJSON (InvoiceParentNonNullableTypeOther val) = val;
-           toJSON (InvoiceParentNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceParentNonNullableTypeEnumQuote_details) = "quote_details";
-           toJSON (InvoiceParentNonNullableTypeEnumSubscription_details) = "subscription_details"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceParentNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "quote_details" -> InvoiceParentNonNullableTypeEnumQuote_details
-                                             | val GHC.Classes.== "subscription_details" -> InvoiceParentNonNullableTypeEnumSubscription_details
-                                             | GHC.Base.otherwise -> InvoiceParentNonNullableTypeOther val)}
 -- | Defines the object schema located at @components.schemas.invoice.properties.payments@ in the specification.
 -- 
 -- Payments for this invoice. Use [invoice payment](\/api\/invoice-payment) to get more details.
@@ -1874,6 +1616,8 @@ data InvoicePayments = InvoicePayments {
   invoicePaymentsData :: [Invoice_payment]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
   , invoicePaymentsHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , invoicePaymentsObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
@@ -1883,212 +1627,166 @@ data InvoicePayments = InvoicePayments {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON InvoicePayments
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoicePaymentsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoicePaymentsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= invoicePaymentsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoicePaymentsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoicePaymentsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= invoicePaymentsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoicePaymentsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoicePaymentsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= invoicePaymentsObject obj] : ["url" Data.Aeson.Types.ToJSON..= invoicePaymentsUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= invoicePaymentsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= invoicePaymentsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= invoicePaymentsObject obj] : ["url" Data.Aeson.Types.ToJSON..= invoicePaymentsUrl obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON InvoicePayments
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoicePayments" (\obj -> ((GHC.Base.pure InvoicePayments GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoicePayments" (\obj -> (((GHC.Base.pure InvoicePayments GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
 -- | Create a new 'InvoicePayments' with all required fields.
 mkInvoicePayments :: [Invoice_payment] -- ^ 'invoicePaymentsData'
   -> GHC.Types.Bool -- ^ 'invoicePaymentsHas_more'
+  -> Data.Text.Internal.Text -- ^ 'invoicePaymentsObject'
   -> Data.Text.Internal.Text -- ^ 'invoicePaymentsUrl'
   -> InvoicePayments
-mkInvoicePayments invoicePaymentsData invoicePaymentsHas_more invoicePaymentsUrl = InvoicePayments{invoicePaymentsData = invoicePaymentsData,
-                                                                                                   invoicePaymentsHas_more = invoicePaymentsHas_more,
-                                                                                                   invoicePaymentsUrl = invoicePaymentsUrl}
+mkInvoicePayments invoicePaymentsData invoicePaymentsHas_more invoicePaymentsObject invoicePaymentsUrl = InvoicePayments{invoicePaymentsData = invoicePaymentsData,
+                                                                                                                         invoicePaymentsHas_more = invoicePaymentsHas_more,
+                                                                                                                         invoicePaymentsObject = invoicePaymentsObject,
+                                                                                                                         invoicePaymentsUrl = invoicePaymentsUrl}
 -- | Defines the object schema located at @components.schemas.invoice.properties.rendering.anyOf@ in the specification.
 -- 
 -- The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page.
-data InvoiceRenderingNonNullable = InvoiceRenderingNonNullable {
+data InvoiceRendering = InvoiceRendering {
   -- | amount_tax_display: How line-item prices and amounts will be displayed with respect to tax on invoice PDFs.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoiceRenderingNonNullableAmount_tax_display :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoiceRenderingAmount_tax_display :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | pdf: Invoice pdf rendering options
-  , invoiceRenderingNonNullablePdf :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceRenderingNonNullablePdfNonNullable))
+  , invoiceRenderingPdf :: (GHC.Maybe.Maybe InvoiceRenderingPdf)
   -- | template: ID of the rendering template that the invoice is formatted by.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceRenderingNonNullableTemplate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceRenderingTemplate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | template_version: Version of the rendering template that the invoice is using.
-  , invoiceRenderingNonNullableTemplate_version :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoiceRenderingTemplate_version :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceRenderingNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullableAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pdf" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullablePdf obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullableTemplate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template_version" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullableTemplate_version obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullableAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pdf" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullablePdf obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullableTemplate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template_version" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullableTemplate_version obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceRenderingNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceRenderingNonNullable" (\obj -> (((GHC.Base.pure InvoiceRenderingNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_tax_display")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pdf")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "template")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "template_version"))}
--- | Create a new 'InvoiceRenderingNonNullable' with all required fields.
-mkInvoiceRenderingNonNullable :: InvoiceRenderingNonNullable
-mkInvoiceRenderingNonNullable = InvoiceRenderingNonNullable{invoiceRenderingNonNullableAmount_tax_display = GHC.Maybe.Nothing,
-                                                            invoiceRenderingNonNullablePdf = GHC.Maybe.Nothing,
-                                                            invoiceRenderingNonNullableTemplate = GHC.Maybe.Nothing,
-                                                            invoiceRenderingNonNullableTemplate_version = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceRendering
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pdf" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingPdf obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingTemplate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template_version" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingTemplate_version obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pdf" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingPdf obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingTemplate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template_version" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingTemplate_version obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceRendering
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceRendering" (\obj -> (((GHC.Base.pure InvoiceRendering GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_tax_display")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pdf")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "template")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "template_version"))}
+-- | Create a new 'InvoiceRendering' with all required fields.
+mkInvoiceRendering :: InvoiceRendering
+mkInvoiceRendering = InvoiceRendering{invoiceRenderingAmount_tax_display = GHC.Maybe.Nothing,
+                                      invoiceRenderingPdf = GHC.Maybe.Nothing,
+                                      invoiceRenderingTemplate = GHC.Maybe.Nothing,
+                                      invoiceRenderingTemplate_version = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.rendering.anyOf.properties.pdf.anyOf@ in the specification.
 -- 
 -- Invoice pdf rendering options
-data InvoiceRenderingNonNullablePdfNonNullable = InvoiceRenderingNonNullablePdfNonNullable {
+data InvoiceRenderingPdf = InvoiceRenderingPdf {
   -- | page_size: Page size of invoice pdf. Options include a4, letter, and auto. If set to auto, page size will be switched to a4 or letter based on customer locale.
-  invoiceRenderingNonNullablePdfNonNullablePage_size :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullable))
+  invoiceRenderingPdfPage_size :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceRenderingNonNullablePdfNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullablePdfNonNullablePage_size obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingNonNullablePdfNonNullablePage_size obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceRenderingNonNullablePdfNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceRenderingNonNullablePdfNonNullable" (\obj -> GHC.Base.pure InvoiceRenderingNonNullablePdfNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "page_size"))}
--- | Create a new 'InvoiceRenderingNonNullablePdfNonNullable' with all required fields.
-mkInvoiceRenderingNonNullablePdfNonNullable :: InvoiceRenderingNonNullablePdfNonNullable
-mkInvoiceRenderingNonNullablePdfNonNullable = InvoiceRenderingNonNullablePdfNonNullable{invoiceRenderingNonNullablePdfNonNullablePage_size = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice.properties.rendering.anyOf.properties.pdf.anyOf.properties.page_size@ in the specification.
--- 
--- Page size of invoice pdf. Options include a4, letter, and auto. If set to auto, page size will be switched to a4 or letter based on customer locale.
-data InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullable =
-   InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumA4 -- ^ Represents the JSON value @"a4"@
-  | InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumAuto -- ^ Represents the JSON value @"auto"@
-  | InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumLetter -- ^ Represents the JSON value @"letter"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullable
-    where {toJSON (InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableOther val) = val;
-           toJSON (InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumA4) = "a4";
-           toJSON (InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumAuto) = "auto";
-           toJSON (InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumLetter) = "letter"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "a4" -> InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumA4
-                                             | val GHC.Classes.== "auto" -> InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumAuto
-                                             | val GHC.Classes.== "letter" -> InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableEnumLetter
-                                             | GHC.Base.otherwise -> InvoiceRenderingNonNullablePdfNonNullablePage_sizeNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceRenderingPdf
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingPdfPage_size obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoiceRenderingPdfPage_size obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceRenderingPdf
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceRenderingPdf" (\obj -> GHC.Base.pure InvoiceRenderingPdf GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "page_size"))}
+-- | Create a new 'InvoiceRenderingPdf' with all required fields.
+mkInvoiceRenderingPdf :: InvoiceRenderingPdf
+mkInvoiceRenderingPdf = InvoiceRenderingPdf{invoiceRenderingPdfPage_size = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.invoice.properties.shipping_cost.anyOf@ in the specification.
 -- 
 -- The details of the cost of shipping, including the ShippingRate applied on the invoice.
-data InvoiceShipping_costNonNullable = InvoiceShipping_costNonNullable {
+data InvoiceShipping_cost = InvoiceShipping_cost {
   -- | amount_subtotal: Total shipping cost before any taxes are applied.
-  invoiceShipping_costNonNullableAmount_subtotal :: (GHC.Maybe.Maybe GHC.Types.Int)
+  invoiceShipping_costAmount_subtotal :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_tax: Total tax amount applied due to shipping costs. If no tax was applied, defaults to 0.
-  , invoiceShipping_costNonNullableAmount_tax :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , invoiceShipping_costAmount_tax :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_total: Total shipping cost after taxes are applied.
-  , invoiceShipping_costNonNullableAmount_total :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , invoiceShipping_costAmount_total :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | shipping_rate: The ID of the ShippingRate for this invoice.
-  , invoiceShipping_costNonNullableShipping_rate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable InvoiceShipping_costNonNullableShipping_rateNonNullableVariants))
+  , invoiceShipping_costShipping_rate :: (GHC.Maybe.Maybe InvoiceShipping_costShipping_rateVariants)
   -- | taxes: The taxes applied to the shipping rate.
-  , invoiceShipping_costNonNullableTaxes :: (GHC.Maybe.Maybe [Line_items_tax_amount])
+  , invoiceShipping_costTaxes :: (GHC.Maybe.Maybe [Line_items_tax_amount])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceShipping_costNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_subtotal" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableAmount_subtotal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableAmount_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_total" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableAmount_total obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_rate" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableShipping_rate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableTaxes obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_subtotal" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableAmount_subtotal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableAmount_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_total" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableAmount_total obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_rate" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableShipping_rate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costNonNullableTaxes obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceShipping_costNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceShipping_costNonNullable" (\obj -> ((((GHC.Base.pure InvoiceShipping_costNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_total")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping_rate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "taxes"))}
--- | Create a new 'InvoiceShipping_costNonNullable' with all required fields.
-mkInvoiceShipping_costNonNullable :: InvoiceShipping_costNonNullable
-mkInvoiceShipping_costNonNullable = InvoiceShipping_costNonNullable{invoiceShipping_costNonNullableAmount_subtotal = GHC.Maybe.Nothing,
-                                                                    invoiceShipping_costNonNullableAmount_tax = GHC.Maybe.Nothing,
-                                                                    invoiceShipping_costNonNullableAmount_total = GHC.Maybe.Nothing,
-                                                                    invoiceShipping_costNonNullableShipping_rate = GHC.Maybe.Nothing,
-                                                                    invoiceShipping_costNonNullableTaxes = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceShipping_cost
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_subtotal" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costAmount_subtotal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costAmount_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_total" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costAmount_total obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_rate" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costShipping_rate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costTaxes obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_subtotal" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costAmount_subtotal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costAmount_tax obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_total" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costAmount_total obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping_rate" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costShipping_rate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_costTaxes obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceShipping_cost
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceShipping_cost" (\obj -> ((((GHC.Base.pure InvoiceShipping_cost GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_total")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping_rate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "taxes"))}
+-- | Create a new 'InvoiceShipping_cost' with all required fields.
+mkInvoiceShipping_cost :: InvoiceShipping_cost
+mkInvoiceShipping_cost = InvoiceShipping_cost{invoiceShipping_costAmount_subtotal = GHC.Maybe.Nothing,
+                                              invoiceShipping_costAmount_tax = GHC.Maybe.Nothing,
+                                              invoiceShipping_costAmount_total = GHC.Maybe.Nothing,
+                                              invoiceShipping_costShipping_rate = GHC.Maybe.Nothing,
+                                              invoiceShipping_costTaxes = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.shipping_cost.anyOf.properties.shipping_rate.anyOf@ in the specification.
 -- 
 -- The ID of the ShippingRate for this invoice.
-data InvoiceShipping_costNonNullableShipping_rateNonNullableVariants =
-   InvoiceShipping_costNonNullableShipping_rateNonNullableText Data.Text.Internal.Text
-  | InvoiceShipping_costNonNullableShipping_rateNonNullableShipping_rate Shipping_rate
+data InvoiceShipping_costShipping_rateVariants =
+   InvoiceShipping_costShipping_rateText Data.Text.Internal.Text
+  | InvoiceShipping_costShipping_rateShipping_rate Shipping_rate
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceShipping_costNonNullableShipping_rateNonNullableVariants
-    where {toJSON (InvoiceShipping_costNonNullableShipping_rateNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceShipping_costNonNullableShipping_rateNonNullableShipping_rate a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceShipping_costNonNullableShipping_rateNonNullableVariants
-    where {parseJSON val = case (InvoiceShipping_costNonNullableShipping_rateNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceShipping_costNonNullableShipping_rateNonNullableShipping_rate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceShipping_costShipping_rateVariants
+    where {toJSON (InvoiceShipping_costShipping_rateText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceShipping_costShipping_rateShipping_rate a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceShipping_costShipping_rateVariants
+    where {parseJSON val = case (InvoiceShipping_costShipping_rateText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceShipping_costShipping_rateShipping_rate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.invoice.properties.shipping_details.anyOf@ in the specification.
 -- 
 -- Shipping details for the invoice. The Invoice PDF will use the \\\`shipping_details\\\` value if it is set, otherwise the PDF will render the shipping address from the customer.
-data InvoiceShipping_detailsNonNullable = InvoiceShipping_detailsNonNullable {
+data InvoiceShipping_details = InvoiceShipping_details {
   -- | address: 
-  invoiceShipping_detailsNonNullableAddress :: (GHC.Maybe.Maybe Address)
+  invoiceShipping_detailsAddress :: (GHC.Maybe.Maybe Address)
   -- | carrier: The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceShipping_detailsNonNullableCarrier :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceShipping_detailsCarrier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Recipient name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceShipping_detailsNonNullableName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , invoiceShipping_detailsName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: Recipient phone (including extension).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceShipping_detailsNonNullablePhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceShipping_detailsPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tracking_number: The tracking number for a physical product, obtained from the delivery service. If multiple tracking numbers were generated for this purchase, please separate them with commas.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoiceShipping_detailsNonNullableTracking_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoiceShipping_detailsTracking_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceShipping_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableTracking_number obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsNonNullableTracking_number obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceShipping_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceShipping_detailsNonNullable" (\obj -> ((((GHC.Base.pure InvoiceShipping_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number"))}
--- | Create a new 'InvoiceShipping_detailsNonNullable' with all required fields.
-mkInvoiceShipping_detailsNonNullable :: InvoiceShipping_detailsNonNullable
-mkInvoiceShipping_detailsNonNullable = InvoiceShipping_detailsNonNullable{invoiceShipping_detailsNonNullableAddress = GHC.Maybe.Nothing,
-                                                                          invoiceShipping_detailsNonNullableCarrier = GHC.Maybe.Nothing,
-                                                                          invoiceShipping_detailsNonNullableName = GHC.Maybe.Nothing,
-                                                                          invoiceShipping_detailsNonNullablePhone = GHC.Maybe.Nothing,
-                                                                          invoiceShipping_detailsNonNullableTracking_number = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice.properties.status@ in the specification.
--- 
--- The status of the invoice, one of \`draft\`, \`open\`, \`paid\`, \`uncollectible\`, or \`void\`. [Learn more](https:\/\/docs.stripe.com\/billing\/invoices\/workflow\#workflow-overview)
-data InvoiceStatusNonNullable =
-   InvoiceStatusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | InvoiceStatusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | InvoiceStatusNonNullableEnumDraft -- ^ Represents the JSON value @"draft"@
-  | InvoiceStatusNonNullableEnumOpen -- ^ Represents the JSON value @"open"@
-  | InvoiceStatusNonNullableEnumPaid -- ^ Represents the JSON value @"paid"@
-  | InvoiceStatusNonNullableEnumUncollectible -- ^ Represents the JSON value @"uncollectible"@
-  | InvoiceStatusNonNullableEnumVoid -- ^ Represents the JSON value @"void"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceStatusNonNullable
-    where {toJSON (InvoiceStatusNonNullableOther val) = val;
-           toJSON (InvoiceStatusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (InvoiceStatusNonNullableEnumDraft) = "draft";
-           toJSON (InvoiceStatusNonNullableEnumOpen) = "open";
-           toJSON (InvoiceStatusNonNullableEnumPaid) = "paid";
-           toJSON (InvoiceStatusNonNullableEnumUncollectible) = "uncollectible";
-           toJSON (InvoiceStatusNonNullableEnumVoid) = "void"}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceStatusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "draft" -> InvoiceStatusNonNullableEnumDraft
-                                             | val GHC.Classes.== "open" -> InvoiceStatusNonNullableEnumOpen
-                                             | val GHC.Classes.== "paid" -> InvoiceStatusNonNullableEnumPaid
-                                             | val GHC.Classes.== "uncollectible" -> InvoiceStatusNonNullableEnumUncollectible
-                                             | val GHC.Classes.== "void" -> InvoiceStatusNonNullableEnumVoid
-                                             | GHC.Base.otherwise -> InvoiceStatusNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceShipping_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsTracking_number obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (invoiceShipping_detailsTracking_number obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceShipping_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoiceShipping_details" (\obj -> ((((GHC.Base.pure InvoiceShipping_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number"))}
+-- | Create a new 'InvoiceShipping_details' with all required fields.
+mkInvoiceShipping_details :: InvoiceShipping_details
+mkInvoiceShipping_details = InvoiceShipping_details{invoiceShipping_detailsAddress = GHC.Maybe.Nothing,
+                                                    invoiceShipping_detailsCarrier = GHC.Maybe.Nothing,
+                                                    invoiceShipping_detailsName = GHC.Maybe.Nothing,
+                                                    invoiceShipping_detailsPhone = GHC.Maybe.Nothing,
+                                                    invoiceShipping_detailsTracking_number = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.invoice.properties.test_clock.anyOf@ in the specification.
 -- 
 -- ID of the test clock this invoice belongs to.
-data InvoiceTest_clockNonNullableVariants =
-   InvoiceTest_clockNonNullableText Data.Text.Internal.Text
-  | InvoiceTest_clockNonNullableTest_helpers'test_clock Test_helpers'test_clock
+data InvoiceTest_clockVariants =
+   InvoiceTest_clockText Data.Text.Internal.Text
+  | InvoiceTest_clockTest_helpers'test_clock Test_helpers'test_clock
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON InvoiceTest_clockNonNullableVariants
-    where {toJSON (InvoiceTest_clockNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (InvoiceTest_clockNonNullableTest_helpers'test_clock a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON InvoiceTest_clockNonNullableVariants
-    where {parseJSON val = case (InvoiceTest_clockNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceTest_clockNonNullableTest_helpers'test_clock Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON InvoiceTest_clockVariants
+    where {toJSON (InvoiceTest_clockText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (InvoiceTest_clockTest_helpers'test_clock a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON InvoiceTest_clockVariants
+    where {parseJSON val = case (InvoiceTest_clockText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((InvoiceTest_clockTest_helpers'test_clock Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

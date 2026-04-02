@@ -49,7 +49,7 @@ data Connect_account_reference = Connect_account_reference {
   -- | account: The connected account being referenced when \`type\` is \`account\`.
   connect_account_referenceAccount :: (GHC.Maybe.Maybe Connect_account_referenceAccountVariants)
   -- | type: Type of the account referenced.
-  , connect_account_referenceType :: Connect_account_referenceType
+  , connect_account_referenceType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Connect_account_reference
@@ -58,7 +58,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Connect_account_reference
 instance Data.Aeson.Types.FromJSON.FromJSON Connect_account_reference
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Connect_account_reference" (\obj -> (GHC.Base.pure Connect_account_reference GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Connect_account_reference' with all required fields.
-mkConnect_account_reference :: Connect_account_referenceType -- ^ 'connect_account_referenceType'
+mkConnect_account_reference :: Data.Text.Internal.Text -- ^ 'connect_account_referenceType'
   -> Connect_account_reference
 mkConnect_account_reference connect_account_referenceType = Connect_account_reference{connect_account_referenceAccount = GHC.Maybe.Nothing,
                                                                                       connect_account_referenceType = connect_account_referenceType}
@@ -76,21 +76,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Connect_account_referenceAccountVari
     where {parseJSON val = case (Connect_account_referenceAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Connect_account_referenceAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.connect_account_reference.properties.type@ in the specification.
--- 
--- Type of the account referenced.
-data Connect_account_referenceType =
-   Connect_account_referenceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Connect_account_referenceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Connect_account_referenceTypeEnumAccount -- ^ Represents the JSON value @"account"@
-  | Connect_account_referenceTypeEnumSelf -- ^ Represents the JSON value @"self"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Connect_account_referenceType
-    where {toJSON (Connect_account_referenceTypeOther val) = val;
-           toJSON (Connect_account_referenceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Connect_account_referenceTypeEnumAccount) = "account";
-           toJSON (Connect_account_referenceTypeEnumSelf) = "self"}
-instance Data.Aeson.Types.FromJSON.FromJSON Connect_account_referenceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Connect_account_referenceTypeEnumAccount
-                                             | val GHC.Classes.== "self" -> Connect_account_referenceTypeEnumSelf
-                                             | GHC.Base.otherwise -> Connect_account_referenceTypeOther val)}

@@ -50,13 +50,13 @@ data Online_acceptance = Online_acceptance {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  online_acceptanceIp_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  online_acceptanceIp_address :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The customer accepts the mandate using the user agent of the browser.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , online_acceptanceUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , online_acceptanceUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Online_acceptance

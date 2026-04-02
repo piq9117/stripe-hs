@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_giropay = Source_type_giropay {
   -- | bank_code
-  source_type_giropayBank_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_giropayBank_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name
-  , source_type_giropayBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_giropayBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bic
-  , source_type_giropayBic :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_giropayBic :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor
-  , source_type_giropayStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_giropayStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_giropay

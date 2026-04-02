@@ -50,43 +50,43 @@ data Source_type_card_present = Source_type_card_present {
   -- | application_preferred_name
   , source_type_card_presentApplication_preferred_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | authorization_code
-  , source_type_card_presentAuthorization_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentAuthorization_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | authorization_response_code
   , source_type_card_presentAuthorization_response_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | brand
-  , source_type_card_presentBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country
-  , source_type_card_presentCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cvm_type
   , source_type_card_presentCvm_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | data_type
-  , source_type_card_presentData_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentData_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | dedicated_file_name
   , source_type_card_presentDedicated_file_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | emv_auth_data
   , source_type_card_presentEmv_auth_data :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | evidence_customer_signature
-  , source_type_card_presentEvidence_customer_signature :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentEvidence_customer_signature :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | evidence_transaction_certificate
-  , source_type_card_presentEvidence_transaction_certificate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentEvidence_transaction_certificate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month
-  , source_type_card_presentExp_month :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , source_type_card_presentExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year
-  , source_type_card_presentExp_year :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , source_type_card_presentExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | fingerprint
   , source_type_card_presentFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding
-  , source_type_card_presentFunding :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4
-  , source_type_card_presentLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | pos_device_id
-  , source_type_card_presentPos_device_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentPos_device_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | pos_entry_mode
   , source_type_card_presentPos_entry_mode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | read_method
-  , source_type_card_presentRead_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentRead_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reader
-  , source_type_card_presentReader :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_card_presentReader :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | terminal_verification_results
   , source_type_card_presentTerminal_verification_results :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_status_information

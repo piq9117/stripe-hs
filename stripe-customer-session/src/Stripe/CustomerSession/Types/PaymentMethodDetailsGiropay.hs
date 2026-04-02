@@ -50,19 +50,19 @@ data Payment_method_details_giropay = Payment_method_details_giropay {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_giropayBank_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_giropayBank_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name: Name of the bank associated with the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_giropayBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_giropayBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bic: Bank Identifier Code of the bank associated with the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_giropayBic :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_giropayBic :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_name: Owner\'s verified full name. Values are verified or provided by Giropay directly
   -- (if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- Giropay rarely provides this information so the attribute is usually empty.
@@ -70,7 +70,7 @@ data Payment_method_details_giropay = Payment_method_details_giropay {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_giropayVerified_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_giropayVerified_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_giropay

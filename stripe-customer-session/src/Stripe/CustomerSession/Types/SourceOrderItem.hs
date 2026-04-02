@@ -46,25 +46,25 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_order_item = Source_order_item {
   -- | amount: The amount (price) for this order item.
-  source_order_itemAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  source_order_itemAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currency: This currency of this order item. Required when \`amount\` is present.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , source_order_itemCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_order_itemCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: Human-readable description for this order item.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , source_order_itemDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_order_itemDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | parent: The ID of the associated object for this line item. Expandable if not null (e.g., expandable to a SKU).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , source_order_itemParent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_order_itemParent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | quantity: The quantity of this order item. When type is \`sku\`, this is the number of instances of the SKU to be ordered.
   , source_order_itemQuantity :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | type: The type of this order item. Must be \`sku\`, \`tax\`, or \`shipping\`.
@@ -72,7 +72,7 @@ data Source_order_item = Source_order_item {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , source_order_itemType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_order_itemType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_order_item

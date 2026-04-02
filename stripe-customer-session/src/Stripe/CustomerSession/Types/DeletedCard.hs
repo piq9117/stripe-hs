@@ -50,22 +50,30 @@ data Deleted_card = Deleted_card {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  deleted_cardCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  deleted_cardCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | deleted: Always true for a deleted object
+  , deleted_cardDeleted :: GHC.Types.Bool
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , deleted_cardId :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , deleted_cardObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Deleted_card
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_cardCurrency obj) : ["id" Data.Aeson.Types.ToJSON..= deleted_cardId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "card"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_cardCurrency obj) : ["id" Data.Aeson.Types.ToJSON..= deleted_cardId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "card"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_cardCurrency obj) : ["deleted" Data.Aeson.Types.ToJSON..= deleted_cardDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_cardId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_cardObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_cardCurrency obj) : ["deleted" Data.Aeson.Types.ToJSON..= deleted_cardDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_cardId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_cardObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Deleted_card
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_card" (\obj -> (GHC.Base.pure Deleted_card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_card" (\obj -> (((GHC.Base.pure Deleted_card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deleted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Deleted_card' with all required fields.
-mkDeleted_card :: Data.Text.Internal.Text -- ^ 'deleted_cardId'
+mkDeleted_card :: GHC.Types.Bool -- ^ 'deleted_cardDeleted'
+  -> Data.Text.Internal.Text -- ^ 'deleted_cardId'
+  -> Data.Text.Internal.Text -- ^ 'deleted_cardObject'
   -> Deleted_card
-mkDeleted_card deleted_cardId = Deleted_card{deleted_cardCurrency = GHC.Maybe.Nothing,
-                                             deleted_cardId = deleted_cardId}
+mkDeleted_card deleted_cardDeleted deleted_cardId deleted_cardObject = Deleted_card{deleted_cardCurrency = GHC.Maybe.Nothing,
+                                                                                    deleted_cardDeleted = deleted_cardDeleted,
+                                                                                    deleted_cardId = deleted_cardId,
+                                                                                    deleted_cardObject = deleted_cardObject}

@@ -47,11 +47,11 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptio
 -- 
 data Setup_intent_payment_method_options_card = Setup_intent_payment_method_options_card {
   -- | mandate_options: Configuration options for setting up an eMandate for cards issued in India.
-  setup_intent_payment_method_options_cardMandate_options :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_options_cardMandate_optionsNonNullable))
+  setup_intent_payment_method_options_cardMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_cardMandate_options)
   -- | network: Selected network to process this SetupIntent on. Depends on the available networks of the card attached to the setup intent. Can be only set confirm-time.
-  , setup_intent_payment_method_options_cardNetwork :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_options_cardNetworkNonNullable))
+  , setup_intent_payment_method_options_cardNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-  , setup_intent_payment_method_options_cardRequest_three_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullable))
+  , setup_intent_payment_method_options_cardRequest_three_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_card
@@ -67,183 +67,51 @@ mkSetup_intent_payment_method_options_card = Setup_intent_payment_method_options
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options_card.properties.mandate_options.anyOf@ in the specification.
 -- 
 -- Configuration options for setting up an eMandate for cards issued in India.
-data Setup_intent_payment_method_options_cardMandate_optionsNonNullable = Setup_intent_payment_method_options_cardMandate_optionsNonNullable {
-  -- | amount: Amount to be charged for future payments.
-  setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
+data Setup_intent_payment_method_options_cardMandate_options = Setup_intent_payment_method_options_cardMandate_options {
+  -- | amount: Amount to be charged for future payments, specified in the presentment currency.
+  setup_intent_payment_method_options_cardMandate_optionsAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_type: One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type)
+  , setup_intent_payment_method_options_cardMandate_optionsAmount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intent_payment_method_options_cardMandate_optionsCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: A description of the mandate or subscription that is meant to be displayed to the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 200
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intent_payment_method_options_cardMandate_optionsDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | end_date: End date of the mandate or subscription. If not provided, the mandate will be active until canceled. If provided, end date should be after start date.
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableEnd_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intent_payment_method_options_cardMandate_optionsEnd_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval)
+  , setup_intent_payment_method_options_cardMandate_optionsInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | interval_count: The number of intervals between payments. For example, \`interval=month\` and \`interval_count=3\` indicates one payment every three months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks). This parameter is optional when \`interval=sporadic\`.
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intent_payment_method_options_cardMandate_optionsInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reference: Unique identifier for the mandate or subscription.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 80
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intent_payment_method_options_cardMandate_optionsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | start_date: Start date of the mandate or subscription. Start date should not be lesser than yesterday.
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , setup_intent_payment_method_options_cardMandate_optionsStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | supported_types: Specifies the type of mandates supported. Possible values are \`india\`.
-  , setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullable]))
+  , setup_intent_payment_method_options_cardMandate_optionsSupported_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_options_cardMandate_optionsNonNullable" (\obj -> (((((((((GHC.Base.pure Setup_intent_payment_method_options_cardMandate_optionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
--- | Create a new 'Setup_intent_payment_method_options_cardMandate_optionsNonNullable' with all required fields.
-mkSetup_intent_payment_method_options_cardMandate_optionsNonNullable :: Setup_intent_payment_method_options_cardMandate_optionsNonNullable
-mkSetup_intent_payment_method_options_cardMandate_optionsNonNullable = Setup_intent_payment_method_options_cardMandate_optionsNonNullable{setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableCurrency = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableDescription = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableEnd_date = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval_count = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableReference = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableStart_date = GHC.Maybe.Nothing,
-                                                                                                                                          setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_types = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card.properties.mandate_options.anyOf.properties.amount_type@ in the specification.
--- 
--- One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-data Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type =
-   Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type
-    where {toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeOther val) = val;
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeEnumFixed) = "fixed";
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeEnumMaximum
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableAmount_typeOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card.properties.mandate_options.anyOf.properties.interval@ in the specification.
--- 
--- Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-data Setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval =
-   Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval
-    where {toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalOther val) = val;
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumDay) = "day";
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumMonth) = "month";
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumSporadic) = "sporadic";
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumWeek) = "week";
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullableInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumMonth
-                                             | val GHC.Classes.== "sporadic" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumSporadic
-                                             | val GHC.Classes.== "week" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalEnumYear
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card.properties.mandate_options.anyOf.properties.supported_types.items@ in the specification.
--- 
--- 
-data Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullable =
-   Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia -- ^ Represents the JSON value @"india"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullable
-    where {toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia) = "india"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "india" -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_cardMandate_optionsNonNullableSupported_typesNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card.properties.network@ in the specification.
--- 
--- Selected network to process this SetupIntent on. Depends on the available networks of the card attached to the setup intent. Can be only set confirm-time.
-data Setup_intent_payment_method_options_cardNetworkNonNullable =
-   Setup_intent_payment_method_options_cardNetworkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_cardNetworkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumAmex -- ^ Represents the JSON value @"amex"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumCartes_bancaires -- ^ Represents the JSON value @"cartes_bancaires"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumDiners -- ^ Represents the JSON value @"diners"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumDiscover -- ^ Represents the JSON value @"discover"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumEftpos_au -- ^ Represents the JSON value @"eftpos_au"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumGirocard -- ^ Represents the JSON value @"girocard"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumInterac -- ^ Represents the JSON value @"interac"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumJcb -- ^ Represents the JSON value @"jcb"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumLink -- ^ Represents the JSON value @"link"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumUnionpay -- ^ Represents the JSON value @"unionpay"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  | Setup_intent_payment_method_options_cardNetworkNonNullableEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_cardNetworkNonNullable
-    where {toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumAmex) = "amex";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumCartes_bancaires) = "cartes_bancaires";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumDiners) = "diners";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumDiscover) = "discover";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumEftpos_au) = "eftpos_au";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumGirocard) = "girocard";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumInterac) = "interac";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumJcb) = "jcb";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumLink) = "link";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumMastercard) = "mastercard";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumUnionpay) = "unionpay";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumUnknown) = "unknown";
-           toJSON (Setup_intent_payment_method_options_cardNetworkNonNullableEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_cardNetworkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amex" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumAmex
-                                             | val GHC.Classes.== "cartes_bancaires" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumCartes_bancaires
-                                             | val GHC.Classes.== "diners" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumDiners
-                                             | val GHC.Classes.== "discover" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumDiscover
-                                             | val GHC.Classes.== "eftpos_au" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumEftpos_au
-                                             | val GHC.Classes.== "girocard" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumGirocard
-                                             | val GHC.Classes.== "interac" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumInterac
-                                             | val GHC.Classes.== "jcb" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumJcb
-                                             | val GHC.Classes.== "link" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumLink
-                                             | val GHC.Classes.== "mastercard" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumMastercard
-                                             | val GHC.Classes.== "unionpay" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumUnionpay
-                                             | val GHC.Classes.== "unknown" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumUnknown
-                                             | val GHC.Classes.== "visa" -> Setup_intent_payment_method_options_cardNetworkNonNullableEnumVisa
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_cardNetworkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card.properties.request_three_d_secure@ in the specification.
--- 
--- We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-data Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullable =
-   Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny -- ^ Represents the JSON value @"any"@
-  | Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullable
-    where {toJSON (Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny) = "any";
-           toJSON (Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge) = "challenge"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "any" -> Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny
-                                             | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "challenge" -> Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_cardRequest_three_d_secureNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_cardMandate_options
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsSupported_types obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_options_cardMandate_optionsSupported_types obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_cardMandate_options
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_options_cardMandate_options" (\obj -> (((((((((GHC.Base.pure Setup_intent_payment_method_options_cardMandate_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
+-- | Create a new 'Setup_intent_payment_method_options_cardMandate_options' with all required fields.
+mkSetup_intent_payment_method_options_cardMandate_options :: Setup_intent_payment_method_options_cardMandate_options
+mkSetup_intent_payment_method_options_cardMandate_options = Setup_intent_payment_method_options_cardMandate_options{setup_intent_payment_method_options_cardMandate_optionsAmount = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsAmount_type = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsCurrency = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsDescription = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsEnd_date = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsInterval = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsInterval_count = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsReference = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsStart_date = GHC.Maybe.Nothing,
+                                                                                                                    setup_intent_payment_method_options_cardMandate_optionsSupported_types = GHC.Maybe.Nothing}

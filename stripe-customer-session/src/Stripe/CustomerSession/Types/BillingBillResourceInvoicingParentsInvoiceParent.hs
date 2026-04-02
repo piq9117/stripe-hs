@@ -49,11 +49,11 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Subscription
 -- 
 data Billing_bill_resource_invoicing_parents_invoice_parent = Billing_bill_resource_invoicing_parents_invoice_parent {
   -- | quote_details: Details about the quote that generated this invoice
-  billing_bill_resource_invoicing_parents_invoice_parentQuote_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable))
+  billing_bill_resource_invoicing_parents_invoice_parentQuote_details :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_parents_invoice_parentQuote_details)
   -- | subscription_details: Details about the subscription that generated this invoice
-  , billing_bill_resource_invoicing_parents_invoice_parentSubscription_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable))
+  , billing_bill_resource_invoicing_parents_invoice_parentSubscription_details :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details)
   -- | type: The type of parent that generated this invoice
-  , billing_bill_resource_invoicing_parents_invoice_parentType :: Billing_bill_resource_invoicing_parents_invoice_parentType
+  , billing_bill_resource_invoicing_parents_invoice_parentType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parent
@@ -62,7 +62,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_
 instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parent
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_parents_invoice_parent" (\obj -> ((GHC.Base.pure Billing_bill_resource_invoicing_parents_invoice_parent GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quote_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Billing_bill_resource_invoicing_parents_invoice_parent' with all required fields.
-mkBilling_bill_resource_invoicing_parents_invoice_parent :: Billing_bill_resource_invoicing_parents_invoice_parentType -- ^ 'billing_bill_resource_invoicing_parents_invoice_parentType'
+mkBilling_bill_resource_invoicing_parents_invoice_parent :: Data.Text.Internal.Text -- ^ 'billing_bill_resource_invoicing_parents_invoice_parentType'
   -> Billing_bill_resource_invoicing_parents_invoice_parent
 mkBilling_bill_resource_invoicing_parents_invoice_parent billing_bill_resource_invoicing_parents_invoice_parentType = Billing_bill_resource_invoicing_parents_invoice_parent{billing_bill_resource_invoicing_parents_invoice_parentQuote_details = GHC.Maybe.Nothing,
                                                                                                                                                                              billing_bill_resource_invoicing_parents_invoice_parentSubscription_details = GHC.Maybe.Nothing,
@@ -70,75 +70,57 @@ mkBilling_bill_resource_invoicing_parents_invoice_parent billing_bill_resource_i
 -- | Defines the object schema located at @components.schemas.billing_bill_resource_invoicing_parents_invoice_parent.properties.quote_details.anyOf@ in the specification.
 -- 
 -- Details about the quote that generated this invoice
-data Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable = Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable {
+data Billing_bill_resource_invoicing_parents_invoice_parentQuote_details = Billing_bill_resource_invoicing_parents_invoice_parentQuote_details {
   -- | quote: The quote that generated this invoice
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullableQuote :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsQuote :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullableQuote obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullableQuote obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable" (\obj -> GHC.Base.pure Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quote"))}
--- | Create a new 'Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable' with all required fields.
-mkBilling_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable :: Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable
-mkBilling_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable = Billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullable{billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsNonNullableQuote = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parentQuote_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsQuote obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quote" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsQuote obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parentQuote_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_parents_invoice_parentQuote_details" (\obj -> GHC.Base.pure Billing_bill_resource_invoicing_parents_invoice_parentQuote_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quote"))}
+-- | Create a new 'Billing_bill_resource_invoicing_parents_invoice_parentQuote_details' with all required fields.
+mkBilling_bill_resource_invoicing_parents_invoice_parentQuote_details :: Billing_bill_resource_invoicing_parents_invoice_parentQuote_details
+mkBilling_bill_resource_invoicing_parents_invoice_parentQuote_details = Billing_bill_resource_invoicing_parents_invoice_parentQuote_details{billing_bill_resource_invoicing_parents_invoice_parentQuote_detailsQuote = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.billing_bill_resource_invoicing_parents_invoice_parent.properties.subscription_details.anyOf@ in the specification.
 -- 
 -- Details about the subscription that generated this invoice
-data Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable = Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable {
+data Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details = Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details {
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) defined as subscription metadata when an invoice is created. Becomes an immutable snapshot of the subscription metadata at the time of invoice finalization.
   --  *Note: This attribute is populated only for invoices created on or after June 29, 2023.*
-  billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | subscription: The subscription that generated this invoice
-  , billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionVariants)
+  , billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionVariants)
   -- | subscription_proration_date: Only set for upcoming invoices that preview prorations. The time used to calculate prorations.
-  , billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription_proration_date :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription_proration_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription_proration_date obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription_proration_date obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable" (\obj -> ((GHC.Base.pure Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_proration_date"))}
--- | Create a new 'Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable' with all required fields.
-mkBilling_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable :: Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable
-mkBilling_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable = Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullable{billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableMetadata = GHC.Maybe.Nothing,
-                                                                                                                                                                                billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription = GHC.Maybe.Nothing,
-                                                                                                                                                                                billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscription_proration_date = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription_proration_date obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_proration_date" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription_proration_date obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details" (\obj -> ((GHC.Base.pure Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_proration_date"))}
+-- | Create a new 'Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details' with all required fields.
+mkBilling_bill_resource_invoicing_parents_invoice_parentSubscription_details :: Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details
+mkBilling_bill_resource_invoicing_parents_invoice_parentSubscription_details = Billing_bill_resource_invoicing_parents_invoice_parentSubscription_details{billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsMetadata = GHC.Maybe.Nothing,
+                                                                                                                                                          billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription = GHC.Maybe.Nothing,
+                                                                                                                                                          billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscription_proration_date = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.billing_bill_resource_invoicing_parents_invoice_parent.properties.subscription_details.anyOf.properties.subscription.anyOf@ in the specification.
 -- 
 -- The subscription that generated this invoice
-data Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionVariants =
-   Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionText Data.Text.Internal.Text
-  | Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionSubscription Subscription
+data Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionVariants =
+   Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionText Data.Text.Internal.Text
+  | Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionSubscription Subscription
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionVariants
-    where {toJSON (Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionSubscription a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionVariants
-    where {parseJSON val = case (Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsNonNullableSubscriptionSubscription Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionVariants
+    where {toJSON (Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionSubscription a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionVariants
+    where {parseJSON val = case (Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Billing_bill_resource_invoicing_parents_invoice_parentSubscription_detailsSubscriptionSubscription Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.billing_bill_resource_invoicing_parents_invoice_parent.properties.type@ in the specification.
--- 
--- The type of parent that generated this invoice
-data Billing_bill_resource_invoicing_parents_invoice_parentType =
-   Billing_bill_resource_invoicing_parents_invoice_parentTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Billing_bill_resource_invoicing_parents_invoice_parentTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Billing_bill_resource_invoicing_parents_invoice_parentTypeEnumQuote_details -- ^ Represents the JSON value @"quote_details"@
-  | Billing_bill_resource_invoicing_parents_invoice_parentTypeEnumSubscription_details -- ^ Represents the JSON value @"subscription_details"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_parents_invoice_parentType
-    where {toJSON (Billing_bill_resource_invoicing_parents_invoice_parentTypeOther val) = val;
-           toJSON (Billing_bill_resource_invoicing_parents_invoice_parentTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Billing_bill_resource_invoicing_parents_invoice_parentTypeEnumQuote_details) = "quote_details";
-           toJSON (Billing_bill_resource_invoicing_parents_invoice_parentTypeEnumSubscription_details) = "subscription_details"}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_parents_invoice_parentType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "quote_details" -> Billing_bill_resource_invoicing_parents_invoice_parentTypeEnumQuote_details
-                                             | val GHC.Classes.== "subscription_details" -> Billing_bill_resource_invoicing_parents_invoice_parentTypeEnumSubscription_details
-                                             | GHC.Base.otherwise -> Billing_bill_resource_invoicing_parents_invoice_parentTypeOther val)}

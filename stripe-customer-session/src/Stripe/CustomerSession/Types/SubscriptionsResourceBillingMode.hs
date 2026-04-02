@@ -47,9 +47,9 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourceBillingM
 -- The billing mode of the subscription.
 data Subscriptions_resource_billing_mode = Subscriptions_resource_billing_mode {
   -- | flexible: Configure behavior for flexible billing mode
-  subscriptions_resource_billing_modeFlexible :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscriptions_resource_billing_modeFlexibleNonNullable))
+  subscriptions_resource_billing_modeFlexible :: (GHC.Maybe.Maybe Subscriptions_resource_billing_modeFlexible)
   -- | type: Controls how prorations and invoices for subscriptions are calculated and orchestrated.
-  , subscriptions_resource_billing_modeType :: Subscriptions_resource_billing_modeType
+  , subscriptions_resource_billing_modeType :: Data.Text.Internal.Text
   -- | updated_at: Details on when the current billing_mode was adopted.
   , subscriptions_resource_billing_modeUpdated_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
@@ -60,7 +60,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_mode
 instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_billing_mode
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscriptions_resource_billing_mode" (\obj -> ((GHC.Base.pure Subscriptions_resource_billing_mode GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "flexible")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "updated_at"))}
 -- | Create a new 'Subscriptions_resource_billing_mode' with all required fields.
-mkSubscriptions_resource_billing_mode :: Subscriptions_resource_billing_modeType -- ^ 'subscriptions_resource_billing_modeType'
+mkSubscriptions_resource_billing_mode :: Data.Text.Internal.Text -- ^ 'subscriptions_resource_billing_modeType'
   -> Subscriptions_resource_billing_mode
 mkSubscriptions_resource_billing_mode subscriptions_resource_billing_modeType = Subscriptions_resource_billing_mode{subscriptions_resource_billing_modeFlexible = GHC.Maybe.Nothing,
                                                                                                                     subscriptions_resource_billing_modeType = subscriptions_resource_billing_modeType,
@@ -68,52 +68,16 @@ mkSubscriptions_resource_billing_mode subscriptions_resource_billing_modeType = 
 -- | Defines the object schema located at @components.schemas.subscriptions_resource_billing_mode.properties.flexible.anyOf@ in the specification.
 -- 
 -- Configure behavior for flexible billing mode
-data Subscriptions_resource_billing_modeFlexibleNonNullable = Subscriptions_resource_billing_modeFlexibleNonNullable {
+data Subscriptions_resource_billing_modeFlexible = Subscriptions_resource_billing_modeFlexible {
   -- | proration_discounts: Controls how invoices and invoice items display proration amounts and discount amounts.
-  subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts :: (GHC.Maybe.Maybe Subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts)
+  subscriptions_resource_billing_modeFlexibleProration_discounts :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_modeFlexibleNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_discounts" Data.Aeson.Types.ToJSON..=)) (subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_discounts" Data.Aeson.Types.ToJSON..=)) (subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_billing_modeFlexibleNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscriptions_resource_billing_modeFlexibleNonNullable" (\obj -> GHC.Base.pure Subscriptions_resource_billing_modeFlexibleNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration_discounts"))}
--- | Create a new 'Subscriptions_resource_billing_modeFlexibleNonNullable' with all required fields.
-mkSubscriptions_resource_billing_modeFlexibleNonNullable :: Subscriptions_resource_billing_modeFlexibleNonNullable
-mkSubscriptions_resource_billing_modeFlexibleNonNullable = Subscriptions_resource_billing_modeFlexibleNonNullable{subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscriptions_resource_billing_mode.properties.flexible.anyOf.properties.proration_discounts@ in the specification.
--- 
--- Controls how invoices and invoice items display proration amounts and discount amounts.
-data Subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts =
-   Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsEnumIncluded -- ^ Represents the JSON value @"included"@
-  | Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsEnumItemized -- ^ Represents the JSON value @"itemized"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts
-    where {toJSON (Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsOther val) = val;
-           toJSON (Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsEnumIncluded) = "included";
-           toJSON (Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsEnumItemized) = "itemized"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_billing_modeFlexibleNonNullableProration_discounts
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "included" -> Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsEnumIncluded
-                                             | val GHC.Classes.== "itemized" -> Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsEnumItemized
-                                             | GHC.Base.otherwise -> Subscriptions_resource_billing_modeFlexibleNonNullableProration_discountsOther val)}
--- | Defines the enum schema located at @components.schemas.subscriptions_resource_billing_mode.properties.type@ in the specification.
--- 
--- Controls how prorations and invoices for subscriptions are calculated and orchestrated.
-data Subscriptions_resource_billing_modeType =
-   Subscriptions_resource_billing_modeTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscriptions_resource_billing_modeTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscriptions_resource_billing_modeTypeEnumClassic -- ^ Represents the JSON value @"classic"@
-  | Subscriptions_resource_billing_modeTypeEnumFlexible -- ^ Represents the JSON value @"flexible"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_modeType
-    where {toJSON (Subscriptions_resource_billing_modeTypeOther val) = val;
-           toJSON (Subscriptions_resource_billing_modeTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscriptions_resource_billing_modeTypeEnumClassic) = "classic";
-           toJSON (Subscriptions_resource_billing_modeTypeEnumFlexible) = "flexible"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_billing_modeType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "classic" -> Subscriptions_resource_billing_modeTypeEnumClassic
-                                             | val GHC.Classes.== "flexible" -> Subscriptions_resource_billing_modeTypeEnumFlexible
-                                             | GHC.Base.otherwise -> Subscriptions_resource_billing_modeTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_modeFlexible
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_discounts" Data.Aeson.Types.ToJSON..=)) (subscriptions_resource_billing_modeFlexibleProration_discounts obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_discounts" Data.Aeson.Types.ToJSON..=)) (subscriptions_resource_billing_modeFlexibleProration_discounts obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_billing_modeFlexible
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscriptions_resource_billing_modeFlexible" (\obj -> GHC.Base.pure Subscriptions_resource_billing_modeFlexible GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration_discounts"))}
+-- | Create a new 'Subscriptions_resource_billing_modeFlexible' with all required fields.
+mkSubscriptions_resource_billing_modeFlexible :: Subscriptions_resource_billing_modeFlexible
+mkSubscriptions_resource_billing_modeFlexible = Subscriptions_resource_billing_modeFlexible{subscriptions_resource_billing_modeFlexibleProration_discounts = GHC.Maybe.Nothing}

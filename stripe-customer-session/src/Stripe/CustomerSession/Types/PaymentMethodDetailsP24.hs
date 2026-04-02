@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_details_p24 = Payment_method_details_p24 {
   -- | bank: The customer\'s bank. Can be one of \`ing\`, \`citi_handlowy\`, \`tmobile_usbugi_bankowe\`, \`plus_bank\`, \`etransfer_pocztowy24\`, \`banki_spbdzielcze\`, \`bank_nowy_bfg_sa\`, \`getin_bank\`, \`velobank\`, \`blik\`, \`noble_pay\`, \`ideabank\`, \`envelobank\`, \`santander_przelew24\`, \`nest_przelew\`, \`mbank_mtransfer\`, \`inteligo\`, \`pbac_z_ipko\`, \`bnp_paribas\`, \`credit_agricole\`, \`toyota_bank\`, \`bank_pekao_sa\`, \`volkswagen_bank\`, \`bank_millennium\`, \`alior_bank\`, or \`boz\`.
-  payment_method_details_p24Bank :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_p24BankNonNullable))
+  payment_method_details_p24Bank :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference: Unique reference for this Przelewy24 payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_p24Reference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_p24Reference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_name: Owner\'s verified full name. Values are verified or provided by Przelewy24 directly
   -- (if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- Przelewy24 rarely provides this information so the attribute is usually empty.
@@ -60,7 +60,7 @@ data Payment_method_details_p24 = Payment_method_details_p24 {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_p24Verified_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_p24Verified_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_p24
@@ -73,93 +73,3 @@ mkPayment_method_details_p24 :: Payment_method_details_p24
 mkPayment_method_details_p24 = Payment_method_details_p24{payment_method_details_p24Bank = GHC.Maybe.Nothing,
                                                           payment_method_details_p24Reference = GHC.Maybe.Nothing,
                                                           payment_method_details_p24Verified_name = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_details_p24.properties.bank@ in the specification.
--- 
--- The customer\'s bank. Can be one of \`ing\`, \`citi_handlowy\`, \`tmobile_usbugi_bankowe\`, \`plus_bank\`, \`etransfer_pocztowy24\`, \`banki_spbdzielcze\`, \`bank_nowy_bfg_sa\`, \`getin_bank\`, \`velobank\`, \`blik\`, \`noble_pay\`, \`ideabank\`, \`envelobank\`, \`santander_przelew24\`, \`nest_przelew\`, \`mbank_mtransfer\`, \`inteligo\`, \`pbac_z_ipko\`, \`bnp_paribas\`, \`credit_agricole\`, \`toyota_bank\`, \`bank_pekao_sa\`, \`volkswagen_bank\`, \`bank_millennium\`, \`alior_bank\`, or \`boz\`.
-data Payment_method_details_p24BankNonNullable =
-   Payment_method_details_p24BankNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_p24BankNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_p24BankNonNullableEnumAlior_bank -- ^ Represents the JSON value @"alior_bank"@
-  | Payment_method_details_p24BankNonNullableEnumBank_millennium -- ^ Represents the JSON value @"bank_millennium"@
-  | Payment_method_details_p24BankNonNullableEnumBank_nowy_bfg_sa -- ^ Represents the JSON value @"bank_nowy_bfg_sa"@
-  | Payment_method_details_p24BankNonNullableEnumBank_pekao_sa -- ^ Represents the JSON value @"bank_pekao_sa"@
-  | Payment_method_details_p24BankNonNullableEnumBanki_spbdzielcze -- ^ Represents the JSON value @"banki_spbdzielcze"@
-  | Payment_method_details_p24BankNonNullableEnumBlik -- ^ Represents the JSON value @"blik"@
-  | Payment_method_details_p24BankNonNullableEnumBnp_paribas -- ^ Represents the JSON value @"bnp_paribas"@
-  | Payment_method_details_p24BankNonNullableEnumBoz -- ^ Represents the JSON value @"boz"@
-  | Payment_method_details_p24BankNonNullableEnumCiti_handlowy -- ^ Represents the JSON value @"citi_handlowy"@
-  | Payment_method_details_p24BankNonNullableEnumCredit_agricole -- ^ Represents the JSON value @"credit_agricole"@
-  | Payment_method_details_p24BankNonNullableEnumEnvelobank -- ^ Represents the JSON value @"envelobank"@
-  | Payment_method_details_p24BankNonNullableEnumEtransfer_pocztowy24 -- ^ Represents the JSON value @"etransfer_pocztowy24"@
-  | Payment_method_details_p24BankNonNullableEnumGetin_bank -- ^ Represents the JSON value @"getin_bank"@
-  | Payment_method_details_p24BankNonNullableEnumIdeabank -- ^ Represents the JSON value @"ideabank"@
-  | Payment_method_details_p24BankNonNullableEnumIng -- ^ Represents the JSON value @"ing"@
-  | Payment_method_details_p24BankNonNullableEnumInteligo -- ^ Represents the JSON value @"inteligo"@
-  | Payment_method_details_p24BankNonNullableEnumMbank_mtransfer -- ^ Represents the JSON value @"mbank_mtransfer"@
-  | Payment_method_details_p24BankNonNullableEnumNest_przelew -- ^ Represents the JSON value @"nest_przelew"@
-  | Payment_method_details_p24BankNonNullableEnumNoble_pay -- ^ Represents the JSON value @"noble_pay"@
-  | Payment_method_details_p24BankNonNullableEnumPbac_z_ipko -- ^ Represents the JSON value @"pbac_z_ipko"@
-  | Payment_method_details_p24BankNonNullableEnumPlus_bank -- ^ Represents the JSON value @"plus_bank"@
-  | Payment_method_details_p24BankNonNullableEnumSantander_przelew24 -- ^ Represents the JSON value @"santander_przelew24"@
-  | Payment_method_details_p24BankNonNullableEnumTmobile_usbugi_bankowe -- ^ Represents the JSON value @"tmobile_usbugi_bankowe"@
-  | Payment_method_details_p24BankNonNullableEnumToyota_bank -- ^ Represents the JSON value @"toyota_bank"@
-  | Payment_method_details_p24BankNonNullableEnumVelobank -- ^ Represents the JSON value @"velobank"@
-  | Payment_method_details_p24BankNonNullableEnumVolkswagen_bank -- ^ Represents the JSON value @"volkswagen_bank"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_p24BankNonNullable
-    where {toJSON (Payment_method_details_p24BankNonNullableOther val) = val;
-           toJSON (Payment_method_details_p24BankNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_p24BankNonNullableEnumAlior_bank) = "alior_bank";
-           toJSON (Payment_method_details_p24BankNonNullableEnumBank_millennium) = "bank_millennium";
-           toJSON (Payment_method_details_p24BankNonNullableEnumBank_nowy_bfg_sa) = "bank_nowy_bfg_sa";
-           toJSON (Payment_method_details_p24BankNonNullableEnumBank_pekao_sa) = "bank_pekao_sa";
-           toJSON (Payment_method_details_p24BankNonNullableEnumBanki_spbdzielcze) = "banki_spbdzielcze";
-           toJSON (Payment_method_details_p24BankNonNullableEnumBlik) = "blik";
-           toJSON (Payment_method_details_p24BankNonNullableEnumBnp_paribas) = "bnp_paribas";
-           toJSON (Payment_method_details_p24BankNonNullableEnumBoz) = "boz";
-           toJSON (Payment_method_details_p24BankNonNullableEnumCiti_handlowy) = "citi_handlowy";
-           toJSON (Payment_method_details_p24BankNonNullableEnumCredit_agricole) = "credit_agricole";
-           toJSON (Payment_method_details_p24BankNonNullableEnumEnvelobank) = "envelobank";
-           toJSON (Payment_method_details_p24BankNonNullableEnumEtransfer_pocztowy24) = "etransfer_pocztowy24";
-           toJSON (Payment_method_details_p24BankNonNullableEnumGetin_bank) = "getin_bank";
-           toJSON (Payment_method_details_p24BankNonNullableEnumIdeabank) = "ideabank";
-           toJSON (Payment_method_details_p24BankNonNullableEnumIng) = "ing";
-           toJSON (Payment_method_details_p24BankNonNullableEnumInteligo) = "inteligo";
-           toJSON (Payment_method_details_p24BankNonNullableEnumMbank_mtransfer) = "mbank_mtransfer";
-           toJSON (Payment_method_details_p24BankNonNullableEnumNest_przelew) = "nest_przelew";
-           toJSON (Payment_method_details_p24BankNonNullableEnumNoble_pay) = "noble_pay";
-           toJSON (Payment_method_details_p24BankNonNullableEnumPbac_z_ipko) = "pbac_z_ipko";
-           toJSON (Payment_method_details_p24BankNonNullableEnumPlus_bank) = "plus_bank";
-           toJSON (Payment_method_details_p24BankNonNullableEnumSantander_przelew24) = "santander_przelew24";
-           toJSON (Payment_method_details_p24BankNonNullableEnumTmobile_usbugi_bankowe) = "tmobile_usbugi_bankowe";
-           toJSON (Payment_method_details_p24BankNonNullableEnumToyota_bank) = "toyota_bank";
-           toJSON (Payment_method_details_p24BankNonNullableEnumVelobank) = "velobank";
-           toJSON (Payment_method_details_p24BankNonNullableEnumVolkswagen_bank) = "volkswagen_bank"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_p24BankNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "alior_bank" -> Payment_method_details_p24BankNonNullableEnumAlior_bank
-                                             | val GHC.Classes.== "bank_millennium" -> Payment_method_details_p24BankNonNullableEnumBank_millennium
-                                             | val GHC.Classes.== "bank_nowy_bfg_sa" -> Payment_method_details_p24BankNonNullableEnumBank_nowy_bfg_sa
-                                             | val GHC.Classes.== "bank_pekao_sa" -> Payment_method_details_p24BankNonNullableEnumBank_pekao_sa
-                                             | val GHC.Classes.== "banki_spbdzielcze" -> Payment_method_details_p24BankNonNullableEnumBanki_spbdzielcze
-                                             | val GHC.Classes.== "blik" -> Payment_method_details_p24BankNonNullableEnumBlik
-                                             | val GHC.Classes.== "bnp_paribas" -> Payment_method_details_p24BankNonNullableEnumBnp_paribas
-                                             | val GHC.Classes.== "boz" -> Payment_method_details_p24BankNonNullableEnumBoz
-                                             | val GHC.Classes.== "citi_handlowy" -> Payment_method_details_p24BankNonNullableEnumCiti_handlowy
-                                             | val GHC.Classes.== "credit_agricole" -> Payment_method_details_p24BankNonNullableEnumCredit_agricole
-                                             | val GHC.Classes.== "envelobank" -> Payment_method_details_p24BankNonNullableEnumEnvelobank
-                                             | val GHC.Classes.== "etransfer_pocztowy24" -> Payment_method_details_p24BankNonNullableEnumEtransfer_pocztowy24
-                                             | val GHC.Classes.== "getin_bank" -> Payment_method_details_p24BankNonNullableEnumGetin_bank
-                                             | val GHC.Classes.== "ideabank" -> Payment_method_details_p24BankNonNullableEnumIdeabank
-                                             | val GHC.Classes.== "ing" -> Payment_method_details_p24BankNonNullableEnumIng
-                                             | val GHC.Classes.== "inteligo" -> Payment_method_details_p24BankNonNullableEnumInteligo
-                                             | val GHC.Classes.== "mbank_mtransfer" -> Payment_method_details_p24BankNonNullableEnumMbank_mtransfer
-                                             | val GHC.Classes.== "nest_przelew" -> Payment_method_details_p24BankNonNullableEnumNest_przelew
-                                             | val GHC.Classes.== "noble_pay" -> Payment_method_details_p24BankNonNullableEnumNoble_pay
-                                             | val GHC.Classes.== "pbac_z_ipko" -> Payment_method_details_p24BankNonNullableEnumPbac_z_ipko
-                                             | val GHC.Classes.== "plus_bank" -> Payment_method_details_p24BankNonNullableEnumPlus_bank
-                                             | val GHC.Classes.== "santander_przelew24" -> Payment_method_details_p24BankNonNullableEnumSantander_przelew24
-                                             | val GHC.Classes.== "tmobile_usbugi_bankowe" -> Payment_method_details_p24BankNonNullableEnumTmobile_usbugi_bankowe
-                                             | val GHC.Classes.== "toyota_bank" -> Payment_method_details_p24BankNonNullableEnumToyota_bank
-                                             | val GHC.Classes.== "velobank" -> Payment_method_details_p24BankNonNullableEnumVelobank
-                                             | val GHC.Classes.== "volkswagen_bank" -> Payment_method_details_p24BankNonNullableEnumVolkswagen_bank
-                                             | GHC.Base.otherwise -> Payment_method_details_p24BankNonNullableOther val)}

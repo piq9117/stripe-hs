@@ -6,8 +6,3 @@ instance Show Refund_destination_details_card
 instance Eq Refund_destination_details_card
 instance Data.Aeson.FromJSON Refund_destination_details_card
 instance Data.Aeson.ToJSON Refund_destination_details_card
-data Refund_destination_details_cardType
-instance Show Refund_destination_details_cardType
-instance Eq Refund_destination_details_cardType
-instance Data.Aeson.FromJSON Refund_destination_details_cardType
-instance Data.Aeson.ToJSON Refund_destination_details_cardType

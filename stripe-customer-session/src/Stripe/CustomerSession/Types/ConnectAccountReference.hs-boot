@@ -11,8 +11,3 @@ instance Show Connect_account_referenceAccountVariants
 instance Eq Connect_account_referenceAccountVariants
 instance Data.Aeson.FromJSON Connect_account_referenceAccountVariants
 instance Data.Aeson.ToJSON Connect_account_referenceAccountVariants
-data Connect_account_referenceType
-instance Show Connect_account_referenceType
-instance Eq Connect_account_referenceType
-instance Data.Aeson.FromJSON Connect_account_referenceType
-instance Data.Aeson.ToJSON Connect_account_referenceType

@@ -56,13 +56,13 @@ data Payment_flows_private_payment_methods_alipay_details = Payment_flows_privat
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_flows_private_payment_methods_alipay_detailsFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_private_payment_methods_alipay_detailsFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: Transaction ID of this particular Alipay transaction.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_flows_private_payment_methods_alipay_detailsTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_private_payment_methods_alipay_detailsTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_alipay_details

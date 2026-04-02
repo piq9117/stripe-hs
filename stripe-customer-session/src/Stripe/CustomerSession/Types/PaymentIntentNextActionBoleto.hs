@@ -46,25 +46,25 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_intent_next_action_boleto = Payment_intent_next_action_boleto {
   -- | expires_at: The timestamp after which the boleto expires.
-  payment_intent_next_action_boletoExpires_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_intent_next_action_boletoExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | hosted_voucher_url: The URL to the hosted boleto voucher page, which allows customers to view the boleto voucher.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_boletoHosted_voucher_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_boletoHosted_voucher_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | number: The boleto number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_boletoNumber :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_boletoNumber :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | pdf: The URL to the downloadable boleto voucher PDF.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_boletoPdf :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_boletoPdf :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_boleto

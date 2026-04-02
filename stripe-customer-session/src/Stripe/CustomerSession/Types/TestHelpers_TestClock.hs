@@ -60,60 +60,43 @@ data Test_helpers'test_clock = Test_helpers'test_clock {
   -- 
   -- * Maximum length of 5000
   , test_helpers'test_clockId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , test_helpers'test_clockLivemode :: GHC.Types.Bool
   -- | name: The custom name supplied at creation.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , test_helpers'test_clockName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , test_helpers'test_clockName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , test_helpers'test_clockObject :: Data.Text.Internal.Text
   -- | status: The status of the Test Clock.
-  , test_helpers'test_clockStatus :: Test_helpers'test_clockStatus
+  , test_helpers'test_clockStatus :: Data.Text.Internal.Text
   -- | status_details: 
   , test_helpers'test_clockStatus_details :: Billing_clocks_resource_status_details_status_details
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Test_helpers'test_clock
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= test_helpers'test_clockCreated obj] : ["deletes_after" Data.Aeson.Types.ToJSON..= test_helpers'test_clockDeletes_after obj] : ["frozen_time" Data.Aeson.Types.ToJSON..= test_helpers'test_clockFrozen_time obj] : ["id" Data.Aeson.Types.ToJSON..= test_helpers'test_clockId obj] : ["livemode" Data.Aeson.Types.ToJSON..= test_helpers'test_clockLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (test_helpers'test_clockName obj) : ["status" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus obj] : ["status_details" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus_details obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "test_helpers.test_clock"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= test_helpers'test_clockCreated obj] : ["deletes_after" Data.Aeson.Types.ToJSON..= test_helpers'test_clockDeletes_after obj] : ["frozen_time" Data.Aeson.Types.ToJSON..= test_helpers'test_clockFrozen_time obj] : ["id" Data.Aeson.Types.ToJSON..= test_helpers'test_clockId obj] : ["livemode" Data.Aeson.Types.ToJSON..= test_helpers'test_clockLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (test_helpers'test_clockName obj) : ["status" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus obj] : ["status_details" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus_details obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "test_helpers.test_clock"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= test_helpers'test_clockCreated obj] : ["deletes_after" Data.Aeson.Types.ToJSON..= test_helpers'test_clockDeletes_after obj] : ["frozen_time" Data.Aeson.Types.ToJSON..= test_helpers'test_clockFrozen_time obj] : ["id" Data.Aeson.Types.ToJSON..= test_helpers'test_clockId obj] : ["livemode" Data.Aeson.Types.ToJSON..= test_helpers'test_clockLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (test_helpers'test_clockName obj) : ["object" Data.Aeson.Types.ToJSON..= test_helpers'test_clockObject obj] : ["status" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus obj] : ["status_details" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus_details obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= test_helpers'test_clockCreated obj] : ["deletes_after" Data.Aeson.Types.ToJSON..= test_helpers'test_clockDeletes_after obj] : ["frozen_time" Data.Aeson.Types.ToJSON..= test_helpers'test_clockFrozen_time obj] : ["id" Data.Aeson.Types.ToJSON..= test_helpers'test_clockId obj] : ["livemode" Data.Aeson.Types.ToJSON..= test_helpers'test_clockLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (test_helpers'test_clockName obj) : ["object" Data.Aeson.Types.ToJSON..= test_helpers'test_clockObject obj] : ["status" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus obj] : ["status_details" Data.Aeson.Types.ToJSON..= test_helpers'test_clockStatus_details obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Test_helpers'test_clock
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Test_helpers'test_clock" (\obj -> (((((((GHC.Base.pure Test_helpers'test_clock GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deletes_after")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "frozen_time")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status_details"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Test_helpers'test_clock" (\obj -> ((((((((GHC.Base.pure Test_helpers'test_clock GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deletes_after")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "frozen_time")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status_details"))}
 -- | Create a new 'Test_helpers'test_clock' with all required fields.
 mkTest_helpers'test_clock :: GHC.Types.Int -- ^ 'test_helpers'test_clockCreated'
   -> GHC.Types.Int -- ^ 'test_helpers'test_clockDeletes_after'
   -> GHC.Types.Int -- ^ 'test_helpers'test_clockFrozen_time'
   -> Data.Text.Internal.Text -- ^ 'test_helpers'test_clockId'
   -> GHC.Types.Bool -- ^ 'test_helpers'test_clockLivemode'
-  -> Test_helpers'test_clockStatus -- ^ 'test_helpers'test_clockStatus'
+  -> Data.Text.Internal.Text -- ^ 'test_helpers'test_clockObject'
+  -> Data.Text.Internal.Text -- ^ 'test_helpers'test_clockStatus'
   -> Billing_clocks_resource_status_details_status_details -- ^ 'test_helpers'test_clockStatus_details'
   -> Test_helpers'test_clock
-mkTest_helpers'test_clock test_helpers'test_clockCreated test_helpers'test_clockDeletes_after test_helpers'test_clockFrozen_time test_helpers'test_clockId test_helpers'test_clockLivemode test_helpers'test_clockStatus test_helpers'test_clockStatus_details = Test_helpers'test_clock{test_helpers'test_clockCreated = test_helpers'test_clockCreated,
-                                                                                                                                                                                                                                                                                         test_helpers'test_clockDeletes_after = test_helpers'test_clockDeletes_after,
-                                                                                                                                                                                                                                                                                         test_helpers'test_clockFrozen_time = test_helpers'test_clockFrozen_time,
-                                                                                                                                                                                                                                                                                         test_helpers'test_clockId = test_helpers'test_clockId,
-                                                                                                                                                                                                                                                                                         test_helpers'test_clockLivemode = test_helpers'test_clockLivemode,
-                                                                                                                                                                                                                                                                                         test_helpers'test_clockName = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                         test_helpers'test_clockStatus = test_helpers'test_clockStatus,
-                                                                                                                                                                                                                                                                                         test_helpers'test_clockStatus_details = test_helpers'test_clockStatus_details}
--- | Defines the enum schema located at @components.schemas.test_helpers.test_clock.properties.status@ in the specification.
--- 
--- The status of the Test Clock.
-data Test_helpers'test_clockStatus =
-   Test_helpers'test_clockStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Test_helpers'test_clockStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Test_helpers'test_clockStatusEnumAdvancing -- ^ Represents the JSON value @"advancing"@
-  | Test_helpers'test_clockStatusEnumInternal_failure -- ^ Represents the JSON value @"internal_failure"@
-  | Test_helpers'test_clockStatusEnumReady -- ^ Represents the JSON value @"ready"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Test_helpers'test_clockStatus
-    where {toJSON (Test_helpers'test_clockStatusOther val) = val;
-           toJSON (Test_helpers'test_clockStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Test_helpers'test_clockStatusEnumAdvancing) = "advancing";
-           toJSON (Test_helpers'test_clockStatusEnumInternal_failure) = "internal_failure";
-           toJSON (Test_helpers'test_clockStatusEnumReady) = "ready"}
-instance Data.Aeson.Types.FromJSON.FromJSON Test_helpers'test_clockStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "advancing" -> Test_helpers'test_clockStatusEnumAdvancing
-                                             | val GHC.Classes.== "internal_failure" -> Test_helpers'test_clockStatusEnumInternal_failure
-                                             | val GHC.Classes.== "ready" -> Test_helpers'test_clockStatusEnumReady
-                                             | GHC.Base.otherwise -> Test_helpers'test_clockStatusOther val)}
+mkTest_helpers'test_clock test_helpers'test_clockCreated test_helpers'test_clockDeletes_after test_helpers'test_clockFrozen_time test_helpers'test_clockId test_helpers'test_clockLivemode test_helpers'test_clockObject test_helpers'test_clockStatus test_helpers'test_clockStatus_details = Test_helpers'test_clock{test_helpers'test_clockCreated = test_helpers'test_clockCreated,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockDeletes_after = test_helpers'test_clockDeletes_after,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockFrozen_time = test_helpers'test_clockFrozen_time,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockId = test_helpers'test_clockId,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockLivemode = test_helpers'test_clockLivemode,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockName = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockObject = test_helpers'test_clockObject,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockStatus = test_helpers'test_clockStatus,
+                                                                                                                                                                                                                                                                                                                       test_helpers'test_clockStatus_details = test_helpers'test_clockStatus_details}

@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Mandate_us_bank_account = Mandate_us_bank_account {
   -- | collection_method: Mandate collection method
-  mandate_us_bank_accountCollection_method :: (GHC.Maybe.Maybe Mandate_us_bank_accountCollection_method)
+  mandate_us_bank_accountCollection_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Mandate_us_bank_account
@@ -57,18 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Mandate_us_bank_account
 -- | Create a new 'Mandate_us_bank_account' with all required fields.
 mkMandate_us_bank_account :: Mandate_us_bank_account
 mkMandate_us_bank_account = Mandate_us_bank_account{mandate_us_bank_accountCollection_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.mandate_us_bank_account.properties.collection_method@ in the specification.
--- 
--- Mandate collection method
-data Mandate_us_bank_accountCollection_method =
-   Mandate_us_bank_accountCollection_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_us_bank_accountCollection_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_us_bank_accountCollection_methodEnumPaper -- ^ Represents the JSON value @"paper"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_us_bank_accountCollection_method
-    where {toJSON (Mandate_us_bank_accountCollection_methodOther val) = val;
-           toJSON (Mandate_us_bank_accountCollection_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_us_bank_accountCollection_methodEnumPaper) = "paper"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_us_bank_accountCollection_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "paper" -> Mandate_us_bank_accountCollection_methodEnumPaper
-                                             | GHC.Base.otherwise -> Mandate_us_bank_accountCollection_methodOther val)}

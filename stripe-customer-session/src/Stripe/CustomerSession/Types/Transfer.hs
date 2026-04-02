@@ -63,7 +63,7 @@ data Transfer = Transfer {
   -- | amount_reversed: Amount in cents (or local equivalent) reversed (can be less than the amount attribute on the transfer if a partial reversal was issued).
   , transferAmount_reversed :: GHC.Types.Int
   -- | balance_transaction: Balance transaction that describes the impact of this transfer on your account balance.
-  , transferBalance_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable TransferBalance_transactionNonNullableVariants))
+  , transferBalance_transaction :: (GHC.Maybe.Maybe TransferBalance_transactionVariants)
   -- | created: Time that this record of the transfer was first created.
   , transferCreated :: GHC.Types.Int
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
@@ -73,9 +73,9 @@ data Transfer = Transfer {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , transferDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , transferDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | destination: ID of the Stripe account the transfer was sent to.
-  , transferDestination :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable TransferDestinationNonNullableVariants))
+  , transferDestination :: (GHC.Maybe.Maybe TransferDestinationVariants)
   -- | destination_payment: If the destination is a Stripe account, this will be the ID of the payment that the destination account received for the transfer.
   , transferDestination_payment :: (GHC.Maybe.Maybe TransferDestination_paymentVariants)
   -- | id: Unique identifier for the object.
@@ -84,16 +84,18 @@ data Transfer = Transfer {
   -- 
   -- * Maximum length of 5000
   , transferId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , transferLivemode :: GHC.Types.Bool
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , transferMetadata :: Data.Aeson.Types.Internal.Object
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , transferObject :: Data.Text.Internal.Text
   -- | reversals: A list of reversals that have been applied to the transfer.
   , transferReversals :: TransferReversals
   -- | reversed: Whether the transfer has been fully reversed. If the transfer is only partially reversed, this attribute will still be false.
   , transferReversed :: GHC.Types.Bool
   -- | source_transaction: ID of the charge that was used to fund the transfer. If null, the transfer was funded from the available balance.
-  , transferSource_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable TransferSource_transactionNonNullableVariants))
+  , transferSource_transaction :: (GHC.Maybe.Maybe TransferSource_transactionVariants)
   -- | source_type: The source balance this transfer came from. One of \`card\`, \`fpx\`, or \`bank_account\`.
   -- 
   -- Constraints:
@@ -105,14 +107,14 @@ data Transfer = Transfer {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , transferTransfer_group :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , transferTransfer_group :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Transfer
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= transferAmount obj] : ["amount_reversed" Data.Aeson.Types.ToJSON..= transferAmount_reversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (transferBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= transferCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= transferCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (transferDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (transferDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination_payment" Data.Aeson.Types.ToJSON..=)) (transferDestination_payment obj) : ["id" Data.Aeson.Types.ToJSON..= transferId obj] : ["livemode" Data.Aeson.Types.ToJSON..= transferLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= transferMetadata obj] : ["reversals" Data.Aeson.Types.ToJSON..= transferReversals obj] : ["reversed" Data.Aeson.Types.ToJSON..= transferReversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transaction" Data.Aeson.Types.ToJSON..=)) (transferSource_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_type" Data.Aeson.Types.ToJSON..=)) (transferSource_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (transferTransfer_group obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "transfer"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= transferAmount obj] : ["amount_reversed" Data.Aeson.Types.ToJSON..= transferAmount_reversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (transferBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= transferCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= transferCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (transferDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (transferDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination_payment" Data.Aeson.Types.ToJSON..=)) (transferDestination_payment obj) : ["id" Data.Aeson.Types.ToJSON..= transferId obj] : ["livemode" Data.Aeson.Types.ToJSON..= transferLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= transferMetadata obj] : ["reversals" Data.Aeson.Types.ToJSON..= transferReversals obj] : ["reversed" Data.Aeson.Types.ToJSON..= transferReversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transaction" Data.Aeson.Types.ToJSON..=)) (transferSource_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_type" Data.Aeson.Types.ToJSON..=)) (transferSource_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (transferTransfer_group obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "transfer"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= transferAmount obj] : ["amount_reversed" Data.Aeson.Types.ToJSON..= transferAmount_reversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (transferBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= transferCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= transferCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (transferDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (transferDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination_payment" Data.Aeson.Types.ToJSON..=)) (transferDestination_payment obj) : ["id" Data.Aeson.Types.ToJSON..= transferId obj] : ["livemode" Data.Aeson.Types.ToJSON..= transferLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= transferMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= transferObject obj] : ["reversals" Data.Aeson.Types.ToJSON..= transferReversals obj] : ["reversed" Data.Aeson.Types.ToJSON..= transferReversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transaction" Data.Aeson.Types.ToJSON..=)) (transferSource_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_type" Data.Aeson.Types.ToJSON..=)) (transferSource_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (transferTransfer_group obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= transferAmount obj] : ["amount_reversed" Data.Aeson.Types.ToJSON..= transferAmount_reversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (transferBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= transferCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= transferCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (transferDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (transferDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination_payment" Data.Aeson.Types.ToJSON..=)) (transferDestination_payment obj) : ["id" Data.Aeson.Types.ToJSON..= transferId obj] : ["livemode" Data.Aeson.Types.ToJSON..= transferLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= transferMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= transferObject obj] : ["reversals" Data.Aeson.Types.ToJSON..= transferReversals obj] : ["reversed" Data.Aeson.Types.ToJSON..= transferReversed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transaction" Data.Aeson.Types.ToJSON..=)) (transferSource_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_type" Data.Aeson.Types.ToJSON..=)) (transferSource_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (transferTransfer_group obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Transfer
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Transfer" (\obj -> (((((((((((((((GHC.Base.pure Transfer GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_reversed")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination_payment")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reversals")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reversed")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_group"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Transfer" (\obj -> ((((((((((((((((GHC.Base.pure Transfer GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_reversed")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination_payment")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reversals")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reversed")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_group"))}
 -- | Create a new 'Transfer' with all required fields.
 mkTransfer :: GHC.Types.Int -- ^ 'transferAmount'
   -> GHC.Types.Int -- ^ 'transferAmount_reversed'
@@ -121,51 +123,53 @@ mkTransfer :: GHC.Types.Int -- ^ 'transferAmount'
   -> Data.Text.Internal.Text -- ^ 'transferId'
   -> GHC.Types.Bool -- ^ 'transferLivemode'
   -> Data.Aeson.Types.Internal.Object -- ^ 'transferMetadata'
+  -> Data.Text.Internal.Text -- ^ 'transferObject'
   -> TransferReversals -- ^ 'transferReversals'
   -> GHC.Types.Bool -- ^ 'transferReversed'
   -> Transfer
-mkTransfer transferAmount transferAmount_reversed transferCreated transferCurrency transferId transferLivemode transferMetadata transferReversals transferReversed = Transfer{transferAmount = transferAmount,
-                                                                                                                                                                              transferAmount_reversed = transferAmount_reversed,
-                                                                                                                                                                              transferBalance_transaction = GHC.Maybe.Nothing,
-                                                                                                                                                                              transferCreated = transferCreated,
-                                                                                                                                                                              transferCurrency = transferCurrency,
-                                                                                                                                                                              transferDescription = GHC.Maybe.Nothing,
-                                                                                                                                                                              transferDestination = GHC.Maybe.Nothing,
-                                                                                                                                                                              transferDestination_payment = GHC.Maybe.Nothing,
-                                                                                                                                                                              transferId = transferId,
-                                                                                                                                                                              transferLivemode = transferLivemode,
-                                                                                                                                                                              transferMetadata = transferMetadata,
-                                                                                                                                                                              transferReversals = transferReversals,
-                                                                                                                                                                              transferReversed = transferReversed,
-                                                                                                                                                                              transferSource_transaction = GHC.Maybe.Nothing,
-                                                                                                                                                                              transferSource_type = GHC.Maybe.Nothing,
-                                                                                                                                                                              transferTransfer_group = GHC.Maybe.Nothing}
+mkTransfer transferAmount transferAmount_reversed transferCreated transferCurrency transferId transferLivemode transferMetadata transferObject transferReversals transferReversed = Transfer{transferAmount = transferAmount,
+                                                                                                                                                                                             transferAmount_reversed = transferAmount_reversed,
+                                                                                                                                                                                             transferBalance_transaction = GHC.Maybe.Nothing,
+                                                                                                                                                                                             transferCreated = transferCreated,
+                                                                                                                                                                                             transferCurrency = transferCurrency,
+                                                                                                                                                                                             transferDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                                             transferDestination = GHC.Maybe.Nothing,
+                                                                                                                                                                                             transferDestination_payment = GHC.Maybe.Nothing,
+                                                                                                                                                                                             transferId = transferId,
+                                                                                                                                                                                             transferLivemode = transferLivemode,
+                                                                                                                                                                                             transferMetadata = transferMetadata,
+                                                                                                                                                                                             transferObject = transferObject,
+                                                                                                                                                                                             transferReversals = transferReversals,
+                                                                                                                                                                                             transferReversed = transferReversed,
+                                                                                                                                                                                             transferSource_transaction = GHC.Maybe.Nothing,
+                                                                                                                                                                                             transferSource_type = GHC.Maybe.Nothing,
+                                                                                                                                                                                             transferTransfer_group = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.transfer.properties.balance_transaction.anyOf@ in the specification.
 -- 
 -- Balance transaction that describes the impact of this transfer on your account balance.
-data TransferBalance_transactionNonNullableVariants =
-   TransferBalance_transactionNonNullableText Data.Text.Internal.Text
-  | TransferBalance_transactionNonNullableBalance_transaction Balance_transaction
+data TransferBalance_transactionVariants =
+   TransferBalance_transactionText Data.Text.Internal.Text
+  | TransferBalance_transactionBalance_transaction Balance_transaction
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON TransferBalance_transactionNonNullableVariants
-    where {toJSON (TransferBalance_transactionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (TransferBalance_transactionNonNullableBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON TransferBalance_transactionNonNullableVariants
-    where {parseJSON val = case (TransferBalance_transactionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((TransferBalance_transactionNonNullableBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON TransferBalance_transactionVariants
+    where {toJSON (TransferBalance_transactionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (TransferBalance_transactionBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON TransferBalance_transactionVariants
+    where {parseJSON val = case (TransferBalance_transactionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((TransferBalance_transactionBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.transfer.properties.destination.anyOf@ in the specification.
 -- 
 -- ID of the Stripe account the transfer was sent to.
-data TransferDestinationNonNullableVariants =
-   TransferDestinationNonNullableText Data.Text.Internal.Text
-  | TransferDestinationNonNullableAccount Account
+data TransferDestinationVariants =
+   TransferDestinationText Data.Text.Internal.Text
+  | TransferDestinationAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON TransferDestinationNonNullableVariants
-    where {toJSON (TransferDestinationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (TransferDestinationNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON TransferDestinationNonNullableVariants
-    where {parseJSON val = case (TransferDestinationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((TransferDestinationNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON TransferDestinationVariants
+    where {toJSON (TransferDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (TransferDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON TransferDestinationVariants
+    where {parseJSON val = case (TransferDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((TransferDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.transfer.properties.destination_payment.anyOf@ in the specification.
@@ -190,6 +194,8 @@ data TransferReversals = TransferReversals {
   transferReversalsData :: [Transfer_reversal]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
   , transferReversalsHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , transferReversalsObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
@@ -199,29 +205,31 @@ data TransferReversals = TransferReversals {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON TransferReversals
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= transferReversalsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= transferReversalsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= transferReversalsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= transferReversalsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= transferReversalsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= transferReversalsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= transferReversalsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= transferReversalsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= transferReversalsObject obj] : ["url" Data.Aeson.Types.ToJSON..= transferReversalsUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= transferReversalsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= transferReversalsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= transferReversalsObject obj] : ["url" Data.Aeson.Types.ToJSON..= transferReversalsUrl obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON TransferReversals
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "TransferReversals" (\obj -> ((GHC.Base.pure TransferReversals GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "TransferReversals" (\obj -> (((GHC.Base.pure TransferReversals GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
 -- | Create a new 'TransferReversals' with all required fields.
 mkTransferReversals :: [Transfer_reversal] -- ^ 'transferReversalsData'
   -> GHC.Types.Bool -- ^ 'transferReversalsHas_more'
+  -> Data.Text.Internal.Text -- ^ 'transferReversalsObject'
   -> Data.Text.Internal.Text -- ^ 'transferReversalsUrl'
   -> TransferReversals
-mkTransferReversals transferReversalsData transferReversalsHas_more transferReversalsUrl = TransferReversals{transferReversalsData = transferReversalsData,
-                                                                                                             transferReversalsHas_more = transferReversalsHas_more,
-                                                                                                             transferReversalsUrl = transferReversalsUrl}
+mkTransferReversals transferReversalsData transferReversalsHas_more transferReversalsObject transferReversalsUrl = TransferReversals{transferReversalsData = transferReversalsData,
+                                                                                                                                     transferReversalsHas_more = transferReversalsHas_more,
+                                                                                                                                     transferReversalsObject = transferReversalsObject,
+                                                                                                                                     transferReversalsUrl = transferReversalsUrl}
 -- | Defines the oneOf schema located at @components.schemas.transfer.properties.source_transaction.anyOf@ in the specification.
 -- 
 -- ID of the charge that was used to fund the transfer. If null, the transfer was funded from the available balance.
-data TransferSource_transactionNonNullableVariants =
-   TransferSource_transactionNonNullableText Data.Text.Internal.Text
-  | TransferSource_transactionNonNullableCharge Charge
+data TransferSource_transactionVariants =
+   TransferSource_transactionText Data.Text.Internal.Text
+  | TransferSource_transactionCharge Charge
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON TransferSource_transactionNonNullableVariants
-    where {toJSON (TransferSource_transactionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (TransferSource_transactionNonNullableCharge a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON TransferSource_transactionNonNullableVariants
-    where {parseJSON val = case (TransferSource_transactionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((TransferSource_transactionNonNullableCharge Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON TransferSource_transactionVariants
+    where {toJSON (TransferSource_transactionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (TransferSource_transactionCharge a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON TransferSource_transactionVariants
+    where {parseJSON val = case (TransferSource_transactionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((TransferSource_transactionCharge Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

@@ -50,33 +50,33 @@ data Issuing_transaction_flight_data_leg = Issuing_transaction_flight_data_leg {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_flight_data_legArrival_airport_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_flight_data_legArrival_airport_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | carrier: The airline carrier code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_flight_data_legCarrier :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_flight_data_legCarrier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | departure_airport_code: The three-letter IATA airport code that the flight departed from.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_flight_data_legDeparture_airport_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_flight_data_legDeparture_airport_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | flight_number: The flight number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_flight_data_legFlight_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_flight_data_legFlight_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | service_class: The flight\'s service class.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_flight_data_legService_class :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_flight_data_legService_class :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | stopover_allowed: Whether a stopover is allowed on this flight.
-  , issuing_transaction_flight_data_legStopover_allowed :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , issuing_transaction_flight_data_legStopover_allowed :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_flight_data_leg

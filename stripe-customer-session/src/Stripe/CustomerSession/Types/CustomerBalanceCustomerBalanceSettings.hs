@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Customer_balance_customer_balance_settings = Customer_balance_customer_balance_settings {
   -- | reconciliation_mode: The configuration for how funds that land in the customer cash balance are reconciled.
-  customer_balance_customer_balance_settingsReconciliation_mode :: Customer_balance_customer_balance_settingsReconciliation_mode
+  customer_balance_customer_balance_settingsReconciliation_mode :: Data.Text.Internal.Text
   -- | using_merchant_default: A flag to indicate if reconciliation mode returned is the user\'s default or is specific to this customer cash balance
   , customer_balance_customer_balance_settingsUsing_merchant_default :: GHC.Types.Bool
   } deriving (GHC.Show.Show
@@ -57,26 +57,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Customer_balance_customer_balance_settin
 instance Data.Aeson.Types.FromJSON.FromJSON Customer_balance_customer_balance_settings
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Customer_balance_customer_balance_settings" (\obj -> (GHC.Base.pure Customer_balance_customer_balance_settings GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reconciliation_mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "using_merchant_default"))}
 -- | Create a new 'Customer_balance_customer_balance_settings' with all required fields.
-mkCustomer_balance_customer_balance_settings :: Customer_balance_customer_balance_settingsReconciliation_mode -- ^ 'customer_balance_customer_balance_settingsReconciliation_mode'
+mkCustomer_balance_customer_balance_settings :: Data.Text.Internal.Text -- ^ 'customer_balance_customer_balance_settingsReconciliation_mode'
   -> GHC.Types.Bool -- ^ 'customer_balance_customer_balance_settingsUsing_merchant_default'
   -> Customer_balance_customer_balance_settings
 mkCustomer_balance_customer_balance_settings customer_balance_customer_balance_settingsReconciliation_mode customer_balance_customer_balance_settingsUsing_merchant_default = Customer_balance_customer_balance_settings{customer_balance_customer_balance_settingsReconciliation_mode = customer_balance_customer_balance_settingsReconciliation_mode,
                                                                                                                                                                                                                          customer_balance_customer_balance_settingsUsing_merchant_default = customer_balance_customer_balance_settingsUsing_merchant_default}
--- | Defines the enum schema located at @components.schemas.customer_balance_customer_balance_settings.properties.reconciliation_mode@ in the specification.
--- 
--- The configuration for how funds that land in the customer cash balance are reconciled.
-data Customer_balance_customer_balance_settingsReconciliation_mode =
-   Customer_balance_customer_balance_settingsReconciliation_modeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_balance_customer_balance_settingsReconciliation_modeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_balance_customer_balance_settingsReconciliation_modeEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Customer_balance_customer_balance_settingsReconciliation_modeEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_balance_customer_balance_settingsReconciliation_mode
-    where {toJSON (Customer_balance_customer_balance_settingsReconciliation_modeOther val) = val;
-           toJSON (Customer_balance_customer_balance_settingsReconciliation_modeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_balance_customer_balance_settingsReconciliation_modeEnumAutomatic) = "automatic";
-           toJSON (Customer_balance_customer_balance_settingsReconciliation_modeEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_balance_customer_balance_settingsReconciliation_mode
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Customer_balance_customer_balance_settingsReconciliation_modeEnumAutomatic
-                                             | val GHC.Classes.== "manual" -> Customer_balance_customer_balance_settingsReconciliation_modeEnumManual
-                                             | GHC.Base.otherwise -> Customer_balance_customer_balance_settingsReconciliation_modeOther val)}

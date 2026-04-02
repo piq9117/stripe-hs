@@ -50,43 +50,43 @@ data Legal_entity_japan_address = Legal_entity_japan_address {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  legal_entity_japan_addressCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  legal_entity_japan_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_japan_addressCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_japan_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Block\/Building number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_japan_addressLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_japan_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Building details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_japan_addressLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_japan_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_japan_addressPostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_japan_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: Prefecture.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_japan_addressState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_japan_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | town: Town\/cho-me.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_japan_addressTown :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_japan_addressTown :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_japan_address

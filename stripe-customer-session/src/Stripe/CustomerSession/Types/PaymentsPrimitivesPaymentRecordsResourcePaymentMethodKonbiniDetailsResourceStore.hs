@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_store = Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_store {
   -- | chain: The name of the convenience store chain where the payment was completed.
-  payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChain :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullable))
+  payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChain :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_store
@@ -57,27 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_
 -- | Create a new 'Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_store' with all required fields.
 mkPayments_primitives_payment_records_resource_payment_method_konbini_details_resource_store :: Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_store
 mkPayments_primitives_payment_records_resource_payment_method_konbini_details_resource_store = Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_store{payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChain = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payments_primitives_payment_records_resource_payment_method_konbini_details_resource_store.properties.chain@ in the specification.
--- 
--- The name of the convenience store chain where the payment was completed.
-data Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullable =
-   Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumFamilymart -- ^ Represents the JSON value @"familymart"@
-  | Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumLawson -- ^ Represents the JSON value @"lawson"@
-  | Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumMinistop -- ^ Represents the JSON value @"ministop"@
-  | Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumSeicomart -- ^ Represents the JSON value @"seicomart"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullable
-    where {toJSON (Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableOther val) = val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumFamilymart) = "familymart";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumLawson) = "lawson";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumMinistop) = "ministop";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumSeicomart) = "seicomart"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "familymart" -> Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumFamilymart
-                                             | val GHC.Classes.== "lawson" -> Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumLawson
-                                             | val GHC.Classes.== "ministop" -> Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumMinistop
-                                             | val GHC.Classes.== "seicomart" -> Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableEnumSeicomart
-                                             | GHC.Base.otherwise -> Payments_primitives_payment_records_resource_payment_method_konbini_details_resource_storeChainNonNullableOther val)}

@@ -6,13 +6,13 @@ instance Show Source_owner
 instance Eq Source_owner
 instance Data.Aeson.FromJSON Source_owner
 instance Data.Aeson.ToJSON Source_owner
-data Source_ownerAddressNonNullable
-instance Show Source_ownerAddressNonNullable
-instance Eq Source_ownerAddressNonNullable
-instance Data.Aeson.FromJSON Source_ownerAddressNonNullable
-instance Data.Aeson.ToJSON Source_ownerAddressNonNullable
-data Source_ownerVerified_addressNonNullable
-instance Show Source_ownerVerified_addressNonNullable
-instance Eq Source_ownerVerified_addressNonNullable
-instance Data.Aeson.FromJSON Source_ownerVerified_addressNonNullable
-instance Data.Aeson.ToJSON Source_ownerVerified_addressNonNullable
+data Source_ownerAddress
+instance Show Source_ownerAddress
+instance Eq Source_ownerAddress
+instance Data.Aeson.FromJSON Source_ownerAddress
+instance Data.Aeson.ToJSON Source_ownerAddress
+data Source_ownerVerified_address
+instance Show Source_ownerVerified_address
+instance Eq Source_ownerVerified_address
+instance Data.Aeson.FromJSON Source_ownerVerified_address
+instance Data.Aeson.ToJSON Source_ownerVerified_address

@@ -50,7 +50,7 @@ data Setup_intent_payment_method_options_paypal = Setup_intent_payment_method_op
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intent_payment_method_options_paypalBilling_agreement_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intent_payment_method_options_paypalBilling_agreement_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_paypal

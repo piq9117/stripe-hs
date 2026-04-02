@@ -53,33 +53,33 @@ data Payment_method_sepa_debit = Payment_method_sepa_debit {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_sepa_debitBank_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_sepa_debitBank_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | branch_code: Branch code of bank associated with the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_sepa_debitBranch_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_sepa_debitBranch_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country the bank account is located in.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_sepa_debitCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_sepa_debitCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint: Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_sepa_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_sepa_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | generated_from: Information about the object that generated this PaymentMethod.
-  , payment_method_sepa_debitGenerated_from :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_sepa_debitGenerated_fromNonNullable))
+  , payment_method_sepa_debitGenerated_from :: (GHC.Maybe.Maybe Payment_method_sepa_debitGenerated_from)
   -- | last4: Last four characters of the IBAN.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_sepa_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_sepa_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_sepa_debit
@@ -98,47 +98,47 @@ mkPayment_method_sepa_debit = Payment_method_sepa_debit{payment_method_sepa_debi
 -- | Defines the object schema located at @components.schemas.payment_method_sepa_debit.properties.generated_from.anyOf@ in the specification.
 -- 
 -- Information about the object that generated this PaymentMethod.
-data Payment_method_sepa_debitGenerated_fromNonNullable = Payment_method_sepa_debitGenerated_fromNonNullable {
+data Payment_method_sepa_debitGenerated_from = Payment_method_sepa_debitGenerated_from {
   -- | charge: The ID of the Charge that generated this PaymentMethod, if any.
-  payment_method_sepa_debitGenerated_fromNonNullableCharge :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableVariants))
+  payment_method_sepa_debitGenerated_fromCharge :: (GHC.Maybe.Maybe Payment_method_sepa_debitGenerated_fromChargeVariants)
   -- | setup_attempt: The ID of the SetupAttempt that generated this PaymentMethod, if any.
-  , payment_method_sepa_debitGenerated_fromNonNullableSetup_attempt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableVariants))
+  , payment_method_sepa_debitGenerated_fromSetup_attempt :: (GHC.Maybe.Maybe Payment_method_sepa_debitGenerated_fromSetup_attemptVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_sepa_debitGenerated_fromNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromNonNullableCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_attempt" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromNonNullableSetup_attempt obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromNonNullableCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_attempt" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromNonNullableSetup_attempt obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_sepa_debitGenerated_fromNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_sepa_debitGenerated_fromNonNullable" (\obj -> (GHC.Base.pure Payment_method_sepa_debitGenerated_fromNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_attempt"))}
--- | Create a new 'Payment_method_sepa_debitGenerated_fromNonNullable' with all required fields.
-mkPayment_method_sepa_debitGenerated_fromNonNullable :: Payment_method_sepa_debitGenerated_fromNonNullable
-mkPayment_method_sepa_debitGenerated_fromNonNullable = Payment_method_sepa_debitGenerated_fromNonNullable{payment_method_sepa_debitGenerated_fromNonNullableCharge = GHC.Maybe.Nothing,
-                                                                                                          payment_method_sepa_debitGenerated_fromNonNullableSetup_attempt = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_sepa_debitGenerated_from
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_attempt" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromSetup_attempt obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_attempt" Data.Aeson.Types.ToJSON..=)) (payment_method_sepa_debitGenerated_fromSetup_attempt obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_sepa_debitGenerated_from
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_sepa_debitGenerated_from" (\obj -> (GHC.Base.pure Payment_method_sepa_debitGenerated_from GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_attempt"))}
+-- | Create a new 'Payment_method_sepa_debitGenerated_from' with all required fields.
+mkPayment_method_sepa_debitGenerated_from :: Payment_method_sepa_debitGenerated_from
+mkPayment_method_sepa_debitGenerated_from = Payment_method_sepa_debitGenerated_from{payment_method_sepa_debitGenerated_fromCharge = GHC.Maybe.Nothing,
+                                                                                    payment_method_sepa_debitGenerated_fromSetup_attempt = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.payment_method_sepa_debit.properties.generated_from.anyOf.properties.charge.anyOf@ in the specification.
 -- 
 -- The ID of the Charge that generated this PaymentMethod, if any.
-data Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableVariants =
-   Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableText Data.Text.Internal.Text
-  | Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableCharge Charge
+data Payment_method_sepa_debitGenerated_fromChargeVariants =
+   Payment_method_sepa_debitGenerated_fromChargeText Data.Text.Internal.Text
+  | Payment_method_sepa_debitGenerated_fromChargeCharge Charge
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableVariants
-    where {toJSON (Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableCharge a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableVariants
-    where {parseJSON val = case (Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Payment_method_sepa_debitGenerated_fromNonNullableChargeNonNullableCharge Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_sepa_debitGenerated_fromChargeVariants
+    where {toJSON (Payment_method_sepa_debitGenerated_fromChargeText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Payment_method_sepa_debitGenerated_fromChargeCharge a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_sepa_debitGenerated_fromChargeVariants
+    where {parseJSON val = case (Payment_method_sepa_debitGenerated_fromChargeText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Payment_method_sepa_debitGenerated_fromChargeCharge Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.payment_method_sepa_debit.properties.generated_from.anyOf.properties.setup_attempt.anyOf@ in the specification.
 -- 
 -- The ID of the SetupAttempt that generated this PaymentMethod, if any.
-data Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableVariants =
-   Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableText Data.Text.Internal.Text
-  | Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableSetup_attempt Setup_attempt
+data Payment_method_sepa_debitGenerated_fromSetup_attemptVariants =
+   Payment_method_sepa_debitGenerated_fromSetup_attemptText Data.Text.Internal.Text
+  | Payment_method_sepa_debitGenerated_fromSetup_attemptSetup_attempt Setup_attempt
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableVariants
-    where {toJSON (Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableSetup_attempt a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableVariants
-    where {parseJSON val = case (Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Payment_method_sepa_debitGenerated_fromNonNullableSetup_attemptNonNullableSetup_attempt Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_sepa_debitGenerated_fromSetup_attemptVariants
+    where {toJSON (Payment_method_sepa_debitGenerated_fromSetup_attemptText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Payment_method_sepa_debitGenerated_fromSetup_attemptSetup_attempt a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_sepa_debitGenerated_fromSetup_attemptVariants
+    where {parseJSON val = case (Payment_method_sepa_debitGenerated_fromSetup_attemptText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Payment_method_sepa_debitGenerated_fromSetup_attemptSetup_attempt Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

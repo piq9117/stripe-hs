@@ -46,33 +46,33 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_card = Source_type_card {
   -- | address_line1_check
-  source_type_cardAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_cardAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip_check
-  , source_type_cardAddress_zip_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardAddress_zip_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | brand
-  , source_type_cardBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country
-  , source_type_cardCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cvc_check
-  , source_type_cardCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | dynamic_last4
-  , source_type_cardDynamic_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardDynamic_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month
-  , source_type_cardExp_month :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , source_type_cardExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year
-  , source_type_cardExp_year :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , source_type_cardExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | fingerprint
   , source_type_cardFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding
-  , source_type_cardFunding :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4
-  , source_type_cardLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name
-  , source_type_cardName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | three_d_secure
   , source_type_cardThree_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tokenization_method
-  , source_type_cardTokenization_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_cardTokenization_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_card

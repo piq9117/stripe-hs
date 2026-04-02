@@ -61,6 +61,11 @@ type Setup_intent_payment_method_options_amazon_pay = Data.Aeson.Types.Internal.
 -- 
 type Setup_attempt_payment_method_details_us_bank_account = Data.Aeson.Types.Internal.Object
 
+-- | Defines an alias for the schema located at @components.schemas.setup_attempt_payment_method_details_upi@ in the specification.
+-- 
+-- 
+type Setup_attempt_payment_method_details_upi = Data.Aeson.Types.Internal.Object
+
 -- | Defines an alias for the schema located at @components.schemas.setup_attempt_payment_method_details_sepa_debit@ in the specification.
 -- 
 -- 
@@ -275,6 +280,11 @@ type Payment_method_details_stripe_account = Data.Aeson.Types.Internal.Object
 -- 
 -- 
 type Payment_method_details_payment_record_zip = Data.Aeson.Types.Internal.Object
+
+-- | Defines an alias for the schema located at @components.schemas.payment_method_details_payment_record_twint@ in the specification.
+-- 
+-- 
+type Payment_method_details_payment_record_twint = Data.Aeson.Types.Internal.Object
 
 -- | Defines an alias for the schema located at @components.schemas.payment_method_details_payment_record_mb_way@ in the specification.
 -- 

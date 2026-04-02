@@ -6,18 +6,13 @@ instance Show Billing'credit_grant
 instance Eq Billing'credit_grant
 instance Data.Aeson.FromJSON Billing'credit_grant
 instance Data.Aeson.ToJSON Billing'credit_grant
-data Billing'credit_grantCategory
-instance Show Billing'credit_grantCategory
-instance Eq Billing'credit_grantCategory
-instance Data.Aeson.FromJSON Billing'credit_grantCategory
-instance Data.Aeson.ToJSON Billing'credit_grantCategory
 data Billing'credit_grantCustomerVariants
 instance Show Billing'credit_grantCustomerVariants
 instance Eq Billing'credit_grantCustomerVariants
 instance Data.Aeson.FromJSON Billing'credit_grantCustomerVariants
 instance Data.Aeson.ToJSON Billing'credit_grantCustomerVariants
-data Billing'credit_grantTest_clockNonNullableVariants
-instance Show Billing'credit_grantTest_clockNonNullableVariants
-instance Eq Billing'credit_grantTest_clockNonNullableVariants
-instance Data.Aeson.FromJSON Billing'credit_grantTest_clockNonNullableVariants
-instance Data.Aeson.ToJSON Billing'credit_grantTest_clockNonNullableVariants
+data Billing'credit_grantTest_clockVariants
+instance Show Billing'credit_grantTest_clockVariants
+instance Eq Billing'credit_grantTest_clockVariants
+instance Data.Aeson.FromJSON Billing'credit_grantTest_clockVariants
+instance Data.Aeson.ToJSON Billing'credit_grantTest_clockVariants

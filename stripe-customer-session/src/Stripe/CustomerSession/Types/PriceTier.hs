@@ -46,15 +46,15 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Price_tier = Price_tier {
   -- | flat_amount: Price for the entire tier.
-  price_tierFlat_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  price_tierFlat_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | flat_amount_decimal: Same as \`flat_amount\`, but contains a decimal value with at most 12 decimal places.
-  , price_tierFlat_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , price_tierFlat_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | unit_amount: Per unit price for units relevant to the tier.
-  , price_tierUnit_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , price_tierUnit_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | unit_amount_decimal: Same as \`unit_amount\`, but contains a decimal value with at most 12 decimal places.
-  , price_tierUnit_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , price_tierUnit_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | up_to: Up to and including to this quantity will be contained in the tier.
-  , price_tierUp_to :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , price_tierUp_to :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Price_tier

@@ -50,27 +50,27 @@ data Issuing_transaction_fleet_cardholder_prompt_data = Issuing_transaction_flee
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_fleet_cardholder_prompt_dataDriver_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_fleet_cardholder_prompt_dataDriver_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | odometer: Odometer reading.
-  , issuing_transaction_fleet_cardholder_prompt_dataOdometer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_transaction_fleet_cardholder_prompt_dataOdometer :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | unspecified_id: An alphanumeric ID. This field is used when a vehicle ID, driver ID, or generic ID is entered by the cardholder, but the merchant or card network did not specify the prompt type.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_fleet_cardholder_prompt_dataUnspecified_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_fleet_cardholder_prompt_dataUnspecified_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_id: User ID.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_fleet_cardholder_prompt_dataUser_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_fleet_cardholder_prompt_dataUser_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | vehicle_number: Vehicle number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_fleet_cardholder_prompt_dataVehicle_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_fleet_cardholder_prompt_dataVehicle_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_fleet_cardholder_prompt_data

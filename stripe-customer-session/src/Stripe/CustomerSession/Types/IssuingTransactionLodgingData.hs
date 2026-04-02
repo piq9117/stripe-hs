@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_transaction_lodging_data = Issuing_transaction_lodging_data {
   -- | check_in_at: The time of checking into the lodging.
-  issuing_transaction_lodging_dataCheck_in_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_transaction_lodging_dataCheck_in_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | nights: The number of nights stayed at the lodging.
-  , issuing_transaction_lodging_dataNights :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_transaction_lodging_dataNights :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_lodging_data

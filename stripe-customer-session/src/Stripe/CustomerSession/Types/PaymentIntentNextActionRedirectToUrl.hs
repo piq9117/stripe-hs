@@ -50,13 +50,13 @@ data Payment_intent_next_action_redirect_to_url = Payment_intent_next_action_red
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_next_action_redirect_to_urlReturn_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_intent_next_action_redirect_to_urlReturn_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: The URL you must redirect your customer to in order to authenticate the payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_redirect_to_urlUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_redirect_to_urlUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_redirect_to_url

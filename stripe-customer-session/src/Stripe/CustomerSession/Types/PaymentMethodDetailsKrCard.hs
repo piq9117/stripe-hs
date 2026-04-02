@@ -46,25 +46,25 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_details_kr_card = Payment_method_details_kr_card {
   -- | brand: The local credit or debit card brand.
-  payment_method_details_kr_cardBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_kr_cardBrandNonNullable))
+  payment_method_details_kr_cardBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | buyer_id: A unique identifier for the buyer as determined by the local payment processor.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_kr_cardBuyer_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_kr_cardBuyer_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: The last four digits of the card. This may not be present for American Express cards.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 4
-  , payment_method_details_kr_cardLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_kr_cardLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: The Korean Card transaction ID associated with this payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_kr_cardTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_kr_cardTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_kr_card
@@ -78,81 +78,3 @@ mkPayment_method_details_kr_card = Payment_method_details_kr_card{payment_method
                                                                   payment_method_details_kr_cardBuyer_id = GHC.Maybe.Nothing,
                                                                   payment_method_details_kr_cardLast4 = GHC.Maybe.Nothing,
                                                                   payment_method_details_kr_cardTransaction_id = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_details_kr_card.properties.brand@ in the specification.
--- 
--- The local credit or debit card brand.
-data Payment_method_details_kr_cardBrandNonNullable =
-   Payment_method_details_kr_cardBrandNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_kr_cardBrandNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_kr_cardBrandNonNullableEnumBc -- ^ Represents the JSON value @"bc"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumCiti -- ^ Represents the JSON value @"citi"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumHana -- ^ Represents the JSON value @"hana"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumHyundai -- ^ Represents the JSON value @"hyundai"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumJeju -- ^ Represents the JSON value @"jeju"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumJeonbuk -- ^ Represents the JSON value @"jeonbuk"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumKakaobank -- ^ Represents the JSON value @"kakaobank"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumKbank -- ^ Represents the JSON value @"kbank"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumKdbbank -- ^ Represents the JSON value @"kdbbank"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumKookmin -- ^ Represents the JSON value @"kookmin"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumKwangju -- ^ Represents the JSON value @"kwangju"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumLotte -- ^ Represents the JSON value @"lotte"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumMg -- ^ Represents the JSON value @"mg"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumNh -- ^ Represents the JSON value @"nh"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumPost -- ^ Represents the JSON value @"post"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumSamsung -- ^ Represents the JSON value @"samsung"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumSavingsbank -- ^ Represents the JSON value @"savingsbank"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumShinhan -- ^ Represents the JSON value @"shinhan"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumShinhyup -- ^ Represents the JSON value @"shinhyup"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumSuhyup -- ^ Represents the JSON value @"suhyup"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumTossbank -- ^ Represents the JSON value @"tossbank"@
-  | Payment_method_details_kr_cardBrandNonNullableEnumWoori -- ^ Represents the JSON value @"woori"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_kr_cardBrandNonNullable
-    where {toJSON (Payment_method_details_kr_cardBrandNonNullableOther val) = val;
-           toJSON (Payment_method_details_kr_cardBrandNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumBc) = "bc";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumCiti) = "citi";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumHana) = "hana";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumHyundai) = "hyundai";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumJeju) = "jeju";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumJeonbuk) = "jeonbuk";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumKakaobank) = "kakaobank";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumKbank) = "kbank";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumKdbbank) = "kdbbank";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumKookmin) = "kookmin";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumKwangju) = "kwangju";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumLotte) = "lotte";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumMg) = "mg";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumNh) = "nh";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumPost) = "post";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumSamsung) = "samsung";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumSavingsbank) = "savingsbank";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumShinhan) = "shinhan";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumShinhyup) = "shinhyup";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumSuhyup) = "suhyup";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumTossbank) = "tossbank";
-           toJSON (Payment_method_details_kr_cardBrandNonNullableEnumWoori) = "woori"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_kr_cardBrandNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bc" -> Payment_method_details_kr_cardBrandNonNullableEnumBc
-                                             | val GHC.Classes.== "citi" -> Payment_method_details_kr_cardBrandNonNullableEnumCiti
-                                             | val GHC.Classes.== "hana" -> Payment_method_details_kr_cardBrandNonNullableEnumHana
-                                             | val GHC.Classes.== "hyundai" -> Payment_method_details_kr_cardBrandNonNullableEnumHyundai
-                                             | val GHC.Classes.== "jeju" -> Payment_method_details_kr_cardBrandNonNullableEnumJeju
-                                             | val GHC.Classes.== "jeonbuk" -> Payment_method_details_kr_cardBrandNonNullableEnumJeonbuk
-                                             | val GHC.Classes.== "kakaobank" -> Payment_method_details_kr_cardBrandNonNullableEnumKakaobank
-                                             | val GHC.Classes.== "kbank" -> Payment_method_details_kr_cardBrandNonNullableEnumKbank
-                                             | val GHC.Classes.== "kdbbank" -> Payment_method_details_kr_cardBrandNonNullableEnumKdbbank
-                                             | val GHC.Classes.== "kookmin" -> Payment_method_details_kr_cardBrandNonNullableEnumKookmin
-                                             | val GHC.Classes.== "kwangju" -> Payment_method_details_kr_cardBrandNonNullableEnumKwangju
-                                             | val GHC.Classes.== "lotte" -> Payment_method_details_kr_cardBrandNonNullableEnumLotte
-                                             | val GHC.Classes.== "mg" -> Payment_method_details_kr_cardBrandNonNullableEnumMg
-                                             | val GHC.Classes.== "nh" -> Payment_method_details_kr_cardBrandNonNullableEnumNh
-                                             | val GHC.Classes.== "post" -> Payment_method_details_kr_cardBrandNonNullableEnumPost
-                                             | val GHC.Classes.== "samsung" -> Payment_method_details_kr_cardBrandNonNullableEnumSamsung
-                                             | val GHC.Classes.== "savingsbank" -> Payment_method_details_kr_cardBrandNonNullableEnumSavingsbank
-                                             | val GHC.Classes.== "shinhan" -> Payment_method_details_kr_cardBrandNonNullableEnumShinhan
-                                             | val GHC.Classes.== "shinhyup" -> Payment_method_details_kr_cardBrandNonNullableEnumShinhyup
-                                             | val GHC.Classes.== "suhyup" -> Payment_method_details_kr_cardBrandNonNullableEnumSuhyup
-                                             | val GHC.Classes.== "tossbank" -> Payment_method_details_kr_cardBrandNonNullableEnumTossbank
-                                             | val GHC.Classes.== "woori" -> Payment_method_details_kr_cardBrandNonNullableEnumWoori
-                                             | GHC.Base.otherwise -> Payment_method_details_kr_cardBrandNonNullableOther val)}

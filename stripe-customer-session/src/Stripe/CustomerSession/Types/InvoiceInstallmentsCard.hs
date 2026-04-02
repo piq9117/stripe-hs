@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoice_installments_card = Invoice_installments_card {
   -- | enabled: Whether Installments are enabled for this Invoice.
-  invoice_installments_cardEnabled :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  invoice_installments_cardEnabled :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_installments_card

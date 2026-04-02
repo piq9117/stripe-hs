@@ -45,6 +45,8 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardApplePay
 import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardAuthorizationControls
 import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardFraudWarning
 import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardGooglePay
+import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardLifecycleConditions
+import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardLifecycleControls
 import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardShipping
 import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardShippingAddressValidation
 import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardShippingCustoms
@@ -63,7 +65,7 @@ data Issuing'card = Issuing'card {
   -- * Maximum length of 5000
   issuing'cardBrand :: Data.Text.Internal.Text
   -- | cancellation_reason: The reason why the card was canceled.
-  , issuing'cardCancellation_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardCancellation_reasonNonNullable))
+  , issuing'cardCancellation_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cardholder: An Issuing \`Cardholder\` object represents an individual or business entity who is [issued](https:\/\/docs.stripe.com\/issuing) cards.
   -- 
   -- Related guide: [How to create a cardholder](https:\/\/docs.stripe.com\/issuing\/cards\/virtual\/issue-cards\#create-cardholder)
@@ -87,7 +89,7 @@ data Issuing'card = Issuing'card {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardFinancial_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardFinancial_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -101,8 +103,10 @@ data Issuing'card = Issuing'card {
   -- * Maximum length of 5000
   , issuing'cardLast4 :: Data.Text.Internal.Text
   -- | latest_fraud_warning: Stripe’s assessment of whether this card’s details have been compromised. If this property isn\'t null, cancel and reissue the card to prevent fraudulent activity risk.
-  , issuing'cardLatest_fraud_warning :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardLatest_fraud_warningNonNullable))
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  , issuing'cardLatest_fraud_warning :: (GHC.Maybe.Maybe Issuing'cardLatest_fraud_warning)
+  -- | lifecycle_controls: Rules that control the lifecycle of this card, such as automatic cancellation. Refer to our [documentation](\/issuing\/controls\/lifecycle-controls) for more details.
+  , issuing'cardLifecycle_controls :: (GHC.Maybe.Maybe Issuing'cardLifecycle_controls)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , issuing'cardLivemode :: GHC.Types.Bool
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , issuing'cardMetadata :: Data.Aeson.Types.Internal.Object
@@ -112,37 +116,39 @@ data Issuing'card = Issuing'card {
   -- 
   -- * Maximum length of 5000
   , issuing'cardNumber :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , issuing'cardObject :: Data.Text.Internal.Text
   -- | personalization_design: The personalization design object belonging to this card.
-  , issuing'cardPersonalization_design :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardPersonalization_designNonNullableVariants))
+  , issuing'cardPersonalization_design :: (GHC.Maybe.Maybe Issuing'cardPersonalization_designVariants)
   -- | replaced_by: The latest card that replaces this card, if any.
-  , issuing'cardReplaced_by :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardReplaced_byNonNullableVariants))
+  , issuing'cardReplaced_by :: (GHC.Maybe.Maybe Issuing'cardReplaced_byVariants)
   -- | replacement_for: The card this card replaces, if any.
-  , issuing'cardReplacement_for :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardReplacement_forNonNullableVariants))
+  , issuing'cardReplacement_for :: (GHC.Maybe.Maybe Issuing'cardReplacement_forVariants)
   -- | replacement_reason: The reason why the previous card needed to be replaced.
-  , issuing'cardReplacement_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardReplacement_reasonNonNullable))
+  , issuing'cardReplacement_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | second_line: Text separate from cardholder name, printed on the card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardSecond_line :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardSecond_line :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | shipping: Where and how the card will be shipped.
-  , issuing'cardShipping :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardShippingNonNullable))
+  , issuing'cardShipping :: (GHC.Maybe.Maybe Issuing'cardShipping)
   -- | spending_controls: 
   , issuing'cardSpending_controls :: Issuing_card_authorization_controls
   -- | status: Whether authorizations can be approved on this card. May be blocked from activating cards depending on past-due Cardholder requirements. Defaults to \`inactive\`.
-  , issuing'cardStatus :: Issuing'cardStatus
+  , issuing'cardStatus :: Data.Text.Internal.Text
   -- | type: The type of the card.
-  , issuing'cardType :: Issuing'cardType
+  , issuing'cardType :: Data.Text.Internal.Text
   -- | wallets: Information relating to digital wallets (like Apple Pay and Google Pay).
-  , issuing'cardWallets :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardWalletsNonNullable))
+  , issuing'cardWallets :: (GHC.Maybe.Maybe Issuing'cardWallets)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing'card
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardCancellation_reason obj) : ["cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc" Data.Aeson.Types.ToJSON..=)) (issuing'cardCvc obj) : ["exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_account" Data.Aeson.Types.ToJSON..=)) (issuing'cardFinancial_account obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'cardId obj] : ["last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_fraud_warning" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warning obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (issuing'cardNumber obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("personalization_design" Data.Aeson.Types.ToJSON..=)) (issuing'cardPersonalization_design obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replaced_by" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplaced_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_for" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_for obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second_line" Data.Aeson.Types.ToJSON..=)) (issuing'cardSecond_line obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (issuing'cardShipping obj) : ["spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpending_controls obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'cardType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallets" Data.Aeson.Types.ToJSON..=)) (issuing'cardWallets obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.card"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardCancellation_reason obj) : ["cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc" Data.Aeson.Types.ToJSON..=)) (issuing'cardCvc obj) : ["exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_account" Data.Aeson.Types.ToJSON..=)) (issuing'cardFinancial_account obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'cardId obj] : ["last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_fraud_warning" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warning obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (issuing'cardNumber obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("personalization_design" Data.Aeson.Types.ToJSON..=)) (issuing'cardPersonalization_design obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replaced_by" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplaced_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_for" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_for obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second_line" Data.Aeson.Types.ToJSON..=)) (issuing'cardSecond_line obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (issuing'cardShipping obj) : ["spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpending_controls obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'cardType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallets" Data.Aeson.Types.ToJSON..=)) (issuing'cardWallets obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.card"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardCancellation_reason obj) : ["cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc" Data.Aeson.Types.ToJSON..=)) (issuing'cardCvc obj) : ["exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_account" Data.Aeson.Types.ToJSON..=)) (issuing'cardFinancial_account obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'cardId obj] : ["last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_fraud_warning" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warning obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("lifecycle_controls" Data.Aeson.Types.ToJSON..=)) (issuing'cardLifecycle_controls obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (issuing'cardNumber obj) : ["object" Data.Aeson.Types.ToJSON..= issuing'cardObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("personalization_design" Data.Aeson.Types.ToJSON..=)) (issuing'cardPersonalization_design obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replaced_by" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplaced_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_for" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_for obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second_line" Data.Aeson.Types.ToJSON..=)) (issuing'cardSecond_line obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (issuing'cardShipping obj) : ["spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpending_controls obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'cardType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallets" Data.Aeson.Types.ToJSON..=)) (issuing'cardWallets obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardCancellation_reason obj) : ["cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc" Data.Aeson.Types.ToJSON..=)) (issuing'cardCvc obj) : ["exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_account" Data.Aeson.Types.ToJSON..=)) (issuing'cardFinancial_account obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'cardId obj] : ["last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_fraud_warning" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warning obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("lifecycle_controls" Data.Aeson.Types.ToJSON..=)) (issuing'cardLifecycle_controls obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("number" Data.Aeson.Types.ToJSON..=)) (issuing'cardNumber obj) : ["object" Data.Aeson.Types.ToJSON..= issuing'cardObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("personalization_design" Data.Aeson.Types.ToJSON..=)) (issuing'cardPersonalization_design obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replaced_by" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplaced_by obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_for" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_for obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("replacement_reason" Data.Aeson.Types.ToJSON..=)) (issuing'cardReplacement_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second_line" Data.Aeson.Types.ToJSON..=)) (issuing'cardSecond_line obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (issuing'cardShipping obj) : ["spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpending_controls obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'cardType obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallets" Data.Aeson.Types.ToJSON..=)) (issuing'cardWallets obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing'card
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'card" (\obj -> ((((((((((((((((((((((((GHC.Base.pure Issuing'card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancellation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cardholder")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "financial_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_fraud_warning")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "personalization_design")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "replaced_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "replacement_for")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "replacement_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "second_line")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "spending_controls")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wallets"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'card" (\obj -> ((((((((((((((((((((((((((GHC.Base.pure Issuing'card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancellation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cardholder")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "financial_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_fraud_warning")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "lifecycle_controls")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "personalization_design")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "replaced_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "replacement_for")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "replacement_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "second_line")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "spending_controls")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wallets"))}
 -- | Create a new 'Issuing'card' with all required fields.
 mkIssuing'card :: Data.Text.Internal.Text -- ^ 'issuing'cardBrand'
   -> Issuing'cardholder -- ^ 'issuing'cardCardholder'
@@ -154,530 +160,303 @@ mkIssuing'card :: Data.Text.Internal.Text -- ^ 'issuing'cardBrand'
   -> Data.Text.Internal.Text -- ^ 'issuing'cardLast4'
   -> GHC.Types.Bool -- ^ 'issuing'cardLivemode'
   -> Data.Aeson.Types.Internal.Object -- ^ 'issuing'cardMetadata'
+  -> Data.Text.Internal.Text -- ^ 'issuing'cardObject'
   -> Issuing_card_authorization_controls -- ^ 'issuing'cardSpending_controls'
-  -> Issuing'cardStatus -- ^ 'issuing'cardStatus'
-  -> Issuing'cardType -- ^ 'issuing'cardType'
+  -> Data.Text.Internal.Text -- ^ 'issuing'cardStatus'
+  -> Data.Text.Internal.Text -- ^ 'issuing'cardType'
   -> Issuing'card
-mkIssuing'card issuing'cardBrand issuing'cardCardholder issuing'cardCreated issuing'cardCurrency issuing'cardExp_month issuing'cardExp_year issuing'cardId issuing'cardLast4 issuing'cardLivemode issuing'cardMetadata issuing'cardSpending_controls issuing'cardStatus issuing'cardType = Issuing'card{issuing'cardBrand = issuing'cardBrand,
-                                                                                                                                                                                                                                                                                                        issuing'cardCancellation_reason = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardCardholder = issuing'cardCardholder,
-                                                                                                                                                                                                                                                                                                        issuing'cardCreated = issuing'cardCreated,
-                                                                                                                                                                                                                                                                                                        issuing'cardCurrency = issuing'cardCurrency,
-                                                                                                                                                                                                                                                                                                        issuing'cardCvc = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardExp_month = issuing'cardExp_month,
-                                                                                                                                                                                                                                                                                                        issuing'cardExp_year = issuing'cardExp_year,
-                                                                                                                                                                                                                                                                                                        issuing'cardFinancial_account = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardId = issuing'cardId,
-                                                                                                                                                                                                                                                                                                        issuing'cardLast4 = issuing'cardLast4,
-                                                                                                                                                                                                                                                                                                        issuing'cardLatest_fraud_warning = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardLivemode = issuing'cardLivemode,
-                                                                                                                                                                                                                                                                                                        issuing'cardMetadata = issuing'cardMetadata,
-                                                                                                                                                                                                                                                                                                        issuing'cardNumber = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardPersonalization_design = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardReplaced_by = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardReplacement_for = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardReplacement_reason = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardSecond_line = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardShipping = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                        issuing'cardSpending_controls = issuing'cardSpending_controls,
-                                                                                                                                                                                                                                                                                                        issuing'cardStatus = issuing'cardStatus,
-                                                                                                                                                                                                                                                                                                        issuing'cardType = issuing'cardType,
-                                                                                                                                                                                                                                                                                                        issuing'cardWallets = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.cancellation_reason@ in the specification.
--- 
--- The reason why the card was canceled.
-data Issuing'cardCancellation_reasonNonNullable =
-   Issuing'cardCancellation_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardCancellation_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardCancellation_reasonNonNullableEnumDesign_rejected -- ^ Represents the JSON value @"design_rejected"@
-  | Issuing'cardCancellation_reasonNonNullableEnumLost -- ^ Represents the JSON value @"lost"@
-  | Issuing'cardCancellation_reasonNonNullableEnumStolen -- ^ Represents the JSON value @"stolen"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardCancellation_reasonNonNullable
-    where {toJSON (Issuing'cardCancellation_reasonNonNullableOther val) = val;
-           toJSON (Issuing'cardCancellation_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardCancellation_reasonNonNullableEnumDesign_rejected) = "design_rejected";
-           toJSON (Issuing'cardCancellation_reasonNonNullableEnumLost) = "lost";
-           toJSON (Issuing'cardCancellation_reasonNonNullableEnumStolen) = "stolen"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardCancellation_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "design_rejected" -> Issuing'cardCancellation_reasonNonNullableEnumDesign_rejected
-                                             | val GHC.Classes.== "lost" -> Issuing'cardCancellation_reasonNonNullableEnumLost
-                                             | val GHC.Classes.== "stolen" -> Issuing'cardCancellation_reasonNonNullableEnumStolen
-                                             | GHC.Base.otherwise -> Issuing'cardCancellation_reasonNonNullableOther val)}
+mkIssuing'card issuing'cardBrand issuing'cardCardholder issuing'cardCreated issuing'cardCurrency issuing'cardExp_month issuing'cardExp_year issuing'cardId issuing'cardLast4 issuing'cardLivemode issuing'cardMetadata issuing'cardObject issuing'cardSpending_controls issuing'cardStatus issuing'cardType = Issuing'card{issuing'cardBrand = issuing'cardBrand,
+                                                                                                                                                                                                                                                                                                                           issuing'cardCancellation_reason = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardCardholder = issuing'cardCardholder,
+                                                                                                                                                                                                                                                                                                                           issuing'cardCreated = issuing'cardCreated,
+                                                                                                                                                                                                                                                                                                                           issuing'cardCurrency = issuing'cardCurrency,
+                                                                                                                                                                                                                                                                                                                           issuing'cardCvc = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardExp_month = issuing'cardExp_month,
+                                                                                                                                                                                                                                                                                                                           issuing'cardExp_year = issuing'cardExp_year,
+                                                                                                                                                                                                                                                                                                                           issuing'cardFinancial_account = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardId = issuing'cardId,
+                                                                                                                                                                                                                                                                                                                           issuing'cardLast4 = issuing'cardLast4,
+                                                                                                                                                                                                                                                                                                                           issuing'cardLatest_fraud_warning = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardLifecycle_controls = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardLivemode = issuing'cardLivemode,
+                                                                                                                                                                                                                                                                                                                           issuing'cardMetadata = issuing'cardMetadata,
+                                                                                                                                                                                                                                                                                                                           issuing'cardNumber = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardObject = issuing'cardObject,
+                                                                                                                                                                                                                                                                                                                           issuing'cardPersonalization_design = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardReplaced_by = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardReplacement_for = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardReplacement_reason = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardSecond_line = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardShipping = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                           issuing'cardSpending_controls = issuing'cardSpending_controls,
+                                                                                                                                                                                                                                                                                                                           issuing'cardStatus = issuing'cardStatus,
+                                                                                                                                                                                                                                                                                                                           issuing'cardType = issuing'cardType,
+                                                                                                                                                                                                                                                                                                                           issuing'cardWallets = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing.card.properties.latest_fraud_warning.anyOf@ in the specification.
 -- 
 -- Stripe’s assessment of whether this card’s details have been compromised. If this property isn\\\'t null, cancel and reissue the card to prevent fraudulent activity risk.
-data Issuing'cardLatest_fraud_warningNonNullable = Issuing'cardLatest_fraud_warningNonNullable {
+data Issuing'cardLatest_fraud_warning = Issuing'cardLatest_fraud_warning {
   -- | started_at: Timestamp of the most recent fraud warning.
-  issuing'cardLatest_fraud_warningNonNullableStarted_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing'cardLatest_fraud_warningStarted_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | type: The type of fraud warning that most recently took place on this card. This field updates with every new fraud warning, so the value changes over time. If populated, cancel and reissue the card.
-  , issuing'cardLatest_fraud_warningNonNullableType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardLatest_fraud_warningNonNullableTypeNonNullable))
+  , issuing'cardLatest_fraud_warningType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardLatest_fraud_warningNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("started_at" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningNonNullableStarted_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("started_at" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningNonNullableStarted_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardLatest_fraud_warningNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardLatest_fraud_warningNonNullable" (\obj -> (GHC.Base.pure Issuing'cardLatest_fraud_warningNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "started_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Issuing'cardLatest_fraud_warningNonNullable' with all required fields.
-mkIssuing'cardLatest_fraud_warningNonNullable :: Issuing'cardLatest_fraud_warningNonNullable
-mkIssuing'cardLatest_fraud_warningNonNullable = Issuing'cardLatest_fraud_warningNonNullable{issuing'cardLatest_fraud_warningNonNullableStarted_at = GHC.Maybe.Nothing,
-                                                                                            issuing'cardLatest_fraud_warningNonNullableType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.latest_fraud_warning.anyOf.properties.type@ in the specification.
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardLatest_fraud_warning
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("started_at" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningStarted_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("started_at" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningStarted_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardLatest_fraud_warningType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardLatest_fraud_warning
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardLatest_fraud_warning" (\obj -> (GHC.Base.pure Issuing'cardLatest_fraud_warning GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "started_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Issuing'cardLatest_fraud_warning' with all required fields.
+mkIssuing'cardLatest_fraud_warning :: Issuing'cardLatest_fraud_warning
+mkIssuing'cardLatest_fraud_warning = Issuing'cardLatest_fraud_warning{issuing'cardLatest_fraud_warningStarted_at = GHC.Maybe.Nothing,
+                                                                      issuing'cardLatest_fraud_warningType = GHC.Maybe.Nothing}
+-- | Defines the object schema located at @components.schemas.issuing.card.properties.lifecycle_controls.anyOf@ in the specification.
 -- 
--- The type of fraud warning that most recently took place on this card. This field updates with every new fraud warning, so the value changes over time. If populated, cancel and reissue the card.
-data Issuing'cardLatest_fraud_warningNonNullableTypeNonNullable =
-   Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumCard_testing_exposure -- ^ Represents the JSON value @"card_testing_exposure"@
-  | Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumFraud_dispute_filed -- ^ Represents the JSON value @"fraud_dispute_filed"@
-  | Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumThird_party_reported -- ^ Represents the JSON value @"third_party_reported"@
-  | Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumUser_indicated_fraud -- ^ Represents the JSON value @"user_indicated_fraud"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardLatest_fraud_warningNonNullableTypeNonNullable
-    where {toJSON (Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableOther val) = val;
-           toJSON (Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumCard_testing_exposure) = "card_testing_exposure";
-           toJSON (Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumFraud_dispute_filed) = "fraud_dispute_filed";
-           toJSON (Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumThird_party_reported) = "third_party_reported";
-           toJSON (Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumUser_indicated_fraud) = "user_indicated_fraud"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardLatest_fraud_warningNonNullableTypeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "card_testing_exposure" -> Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumCard_testing_exposure
-                                             | val GHC.Classes.== "fraud_dispute_filed" -> Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumFraud_dispute_filed
-                                             | val GHC.Classes.== "third_party_reported" -> Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumThird_party_reported
-                                             | val GHC.Classes.== "user_indicated_fraud" -> Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableEnumUser_indicated_fraud
-                                             | GHC.Base.otherwise -> Issuing'cardLatest_fraud_warningNonNullableTypeNonNullableOther val)}
+-- Rules that control the lifecycle of this card, such as automatic cancellation. Refer to our [documentation](\\\/issuing\\\/controls\\\/lifecycle-controls) for more details.
+data Issuing'cardLifecycle_controls = Issuing'cardLifecycle_controls {
+  -- | cancel_after: 
+  issuing'cardLifecycle_controlsCancel_after :: (GHC.Maybe.Maybe Issuing_card_lifecycle_conditions)
+  } deriving (GHC.Show.Show
+  , GHC.Classes.Eq)
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardLifecycle_controls
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancel_after" Data.Aeson.Types.ToJSON..=)) (issuing'cardLifecycle_controlsCancel_after obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancel_after" Data.Aeson.Types.ToJSON..=)) (issuing'cardLifecycle_controlsCancel_after obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardLifecycle_controls
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardLifecycle_controls" (\obj -> GHC.Base.pure Issuing'cardLifecycle_controls GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancel_after"))}
+-- | Create a new 'Issuing'cardLifecycle_controls' with all required fields.
+mkIssuing'cardLifecycle_controls :: Issuing'cardLifecycle_controls
+mkIssuing'cardLifecycle_controls = Issuing'cardLifecycle_controls{issuing'cardLifecycle_controlsCancel_after = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.issuing.card.properties.personalization_design.anyOf@ in the specification.
 -- 
 -- The personalization design object belonging to this card.
-data Issuing'cardPersonalization_designNonNullableVariants =
-   Issuing'cardPersonalization_designNonNullableText Data.Text.Internal.Text
-  | Issuing'cardPersonalization_designNonNullableIssuing'personalization_design Issuing'personalization_design
+data Issuing'cardPersonalization_designVariants =
+   Issuing'cardPersonalization_designText Data.Text.Internal.Text
+  | Issuing'cardPersonalization_designIssuing'personalization_design Issuing'personalization_design
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardPersonalization_designNonNullableVariants
-    where {toJSON (Issuing'cardPersonalization_designNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing'cardPersonalization_designNonNullableIssuing'personalization_design a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardPersonalization_designNonNullableVariants
-    where {parseJSON val = case (Issuing'cardPersonalization_designNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing'cardPersonalization_designNonNullableIssuing'personalization_design Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardPersonalization_designVariants
+    where {toJSON (Issuing'cardPersonalization_designText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing'cardPersonalization_designIssuing'personalization_design a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardPersonalization_designVariants
+    where {parseJSON val = case (Issuing'cardPersonalization_designText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing'cardPersonalization_designIssuing'personalization_design Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.issuing.card.properties.replaced_by.anyOf@ in the specification.
 -- 
 -- The latest card that replaces this card, if any.
-data Issuing'cardReplaced_byNonNullableVariants =
-   Issuing'cardReplaced_byNonNullableText Data.Text.Internal.Text
-  | Issuing'cardReplaced_byNonNullableIssuing'card Issuing'card
+data Issuing'cardReplaced_byVariants =
+   Issuing'cardReplaced_byText Data.Text.Internal.Text
+  | Issuing'cardReplaced_byIssuing'card Issuing'card
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardReplaced_byNonNullableVariants
-    where {toJSON (Issuing'cardReplaced_byNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing'cardReplaced_byNonNullableIssuing'card a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardReplaced_byNonNullableVariants
-    where {parseJSON val = case (Issuing'cardReplaced_byNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing'cardReplaced_byNonNullableIssuing'card Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardReplaced_byVariants
+    where {toJSON (Issuing'cardReplaced_byText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing'cardReplaced_byIssuing'card a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardReplaced_byVariants
+    where {parseJSON val = case (Issuing'cardReplaced_byText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing'cardReplaced_byIssuing'card Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.issuing.card.properties.replacement_for.anyOf@ in the specification.
 -- 
 -- The card this card replaces, if any.
-data Issuing'cardReplacement_forNonNullableVariants =
-   Issuing'cardReplacement_forNonNullableText Data.Text.Internal.Text
-  | Issuing'cardReplacement_forNonNullableIssuing'card Issuing'card
+data Issuing'cardReplacement_forVariants =
+   Issuing'cardReplacement_forText Data.Text.Internal.Text
+  | Issuing'cardReplacement_forIssuing'card Issuing'card
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardReplacement_forNonNullableVariants
-    where {toJSON (Issuing'cardReplacement_forNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing'cardReplacement_forNonNullableIssuing'card a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardReplacement_forNonNullableVariants
-    where {parseJSON val = case (Issuing'cardReplacement_forNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing'cardReplacement_forNonNullableIssuing'card Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardReplacement_forVariants
+    where {toJSON (Issuing'cardReplacement_forText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing'cardReplacement_forIssuing'card a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardReplacement_forVariants
+    where {parseJSON val = case (Issuing'cardReplacement_forText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing'cardReplacement_forIssuing'card Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.replacement_reason@ in the specification.
--- 
--- The reason why the previous card needed to be replaced.
-data Issuing'cardReplacement_reasonNonNullable =
-   Issuing'cardReplacement_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardReplacement_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardReplacement_reasonNonNullableEnumDamaged -- ^ Represents the JSON value @"damaged"@
-  | Issuing'cardReplacement_reasonNonNullableEnumExpired -- ^ Represents the JSON value @"expired"@
-  | Issuing'cardReplacement_reasonNonNullableEnumLost -- ^ Represents the JSON value @"lost"@
-  | Issuing'cardReplacement_reasonNonNullableEnumStolen -- ^ Represents the JSON value @"stolen"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardReplacement_reasonNonNullable
-    where {toJSON (Issuing'cardReplacement_reasonNonNullableOther val) = val;
-           toJSON (Issuing'cardReplacement_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardReplacement_reasonNonNullableEnumDamaged) = "damaged";
-           toJSON (Issuing'cardReplacement_reasonNonNullableEnumExpired) = "expired";
-           toJSON (Issuing'cardReplacement_reasonNonNullableEnumLost) = "lost";
-           toJSON (Issuing'cardReplacement_reasonNonNullableEnumStolen) = "stolen"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardReplacement_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "damaged" -> Issuing'cardReplacement_reasonNonNullableEnumDamaged
-                                             | val GHC.Classes.== "expired" -> Issuing'cardReplacement_reasonNonNullableEnumExpired
-                                             | val GHC.Classes.== "lost" -> Issuing'cardReplacement_reasonNonNullableEnumLost
-                                             | val GHC.Classes.== "stolen" -> Issuing'cardReplacement_reasonNonNullableEnumStolen
-                                             | GHC.Base.otherwise -> Issuing'cardReplacement_reasonNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.issuing.card.properties.shipping.anyOf@ in the specification.
 -- 
 -- Where and how the card will be shipped.
-data Issuing'cardShippingNonNullable = Issuing'cardShippingNonNullable {
+data Issuing'cardShipping = Issuing'cardShipping {
   -- | address: 
-  issuing'cardShippingNonNullableAddress :: (GHC.Maybe.Maybe Address)
+  issuing'cardShippingAddress :: (GHC.Maybe.Maybe Address)
   -- | address_validation: Address validation details for the shipment.
-  , issuing'cardShippingNonNullableAddress_validation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardShippingNonNullableAddress_validationNonNullable))
+  , issuing'cardShippingAddress_validation :: (GHC.Maybe.Maybe Issuing'cardShippingAddress_validation)
   -- | carrier: The delivery company that shipped a card.
-  , issuing'cardShippingNonNullableCarrier :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardShippingNonNullableCarrierNonNullable))
+  , issuing'cardShippingCarrier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customs: Additional information that may be required for clearing customs.
-  , issuing'cardShippingNonNullableCustoms :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardShippingNonNullableCustomsNonNullable))
+  , issuing'cardShippingCustoms :: (GHC.Maybe.Maybe Issuing'cardShippingCustoms)
   -- | eta: A unix timestamp representing a best estimate of when the card will be delivered.
-  , issuing'cardShippingNonNullableEta :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing'cardShippingEta :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | name: Recipient name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , issuing'cardShippingName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone_number: The phone number of the receiver of the shipment. Our courier partners will use this number to contact you in the event of card delivery issues. For individual shipments to the EU\/UK, if this field is empty, we will provide them with the phone number provided when the cardholder was initially created.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullablePhone_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingPhone_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | require_signature: Whether a signature is required for card delivery. This feature is only supported for US users. Standard shipping service does not support signature on delivery. The default value for standard shipping service is false and for express and priority services is true.
-  , issuing'cardShippingNonNullableRequire_signature :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , issuing'cardShippingRequire_signature :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | service: Shipment service, such as \`standard\` or \`express\`.
-  , issuing'cardShippingNonNullableService :: (GHC.Maybe.Maybe Issuing'cardShippingNonNullableService)
+  , issuing'cardShippingService :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: The delivery status of the card.
-  , issuing'cardShippingNonNullableStatus :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardShippingNonNullableStatusNonNullable))
+  , issuing'cardShippingStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tracking_number: A tracking number for a card shipment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableTracking_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingTracking_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tracking_url: A link to the shipping carrier\'s site where you can view detailed information about a card shipment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableTracking_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingTracking_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Packaging options.
-  , issuing'cardShippingNonNullableType :: (GHC.Maybe.Maybe Issuing'cardShippingNonNullableType)
+  , issuing'cardShippingType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_validation" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customs" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableCustoms obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eta" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableEta obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullablePhone_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("require_signature" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableRequire_signature obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableService obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableTracking_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_url" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableTracking_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_validation" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customs" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableCustoms obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eta" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableEta obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullablePhone_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("require_signature" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableRequire_signature obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableService obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableTracking_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_url" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableTracking_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShippingNonNullable" (\obj -> ((((((((((((GHC.Base.pure Issuing'cardShippingNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_validation")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customs")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eta")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "require_signature")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "service")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Issuing'cardShippingNonNullable' with all required fields.
-mkIssuing'cardShippingNonNullable :: Issuing'cardShippingNonNullable
-mkIssuing'cardShippingNonNullable = Issuing'cardShippingNonNullable{issuing'cardShippingNonNullableAddress = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableAddress_validation = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableCarrier = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableCustoms = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableEta = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableName = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullablePhone_number = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableRequire_signature = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableService = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableStatus = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableTracking_number = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableTracking_url = GHC.Maybe.Nothing,
-                                                                    issuing'cardShippingNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShipping
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_validation" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customs" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingCustoms obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eta" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingEta obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingPhone_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("require_signature" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingRequire_signature obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingService obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingTracking_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_url" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingTracking_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_validation" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customs" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingCustoms obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eta" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingEta obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingPhone_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("require_signature" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingRequire_signature obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingService obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingTracking_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_url" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingTracking_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShipping
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShipping" (\obj -> ((((((((((((GHC.Base.pure Issuing'cardShipping GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_validation")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customs")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eta")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "require_signature")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "service")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Issuing'cardShipping' with all required fields.
+mkIssuing'cardShipping :: Issuing'cardShipping
+mkIssuing'cardShipping = Issuing'cardShipping{issuing'cardShippingAddress = GHC.Maybe.Nothing,
+                                              issuing'cardShippingAddress_validation = GHC.Maybe.Nothing,
+                                              issuing'cardShippingCarrier = GHC.Maybe.Nothing,
+                                              issuing'cardShippingCustoms = GHC.Maybe.Nothing,
+                                              issuing'cardShippingEta = GHC.Maybe.Nothing,
+                                              issuing'cardShippingName = GHC.Maybe.Nothing,
+                                              issuing'cardShippingPhone_number = GHC.Maybe.Nothing,
+                                              issuing'cardShippingRequire_signature = GHC.Maybe.Nothing,
+                                              issuing'cardShippingService = GHC.Maybe.Nothing,
+                                              issuing'cardShippingStatus = GHC.Maybe.Nothing,
+                                              issuing'cardShippingTracking_number = GHC.Maybe.Nothing,
+                                              issuing'cardShippingTracking_url = GHC.Maybe.Nothing,
+                                              issuing'cardShippingType = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.address_validation.anyOf@ in the specification.
 -- 
 -- Address validation details for the shipment.
-data Issuing'cardShippingNonNullableAddress_validationNonNullable = Issuing'cardShippingNonNullableAddress_validationNonNullable {
+data Issuing'cardShippingAddress_validation = Issuing'cardShippingAddress_validation {
   -- | mode: The address validation capabilities to use.
-  issuing'cardShippingNonNullableAddress_validationNonNullableMode :: (GHC.Maybe.Maybe Issuing'cardShippingNonNullableAddress_validationNonNullableMode)
+  issuing'cardShippingAddress_validationMode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | normalized_address: The normalized shipping address.
-  , issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable))
+  , issuing'cardShippingAddress_validationNormalized_address :: (GHC.Maybe.Maybe Issuing'cardShippingAddress_validationNormalized_address)
   -- | result: The validation result for the shipping address.
-  , issuing'cardShippingNonNullableAddress_validationNonNullableResult :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullable))
+  , issuing'cardShippingAddress_validationResult :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableAddress_validationNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mode" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableMode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("normalized_address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableResult obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mode" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableMode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("normalized_address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableResult obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableAddress_validationNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShippingNonNullableAddress_validationNonNullable" (\obj -> ((GHC.Base.pure Issuing'cardShippingNonNullableAddress_validationNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "normalized_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "result"))}
--- | Create a new 'Issuing'cardShippingNonNullableAddress_validationNonNullable' with all required fields.
-mkIssuing'cardShippingNonNullableAddress_validationNonNullable :: Issuing'cardShippingNonNullableAddress_validationNonNullable
-mkIssuing'cardShippingNonNullableAddress_validationNonNullable = Issuing'cardShippingNonNullableAddress_validationNonNullable{issuing'cardShippingNonNullableAddress_validationNonNullableMode = GHC.Maybe.Nothing,
-                                                                                                                              issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_address = GHC.Maybe.Nothing,
-                                                                                                                              issuing'cardShippingNonNullableAddress_validationNonNullableResult = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.address_validation.anyOf.properties.mode@ in the specification.
--- 
--- The address validation capabilities to use.
-data Issuing'cardShippingNonNullableAddress_validationNonNullableMode =
-   Issuing'cardShippingNonNullableAddress_validationNonNullableModeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableModeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumDisabled -- ^ Represents the JSON value @"disabled"@
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumNormalization_only -- ^ Represents the JSON value @"normalization_only"@
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumValidation_and_normalization -- ^ Represents the JSON value @"validation_and_normalization"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableAddress_validationNonNullableMode
-    where {toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableModeOther val) = val;
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableModeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumDisabled) = "disabled";
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumNormalization_only) = "normalization_only";
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumValidation_and_normalization) = "validation_and_normalization"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableAddress_validationNonNullableMode
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "disabled" -> Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumDisabled
-                                             | val GHC.Classes.== "normalization_only" -> Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumNormalization_only
-                                             | val GHC.Classes.== "validation_and_normalization" -> Issuing'cardShippingNonNullableAddress_validationNonNullableModeEnumValidation_and_normalization
-                                             | GHC.Base.otherwise -> Issuing'cardShippingNonNullableAddress_validationNonNullableModeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingAddress_validation
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mode" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationMode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("normalized_address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationResult obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mode" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationMode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("normalized_address" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationResult obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingAddress_validation
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShippingAddress_validation" (\obj -> ((GHC.Base.pure Issuing'cardShippingAddress_validation GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "normalized_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "result"))}
+-- | Create a new 'Issuing'cardShippingAddress_validation' with all required fields.
+mkIssuing'cardShippingAddress_validation :: Issuing'cardShippingAddress_validation
+mkIssuing'cardShippingAddress_validation = Issuing'cardShippingAddress_validation{issuing'cardShippingAddress_validationMode = GHC.Maybe.Nothing,
+                                                                                  issuing'cardShippingAddress_validationNormalized_address = GHC.Maybe.Nothing,
+                                                                                  issuing'cardShippingAddress_validationResult = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.address_validation.anyOf.properties.normalized_address.anyOf@ in the specification.
 -- 
 -- The normalized shipping address.
-data Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable = Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable {
+data Issuing'cardShippingAddress_validationNormalized_address = Issuing'cardShippingAddress_validationNormalized_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing'cardShippingAddress_validationNormalized_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingAddress_validationNormalized_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingAddress_validationNormalized_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingAddress_validationNormalized_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingAddress_validationNormalized_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardShippingAddress_validationNormalized_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable" (\obj -> (((((GHC.Base.pure Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable' with all required fields.
-mkIssuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable :: Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable
-mkIssuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable = Issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullable{issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                                                                        issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                                                                        issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                                                                        issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                                                                        issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                                                                        issuing'cardShippingNonNullableAddress_validationNonNullableNormalized_addressNonNullableState = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.address_validation.anyOf.properties.result@ in the specification.
--- 
--- The validation result for the shipping address.
-data Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullable =
-   Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumIndeterminate -- ^ Represents the JSON value @"indeterminate"@
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumLikely_deliverable -- ^ Represents the JSON value @"likely_deliverable"@
-  | Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumLikely_undeliverable -- ^ Represents the JSON value @"likely_undeliverable"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullable
-    where {toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableOther val) = val;
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumIndeterminate) = "indeterminate";
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumLikely_deliverable) = "likely_deliverable";
-           toJSON (Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumLikely_undeliverable) = "likely_undeliverable"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "indeterminate" -> Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumIndeterminate
-                                             | val GHC.Classes.== "likely_deliverable" -> Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumLikely_deliverable
-                                             | val GHC.Classes.== "likely_undeliverable" -> Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableEnumLikely_undeliverable
-                                             | GHC.Base.otherwise -> Issuing'cardShippingNonNullableAddress_validationNonNullableResultNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.carrier@ in the specification.
--- 
--- The delivery company that shipped a card.
-data Issuing'cardShippingNonNullableCarrierNonNullable =
-   Issuing'cardShippingNonNullableCarrierNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardShippingNonNullableCarrierNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardShippingNonNullableCarrierNonNullableEnumDhl -- ^ Represents the JSON value @"dhl"@
-  | Issuing'cardShippingNonNullableCarrierNonNullableEnumFedex -- ^ Represents the JSON value @"fedex"@
-  | Issuing'cardShippingNonNullableCarrierNonNullableEnumRoyal_mail -- ^ Represents the JSON value @"royal_mail"@
-  | Issuing'cardShippingNonNullableCarrierNonNullableEnumUsps -- ^ Represents the JSON value @"usps"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableCarrierNonNullable
-    where {toJSON (Issuing'cardShippingNonNullableCarrierNonNullableOther val) = val;
-           toJSON (Issuing'cardShippingNonNullableCarrierNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardShippingNonNullableCarrierNonNullableEnumDhl) = "dhl";
-           toJSON (Issuing'cardShippingNonNullableCarrierNonNullableEnumFedex) = "fedex";
-           toJSON (Issuing'cardShippingNonNullableCarrierNonNullableEnumRoyal_mail) = "royal_mail";
-           toJSON (Issuing'cardShippingNonNullableCarrierNonNullableEnumUsps) = "usps"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableCarrierNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "dhl" -> Issuing'cardShippingNonNullableCarrierNonNullableEnumDhl
-                                             | val GHC.Classes.== "fedex" -> Issuing'cardShippingNonNullableCarrierNonNullableEnumFedex
-                                             | val GHC.Classes.== "royal_mail" -> Issuing'cardShippingNonNullableCarrierNonNullableEnumRoyal_mail
-                                             | val GHC.Classes.== "usps" -> Issuing'cardShippingNonNullableCarrierNonNullableEnumUsps
-                                             | GHC.Base.otherwise -> Issuing'cardShippingNonNullableCarrierNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingAddress_validationNormalized_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingAddress_validationNormalized_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingAddress_validationNormalized_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShippingAddress_validationNormalized_address" (\obj -> (((((GHC.Base.pure Issuing'cardShippingAddress_validationNormalized_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Issuing'cardShippingAddress_validationNormalized_address' with all required fields.
+mkIssuing'cardShippingAddress_validationNormalized_address :: Issuing'cardShippingAddress_validationNormalized_address
+mkIssuing'cardShippingAddress_validationNormalized_address = Issuing'cardShippingAddress_validationNormalized_address{issuing'cardShippingAddress_validationNormalized_addressCity = GHC.Maybe.Nothing,
+                                                                                                                      issuing'cardShippingAddress_validationNormalized_addressCountry = GHC.Maybe.Nothing,
+                                                                                                                      issuing'cardShippingAddress_validationNormalized_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                                      issuing'cardShippingAddress_validationNormalized_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                                      issuing'cardShippingAddress_validationNormalized_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                                      issuing'cardShippingAddress_validationNormalized_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.customs.anyOf@ in the specification.
 -- 
 -- Additional information that may be required for clearing customs.
-data Issuing'cardShippingNonNullableCustomsNonNullable = Issuing'cardShippingNonNullableCustomsNonNullable {
+data Issuing'cardShippingCustoms = Issuing'cardShippingCustoms {
   -- | eori_number: A registration number used for customs in Europe. See [https:\/\/www.gov.uk\/eori](https:\/\/www.gov.uk\/eori) for the UK and [https:\/\/ec.europa.eu\/taxation_customs\/business\/customs-procedures-import-and-export\/customs-procedures\/economic-operators-registration-and-identification-number-eori_en](https:\/\/ec.europa.eu\/taxation_customs\/business\/customs-procedures-import-and-export\/customs-procedures\/economic-operators-registration-and-identification-number-eori_en) for the EU.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing'cardShippingNonNullableCustomsNonNullableEori_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing'cardShippingCustomsEori_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableCustomsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eori_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableCustomsNonNullableEori_number obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eori_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingNonNullableCustomsNonNullableEori_number obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableCustomsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShippingNonNullableCustomsNonNullable" (\obj -> GHC.Base.pure Issuing'cardShippingNonNullableCustomsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eori_number"))}
--- | Create a new 'Issuing'cardShippingNonNullableCustomsNonNullable' with all required fields.
-mkIssuing'cardShippingNonNullableCustomsNonNullable :: Issuing'cardShippingNonNullableCustomsNonNullable
-mkIssuing'cardShippingNonNullableCustomsNonNullable = Issuing'cardShippingNonNullableCustomsNonNullable{issuing'cardShippingNonNullableCustomsNonNullableEori_number = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.service@ in the specification.
--- 
--- Shipment service, such as \`standard\` or \`express\`.
-data Issuing'cardShippingNonNullableService =
-   Issuing'cardShippingNonNullableServiceOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardShippingNonNullableServiceTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardShippingNonNullableServiceEnumExpress -- ^ Represents the JSON value @"express"@
-  | Issuing'cardShippingNonNullableServiceEnumPriority -- ^ Represents the JSON value @"priority"@
-  | Issuing'cardShippingNonNullableServiceEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableService
-    where {toJSON (Issuing'cardShippingNonNullableServiceOther val) = val;
-           toJSON (Issuing'cardShippingNonNullableServiceTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardShippingNonNullableServiceEnumExpress) = "express";
-           toJSON (Issuing'cardShippingNonNullableServiceEnumPriority) = "priority";
-           toJSON (Issuing'cardShippingNonNullableServiceEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableService
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "express" -> Issuing'cardShippingNonNullableServiceEnumExpress
-                                             | val GHC.Classes.== "priority" -> Issuing'cardShippingNonNullableServiceEnumPriority
-                                             | val GHC.Classes.== "standard" -> Issuing'cardShippingNonNullableServiceEnumStandard
-                                             | GHC.Base.otherwise -> Issuing'cardShippingNonNullableServiceOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.status@ in the specification.
--- 
--- The delivery status of the card.
-data Issuing'cardShippingNonNullableStatusNonNullable =
-   Issuing'cardShippingNonNullableStatusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardShippingNonNullableStatusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardShippingNonNullableStatusNonNullableEnumCanceled -- ^ Represents the JSON value @"canceled"@
-  | Issuing'cardShippingNonNullableStatusNonNullableEnumDelivered -- ^ Represents the JSON value @"delivered"@
-  | Issuing'cardShippingNonNullableStatusNonNullableEnumFailure -- ^ Represents the JSON value @"failure"@
-  | Issuing'cardShippingNonNullableStatusNonNullableEnumPending -- ^ Represents the JSON value @"pending"@
-  | Issuing'cardShippingNonNullableStatusNonNullableEnumReturned -- ^ Represents the JSON value @"returned"@
-  | Issuing'cardShippingNonNullableStatusNonNullableEnumShipped -- ^ Represents the JSON value @"shipped"@
-  | Issuing'cardShippingNonNullableStatusNonNullableEnumSubmitted -- ^ Represents the JSON value @"submitted"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableStatusNonNullable
-    where {toJSON (Issuing'cardShippingNonNullableStatusNonNullableOther val) = val;
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableEnumCanceled) = "canceled";
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableEnumDelivered) = "delivered";
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableEnumFailure) = "failure";
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableEnumPending) = "pending";
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableEnumReturned) = "returned";
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableEnumShipped) = "shipped";
-           toJSON (Issuing'cardShippingNonNullableStatusNonNullableEnumSubmitted) = "submitted"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableStatusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "canceled" -> Issuing'cardShippingNonNullableStatusNonNullableEnumCanceled
-                                             | val GHC.Classes.== "delivered" -> Issuing'cardShippingNonNullableStatusNonNullableEnumDelivered
-                                             | val GHC.Classes.== "failure" -> Issuing'cardShippingNonNullableStatusNonNullableEnumFailure
-                                             | val GHC.Classes.== "pending" -> Issuing'cardShippingNonNullableStatusNonNullableEnumPending
-                                             | val GHC.Classes.== "returned" -> Issuing'cardShippingNonNullableStatusNonNullableEnumReturned
-                                             | val GHC.Classes.== "shipped" -> Issuing'cardShippingNonNullableStatusNonNullableEnumShipped
-                                             | val GHC.Classes.== "submitted" -> Issuing'cardShippingNonNullableStatusNonNullableEnumSubmitted
-                                             | GHC.Base.otherwise -> Issuing'cardShippingNonNullableStatusNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.shipping.anyOf.properties.type@ in the specification.
--- 
--- Packaging options.
-data Issuing'cardShippingNonNullableType =
-   Issuing'cardShippingNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardShippingNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardShippingNonNullableTypeEnumBulk -- ^ Represents the JSON value @"bulk"@
-  | Issuing'cardShippingNonNullableTypeEnumIndividual -- ^ Represents the JSON value @"individual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingNonNullableType
-    where {toJSON (Issuing'cardShippingNonNullableTypeOther val) = val;
-           toJSON (Issuing'cardShippingNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardShippingNonNullableTypeEnumBulk) = "bulk";
-           toJSON (Issuing'cardShippingNonNullableTypeEnumIndividual) = "individual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bulk" -> Issuing'cardShippingNonNullableTypeEnumBulk
-                                             | val GHC.Classes.== "individual" -> Issuing'cardShippingNonNullableTypeEnumIndividual
-                                             | GHC.Base.otherwise -> Issuing'cardShippingNonNullableTypeOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.status@ in the specification.
--- 
--- Whether authorizations can be approved on this card. May be blocked from activating cards depending on past-due Cardholder requirements. Defaults to \`inactive\`.
-data Issuing'cardStatus =
-   Issuing'cardStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardStatusEnumActive -- ^ Represents the JSON value @"active"@
-  | Issuing'cardStatusEnumCanceled -- ^ Represents the JSON value @"canceled"@
-  | Issuing'cardStatusEnumInactive -- ^ Represents the JSON value @"inactive"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardStatus
-    where {toJSON (Issuing'cardStatusOther val) = val;
-           toJSON (Issuing'cardStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardStatusEnumActive) = "active";
-           toJSON (Issuing'cardStatusEnumCanceled) = "canceled";
-           toJSON (Issuing'cardStatusEnumInactive) = "inactive"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "active" -> Issuing'cardStatusEnumActive
-                                             | val GHC.Classes.== "canceled" -> Issuing'cardStatusEnumCanceled
-                                             | val GHC.Classes.== "inactive" -> Issuing'cardStatusEnumInactive
-                                             | GHC.Base.otherwise -> Issuing'cardStatusOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.card.properties.type@ in the specification.
--- 
--- The type of the card.
-data Issuing'cardType =
-   Issuing'cardTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'cardTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'cardTypeEnumPhysical -- ^ Represents the JSON value @"physical"@
-  | Issuing'cardTypeEnumVirtual -- ^ Represents the JSON value @"virtual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardType
-    where {toJSON (Issuing'cardTypeOther val) = val;
-           toJSON (Issuing'cardTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'cardTypeEnumPhysical) = "physical";
-           toJSON (Issuing'cardTypeEnumVirtual) = "virtual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "physical" -> Issuing'cardTypeEnumPhysical
-                                             | val GHC.Classes.== "virtual" -> Issuing'cardTypeEnumVirtual
-                                             | GHC.Base.otherwise -> Issuing'cardTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardShippingCustoms
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eori_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingCustomsEori_number obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eori_number" Data.Aeson.Types.ToJSON..=)) (issuing'cardShippingCustomsEori_number obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardShippingCustoms
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardShippingCustoms" (\obj -> GHC.Base.pure Issuing'cardShippingCustoms GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eori_number"))}
+-- | Create a new 'Issuing'cardShippingCustoms' with all required fields.
+mkIssuing'cardShippingCustoms :: Issuing'cardShippingCustoms
+mkIssuing'cardShippingCustoms = Issuing'cardShippingCustoms{issuing'cardShippingCustomsEori_number = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing.card.properties.wallets.anyOf@ in the specification.
 -- 
 -- Information relating to digital wallets (like Apple Pay and Google Pay).
-data Issuing'cardWalletsNonNullable = Issuing'cardWalletsNonNullable {
+data Issuing'cardWallets = Issuing'cardWallets {
   -- | apple_pay: 
-  issuing'cardWalletsNonNullableApple_pay :: (GHC.Maybe.Maybe Issuing_card_apple_pay)
+  issuing'cardWalletsApple_pay :: (GHC.Maybe.Maybe Issuing_card_apple_pay)
   -- | google_pay: 
-  , issuing'cardWalletsNonNullableGoogle_pay :: (GHC.Maybe.Maybe Issuing_card_google_pay)
+  , issuing'cardWalletsGoogle_pay :: (GHC.Maybe.Maybe Issuing_card_google_pay)
   -- | primary_account_identifier: Unique identifier for a card used with digital wallets
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'cardWalletsNonNullablePrimary_account_identifier :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'cardWalletsPrimary_account_identifier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardWalletsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsNonNullableApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsNonNullableGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("primary_account_identifier" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsNonNullablePrimary_account_identifier obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsNonNullableApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsNonNullableGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("primary_account_identifier" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsNonNullablePrimary_account_identifier obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardWalletsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardWalletsNonNullable" (\obj -> ((GHC.Base.pure Issuing'cardWalletsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "apple_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "google_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "primary_account_identifier"))}
--- | Create a new 'Issuing'cardWalletsNonNullable' with all required fields.
-mkIssuing'cardWalletsNonNullable :: Issuing'cardWalletsNonNullable
-mkIssuing'cardWalletsNonNullable = Issuing'cardWalletsNonNullable{issuing'cardWalletsNonNullableApple_pay = GHC.Maybe.Nothing,
-                                                                  issuing'cardWalletsNonNullableGoogle_pay = GHC.Maybe.Nothing,
-                                                                  issuing'cardWalletsNonNullablePrimary_account_identifier = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardWallets
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("primary_account_identifier" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsPrimary_account_identifier obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("primary_account_identifier" Data.Aeson.Types.ToJSON..=)) (issuing'cardWalletsPrimary_account_identifier obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardWallets
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardWallets" (\obj -> ((GHC.Base.pure Issuing'cardWallets GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "apple_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "google_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "primary_account_identifier"))}
+-- | Create a new 'Issuing'cardWallets' with all required fields.
+mkIssuing'cardWallets :: Issuing'cardWallets
+mkIssuing'cardWallets = Issuing'cardWallets{issuing'cardWalletsApple_pay = GHC.Maybe.Nothing,
+                                            issuing'cardWalletsGoogle_pay = GHC.Maybe.Nothing,
+                                            issuing'cardWalletsPrimary_account_identifier = GHC.Maybe.Nothing}

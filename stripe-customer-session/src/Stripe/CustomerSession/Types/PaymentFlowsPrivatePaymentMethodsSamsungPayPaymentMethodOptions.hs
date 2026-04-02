@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_private_payment_methods_samsung_pay_payment_method_options = Payment_flows_private_payment_methods_samsung_pay_payment_method_options {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_method :: (GHC.Maybe.Maybe Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_method)
+  payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_samsung_pay_payment_method_options
@@ -57,18 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_method
 -- | Create a new 'Payment_flows_private_payment_methods_samsung_pay_payment_method_options' with all required fields.
 mkPayment_flows_private_payment_methods_samsung_pay_payment_method_options :: Payment_flows_private_payment_methods_samsung_pay_payment_method_options
 mkPayment_flows_private_payment_methods_samsung_pay_payment_method_options = Payment_flows_private_payment_methods_samsung_pay_payment_method_options{payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_flows_private_payment_methods_samsung_pay_payment_method_options.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_method =
-   Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_method
-    where {toJSON (Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodOther val) = val;
-           toJSON (Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_flows_private_payment_methods_samsung_pay_payment_method_optionsCapture_methodOther val)}

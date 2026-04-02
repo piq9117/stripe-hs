@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Dispute_enhanced_eligibility_visa_compelling_evidence3 = Dispute_enhanced_eligibility_visa_compelling_evidence3 {
   -- | required_actions: List of actions required to qualify dispute for Visa Compelling Evidence 3.0 evidence submission.
-  dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions :: [Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions]
+  dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions :: [Data.Text.Internal.Text]
   -- | status: Visa Compelling Evidence 3.0 eligibility status.
-  , dispute_enhanced_eligibility_visa_compelling_evidence3Status :: Dispute_enhanced_eligibility_visa_compelling_evidence3Status
+  , dispute_enhanced_eligibility_visa_compelling_evidence3Status :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_enhanced_eligibility_visa_compelling_evidence3
@@ -57,56 +57,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Dispute_enhanced_eligibility_visa_compel
 instance Data.Aeson.Types.FromJSON.FromJSON Dispute_enhanced_eligibility_visa_compelling_evidence3
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Dispute_enhanced_eligibility_visa_compelling_evidence3" (\obj -> (GHC.Base.pure Dispute_enhanced_eligibility_visa_compelling_evidence3 GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "required_actions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status"))}
 -- | Create a new 'Dispute_enhanced_eligibility_visa_compelling_evidence3' with all required fields.
-mkDispute_enhanced_eligibility_visa_compelling_evidence3 :: [Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions] -- ^ 'dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions'
-  -> Dispute_enhanced_eligibility_visa_compelling_evidence3Status -- ^ 'dispute_enhanced_eligibility_visa_compelling_evidence3Status'
+mkDispute_enhanced_eligibility_visa_compelling_evidence3 :: [Data.Text.Internal.Text] -- ^ 'dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions'
+  -> Data.Text.Internal.Text -- ^ 'dispute_enhanced_eligibility_visa_compelling_evidence3Status'
   -> Dispute_enhanced_eligibility_visa_compelling_evidence3
 mkDispute_enhanced_eligibility_visa_compelling_evidence3 dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions dispute_enhanced_eligibility_visa_compelling_evidence3Status = Dispute_enhanced_eligibility_visa_compelling_evidence3{dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions = dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions,
                                                                                                                                                                                                                                                       dispute_enhanced_eligibility_visa_compelling_evidence3Status = dispute_enhanced_eligibility_visa_compelling_evidence3Status}
--- | Defines the enum schema located at @components.schemas.dispute_enhanced_eligibility_visa_compelling_evidence3.properties.required_actions.items@ in the specification.
--- 
--- 
-data Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions =
-   Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_customer_identifiers -- ^ Represents the JSON value @"missing_customer_identifiers"@
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_disputed_transaction_description -- ^ Represents the JSON value @"missing_disputed_transaction_description"@
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_merchandise_or_services -- ^ Represents the JSON value @"missing_merchandise_or_services"@
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_prior_undisputed_transaction_description -- ^ Represents the JSON value @"missing_prior_undisputed_transaction_description"@
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_prior_undisputed_transactions -- ^ Represents the JSON value @"missing_prior_undisputed_transactions"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions
-    where {toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsOther val) = val;
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_customer_identifiers) = "missing_customer_identifiers";
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_disputed_transaction_description) = "missing_disputed_transaction_description";
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_merchandise_or_services) = "missing_merchandise_or_services";
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_prior_undisputed_transaction_description) = "missing_prior_undisputed_transaction_description";
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_prior_undisputed_transactions) = "missing_prior_undisputed_transactions"}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actions
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "missing_customer_identifiers" -> Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_customer_identifiers
-                                             | val GHC.Classes.== "missing_disputed_transaction_description" -> Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_disputed_transaction_description
-                                             | val GHC.Classes.== "missing_merchandise_or_services" -> Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_merchandise_or_services
-                                             | val GHC.Classes.== "missing_prior_undisputed_transaction_description" -> Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_prior_undisputed_transaction_description
-                                             | val GHC.Classes.== "missing_prior_undisputed_transactions" -> Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsEnumMissing_prior_undisputed_transactions
-                                             | GHC.Base.otherwise -> Dispute_enhanced_eligibility_visa_compelling_evidence3Required_actionsOther val)}
--- | Defines the enum schema located at @components.schemas.dispute_enhanced_eligibility_visa_compelling_evidence3.properties.status@ in the specification.
--- 
--- Visa Compelling Evidence 3.0 eligibility status.
-data Dispute_enhanced_eligibility_visa_compelling_evidence3Status =
-   Dispute_enhanced_eligibility_visa_compelling_evidence3StatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3StatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumNot_qualified -- ^ Represents the JSON value @"not_qualified"@
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumQualified -- ^ Represents the JSON value @"qualified"@
-  | Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumRequires_action -- ^ Represents the JSON value @"requires_action"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_enhanced_eligibility_visa_compelling_evidence3Status
-    where {toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3StatusOther val) = val;
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3StatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumNot_qualified) = "not_qualified";
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumQualified) = "qualified";
-           toJSON (Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumRequires_action) = "requires_action"}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_enhanced_eligibility_visa_compelling_evidence3Status
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "not_qualified" -> Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumNot_qualified
-                                             | val GHC.Classes.== "qualified" -> Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumQualified
-                                             | val GHC.Classes.== "requires_action" -> Dispute_enhanced_eligibility_visa_compelling_evidence3StatusEnumRequires_action
-                                             | GHC.Base.otherwise -> Dispute_enhanced_eligibility_visa_compelling_evidence3StatusOther val)}

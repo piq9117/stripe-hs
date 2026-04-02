@@ -47,28 +47,32 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Coupon
 -- 
 data Discount_source = Discount_source {
   -- | coupon: The coupon that was redeemed to create this discount.
-  discount_sourceCoupon :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Discount_sourceCouponNonNullableVariants))
+  discount_sourceCoupon :: (GHC.Maybe.Maybe Discount_sourceCouponVariants)
+  -- | type: The source type of the discount.
+  , discount_sourceType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Discount_source
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (discount_sourceCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "coupon"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (discount_sourceCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "coupon"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (discount_sourceCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= discount_sourceType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (discount_sourceCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= discount_sourceType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Discount_source
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Discount_source" (\obj -> GHC.Base.pure Discount_source GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "coupon"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Discount_source" (\obj -> (GHC.Base.pure Discount_source GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "coupon")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Discount_source' with all required fields.
-mkDiscount_source :: Discount_source
-mkDiscount_source = Discount_source{discount_sourceCoupon = GHC.Maybe.Nothing}
+mkDiscount_source :: Data.Text.Internal.Text -- ^ 'discount_sourceType'
+  -> Discount_source
+mkDiscount_source discount_sourceType = Discount_source{discount_sourceCoupon = GHC.Maybe.Nothing,
+                                                        discount_sourceType = discount_sourceType}
 -- | Defines the oneOf schema located at @components.schemas.discount_source.properties.coupon.anyOf@ in the specification.
 -- 
 -- The coupon that was redeemed to create this discount.
-data Discount_sourceCouponNonNullableVariants =
-   Discount_sourceCouponNonNullableText Data.Text.Internal.Text
-  | Discount_sourceCouponNonNullableCoupon Coupon
+data Discount_sourceCouponVariants =
+   Discount_sourceCouponText Data.Text.Internal.Text
+  | Discount_sourceCouponCoupon Coupon
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Discount_sourceCouponNonNullableVariants
-    where {toJSON (Discount_sourceCouponNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Discount_sourceCouponNonNullableCoupon a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Discount_sourceCouponNonNullableVariants
-    where {parseJSON val = case (Discount_sourceCouponNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Discount_sourceCouponNonNullableCoupon Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Discount_sourceCouponVariants
+    where {toJSON (Discount_sourceCouponText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Discount_sourceCouponCoupon a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Discount_sourceCouponVariants
+    where {parseJSON val = case (Discount_sourceCouponText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Discount_sourceCouponCoupon Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

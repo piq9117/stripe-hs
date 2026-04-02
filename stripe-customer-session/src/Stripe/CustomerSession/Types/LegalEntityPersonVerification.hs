@@ -48,19 +48,19 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.LegalEntityPersonVerification
 -- 
 data Legal_entity_person_verification = Legal_entity_person_verification {
   -- | additional_document: A document showing address, either a passport, local ID card, or utility bill from a well-known utility company.
-  legal_entity_person_verificationAdditional_document :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Legal_entity_person_verificationAdditional_documentNonNullable))
+  legal_entity_person_verificationAdditional_document :: (GHC.Maybe.Maybe Legal_entity_person_verificationAdditional_document)
   -- | details: A user-displayable string describing the verification state for the person. For example, this may say \"Provided identity information could not be verified\".
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_person_verificationDetails :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_person_verificationDetails :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | details_code: One of \`document_address_mismatch\`, \`document_dob_mismatch\`, \`document_duplicate_type\`, \`document_id_number_mismatch\`, \`document_name_mismatch\`, \`document_nationality_mismatch\`, \`failed_keyed_identity\`, or \`failed_other\`. A machine-readable code specifying the verification state for the person.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_person_verificationDetails_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_person_verificationDetails_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | document: 
   , legal_entity_person_verificationDocument :: (GHC.Maybe.Maybe Legal_entity_person_verification_document)
   -- | status: The state of verification for the person. Possible values are \`unverified\`, \`pending\`, or \`verified\`. Please refer [guide](https:\/\/docs.stripe.com\/connect\/handling-api-verification) to handle verification updates.
@@ -87,61 +87,61 @@ mkLegal_entity_person_verification legal_entity_person_verificationStatus = Lega
 -- | Defines the object schema located at @components.schemas.legal_entity_person_verification.properties.additional_document.anyOf@ in the specification.
 -- 
 -- A document showing address, either a passport, local ID card, or utility bill from a well-known utility company.
-data Legal_entity_person_verificationAdditional_documentNonNullable = Legal_entity_person_verificationAdditional_documentNonNullable {
+data Legal_entity_person_verificationAdditional_document = Legal_entity_person_verificationAdditional_document {
   -- | back: The back of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  legal_entity_person_verificationAdditional_documentNonNullableBack :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableVariants))
+  legal_entity_person_verificationAdditional_documentBack :: (GHC.Maybe.Maybe Legal_entity_person_verificationAdditional_documentBackVariants)
   -- | details: A user-displayable string describing the verification state of this document. For example, if a document is uploaded and the picture is too fuzzy, this may say \"Identity document is too unclear to read\".
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_person_verificationAdditional_documentNonNullableDetails :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_person_verificationAdditional_documentDetails :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | details_code: One of \`document_corrupt\`, \`document_country_not_supported\`, \`document_expired\`, \`document_failed_copy\`, \`document_failed_other\`, \`document_failed_test_mode\`, \`document_fraudulent\`, \`document_failed_greyscale\`, \`document_incomplete\`, \`document_invalid\`, \`document_manipulated\`, \`document_missing_back\`, \`document_missing_front\`, \`document_not_readable\`, \`document_not_uploaded\`, \`document_photo_mismatch\`, \`document_too_large\`, or \`document_type_not_supported\`. A machine-readable code specifying the verification state for this document.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_person_verificationAdditional_documentNonNullableDetails_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_person_verificationAdditional_documentDetails_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | front: The front of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  , legal_entity_person_verificationAdditional_documentNonNullableFront :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableVariants))
+  , legal_entity_person_verificationAdditional_documentFront :: (GHC.Maybe.Maybe Legal_entity_person_verificationAdditional_documentFrontVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verificationAdditional_documentNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableDetails obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_code" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableDetails_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableFront obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableDetails obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_code" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableDetails_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentNonNullableFront obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verificationAdditional_documentNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Legal_entity_person_verificationAdditional_documentNonNullable" (\obj -> (((GHC.Base.pure Legal_entity_person_verificationAdditional_documentNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "back")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "details_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "front"))}
--- | Create a new 'Legal_entity_person_verificationAdditional_documentNonNullable' with all required fields.
-mkLegal_entity_person_verificationAdditional_documentNonNullable :: Legal_entity_person_verificationAdditional_documentNonNullable
-mkLegal_entity_person_verificationAdditional_documentNonNullable = Legal_entity_person_verificationAdditional_documentNonNullable{legal_entity_person_verificationAdditional_documentNonNullableBack = GHC.Maybe.Nothing,
-                                                                                                                                  legal_entity_person_verificationAdditional_documentNonNullableDetails = GHC.Maybe.Nothing,
-                                                                                                                                  legal_entity_person_verificationAdditional_documentNonNullableDetails_code = GHC.Maybe.Nothing,
-                                                                                                                                  legal_entity_person_verificationAdditional_documentNonNullableFront = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verificationAdditional_document
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentDetails obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_code" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentDetails_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentFront obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentDetails obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_code" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentDetails_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (legal_entity_person_verificationAdditional_documentFront obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verificationAdditional_document
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Legal_entity_person_verificationAdditional_document" (\obj -> (((GHC.Base.pure Legal_entity_person_verificationAdditional_document GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "back")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "details_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "front"))}
+-- | Create a new 'Legal_entity_person_verificationAdditional_document' with all required fields.
+mkLegal_entity_person_verificationAdditional_document :: Legal_entity_person_verificationAdditional_document
+mkLegal_entity_person_verificationAdditional_document = Legal_entity_person_verificationAdditional_document{legal_entity_person_verificationAdditional_documentBack = GHC.Maybe.Nothing,
+                                                                                                            legal_entity_person_verificationAdditional_documentDetails = GHC.Maybe.Nothing,
+                                                                                                            legal_entity_person_verificationAdditional_documentDetails_code = GHC.Maybe.Nothing,
+                                                                                                            legal_entity_person_verificationAdditional_documentFront = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.legal_entity_person_verification.properties.additional_document.anyOf.properties.back.anyOf@ in the specification.
 -- 
 -- The back of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableVariants =
-   Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableText Data.Text.Internal.Text
-  | Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableFile File
+data Legal_entity_person_verificationAdditional_documentBackVariants =
+   Legal_entity_person_verificationAdditional_documentBackText Data.Text.Internal.Text
+  | Legal_entity_person_verificationAdditional_documentBackFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableVariants
-    where {toJSON (Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableVariants
-    where {parseJSON val = case (Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verificationAdditional_documentNonNullableBackNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verificationAdditional_documentBackVariants
+    where {toJSON (Legal_entity_person_verificationAdditional_documentBackText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Legal_entity_person_verificationAdditional_documentBackFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verificationAdditional_documentBackVariants
+    where {parseJSON val = case (Legal_entity_person_verificationAdditional_documentBackText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verificationAdditional_documentBackFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.legal_entity_person_verification.properties.additional_document.anyOf.properties.front.anyOf@ in the specification.
 -- 
 -- The front of an ID returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableVariants =
-   Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableText Data.Text.Internal.Text
-  | Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableFile File
+data Legal_entity_person_verificationAdditional_documentFrontVariants =
+   Legal_entity_person_verificationAdditional_documentFrontText Data.Text.Internal.Text
+  | Legal_entity_person_verificationAdditional_documentFrontFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableVariants
-    where {toJSON (Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableVariants
-    where {parseJSON val = case (Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verificationAdditional_documentNonNullableFrontNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_person_verificationAdditional_documentFrontVariants
+    where {toJSON (Legal_entity_person_verificationAdditional_documentFrontText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Legal_entity_person_verificationAdditional_documentFrontFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Legal_entity_person_verificationAdditional_documentFrontVariants
+    where {parseJSON val = case (Legal_entity_person_verificationAdditional_documentFrontText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Legal_entity_person_verificationAdditional_documentFrontFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

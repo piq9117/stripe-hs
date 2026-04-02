@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Account
 -- 
 data Charge_transfer_data = Charge_transfer_data {
   -- | amount: The amount transferred to the destination account, if specified. By default, the entire charge amount is transferred to the destination account.
-  charge_transfer_dataAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  charge_transfer_dataAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | destination: ID of an existing, connected Stripe account to transfer funds to if \`transfer_data\` was specified in the charge request.
   , charge_transfer_dataDestination :: Charge_transfer_dataDestinationVariants
   } deriving (GHC.Show.Show

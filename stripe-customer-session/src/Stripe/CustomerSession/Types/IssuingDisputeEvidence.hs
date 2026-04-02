@@ -68,7 +68,7 @@ data Issuing_dispute_evidence = Issuing_dispute_evidence {
   -- | other: 
   , issuing_dispute_evidenceOther :: (GHC.Maybe.Maybe Issuing_dispute_other_evidence)
   -- | reason: The reason for filing the dispute. Its value will match the field containing the evidence.
-  , issuing_dispute_evidenceReason :: Issuing_dispute_evidenceReason
+  , issuing_dispute_evidenceReason :: Data.Text.Internal.Text
   -- | service_not_as_described: 
   , issuing_dispute_evidenceService_not_as_described :: (GHC.Maybe.Maybe Issuing_dispute_service_not_as_described_evidence)
   } deriving (GHC.Show.Show
@@ -79,7 +79,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_evidence
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_evidence
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_dispute_evidence" (\obj -> ((((((((GHC.Base.pure Issuing_dispute_evidence GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "canceled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "duplicate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fraudulent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "merchandise_not_as_described")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "no_valid_authorization")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "not_received")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "other")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "service_not_as_described"))}
 -- | Create a new 'Issuing_dispute_evidence' with all required fields.
-mkIssuing_dispute_evidence :: Issuing_dispute_evidenceReason -- ^ 'issuing_dispute_evidenceReason'
+mkIssuing_dispute_evidence :: Data.Text.Internal.Text -- ^ 'issuing_dispute_evidenceReason'
   -> Issuing_dispute_evidence
 mkIssuing_dispute_evidence issuing_dispute_evidenceReason = Issuing_dispute_evidence{issuing_dispute_evidenceCanceled = GHC.Maybe.Nothing,
                                                                                      issuing_dispute_evidenceDuplicate = GHC.Maybe.Nothing,
@@ -90,39 +90,3 @@ mkIssuing_dispute_evidence issuing_dispute_evidenceReason = Issuing_dispute_evid
                                                                                      issuing_dispute_evidenceOther = GHC.Maybe.Nothing,
                                                                                      issuing_dispute_evidenceReason = issuing_dispute_evidenceReason,
                                                                                      issuing_dispute_evidenceService_not_as_described = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_dispute_evidence.properties.reason@ in the specification.
--- 
--- The reason for filing the dispute. Its value will match the field containing the evidence.
-data Issuing_dispute_evidenceReason =
-   Issuing_dispute_evidenceReasonOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_dispute_evidenceReasonTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_dispute_evidenceReasonEnumCanceled -- ^ Represents the JSON value @"canceled"@
-  | Issuing_dispute_evidenceReasonEnumDuplicate -- ^ Represents the JSON value @"duplicate"@
-  | Issuing_dispute_evidenceReasonEnumFraudulent -- ^ Represents the JSON value @"fraudulent"@
-  | Issuing_dispute_evidenceReasonEnumMerchandise_not_as_described -- ^ Represents the JSON value @"merchandise_not_as_described"@
-  | Issuing_dispute_evidenceReasonEnumNo_valid_authorization -- ^ Represents the JSON value @"no_valid_authorization"@
-  | Issuing_dispute_evidenceReasonEnumNot_received -- ^ Represents the JSON value @"not_received"@
-  | Issuing_dispute_evidenceReasonEnumOther -- ^ Represents the JSON value @"other"@
-  | Issuing_dispute_evidenceReasonEnumService_not_as_described -- ^ Represents the JSON value @"service_not_as_described"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_evidenceReason
-    where {toJSON (Issuing_dispute_evidenceReasonOther val) = val;
-           toJSON (Issuing_dispute_evidenceReasonTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_dispute_evidenceReasonEnumCanceled) = "canceled";
-           toJSON (Issuing_dispute_evidenceReasonEnumDuplicate) = "duplicate";
-           toJSON (Issuing_dispute_evidenceReasonEnumFraudulent) = "fraudulent";
-           toJSON (Issuing_dispute_evidenceReasonEnumMerchandise_not_as_described) = "merchandise_not_as_described";
-           toJSON (Issuing_dispute_evidenceReasonEnumNo_valid_authorization) = "no_valid_authorization";
-           toJSON (Issuing_dispute_evidenceReasonEnumNot_received) = "not_received";
-           toJSON (Issuing_dispute_evidenceReasonEnumOther) = "other";
-           toJSON (Issuing_dispute_evidenceReasonEnumService_not_as_described) = "service_not_as_described"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_evidenceReason
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "canceled" -> Issuing_dispute_evidenceReasonEnumCanceled
-                                             | val GHC.Classes.== "duplicate" -> Issuing_dispute_evidenceReasonEnumDuplicate
-                                             | val GHC.Classes.== "fraudulent" -> Issuing_dispute_evidenceReasonEnumFraudulent
-                                             | val GHC.Classes.== "merchandise_not_as_described" -> Issuing_dispute_evidenceReasonEnumMerchandise_not_as_described
-                                             | val GHC.Classes.== "no_valid_authorization" -> Issuing_dispute_evidenceReasonEnumNo_valid_authorization
-                                             | val GHC.Classes.== "not_received" -> Issuing_dispute_evidenceReasonEnumNot_received
-                                             | val GHC.Classes.== "other" -> Issuing_dispute_evidenceReasonEnumOther
-                                             | val GHC.Classes.== "service_not_as_described" -> Issuing_dispute_evidenceReasonEnumService_not_as_described
-                                             | GHC.Base.otherwise -> Issuing_dispute_evidenceReasonOther val)}

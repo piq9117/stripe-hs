@@ -46,19 +46,19 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_sofort = Source_type_sofort {
   -- | bank_code
-  source_type_sofortBank_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_sofortBank_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name
-  , source_type_sofortBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sofortBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bic
-  , source_type_sofortBic :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sofortBic :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country
-  , source_type_sofortCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sofortCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | iban_last4
-  , source_type_sofortIban_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sofortIban_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | preferred_language
-  , source_type_sofortPreferred_language :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sofortPreferred_language :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor
-  , source_type_sofortStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_sofortStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_sofort

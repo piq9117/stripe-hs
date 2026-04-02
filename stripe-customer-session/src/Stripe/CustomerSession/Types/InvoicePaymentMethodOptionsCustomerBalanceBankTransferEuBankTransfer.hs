@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer = Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer {
   -- | country: The desired country code of the bank account information. Permitted values include: \`DE\`, \`FR\`, \`IE\`, or \`NL\`.
-  invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry :: Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry
+  invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer
@@ -55,36 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_customer_
 instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer" (\obj -> GHC.Base.pure Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "country"))}
 -- | Create a new 'Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer' with all required fields.
-mkInvoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer :: Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry -- ^ 'invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry'
+mkInvoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer :: Data.Text.Internal.Text -- ^ 'invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry'
   -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer
 mkInvoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry = Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer{invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry = invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer.properties.country@ in the specification.
--- 
--- The desired country code of the bank account information. Permitted values include: \`DE\`, \`FR\`, \`IE\`, or \`NL\`.
-data Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry =
-   Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumBE -- ^ Represents the JSON value @"BE"@
-  | Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumDE -- ^ Represents the JSON value @"DE"@
-  | Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumES -- ^ Represents the JSON value @"ES"@
-  | Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumFR -- ^ Represents the JSON value @"FR"@
-  | Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumIE -- ^ Represents the JSON value @"IE"@
-  | Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumNL -- ^ Represents the JSON value @"NL"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry
-    where {toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryOther val) = val;
-           toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumBE) = "BE";
-           toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumDE) = "DE";
-           toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumES) = "ES";
-           toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumFR) = "FR";
-           toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumIE) = "IE";
-           toJSON (Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumNL) = "NL"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountry
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "BE" -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumBE
-                                             | val GHC.Classes.== "DE" -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumDE
-                                             | val GHC.Classes.== "ES" -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumES
-                                             | val GHC.Classes.== "FR" -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumFR
-                                             | val GHC.Classes.== "IE" -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumIE
-                                             | val GHC.Classes.== "NL" -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryEnumNL
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transferCountryOther val)}

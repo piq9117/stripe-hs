@@ -56,7 +56,7 @@ data Dispute_payment_method_details_klarna = Dispute_payment_method_details_klar
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_payment_method_details_klarnaReason_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_payment_method_details_klarnaReason_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details_klarna

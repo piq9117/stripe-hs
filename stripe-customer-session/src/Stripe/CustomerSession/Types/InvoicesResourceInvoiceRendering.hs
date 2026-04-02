@@ -51,17 +51,17 @@ data Invoices_resource_invoice_rendering = Invoices_resource_invoice_rendering {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoices_resource_invoice_renderingAmount_tax_display :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoices_resource_invoice_renderingAmount_tax_display :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | pdf: Invoice pdf rendering options
-  , invoices_resource_invoice_renderingPdf :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoices_resource_invoice_renderingPdfNonNullable))
+  , invoices_resource_invoice_renderingPdf :: (GHC.Maybe.Maybe Invoices_resource_invoice_renderingPdf)
   -- | template: ID of the rendering template that the invoice is formatted by.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoices_resource_invoice_renderingTemplate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoices_resource_invoice_renderingTemplate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | template_version: Version of the rendering template that the invoice is using.
-  , invoices_resource_invoice_renderingTemplate_version :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoices_resource_invoice_renderingTemplate_version :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_invoice_rendering
@@ -78,37 +78,16 @@ mkInvoices_resource_invoice_rendering = Invoices_resource_invoice_rendering{invo
 -- | Defines the object schema located at @components.schemas.invoices_resource_invoice_rendering.properties.pdf.anyOf@ in the specification.
 -- 
 -- Invoice pdf rendering options
-data Invoices_resource_invoice_renderingPdfNonNullable = Invoices_resource_invoice_renderingPdfNonNullable {
+data Invoices_resource_invoice_renderingPdf = Invoices_resource_invoice_renderingPdf {
   -- | page_size: Page size of invoice pdf. Options include a4, letter, and auto. If set to auto, page size will be switched to a4 or letter based on customer locale.
-  invoices_resource_invoice_renderingPdfNonNullablePage_size :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullable))
+  invoices_resource_invoice_renderingPdfPage_size :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_invoice_renderingPdfNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoices_resource_invoice_renderingPdfNonNullablePage_size obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoices_resource_invoice_renderingPdfNonNullablePage_size obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_invoice_renderingPdfNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoices_resource_invoice_renderingPdfNonNullable" (\obj -> GHC.Base.pure Invoices_resource_invoice_renderingPdfNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "page_size"))}
--- | Create a new 'Invoices_resource_invoice_renderingPdfNonNullable' with all required fields.
-mkInvoices_resource_invoice_renderingPdfNonNullable :: Invoices_resource_invoice_renderingPdfNonNullable
-mkInvoices_resource_invoice_renderingPdfNonNullable = Invoices_resource_invoice_renderingPdfNonNullable{invoices_resource_invoice_renderingPdfNonNullablePage_size = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoices_resource_invoice_rendering.properties.pdf.anyOf.properties.page_size@ in the specification.
--- 
--- Page size of invoice pdf. Options include a4, letter, and auto. If set to auto, page size will be switched to a4 or letter based on customer locale.
-data Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullable =
-   Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumA4 -- ^ Represents the JSON value @"a4"@
-  | Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumAuto -- ^ Represents the JSON value @"auto"@
-  | Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumLetter -- ^ Represents the JSON value @"letter"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullable
-    where {toJSON (Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableOther val) = val;
-           toJSON (Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumA4) = "a4";
-           toJSON (Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumAuto) = "auto";
-           toJSON (Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumLetter) = "letter"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "a4" -> Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumA4
-                                             | val GHC.Classes.== "auto" -> Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumAuto
-                                             | val GHC.Classes.== "letter" -> Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableEnumLetter
-                                             | GHC.Base.otherwise -> Invoices_resource_invoice_renderingPdfNonNullablePage_sizeNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_invoice_renderingPdf
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoices_resource_invoice_renderingPdfPage_size obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("page_size" Data.Aeson.Types.ToJSON..=)) (invoices_resource_invoice_renderingPdfPage_size obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_invoice_renderingPdf
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoices_resource_invoice_renderingPdf" (\obj -> GHC.Base.pure Invoices_resource_invoice_renderingPdf GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "page_size"))}
+-- | Create a new 'Invoices_resource_invoice_renderingPdf' with all required fields.
+mkInvoices_resource_invoice_renderingPdf :: Invoices_resource_invoice_renderingPdf
+mkInvoices_resource_invoice_renderingPdf = Invoices_resource_invoice_renderingPdf{invoices_resource_invoice_renderingPdfPage_size = GHC.Maybe.Nothing}

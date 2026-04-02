@@ -50,13 +50,13 @@ data Issuing_transaction_receipt_data = Issuing_transaction_receipt_data {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_receipt_dataDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_receipt_dataDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | quantity: The quantity of the item.
-  , issuing_transaction_receipt_dataQuantity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  , issuing_transaction_receipt_dataQuantity :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | total: The total for this line item in cents.
-  , issuing_transaction_receipt_dataTotal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_transaction_receipt_dataTotal :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | unit_cost: The unit cost of the item in cents.
-  , issuing_transaction_receipt_dataUnit_cost :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_transaction_receipt_dataUnit_cost :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_receipt_data

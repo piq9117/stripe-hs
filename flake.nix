@@ -1,7 +1,10 @@
 {
   description = "Stripe";
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
-  outputs = { self, nixpkgs }: 
+  inputs = {
+    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    openapi-slice-rs-source.url = github:piq9117/openapi-slice-rs;
+  };
+  outputs = { self, nixpkgs, openapi-slice-rs-source }: 
     let 
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
       nixpkgsFor = forAllSystems(system: import nixpkgs {
@@ -20,6 +23,21 @@
               }) + "/openapi3-code-generator";
             });
           };
+        };
+
+        openapi-slice-rs = 
+          let 
+            project-src = prev.fetchFromGitHub {
+              owner = "piq9117";
+              repo = "openapi-slice-rs";
+              rev = "af6695a241cffaf71d631bed9b5c219d71b90049";
+              hash = "sha256-Lseklak1GSvgIGWrhtpQggqDUFBsv4iQFIcV+AkStYU=";
+            };
+          in prev.rustPlatform.buildRustPackage {
+          pname = "openapi-slice-rs";
+          version = "0.1.0";
+          src = project-src;
+          cargoLock.lockFile = "${project-src}/Cargo.lock";
         };
 
       };
@@ -51,6 +69,7 @@
               nixpkgs-fmt
               ormolu
               self.packages.${system}.generate-api
+              openapi-slice-rs
             ];
             shellHook = ''
               export PS1='[$PWD]\n❄ '

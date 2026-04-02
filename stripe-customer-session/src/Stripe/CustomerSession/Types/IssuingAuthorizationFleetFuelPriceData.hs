@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_authorization_fleet_fuel_price_data = Issuing_authorization_fleet_fuel_price_data {
   -- | gross_amount_decimal: Gross fuel amount that should equal Fuel Quantity multiplied by Fuel Unit Cost, inclusive of taxes.
-  issuing_authorization_fleet_fuel_price_dataGross_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_authorization_fleet_fuel_price_dataGross_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fleet_fuel_price_data

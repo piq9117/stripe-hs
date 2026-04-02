@@ -48,15 +48,15 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PersonRaceDetails
 -- 
 data Person_us_cfpb_data = Person_us_cfpb_data {
   -- | ethnicity_details: The persons ethnicity details
-  person_us_cfpb_dataEthnicity_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Person_us_cfpb_dataEthnicity_detailsNonNullable))
+  person_us_cfpb_dataEthnicity_details :: (GHC.Maybe.Maybe Person_us_cfpb_dataEthnicity_details)
   -- | race_details: The persons race details
-  , person_us_cfpb_dataRace_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Person_us_cfpb_dataRace_detailsNonNullable))
+  , person_us_cfpb_dataRace_details :: (GHC.Maybe.Maybe Person_us_cfpb_dataRace_details)
   -- | self_identified_gender: The persons self-identified gender
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_us_cfpb_dataSelf_identified_gender :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_us_cfpb_dataSelf_identified_gender :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Person_us_cfpb_data
@@ -72,163 +72,46 @@ mkPerson_us_cfpb_data = Person_us_cfpb_data{person_us_cfpb_dataEthnicity_details
 -- | Defines the object schema located at @components.schemas.person_us_cfpb_data.properties.ethnicity_details.anyOf@ in the specification.
 -- 
 -- The persons ethnicity details
-data Person_us_cfpb_dataEthnicity_detailsNonNullable = Person_us_cfpb_dataEthnicity_detailsNonNullable {
+data Person_us_cfpb_dataEthnicity_details = Person_us_cfpb_dataEthnicity_details {
   -- | ethnicity: The persons ethnicity
-  person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullable]))
+  person_us_cfpb_dataEthnicity_detailsEthnicity :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | ethnicity_other: Please specify your origin, when other is selected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity_other :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_us_cfpb_dataEthnicity_detailsEthnicity_other :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Person_us_cfpb_dataEthnicity_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity_other obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity_other obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Person_us_cfpb_dataEthnicity_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person_us_cfpb_dataEthnicity_detailsNonNullable" (\obj -> (GHC.Base.pure Person_us_cfpb_dataEthnicity_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity_other"))}
--- | Create a new 'Person_us_cfpb_dataEthnicity_detailsNonNullable' with all required fields.
-mkPerson_us_cfpb_dataEthnicity_detailsNonNullable :: Person_us_cfpb_dataEthnicity_detailsNonNullable
-mkPerson_us_cfpb_dataEthnicity_detailsNonNullable = Person_us_cfpb_dataEthnicity_detailsNonNullable{person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity = GHC.Maybe.Nothing,
-                                                                                                    person_us_cfpb_dataEthnicity_detailsNonNullableEthnicity_other = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.person_us_cfpb_data.properties.ethnicity_details.anyOf.properties.ethnicity.items@ in the specification.
--- 
--- 
-data Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullable =
-   Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumCuban -- ^ Represents the JSON value @"cuban"@
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumHispanic_or_latino -- ^ Represents the JSON value @"hispanic_or_latino"@
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumMexican -- ^ Represents the JSON value @"mexican"@
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumNot_hispanic_or_latino -- ^ Represents the JSON value @"not_hispanic_or_latino"@
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumOther_hispanic_or_latino -- ^ Represents the JSON value @"other_hispanic_or_latino"@
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumPuerto_rican -- ^ Represents the JSON value @"puerto_rican"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullable
-    where {toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableOther val) = val;
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumCuban) = "cuban";
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumHispanic_or_latino) = "hispanic_or_latino";
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumMexican) = "mexican";
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumNot_hispanic_or_latino) = "not_hispanic_or_latino";
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumOther_hispanic_or_latino) = "other_hispanic_or_latino";
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumPuerto_rican) = "puerto_rican"}
-instance Data.Aeson.Types.FromJSON.FromJSON Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cuban" -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumCuban
-                                             | val GHC.Classes.== "hispanic_or_latino" -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumHispanic_or_latino
-                                             | val GHC.Classes.== "mexican" -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumMexican
-                                             | val GHC.Classes.== "not_hispanic_or_latino" -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumNot_hispanic_or_latino
-                                             | val GHC.Classes.== "other_hispanic_or_latino" -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumOther_hispanic_or_latino
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "puerto_rican" -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableEnumPuerto_rican
-                                             | GHC.Base.otherwise -> Person_us_cfpb_dataEthnicity_detailsNonNullableEthnicityNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Person_us_cfpb_dataEthnicity_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsEthnicity_other obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataEthnicity_detailsEthnicity_other obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Person_us_cfpb_dataEthnicity_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person_us_cfpb_dataEthnicity_details" (\obj -> (GHC.Base.pure Person_us_cfpb_dataEthnicity_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity_other"))}
+-- | Create a new 'Person_us_cfpb_dataEthnicity_details' with all required fields.
+mkPerson_us_cfpb_dataEthnicity_details :: Person_us_cfpb_dataEthnicity_details
+mkPerson_us_cfpb_dataEthnicity_details = Person_us_cfpb_dataEthnicity_details{person_us_cfpb_dataEthnicity_detailsEthnicity = GHC.Maybe.Nothing,
+                                                                              person_us_cfpb_dataEthnicity_detailsEthnicity_other = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person_us_cfpb_data.properties.race_details.anyOf@ in the specification.
 -- 
 -- The persons race details
-data Person_us_cfpb_dataRace_detailsNonNullable = Person_us_cfpb_dataRace_detailsNonNullable {
+data Person_us_cfpb_dataRace_details = Person_us_cfpb_dataRace_details {
   -- | race: The persons race.
-  person_us_cfpb_dataRace_detailsNonNullableRace :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullable]))
+  person_us_cfpb_dataRace_detailsRace :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | race_other: Please specify your race, when other is selected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_us_cfpb_dataRace_detailsNonNullableRace_other :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_us_cfpb_dataRace_detailsRace_other :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Person_us_cfpb_dataRace_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsNonNullableRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsNonNullableRace_other obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsNonNullableRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsNonNullableRace_other obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Person_us_cfpb_dataRace_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person_us_cfpb_dataRace_detailsNonNullable" (\obj -> (GHC.Base.pure Person_us_cfpb_dataRace_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race_other"))}
--- | Create a new 'Person_us_cfpb_dataRace_detailsNonNullable' with all required fields.
-mkPerson_us_cfpb_dataRace_detailsNonNullable :: Person_us_cfpb_dataRace_detailsNonNullable
-mkPerson_us_cfpb_dataRace_detailsNonNullable = Person_us_cfpb_dataRace_detailsNonNullable{person_us_cfpb_dataRace_detailsNonNullableRace = GHC.Maybe.Nothing,
-                                                                                          person_us_cfpb_dataRace_detailsNonNullableRace_other = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.person_us_cfpb_data.properties.race_details.anyOf.properties.race.items@ in the specification.
--- 
--- 
-data Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullable =
-   Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAfrican_american -- ^ Represents the JSON value @"african_american"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAmerican_indian_or_alaska_native -- ^ Represents the JSON value @"american_indian_or_alaska_native"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAsian -- ^ Represents the JSON value @"asian"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAsian_indian -- ^ Represents the JSON value @"asian_indian"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumBlack_or_african_american -- ^ Represents the JSON value @"black_or_african_american"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumChinese -- ^ Represents the JSON value @"chinese"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumEthiopian -- ^ Represents the JSON value @"ethiopian"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumFilipino -- ^ Represents the JSON value @"filipino"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumGuamanian_or_chamorro -- ^ Represents the JSON value @"guamanian_or_chamorro"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumHaitian -- ^ Represents the JSON value @"haitian"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumJamaican -- ^ Represents the JSON value @"jamaican"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumJapanese -- ^ Represents the JSON value @"japanese"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumKorean -- ^ Represents the JSON value @"korean"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian -- ^ Represents the JSON value @"native_hawaiian"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander -- ^ Represents the JSON value @"native_hawaiian_or_other_pacific_islander"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNigerian -- ^ Represents the JSON value @"nigerian"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_asian -- ^ Represents the JSON value @"other_asian"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_black_or_african_american -- ^ Represents the JSON value @"other_black_or_african_american"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_pacific_islander -- ^ Represents the JSON value @"other_pacific_islander"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumSamoan -- ^ Represents the JSON value @"samoan"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumSomali -- ^ Represents the JSON value @"somali"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumVietnamese -- ^ Represents the JSON value @"vietnamese"@
-  | Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumWhite -- ^ Represents the JSON value @"white"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullable
-    where {toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableOther val) = val;
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAfrican_american) = "african_american";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAmerican_indian_or_alaska_native) = "american_indian_or_alaska_native";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAsian) = "asian";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAsian_indian) = "asian_indian";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumBlack_or_african_american) = "black_or_african_american";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumChinese) = "chinese";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumEthiopian) = "ethiopian";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumFilipino) = "filipino";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumGuamanian_or_chamorro) = "guamanian_or_chamorro";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumHaitian) = "haitian";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumJamaican) = "jamaican";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumJapanese) = "japanese";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumKorean) = "korean";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian) = "native_hawaiian";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander) = "native_hawaiian_or_other_pacific_islander";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNigerian) = "nigerian";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_asian) = "other_asian";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_black_or_african_american) = "other_black_or_african_american";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_pacific_islander) = "other_pacific_islander";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumSamoan) = "samoan";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumSomali) = "somali";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumVietnamese) = "vietnamese";
-           toJSON (Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumWhite) = "white"}
-instance Data.Aeson.Types.FromJSON.FromJSON Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "african_american" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAfrican_american
-                                             | val GHC.Classes.== "american_indian_or_alaska_native" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAmerican_indian_or_alaska_native
-                                             | val GHC.Classes.== "asian" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAsian
-                                             | val GHC.Classes.== "asian_indian" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumAsian_indian
-                                             | val GHC.Classes.== "black_or_african_american" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumBlack_or_african_american
-                                             | val GHC.Classes.== "chinese" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumChinese
-                                             | val GHC.Classes.== "ethiopian" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumEthiopian
-                                             | val GHC.Classes.== "filipino" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumFilipino
-                                             | val GHC.Classes.== "guamanian_or_chamorro" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumGuamanian_or_chamorro
-                                             | val GHC.Classes.== "haitian" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumHaitian
-                                             | val GHC.Classes.== "jamaican" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumJamaican
-                                             | val GHC.Classes.== "japanese" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumJapanese
-                                             | val GHC.Classes.== "korean" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumKorean
-                                             | val GHC.Classes.== "native_hawaiian" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian
-                                             | val GHC.Classes.== "native_hawaiian_or_other_pacific_islander" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander
-                                             | val GHC.Classes.== "nigerian" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumNigerian
-                                             | val GHC.Classes.== "other_asian" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_asian
-                                             | val GHC.Classes.== "other_black_or_african_american" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_black_or_african_american
-                                             | val GHC.Classes.== "other_pacific_islander" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumOther_pacific_islander
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "samoan" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumSamoan
-                                             | val GHC.Classes.== "somali" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumSomali
-                                             | val GHC.Classes.== "vietnamese" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumVietnamese
-                                             | val GHC.Classes.== "white" -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableEnumWhite
-                                             | GHC.Base.otherwise -> Person_us_cfpb_dataRace_detailsNonNullableRaceNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Person_us_cfpb_dataRace_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsRace_other obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (person_us_cfpb_dataRace_detailsRace_other obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Person_us_cfpb_dataRace_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person_us_cfpb_dataRace_details" (\obj -> (GHC.Base.pure Person_us_cfpb_dataRace_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race_other"))}
+-- | Create a new 'Person_us_cfpb_dataRace_details' with all required fields.
+mkPerson_us_cfpb_dataRace_details :: Person_us_cfpb_dataRace_details
+mkPerson_us_cfpb_dataRace_details = Person_us_cfpb_dataRace_details{person_us_cfpb_dataRace_detailsRace = GHC.Maybe.Nothing,
+                                                                    person_us_cfpb_dataRace_detailsRace_other = GHC.Maybe.Nothing}

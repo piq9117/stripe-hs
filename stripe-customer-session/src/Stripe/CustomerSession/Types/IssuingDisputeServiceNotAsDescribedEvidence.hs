@@ -47,23 +47,23 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.File
 -- 
 data Issuing_dispute_service_not_as_described_evidence = Issuing_dispute_service_not_as_described_evidence {
   -- | additional_documentation: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-  issuing_dispute_service_not_as_described_evidenceAdditional_documentation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableVariants))
+  issuing_dispute_service_not_as_described_evidenceAdditional_documentation :: (GHC.Maybe.Maybe Issuing_dispute_service_not_as_described_evidenceAdditional_documentationVariants)
   -- | canceled_at: Date when order was canceled.
-  , issuing_dispute_service_not_as_described_evidenceCanceled_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_dispute_service_not_as_described_evidenceCanceled_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | cancellation_reason: Reason for canceling the order.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_service_not_as_described_evidenceCancellation_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_service_not_as_described_evidenceCancellation_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | explanation: Explanation of why the cardholder is disputing this transaction.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_service_not_as_described_evidenceExplanation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_service_not_as_described_evidenceExplanation :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | received_at: Date when the product was received.
-  , issuing_dispute_service_not_as_described_evidenceReceived_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_dispute_service_not_as_described_evidenceReceived_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_service_not_as_described_evidence
@@ -81,14 +81,14 @@ mkIssuing_dispute_service_not_as_described_evidence = Issuing_dispute_service_no
 -- | Defines the oneOf schema located at @components.schemas.issuing_dispute_service_not_as_described_evidence.properties.additional_documentation.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-data Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableVariants =
-   Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableText Data.Text.Internal.Text
-  | Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableFile File
+data Issuing_dispute_service_not_as_described_evidenceAdditional_documentationVariants =
+   Issuing_dispute_service_not_as_described_evidenceAdditional_documentationText Data.Text.Internal.Text
+  | Issuing_dispute_service_not_as_described_evidenceAdditional_documentationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableVariants
-    where {toJSON (Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableVariants
-    where {parseJSON val = case (Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_service_not_as_described_evidenceAdditional_documentationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_service_not_as_described_evidenceAdditional_documentationVariants
+    where {toJSON (Issuing_dispute_service_not_as_described_evidenceAdditional_documentationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_dispute_service_not_as_described_evidenceAdditional_documentationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_service_not_as_described_evidenceAdditional_documentationVariants
+    where {parseJSON val = case (Issuing_dispute_service_not_as_described_evidenceAdditional_documentationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_service_not_as_described_evidenceAdditional_documentationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

@@ -50,13 +50,13 @@ data Payment_method_details_kakao_pay = Payment_method_details_kakao_pay {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_kakao_payBuyer_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_kakao_payBuyer_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: The Kakao Pay transaction ID associated with this payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_kakao_payTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_kakao_payTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_kakao_pay

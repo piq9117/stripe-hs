@@ -21,8 +21,3 @@ instance Show Tax_i_ds_ownerCustomerVariants
 instance Eq Tax_i_ds_ownerCustomerVariants
 instance Data.Aeson.FromJSON Tax_i_ds_ownerCustomerVariants
 instance Data.Aeson.ToJSON Tax_i_ds_ownerCustomerVariants
-data Tax_i_ds_ownerType
-instance Show Tax_i_ds_ownerType
-instance Eq Tax_i_ds_ownerType
-instance Data.Aeson.FromJSON Tax_i_ds_ownerType
-instance Data.Aeson.ToJSON Tax_i_ds_ownerType

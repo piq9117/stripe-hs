@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsUpi where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Setup_intent_payment_method_options_upi
+instance Show Setup_intent_payment_method_options_upi
+instance Eq Setup_intent_payment_method_options_upi
+instance Data.Aeson.FromJSON Setup_intent_payment_method_options_upi
+instance Data.Aeson.ToJSON Setup_intent_payment_method_options_upi

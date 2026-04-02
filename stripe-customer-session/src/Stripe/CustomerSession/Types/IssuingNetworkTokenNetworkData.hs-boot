@@ -6,8 +6,3 @@ instance Show Issuing_network_token_network_data
 instance Eq Issuing_network_token_network_data
 instance Data.Aeson.FromJSON Issuing_network_token_network_data
 instance Data.Aeson.ToJSON Issuing_network_token_network_data
-data Issuing_network_token_network_dataType
-instance Show Issuing_network_token_network_dataType
-instance Eq Issuing_network_token_network_dataType
-instance Data.Aeson.FromJSON Issuing_network_token_network_dataType
-instance Data.Aeson.ToJSON Issuing_network_token_network_dataType

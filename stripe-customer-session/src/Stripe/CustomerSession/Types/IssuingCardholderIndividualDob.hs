@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_cardholder_individual_dob = Issuing_cardholder_individual_dob {
   -- | day: The day of birth, between 1 and 31.
-  issuing_cardholder_individual_dobDay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_cardholder_individual_dobDay :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month of birth, between 1 and 12.
-  , issuing_cardholder_individual_dobMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_cardholder_individual_dobMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | year: The four-digit year of birth.
-  , issuing_cardholder_individual_dobYear :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_cardholder_individual_dobYear :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individual_dob

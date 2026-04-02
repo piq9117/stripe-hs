@@ -69,9 +69,9 @@ data Line_item = Line_item {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , line_itemDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , line_itemDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | discount_amounts: The amount of discount calculated per discount for this line item.
-  , line_itemDiscount_amounts :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Discounts_resource_discount_amount]))
+  , line_itemDiscount_amounts :: (GHC.Maybe.Maybe [Discounts_resource_discount_amount])
   -- | discountable: If true, discounts will apply to this line item. Always false for prorations.
   , line_itemDiscountable :: GHC.Types.Bool
   -- | discounts: The discounts applied to the invoice line item. Line item discounts are applied before invoice discounts. Use \`expand[]=discounts\` to expand each discount.
@@ -87,34 +87,38 @@ data Line_item = Line_item {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , line_itemInvoice :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  , line_itemInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , line_itemLivemode :: GHC.Types.Bool
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Note that for line items with \`type=subscription\`, \`metadata\` reflects the current metadata from the subscription associated with the line item, unless the invoice line was directly updated with different metadata after creation.
   , line_itemMetadata :: Data.Aeson.Types.Internal.Object
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , line_itemObject :: Data.Text.Internal.Text
   -- | parent: The parent that generated this line item.
-  , line_itemParent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemParentNonNullable))
+  , line_itemParent :: (GHC.Maybe.Maybe Line_itemParent)
   -- | period: 
   , line_itemPeriod :: Invoice_line_item_period
   -- | pretax_credit_amounts: Contains pretax credit amounts (ex: discount, credit grants, etc) that apply to this line item.
-  , line_itemPretax_credit_amounts :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Invoices_resource_pretax_credit_amount]))
+  , line_itemPretax_credit_amounts :: (GHC.Maybe.Maybe [Invoices_resource_pretax_credit_amount])
   -- | pricing: The pricing information of the line item.
-  , line_itemPricing :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemPricingNonNullable))
-  -- | quantity: The quantity of the subscription, if the line item is a subscription or a proration.
-  , line_itemQuantity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , line_itemPricing :: (GHC.Maybe.Maybe Line_itemPricing)
+  -- | quantity: Quantity of units for the invoice line item in integer format, with any decimal precision truncated. For the line item\'s full-precision decimal quantity, use \`quantity_decimal\`. This field will be deprecated in favor of \`quantity_decimal\` in a future version. If the line item is a proration or subscription, the quantity of the subscription that the proration was computed for.
+  , line_itemQuantity :: (GHC.Maybe.Maybe GHC.Types.Int)
+  -- | quantity_decimal: Non-negative decimal with at most 12 decimal places. The quantity of units for the line item.
+  , line_itemQuantity_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | subscription
-  , line_itemSubscription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemSubscriptionNonNullableVariants))
+  , line_itemSubscription :: (GHC.Maybe.Maybe Line_itemSubscriptionVariants)
   -- | subtotal: The subtotal of the line item, in cents (or local equivalent), before any discounts or taxes.
   , line_itemSubtotal :: GHC.Types.Int
   -- | taxes: The tax information of the line item.
-  , line_itemTaxes :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Billing_bill_resource_invoicing_taxes_tax]))
+  , line_itemTaxes :: (GHC.Maybe.Maybe [Billing_bill_resource_invoicing_taxes_tax])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Line_item
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= line_itemAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= line_itemCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (line_itemDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("discount_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemDiscount_amounts obj) : ["discountable" Data.Aeson.Types.ToJSON..= line_itemDiscountable obj] : ["discounts" Data.Aeson.Types.ToJSON..= line_itemDiscounts obj] : ["id" Data.Aeson.Types.ToJSON..= line_itemId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemInvoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= line_itemLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= line_itemMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (line_itemParent obj) : ["period" Data.Aeson.Types.ToJSON..= line_itemPeriod obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemPretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pricing" Data.Aeson.Types.ToJSON..=)) (line_itemPricing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity" Data.Aeson.Types.ToJSON..=)) (line_itemQuantity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemSubscription obj) : ["subtotal" Data.Aeson.Types.ToJSON..= line_itemSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (line_itemTaxes obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "line_item"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= line_itemAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= line_itemCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (line_itemDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("discount_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemDiscount_amounts obj) : ["discountable" Data.Aeson.Types.ToJSON..= line_itemDiscountable obj] : ["discounts" Data.Aeson.Types.ToJSON..= line_itemDiscounts obj] : ["id" Data.Aeson.Types.ToJSON..= line_itemId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemInvoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= line_itemLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= line_itemMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (line_itemParent obj) : ["period" Data.Aeson.Types.ToJSON..= line_itemPeriod obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemPretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pricing" Data.Aeson.Types.ToJSON..=)) (line_itemPricing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity" Data.Aeson.Types.ToJSON..=)) (line_itemQuantity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemSubscription obj) : ["subtotal" Data.Aeson.Types.ToJSON..= line_itemSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (line_itemTaxes obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "line_item"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= line_itemAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= line_itemCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (line_itemDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("discount_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemDiscount_amounts obj) : ["discountable" Data.Aeson.Types.ToJSON..= line_itemDiscountable obj] : ["discounts" Data.Aeson.Types.ToJSON..= line_itemDiscounts obj] : ["id" Data.Aeson.Types.ToJSON..= line_itemId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemInvoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= line_itemLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= line_itemMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= line_itemObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (line_itemParent obj) : ["period" Data.Aeson.Types.ToJSON..= line_itemPeriod obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemPretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pricing" Data.Aeson.Types.ToJSON..=)) (line_itemPricing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity" Data.Aeson.Types.ToJSON..=)) (line_itemQuantity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity_decimal" Data.Aeson.Types.ToJSON..=)) (line_itemQuantity_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemSubscription obj) : ["subtotal" Data.Aeson.Types.ToJSON..= line_itemSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (line_itemTaxes obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= line_itemAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= line_itemCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (line_itemDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("discount_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemDiscount_amounts obj) : ["discountable" Data.Aeson.Types.ToJSON..= line_itemDiscountable obj] : ["discounts" Data.Aeson.Types.ToJSON..= line_itemDiscounts obj] : ["id" Data.Aeson.Types.ToJSON..= line_itemId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemInvoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= line_itemLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= line_itemMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= line_itemObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (line_itemParent obj) : ["period" Data.Aeson.Types.ToJSON..= line_itemPeriod obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pretax_credit_amounts" Data.Aeson.Types.ToJSON..=)) (line_itemPretax_credit_amounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pricing" Data.Aeson.Types.ToJSON..=)) (line_itemPricing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity" Data.Aeson.Types.ToJSON..=)) (line_itemQuantity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity_decimal" Data.Aeson.Types.ToJSON..=)) (line_itemQuantity_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemSubscription obj) : ["subtotal" Data.Aeson.Types.ToJSON..= line_itemSubtotal obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxes" Data.Aeson.Types.ToJSON..=)) (line_itemTaxes obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Line_item
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_item" (\obj -> (((((((((((((((((GHC.Base.pure Line_item GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "discount_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discountable")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "parent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pretax_credit_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pricing")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quantity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "taxes"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_item" (\obj -> (((((((((((((((((((GHC.Base.pure Line_item GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "discount_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discountable")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "parent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "period")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pretax_credit_amounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pricing")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quantity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quantity_decimal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "taxes"))}
 -- | Create a new 'Line_item' with all required fields.
 mkLine_item :: GHC.Types.Int -- ^ 'line_itemAmount'
   -> Data.Text.Internal.Text -- ^ 'line_itemCurrency'
@@ -123,27 +127,30 @@ mkLine_item :: GHC.Types.Int -- ^ 'line_itemAmount'
   -> Data.Text.Internal.Text -- ^ 'line_itemId'
   -> GHC.Types.Bool -- ^ 'line_itemLivemode'
   -> Data.Aeson.Types.Internal.Object -- ^ 'line_itemMetadata'
+  -> Data.Text.Internal.Text -- ^ 'line_itemObject'
   -> Invoice_line_item_period -- ^ 'line_itemPeriod'
   -> GHC.Types.Int -- ^ 'line_itemSubtotal'
   -> Line_item
-mkLine_item line_itemAmount line_itemCurrency line_itemDiscountable line_itemDiscounts line_itemId line_itemLivemode line_itemMetadata line_itemPeriod line_itemSubtotal = Line_item{line_itemAmount = line_itemAmount,
-                                                                                                                                                                                     line_itemCurrency = line_itemCurrency,
-                                                                                                                                                                                     line_itemDescription = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemDiscount_amounts = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemDiscountable = line_itemDiscountable,
-                                                                                                                                                                                     line_itemDiscounts = line_itemDiscounts,
-                                                                                                                                                                                     line_itemId = line_itemId,
-                                                                                                                                                                                     line_itemInvoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemLivemode = line_itemLivemode,
-                                                                                                                                                                                     line_itemMetadata = line_itemMetadata,
-                                                                                                                                                                                     line_itemParent = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemPeriod = line_itemPeriod,
-                                                                                                                                                                                     line_itemPretax_credit_amounts = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemPricing = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemQuantity = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemSubscription = GHC.Maybe.Nothing,
-                                                                                                                                                                                     line_itemSubtotal = line_itemSubtotal,
-                                                                                                                                                                                     line_itemTaxes = GHC.Maybe.Nothing}
+mkLine_item line_itemAmount line_itemCurrency line_itemDiscountable line_itemDiscounts line_itemId line_itemLivemode line_itemMetadata line_itemObject line_itemPeriod line_itemSubtotal = Line_item{line_itemAmount = line_itemAmount,
+                                                                                                                                                                                                     line_itemCurrency = line_itemCurrency,
+                                                                                                                                                                                                     line_itemDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemDiscount_amounts = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemDiscountable = line_itemDiscountable,
+                                                                                                                                                                                                     line_itemDiscounts = line_itemDiscounts,
+                                                                                                                                                                                                     line_itemId = line_itemId,
+                                                                                                                                                                                                     line_itemInvoice = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemLivemode = line_itemLivemode,
+                                                                                                                                                                                                     line_itemMetadata = line_itemMetadata,
+                                                                                                                                                                                                     line_itemObject = line_itemObject,
+                                                                                                                                                                                                     line_itemParent = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemPeriod = line_itemPeriod,
+                                                                                                                                                                                                     line_itemPretax_credit_amounts = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemPricing = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemQuantity = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemQuantity_decimal = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemSubscription = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     line_itemSubtotal = line_itemSubtotal,
+                                                                                                                                                                                                     line_itemTaxes = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.line_item.properties.discounts.items.anyOf@ in the specification.
 -- 
 -- 
@@ -161,242 +168,209 @@ instance Data.Aeson.Types.FromJSON.FromJSON Line_itemDiscountsVariants
 -- | Defines the object schema located at @components.schemas.line_item.properties.parent.anyOf@ in the specification.
 -- 
 -- The parent that generated this line item.
-data Line_itemParentNonNullable = Line_itemParentNonNullable {
+data Line_itemParent = Line_itemParent {
   -- | invoice_item_details: Details about the invoice item that generated this line item
-  line_itemParentNonNullableInvoice_item_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemParentNonNullableInvoice_item_detailsNonNullable))
+  line_itemParentInvoice_item_details :: (GHC.Maybe.Maybe Line_itemParentInvoice_item_details)
   -- | subscription_item_details: Details about the subscription item that generated this line item
-  , line_itemParentNonNullableSubscription_item_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemParentNonNullableSubscription_item_detailsNonNullable))
+  , line_itemParentSubscription_item_details :: (GHC.Maybe.Maybe Line_itemParentSubscription_item_details)
   -- | type: The type of parent that generated this line item
-  , line_itemParentNonNullableType :: (GHC.Maybe.Maybe Line_itemParentNonNullableType)
+  , line_itemParentType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentNonNullable" (\obj -> ((GHC.Base.pure Line_itemParentNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_item_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Line_itemParentNonNullable' with all required fields.
-mkLine_itemParentNonNullable :: Line_itemParentNonNullable
-mkLine_itemParentNonNullable = Line_itemParentNonNullable{line_itemParentNonNullableInvoice_item_details = GHC.Maybe.Nothing,
-                                                          line_itemParentNonNullableSubscription_item_details = GHC.Maybe.Nothing,
-                                                          line_itemParentNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParent
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemParentType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemParentType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParent
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParent" (\obj -> ((GHC.Base.pure Line_itemParent GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_item_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Line_itemParent' with all required fields.
+mkLine_itemParent :: Line_itemParent
+mkLine_itemParent = Line_itemParent{line_itemParentInvoice_item_details = GHC.Maybe.Nothing,
+                                    line_itemParentSubscription_item_details = GHC.Maybe.Nothing,
+                                    line_itemParentType = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.line_item.properties.parent.anyOf.properties.invoice_item_details.anyOf@ in the specification.
 -- 
 -- Details about the invoice item that generated this line item
-data Line_itemParentNonNullableInvoice_item_detailsNonNullable = Line_itemParentNonNullableInvoice_item_detailsNonNullable {
+data Line_itemParentInvoice_item_details = Line_itemParentInvoice_item_details {
   -- | invoice_item: The invoice item that generated this line item
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  line_itemParentNonNullableInvoice_item_detailsNonNullableInvoice_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  line_itemParentInvoice_item_detailsInvoice_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | proration: Whether this is a proration
-  , line_itemParentNonNullableInvoice_item_detailsNonNullableProration :: (GHC.Maybe.Maybe GHC.Types.Bool)
+  , line_itemParentInvoice_item_detailsProration :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | proration_details: Additional details for proration line items
-  , line_itemParentNonNullableInvoice_item_detailsNonNullableProration_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable))
+  , line_itemParentInvoice_item_detailsProration_details :: (GHC.Maybe.Maybe Line_itemParentInvoice_item_detailsProration_details)
   -- | subscription: The subscription that the invoice item belongs to
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , line_itemParentNonNullableInvoice_item_detailsNonNullableSubscription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , line_itemParentInvoice_item_detailsSubscription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullableInvoice_item_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableSubscription obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableSubscription obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullableInvoice_item_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentNonNullableInvoice_item_detailsNonNullable" (\obj -> (((GHC.Base.pure Line_itemParentNonNullableInvoice_item_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription"))}
--- | Create a new 'Line_itemParentNonNullableInvoice_item_detailsNonNullable' with all required fields.
-mkLine_itemParentNonNullableInvoice_item_detailsNonNullable :: Line_itemParentNonNullableInvoice_item_detailsNonNullable
-mkLine_itemParentNonNullableInvoice_item_detailsNonNullable = Line_itemParentNonNullableInvoice_item_detailsNonNullable{line_itemParentNonNullableInvoice_item_detailsNonNullableInvoice_item = GHC.Maybe.Nothing,
-                                                                                                                        line_itemParentNonNullableInvoice_item_detailsNonNullableProration = GHC.Maybe.Nothing,
-                                                                                                                        line_itemParentNonNullableInvoice_item_detailsNonNullableProration_details = GHC.Maybe.Nothing,
-                                                                                                                        line_itemParentNonNullableInvoice_item_detailsNonNullableSubscription = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentInvoice_item_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsSubscription obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsSubscription obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentInvoice_item_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentInvoice_item_details" (\obj -> (((GHC.Base.pure Line_itemParentInvoice_item_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription"))}
+-- | Create a new 'Line_itemParentInvoice_item_details' with all required fields.
+mkLine_itemParentInvoice_item_details :: Line_itemParentInvoice_item_details
+mkLine_itemParentInvoice_item_details = Line_itemParentInvoice_item_details{line_itemParentInvoice_item_detailsInvoice_item = GHC.Maybe.Nothing,
+                                                                            line_itemParentInvoice_item_detailsProration = GHC.Maybe.Nothing,
+                                                                            line_itemParentInvoice_item_detailsProration_details = GHC.Maybe.Nothing,
+                                                                            line_itemParentInvoice_item_detailsSubscription = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.line_item.properties.parent.anyOf.properties.invoice_item_details.anyOf.properties.proration_details.anyOf@ in the specification.
 -- 
 -- Additional details for proration line items
-data Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable = Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable {
+data Line_itemParentInvoice_item_detailsProration_details = Line_itemParentInvoice_item_detailsProration_details {
   -- | credited_items: For a credit proration \`line_item\`, the original debit line_items to which the credit proration applies.
-  line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_items :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable))
+  line_itemParentInvoice_item_detailsProration_detailsCredited_items :: (GHC.Maybe.Maybe Line_itemParentInvoice_item_detailsProration_detailsCredited_items)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_items obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_items obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable" (\obj -> GHC.Base.pure Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credited_items"))}
--- | Create a new 'Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable' with all required fields.
-mkLine_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable :: Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable
-mkLine_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable = Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullable{line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_items = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentInvoice_item_detailsProration_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_detailsCredited_items obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_detailsCredited_items obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentInvoice_item_detailsProration_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentInvoice_item_detailsProration_details" (\obj -> GHC.Base.pure Line_itemParentInvoice_item_detailsProration_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credited_items"))}
+-- | Create a new 'Line_itemParentInvoice_item_detailsProration_details' with all required fields.
+mkLine_itemParentInvoice_item_detailsProration_details :: Line_itemParentInvoice_item_detailsProration_details
+mkLine_itemParentInvoice_item_detailsProration_details = Line_itemParentInvoice_item_detailsProration_details{line_itemParentInvoice_item_detailsProration_detailsCredited_items = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.line_item.properties.parent.anyOf.properties.invoice_item_details.anyOf.properties.proration_details.anyOf.properties.credited_items.anyOf@ in the specification.
 -- 
 -- For a credit proration \\\`line_item\\\`, the original debit line_items to which the credit proration applies.
-data Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable = Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable {
+data Line_itemParentInvoice_item_detailsProration_detailsCredited_items = Line_itemParentInvoice_item_detailsProration_detailsCredited_items {
   -- | invoice: Invoice containing the credited invoice line items
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | invoice_line_items: Credited invoice line items
-  , line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice_line_items :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable" (\obj -> (GHC.Base.pure Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_items"))}
--- | Create a new 'Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable' with all required fields.
-mkLine_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable :: Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable
-mkLine_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable = Line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable{line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                  line_itemParentNonNullableInvoice_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentInvoice_item_detailsProration_detailsCredited_items
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice_line_items obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice_line_items obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentInvoice_item_detailsProration_detailsCredited_items
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentInvoice_item_detailsProration_detailsCredited_items" (\obj -> (GHC.Base.pure Line_itemParentInvoice_item_detailsProration_detailsCredited_items GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_items"))}
+-- | Create a new 'Line_itemParentInvoice_item_detailsProration_detailsCredited_items' with all required fields.
+mkLine_itemParentInvoice_item_detailsProration_detailsCredited_items :: Line_itemParentInvoice_item_detailsProration_detailsCredited_items
+mkLine_itemParentInvoice_item_detailsProration_detailsCredited_items = Line_itemParentInvoice_item_detailsProration_detailsCredited_items{line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice = GHC.Maybe.Nothing,
+                                                                                                                                          line_itemParentInvoice_item_detailsProration_detailsCredited_itemsInvoice_line_items = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.line_item.properties.parent.anyOf.properties.subscription_item_details.anyOf@ in the specification.
 -- 
 -- Details about the subscription item that generated this line item
-data Line_itemParentNonNullableSubscription_item_detailsNonNullable = Line_itemParentNonNullableSubscription_item_detailsNonNullable {
+data Line_itemParentSubscription_item_details = Line_itemParentSubscription_item_details {
   -- | invoice_item: The invoice item that generated this line item
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  line_itemParentNonNullableSubscription_item_detailsNonNullableInvoice_item :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  line_itemParentSubscription_item_detailsInvoice_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | proration: Whether this is a proration
-  , line_itemParentNonNullableSubscription_item_detailsNonNullableProration :: (GHC.Maybe.Maybe GHC.Types.Bool)
+  , line_itemParentSubscription_item_detailsProration :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | proration_details: Additional details for proration line items
-  , line_itemParentNonNullableSubscription_item_detailsNonNullableProration_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable))
+  , line_itemParentSubscription_item_detailsProration_details :: (GHC.Maybe.Maybe Line_itemParentSubscription_item_detailsProration_details)
   -- | subscription: The subscription that the subscription item belongs to
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , line_itemParentSubscription_item_detailsSubscription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | subscription_item: The subscription item that generated this line item
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , line_itemParentSubscription_item_detailsSubscription_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullableSubscription_item_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription_item obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription_item obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullableSubscription_item_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentNonNullableSubscription_item_detailsNonNullable" (\obj -> ((((GHC.Base.pure Line_itemParentNonNullableSubscription_item_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_item"))}
--- | Create a new 'Line_itemParentNonNullableSubscription_item_detailsNonNullable' with all required fields.
-mkLine_itemParentNonNullableSubscription_item_detailsNonNullable :: Line_itemParentNonNullableSubscription_item_detailsNonNullable
-mkLine_itemParentNonNullableSubscription_item_detailsNonNullable = Line_itemParentNonNullableSubscription_item_detailsNonNullable{line_itemParentNonNullableSubscription_item_detailsNonNullableInvoice_item = GHC.Maybe.Nothing,
-                                                                                                                                  line_itemParentNonNullableSubscription_item_detailsNonNullableProration = GHC.Maybe.Nothing,
-                                                                                                                                  line_itemParentNonNullableSubscription_item_detailsNonNullableProration_details = GHC.Maybe.Nothing,
-                                                                                                                                  line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription = GHC.Maybe.Nothing,
-                                                                                                                                  line_itemParentNonNullableSubscription_item_detailsNonNullableSubscription_item = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentSubscription_item_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsSubscription_item obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("proration_details" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsSubscription_item obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentSubscription_item_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentSubscription_item_details" (\obj -> ((((GHC.Base.pure Line_itemParentSubscription_item_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "proration_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_item"))}
+-- | Create a new 'Line_itemParentSubscription_item_details' with all required fields.
+mkLine_itemParentSubscription_item_details :: Line_itemParentSubscription_item_details
+mkLine_itemParentSubscription_item_details = Line_itemParentSubscription_item_details{line_itemParentSubscription_item_detailsInvoice_item = GHC.Maybe.Nothing,
+                                                                                      line_itemParentSubscription_item_detailsProration = GHC.Maybe.Nothing,
+                                                                                      line_itemParentSubscription_item_detailsProration_details = GHC.Maybe.Nothing,
+                                                                                      line_itemParentSubscription_item_detailsSubscription = GHC.Maybe.Nothing,
+                                                                                      line_itemParentSubscription_item_detailsSubscription_item = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.line_item.properties.parent.anyOf.properties.subscription_item_details.anyOf.properties.proration_details.anyOf@ in the specification.
 -- 
 -- Additional details for proration line items
-data Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable = Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable {
+data Line_itemParentSubscription_item_detailsProration_details = Line_itemParentSubscription_item_detailsProration_details {
   -- | credited_items: For a credit proration \`line_item\`, the original debit line_items to which the credit proration applies.
-  line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_items :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable))
+  line_itemParentSubscription_item_detailsProration_detailsCredited_items :: (GHC.Maybe.Maybe Line_itemParentSubscription_item_detailsProration_detailsCredited_items)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_items obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_items obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable" (\obj -> GHC.Base.pure Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credited_items"))}
--- | Create a new 'Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable' with all required fields.
-mkLine_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable :: Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable
-mkLine_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable = Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullable{line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_items = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentSubscription_item_detailsProration_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_detailsCredited_items obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_detailsCredited_items obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentSubscription_item_detailsProration_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentSubscription_item_detailsProration_details" (\obj -> GHC.Base.pure Line_itemParentSubscription_item_detailsProration_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credited_items"))}
+-- | Create a new 'Line_itemParentSubscription_item_detailsProration_details' with all required fields.
+mkLine_itemParentSubscription_item_detailsProration_details :: Line_itemParentSubscription_item_detailsProration_details
+mkLine_itemParentSubscription_item_detailsProration_details = Line_itemParentSubscription_item_detailsProration_details{line_itemParentSubscription_item_detailsProration_detailsCredited_items = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.line_item.properties.parent.anyOf.properties.subscription_item_details.anyOf.properties.proration_details.anyOf.properties.credited_items.anyOf@ in the specification.
 -- 
 -- For a credit proration \\\`line_item\\\`, the original debit line_items to which the credit proration applies.
-data Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable = Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable {
+data Line_itemParentSubscription_item_detailsProration_detailsCredited_items = Line_itemParentSubscription_item_detailsProration_detailsCredited_items {
   -- | invoice: Invoice containing the credited invoice line items
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | invoice_line_items: Credited invoice line items
-  , line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice_line_items :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable" (\obj -> (GHC.Base.pure Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_items"))}
--- | Create a new 'Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable' with all required fields.
-mkLine_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable :: Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable
-mkLine_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable = Line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullable{line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                            line_itemParentNonNullableSubscription_item_detailsNonNullableProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.line_item.properties.parent.anyOf.properties.type@ in the specification.
--- 
--- The type of parent that generated this line item
-data Line_itemParentNonNullableType =
-   Line_itemParentNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Line_itemParentNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Line_itemParentNonNullableTypeEnumInvoice_item_details -- ^ Represents the JSON value @"invoice_item_details"@
-  | Line_itemParentNonNullableTypeEnumSubscription_item_details -- ^ Represents the JSON value @"subscription_item_details"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentNonNullableType
-    where {toJSON (Line_itemParentNonNullableTypeOther val) = val;
-           toJSON (Line_itemParentNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Line_itemParentNonNullableTypeEnumInvoice_item_details) = "invoice_item_details";
-           toJSON (Line_itemParentNonNullableTypeEnumSubscription_item_details) = "subscription_item_details"}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "invoice_item_details" -> Line_itemParentNonNullableTypeEnumInvoice_item_details
-                                             | val GHC.Classes.== "subscription_item_details" -> Line_itemParentNonNullableTypeEnumSubscription_item_details
-                                             | GHC.Base.otherwise -> Line_itemParentNonNullableTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemParentSubscription_item_detailsProration_detailsCredited_items
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice_line_items obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice_line_items obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemParentSubscription_item_detailsProration_detailsCredited_items
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemParentSubscription_item_detailsProration_detailsCredited_items" (\obj -> (GHC.Base.pure Line_itemParentSubscription_item_detailsProration_detailsCredited_items GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_items"))}
+-- | Create a new 'Line_itemParentSubscription_item_detailsProration_detailsCredited_items' with all required fields.
+mkLine_itemParentSubscription_item_detailsProration_detailsCredited_items :: Line_itemParentSubscription_item_detailsProration_detailsCredited_items
+mkLine_itemParentSubscription_item_detailsProration_detailsCredited_items = Line_itemParentSubscription_item_detailsProration_detailsCredited_items{line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice = GHC.Maybe.Nothing,
+                                                                                                                                                    line_itemParentSubscription_item_detailsProration_detailsCredited_itemsInvoice_line_items = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.line_item.properties.pricing.anyOf@ in the specification.
 -- 
 -- The pricing information of the line item.
-data Line_itemPricingNonNullable = Line_itemPricingNonNullable {
+data Line_itemPricing = Line_itemPricing {
   -- | price_details: 
-  line_itemPricingNonNullablePrice_details :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_pricing_pricing_price_details)
+  line_itemPricingPrice_details :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_pricing_pricing_price_details)
   -- | type: The type of the pricing details.
-  , line_itemPricingNonNullableType :: (GHC.Maybe.Maybe Line_itemPricingNonNullableType)
+  , line_itemPricingType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | unit_amount_decimal: The unit amount (in the \`currency\` specified) of the item which contains a decimal value with at most 12 decimal places.
-  , line_itemPricingNonNullableUnit_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , line_itemPricingUnit_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemPricingNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("price_details" Data.Aeson.Types.ToJSON..=)) (line_itemPricingNonNullablePrice_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemPricingNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (line_itemPricingNonNullableUnit_amount_decimal obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("price_details" Data.Aeson.Types.ToJSON..=)) (line_itemPricingNonNullablePrice_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemPricingNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (line_itemPricingNonNullableUnit_amount_decimal obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemPricingNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemPricingNonNullable" (\obj -> ((GHC.Base.pure Line_itemPricingNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "price_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_amount_decimal"))}
--- | Create a new 'Line_itemPricingNonNullable' with all required fields.
-mkLine_itemPricingNonNullable :: Line_itemPricingNonNullable
-mkLine_itemPricingNonNullable = Line_itemPricingNonNullable{line_itemPricingNonNullablePrice_details = GHC.Maybe.Nothing,
-                                                            line_itemPricingNonNullableType = GHC.Maybe.Nothing,
-                                                            line_itemPricingNonNullableUnit_amount_decimal = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.line_item.properties.pricing.anyOf.properties.type@ in the specification.
--- 
--- The type of the pricing details.
-data Line_itemPricingNonNullableType =
-   Line_itemPricingNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Line_itemPricingNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Line_itemPricingNonNullableTypeEnumPrice_details -- ^ Represents the JSON value @"price_details"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemPricingNonNullableType
-    where {toJSON (Line_itemPricingNonNullableTypeOther val) = val;
-           toJSON (Line_itemPricingNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Line_itemPricingNonNullableTypeEnumPrice_details) = "price_details"}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemPricingNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "price_details" -> Line_itemPricingNonNullableTypeEnumPrice_details
-                                             | GHC.Base.otherwise -> Line_itemPricingNonNullableTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemPricing
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("price_details" Data.Aeson.Types.ToJSON..=)) (line_itemPricingPrice_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemPricingType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (line_itemPricingUnit_amount_decimal obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("price_details" Data.Aeson.Types.ToJSON..=)) (line_itemPricingPrice_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (line_itemPricingType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_amount_decimal" Data.Aeson.Types.ToJSON..=)) (line_itemPricingUnit_amount_decimal obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemPricing
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Line_itemPricing" (\obj -> ((GHC.Base.pure Line_itemPricing GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "price_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_amount_decimal"))}
+-- | Create a new 'Line_itemPricing' with all required fields.
+mkLine_itemPricing :: Line_itemPricing
+mkLine_itemPricing = Line_itemPricing{line_itemPricingPrice_details = GHC.Maybe.Nothing,
+                                      line_itemPricingType = GHC.Maybe.Nothing,
+                                      line_itemPricingUnit_amount_decimal = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.line_item.properties.subscription.anyOf@ in the specification.
 -- 
 -- 
-data Line_itemSubscriptionNonNullableVariants =
-   Line_itemSubscriptionNonNullableText Data.Text.Internal.Text
-  | Line_itemSubscriptionNonNullableSubscription Subscription
+data Line_itemSubscriptionVariants =
+   Line_itemSubscriptionText Data.Text.Internal.Text
+  | Line_itemSubscriptionSubscription Subscription
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_itemSubscriptionNonNullableVariants
-    where {toJSON (Line_itemSubscriptionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Line_itemSubscriptionNonNullableSubscription a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_itemSubscriptionNonNullableVariants
-    where {parseJSON val = case (Line_itemSubscriptionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Line_itemSubscriptionNonNullableSubscription Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Line_itemSubscriptionVariants
+    where {toJSON (Line_itemSubscriptionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Line_itemSubscriptionSubscription a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Line_itemSubscriptionVariants
+    where {parseJSON val = case (Line_itemSubscriptionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Line_itemSubscriptionSubscription Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

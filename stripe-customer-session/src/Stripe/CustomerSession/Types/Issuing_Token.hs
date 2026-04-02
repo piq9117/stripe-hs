@@ -56,7 +56,7 @@ data Issuing'token = Issuing'token {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'tokenDevice_fingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing'tokenDevice_fingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -69,45 +69,49 @@ data Issuing'token = Issuing'token {
   -- 
   -- * Maximum length of 5000
   , issuing'tokenLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , issuing'tokenLivemode :: GHC.Types.Bool
   -- | network: The token service provider \/ card network associated with the token.
-  , issuing'tokenNetwork :: Issuing'tokenNetwork
+  , issuing'tokenNetwork :: Data.Text.Internal.Text
   -- | network_data: 
   , issuing'tokenNetwork_data :: (GHC.Maybe.Maybe Issuing_network_token_network_data)
   -- | network_updated_at: Time at which the token was last updated by the card network. Measured in seconds since the Unix epoch.
   , issuing'tokenNetwork_updated_at :: GHC.Types.Int
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , issuing'tokenObject :: Data.Text.Internal.Text
   -- | status: The usage state of the token.
-  , issuing'tokenStatus :: Issuing'tokenStatus
+  , issuing'tokenStatus :: Data.Text.Internal.Text
   -- | wallet_provider: The digital wallet for this token, if one was used.
-  , issuing'tokenWallet_provider :: (GHC.Maybe.Maybe Issuing'tokenWallet_provider)
+  , issuing'tokenWallet_provider :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing'token
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["card" Data.Aeson.Types.ToJSON..= issuing'tokenCard obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'tokenCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device_fingerprint" Data.Aeson.Types.ToJSON..=)) (issuing'tokenDevice_fingerprint obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'tokenId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (issuing'tokenLast4 obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'tokenLivemode obj] : ["network" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_data" Data.Aeson.Types.ToJSON..=)) (issuing'tokenNetwork_data obj) : ["network_updated_at" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork_updated_at obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'tokenStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallet_provider" Data.Aeson.Types.ToJSON..=)) (issuing'tokenWallet_provider obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.token"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["card" Data.Aeson.Types.ToJSON..= issuing'tokenCard obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'tokenCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device_fingerprint" Data.Aeson.Types.ToJSON..=)) (issuing'tokenDevice_fingerprint obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'tokenId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (issuing'tokenLast4 obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'tokenLivemode obj] : ["network" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_data" Data.Aeson.Types.ToJSON..=)) (issuing'tokenNetwork_data obj) : ["network_updated_at" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork_updated_at obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'tokenStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallet_provider" Data.Aeson.Types.ToJSON..=)) (issuing'tokenWallet_provider obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.token"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["card" Data.Aeson.Types.ToJSON..= issuing'tokenCard obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'tokenCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device_fingerprint" Data.Aeson.Types.ToJSON..=)) (issuing'tokenDevice_fingerprint obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'tokenId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (issuing'tokenLast4 obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'tokenLivemode obj] : ["network" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_data" Data.Aeson.Types.ToJSON..=)) (issuing'tokenNetwork_data obj) : ["network_updated_at" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork_updated_at obj] : ["object" Data.Aeson.Types.ToJSON..= issuing'tokenObject obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'tokenStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallet_provider" Data.Aeson.Types.ToJSON..=)) (issuing'tokenWallet_provider obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["card" Data.Aeson.Types.ToJSON..= issuing'tokenCard obj] : ["created" Data.Aeson.Types.ToJSON..= issuing'tokenCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device_fingerprint" Data.Aeson.Types.ToJSON..=)) (issuing'tokenDevice_fingerprint obj) : ["id" Data.Aeson.Types.ToJSON..= issuing'tokenId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (issuing'tokenLast4 obj) : ["livemode" Data.Aeson.Types.ToJSON..= issuing'tokenLivemode obj] : ["network" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_data" Data.Aeson.Types.ToJSON..=)) (issuing'tokenNetwork_data obj) : ["network_updated_at" Data.Aeson.Types.ToJSON..= issuing'tokenNetwork_updated_at obj] : ["object" Data.Aeson.Types.ToJSON..= issuing'tokenObject obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'tokenStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wallet_provider" Data.Aeson.Types.ToJSON..=)) (issuing'tokenWallet_provider obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing'token
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'token" (\obj -> ((((((((((GHC.Base.pure Issuing'token GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "device_fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "network_updated_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wallet_provider"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'token" (\obj -> (((((((((((GHC.Base.pure Issuing'token GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "device_fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "network_updated_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wallet_provider"))}
 -- | Create a new 'Issuing'token' with all required fields.
 mkIssuing'token :: Issuing'tokenCardVariants -- ^ 'issuing'tokenCard'
   -> GHC.Types.Int -- ^ 'issuing'tokenCreated'
   -> Data.Text.Internal.Text -- ^ 'issuing'tokenId'
   -> GHC.Types.Bool -- ^ 'issuing'tokenLivemode'
-  -> Issuing'tokenNetwork -- ^ 'issuing'tokenNetwork'
+  -> Data.Text.Internal.Text -- ^ 'issuing'tokenNetwork'
   -> GHC.Types.Int -- ^ 'issuing'tokenNetwork_updated_at'
-  -> Issuing'tokenStatus -- ^ 'issuing'tokenStatus'
+  -> Data.Text.Internal.Text -- ^ 'issuing'tokenObject'
+  -> Data.Text.Internal.Text -- ^ 'issuing'tokenStatus'
   -> Issuing'token
-mkIssuing'token issuing'tokenCard issuing'tokenCreated issuing'tokenId issuing'tokenLivemode issuing'tokenNetwork issuing'tokenNetwork_updated_at issuing'tokenStatus = Issuing'token{issuing'tokenCard = issuing'tokenCard,
-                                                                                                                                                                                      issuing'tokenCreated = issuing'tokenCreated,
-                                                                                                                                                                                      issuing'tokenDevice_fingerprint = GHC.Maybe.Nothing,
-                                                                                                                                                                                      issuing'tokenId = issuing'tokenId,
-                                                                                                                                                                                      issuing'tokenLast4 = GHC.Maybe.Nothing,
-                                                                                                                                                                                      issuing'tokenLivemode = issuing'tokenLivemode,
-                                                                                                                                                                                      issuing'tokenNetwork = issuing'tokenNetwork,
-                                                                                                                                                                                      issuing'tokenNetwork_data = GHC.Maybe.Nothing,
-                                                                                                                                                                                      issuing'tokenNetwork_updated_at = issuing'tokenNetwork_updated_at,
-                                                                                                                                                                                      issuing'tokenStatus = issuing'tokenStatus,
-                                                                                                                                                                                      issuing'tokenWallet_provider = GHC.Maybe.Nothing}
+mkIssuing'token issuing'tokenCard issuing'tokenCreated issuing'tokenId issuing'tokenLivemode issuing'tokenNetwork issuing'tokenNetwork_updated_at issuing'tokenObject issuing'tokenStatus = Issuing'token{issuing'tokenCard = issuing'tokenCard,
+                                                                                                                                                                                                          issuing'tokenCreated = issuing'tokenCreated,
+                                                                                                                                                                                                          issuing'tokenDevice_fingerprint = GHC.Maybe.Nothing,
+                                                                                                                                                                                                          issuing'tokenId = issuing'tokenId,
+                                                                                                                                                                                                          issuing'tokenLast4 = GHC.Maybe.Nothing,
+                                                                                                                                                                                                          issuing'tokenLivemode = issuing'tokenLivemode,
+                                                                                                                                                                                                          issuing'tokenNetwork = issuing'tokenNetwork,
+                                                                                                                                                                                                          issuing'tokenNetwork_data = GHC.Maybe.Nothing,
+                                                                                                                                                                                                          issuing'tokenNetwork_updated_at = issuing'tokenNetwork_updated_at,
+                                                                                                                                                                                                          issuing'tokenObject = issuing'tokenObject,
+                                                                                                                                                                                                          issuing'tokenStatus = issuing'tokenStatus,
+                                                                                                                                                                                                          issuing'tokenWallet_provider = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.issuing.token.properties.card.anyOf@ in the specification.
 -- 
 -- Card associated with this token.
@@ -122,66 +126,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Issuing'tokenCardVariants
     where {parseJSON val = case (Issuing'tokenCardText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing'tokenCardIssuing'card Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.issuing.token.properties.network@ in the specification.
--- 
--- The token service provider \/ card network associated with the token.
-data Issuing'tokenNetwork =
-   Issuing'tokenNetworkOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'tokenNetworkTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'tokenNetworkEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | Issuing'tokenNetworkEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'tokenNetwork
-    where {toJSON (Issuing'tokenNetworkOther val) = val;
-           toJSON (Issuing'tokenNetworkTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'tokenNetworkEnumMastercard) = "mastercard";
-           toJSON (Issuing'tokenNetworkEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'tokenNetwork
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "mastercard" -> Issuing'tokenNetworkEnumMastercard
-                                             | val GHC.Classes.== "visa" -> Issuing'tokenNetworkEnumVisa
-                                             | GHC.Base.otherwise -> Issuing'tokenNetworkOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.token.properties.status@ in the specification.
--- 
--- The usage state of the token.
-data Issuing'tokenStatus =
-   Issuing'tokenStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'tokenStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'tokenStatusEnumActive -- ^ Represents the JSON value @"active"@
-  | Issuing'tokenStatusEnumDeleted -- ^ Represents the JSON value @"deleted"@
-  | Issuing'tokenStatusEnumRequested -- ^ Represents the JSON value @"requested"@
-  | Issuing'tokenStatusEnumSuspended -- ^ Represents the JSON value @"suspended"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'tokenStatus
-    where {toJSON (Issuing'tokenStatusOther val) = val;
-           toJSON (Issuing'tokenStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'tokenStatusEnumActive) = "active";
-           toJSON (Issuing'tokenStatusEnumDeleted) = "deleted";
-           toJSON (Issuing'tokenStatusEnumRequested) = "requested";
-           toJSON (Issuing'tokenStatusEnumSuspended) = "suspended"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'tokenStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "active" -> Issuing'tokenStatusEnumActive
-                                             | val GHC.Classes.== "deleted" -> Issuing'tokenStatusEnumDeleted
-                                             | val GHC.Classes.== "requested" -> Issuing'tokenStatusEnumRequested
-                                             | val GHC.Classes.== "suspended" -> Issuing'tokenStatusEnumSuspended
-                                             | GHC.Base.otherwise -> Issuing'tokenStatusOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.token.properties.wallet_provider@ in the specification.
--- 
--- The digital wallet for this token, if one was used.
-data Issuing'tokenWallet_provider =
-   Issuing'tokenWallet_providerOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'tokenWallet_providerTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'tokenWallet_providerEnumApple_pay -- ^ Represents the JSON value @"apple_pay"@
-  | Issuing'tokenWallet_providerEnumGoogle_pay -- ^ Represents the JSON value @"google_pay"@
-  | Issuing'tokenWallet_providerEnumSamsung_pay -- ^ Represents the JSON value @"samsung_pay"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'tokenWallet_provider
-    where {toJSON (Issuing'tokenWallet_providerOther val) = val;
-           toJSON (Issuing'tokenWallet_providerTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'tokenWallet_providerEnumApple_pay) = "apple_pay";
-           toJSON (Issuing'tokenWallet_providerEnumGoogle_pay) = "google_pay";
-           toJSON (Issuing'tokenWallet_providerEnumSamsung_pay) = "samsung_pay"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'tokenWallet_provider
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "apple_pay" -> Issuing'tokenWallet_providerEnumApple_pay
-                                             | val GHC.Classes.== "google_pay" -> Issuing'tokenWallet_providerEnumGoogle_pay
-                                             | val GHC.Classes.== "samsung_pay" -> Issuing'tokenWallet_providerEnumSamsung_pay
-                                             | GHC.Base.otherwise -> Issuing'tokenWallet_providerOther val)}

@@ -50,15 +50,15 @@ data Issuing_authorization_fuel_data = Issuing_authorization_fuel_data {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_authorization_fuel_dataIndustry_product_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_authorization_fuel_dataIndustry_product_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | quantity_decimal: The quantity of \`unit\`s of fuel that was dispensed, represented as a decimal string with at most 12 decimal places.
-  , issuing_authorization_fuel_dataQuantity_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_fuel_dataQuantity_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The type of fuel that was purchased.
-  , issuing_authorization_fuel_dataType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_authorization_fuel_dataTypeNonNullable))
+  , issuing_authorization_fuel_dataType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | unit: The units for \`quantity_decimal\`.
-  , issuing_authorization_fuel_dataUnit :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_authorization_fuel_dataUnitNonNullable))
+  , issuing_authorization_fuel_dataUnit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | unit_cost_decimal: The cost in cents per each unit of fuel, represented as a decimal string with at most 12 decimal places.
-  , issuing_authorization_fuel_dataUnit_cost_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_fuel_dataUnit_cost_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fuel_data
@@ -73,66 +73,3 @@ mkIssuing_authorization_fuel_data = Issuing_authorization_fuel_data{issuing_auth
                                                                     issuing_authorization_fuel_dataType = GHC.Maybe.Nothing,
                                                                     issuing_authorization_fuel_dataUnit = GHC.Maybe.Nothing,
                                                                     issuing_authorization_fuel_dataUnit_cost_decimal = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_fuel_data.properties.type@ in the specification.
--- 
--- The type of fuel that was purchased.
-data Issuing_authorization_fuel_dataTypeNonNullable =
-   Issuing_authorization_fuel_dataTypeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_fuel_dataTypeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_fuel_dataTypeNonNullableEnumDiesel -- ^ Represents the JSON value @"diesel"@
-  | Issuing_authorization_fuel_dataTypeNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_plus -- ^ Represents the JSON value @"unleaded_plus"@
-  | Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_regular -- ^ Represents the JSON value @"unleaded_regular"@
-  | Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_super -- ^ Represents the JSON value @"unleaded_super"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fuel_dataTypeNonNullable
-    where {toJSON (Issuing_authorization_fuel_dataTypeNonNullableOther val) = val;
-           toJSON (Issuing_authorization_fuel_dataTypeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_fuel_dataTypeNonNullableEnumDiesel) = "diesel";
-           toJSON (Issuing_authorization_fuel_dataTypeNonNullableEnumOther) = "other";
-           toJSON (Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_plus) = "unleaded_plus";
-           toJSON (Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_regular) = "unleaded_regular";
-           toJSON (Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_super) = "unleaded_super"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_fuel_dataTypeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "diesel" -> Issuing_authorization_fuel_dataTypeNonNullableEnumDiesel
-                                             | val GHC.Classes.== "other" -> Issuing_authorization_fuel_dataTypeNonNullableEnumOther
-                                             | val GHC.Classes.== "unleaded_plus" -> Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_plus
-                                             | val GHC.Classes.== "unleaded_regular" -> Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_regular
-                                             | val GHC.Classes.== "unleaded_super" -> Issuing_authorization_fuel_dataTypeNonNullableEnumUnleaded_super
-                                             | GHC.Base.otherwise -> Issuing_authorization_fuel_dataTypeNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_fuel_data.properties.unit@ in the specification.
--- 
--- The units for \`quantity_decimal\`.
-data Issuing_authorization_fuel_dataUnitNonNullable =
-   Issuing_authorization_fuel_dataUnitNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_fuel_dataUnitNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumCharging_minute -- ^ Represents the JSON value @"charging_minute"@
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumImperial_gallon -- ^ Represents the JSON value @"imperial_gallon"@
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumKilogram -- ^ Represents the JSON value @"kilogram"@
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumKilowatt_hour -- ^ Represents the JSON value @"kilowatt_hour"@
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumLiter -- ^ Represents the JSON value @"liter"@
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumPound -- ^ Represents the JSON value @"pound"@
-  | Issuing_authorization_fuel_dataUnitNonNullableEnumUs_gallon -- ^ Represents the JSON value @"us_gallon"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fuel_dataUnitNonNullable
-    where {toJSON (Issuing_authorization_fuel_dataUnitNonNullableOther val) = val;
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumCharging_minute) = "charging_minute";
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumImperial_gallon) = "imperial_gallon";
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumKilogram) = "kilogram";
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumKilowatt_hour) = "kilowatt_hour";
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumLiter) = "liter";
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumOther) = "other";
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumPound) = "pound";
-           toJSON (Issuing_authorization_fuel_dataUnitNonNullableEnumUs_gallon) = "us_gallon"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_fuel_dataUnitNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "charging_minute" -> Issuing_authorization_fuel_dataUnitNonNullableEnumCharging_minute
-                                             | val GHC.Classes.== "imperial_gallon" -> Issuing_authorization_fuel_dataUnitNonNullableEnumImperial_gallon
-                                             | val GHC.Classes.== "kilogram" -> Issuing_authorization_fuel_dataUnitNonNullableEnumKilogram
-                                             | val GHC.Classes.== "kilowatt_hour" -> Issuing_authorization_fuel_dataUnitNonNullableEnumKilowatt_hour
-                                             | val GHC.Classes.== "liter" -> Issuing_authorization_fuel_dataUnitNonNullableEnumLiter
-                                             | val GHC.Classes.== "other" -> Issuing_authorization_fuel_dataUnitNonNullableEnumOther
-                                             | val GHC.Classes.== "pound" -> Issuing_authorization_fuel_dataUnitNonNullableEnumPound
-                                             | val GHC.Classes.== "us_gallon" -> Issuing_authorization_fuel_dataUnitNonNullableEnumUs_gallon
-                                             | GHC.Base.otherwise -> Issuing_authorization_fuel_dataUnitNonNullableOther val)}

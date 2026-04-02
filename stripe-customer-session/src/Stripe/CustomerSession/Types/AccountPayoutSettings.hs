@@ -55,7 +55,7 @@ data Account_payout_settings = Account_payout_settings {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_payout_settingsStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_payout_settingsStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_payout_settings

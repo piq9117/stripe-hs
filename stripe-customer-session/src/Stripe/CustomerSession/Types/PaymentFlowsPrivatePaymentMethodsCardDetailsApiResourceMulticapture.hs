@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_private_payment_methods_card_details_api_resource_multicapture = Payment_flows_private_payment_methods_card_details_api_resource_multicapture {
   -- | status: Indicates whether or not multiple captures are supported.
-  payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus :: Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus
+  payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_card_details_api_resource_multicapture
@@ -55,24 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_ca
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_card_details_api_resource_multicapture
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_flows_private_payment_methods_card_details_api_resource_multicapture" (\obj -> GHC.Base.pure Payment_flows_private_payment_methods_card_details_api_resource_multicapture GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status"))}
 -- | Create a new 'Payment_flows_private_payment_methods_card_details_api_resource_multicapture' with all required fields.
-mkPayment_flows_private_payment_methods_card_details_api_resource_multicapture :: Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus -- ^ 'payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus'
+mkPayment_flows_private_payment_methods_card_details_api_resource_multicapture :: Data.Text.Internal.Text -- ^ 'payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus'
   -> Payment_flows_private_payment_methods_card_details_api_resource_multicapture
 mkPayment_flows_private_payment_methods_card_details_api_resource_multicapture payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus = Payment_flows_private_payment_methods_card_details_api_resource_multicapture{payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus = payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus}
--- | Defines the enum schema located at @components.schemas.payment_flows_private_payment_methods_card_details_api_resource_multicapture.properties.status@ in the specification.
--- 
--- Indicates whether or not multiple captures are supported.
-data Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus =
-   Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusEnumAvailable -- ^ Represents the JSON value @"available"@
-  | Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusEnumUnavailable -- ^ Represents the JSON value @"unavailable"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus
-    where {toJSON (Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusOther val) = val;
-           toJSON (Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusEnumAvailable) = "available";
-           toJSON (Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusEnumUnavailable) = "unavailable"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "available" -> Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusEnumAvailable
-                                             | val GHC.Classes.== "unavailable" -> Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusEnumUnavailable
-                                             | GHC.Base.otherwise -> Payment_flows_private_payment_methods_card_details_api_resource_multicaptureStatusOther val)}

@@ -51,9 +51,9 @@ data Billing_credit_grants_resource_balance_debit = Billing_credit_grants_resour
   -- | amount: 
   billing_credit_grants_resource_balance_debitAmount :: Billing_credit_grants_resource_amount
   -- | credits_applied: Details of how the billing credits were applied to an invoice. Only present if \`type\` is \`credits_applied\`.
-  , billing_credit_grants_resource_balance_debitCredits_applied :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable))
+  , billing_credit_grants_resource_balance_debitCredits_applied :: (GHC.Maybe.Maybe Billing_credit_grants_resource_balance_debitCredits_applied)
   -- | type: The type of debit transaction.
-  , billing_credit_grants_resource_balance_debitType :: Billing_credit_grants_resource_balance_debitType
+  , billing_credit_grants_resource_balance_debitType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_debit
@@ -63,7 +63,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balan
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_balance_debit" (\obj -> ((GHC.Base.pure Billing_credit_grants_resource_balance_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credits_applied")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Billing_credit_grants_resource_balance_debit' with all required fields.
 mkBilling_credit_grants_resource_balance_debit :: Billing_credit_grants_resource_amount -- ^ 'billing_credit_grants_resource_balance_debitAmount'
-  -> Billing_credit_grants_resource_balance_debitType -- ^ 'billing_credit_grants_resource_balance_debitType'
+  -> Data.Text.Internal.Text -- ^ 'billing_credit_grants_resource_balance_debitType'
   -> Billing_credit_grants_resource_balance_debit
 mkBilling_credit_grants_resource_balance_debit billing_credit_grants_resource_balance_debitAmount billing_credit_grants_resource_balance_debitType = Billing_credit_grants_resource_balance_debit{billing_credit_grants_resource_balance_debitAmount = billing_credit_grants_resource_balance_debitAmount,
                                                                                                                                                                                                   billing_credit_grants_resource_balance_debitCredits_applied = GHC.Maybe.Nothing,
@@ -71,58 +71,37 @@ mkBilling_credit_grants_resource_balance_debit billing_credit_grants_resource_ba
 -- | Defines the object schema located at @components.schemas.billing_credit_grants_resource_balance_debit.properties.credits_applied.anyOf@ in the specification.
 -- 
 -- Details of how the billing credits were applied to an invoice. Only present if \\\`type\\\` is \\\`credits_applied\\\`.
-data Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable = Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable {
+data Billing_credit_grants_resource_balance_debitCredits_applied = Billing_credit_grants_resource_balance_debitCredits_applied {
   -- | invoice: The invoice to which the billing credits were applied.
-  billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice :: (GHC.Maybe.Maybe Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceVariants)
+  billing_credit_grants_resource_balance_debitCredits_appliedInvoice :: (GHC.Maybe.Maybe Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceVariants)
   -- | invoice_line_item: The invoice line item to which the billing credits were applied.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice_line_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , billing_credit_grants_resource_balance_debitCredits_appliedInvoice_line_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice_line_item obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice_line_item obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable" (\obj -> (GHC.Base.pure Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_item"))}
--- | Create a new 'Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable' with all required fields.
-mkBilling_credit_grants_resource_balance_debitCredits_appliedNonNullable :: Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable
-mkBilling_credit_grants_resource_balance_debitCredits_appliedNonNullable = Billing_credit_grants_resource_balance_debitCredits_appliedNonNullable{billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice = GHC.Maybe.Nothing,
-                                                                                                                                                  billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoice_line_item = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_debitCredits_applied
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedInvoice_line_item obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_debitCredits_appliedInvoice_line_item obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_debitCredits_applied
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_balance_debitCredits_applied" (\obj -> (GHC.Base.pure Billing_credit_grants_resource_balance_debitCredits_applied GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_item"))}
+-- | Create a new 'Billing_credit_grants_resource_balance_debitCredits_applied' with all required fields.
+mkBilling_credit_grants_resource_balance_debitCredits_applied :: Billing_credit_grants_resource_balance_debitCredits_applied
+mkBilling_credit_grants_resource_balance_debitCredits_applied = Billing_credit_grants_resource_balance_debitCredits_applied{billing_credit_grants_resource_balance_debitCredits_appliedInvoice = GHC.Maybe.Nothing,
+                                                                                                                            billing_credit_grants_resource_balance_debitCredits_appliedInvoice_line_item = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.billing_credit_grants_resource_balance_debit.properties.credits_applied.anyOf.properties.invoice.anyOf@ in the specification.
 -- 
 -- The invoice to which the billing credits were applied.
-data Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceVariants =
-   Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceText Data.Text.Internal.Text
-  | Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceInvoice Invoice
+data Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceVariants =
+   Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceText Data.Text.Internal.Text
+  | Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceInvoice Invoice
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceVariants
-    where {toJSON (Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceVariants
-    where {parseJSON val = case (Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Billing_credit_grants_resource_balance_debitCredits_appliedNonNullableInvoiceInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceVariants
+    where {toJSON (Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceVariants
+    where {parseJSON val = case (Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Billing_credit_grants_resource_balance_debitCredits_appliedInvoiceInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.billing_credit_grants_resource_balance_debit.properties.type@ in the specification.
--- 
--- The type of debit transaction.
-data Billing_credit_grants_resource_balance_debitType =
-   Billing_credit_grants_resource_balance_debitTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Billing_credit_grants_resource_balance_debitTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Billing_credit_grants_resource_balance_debitTypeEnumCredits_applied -- ^ Represents the JSON value @"credits_applied"@
-  | Billing_credit_grants_resource_balance_debitTypeEnumCredits_expired -- ^ Represents the JSON value @"credits_expired"@
-  | Billing_credit_grants_resource_balance_debitTypeEnumCredits_voided -- ^ Represents the JSON value @"credits_voided"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_debitType
-    where {toJSON (Billing_credit_grants_resource_balance_debitTypeOther val) = val;
-           toJSON (Billing_credit_grants_resource_balance_debitTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Billing_credit_grants_resource_balance_debitTypeEnumCredits_applied) = "credits_applied";
-           toJSON (Billing_credit_grants_resource_balance_debitTypeEnumCredits_expired) = "credits_expired";
-           toJSON (Billing_credit_grants_resource_balance_debitTypeEnumCredits_voided) = "credits_voided"}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_debitType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "credits_applied" -> Billing_credit_grants_resource_balance_debitTypeEnumCredits_applied
-                                             | val GHC.Classes.== "credits_expired" -> Billing_credit_grants_resource_balance_debitTypeEnumCredits_expired
-                                             | val GHC.Classes.== "credits_voided" -> Billing_credit_grants_resource_balance_debitTypeEnumCredits_voided
-                                             | GHC.Base.otherwise -> Billing_credit_grants_resource_balance_debitTypeOther val)}

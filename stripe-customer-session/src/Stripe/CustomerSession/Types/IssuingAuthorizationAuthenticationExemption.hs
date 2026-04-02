@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_authorization_authentication_exemption = Issuing_authorization_authentication_exemption {
   -- | claimed_by: The entity that requested the exemption, either the acquiring merchant or the Issuing user.
-  issuing_authorization_authentication_exemptionClaimed_by :: Issuing_authorization_authentication_exemptionClaimed_by
+  issuing_authorization_authentication_exemptionClaimed_by :: Data.Text.Internal.Text
   -- | type: The specific exemption claimed for this authorization.
-  , issuing_authorization_authentication_exemptionType :: Issuing_authorization_authentication_exemptionType
+  , issuing_authorization_authentication_exemptionType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_authentication_exemption
@@ -57,47 +57,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_authentication_exe
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_authentication_exemption
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_authentication_exemption" (\obj -> (GHC.Base.pure Issuing_authorization_authentication_exemption GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "claimed_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Issuing_authorization_authentication_exemption' with all required fields.
-mkIssuing_authorization_authentication_exemption :: Issuing_authorization_authentication_exemptionClaimed_by -- ^ 'issuing_authorization_authentication_exemptionClaimed_by'
-  -> Issuing_authorization_authentication_exemptionType -- ^ 'issuing_authorization_authentication_exemptionType'
+mkIssuing_authorization_authentication_exemption :: Data.Text.Internal.Text -- ^ 'issuing_authorization_authentication_exemptionClaimed_by'
+  -> Data.Text.Internal.Text -- ^ 'issuing_authorization_authentication_exemptionType'
   -> Issuing_authorization_authentication_exemption
 mkIssuing_authorization_authentication_exemption issuing_authorization_authentication_exemptionClaimed_by issuing_authorization_authentication_exemptionType = Issuing_authorization_authentication_exemption{issuing_authorization_authentication_exemptionClaimed_by = issuing_authorization_authentication_exemptionClaimed_by,
                                                                                                                                                                                                               issuing_authorization_authentication_exemptionType = issuing_authorization_authentication_exemptionType}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_authentication_exemption.properties.claimed_by@ in the specification.
--- 
--- The entity that requested the exemption, either the acquiring merchant or the Issuing user.
-data Issuing_authorization_authentication_exemptionClaimed_by =
-   Issuing_authorization_authentication_exemptionClaimed_byOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_authentication_exemptionClaimed_byTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_authentication_exemptionClaimed_byEnumAcquirer -- ^ Represents the JSON value @"acquirer"@
-  | Issuing_authorization_authentication_exemptionClaimed_byEnumIssuer -- ^ Represents the JSON value @"issuer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_authentication_exemptionClaimed_by
-    where {toJSON (Issuing_authorization_authentication_exemptionClaimed_byOther val) = val;
-           toJSON (Issuing_authorization_authentication_exemptionClaimed_byTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_authentication_exemptionClaimed_byEnumAcquirer) = "acquirer";
-           toJSON (Issuing_authorization_authentication_exemptionClaimed_byEnumIssuer) = "issuer"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_authentication_exemptionClaimed_by
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "acquirer" -> Issuing_authorization_authentication_exemptionClaimed_byEnumAcquirer
-                                             | val GHC.Classes.== "issuer" -> Issuing_authorization_authentication_exemptionClaimed_byEnumIssuer
-                                             | GHC.Base.otherwise -> Issuing_authorization_authentication_exemptionClaimed_byOther val)}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_authentication_exemption.properties.type@ in the specification.
--- 
--- The specific exemption claimed for this authorization.
-data Issuing_authorization_authentication_exemptionType =
-   Issuing_authorization_authentication_exemptionTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_authentication_exemptionTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_authentication_exemptionTypeEnumLow_value_transaction -- ^ Represents the JSON value @"low_value_transaction"@
-  | Issuing_authorization_authentication_exemptionTypeEnumTransaction_risk_analysis -- ^ Represents the JSON value @"transaction_risk_analysis"@
-  | Issuing_authorization_authentication_exemptionTypeEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_authentication_exemptionType
-    where {toJSON (Issuing_authorization_authentication_exemptionTypeOther val) = val;
-           toJSON (Issuing_authorization_authentication_exemptionTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_authentication_exemptionTypeEnumLow_value_transaction) = "low_value_transaction";
-           toJSON (Issuing_authorization_authentication_exemptionTypeEnumTransaction_risk_analysis) = "transaction_risk_analysis";
-           toJSON (Issuing_authorization_authentication_exemptionTypeEnumUnknown) = "unknown"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_authentication_exemptionType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "low_value_transaction" -> Issuing_authorization_authentication_exemptionTypeEnumLow_value_transaction
-                                             | val GHC.Classes.== "transaction_risk_analysis" -> Issuing_authorization_authentication_exemptionTypeEnumTransaction_risk_analysis
-                                             | val GHC.Classes.== "unknown" -> Issuing_authorization_authentication_exemptionTypeEnumUnknown
-                                             | GHC.Base.otherwise -> Issuing_authorization_authentication_exemptionTypeOther val)}

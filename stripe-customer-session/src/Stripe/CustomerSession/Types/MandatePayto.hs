@@ -46,27 +46,27 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Mandate_payto = Mandate_payto {
   -- | amount: Amount that will be collected. It is required when \`amount_type\` is \`fixed\`.
-  mandate_paytoAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  mandate_paytoAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_type: The type of amount that will be collected. The amount charged must be exact or up to the value of \`amount\` param for \`fixed\` or \`maximum\` type respectively. Defaults to \`maximum\`.
-  , mandate_paytoAmount_type :: Mandate_paytoAmount_type
+  , mandate_paytoAmount_type :: Data.Text.Internal.Text
   -- | end_date: Date, in YYYY-MM-DD format, after which payments will not be collected. Defaults to no end date.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , mandate_paytoEnd_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , mandate_paytoEnd_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_schedule: The periodicity at which payments will be collected. Defaults to \`adhoc\`.
-  , mandate_paytoPayment_schedule :: Mandate_paytoPayment_schedule
+  , mandate_paytoPayment_schedule :: Data.Text.Internal.Text
   -- | payments_per_period: The number of payments that will be made during a payment period. Defaults to 1 except for when \`payment_schedule\` is \`adhoc\`. In that case, it defaults to no limit.
-  , mandate_paytoPayments_per_period :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , mandate_paytoPayments_per_period :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | purpose: The purpose for which payments are made. Has a default value based on your merchant category code.
-  , mandate_paytoPurpose :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Mandate_paytoPurposeNonNullable))
+  , mandate_paytoPurpose :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | start_date: Date, in YYYY-MM-DD format, from which payments will be collected. Defaults to confirmation time.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , mandate_paytoStart_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , mandate_paytoStart_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Mandate_payto
@@ -75,8 +75,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Mandate_payto
 instance Data.Aeson.Types.FromJSON.FromJSON Mandate_payto
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Mandate_payto" (\obj -> ((((((GHC.Base.pure Mandate_payto GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payments_per_period")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "purpose")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date"))}
 -- | Create a new 'Mandate_payto' with all required fields.
-mkMandate_payto :: Mandate_paytoAmount_type -- ^ 'mandate_paytoAmount_type'
-  -> Mandate_paytoPayment_schedule -- ^ 'mandate_paytoPayment_schedule'
+mkMandate_payto :: Data.Text.Internal.Text -- ^ 'mandate_paytoAmount_type'
+  -> Data.Text.Internal.Text -- ^ 'mandate_paytoPayment_schedule'
   -> Mandate_payto
 mkMandate_payto mandate_paytoAmount_type mandate_paytoPayment_schedule = Mandate_payto{mandate_paytoAmount = GHC.Maybe.Nothing,
                                                                                        mandate_paytoAmount_type = mandate_paytoAmount_type,
@@ -85,102 +85,3 @@ mkMandate_payto mandate_paytoAmount_type mandate_paytoPayment_schedule = Mandate
                                                                                        mandate_paytoPayments_per_period = GHC.Maybe.Nothing,
                                                                                        mandate_paytoPurpose = GHC.Maybe.Nothing,
                                                                                        mandate_paytoStart_date = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.mandate_payto.properties.amount_type@ in the specification.
--- 
--- The type of amount that will be collected. The amount charged must be exact or up to the value of \`amount\` param for \`fixed\` or \`maximum\` type respectively. Defaults to \`maximum\`.
-data Mandate_paytoAmount_type =
-   Mandate_paytoAmount_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_paytoAmount_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_paytoAmount_typeEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Mandate_paytoAmount_typeEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_paytoAmount_type
-    where {toJSON (Mandate_paytoAmount_typeOther val) = val;
-           toJSON (Mandate_paytoAmount_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_paytoAmount_typeEnumFixed) = "fixed";
-           toJSON (Mandate_paytoAmount_typeEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_paytoAmount_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Mandate_paytoAmount_typeEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Mandate_paytoAmount_typeEnumMaximum
-                                             | GHC.Base.otherwise -> Mandate_paytoAmount_typeOther val)}
--- | Defines the enum schema located at @components.schemas.mandate_payto.properties.payment_schedule@ in the specification.
--- 
--- The periodicity at which payments will be collected. Defaults to \`adhoc\`.
-data Mandate_paytoPayment_schedule =
-   Mandate_paytoPayment_scheduleOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_paytoPayment_scheduleTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_paytoPayment_scheduleEnumAdhoc -- ^ Represents the JSON value @"adhoc"@
-  | Mandate_paytoPayment_scheduleEnumAnnual -- ^ Represents the JSON value @"annual"@
-  | Mandate_paytoPayment_scheduleEnumDaily -- ^ Represents the JSON value @"daily"@
-  | Mandate_paytoPayment_scheduleEnumFortnightly -- ^ Represents the JSON value @"fortnightly"@
-  | Mandate_paytoPayment_scheduleEnumMonthly -- ^ Represents the JSON value @"monthly"@
-  | Mandate_paytoPayment_scheduleEnumQuarterly -- ^ Represents the JSON value @"quarterly"@
-  | Mandate_paytoPayment_scheduleEnumSemi_annual -- ^ Represents the JSON value @"semi_annual"@
-  | Mandate_paytoPayment_scheduleEnumWeekly -- ^ Represents the JSON value @"weekly"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_paytoPayment_schedule
-    where {toJSON (Mandate_paytoPayment_scheduleOther val) = val;
-           toJSON (Mandate_paytoPayment_scheduleTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_paytoPayment_scheduleEnumAdhoc) = "adhoc";
-           toJSON (Mandate_paytoPayment_scheduleEnumAnnual) = "annual";
-           toJSON (Mandate_paytoPayment_scheduleEnumDaily) = "daily";
-           toJSON (Mandate_paytoPayment_scheduleEnumFortnightly) = "fortnightly";
-           toJSON (Mandate_paytoPayment_scheduleEnumMonthly) = "monthly";
-           toJSON (Mandate_paytoPayment_scheduleEnumQuarterly) = "quarterly";
-           toJSON (Mandate_paytoPayment_scheduleEnumSemi_annual) = "semi_annual";
-           toJSON (Mandate_paytoPayment_scheduleEnumWeekly) = "weekly"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_paytoPayment_schedule
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "adhoc" -> Mandate_paytoPayment_scheduleEnumAdhoc
-                                             | val GHC.Classes.== "annual" -> Mandate_paytoPayment_scheduleEnumAnnual
-                                             | val GHC.Classes.== "daily" -> Mandate_paytoPayment_scheduleEnumDaily
-                                             | val GHC.Classes.== "fortnightly" -> Mandate_paytoPayment_scheduleEnumFortnightly
-                                             | val GHC.Classes.== "monthly" -> Mandate_paytoPayment_scheduleEnumMonthly
-                                             | val GHC.Classes.== "quarterly" -> Mandate_paytoPayment_scheduleEnumQuarterly
-                                             | val GHC.Classes.== "semi_annual" -> Mandate_paytoPayment_scheduleEnumSemi_annual
-                                             | val GHC.Classes.== "weekly" -> Mandate_paytoPayment_scheduleEnumWeekly
-                                             | GHC.Base.otherwise -> Mandate_paytoPayment_scheduleOther val)}
--- | Defines the enum schema located at @components.schemas.mandate_payto.properties.purpose@ in the specification.
--- 
--- The purpose for which payments are made. Has a default value based on your merchant category code.
-data Mandate_paytoPurposeNonNullable =
-   Mandate_paytoPurposeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_paytoPurposeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_paytoPurposeNonNullableEnumDependant_support -- ^ Represents the JSON value @"dependant_support"@
-  | Mandate_paytoPurposeNonNullableEnumGovernment -- ^ Represents the JSON value @"government"@
-  | Mandate_paytoPurposeNonNullableEnumLoan -- ^ Represents the JSON value @"loan"@
-  | Mandate_paytoPurposeNonNullableEnumMortgage -- ^ Represents the JSON value @"mortgage"@
-  | Mandate_paytoPurposeNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Mandate_paytoPurposeNonNullableEnumPension -- ^ Represents the JSON value @"pension"@
-  | Mandate_paytoPurposeNonNullableEnumPersonal -- ^ Represents the JSON value @"personal"@
-  | Mandate_paytoPurposeNonNullableEnumRetail -- ^ Represents the JSON value @"retail"@
-  | Mandate_paytoPurposeNonNullableEnumSalary -- ^ Represents the JSON value @"salary"@
-  | Mandate_paytoPurposeNonNullableEnumTax -- ^ Represents the JSON value @"tax"@
-  | Mandate_paytoPurposeNonNullableEnumUtility -- ^ Represents the JSON value @"utility"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_paytoPurposeNonNullable
-    where {toJSON (Mandate_paytoPurposeNonNullableOther val) = val;
-           toJSON (Mandate_paytoPurposeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_paytoPurposeNonNullableEnumDependant_support) = "dependant_support";
-           toJSON (Mandate_paytoPurposeNonNullableEnumGovernment) = "government";
-           toJSON (Mandate_paytoPurposeNonNullableEnumLoan) = "loan";
-           toJSON (Mandate_paytoPurposeNonNullableEnumMortgage) = "mortgage";
-           toJSON (Mandate_paytoPurposeNonNullableEnumOther) = "other";
-           toJSON (Mandate_paytoPurposeNonNullableEnumPension) = "pension";
-           toJSON (Mandate_paytoPurposeNonNullableEnumPersonal) = "personal";
-           toJSON (Mandate_paytoPurposeNonNullableEnumRetail) = "retail";
-           toJSON (Mandate_paytoPurposeNonNullableEnumSalary) = "salary";
-           toJSON (Mandate_paytoPurposeNonNullableEnumTax) = "tax";
-           toJSON (Mandate_paytoPurposeNonNullableEnumUtility) = "utility"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_paytoPurposeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "dependant_support" -> Mandate_paytoPurposeNonNullableEnumDependant_support
-                                             | val GHC.Classes.== "government" -> Mandate_paytoPurposeNonNullableEnumGovernment
-                                             | val GHC.Classes.== "loan" -> Mandate_paytoPurposeNonNullableEnumLoan
-                                             | val GHC.Classes.== "mortgage" -> Mandate_paytoPurposeNonNullableEnumMortgage
-                                             | val GHC.Classes.== "other" -> Mandate_paytoPurposeNonNullableEnumOther
-                                             | val GHC.Classes.== "pension" -> Mandate_paytoPurposeNonNullableEnumPension
-                                             | val GHC.Classes.== "personal" -> Mandate_paytoPurposeNonNullableEnumPersonal
-                                             | val GHC.Classes.== "retail" -> Mandate_paytoPurposeNonNullableEnumRetail
-                                             | val GHC.Classes.== "salary" -> Mandate_paytoPurposeNonNullableEnumSalary
-                                             | val GHC.Classes.== "tax" -> Mandate_paytoPurposeNonNullableEnumTax
-                                             | val GHC.Classes.== "utility" -> Mandate_paytoPurposeNonNullableEnumUtility
-                                             | GHC.Base.otherwise -> Mandate_paytoPurposeNonNullableOther val)}

@@ -47,11 +47,11 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsCardInsta
 -- 
 data Payment_method_options_card_installments = Payment_method_options_card_installments {
   -- | available_plans: Installment plans that may be selected for this PaymentIntent.
-  payment_method_options_card_installmentsAvailable_plans :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Payment_method_details_card_installments_plan]))
+  payment_method_options_card_installmentsAvailable_plans :: (GHC.Maybe.Maybe [Payment_method_details_card_installments_plan])
   -- | enabled: Whether Installments are enabled for this PaymentIntent.
   , payment_method_options_card_installmentsEnabled :: GHC.Types.Bool
   -- | plan: Installment plan selected for this PaymentIntent.
-  , payment_method_options_card_installmentsPlan :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_options_card_installmentsPlanNonNullable))
+  , payment_method_options_card_installmentsPlan :: (GHC.Maybe.Maybe Payment_method_options_card_installmentsPlan)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_installments
@@ -68,60 +68,23 @@ mkPayment_method_options_card_installments payment_method_options_card_installme
 -- | Defines the object schema located at @components.schemas.payment_method_options_card_installments.properties.plan.anyOf@ in the specification.
 -- 
 -- Installment plan selected for this PaymentIntent.
-data Payment_method_options_card_installmentsPlanNonNullable = Payment_method_options_card_installmentsPlanNonNullable {
+data Payment_method_options_card_installmentsPlan = Payment_method_options_card_installmentsPlan {
   -- | count: For \`fixed_count\` installment plans, this is the number of installment payments your customer will make to their credit card.
-  payment_method_options_card_installmentsPlanNonNullableCount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_method_options_card_installmentsPlanCount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: For \`fixed_count\` installment plans, this is the interval between installment payments your customer will make to their credit card.
   -- One of \`month\`.
-  , payment_method_options_card_installmentsPlanNonNullableInterval :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullable))
+  , payment_method_options_card_installmentsPlanInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Type of installment plan, one of \`fixed_count\`, \`bonus\`, or \`revolving\`.
-  , payment_method_options_card_installmentsPlanNonNullableType :: (GHC.Maybe.Maybe Payment_method_options_card_installmentsPlanNonNullableType)
+  , payment_method_options_card_installmentsPlanType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_installmentsPlanNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanNonNullableCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanNonNullableCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_installmentsPlanNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_options_card_installmentsPlanNonNullable" (\obj -> ((GHC.Base.pure Payment_method_options_card_installmentsPlanNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Payment_method_options_card_installmentsPlanNonNullable' with all required fields.
-mkPayment_method_options_card_installmentsPlanNonNullable :: Payment_method_options_card_installmentsPlanNonNullable
-mkPayment_method_options_card_installmentsPlanNonNullable = Payment_method_options_card_installmentsPlanNonNullable{payment_method_options_card_installmentsPlanNonNullableCount = GHC.Maybe.Nothing,
-                                                                                                                    payment_method_options_card_installmentsPlanNonNullableInterval = GHC.Maybe.Nothing,
-                                                                                                                    payment_method_options_card_installmentsPlanNonNullableType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_card_installments.properties.plan.anyOf.properties.interval@ in the specification.
--- 
--- For \`fixed_count\` installment plans, this is the interval between installment payments your customer will make to their credit card.
--- One of \`month\`.
-data Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullable =
-   Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableEnumMonth -- ^ Represents the JSON value @"month"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullable
-    where {toJSON (Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableOther val) = val;
-           toJSON (Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableEnumMonth) = "month"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "month" -> Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableEnumMonth
-                                             | GHC.Base.otherwise -> Payment_method_options_card_installmentsPlanNonNullableIntervalNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_options_card_installments.properties.plan.anyOf.properties.type@ in the specification.
--- 
--- Type of installment plan, one of \`fixed_count\`, \`bonus\`, or \`revolving\`.
-data Payment_method_options_card_installmentsPlanNonNullableType =
-   Payment_method_options_card_installmentsPlanNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_card_installmentsPlanNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_card_installmentsPlanNonNullableTypeEnumBonus -- ^ Represents the JSON value @"bonus"@
-  | Payment_method_options_card_installmentsPlanNonNullableTypeEnumFixed_count -- ^ Represents the JSON value @"fixed_count"@
-  | Payment_method_options_card_installmentsPlanNonNullableTypeEnumRevolving -- ^ Represents the JSON value @"revolving"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_installmentsPlanNonNullableType
-    where {toJSON (Payment_method_options_card_installmentsPlanNonNullableTypeOther val) = val;
-           toJSON (Payment_method_options_card_installmentsPlanNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_card_installmentsPlanNonNullableTypeEnumBonus) = "bonus";
-           toJSON (Payment_method_options_card_installmentsPlanNonNullableTypeEnumFixed_count) = "fixed_count";
-           toJSON (Payment_method_options_card_installmentsPlanNonNullableTypeEnumRevolving) = "revolving"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_installmentsPlanNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bonus" -> Payment_method_options_card_installmentsPlanNonNullableTypeEnumBonus
-                                             | val GHC.Classes.== "fixed_count" -> Payment_method_options_card_installmentsPlanNonNullableTypeEnumFixed_count
-                                             | val GHC.Classes.== "revolving" -> Payment_method_options_card_installmentsPlanNonNullableTypeEnumRevolving
-                                             | GHC.Base.otherwise -> Payment_method_options_card_installmentsPlanNonNullableTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_installmentsPlan
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_method_options_card_installmentsPlanType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_installmentsPlan
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_options_card_installmentsPlan" (\obj -> ((GHC.Base.pure Payment_method_options_card_installmentsPlan GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Payment_method_options_card_installmentsPlan' with all required fields.
+mkPayment_method_options_card_installmentsPlan :: Payment_method_options_card_installmentsPlan
+mkPayment_method_options_card_installmentsPlan = Payment_method_options_card_installmentsPlan{payment_method_options_card_installmentsPlanCount = GHC.Maybe.Nothing,
+                                                                                              payment_method_options_card_installmentsPlanInterval = GHC.Maybe.Nothing,
+                                                                                              payment_method_options_card_installmentsPlanType = GHC.Maybe.Nothing}

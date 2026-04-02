@@ -52,7 +52,7 @@ data Fee = Fee {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , feeApplication :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , feeApplication :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   , feeCurrency :: Data.Text.Internal.Text
   -- | description: An arbitrary string attached to the object. Often useful for displaying to users.
@@ -60,7 +60,7 @@ data Fee = Fee {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , feeDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , feeDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Type of the fee, one of: \`application_fee\`, \`payment_method_passthrough_fee\`, \`stripe_fee\` or \`tax\`.
   -- 
   -- Constraints:

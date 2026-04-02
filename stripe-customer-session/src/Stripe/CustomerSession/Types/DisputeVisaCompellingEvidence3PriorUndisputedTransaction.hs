@@ -57,39 +57,39 @@ data Dispute_visa_compelling_evidence3_prior_undisputed_transaction = Dispute_vi
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_account_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_account_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_device_fingerprint: Unique identifier of the cardholder’s device derived from a combination of at least two hardware and software attributes. Must be at least 20 characters.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_device_fingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_device_fingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_device_id: Unique identifier of the cardholder’s device such as a device serial number (e.g., International Mobile Equipment Identity [IMEI]). Must be at least 15 characters.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_device_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_device_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_email_address: The email address of the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_email_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_email_address :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_purchase_ip: The IP address that the customer used when making the purchase.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_purchase_ip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionCustomer_purchase_ip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | product_description: A description of the product or service that was sold.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionProduct_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionProduct_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | shipping_address: The address to which a physical product was shipped. All fields are required for Visa Compelling Evidence 3.0 evidence submission.
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address :: (GHC.Maybe.Maybe Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_visa_compelling_evidence3_prior_undisputed_transaction
@@ -111,55 +111,55 @@ mkDispute_visa_compelling_evidence3_prior_undisputed_transaction dispute_visa_co
 -- | Defines the object schema located at @components.schemas.dispute_visa_compelling_evidence3_prior_undisputed_transaction.properties.shipping_address.anyOf@ in the specification.
 -- 
 -- The address to which a physical product was shipped. All fields are required for Visa Compelling Evidence 3.0 evidence submission.
-data Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable = Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable {
+data Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address = Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable" (\obj -> (((((GHC.Base.pure Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable' with all required fields.
-mkDispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable :: Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable
-mkDispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable = Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullable{dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                                                                        dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                                                                        dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                                                                        dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                                                                        dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                                                                        dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address" (\obj -> (((((GHC.Base.pure Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address' with all required fields.
+mkDispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address :: Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address
+mkDispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address = Dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_address{dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCity = GHC.Maybe.Nothing,
+                                                                                                                                                                  dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressCountry = GHC.Maybe.Nothing,
+                                                                                                                                                                  dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                                                                                  dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                                                                                  dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                                                                                  dispute_visa_compelling_evidence3_prior_undisputed_transactionShipping_addressState = GHC.Maybe.Nothing}

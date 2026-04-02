@@ -50,19 +50,19 @@ data Issuing_transaction_network_data = Issuing_transaction_network_data {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_network_dataAuthorization_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_network_dataAuthorization_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | processing_date: The date the transaction was processed by the card network. This can be different from the date the seller recorded the transaction depending on when the acquirer submits the transaction to the network.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_network_dataProcessing_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_network_dataProcessing_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: Unique identifier for the authorization assigned by the card network used to match subsequent messages, disputes, and transactions.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_network_dataTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_network_dataTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_network_data

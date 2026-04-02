@@ -46,21 +46,21 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_ach_credit_transfer = Source_type_ach_credit_transfer {
   -- | account_number
-  source_type_ach_credit_transferAccount_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_ach_credit_transferAccount_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name
-  , source_type_ach_credit_transferBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_ach_credit_transferBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint
-  , source_type_ach_credit_transferFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_ach_credit_transferFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_name
-  , source_type_ach_credit_transferRefund_account_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_ach_credit_transferRefund_account_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_type
-  , source_type_ach_credit_transferRefund_account_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_ach_credit_transferRefund_account_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_routing_number
-  , source_type_ach_credit_transferRefund_routing_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_ach_credit_transferRefund_routing_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | routing_number
-  , source_type_ach_credit_transferRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_ach_credit_transferRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | swift_code
-  , source_type_ach_credit_transferSwift_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_ach_credit_transferSwift_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_ach_credit_transfer

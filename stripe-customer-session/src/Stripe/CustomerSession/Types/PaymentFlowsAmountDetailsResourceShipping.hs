@@ -46,19 +46,19 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_amount_details_resource_shipping = Payment_flows_amount_details_resource_shipping {
   -- | amount: If a physical good is being shipped, the cost of shipping represented in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal). An integer greater than or equal to 0.
-  payment_flows_amount_details_resource_shippingAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_flows_amount_details_resource_shippingAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | from_postal_code: If a physical good is being shipped, the postal code of where it is being shipped from. At most 10 alphanumeric characters long, hyphens are allowed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_flows_amount_details_resource_shippingFrom_postal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_amount_details_resource_shippingFrom_postal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | to_postal_code: If a physical good is being shipped, the postal code of where it is being shipped to. At most 10 alphanumeric characters long, hyphens are allowed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_flows_amount_details_resource_shippingTo_postal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_amount_details_resource_shippingTo_postal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_amount_details_resource_shipping

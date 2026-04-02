@@ -48,11 +48,11 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.ConnectAccountReference
 -- 
 data Subscription_schedules_resource_default_settings_automatic_tax = Subscription_schedules_resource_default_settings_automatic_tax {
   -- | disabled_reason: If Stripe disabled automatic tax, this enum describes why.
-  subscription_schedules_resource_default_settings_automatic_taxDisabled_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullable))
+  subscription_schedules_resource_default_settings_automatic_taxDisabled_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | enabled: Whether Stripe automatically computes tax on invoices created during this phase.
   , subscription_schedules_resource_default_settings_automatic_taxEnabled :: GHC.Types.Bool
   -- | liability: The account that\'s liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
-  , subscription_schedules_resource_default_settings_automatic_taxLiability :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable))
+  , subscription_schedules_resource_default_settings_automatic_taxLiability :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settings_automatic_taxLiability)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings_automatic_tax
@@ -66,69 +66,36 @@ mkSubscription_schedules_resource_default_settings_automatic_tax :: GHC.Types.Bo
 mkSubscription_schedules_resource_default_settings_automatic_tax subscription_schedules_resource_default_settings_automatic_taxEnabled = Subscription_schedules_resource_default_settings_automatic_tax{subscription_schedules_resource_default_settings_automatic_taxDisabled_reason = GHC.Maybe.Nothing,
                                                                                                                                                                                                         subscription_schedules_resource_default_settings_automatic_taxEnabled = subscription_schedules_resource_default_settings_automatic_taxEnabled,
                                                                                                                                                                                                         subscription_schedules_resource_default_settings_automatic_taxLiability = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription_schedules_resource_default_settings_automatic_tax.properties.disabled_reason@ in the specification.
--- 
--- If Stripe disabled automatic tax, this enum describes why.
-data Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullable =
-   Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableEnumRequires_location_inputs -- ^ Represents the JSON value @"requires_location_inputs"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullable
-    where {toJSON (Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableOther val) = val;
-           toJSON (Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableEnumRequires_location_inputs) = "requires_location_inputs"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "requires_location_inputs" -> Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableEnumRequires_location_inputs
-                                             | GHC.Base.otherwise -> Subscription_schedules_resource_default_settings_automatic_taxDisabled_reasonNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.subscription_schedules_resource_default_settings_automatic_tax.properties.liability.anyOf@ in the specification.
 -- 
 -- The account that\\\'s liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
-data Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable = Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable {
+data Subscription_schedules_resource_default_settings_automatic_taxLiability = Subscription_schedules_resource_default_settings_automatic_taxLiability {
   -- | account: The connected account being referenced when \`type\` is \`account\`.
-  subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccount :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountVariants)
+  subscription_schedules_resource_default_settings_automatic_taxLiabilityAccount :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountVariants)
   -- | type: Type of the account referenced.
-  , subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType)
+  , subscription_schedules_resource_default_settings_automatic_taxLiabilityType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable" (\obj -> (GHC.Base.pure Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable' with all required fields.
-mkSubscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable :: Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable
-mkSubscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable = Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullable{subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccount = GHC.Maybe.Nothing,
-                                                                                                                                                                          subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings_automatic_taxLiability
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settings_automatic_taxLiabilityType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settings_automatic_taxLiability
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_default_settings_automatic_taxLiability" (\obj -> (GHC.Base.pure Subscription_schedules_resource_default_settings_automatic_taxLiability GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Subscription_schedules_resource_default_settings_automatic_taxLiability' with all required fields.
+mkSubscription_schedules_resource_default_settings_automatic_taxLiability :: Subscription_schedules_resource_default_settings_automatic_taxLiability
+mkSubscription_schedules_resource_default_settings_automatic_taxLiability = Subscription_schedules_resource_default_settings_automatic_taxLiability{subscription_schedules_resource_default_settings_automatic_taxLiabilityAccount = GHC.Maybe.Nothing,
+                                                                                                                                                    subscription_schedules_resource_default_settings_automatic_taxLiabilityType = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedules_resource_default_settings_automatic_tax.properties.liability.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The connected account being referenced when \`type\` is \`account\`.
-data Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountVariants =
-   Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountText Data.Text.Internal.Text
-  | Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountAccount Account
+data Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountVariants =
+   Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountText Data.Text.Internal.Text
+  | Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountVariants
-    where {toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountVariants
-    where {parseJSON val = case (Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountVariants
+    where {toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountVariants
+    where {parseJSON val = case (Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settings_automatic_taxLiabilityAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.subscription_schedules_resource_default_settings_automatic_tax.properties.liability.anyOf.properties.type@ in the specification.
--- 
--- Type of the account referenced.
-data Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType =
-   Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeEnumAccount -- ^ Represents the JSON value @"account"@
-  | Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeEnumSelf -- ^ Represents the JSON value @"self"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType
-    where {toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeOther val) = val;
-           toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeEnumAccount) = "account";
-           toJSON (Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeEnumSelf) = "self"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeEnumAccount
-                                             | val GHC.Classes.== "self" -> Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeEnumSelf
-                                             | GHC.Base.otherwise -> Subscription_schedules_resource_default_settings_automatic_taxLiabilityNonNullableTypeOther val)}

@@ -50,7 +50,7 @@ data Payment_method_details_payment_record_oxxo = Payment_method_details_payment
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_payment_record_oxxoNumber :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_payment_record_oxxoNumber :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_payment_record_oxxo

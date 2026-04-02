@@ -48,9 +48,9 @@ data Payment_flows_automatic_payment_methods_setup_intent = Payment_flows_automa
   -- | allow_redirects: Controls whether this SetupIntent will accept redirect-based payment methods.
   -- 
   -- Redirect-based payment methods may require your customer to be redirected to a payment method\'s app or site for authentication or additional steps. To [confirm](https:\/\/docs.stripe.com\/api\/setup_intents\/confirm) this SetupIntent, you may be required to provide a \`return_url\` to redirect customers back to your site after they authenticate or complete the setup.
-  payment_flows_automatic_payment_methods_setup_intentAllow_redirects :: (GHC.Maybe.Maybe Payment_flows_automatic_payment_methods_setup_intentAllow_redirects)
+  payment_flows_automatic_payment_methods_setup_intentAllow_redirects :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | enabled: Automatically calculates compatible payment methods
-  , payment_flows_automatic_payment_methods_setup_intentEnabled :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , payment_flows_automatic_payment_methods_setup_intentEnabled :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_automatic_payment_methods_setup_intent
@@ -62,23 +62,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_automatic_payment_meth
 mkPayment_flows_automatic_payment_methods_setup_intent :: Payment_flows_automatic_payment_methods_setup_intent
 mkPayment_flows_automatic_payment_methods_setup_intent = Payment_flows_automatic_payment_methods_setup_intent{payment_flows_automatic_payment_methods_setup_intentAllow_redirects = GHC.Maybe.Nothing,
                                                                                                               payment_flows_automatic_payment_methods_setup_intentEnabled = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_flows_automatic_payment_methods_setup_intent.properties.allow_redirects@ in the specification.
--- 
--- Controls whether this SetupIntent will accept redirect-based payment methods.
--- 
--- Redirect-based payment methods may require your customer to be redirected to a payment method\'s app or site for authentication or additional steps. To [confirm](https:\/\/docs.stripe.com\/api\/setup_intents\/confirm) this SetupIntent, you may be required to provide a \`return_url\` to redirect customers back to your site after they authenticate or complete the setup.
-data Payment_flows_automatic_payment_methods_setup_intentAllow_redirects =
-   Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsEnumAlways -- ^ Represents the JSON value @"always"@
-  | Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_automatic_payment_methods_setup_intentAllow_redirects
-    where {toJSON (Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsOther val) = val;
-           toJSON (Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsEnumAlways) = "always";
-           toJSON (Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_automatic_payment_methods_setup_intentAllow_redirects
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsEnumAlways
-                                             | val GHC.Classes.== "never" -> Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsEnumNever
-                                             | GHC.Base.otherwise -> Payment_flows_automatic_payment_methods_setup_intentAllow_redirectsOther val)}

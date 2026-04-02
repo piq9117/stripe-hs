@@ -50,19 +50,19 @@ data Issuing_authorization_network_data = Issuing_authorization_network_data {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_authorization_network_dataAcquiring_institution_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_authorization_network_dataAcquiring_institution_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | system_trace_audit_number: The System Trace Audit Number (STAN) is a 6-digit identifier assigned by the acquirer. Prefer \`network_data.transaction_id\` if present, unless you have special requirements.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_network_dataSystem_trace_audit_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_network_dataSystem_trace_audit_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: Unique identifier for the authorization assigned by the card network used to match subsequent messages, disputes, and transactions.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_network_dataTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_network_dataTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_network_data

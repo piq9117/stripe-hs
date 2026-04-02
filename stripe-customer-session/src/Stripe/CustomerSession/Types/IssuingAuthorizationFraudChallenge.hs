@@ -45,64 +45,23 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Issuing_authorization_fraud_challenge = Issuing_authorization_fraud_challenge {
+  -- | channel: The method by which the fraud challenge was delivered to the cardholder.
+  issuing_authorization_fraud_challengeChannel :: Data.Text.Internal.Text
   -- | status: The status of the fraud challenge.
-  issuing_authorization_fraud_challengeStatus :: Issuing_authorization_fraud_challengeStatus
+  , issuing_authorization_fraud_challengeStatus :: Data.Text.Internal.Text
   -- | undeliverable_reason: If the challenge is not deliverable, the reason why.
-  , issuing_authorization_fraud_challengeUndeliverable_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullable))
+  , issuing_authorization_fraud_challengeUndeliverable_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fraud_challenge
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["status" Data.Aeson.Types.ToJSON..= issuing_authorization_fraud_challengeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("undeliverable_reason" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_fraud_challengeUndeliverable_reason obj) : ["channel" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "sms"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["status" Data.Aeson.Types.ToJSON..= issuing_authorization_fraud_challengeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("undeliverable_reason" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_fraud_challengeUndeliverable_reason obj) : ["channel" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "sms"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["channel" Data.Aeson.Types.ToJSON..= issuing_authorization_fraud_challengeChannel obj] : ["status" Data.Aeson.Types.ToJSON..= issuing_authorization_fraud_challengeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("undeliverable_reason" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_fraud_challengeUndeliverable_reason obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["channel" Data.Aeson.Types.ToJSON..= issuing_authorization_fraud_challengeChannel obj] : ["status" Data.Aeson.Types.ToJSON..= issuing_authorization_fraud_challengeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("undeliverable_reason" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_fraud_challengeUndeliverable_reason obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_fraud_challenge
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_fraud_challenge" (\obj -> (GHC.Base.pure Issuing_authorization_fraud_challenge GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "undeliverable_reason"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_fraud_challenge" (\obj -> ((GHC.Base.pure Issuing_authorization_fraud_challenge GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "channel")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "undeliverable_reason"))}
 -- | Create a new 'Issuing_authorization_fraud_challenge' with all required fields.
-mkIssuing_authorization_fraud_challenge :: Issuing_authorization_fraud_challengeStatus -- ^ 'issuing_authorization_fraud_challengeStatus'
+mkIssuing_authorization_fraud_challenge :: Data.Text.Internal.Text -- ^ 'issuing_authorization_fraud_challengeChannel'
+  -> Data.Text.Internal.Text -- ^ 'issuing_authorization_fraud_challengeStatus'
   -> Issuing_authorization_fraud_challenge
-mkIssuing_authorization_fraud_challenge issuing_authorization_fraud_challengeStatus = Issuing_authorization_fraud_challenge{issuing_authorization_fraud_challengeStatus = issuing_authorization_fraud_challengeStatus,
-                                                                                                                            issuing_authorization_fraud_challengeUndeliverable_reason = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_fraud_challenge.properties.status@ in the specification.
--- 
--- The status of the fraud challenge.
-data Issuing_authorization_fraud_challengeStatus =
-   Issuing_authorization_fraud_challengeStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_fraud_challengeStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_fraud_challengeStatusEnumExpired -- ^ Represents the JSON value @"expired"@
-  | Issuing_authorization_fraud_challengeStatusEnumPending -- ^ Represents the JSON value @"pending"@
-  | Issuing_authorization_fraud_challengeStatusEnumRejected -- ^ Represents the JSON value @"rejected"@
-  | Issuing_authorization_fraud_challengeStatusEnumUndeliverable -- ^ Represents the JSON value @"undeliverable"@
-  | Issuing_authorization_fraud_challengeStatusEnumVerified -- ^ Represents the JSON value @"verified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fraud_challengeStatus
-    where {toJSON (Issuing_authorization_fraud_challengeStatusOther val) = val;
-           toJSON (Issuing_authorization_fraud_challengeStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_fraud_challengeStatusEnumExpired) = "expired";
-           toJSON (Issuing_authorization_fraud_challengeStatusEnumPending) = "pending";
-           toJSON (Issuing_authorization_fraud_challengeStatusEnumRejected) = "rejected";
-           toJSON (Issuing_authorization_fraud_challengeStatusEnumUndeliverable) = "undeliverable";
-           toJSON (Issuing_authorization_fraud_challengeStatusEnumVerified) = "verified"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_fraud_challengeStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "expired" -> Issuing_authorization_fraud_challengeStatusEnumExpired
-                                             | val GHC.Classes.== "pending" -> Issuing_authorization_fraud_challengeStatusEnumPending
-                                             | val GHC.Classes.== "rejected" -> Issuing_authorization_fraud_challengeStatusEnumRejected
-                                             | val GHC.Classes.== "undeliverable" -> Issuing_authorization_fraud_challengeStatusEnumUndeliverable
-                                             | val GHC.Classes.== "verified" -> Issuing_authorization_fraud_challengeStatusEnumVerified
-                                             | GHC.Base.otherwise -> Issuing_authorization_fraud_challengeStatusOther val)}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_fraud_challenge.properties.undeliverable_reason@ in the specification.
--- 
--- If the challenge is not deliverable, the reason why.
-data Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullable =
-   Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableEnumNo_phone_number -- ^ Represents the JSON value @"no_phone_number"@
-  | Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableEnumUnsupported_phone_number -- ^ Represents the JSON value @"unsupported_phone_number"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullable
-    where {toJSON (Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableOther val) = val;
-           toJSON (Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableEnumNo_phone_number) = "no_phone_number";
-           toJSON (Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableEnumUnsupported_phone_number) = "unsupported_phone_number"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "no_phone_number" -> Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableEnumNo_phone_number
-                                             | val GHC.Classes.== "unsupported_phone_number" -> Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableEnumUnsupported_phone_number
-                                             | GHC.Base.otherwise -> Issuing_authorization_fraud_challengeUndeliverable_reasonNonNullableOther val)}
+mkIssuing_authorization_fraud_challenge issuing_authorization_fraud_challengeChannel issuing_authorization_fraud_challengeStatus = Issuing_authorization_fraud_challenge{issuing_authorization_fraud_challengeChannel = issuing_authorization_fraud_challengeChannel,
+                                                                                                                                                                         issuing_authorization_fraud_challengeStatus = issuing_authorization_fraud_challengeStatus,
+                                                                                                                                                                         issuing_authorization_fraud_challengeUndeliverable_reason = GHC.Maybe.Nothing}

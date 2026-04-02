@@ -48,11 +48,11 @@ data Customer_session_resource_components_resource_customer_sheet_resource_featu
   -- | payment_method_allow_redisplay_filters: A list of [\`allow_redisplay\`](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-allow_redisplay) values that controls which saved payment methods the customer sheet displays by filtering to only show payment methods with an \`allow_redisplay\` value that is present in this list.
   -- 
   -- If not specified, defaults to [\"always\"]. In order to display all saved payment methods, specify [\"always\", \"limited\", \"unspecified\"].
-  customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filters :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullable]))
+  customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filters :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | payment_method_remove: Controls whether the customer sheet displays the option to remove a saved payment method.\"
   -- 
   -- Allowing buyers to remove their saved payment methods impacts subscriptions that depend on that payment method. Removing the payment method detaches the [\`customer\` object](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-customer) from that [PaymentMethod](https:\/\/docs.stripe.com\/api\/payment_methods).
-  , customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_remove :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullable))
+  , customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_remove :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_customer_sheet_resource_features
@@ -64,44 +64,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components
 mkCustomer_session_resource_components_resource_customer_sheet_resource_features :: Customer_session_resource_components_resource_customer_sheet_resource_features
 mkCustomer_session_resource_components_resource_customer_sheet_resource_features = Customer_session_resource_components_resource_customer_sheet_resource_features{customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filters = GHC.Maybe.Nothing,
                                                                                                                                                                   customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_remove = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.customer_session_resource_components_resource_customer_sheet_resource_features.properties.payment_method_allow_redisplay_filters.items@ in the specification.
--- 
--- 
-data Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullable =
-   Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumAlways -- ^ Represents the JSON value @"always"@
-  | Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumLimited -- ^ Represents the JSON value @"limited"@
-  | Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullable
-    where {toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableOther val) = val;
-           toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumAlways) = "always";
-           toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumLimited) = "limited";
-           toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumAlways
-                                             | val GHC.Classes.== "limited" -> Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumLimited
-                                             | val GHC.Classes.== "unspecified" -> Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableEnumUnspecified
-                                             | GHC.Base.otherwise -> Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_allow_redisplay_filtersNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.customer_session_resource_components_resource_customer_sheet_resource_features.properties.payment_method_remove@ in the specification.
--- 
--- Controls whether the customer sheet displays the option to remove a saved payment method.\"
--- 
--- Allowing buyers to remove their saved payment methods impacts subscriptions that depend on that payment method. Removing the payment method detaches the [\`customer\` object](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-customer) from that [PaymentMethod](https:\/\/docs.stripe.com\/api\/payment_methods).
-data Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullable =
-   Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableEnumDisabled -- ^ Represents the JSON value @"disabled"@
-  | Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableEnumEnabled -- ^ Represents the JSON value @"enabled"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullable
-    where {toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableOther val) = val;
-           toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableEnumDisabled) = "disabled";
-           toJSON (Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableEnumEnabled) = "enabled"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "disabled" -> Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableEnumDisabled
-                                             | val GHC.Classes.== "enabled" -> Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableEnumEnabled
-                                             | GHC.Base.otherwise -> Customer_session_resource_components_resource_customer_sheet_resource_featuresPayment_method_removeNonNullableOther val)}

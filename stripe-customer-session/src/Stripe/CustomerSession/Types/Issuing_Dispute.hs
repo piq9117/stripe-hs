@@ -54,7 +54,7 @@ data Issuing'dispute = Issuing'dispute {
   -- | amount: Disputed amount in the card\'s currency and in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal). Usually the amount of the \`transaction\`, but can differ (usually because of currency fluctuation).
   issuing'disputeAmount :: GHC.Types.Int
   -- | balance_transactions: List of balance transactions associated with the dispute.
-  , issuing'disputeBalance_transactions :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Balance_transaction]))
+  , issuing'disputeBalance_transactions :: (GHC.Maybe.Maybe [Balance_transaction])
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , issuing'disputeCreated :: GHC.Types.Int
   -- | currency: The currency the \`transaction\` was made in.
@@ -67,25 +67,27 @@ data Issuing'dispute = Issuing'dispute {
   -- 
   -- * Maximum length of 5000
   , issuing'disputeId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , issuing'disputeLivemode :: GHC.Types.Bool
   -- | loss_reason: The enum that describes the dispute loss outcome. If the dispute is not lost, this field will be absent. New enum values may be added in the future, so be sure to handle unknown values.
-  , issuing'disputeLoss_reason :: (GHC.Maybe.Maybe Issuing'disputeLoss_reason)
+  , issuing'disputeLoss_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , issuing'disputeMetadata :: Data.Aeson.Types.Internal.Object
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , issuing'disputeObject :: Data.Text.Internal.Text
   -- | status: Current status of the dispute.
-  , issuing'disputeStatus :: Issuing'disputeStatus
+  , issuing'disputeStatus :: Data.Text.Internal.Text
   -- | transaction: The transaction being disputed.
   , issuing'disputeTransaction :: Issuing'disputeTransactionVariants
   -- | treasury: [Treasury](https:\/\/docs.stripe.com\/api\/treasury) details related to this dispute if it was created on a [FinancialAccount](\/docs\/api\/treasury\/financial_accounts
-  , issuing'disputeTreasury :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing'disputeTreasuryNonNullable))
+  , issuing'disputeTreasury :: (GHC.Maybe.Maybe Issuing'disputeTreasury)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing'dispute
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= issuing'disputeAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transactions" Data.Aeson.Types.ToJSON..=)) (issuing'disputeBalance_transactions obj) : ["created" Data.Aeson.Types.ToJSON..= issuing'disputeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'disputeCurrency obj] : ["evidence" Data.Aeson.Types.ToJSON..= issuing'disputeEvidence obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'disputeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'disputeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("loss_reason" Data.Aeson.Types.ToJSON..=)) (issuing'disputeLoss_reason obj) : ["metadata" Data.Aeson.Types.ToJSON..= issuing'disputeMetadata obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'disputeStatus obj] : ["transaction" Data.Aeson.Types.ToJSON..= issuing'disputeTransaction obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasury obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.dispute"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= issuing'disputeAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transactions" Data.Aeson.Types.ToJSON..=)) (issuing'disputeBalance_transactions obj) : ["created" Data.Aeson.Types.ToJSON..= issuing'disputeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'disputeCurrency obj] : ["evidence" Data.Aeson.Types.ToJSON..= issuing'disputeEvidence obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'disputeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'disputeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("loss_reason" Data.Aeson.Types.ToJSON..=)) (issuing'disputeLoss_reason obj) : ["metadata" Data.Aeson.Types.ToJSON..= issuing'disputeMetadata obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'disputeStatus obj] : ["transaction" Data.Aeson.Types.ToJSON..= issuing'disputeTransaction obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasury obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.dispute"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= issuing'disputeAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transactions" Data.Aeson.Types.ToJSON..=)) (issuing'disputeBalance_transactions obj) : ["created" Data.Aeson.Types.ToJSON..= issuing'disputeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'disputeCurrency obj] : ["evidence" Data.Aeson.Types.ToJSON..= issuing'disputeEvidence obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'disputeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'disputeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("loss_reason" Data.Aeson.Types.ToJSON..=)) (issuing'disputeLoss_reason obj) : ["metadata" Data.Aeson.Types.ToJSON..= issuing'disputeMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= issuing'disputeObject obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'disputeStatus obj] : ["transaction" Data.Aeson.Types.ToJSON..= issuing'disputeTransaction obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasury obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= issuing'disputeAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transactions" Data.Aeson.Types.ToJSON..=)) (issuing'disputeBalance_transactions obj) : ["created" Data.Aeson.Types.ToJSON..= issuing'disputeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= issuing'disputeCurrency obj] : ["evidence" Data.Aeson.Types.ToJSON..= issuing'disputeEvidence obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'disputeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'disputeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("loss_reason" Data.Aeson.Types.ToJSON..=)) (issuing'disputeLoss_reason obj) : ["metadata" Data.Aeson.Types.ToJSON..= issuing'disputeMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= issuing'disputeObject obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'disputeStatus obj] : ["transaction" Data.Aeson.Types.ToJSON..= issuing'disputeTransaction obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasury obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing'dispute
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'dispute" (\obj -> (((((((((((GHC.Base.pure Issuing'dispute GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transactions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "evidence")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "loss_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "treasury"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'dispute" (\obj -> ((((((((((((GHC.Base.pure Issuing'dispute GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transactions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "evidence")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "loss_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "treasury"))}
 -- | Create a new 'Issuing'dispute' with all required fields.
 mkIssuing'dispute :: GHC.Types.Int -- ^ 'issuing'disputeAmount'
   -> GHC.Types.Int -- ^ 'issuing'disputeCreated'
@@ -94,120 +96,23 @@ mkIssuing'dispute :: GHC.Types.Int -- ^ 'issuing'disputeAmount'
   -> Data.Text.Internal.Text -- ^ 'issuing'disputeId'
   -> GHC.Types.Bool -- ^ 'issuing'disputeLivemode'
   -> Data.Aeson.Types.Internal.Object -- ^ 'issuing'disputeMetadata'
-  -> Issuing'disputeStatus -- ^ 'issuing'disputeStatus'
+  -> Data.Text.Internal.Text -- ^ 'issuing'disputeObject'
+  -> Data.Text.Internal.Text -- ^ 'issuing'disputeStatus'
   -> Issuing'disputeTransactionVariants -- ^ 'issuing'disputeTransaction'
   -> Issuing'dispute
-mkIssuing'dispute issuing'disputeAmount issuing'disputeCreated issuing'disputeCurrency issuing'disputeEvidence issuing'disputeId issuing'disputeLivemode issuing'disputeMetadata issuing'disputeStatus issuing'disputeTransaction = Issuing'dispute{issuing'disputeAmount = issuing'disputeAmount,
-                                                                                                                                                                                                                                                    issuing'disputeBalance_transactions = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                    issuing'disputeCreated = issuing'disputeCreated,
-                                                                                                                                                                                                                                                    issuing'disputeCurrency = issuing'disputeCurrency,
-                                                                                                                                                                                                                                                    issuing'disputeEvidence = issuing'disputeEvidence,
-                                                                                                                                                                                                                                                    issuing'disputeId = issuing'disputeId,
-                                                                                                                                                                                                                                                    issuing'disputeLivemode = issuing'disputeLivemode,
-                                                                                                                                                                                                                                                    issuing'disputeLoss_reason = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                    issuing'disputeMetadata = issuing'disputeMetadata,
-                                                                                                                                                                                                                                                    issuing'disputeStatus = issuing'disputeStatus,
-                                                                                                                                                                                                                                                    issuing'disputeTransaction = issuing'disputeTransaction,
-                                                                                                                                                                                                                                                    issuing'disputeTreasury = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing.dispute.properties.loss_reason@ in the specification.
--- 
--- The enum that describes the dispute loss outcome. If the dispute is not lost, this field will be absent. New enum values may be added in the future, so be sure to handle unknown values.
-data Issuing'disputeLoss_reason =
-   Issuing'disputeLoss_reasonOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'disputeLoss_reasonTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'disputeLoss_reasonEnumCardholder_authentication_issuer_liability -- ^ Represents the JSON value @"cardholder_authentication_issuer_liability"@
-  | Issuing'disputeLoss_reasonEnumEci5_token_transaction_with_tavv -- ^ Represents the JSON value @"eci5_token_transaction_with_tavv"@
-  | Issuing'disputeLoss_reasonEnumExcess_disputes_in_timeframe -- ^ Represents the JSON value @"excess_disputes_in_timeframe"@
-  | Issuing'disputeLoss_reasonEnumHas_not_met_the_minimum_dispute_amount_requirements -- ^ Represents the JSON value @"has_not_met_the_minimum_dispute_amount_requirements"@
-  | Issuing'disputeLoss_reasonEnumInvalid_duplicate_dispute -- ^ Represents the JSON value @"invalid_duplicate_dispute"@
-  | Issuing'disputeLoss_reasonEnumInvalid_incorrect_amount_dispute -- ^ Represents the JSON value @"invalid_incorrect_amount_dispute"@
-  | Issuing'disputeLoss_reasonEnumInvalid_no_authorization -- ^ Represents the JSON value @"invalid_no_authorization"@
-  | Issuing'disputeLoss_reasonEnumInvalid_use_of_disputes -- ^ Represents the JSON value @"invalid_use_of_disputes"@
-  | Issuing'disputeLoss_reasonEnumMerchandise_delivered_or_shipped -- ^ Represents the JSON value @"merchandise_delivered_or_shipped"@
-  | Issuing'disputeLoss_reasonEnumMerchandise_or_service_as_described -- ^ Represents the JSON value @"merchandise_or_service_as_described"@
-  | Issuing'disputeLoss_reasonEnumNot_cancelled -- ^ Represents the JSON value @"not_cancelled"@
-  | Issuing'disputeLoss_reasonEnumOther -- ^ Represents the JSON value @"other"@
-  | Issuing'disputeLoss_reasonEnumRefund_issued -- ^ Represents the JSON value @"refund_issued"@
-  | Issuing'disputeLoss_reasonEnumSubmitted_beyond_allowable_time_limit -- ^ Represents the JSON value @"submitted_beyond_allowable_time_limit"@
-  | Issuing'disputeLoss_reasonEnumTransaction_3ds_required -- ^ Represents the JSON value @"transaction_3ds_required"@
-  | Issuing'disputeLoss_reasonEnumTransaction_approved_after_prior_fraud_dispute -- ^ Represents the JSON value @"transaction_approved_after_prior_fraud_dispute"@
-  | Issuing'disputeLoss_reasonEnumTransaction_authorized -- ^ Represents the JSON value @"transaction_authorized"@
-  | Issuing'disputeLoss_reasonEnumTransaction_electronically_read -- ^ Represents the JSON value @"transaction_electronically_read"@
-  | Issuing'disputeLoss_reasonEnumTransaction_qualifies_for_visa_easy_payment_service -- ^ Represents the JSON value @"transaction_qualifies_for_visa_easy_payment_service"@
-  | Issuing'disputeLoss_reasonEnumTransaction_unattended -- ^ Represents the JSON value @"transaction_unattended"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'disputeLoss_reason
-    where {toJSON (Issuing'disputeLoss_reasonOther val) = val;
-           toJSON (Issuing'disputeLoss_reasonTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'disputeLoss_reasonEnumCardholder_authentication_issuer_liability) = "cardholder_authentication_issuer_liability";
-           toJSON (Issuing'disputeLoss_reasonEnumEci5_token_transaction_with_tavv) = "eci5_token_transaction_with_tavv";
-           toJSON (Issuing'disputeLoss_reasonEnumExcess_disputes_in_timeframe) = "excess_disputes_in_timeframe";
-           toJSON (Issuing'disputeLoss_reasonEnumHas_not_met_the_minimum_dispute_amount_requirements) = "has_not_met_the_minimum_dispute_amount_requirements";
-           toJSON (Issuing'disputeLoss_reasonEnumInvalid_duplicate_dispute) = "invalid_duplicate_dispute";
-           toJSON (Issuing'disputeLoss_reasonEnumInvalid_incorrect_amount_dispute) = "invalid_incorrect_amount_dispute";
-           toJSON (Issuing'disputeLoss_reasonEnumInvalid_no_authorization) = "invalid_no_authorization";
-           toJSON (Issuing'disputeLoss_reasonEnumInvalid_use_of_disputes) = "invalid_use_of_disputes";
-           toJSON (Issuing'disputeLoss_reasonEnumMerchandise_delivered_or_shipped) = "merchandise_delivered_or_shipped";
-           toJSON (Issuing'disputeLoss_reasonEnumMerchandise_or_service_as_described) = "merchandise_or_service_as_described";
-           toJSON (Issuing'disputeLoss_reasonEnumNot_cancelled) = "not_cancelled";
-           toJSON (Issuing'disputeLoss_reasonEnumOther) = "other";
-           toJSON (Issuing'disputeLoss_reasonEnumRefund_issued) = "refund_issued";
-           toJSON (Issuing'disputeLoss_reasonEnumSubmitted_beyond_allowable_time_limit) = "submitted_beyond_allowable_time_limit";
-           toJSON (Issuing'disputeLoss_reasonEnumTransaction_3ds_required) = "transaction_3ds_required";
-           toJSON (Issuing'disputeLoss_reasonEnumTransaction_approved_after_prior_fraud_dispute) = "transaction_approved_after_prior_fraud_dispute";
-           toJSON (Issuing'disputeLoss_reasonEnumTransaction_authorized) = "transaction_authorized";
-           toJSON (Issuing'disputeLoss_reasonEnumTransaction_electronically_read) = "transaction_electronically_read";
-           toJSON (Issuing'disputeLoss_reasonEnumTransaction_qualifies_for_visa_easy_payment_service) = "transaction_qualifies_for_visa_easy_payment_service";
-           toJSON (Issuing'disputeLoss_reasonEnumTransaction_unattended) = "transaction_unattended"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'disputeLoss_reason
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cardholder_authentication_issuer_liability" -> Issuing'disputeLoss_reasonEnumCardholder_authentication_issuer_liability
-                                             | val GHC.Classes.== "eci5_token_transaction_with_tavv" -> Issuing'disputeLoss_reasonEnumEci5_token_transaction_with_tavv
-                                             | val GHC.Classes.== "excess_disputes_in_timeframe" -> Issuing'disputeLoss_reasonEnumExcess_disputes_in_timeframe
-                                             | val GHC.Classes.== "has_not_met_the_minimum_dispute_amount_requirements" -> Issuing'disputeLoss_reasonEnumHas_not_met_the_minimum_dispute_amount_requirements
-                                             | val GHC.Classes.== "invalid_duplicate_dispute" -> Issuing'disputeLoss_reasonEnumInvalid_duplicate_dispute
-                                             | val GHC.Classes.== "invalid_incorrect_amount_dispute" -> Issuing'disputeLoss_reasonEnumInvalid_incorrect_amount_dispute
-                                             | val GHC.Classes.== "invalid_no_authorization" -> Issuing'disputeLoss_reasonEnumInvalid_no_authorization
-                                             | val GHC.Classes.== "invalid_use_of_disputes" -> Issuing'disputeLoss_reasonEnumInvalid_use_of_disputes
-                                             | val GHC.Classes.== "merchandise_delivered_or_shipped" -> Issuing'disputeLoss_reasonEnumMerchandise_delivered_or_shipped
-                                             | val GHC.Classes.== "merchandise_or_service_as_described" -> Issuing'disputeLoss_reasonEnumMerchandise_or_service_as_described
-                                             | val GHC.Classes.== "not_cancelled" -> Issuing'disputeLoss_reasonEnumNot_cancelled
-                                             | val GHC.Classes.== "other" -> Issuing'disputeLoss_reasonEnumOther
-                                             | val GHC.Classes.== "refund_issued" -> Issuing'disputeLoss_reasonEnumRefund_issued
-                                             | val GHC.Classes.== "submitted_beyond_allowable_time_limit" -> Issuing'disputeLoss_reasonEnumSubmitted_beyond_allowable_time_limit
-                                             | val GHC.Classes.== "transaction_3ds_required" -> Issuing'disputeLoss_reasonEnumTransaction_3ds_required
-                                             | val GHC.Classes.== "transaction_approved_after_prior_fraud_dispute" -> Issuing'disputeLoss_reasonEnumTransaction_approved_after_prior_fraud_dispute
-                                             | val GHC.Classes.== "transaction_authorized" -> Issuing'disputeLoss_reasonEnumTransaction_authorized
-                                             | val GHC.Classes.== "transaction_electronically_read" -> Issuing'disputeLoss_reasonEnumTransaction_electronically_read
-                                             | val GHC.Classes.== "transaction_qualifies_for_visa_easy_payment_service" -> Issuing'disputeLoss_reasonEnumTransaction_qualifies_for_visa_easy_payment_service
-                                             | val GHC.Classes.== "transaction_unattended" -> Issuing'disputeLoss_reasonEnumTransaction_unattended
-                                             | GHC.Base.otherwise -> Issuing'disputeLoss_reasonOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.dispute.properties.status@ in the specification.
--- 
--- Current status of the dispute.
-data Issuing'disputeStatus =
-   Issuing'disputeStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'disputeStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'disputeStatusEnumExpired -- ^ Represents the JSON value @"expired"@
-  | Issuing'disputeStatusEnumLost -- ^ Represents the JSON value @"lost"@
-  | Issuing'disputeStatusEnumSubmitted -- ^ Represents the JSON value @"submitted"@
-  | Issuing'disputeStatusEnumUnsubmitted -- ^ Represents the JSON value @"unsubmitted"@
-  | Issuing'disputeStatusEnumWon -- ^ Represents the JSON value @"won"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'disputeStatus
-    where {toJSON (Issuing'disputeStatusOther val) = val;
-           toJSON (Issuing'disputeStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'disputeStatusEnumExpired) = "expired";
-           toJSON (Issuing'disputeStatusEnumLost) = "lost";
-           toJSON (Issuing'disputeStatusEnumSubmitted) = "submitted";
-           toJSON (Issuing'disputeStatusEnumUnsubmitted) = "unsubmitted";
-           toJSON (Issuing'disputeStatusEnumWon) = "won"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'disputeStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "expired" -> Issuing'disputeStatusEnumExpired
-                                             | val GHC.Classes.== "lost" -> Issuing'disputeStatusEnumLost
-                                             | val GHC.Classes.== "submitted" -> Issuing'disputeStatusEnumSubmitted
-                                             | val GHC.Classes.== "unsubmitted" -> Issuing'disputeStatusEnumUnsubmitted
-                                             | val GHC.Classes.== "won" -> Issuing'disputeStatusEnumWon
-                                             | GHC.Base.otherwise -> Issuing'disputeStatusOther val)}
+mkIssuing'dispute issuing'disputeAmount issuing'disputeCreated issuing'disputeCurrency issuing'disputeEvidence issuing'disputeId issuing'disputeLivemode issuing'disputeMetadata issuing'disputeObject issuing'disputeStatus issuing'disputeTransaction = Issuing'dispute{issuing'disputeAmount = issuing'disputeAmount,
+                                                                                                                                                                                                                                                                          issuing'disputeBalance_transactions = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                          issuing'disputeCreated = issuing'disputeCreated,
+                                                                                                                                                                                                                                                                          issuing'disputeCurrency = issuing'disputeCurrency,
+                                                                                                                                                                                                                                                                          issuing'disputeEvidence = issuing'disputeEvidence,
+                                                                                                                                                                                                                                                                          issuing'disputeId = issuing'disputeId,
+                                                                                                                                                                                                                                                                          issuing'disputeLivemode = issuing'disputeLivemode,
+                                                                                                                                                                                                                                                                          issuing'disputeLoss_reason = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                          issuing'disputeMetadata = issuing'disputeMetadata,
+                                                                                                                                                                                                                                                                          issuing'disputeObject = issuing'disputeObject,
+                                                                                                                                                                                                                                                                          issuing'disputeStatus = issuing'disputeStatus,
+                                                                                                                                                                                                                                                                          issuing'disputeTransaction = issuing'disputeTransaction,
+                                                                                                                                                                                                                                                                          issuing'disputeTreasury = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.issuing.dispute.properties.transaction.anyOf@ in the specification.
 -- 
 -- The transaction being disputed.
@@ -225,27 +130,27 @@ instance Data.Aeson.Types.FromJSON.FromJSON Issuing'disputeTransactionVariants
 -- | Defines the object schema located at @components.schemas.issuing.dispute.properties.treasury.anyOf@ in the specification.
 -- 
 -- [Treasury](https:\\\/\\\/docs.stripe.com\\\/api\\\/treasury) details related to this dispute if it was created on a [FinancialAccount](\\\/docs\\\/api\\\/treasury\\\/financial_accounts
-data Issuing'disputeTreasuryNonNullable = Issuing'disputeTreasuryNonNullable {
+data Issuing'disputeTreasury = Issuing'disputeTreasury {
   -- | debit_reversal: The Treasury [DebitReversal](https:\/\/docs.stripe.com\/api\/treasury\/debit_reversals) representing this Issuing dispute
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing'disputeTreasuryNonNullableDebit_reversal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing'disputeTreasuryDebit_reversal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | received_debit: The Treasury [ReceivedDebit](https:\/\/docs.stripe.com\/api\/treasury\/received_debits) that is being disputed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing'disputeTreasuryNonNullableReceived_debit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , issuing'disputeTreasuryReceived_debit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'disputeTreasuryNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("debit_reversal" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryNonNullableDebit_reversal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("received_debit" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryNonNullableReceived_debit obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("debit_reversal" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryNonNullableDebit_reversal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("received_debit" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryNonNullableReceived_debit obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'disputeTreasuryNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'disputeTreasuryNonNullable" (\obj -> (GHC.Base.pure Issuing'disputeTreasuryNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "debit_reversal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "received_debit"))}
--- | Create a new 'Issuing'disputeTreasuryNonNullable' with all required fields.
-mkIssuing'disputeTreasuryNonNullable :: Issuing'disputeTreasuryNonNullable
-mkIssuing'disputeTreasuryNonNullable = Issuing'disputeTreasuryNonNullable{issuing'disputeTreasuryNonNullableDebit_reversal = GHC.Maybe.Nothing,
-                                                                          issuing'disputeTreasuryNonNullableReceived_debit = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'disputeTreasury
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("debit_reversal" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryDebit_reversal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("received_debit" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryReceived_debit obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("debit_reversal" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryDebit_reversal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("received_debit" Data.Aeson.Types.ToJSON..=)) (issuing'disputeTreasuryReceived_debit obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'disputeTreasury
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'disputeTreasury" (\obj -> (GHC.Base.pure Issuing'disputeTreasury GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "debit_reversal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "received_debit"))}
+-- | Create a new 'Issuing'disputeTreasury' with all required fields.
+mkIssuing'disputeTreasury :: Issuing'disputeTreasury
+mkIssuing'disputeTreasury = Issuing'disputeTreasury{issuing'disputeTreasuryDebit_reversal = GHC.Maybe.Nothing,
+                                                    issuing'disputeTreasuryReceived_debit = GHC.Maybe.Nothing}

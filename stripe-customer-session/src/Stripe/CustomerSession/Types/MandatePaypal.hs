@@ -50,13 +50,13 @@ data Mandate_paypal = Mandate_paypal {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  mandate_paypalBilling_agreement_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  mandate_paypalBilling_agreement_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payer_id: PayPal account PayerID. This identifier uniquely identifies the PayPal customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , mandate_paypalPayer_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , mandate_paypalPayer_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Mandate_paypal

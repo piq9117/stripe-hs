@@ -50,19 +50,19 @@ data Payment_method_details_swish = Payment_method_details_swish {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_swishFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_swishFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_reference: Payer bank reference number for the payment
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_swishPayment_reference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_swishPayment_reference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_phone_last4: The last four digits of the Swish account phone number
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_swishVerified_phone_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_swishVerified_phone_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_swish

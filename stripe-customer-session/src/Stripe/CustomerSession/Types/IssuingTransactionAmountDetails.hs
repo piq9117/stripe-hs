@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_transaction_amount_details = Issuing_transaction_amount_details {
   -- | atm_fee: The fee charged by the ATM for the cash withdrawal.
-  issuing_transaction_amount_detailsAtm_fee :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_transaction_amount_detailsAtm_fee :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | cashback_amount: The amount of cash requested by the cardholder.
-  , issuing_transaction_amount_detailsCashback_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_transaction_amount_detailsCashback_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_amount_details

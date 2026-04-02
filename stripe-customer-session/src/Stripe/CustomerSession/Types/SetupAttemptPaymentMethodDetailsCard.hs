@@ -53,19 +53,19 @@ data Setup_attempt_payment_method_details_card = Setup_attempt_payment_method_de
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_attempt_payment_method_details_cardBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_attempt_payment_method_details_cardBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | checks: Check results by Card networks on Card address and CVC at the time of authorization
-  , setup_attempt_payment_method_details_cardChecks :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardChecksNonNullable))
+  , setup_attempt_payment_method_details_cardChecks :: (GHC.Maybe.Maybe Setup_attempt_payment_method_details_cardChecks)
   -- | country: Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you\'ve collected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
-  , setup_attempt_payment_method_details_cardExp_month :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_attempt_payment_method_details_cardExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year: Four-digit number representing the card\'s expiration year.
-  , setup_attempt_payment_method_details_cardExp_year :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_attempt_payment_method_details_cardExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | fingerprint: Uniquely identifies this particular card number. You can use this attribute to check whether two customers who’ve signed up with you are using the same card number, for example. For payment methods that tokenize card information (Apple Pay, Google Pay), the tokenized number might be provided instead of the underlying card number.
   -- 
   -- *As of May 1, 2021, card fingerprint in India for Connect changed to allow two fingerprints for the same card---one for India and one for the rest of the world.*
@@ -73,29 +73,29 @@ data Setup_attempt_payment_method_details_card = Setup_attempt_payment_method_de
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding: Card funding type. Can be \`credit\`, \`debit\`, \`prepaid\`, or \`unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardFunding :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: The last four digits of the card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network: Identifies which network this charge was processed on. Can be \`amex\`, \`cartes_bancaires\`, \`diners\`, \`discover\`, \`eftpos_au\`, \`interac\`, \`jcb\`, \`link\`, \`mastercard\`, \`unionpay\`, \`visa\`, or \`unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardNetwork :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | three_d_secure: Populated if this authorization used 3D Secure authentication.
-  , setup_attempt_payment_method_details_cardThree_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardThree_d_secureNonNullable))
+  , setup_attempt_payment_method_details_cardThree_d_secure :: (GHC.Maybe.Maybe Setup_attempt_payment_method_details_cardThree_d_secure)
   -- | wallet: If this Card is part of a card wallet, this contains the details of the card wallet.
-  , setup_attempt_payment_method_details_cardWallet :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardWalletNonNullable))
+  , setup_attempt_payment_method_details_cardWallet :: (GHC.Maybe.Maybe Setup_attempt_payment_method_details_cardWallet)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_card
@@ -119,254 +119,95 @@ mkSetup_attempt_payment_method_details_card = Setup_attempt_payment_method_detai
 -- | Defines the object schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.checks.anyOf@ in the specification.
 -- 
 -- Check results by Card networks on Card address and CVC at the time of authorization
-data Setup_attempt_payment_method_details_cardChecksNonNullable = Setup_attempt_payment_method_details_cardChecksNonNullable {
+data Setup_attempt_payment_method_details_cardChecks = Setup_attempt_payment_method_details_cardChecks {
   -- | address_line1_check: If a address line1 was provided, results of the check, one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_attempt_payment_method_details_cardChecksNonNullableAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_attempt_payment_method_details_cardChecksAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_postal_code_check: If a address postal code was provided, results of the check, one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardChecksNonNullableAddress_postal_code_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardChecksAddress_postal_code_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cvc_check: If a CVC was provided, results of the check, one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardChecksNonNullableCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardChecksCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardChecksNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksNonNullableAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_postal_code_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksNonNullableAddress_postal_code_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksNonNullableCvc_check obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksNonNullableAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_postal_code_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksNonNullableAddress_postal_code_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksNonNullableCvc_check obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardChecksNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_attempt_payment_method_details_cardChecksNonNullable" (\obj -> ((GHC.Base.pure Setup_attempt_payment_method_details_cardChecksNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_postal_code_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check"))}
--- | Create a new 'Setup_attempt_payment_method_details_cardChecksNonNullable' with all required fields.
-mkSetup_attempt_payment_method_details_cardChecksNonNullable :: Setup_attempt_payment_method_details_cardChecksNonNullable
-mkSetup_attempt_payment_method_details_cardChecksNonNullable = Setup_attempt_payment_method_details_cardChecksNonNullable{setup_attempt_payment_method_details_cardChecksNonNullableAddress_line1_check = GHC.Maybe.Nothing,
-                                                                                                                          setup_attempt_payment_method_details_cardChecksNonNullableAddress_postal_code_check = GHC.Maybe.Nothing,
-                                                                                                                          setup_attempt_payment_method_details_cardChecksNonNullableCvc_check = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardChecks
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_postal_code_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksAddress_postal_code_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksCvc_check obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_postal_code_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksAddress_postal_code_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardChecksCvc_check obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardChecks
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_attempt_payment_method_details_cardChecks" (\obj -> ((GHC.Base.pure Setup_attempt_payment_method_details_cardChecks GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_postal_code_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check"))}
+-- | Create a new 'Setup_attempt_payment_method_details_cardChecks' with all required fields.
+mkSetup_attempt_payment_method_details_cardChecks :: Setup_attempt_payment_method_details_cardChecks
+mkSetup_attempt_payment_method_details_cardChecks = Setup_attempt_payment_method_details_cardChecks{setup_attempt_payment_method_details_cardChecksAddress_line1_check = GHC.Maybe.Nothing,
+                                                                                                    setup_attempt_payment_method_details_cardChecksAddress_postal_code_check = GHC.Maybe.Nothing,
+                                                                                                    setup_attempt_payment_method_details_cardChecksCvc_check = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.three_d_secure.anyOf@ in the specification.
 -- 
 -- Populated if this authorization used 3D Secure authentication.
-data Setup_attempt_payment_method_details_cardThree_d_secureNonNullable = Setup_attempt_payment_method_details_cardThree_d_secureNonNullable {
+data Setup_attempt_payment_method_details_cardThree_d_secure = Setup_attempt_payment_method_details_cardThree_d_secure {
   -- | authentication_flow: For authenticated transactions: how the customer was authenticated by
   -- the issuing bank.
-  setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flow :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullable))
+  setup_attempt_payment_method_details_cardThree_d_secureAuthentication_flow :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | electronic_commerce_indicator: The Electronic Commerce Indicator (ECI). A protocol-level field
   -- indicating what degree of authentication was performed.
-  , setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicator :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullable))
+  , setup_attempt_payment_method_details_cardThree_d_secureElectronic_commerce_indicator :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | result: Indicates the outcome of 3D Secure authentication.
-  , setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullable))
+  , setup_attempt_payment_method_details_cardThree_d_secureResult :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | result_reason: Additional information about why 3D Secure succeeded or failed based
   -- on the \`result\`.
-  , setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullable))
+  , setup_attempt_payment_method_details_cardThree_d_secureResult_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: The 3D Secure 1 XID or 3D Secure 2 Directory Server Transaction ID
   -- (dsTransId) for this payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_attempt_payment_method_details_cardThree_d_secureNonNullableTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_attempt_payment_method_details_cardThree_d_secureTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | version: The version of 3D Secure that was used.
-  , setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersion :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullable))
+  , setup_attempt_payment_method_details_cardThree_d_secureVersion :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("authentication_flow" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("electronic_commerce_indicator" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicator obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result_reason" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transaction_id" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableTransaction_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersion obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("authentication_flow" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("electronic_commerce_indicator" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicator obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result_reason" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transaction_id" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableTransaction_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersion obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_attempt_payment_method_details_cardThree_d_secureNonNullable" (\obj -> (((((GHC.Base.pure Setup_attempt_payment_method_details_cardThree_d_secureNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "authentication_flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "electronic_commerce_indicator")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "result")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "result_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transaction_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "version"))}
--- | Create a new 'Setup_attempt_payment_method_details_cardThree_d_secureNonNullable' with all required fields.
-mkSetup_attempt_payment_method_details_cardThree_d_secureNonNullable :: Setup_attempt_payment_method_details_cardThree_d_secureNonNullable
-mkSetup_attempt_payment_method_details_cardThree_d_secureNonNullable = Setup_attempt_payment_method_details_cardThree_d_secureNonNullable{setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flow = GHC.Maybe.Nothing,
-                                                                                                                                          setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicator = GHC.Maybe.Nothing,
-                                                                                                                                          setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult = GHC.Maybe.Nothing,
-                                                                                                                                          setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reason = GHC.Maybe.Nothing,
-                                                                                                                                          setup_attempt_payment_method_details_cardThree_d_secureNonNullableTransaction_id = GHC.Maybe.Nothing,
-                                                                                                                                          setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersion = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.three_d_secure.anyOf.properties.authentication_flow@ in the specification.
--- 
--- For authenticated transactions: how the customer was authenticated by
--- the issuing bank.
-data Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullable =
-   Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableEnumFrictionless -- ^ Represents the JSON value @"frictionless"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullable
-    where {toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableOther val) = val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableEnumChallenge) = "challenge";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableEnumFrictionless) = "frictionless"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "challenge" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableEnumChallenge
-                                             | val GHC.Classes.== "frictionless" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableEnumFrictionless
-                                             | GHC.Base.otherwise -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableAuthentication_flowNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.three_d_secure.anyOf.properties.electronic_commerce_indicator@ in the specification.
--- 
--- The Electronic Commerce Indicator (ECI). A protocol-level field
--- indicating what degree of authentication was performed.
-data Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullable =
-   Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum01 -- ^ Represents the JSON value @"01"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum02 -- ^ Represents the JSON value @"02"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum05 -- ^ Represents the JSON value @"05"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum06 -- ^ Represents the JSON value @"06"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum07 -- ^ Represents the JSON value @"07"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullable
-    where {toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableOther val) = val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum01) = "01";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum02) = "02";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum05) = "05";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum06) = "06";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum07) = "07"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "01" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum01
-                                             | val GHC.Classes.== "02" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum02
-                                             | val GHC.Classes.== "05" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum05
-                                             | val GHC.Classes.== "06" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum06
-                                             | val GHC.Classes.== "07" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableEnum07
-                                             | GHC.Base.otherwise -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableElectronic_commerce_indicatorNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.three_d_secure.anyOf.properties.result@ in the specification.
--- 
--- Indicates the outcome of 3D Secure authentication.
-data Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullable =
-   Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumAttempt_acknowledged -- ^ Represents the JSON value @"attempt_acknowledged"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumAuthenticated -- ^ Represents the JSON value @"authenticated"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumExempted -- ^ Represents the JSON value @"exempted"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumFailed -- ^ Represents the JSON value @"failed"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumNot_supported -- ^ Represents the JSON value @"not_supported"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumProcessing_error -- ^ Represents the JSON value @"processing_error"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullable
-    where {toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableOther val) = val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumAttempt_acknowledged) = "attempt_acknowledged";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumAuthenticated) = "authenticated";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumExempted) = "exempted";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumFailed) = "failed";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumNot_supported) = "not_supported";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumProcessing_error) = "processing_error"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "attempt_acknowledged" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumAttempt_acknowledged
-                                             | val GHC.Classes.== "authenticated" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumAuthenticated
-                                             | val GHC.Classes.== "exempted" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumExempted
-                                             | val GHC.Classes.== "failed" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumFailed
-                                             | val GHC.Classes.== "not_supported" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumNot_supported
-                                             | val GHC.Classes.== "processing_error" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableEnumProcessing_error
-                                             | GHC.Base.otherwise -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResultNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.three_d_secure.anyOf.properties.result_reason@ in the specification.
--- 
--- Additional information about why 3D Secure succeeded or failed based
--- on the \`result\`.
-data Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullable =
-   Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumAbandoned -- ^ Represents the JSON value @"abandoned"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumBypassed -- ^ Represents the JSON value @"bypassed"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumCanceled -- ^ Represents the JSON value @"canceled"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumCard_not_enrolled -- ^ Represents the JSON value @"card_not_enrolled"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumNetwork_not_supported -- ^ Represents the JSON value @"network_not_supported"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumProtocol_error -- ^ Represents the JSON value @"protocol_error"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumRejected -- ^ Represents the JSON value @"rejected"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullable
-    where {toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableOther val) = val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumAbandoned) = "abandoned";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumBypassed) = "bypassed";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumCanceled) = "canceled";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumCard_not_enrolled) = "card_not_enrolled";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumNetwork_not_supported) = "network_not_supported";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumProtocol_error) = "protocol_error";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumRejected) = "rejected"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "abandoned" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumAbandoned
-                                             | val GHC.Classes.== "bypassed" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumBypassed
-                                             | val GHC.Classes.== "canceled" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumCanceled
-                                             | val GHC.Classes.== "card_not_enrolled" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumCard_not_enrolled
-                                             | val GHC.Classes.== "network_not_supported" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumNetwork_not_supported
-                                             | val GHC.Classes.== "protocol_error" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumProtocol_error
-                                             | val GHC.Classes.== "rejected" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableEnumRejected
-                                             | GHC.Base.otherwise -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableResult_reasonNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.three_d_secure.anyOf.properties.version@ in the specification.
--- 
--- The version of 3D Secure that was used.
-data Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullable =
-   Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum1'0'2 -- ^ Represents the JSON value @"1.0.2"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'1'0 -- ^ Represents the JSON value @"2.1.0"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'2'0 -- ^ Represents the JSON value @"2.2.0"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'3'0 -- ^ Represents the JSON value @"2.3.0"@
-  | Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'3'1 -- ^ Represents the JSON value @"2.3.1"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullable
-    where {toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableOther val) = val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum1'0'2) = "1.0.2";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'1'0) = "2.1.0";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'2'0) = "2.2.0";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'3'0) = "2.3.0";
-           toJSON (Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'3'1) = "2.3.1"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "1.0.2" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum1'0'2
-                                             | val GHC.Classes.== "2.1.0" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'1'0
-                                             | val GHC.Classes.== "2.2.0" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'2'0
-                                             | val GHC.Classes.== "2.3.0" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'3'0
-                                             | val GHC.Classes.== "2.3.1" -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableEnum2'3'1
-                                             | GHC.Base.otherwise -> Setup_attempt_payment_method_details_cardThree_d_secureNonNullableVersionNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardThree_d_secure
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("authentication_flow" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureAuthentication_flow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("electronic_commerce_indicator" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureElectronic_commerce_indicator obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureResult obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result_reason" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureResult_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transaction_id" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureTransaction_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureVersion obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("authentication_flow" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureAuthentication_flow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("electronic_commerce_indicator" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureElectronic_commerce_indicator obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureResult obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("result_reason" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureResult_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transaction_id" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureTransaction_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardThree_d_secureVersion obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardThree_d_secure
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_attempt_payment_method_details_cardThree_d_secure" (\obj -> (((((GHC.Base.pure Setup_attempt_payment_method_details_cardThree_d_secure GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "authentication_flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "electronic_commerce_indicator")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "result")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "result_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transaction_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "version"))}
+-- | Create a new 'Setup_attempt_payment_method_details_cardThree_d_secure' with all required fields.
+mkSetup_attempt_payment_method_details_cardThree_d_secure :: Setup_attempt_payment_method_details_cardThree_d_secure
+mkSetup_attempt_payment_method_details_cardThree_d_secure = Setup_attempt_payment_method_details_cardThree_d_secure{setup_attempt_payment_method_details_cardThree_d_secureAuthentication_flow = GHC.Maybe.Nothing,
+                                                                                                                    setup_attempt_payment_method_details_cardThree_d_secureElectronic_commerce_indicator = GHC.Maybe.Nothing,
+                                                                                                                    setup_attempt_payment_method_details_cardThree_d_secureResult = GHC.Maybe.Nothing,
+                                                                                                                    setup_attempt_payment_method_details_cardThree_d_secureResult_reason = GHC.Maybe.Nothing,
+                                                                                                                    setup_attempt_payment_method_details_cardThree_d_secureTransaction_id = GHC.Maybe.Nothing,
+                                                                                                                    setup_attempt_payment_method_details_cardThree_d_secureVersion = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.wallet.anyOf@ in the specification.
 -- 
 -- If this Card is part of a card wallet, this contains the details of the card wallet.
-data Setup_attempt_payment_method_details_cardWalletNonNullable = Setup_attempt_payment_method_details_cardWalletNonNullable {
+data Setup_attempt_payment_method_details_cardWallet = Setup_attempt_payment_method_details_cardWallet {
   -- | apple_pay: 
-  setup_attempt_payment_method_details_cardWalletNonNullableApple_pay :: (GHC.Maybe.Maybe Payment_method_details_card_wallet_apple_pay)
+  setup_attempt_payment_method_details_cardWalletApple_pay :: (GHC.Maybe.Maybe Payment_method_details_card_wallet_apple_pay)
   -- | google_pay: 
-  , setup_attempt_payment_method_details_cardWalletNonNullableGoogle_pay :: (GHC.Maybe.Maybe Payment_method_details_card_wallet_google_pay)
+  , setup_attempt_payment_method_details_cardWalletGoogle_pay :: (GHC.Maybe.Maybe Payment_method_details_card_wallet_google_pay)
   -- | type: The type of the card wallet, one of \`apple_pay\`, \`google_pay\`, or \`link\`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
-  , setup_attempt_payment_method_details_cardWalletNonNullableType :: (GHC.Maybe.Maybe Setup_attempt_payment_method_details_cardWalletNonNullableType)
+  , setup_attempt_payment_method_details_cardWalletType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardWalletNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletNonNullableApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletNonNullableGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletNonNullableApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletNonNullableGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardWalletNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_attempt_payment_method_details_cardWalletNonNullable" (\obj -> ((GHC.Base.pure Setup_attempt_payment_method_details_cardWalletNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "apple_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "google_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Setup_attempt_payment_method_details_cardWalletNonNullable' with all required fields.
-mkSetup_attempt_payment_method_details_cardWalletNonNullable :: Setup_attempt_payment_method_details_cardWalletNonNullable
-mkSetup_attempt_payment_method_details_cardWalletNonNullable = Setup_attempt_payment_method_details_cardWalletNonNullable{setup_attempt_payment_method_details_cardWalletNonNullableApple_pay = GHC.Maybe.Nothing,
-                                                                                                                          setup_attempt_payment_method_details_cardWalletNonNullableGoogle_pay = GHC.Maybe.Nothing,
-                                                                                                                          setup_attempt_payment_method_details_cardWalletNonNullableType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_attempt_payment_method_details_card.properties.wallet.anyOf.properties.type@ in the specification.
--- 
--- The type of the card wallet, one of \`apple_pay\`, \`google_pay\`, or \`link\`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
-data Setup_attempt_payment_method_details_cardWalletNonNullableType =
-   Setup_attempt_payment_method_details_cardWalletNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_attempt_payment_method_details_cardWalletNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumApple_pay -- ^ Represents the JSON value @"apple_pay"@
-  | Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumGoogle_pay -- ^ Represents the JSON value @"google_pay"@
-  | Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumLink -- ^ Represents the JSON value @"link"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardWalletNonNullableType
-    where {toJSON (Setup_attempt_payment_method_details_cardWalletNonNullableTypeOther val) = val;
-           toJSON (Setup_attempt_payment_method_details_cardWalletNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumApple_pay) = "apple_pay";
-           toJSON (Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumGoogle_pay) = "google_pay";
-           toJSON (Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumLink) = "link"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardWalletNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "apple_pay" -> Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumApple_pay
-                                             | val GHC.Classes.== "google_pay" -> Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumGoogle_pay
-                                             | val GHC.Classes.== "link" -> Setup_attempt_payment_method_details_cardWalletNonNullableTypeEnumLink
-                                             | GHC.Base.otherwise -> Setup_attempt_payment_method_details_cardWalletNonNullableTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_cardWallet
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("apple_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletApple_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("google_pay" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletGoogle_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_attempt_payment_method_details_cardWalletType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_cardWallet
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_attempt_payment_method_details_cardWallet" (\obj -> ((GHC.Base.pure Setup_attempt_payment_method_details_cardWallet GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "apple_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "google_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Setup_attempt_payment_method_details_cardWallet' with all required fields.
+mkSetup_attempt_payment_method_details_cardWallet :: Setup_attempt_payment_method_details_cardWallet
+mkSetup_attempt_payment_method_details_cardWallet = Setup_attempt_payment_method_details_cardWallet{setup_attempt_payment_method_details_cardWalletApple_pay = GHC.Maybe.Nothing,
+                                                                                                    setup_attempt_payment_method_details_cardWalletGoogle_pay = GHC.Maybe.Nothing,
+                                                                                                    setup_attempt_payment_method_details_cardWalletType = GHC.Maybe.Nothing}

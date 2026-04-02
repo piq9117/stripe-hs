@@ -50,19 +50,19 @@ data Payment_method_bacs_debit = Payment_method_bacs_debit {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_bacs_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_bacs_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_bacs_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_bacs_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | sort_code: Sort code of the bank account. (e.g., \`10-20-30\`)
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_bacs_debitSort_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_bacs_debitSort_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_bacs_debit

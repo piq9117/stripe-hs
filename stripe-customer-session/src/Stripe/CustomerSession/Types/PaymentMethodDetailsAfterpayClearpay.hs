@@ -50,13 +50,13 @@ data Payment_method_details_afterpay_clearpay = Payment_method_details_afterpay_
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_afterpay_clearpayOrder_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_afterpay_clearpayOrder_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference: Order identifier shown to the merchant in Afterpay’s online portal.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_afterpay_clearpayReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_afterpay_clearpayReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_afterpay_clearpay

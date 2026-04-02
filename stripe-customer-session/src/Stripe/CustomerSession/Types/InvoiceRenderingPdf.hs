@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoice_rendering_pdf = Invoice_rendering_pdf {
   -- | page_size: Page size of invoice pdf. Options include a4, letter, and auto. If set to auto, page size will be switched to a4 or letter based on customer locale.
-  invoice_rendering_pdfPage_size :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_rendering_pdfPage_sizeNonNullable))
+  invoice_rendering_pdfPage_size :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_rendering_pdf
@@ -57,24 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoice_rendering_pdf
 -- | Create a new 'Invoice_rendering_pdf' with all required fields.
 mkInvoice_rendering_pdf :: Invoice_rendering_pdf
 mkInvoice_rendering_pdf = Invoice_rendering_pdf{invoice_rendering_pdfPage_size = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_rendering_pdf.properties.page_size@ in the specification.
--- 
--- Page size of invoice pdf. Options include a4, letter, and auto. If set to auto, page size will be switched to a4 or letter based on customer locale.
-data Invoice_rendering_pdfPage_sizeNonNullable =
-   Invoice_rendering_pdfPage_sizeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_rendering_pdfPage_sizeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_rendering_pdfPage_sizeNonNullableEnumA4 -- ^ Represents the JSON value @"a4"@
-  | Invoice_rendering_pdfPage_sizeNonNullableEnumAuto -- ^ Represents the JSON value @"auto"@
-  | Invoice_rendering_pdfPage_sizeNonNullableEnumLetter -- ^ Represents the JSON value @"letter"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_rendering_pdfPage_sizeNonNullable
-    where {toJSON (Invoice_rendering_pdfPage_sizeNonNullableOther val) = val;
-           toJSON (Invoice_rendering_pdfPage_sizeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_rendering_pdfPage_sizeNonNullableEnumA4) = "a4";
-           toJSON (Invoice_rendering_pdfPage_sizeNonNullableEnumAuto) = "auto";
-           toJSON (Invoice_rendering_pdfPage_sizeNonNullableEnumLetter) = "letter"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_rendering_pdfPage_sizeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "a4" -> Invoice_rendering_pdfPage_sizeNonNullableEnumA4
-                                             | val GHC.Classes.== "auto" -> Invoice_rendering_pdfPage_sizeNonNullableEnumAuto
-                                             | val GHC.Classes.== "letter" -> Invoice_rendering_pdfPage_sizeNonNullableEnumLetter
-                                             | GHC.Base.otherwise -> Invoice_rendering_pdfPage_sizeNonNullableOther val)}

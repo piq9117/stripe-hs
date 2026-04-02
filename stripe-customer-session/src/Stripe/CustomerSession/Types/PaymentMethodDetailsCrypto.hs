@@ -52,9 +52,9 @@ data Payment_method_details_crypto = Payment_method_details_crypto {
   -- * Maximum length of 5000
   payment_method_details_cryptoBuyer_address :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network: The blockchain network that the transaction was sent on.
-  , payment_method_details_cryptoNetwork :: (GHC.Maybe.Maybe Payment_method_details_cryptoNetwork)
+  , payment_method_details_cryptoNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | token_currency: The token currency that the transaction was sent with.
-  , payment_method_details_cryptoToken_currency :: (GHC.Maybe.Maybe Payment_method_details_cryptoToken_currency)
+  , payment_method_details_cryptoToken_currency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_hash: The blockchain transaction hash of the crypto payment.
   -- 
   -- Constraints:
@@ -74,48 +74,3 @@ mkPayment_method_details_crypto = Payment_method_details_crypto{payment_method_d
                                                                 payment_method_details_cryptoNetwork = GHC.Maybe.Nothing,
                                                                 payment_method_details_cryptoToken_currency = GHC.Maybe.Nothing,
                                                                 payment_method_details_cryptoTransaction_hash = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_details_crypto.properties.network@ in the specification.
--- 
--- The blockchain network that the transaction was sent on.
-data Payment_method_details_cryptoNetwork =
-   Payment_method_details_cryptoNetworkOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_cryptoNetworkTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_cryptoNetworkEnumBase -- ^ Represents the JSON value @"base"@
-  | Payment_method_details_cryptoNetworkEnumEthereum -- ^ Represents the JSON value @"ethereum"@
-  | Payment_method_details_cryptoNetworkEnumPolygon -- ^ Represents the JSON value @"polygon"@
-  | Payment_method_details_cryptoNetworkEnumSolana -- ^ Represents the JSON value @"solana"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_cryptoNetwork
-    where {toJSON (Payment_method_details_cryptoNetworkOther val) = val;
-           toJSON (Payment_method_details_cryptoNetworkTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_cryptoNetworkEnumBase) = "base";
-           toJSON (Payment_method_details_cryptoNetworkEnumEthereum) = "ethereum";
-           toJSON (Payment_method_details_cryptoNetworkEnumPolygon) = "polygon";
-           toJSON (Payment_method_details_cryptoNetworkEnumSolana) = "solana"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_cryptoNetwork
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "base" -> Payment_method_details_cryptoNetworkEnumBase
-                                             | val GHC.Classes.== "ethereum" -> Payment_method_details_cryptoNetworkEnumEthereum
-                                             | val GHC.Classes.== "polygon" -> Payment_method_details_cryptoNetworkEnumPolygon
-                                             | val GHC.Classes.== "solana" -> Payment_method_details_cryptoNetworkEnumSolana
-                                             | GHC.Base.otherwise -> Payment_method_details_cryptoNetworkOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_details_crypto.properties.token_currency@ in the specification.
--- 
--- The token currency that the transaction was sent with.
-data Payment_method_details_cryptoToken_currency =
-   Payment_method_details_cryptoToken_currencyOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_cryptoToken_currencyTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_cryptoToken_currencyEnumUsdc -- ^ Represents the JSON value @"usdc"@
-  | Payment_method_details_cryptoToken_currencyEnumUsdg -- ^ Represents the JSON value @"usdg"@
-  | Payment_method_details_cryptoToken_currencyEnumUsdp -- ^ Represents the JSON value @"usdp"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_cryptoToken_currency
-    where {toJSON (Payment_method_details_cryptoToken_currencyOther val) = val;
-           toJSON (Payment_method_details_cryptoToken_currencyTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_cryptoToken_currencyEnumUsdc) = "usdc";
-           toJSON (Payment_method_details_cryptoToken_currencyEnumUsdg) = "usdg";
-           toJSON (Payment_method_details_cryptoToken_currencyEnumUsdp) = "usdp"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_cryptoToken_currency
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "usdc" -> Payment_method_details_cryptoToken_currencyEnumUsdc
-                                             | val GHC.Classes.== "usdg" -> Payment_method_details_cryptoToken_currencyEnumUsdg
-                                             | val GHC.Classes.== "usdp" -> Payment_method_details_cryptoToken_currencyEnumUsdp
-                                             | GHC.Base.otherwise -> Payment_method_details_cryptoToken_currencyOther val)}

@@ -47,28 +47,32 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Coupon
 -- 
 data Promotion_codes_resource_promotion = Promotion_codes_resource_promotion {
   -- | coupon: If promotion \`type\` is \`coupon\`, the coupon for this promotion.
-  promotion_codes_resource_promotionCoupon :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Promotion_codes_resource_promotionCouponNonNullableVariants))
+  promotion_codes_resource_promotionCoupon :: (GHC.Maybe.Maybe Promotion_codes_resource_promotionCouponVariants)
+  -- | type: The type of promotion.
+  , promotion_codes_resource_promotionType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Promotion_codes_resource_promotion
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (promotion_codes_resource_promotionCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "coupon"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (promotion_codes_resource_promotionCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "coupon"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (promotion_codes_resource_promotionCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= promotion_codes_resource_promotionType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("coupon" Data.Aeson.Types.ToJSON..=)) (promotion_codes_resource_promotionCoupon obj) : ["type" Data.Aeson.Types.ToJSON..= promotion_codes_resource_promotionType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Promotion_codes_resource_promotion
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Promotion_codes_resource_promotion" (\obj -> GHC.Base.pure Promotion_codes_resource_promotion GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "coupon"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Promotion_codes_resource_promotion" (\obj -> (GHC.Base.pure Promotion_codes_resource_promotion GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "coupon")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Promotion_codes_resource_promotion' with all required fields.
-mkPromotion_codes_resource_promotion :: Promotion_codes_resource_promotion
-mkPromotion_codes_resource_promotion = Promotion_codes_resource_promotion{promotion_codes_resource_promotionCoupon = GHC.Maybe.Nothing}
+mkPromotion_codes_resource_promotion :: Data.Text.Internal.Text -- ^ 'promotion_codes_resource_promotionType'
+  -> Promotion_codes_resource_promotion
+mkPromotion_codes_resource_promotion promotion_codes_resource_promotionType = Promotion_codes_resource_promotion{promotion_codes_resource_promotionCoupon = GHC.Maybe.Nothing,
+                                                                                                                 promotion_codes_resource_promotionType = promotion_codes_resource_promotionType}
 -- | Defines the oneOf schema located at @components.schemas.promotion_codes_resource_promotion.properties.coupon.anyOf@ in the specification.
 -- 
 -- If promotion \`type\` is \`coupon\`, the coupon for this promotion.
-data Promotion_codes_resource_promotionCouponNonNullableVariants =
-   Promotion_codes_resource_promotionCouponNonNullableText Data.Text.Internal.Text
-  | Promotion_codes_resource_promotionCouponNonNullableCoupon Coupon
+data Promotion_codes_resource_promotionCouponVariants =
+   Promotion_codes_resource_promotionCouponText Data.Text.Internal.Text
+  | Promotion_codes_resource_promotionCouponCoupon Coupon
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Promotion_codes_resource_promotionCouponNonNullableVariants
-    where {toJSON (Promotion_codes_resource_promotionCouponNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Promotion_codes_resource_promotionCouponNonNullableCoupon a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Promotion_codes_resource_promotionCouponNonNullableVariants
-    where {parseJSON val = case (Promotion_codes_resource_promotionCouponNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Promotion_codes_resource_promotionCouponNonNullableCoupon Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Promotion_codes_resource_promotionCouponVariants
+    where {toJSON (Promotion_codes_resource_promotionCouponText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Promotion_codes_resource_promotionCouponCoupon a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Promotion_codes_resource_promotionCouponVariants
+    where {parseJSON val = case (Promotion_codes_resource_promotionCouponText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Promotion_codes_resource_promotionCouponCoupon Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

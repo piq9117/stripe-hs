@@ -49,11 +49,11 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PromotionCode
 -- 
 data Stackable_discount_with_discount_settings = Stackable_discount_with_discount_settings {
   -- | coupon: ID of the coupon to create a new discount for.
-  stackable_discount_with_discount_settingsCoupon :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Stackable_discount_with_discount_settingsCouponNonNullableVariants))
+  stackable_discount_with_discount_settingsCoupon :: (GHC.Maybe.Maybe Stackable_discount_with_discount_settingsCouponVariants)
   -- | discount: ID of an existing discount on the object (or one of its ancestors) to reuse.
-  , stackable_discount_with_discount_settingsDiscount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Stackable_discount_with_discount_settingsDiscountNonNullableVariants))
+  , stackable_discount_with_discount_settingsDiscount :: (GHC.Maybe.Maybe Stackable_discount_with_discount_settingsDiscountVariants)
   -- | promotion_code: ID of the promotion code to create a new discount for.
-  , stackable_discount_with_discount_settingsPromotion_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Stackable_discount_with_discount_settingsPromotion_codeNonNullableVariants))
+  , stackable_discount_with_discount_settingsPromotion_code :: (GHC.Maybe.Maybe Stackable_discount_with_discount_settingsPromotion_codeVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Stackable_discount_with_discount_settings
@@ -69,42 +69,42 @@ mkStackable_discount_with_discount_settings = Stackable_discount_with_discount_s
 -- | Defines the oneOf schema located at @components.schemas.stackable_discount_with_discount_settings.properties.coupon.anyOf@ in the specification.
 -- 
 -- ID of the coupon to create a new discount for.
-data Stackable_discount_with_discount_settingsCouponNonNullableVariants =
-   Stackable_discount_with_discount_settingsCouponNonNullableText Data.Text.Internal.Text
-  | Stackable_discount_with_discount_settingsCouponNonNullableCoupon Coupon
+data Stackable_discount_with_discount_settingsCouponVariants =
+   Stackable_discount_with_discount_settingsCouponText Data.Text.Internal.Text
+  | Stackable_discount_with_discount_settingsCouponCoupon Coupon
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Stackable_discount_with_discount_settingsCouponNonNullableVariants
-    where {toJSON (Stackable_discount_with_discount_settingsCouponNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Stackable_discount_with_discount_settingsCouponNonNullableCoupon a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Stackable_discount_with_discount_settingsCouponNonNullableVariants
-    where {parseJSON val = case (Stackable_discount_with_discount_settingsCouponNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Stackable_discount_with_discount_settingsCouponNonNullableCoupon Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Stackable_discount_with_discount_settingsCouponVariants
+    where {toJSON (Stackable_discount_with_discount_settingsCouponText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Stackable_discount_with_discount_settingsCouponCoupon a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Stackable_discount_with_discount_settingsCouponVariants
+    where {parseJSON val = case (Stackable_discount_with_discount_settingsCouponText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Stackable_discount_with_discount_settingsCouponCoupon Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.stackable_discount_with_discount_settings.properties.discount.anyOf@ in the specification.
 -- 
 -- ID of an existing discount on the object (or one of its ancestors) to reuse.
-data Stackable_discount_with_discount_settingsDiscountNonNullableVariants =
-   Stackable_discount_with_discount_settingsDiscountNonNullableText Data.Text.Internal.Text
-  | Stackable_discount_with_discount_settingsDiscountNonNullableDiscount Discount
+data Stackable_discount_with_discount_settingsDiscountVariants =
+   Stackable_discount_with_discount_settingsDiscountText Data.Text.Internal.Text
+  | Stackable_discount_with_discount_settingsDiscountDiscount Discount
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Stackable_discount_with_discount_settingsDiscountNonNullableVariants
-    where {toJSON (Stackable_discount_with_discount_settingsDiscountNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Stackable_discount_with_discount_settingsDiscountNonNullableDiscount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Stackable_discount_with_discount_settingsDiscountNonNullableVariants
-    where {parseJSON val = case (Stackable_discount_with_discount_settingsDiscountNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Stackable_discount_with_discount_settingsDiscountNonNullableDiscount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Stackable_discount_with_discount_settingsDiscountVariants
+    where {toJSON (Stackable_discount_with_discount_settingsDiscountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Stackable_discount_with_discount_settingsDiscountDiscount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Stackable_discount_with_discount_settingsDiscountVariants
+    where {parseJSON val = case (Stackable_discount_with_discount_settingsDiscountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Stackable_discount_with_discount_settingsDiscountDiscount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.stackable_discount_with_discount_settings.properties.promotion_code.anyOf@ in the specification.
 -- 
 -- ID of the promotion code to create a new discount for.
-data Stackable_discount_with_discount_settingsPromotion_codeNonNullableVariants =
-   Stackable_discount_with_discount_settingsPromotion_codeNonNullableText Data.Text.Internal.Text
-  | Stackable_discount_with_discount_settingsPromotion_codeNonNullablePromotion_code Promotion_code
+data Stackable_discount_with_discount_settingsPromotion_codeVariants =
+   Stackable_discount_with_discount_settingsPromotion_codeText Data.Text.Internal.Text
+  | Stackable_discount_with_discount_settingsPromotion_codePromotion_code Promotion_code
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Stackable_discount_with_discount_settingsPromotion_codeNonNullableVariants
-    where {toJSON (Stackable_discount_with_discount_settingsPromotion_codeNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Stackable_discount_with_discount_settingsPromotion_codeNonNullablePromotion_code a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Stackable_discount_with_discount_settingsPromotion_codeNonNullableVariants
-    where {parseJSON val = case (Stackable_discount_with_discount_settingsPromotion_codeNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Stackable_discount_with_discount_settingsPromotion_codeNonNullablePromotion_code Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Stackable_discount_with_discount_settingsPromotion_codeVariants
+    where {toJSON (Stackable_discount_with_discount_settingsPromotion_codeText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Stackable_discount_with_discount_settingsPromotion_codePromotion_code a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Stackable_discount_with_discount_settingsPromotion_codeVariants
+    where {parseJSON val = case (Stackable_discount_with_discount_settingsPromotion_codeText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Stackable_discount_with_discount_settingsPromotion_codePromotion_code Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

@@ -50,9 +50,9 @@ data Payment_method_options_wechat_pay = Payment_method_options_wechat_pay {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_options_wechat_payApp_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_options_wechat_payApp_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | client: The client type that the end customer will pay from
-  , payment_method_options_wechat_payClient :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_options_wechat_payClientNonNullable))
+  , payment_method_options_wechat_payClient :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
   -- 
   -- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
@@ -60,7 +60,7 @@ data Payment_method_options_wechat_pay = Payment_method_options_wechat_pay {
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_method_options_wechat_paySetup_future_usage :: (GHC.Maybe.Maybe Payment_method_options_wechat_paySetup_future_usage)
+  , payment_method_options_wechat_paySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_wechat_pay
@@ -73,45 +73,3 @@ mkPayment_method_options_wechat_pay :: Payment_method_options_wechat_pay
 mkPayment_method_options_wechat_pay = Payment_method_options_wechat_pay{payment_method_options_wechat_payApp_id = GHC.Maybe.Nothing,
                                                                         payment_method_options_wechat_payClient = GHC.Maybe.Nothing,
                                                                         payment_method_options_wechat_paySetup_future_usage = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_wechat_pay.properties.client@ in the specification.
--- 
--- The client type that the end customer will pay from
-data Payment_method_options_wechat_payClientNonNullable =
-   Payment_method_options_wechat_payClientNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_wechat_payClientNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_wechat_payClientNonNullableEnumAndroid -- ^ Represents the JSON value @"android"@
-  | Payment_method_options_wechat_payClientNonNullableEnumIos -- ^ Represents the JSON value @"ios"@
-  | Payment_method_options_wechat_payClientNonNullableEnumWeb -- ^ Represents the JSON value @"web"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_wechat_payClientNonNullable
-    where {toJSON (Payment_method_options_wechat_payClientNonNullableOther val) = val;
-           toJSON (Payment_method_options_wechat_payClientNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_wechat_payClientNonNullableEnumAndroid) = "android";
-           toJSON (Payment_method_options_wechat_payClientNonNullableEnumIos) = "ios";
-           toJSON (Payment_method_options_wechat_payClientNonNullableEnumWeb) = "web"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_wechat_payClientNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "android" -> Payment_method_options_wechat_payClientNonNullableEnumAndroid
-                                             | val GHC.Classes.== "ios" -> Payment_method_options_wechat_payClientNonNullableEnumIos
-                                             | val GHC.Classes.== "web" -> Payment_method_options_wechat_payClientNonNullableEnumWeb
-                                             | GHC.Base.otherwise -> Payment_method_options_wechat_payClientNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_options_wechat_pay.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_method_options_wechat_paySetup_future_usage =
-   Payment_method_options_wechat_paySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_wechat_paySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_wechat_paySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_wechat_paySetup_future_usage
-    where {toJSON (Payment_method_options_wechat_paySetup_future_usageOther val) = val;
-           toJSON (Payment_method_options_wechat_paySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_wechat_paySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_wechat_paySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_method_options_wechat_paySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_method_options_wechat_paySetup_future_usageOther val)}

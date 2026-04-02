@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.DisputeEnhancedEligibility
 -- 
 data Dispute_evidence_details = Dispute_evidence_details {
   -- | due_by: Date by which evidence must be submitted in order to successfully challenge dispute. Will be 0 if the customer\'s bank or credit card company doesn\'t allow a response for this particular dispute.
-  dispute_evidence_detailsDue_by :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  dispute_evidence_detailsDue_by :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | enhanced_eligibility: 
   , dispute_evidence_detailsEnhanced_eligibility :: Dispute_enhanced_eligibility
   -- | has_evidence: Whether evidence has been staged for this dispute.

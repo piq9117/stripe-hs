@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_options_customer_balance_eu_bank_account = Payment_method_options_customer_balance_eu_bank_account {
   -- | country: The desired country code of the bank account information. Permitted values include: \`DE\`, \`FR\`, \`IE\`, or \`NL\`.
-  payment_method_options_customer_balance_eu_bank_accountCountry :: Payment_method_options_customer_balance_eu_bank_accountCountry
+  payment_method_options_customer_balance_eu_bank_accountCountry :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_customer_balance_eu_bank_account
@@ -55,36 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_customer_balance_
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_customer_balance_eu_bank_account
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_options_customer_balance_eu_bank_account" (\obj -> GHC.Base.pure Payment_method_options_customer_balance_eu_bank_account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "country"))}
 -- | Create a new 'Payment_method_options_customer_balance_eu_bank_account' with all required fields.
-mkPayment_method_options_customer_balance_eu_bank_account :: Payment_method_options_customer_balance_eu_bank_accountCountry -- ^ 'payment_method_options_customer_balance_eu_bank_accountCountry'
+mkPayment_method_options_customer_balance_eu_bank_account :: Data.Text.Internal.Text -- ^ 'payment_method_options_customer_balance_eu_bank_accountCountry'
   -> Payment_method_options_customer_balance_eu_bank_account
 mkPayment_method_options_customer_balance_eu_bank_account payment_method_options_customer_balance_eu_bank_accountCountry = Payment_method_options_customer_balance_eu_bank_account{payment_method_options_customer_balance_eu_bank_accountCountry = payment_method_options_customer_balance_eu_bank_accountCountry}
--- | Defines the enum schema located at @components.schemas.payment_method_options_customer_balance_eu_bank_account.properties.country@ in the specification.
--- 
--- The desired country code of the bank account information. Permitted values include: \`DE\`, \`FR\`, \`IE\`, or \`NL\`.
-data Payment_method_options_customer_balance_eu_bank_accountCountry =
-   Payment_method_options_customer_balance_eu_bank_accountCountryOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_customer_balance_eu_bank_accountCountryTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_customer_balance_eu_bank_accountCountryEnumBE -- ^ Represents the JSON value @"BE"@
-  | Payment_method_options_customer_balance_eu_bank_accountCountryEnumDE -- ^ Represents the JSON value @"DE"@
-  | Payment_method_options_customer_balance_eu_bank_accountCountryEnumES -- ^ Represents the JSON value @"ES"@
-  | Payment_method_options_customer_balance_eu_bank_accountCountryEnumFR -- ^ Represents the JSON value @"FR"@
-  | Payment_method_options_customer_balance_eu_bank_accountCountryEnumIE -- ^ Represents the JSON value @"IE"@
-  | Payment_method_options_customer_balance_eu_bank_accountCountryEnumNL -- ^ Represents the JSON value @"NL"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_customer_balance_eu_bank_accountCountry
-    where {toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryOther val) = val;
-           toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryEnumBE) = "BE";
-           toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryEnumDE) = "DE";
-           toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryEnumES) = "ES";
-           toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryEnumFR) = "FR";
-           toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryEnumIE) = "IE";
-           toJSON (Payment_method_options_customer_balance_eu_bank_accountCountryEnumNL) = "NL"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_customer_balance_eu_bank_accountCountry
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "BE" -> Payment_method_options_customer_balance_eu_bank_accountCountryEnumBE
-                                             | val GHC.Classes.== "DE" -> Payment_method_options_customer_balance_eu_bank_accountCountryEnumDE
-                                             | val GHC.Classes.== "ES" -> Payment_method_options_customer_balance_eu_bank_accountCountryEnumES
-                                             | val GHC.Classes.== "FR" -> Payment_method_options_customer_balance_eu_bank_accountCountryEnumFR
-                                             | val GHC.Classes.== "IE" -> Payment_method_options_customer_balance_eu_bank_accountCountryEnumIE
-                                             | val GHC.Classes.== "NL" -> Payment_method_options_customer_balance_eu_bank_accountCountryEnumNL
-                                             | GHC.Base.otherwise -> Payment_method_options_customer_balance_eu_bank_accountCountryOther val)}

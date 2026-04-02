@@ -53,15 +53,15 @@ data Subscription_schedule_add_invoice_item = Subscription_schedule_add_invoice_
   -- | discounts: The stackable discounts that will be applied to the item.
   subscription_schedule_add_invoice_itemDiscounts :: [Discounts_resource_stackable_discount_with_discount_end]
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , subscription_schedule_add_invoice_itemMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , subscription_schedule_add_invoice_itemMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | period: 
   , subscription_schedule_add_invoice_itemPeriod :: Subscription_schedule_add_invoice_item_period
   -- | price: ID of the price used to generate the invoice item.
   , subscription_schedule_add_invoice_itemPrice :: Subscription_schedule_add_invoice_itemPriceVariants
   -- | quantity: The quantity of the invoice item.
-  , subscription_schedule_add_invoice_itemQuantity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscription_schedule_add_invoice_itemQuantity :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | tax_rates: The tax rates which apply to the item. When set, the \`default_tax_rates\` do not apply to this item.
-  , subscription_schedule_add_invoice_itemTax_rates :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Tax_rate]))
+  , subscription_schedule_add_invoice_itemTax_rates :: (GHC.Maybe.Maybe [Tax_rate])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_add_invoice_item

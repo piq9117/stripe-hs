@@ -6,8 +6,3 @@ instance Show Dispute_payment_method_details
 instance Eq Dispute_payment_method_details
 instance Data.Aeson.FromJSON Dispute_payment_method_details
 instance Data.Aeson.ToJSON Dispute_payment_method_details
-data Dispute_payment_method_detailsType
-instance Show Dispute_payment_method_detailsType
-instance Eq Dispute_payment_method_detailsType
-instance Data.Aeson.FromJSON Dispute_payment_method_detailsType
-instance Data.Aeson.ToJSON Dispute_payment_method_detailsType

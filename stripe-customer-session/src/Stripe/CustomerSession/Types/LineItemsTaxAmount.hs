@@ -53,9 +53,9 @@ data Line_items_tax_amount = Line_items_tax_amount {
   -- Related guide: [Tax rates](\/billing\/taxes\/tax-rates)
   , line_items_tax_amountRate :: Tax_rate
   -- | taxability_reason: The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
-  , line_items_tax_amountTaxability_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Line_items_tax_amountTaxability_reasonNonNullable))
+  , line_items_tax_amountTaxability_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | taxable_amount: The amount on which tax is calculated, in cents (or local equivalent).
-  , line_items_tax_amountTaxable_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , line_items_tax_amountTaxable_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Line_items_tax_amount
@@ -71,60 +71,3 @@ mkLine_items_tax_amount line_items_tax_amountAmount line_items_tax_amountRate = 
                                                                                                       line_items_tax_amountRate = line_items_tax_amountRate,
                                                                                                       line_items_tax_amountTaxability_reason = GHC.Maybe.Nothing,
                                                                                                       line_items_tax_amountTaxable_amount = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.line_items_tax_amount.properties.taxability_reason@ in the specification.
--- 
--- The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
-data Line_items_tax_amountTaxability_reasonNonNullable =
-   Line_items_tax_amountTaxability_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Line_items_tax_amountTaxability_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumCustomer_exempt -- ^ Represents the JSON value @"customer_exempt"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumNot_collecting -- ^ Represents the JSON value @"not_collecting"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumNot_subject_to_tax -- ^ Represents the JSON value @"not_subject_to_tax"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumNot_supported -- ^ Represents the JSON value @"not_supported"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_product_exempt -- ^ Represents the JSON value @"portion_product_exempt"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_reduced_rated -- ^ Represents the JSON value @"portion_reduced_rated"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_standard_rated -- ^ Represents the JSON value @"portion_standard_rated"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumProduct_exempt -- ^ Represents the JSON value @"product_exempt"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumProduct_exempt_holiday -- ^ Represents the JSON value @"product_exempt_holiday"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumProportionally_rated -- ^ Represents the JSON value @"proportionally_rated"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumReduced_rated -- ^ Represents the JSON value @"reduced_rated"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumReverse_charge -- ^ Represents the JSON value @"reverse_charge"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumStandard_rated -- ^ Represents the JSON value @"standard_rated"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumTaxable_basis_reduced -- ^ Represents the JSON value @"taxable_basis_reduced"@
-  | Line_items_tax_amountTaxability_reasonNonNullableEnumZero_rated -- ^ Represents the JSON value @"zero_rated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Line_items_tax_amountTaxability_reasonNonNullable
-    where {toJSON (Line_items_tax_amountTaxability_reasonNonNullableOther val) = val;
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumCustomer_exempt) = "customer_exempt";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumNot_collecting) = "not_collecting";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumNot_subject_to_tax) = "not_subject_to_tax";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumNot_supported) = "not_supported";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_product_exempt) = "portion_product_exempt";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_reduced_rated) = "portion_reduced_rated";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_standard_rated) = "portion_standard_rated";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumProduct_exempt) = "product_exempt";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumProduct_exempt_holiday) = "product_exempt_holiday";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumProportionally_rated) = "proportionally_rated";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumReduced_rated) = "reduced_rated";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumReverse_charge) = "reverse_charge";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumStandard_rated) = "standard_rated";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumTaxable_basis_reduced) = "taxable_basis_reduced";
-           toJSON (Line_items_tax_amountTaxability_reasonNonNullableEnumZero_rated) = "zero_rated"}
-instance Data.Aeson.Types.FromJSON.FromJSON Line_items_tax_amountTaxability_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "customer_exempt" -> Line_items_tax_amountTaxability_reasonNonNullableEnumCustomer_exempt
-                                             | val GHC.Classes.== "not_collecting" -> Line_items_tax_amountTaxability_reasonNonNullableEnumNot_collecting
-                                             | val GHC.Classes.== "not_subject_to_tax" -> Line_items_tax_amountTaxability_reasonNonNullableEnumNot_subject_to_tax
-                                             | val GHC.Classes.== "not_supported" -> Line_items_tax_amountTaxability_reasonNonNullableEnumNot_supported
-                                             | val GHC.Classes.== "portion_product_exempt" -> Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_product_exempt
-                                             | val GHC.Classes.== "portion_reduced_rated" -> Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_reduced_rated
-                                             | val GHC.Classes.== "portion_standard_rated" -> Line_items_tax_amountTaxability_reasonNonNullableEnumPortion_standard_rated
-                                             | val GHC.Classes.== "product_exempt" -> Line_items_tax_amountTaxability_reasonNonNullableEnumProduct_exempt
-                                             | val GHC.Classes.== "product_exempt_holiday" -> Line_items_tax_amountTaxability_reasonNonNullableEnumProduct_exempt_holiday
-                                             | val GHC.Classes.== "proportionally_rated" -> Line_items_tax_amountTaxability_reasonNonNullableEnumProportionally_rated
-                                             | val GHC.Classes.== "reduced_rated" -> Line_items_tax_amountTaxability_reasonNonNullableEnumReduced_rated
-                                             | val GHC.Classes.== "reverse_charge" -> Line_items_tax_amountTaxability_reasonNonNullableEnumReverse_charge
-                                             | val GHC.Classes.== "standard_rated" -> Line_items_tax_amountTaxability_reasonNonNullableEnumStandard_rated
-                                             | val GHC.Classes.== "taxable_basis_reduced" -> Line_items_tax_amountTaxability_reasonNonNullableEnumTaxable_basis_reduced
-                                             | val GHC.Classes.== "zero_rated" -> Line_items_tax_amountTaxability_reasonNonNullableEnumZero_rated
-                                             | GHC.Base.otherwise -> Line_items_tax_amountTaxability_reasonNonNullableOther val)}

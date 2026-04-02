@@ -50,23 +50,23 @@ data Internal_card = Internal_card {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  internal_cardBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  internal_cardBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country of the card
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , internal_cardCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , internal_cardCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month: Two digit number representing the card\'s expiration month
-  , internal_cardExp_month :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , internal_cardExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year: Two digit number representing the card\'s expiration year
-  , internal_cardExp_year :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , internal_cardExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | last4: The last 4 digits of the card
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , internal_cardLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , internal_cardLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Internal_card

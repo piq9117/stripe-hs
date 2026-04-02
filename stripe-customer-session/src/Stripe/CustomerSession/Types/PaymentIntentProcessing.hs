@@ -48,13 +48,17 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentIntentCardProcessing
 data Payment_intent_processing = Payment_intent_processing {
   -- | card: 
   payment_intent_processingCard :: (GHC.Maybe.Maybe Payment_intent_card_processing)
+  -- | type: Type of the payment method for which payment is in \`processing\` state, one of \`card\`.
+  , payment_intent_processingType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_processing
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_processingCard obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "card"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_processingCard obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "card"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_processingCard obj) : ["type" Data.Aeson.Types.ToJSON..= payment_intent_processingType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_processingCard obj) : ["type" Data.Aeson.Types.ToJSON..= payment_intent_processingType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_processing
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_processing" (\obj -> GHC.Base.pure Payment_intent_processing GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_processing" (\obj -> (GHC.Base.pure Payment_intent_processing GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Payment_intent_processing' with all required fields.
-mkPayment_intent_processing :: Payment_intent_processing
-mkPayment_intent_processing = Payment_intent_processing{payment_intent_processingCard = GHC.Maybe.Nothing}
+mkPayment_intent_processing :: Data.Text.Internal.Text -- ^ 'payment_intent_processingType'
+  -> Payment_intent_processing
+mkPayment_intent_processing payment_intent_processingType = Payment_intent_processing{payment_intent_processingCard = GHC.Maybe.Nothing,
+                                                                                      payment_intent_processingType = payment_intent_processingType}

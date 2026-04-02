@@ -55,15 +55,15 @@ data Payment_intent_payment_method_options_acss_debit = Payment_intent_payment_m
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_options_acss_debitSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_options_acss_debitSetup_future_usage)
+  , payment_intent_payment_method_options_acss_debitSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | target_date: Controls when Stripe will attempt to debit the funds from the customer\'s account. The date must be a string in YYYY-MM-DD format. The date must be in the future and between 3 and 15 calendar days from now.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payment_intent_payment_method_options_acss_debitTarget_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_options_acss_debitVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_options_acss_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_options_acss_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_options_acss_debit
@@ -77,51 +77,3 @@ mkPayment_intent_payment_method_options_acss_debit = Payment_intent_payment_meth
                                                                                                       payment_intent_payment_method_options_acss_debitSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_options_acss_debitTarget_date = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_options_acss_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options_acss_debit.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_options_acss_debitSetup_future_usage =
-   Payment_intent_payment_method_options_acss_debitSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_options_acss_debitSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_options_acss_debitSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_options_acss_debitSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_options_acss_debitSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_options_acss_debitSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_options_acss_debitSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_options_acss_debitSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options_acss_debit.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_options_acss_debitVerification_method =
-   Payment_intent_payment_method_options_acss_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_options_acss_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_options_acss_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_options_acss_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_options_acss_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_options_acss_debitVerification_method
-    where {toJSON (Payment_intent_payment_method_options_acss_debitVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_options_acss_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_options_acss_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_options_acss_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_options_acss_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_options_acss_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_options_acss_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_options_acss_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_options_acss_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_options_acss_debitVerification_methodOther val)}

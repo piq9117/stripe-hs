@@ -50,13 +50,13 @@ data Setup_intent_next_action_redirect_to_url = Setup_intent_next_action_redirec
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intent_next_action_redirect_to_urlReturn_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intent_next_action_redirect_to_urlReturn_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: The URL you must redirect your customer to in order to authenticate.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intent_next_action_redirect_to_urlUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intent_next_action_redirect_to_urlUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_next_action_redirect_to_url

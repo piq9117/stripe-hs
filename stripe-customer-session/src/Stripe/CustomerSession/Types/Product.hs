@@ -61,13 +61,13 @@ data Product = Product {
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , productCreated :: GHC.Types.Int
   -- | default_price: The ID of the [Price](https:\/\/docs.stripe.com\/api\/prices) object that is the default price for this product.
-  , productDefault_price :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ProductDefault_priceNonNullableVariants))
+  , productDefault_price :: (GHC.Maybe.Maybe ProductDefault_priceVariants)
   -- | description: The product\'s description, meant to be displayable to the customer. Use this field to optionally store a long form explanation of the product being sold for your own rendering purposes.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , productDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , productDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -76,7 +76,7 @@ data Product = Product {
   , productId :: Data.Text.Internal.Text
   -- | images: A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
   , productImages :: [Data.Text.Internal.Text]
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , productLivemode :: GHC.Types.Bool
   -- | marketing_features: A list of up to 15 marketing features for this product. These are displayed in [pricing tables](https:\/\/docs.stripe.com\/payments\/checkout\/pricing-table).
   , productMarketing_features :: [Product_marketing_feature]
@@ -88,24 +88,26 @@ data Product = Product {
   -- 
   -- * Maximum length of 5000
   , productName :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , productObject :: Data.Text.Internal.Text
   -- | package_dimensions: The dimensions of this product for shipping purposes.
-  , productPackage_dimensions :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ProductPackage_dimensionsNonNullable))
+  , productPackage_dimensions :: (GHC.Maybe.Maybe ProductPackage_dimensions)
   -- | shippable: Whether this product is shipped (i.e., physical goods).
-  , productShippable :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , productShippable :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | statement_descriptor: Extra information about a product which will appear on your customer\'s credit card statement. In the case that multiple products are billed at once, the first statement descriptor will be used. Only used for subscription payments.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , productStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , productStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tax_code: A [tax code](https:\/\/docs.stripe.com\/tax\/tax-categories) ID.
-  , productTax_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ProductTax_codeNonNullableVariants))
+  , productTax_code :: (GHC.Maybe.Maybe ProductTax_codeVariants)
   -- | unit_label: A label that represents units of this product. When set, this will be included in customers\' receipts, invoices, Checkout, and the customer portal.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , productUnit_label :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , productUnit_label :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | updated: Time at which the object was last updated. Measured in seconds since the Unix epoch.
   , productUpdated :: GHC.Types.Int
   -- | url: A URL of a publicly-accessible webpage for this product.
@@ -113,14 +115,14 @@ data Product = Product {
   -- Constraints:
   -- 
   -- * Maximum length of 2048
-  , productUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , productUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Product
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= productActive obj] : ["created" Data.Aeson.Types.ToJSON..= productCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_price" Data.Aeson.Types.ToJSON..=)) (productDefault_price obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (productDescription obj) : ["id" Data.Aeson.Types.ToJSON..= productId obj] : ["images" Data.Aeson.Types.ToJSON..= productImages obj] : ["livemode" Data.Aeson.Types.ToJSON..= productLivemode obj] : ["marketing_features" Data.Aeson.Types.ToJSON..= productMarketing_features obj] : ["metadata" Data.Aeson.Types.ToJSON..= productMetadata obj] : ["name" Data.Aeson.Types.ToJSON..= productName obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("package_dimensions" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shippable" Data.Aeson.Types.ToJSON..=)) (productShippable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (productStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_code" Data.Aeson.Types.ToJSON..=)) (productTax_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_label" Data.Aeson.Types.ToJSON..=)) (productUnit_label obj) : ["updated" Data.Aeson.Types.ToJSON..= productUpdated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (productUrl obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "product"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= productActive obj] : ["created" Data.Aeson.Types.ToJSON..= productCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_price" Data.Aeson.Types.ToJSON..=)) (productDefault_price obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (productDescription obj) : ["id" Data.Aeson.Types.ToJSON..= productId obj] : ["images" Data.Aeson.Types.ToJSON..= productImages obj] : ["livemode" Data.Aeson.Types.ToJSON..= productLivemode obj] : ["marketing_features" Data.Aeson.Types.ToJSON..= productMarketing_features obj] : ["metadata" Data.Aeson.Types.ToJSON..= productMetadata obj] : ["name" Data.Aeson.Types.ToJSON..= productName obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("package_dimensions" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shippable" Data.Aeson.Types.ToJSON..=)) (productShippable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (productStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_code" Data.Aeson.Types.ToJSON..=)) (productTax_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_label" Data.Aeson.Types.ToJSON..=)) (productUnit_label obj) : ["updated" Data.Aeson.Types.ToJSON..= productUpdated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (productUrl obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "product"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= productActive obj] : ["created" Data.Aeson.Types.ToJSON..= productCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_price" Data.Aeson.Types.ToJSON..=)) (productDefault_price obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (productDescription obj) : ["id" Data.Aeson.Types.ToJSON..= productId obj] : ["images" Data.Aeson.Types.ToJSON..= productImages obj] : ["livemode" Data.Aeson.Types.ToJSON..= productLivemode obj] : ["marketing_features" Data.Aeson.Types.ToJSON..= productMarketing_features obj] : ["metadata" Data.Aeson.Types.ToJSON..= productMetadata obj] : ["name" Data.Aeson.Types.ToJSON..= productName obj] : ["object" Data.Aeson.Types.ToJSON..= productObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("package_dimensions" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shippable" Data.Aeson.Types.ToJSON..=)) (productShippable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (productStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_code" Data.Aeson.Types.ToJSON..=)) (productTax_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_label" Data.Aeson.Types.ToJSON..=)) (productUnit_label obj) : ["updated" Data.Aeson.Types.ToJSON..= productUpdated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (productUrl obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= productActive obj] : ["created" Data.Aeson.Types.ToJSON..= productCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_price" Data.Aeson.Types.ToJSON..=)) (productDefault_price obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (productDescription obj) : ["id" Data.Aeson.Types.ToJSON..= productId obj] : ["images" Data.Aeson.Types.ToJSON..= productImages obj] : ["livemode" Data.Aeson.Types.ToJSON..= productLivemode obj] : ["marketing_features" Data.Aeson.Types.ToJSON..= productMarketing_features obj] : ["metadata" Data.Aeson.Types.ToJSON..= productMetadata obj] : ["name" Data.Aeson.Types.ToJSON..= productName obj] : ["object" Data.Aeson.Types.ToJSON..= productObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("package_dimensions" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shippable" Data.Aeson.Types.ToJSON..=)) (productShippable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (productStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_code" Data.Aeson.Types.ToJSON..=)) (productTax_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_label" Data.Aeson.Types.ToJSON..=)) (productUnit_label obj) : ["updated" Data.Aeson.Types.ToJSON..= productUpdated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (productUrl obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Product
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Product" (\obj -> ((((((((((((((((GHC.Base.pure Product GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "active")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_price")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "images")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "marketing_features")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "package_dimensions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shippable")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_label")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "updated")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Product" (\obj -> (((((((((((((((((GHC.Base.pure Product GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "active")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_price")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "images")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "marketing_features")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "package_dimensions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shippable")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_label")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "updated")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
 -- | Create a new 'Product' with all required fields.
 mkProduct :: GHC.Types.Bool -- ^ 'productActive'
   -> GHC.Types.Int -- ^ 'productCreated'
@@ -130,75 +132,77 @@ mkProduct :: GHC.Types.Bool -- ^ 'productActive'
   -> [Product_marketing_feature] -- ^ 'productMarketing_features'
   -> Data.Aeson.Types.Internal.Object -- ^ 'productMetadata'
   -> Data.Text.Internal.Text -- ^ 'productName'
+  -> Data.Text.Internal.Text -- ^ 'productObject'
   -> GHC.Types.Int -- ^ 'productUpdated'
   -> Product
-mkProduct productActive productCreated productId productImages productLivemode productMarketing_features productMetadata productName productUpdated = Product{productActive = productActive,
-                                                                                                                                                              productCreated = productCreated,
-                                                                                                                                                              productDefault_price = GHC.Maybe.Nothing,
-                                                                                                                                                              productDescription = GHC.Maybe.Nothing,
-                                                                                                                                                              productId = productId,
-                                                                                                                                                              productImages = productImages,
-                                                                                                                                                              productLivemode = productLivemode,
-                                                                                                                                                              productMarketing_features = productMarketing_features,
-                                                                                                                                                              productMetadata = productMetadata,
-                                                                                                                                                              productName = productName,
-                                                                                                                                                              productPackage_dimensions = GHC.Maybe.Nothing,
-                                                                                                                                                              productShippable = GHC.Maybe.Nothing,
-                                                                                                                                                              productStatement_descriptor = GHC.Maybe.Nothing,
-                                                                                                                                                              productTax_code = GHC.Maybe.Nothing,
-                                                                                                                                                              productUnit_label = GHC.Maybe.Nothing,
-                                                                                                                                                              productUpdated = productUpdated,
-                                                                                                                                                              productUrl = GHC.Maybe.Nothing}
+mkProduct productActive productCreated productId productImages productLivemode productMarketing_features productMetadata productName productObject productUpdated = Product{productActive = productActive,
+                                                                                                                                                                            productCreated = productCreated,
+                                                                                                                                                                            productDefault_price = GHC.Maybe.Nothing,
+                                                                                                                                                                            productDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                            productId = productId,
+                                                                                                                                                                            productImages = productImages,
+                                                                                                                                                                            productLivemode = productLivemode,
+                                                                                                                                                                            productMarketing_features = productMarketing_features,
+                                                                                                                                                                            productMetadata = productMetadata,
+                                                                                                                                                                            productName = productName,
+                                                                                                                                                                            productObject = productObject,
+                                                                                                                                                                            productPackage_dimensions = GHC.Maybe.Nothing,
+                                                                                                                                                                            productShippable = GHC.Maybe.Nothing,
+                                                                                                                                                                            productStatement_descriptor = GHC.Maybe.Nothing,
+                                                                                                                                                                            productTax_code = GHC.Maybe.Nothing,
+                                                                                                                                                                            productUnit_label = GHC.Maybe.Nothing,
+                                                                                                                                                                            productUpdated = productUpdated,
+                                                                                                                                                                            productUrl = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.product.properties.default_price.anyOf@ in the specification.
 -- 
 -- The ID of the [Price](https:\/\/docs.stripe.com\/api\/prices) object that is the default price for this product.
-data ProductDefault_priceNonNullableVariants =
-   ProductDefault_priceNonNullableText Data.Text.Internal.Text
-  | ProductDefault_priceNonNullablePrice Price
+data ProductDefault_priceVariants =
+   ProductDefault_priceText Data.Text.Internal.Text
+  | ProductDefault_pricePrice Price
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ProductDefault_priceNonNullableVariants
-    where {toJSON (ProductDefault_priceNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ProductDefault_priceNonNullablePrice a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ProductDefault_priceNonNullableVariants
-    where {parseJSON val = case (ProductDefault_priceNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ProductDefault_priceNonNullablePrice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ProductDefault_priceVariants
+    where {toJSON (ProductDefault_priceText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ProductDefault_pricePrice a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ProductDefault_priceVariants
+    where {parseJSON val = case (ProductDefault_priceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ProductDefault_pricePrice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.product.properties.package_dimensions.anyOf@ in the specification.
 -- 
 -- The dimensions of this product for shipping purposes.
-data ProductPackage_dimensionsNonNullable = ProductPackage_dimensionsNonNullable {
+data ProductPackage_dimensions = ProductPackage_dimensions {
   -- | height: Height, in inches.
-  productPackage_dimensionsNonNullableHeight :: (GHC.Maybe.Maybe GHC.Types.Double)
+  productPackage_dimensionsHeight :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | length: Length, in inches.
-  , productPackage_dimensionsNonNullableLength :: (GHC.Maybe.Maybe GHC.Types.Double)
+  , productPackage_dimensionsLength :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | weight: Weight, in ounces.
-  , productPackage_dimensionsNonNullableWeight :: (GHC.Maybe.Maybe GHC.Types.Double)
+  , productPackage_dimensionsWeight :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | width: Width, in inches.
-  , productPackage_dimensionsNonNullableWidth :: (GHC.Maybe.Maybe GHC.Types.Double)
+  , productPackage_dimensionsWidth :: (GHC.Maybe.Maybe GHC.Types.Double)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ProductPackage_dimensionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("height" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableHeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("length" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableLength obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("weight" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableWeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("width" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableWidth obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("height" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableHeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("length" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableLength obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("weight" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableWeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("width" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsNonNullableWidth obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ProductPackage_dimensionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ProductPackage_dimensionsNonNullable" (\obj -> (((GHC.Base.pure ProductPackage_dimensionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "height")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "length")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "weight")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "width"))}
--- | Create a new 'ProductPackage_dimensionsNonNullable' with all required fields.
-mkProductPackage_dimensionsNonNullable :: ProductPackage_dimensionsNonNullable
-mkProductPackage_dimensionsNonNullable = ProductPackage_dimensionsNonNullable{productPackage_dimensionsNonNullableHeight = GHC.Maybe.Nothing,
-                                                                              productPackage_dimensionsNonNullableLength = GHC.Maybe.Nothing,
-                                                                              productPackage_dimensionsNonNullableWeight = GHC.Maybe.Nothing,
-                                                                              productPackage_dimensionsNonNullableWidth = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON ProductPackage_dimensions
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("height" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsHeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("length" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsLength obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("weight" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsWeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("width" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsWidth obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("height" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsHeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("length" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsLength obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("weight" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsWeight obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("width" Data.Aeson.Types.ToJSON..=)) (productPackage_dimensionsWidth obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ProductPackage_dimensions
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ProductPackage_dimensions" (\obj -> (((GHC.Base.pure ProductPackage_dimensions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "height")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "length")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "weight")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "width"))}
+-- | Create a new 'ProductPackage_dimensions' with all required fields.
+mkProductPackage_dimensions :: ProductPackage_dimensions
+mkProductPackage_dimensions = ProductPackage_dimensions{productPackage_dimensionsHeight = GHC.Maybe.Nothing,
+                                                        productPackage_dimensionsLength = GHC.Maybe.Nothing,
+                                                        productPackage_dimensionsWeight = GHC.Maybe.Nothing,
+                                                        productPackage_dimensionsWidth = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.product.properties.tax_code.anyOf@ in the specification.
 -- 
 -- A [tax code](https:\/\/docs.stripe.com\/tax\/tax-categories) ID.
-data ProductTax_codeNonNullableVariants =
-   ProductTax_codeNonNullableText Data.Text.Internal.Text
-  | ProductTax_codeNonNullableTax_code Tax_code
+data ProductTax_codeVariants =
+   ProductTax_codeText Data.Text.Internal.Text
+  | ProductTax_codeTax_code Tax_code
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ProductTax_codeNonNullableVariants
-    where {toJSON (ProductTax_codeNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ProductTax_codeNonNullableTax_code a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ProductTax_codeNonNullableVariants
-    where {parseJSON val = case (ProductTax_codeNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ProductTax_codeNonNullableTax_code Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ProductTax_codeVariants
+    where {toJSON (ProductTax_codeText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ProductTax_codeTax_code a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ProductTax_codeVariants
+    where {parseJSON val = case (ProductTax_codeText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ProductTax_codeTax_code Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

@@ -54,7 +54,7 @@ data Invoices_resource_shipping_cost = Invoices_resource_shipping_cost {
   -- | amount_total: Total shipping cost after taxes are applied.
   , invoices_resource_shipping_costAmount_total :: GHC.Types.Int
   -- | shipping_rate: The ID of the ShippingRate for this invoice.
-  , invoices_resource_shipping_costShipping_rate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoices_resource_shipping_costShipping_rateNonNullableVariants))
+  , invoices_resource_shipping_costShipping_rate :: (GHC.Maybe.Maybe Invoices_resource_shipping_costShipping_rateVariants)
   -- | taxes: The taxes applied to the shipping rate.
   , invoices_resource_shipping_costTaxes :: (GHC.Maybe.Maybe [Line_items_tax_amount])
   } deriving (GHC.Show.Show
@@ -77,14 +77,14 @@ mkInvoices_resource_shipping_cost invoices_resource_shipping_costAmount_subtotal
 -- | Defines the oneOf schema located at @components.schemas.invoices_resource_shipping_cost.properties.shipping_rate.anyOf@ in the specification.
 -- 
 -- The ID of the ShippingRate for this invoice.
-data Invoices_resource_shipping_costShipping_rateNonNullableVariants =
-   Invoices_resource_shipping_costShipping_rateNonNullableText Data.Text.Internal.Text
-  | Invoices_resource_shipping_costShipping_rateNonNullableShipping_rate Shipping_rate
+data Invoices_resource_shipping_costShipping_rateVariants =
+   Invoices_resource_shipping_costShipping_rateText Data.Text.Internal.Text
+  | Invoices_resource_shipping_costShipping_rateShipping_rate Shipping_rate
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_shipping_costShipping_rateNonNullableVariants
-    where {toJSON (Invoices_resource_shipping_costShipping_rateNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Invoices_resource_shipping_costShipping_rateNonNullableShipping_rate a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_shipping_costShipping_rateNonNullableVariants
-    where {parseJSON val = case (Invoices_resource_shipping_costShipping_rateNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoices_resource_shipping_costShipping_rateNonNullableShipping_rate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_shipping_costShipping_rateVariants
+    where {toJSON (Invoices_resource_shipping_costShipping_rateText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Invoices_resource_shipping_costShipping_rateShipping_rate a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_shipping_costShipping_rateVariants
+    where {parseJSON val = case (Invoices_resource_shipping_costShipping_rateText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoices_resource_shipping_costShipping_rateShipping_rate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

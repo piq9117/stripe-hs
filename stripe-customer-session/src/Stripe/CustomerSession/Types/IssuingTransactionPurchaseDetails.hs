@@ -57,21 +57,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingTransactionReceiptData
 -- 
 data Issuing_transaction_purchase_details = Issuing_transaction_purchase_details {
   -- | fleet: Fleet-specific information for transactions using Fleet cards.
-  issuing_transaction_purchase_detailsFleet :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFleetNonNullable))
+  issuing_transaction_purchase_detailsFleet :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFleet)
   -- | flight: Information about the flight that was purchased with this transaction.
-  , issuing_transaction_purchase_detailsFlight :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFlightNonNullable))
+  , issuing_transaction_purchase_detailsFlight :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFlight)
   -- | fuel: Information about fuel that was purchased with this transaction.
-  , issuing_transaction_purchase_detailsFuel :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFuelNonNullable))
+  , issuing_transaction_purchase_detailsFuel :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFuel)
   -- | lodging: Information about lodging that was purchased with this transaction.
-  , issuing_transaction_purchase_detailsLodging :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsLodgingNonNullable))
+  , issuing_transaction_purchase_detailsLodging :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsLodging)
   -- | receipt: The line items in the purchase.
-  , issuing_transaction_purchase_detailsReceipt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Issuing_transaction_receipt_data]))
+  , issuing_transaction_purchase_detailsReceipt :: (GHC.Maybe.Maybe [Issuing_transaction_receipt_data])
   -- | reference: A merchant-specific order number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_details
@@ -90,245 +90,245 @@ mkIssuing_transaction_purchase_details = Issuing_transaction_purchase_details{is
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.fleet.anyOf@ in the specification.
 -- 
 -- Fleet-specific information for transactions using Fleet cards.
-data Issuing_transaction_purchase_detailsFleetNonNullable = Issuing_transaction_purchase_detailsFleetNonNullable {
+data Issuing_transaction_purchase_detailsFleet = Issuing_transaction_purchase_detailsFleet {
   -- | cardholder_prompt_data: Answers to prompts presented to cardholder at point of sale.
-  issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_data :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable))
+  issuing_transaction_purchase_detailsFleetCardholder_prompt_data :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFleetCardholder_prompt_data)
   -- | purchase_type: The type of purchase. One of \`fuel_purchase\`, \`non_fuel_purchase\`, or \`fuel_and_non_fuel_purchase\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFleetNonNullablePurchase_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFleetPurchase_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reported_breakdown: More information about the total amount. This information is not guaranteed to be accurate as some merchants may provide unreliable data.
-  , issuing_transaction_purchase_detailsFleetNonNullableReported_breakdown :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable))
+  , issuing_transaction_purchase_detailsFleetReported_breakdown :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFleetReported_breakdown)
   -- | service_type: The type of fuel service. One of \`non_fuel_transaction\`, \`full_service\`, or \`self_service\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFleetNonNullableService_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFleetService_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cardholder_prompt_data" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("purchase_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullablePurchase_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reported_breakdown" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdown obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableService_type obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cardholder_prompt_data" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("purchase_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullablePurchase_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reported_breakdown" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdown obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableService_type obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetNonNullable" (\obj -> (((GHC.Base.pure Issuing_transaction_purchase_detailsFleetNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cardholder_prompt_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "purchase_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reported_breakdown")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "service_type"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFleetNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFleetNonNullable :: Issuing_transaction_purchase_detailsFleetNonNullable
-mkIssuing_transaction_purchase_detailsFleetNonNullable = Issuing_transaction_purchase_detailsFleetNonNullable{issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_data = GHC.Maybe.Nothing,
-                                                                                                              issuing_transaction_purchase_detailsFleetNonNullablePurchase_type = GHC.Maybe.Nothing,
-                                                                                                              issuing_transaction_purchase_detailsFleetNonNullableReported_breakdown = GHC.Maybe.Nothing,
-                                                                                                              issuing_transaction_purchase_detailsFleetNonNullableService_type = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleet
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cardholder_prompt_data" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("purchase_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetPurchase_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reported_breakdown" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdown obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetService_type obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cardholder_prompt_data" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("purchase_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetPurchase_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reported_breakdown" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdown obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("service_type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetService_type obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleet
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleet" (\obj -> (((GHC.Base.pure Issuing_transaction_purchase_detailsFleet GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cardholder_prompt_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "purchase_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reported_breakdown")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "service_type"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFleet' with all required fields.
+mkIssuing_transaction_purchase_detailsFleet :: Issuing_transaction_purchase_detailsFleet
+mkIssuing_transaction_purchase_detailsFleet = Issuing_transaction_purchase_detailsFleet{issuing_transaction_purchase_detailsFleetCardholder_prompt_data = GHC.Maybe.Nothing,
+                                                                                        issuing_transaction_purchase_detailsFleetPurchase_type = GHC.Maybe.Nothing,
+                                                                                        issuing_transaction_purchase_detailsFleetReported_breakdown = GHC.Maybe.Nothing,
+                                                                                        issuing_transaction_purchase_detailsFleetService_type = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.fleet.anyOf.properties.cardholder_prompt_data.anyOf@ in the specification.
 -- 
 -- Answers to prompts presented to cardholder at point of sale.
-data Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable {
+data Issuing_transaction_purchase_detailsFleetCardholder_prompt_data = Issuing_transaction_purchase_detailsFleetCardholder_prompt_data {
   -- | driver_id: Driver ID.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableDriver_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_purchase_detailsFleetCardholder_prompt_dataDriver_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | odometer: Odometer reading.
-  , issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableOdometer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_transaction_purchase_detailsFleetCardholder_prompt_dataOdometer :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | unspecified_id: An alphanumeric ID. This field is used when a vehicle ID, driver ID, or generic ID is entered by the cardholder, but the merchant or card network did not specify the prompt type.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUnspecified_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUnspecified_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_id: User ID.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUser_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUser_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | vehicle_number: Vehicle number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableVehicle_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFleetCardholder_prompt_dataVehicle_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("driver_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableDriver_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("odometer" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableOdometer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unspecified_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUnspecified_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUser_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("vehicle_number" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableVehicle_number obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("driver_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableDriver_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("odometer" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableOdometer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unspecified_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUnspecified_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUser_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("vehicle_number" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableVehicle_number obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable" (\obj -> ((((GHC.Base.pure Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "driver_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "odometer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unspecified_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "vehicle_number"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable :: Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable
-mkIssuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullable{issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableDriver_id = GHC.Maybe.Nothing,
-                                                                                                                                                                                issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableOdometer = GHC.Maybe.Nothing,
-                                                                                                                                                                                issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUnspecified_id = GHC.Maybe.Nothing,
-                                                                                                                                                                                issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableUser_id = GHC.Maybe.Nothing,
-                                                                                                                                                                                issuing_transaction_purchase_detailsFleetNonNullableCardholder_prompt_dataNonNullableVehicle_number = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetCardholder_prompt_data
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("driver_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataDriver_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("odometer" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataOdometer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unspecified_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUnspecified_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUser_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("vehicle_number" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataVehicle_number obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("driver_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataDriver_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("odometer" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataOdometer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unspecified_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUnspecified_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_id" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUser_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("vehicle_number" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetCardholder_prompt_dataVehicle_number obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetCardholder_prompt_data
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetCardholder_prompt_data" (\obj -> ((((GHC.Base.pure Issuing_transaction_purchase_detailsFleetCardholder_prompt_data GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "driver_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "odometer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unspecified_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "vehicle_number"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFleetCardholder_prompt_data' with all required fields.
+mkIssuing_transaction_purchase_detailsFleetCardholder_prompt_data :: Issuing_transaction_purchase_detailsFleetCardholder_prompt_data
+mkIssuing_transaction_purchase_detailsFleetCardholder_prompt_data = Issuing_transaction_purchase_detailsFleetCardholder_prompt_data{issuing_transaction_purchase_detailsFleetCardholder_prompt_dataDriver_id = GHC.Maybe.Nothing,
+                                                                                                                                    issuing_transaction_purchase_detailsFleetCardholder_prompt_dataOdometer = GHC.Maybe.Nothing,
+                                                                                                                                    issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUnspecified_id = GHC.Maybe.Nothing,
+                                                                                                                                    issuing_transaction_purchase_detailsFleetCardholder_prompt_dataUser_id = GHC.Maybe.Nothing,
+                                                                                                                                    issuing_transaction_purchase_detailsFleetCardholder_prompt_dataVehicle_number = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.fleet.anyOf.properties.reported_breakdown.anyOf@ in the specification.
 -- 
 -- More information about the total amount. This information is not guaranteed to be accurate as some merchants may provide unreliable data.
-data Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable {
+data Issuing_transaction_purchase_detailsFleetReported_breakdown = Issuing_transaction_purchase_detailsFleetReported_breakdown {
   -- | fuel: Breakdown of fuel portion of the purchase.
-  issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuel :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable))
+  issuing_transaction_purchase_detailsFleetReported_breakdownFuel :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFleetReported_breakdownFuel)
   -- | non_fuel: Breakdown of non-fuel portion of the purchase.
-  , issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuel :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable))
+  , issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel)
   -- | tax: Information about tax included in this transaction.
-  , issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTax :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable))
+  , issuing_transaction_purchase_detailsFleetReported_breakdownTax :: (GHC.Maybe.Maybe Issuing_transaction_purchase_detailsFleetReported_breakdownTax)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("non_fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTax obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("non_fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTax obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable" (\obj -> ((GHC.Base.pure Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fuel")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "non_fuel")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable :: Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullable{issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuel = GHC.Maybe.Nothing,
-                                                                                                                                                                        issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuel = GHC.Maybe.Nothing,
-                                                                                                                                                                        issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTax = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetReported_breakdown
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownFuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("non_fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownTax obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownFuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("non_fuel" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownTax obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetReported_breakdown
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetReported_breakdown" (\obj -> ((GHC.Base.pure Issuing_transaction_purchase_detailsFleetReported_breakdown GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fuel")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "non_fuel")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFleetReported_breakdown' with all required fields.
+mkIssuing_transaction_purchase_detailsFleetReported_breakdown :: Issuing_transaction_purchase_detailsFleetReported_breakdown
+mkIssuing_transaction_purchase_detailsFleetReported_breakdown = Issuing_transaction_purchase_detailsFleetReported_breakdown{issuing_transaction_purchase_detailsFleetReported_breakdownFuel = GHC.Maybe.Nothing,
+                                                                                                                            issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel = GHC.Maybe.Nothing,
+                                                                                                                            issuing_transaction_purchase_detailsFleetReported_breakdownTax = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.fleet.anyOf.properties.reported_breakdown.anyOf.properties.fuel.anyOf@ in the specification.
 -- 
 -- Breakdown of fuel portion of the purchase.
-data Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable {
+data Issuing_transaction_purchase_detailsFleetReported_breakdownFuel = Issuing_transaction_purchase_detailsFleetReported_breakdownFuel {
   -- | gross_amount_decimal: Gross fuel amount that should equal Fuel Volume multipled by Fuel Unit Cost, inclusive of taxes.
-  issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullableGross_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_purchase_detailsFleetReported_breakdownFuelGross_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullableGross_amount_decimal obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullableGross_amount_decimal obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable" (\obj -> GHC.Base.pure Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "gross_amount_decimal"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable :: Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullable{issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableFuelNonNullableGross_amount_decimal = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetReported_breakdownFuel
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownFuelGross_amount_decimal obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownFuelGross_amount_decimal obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetReported_breakdownFuel
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetReported_breakdownFuel" (\obj -> GHC.Base.pure Issuing_transaction_purchase_detailsFleetReported_breakdownFuel GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "gross_amount_decimal"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFleetReported_breakdownFuel' with all required fields.
+mkIssuing_transaction_purchase_detailsFleetReported_breakdownFuel :: Issuing_transaction_purchase_detailsFleetReported_breakdownFuel
+mkIssuing_transaction_purchase_detailsFleetReported_breakdownFuel = Issuing_transaction_purchase_detailsFleetReported_breakdownFuel{issuing_transaction_purchase_detailsFleetReported_breakdownFuelGross_amount_decimal = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.fleet.anyOf.properties.reported_breakdown.anyOf.properties.non_fuel.anyOf@ in the specification.
 -- 
 -- Breakdown of non-fuel portion of the purchase.
-data Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable {
+data Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel = Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel {
   -- | gross_amount_decimal: Gross non-fuel amount that should equal the sum of the line items, inclusive of taxes.
-  issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullableGross_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuelGross_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullableGross_amount_decimal obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullableGross_amount_decimal obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable" (\obj -> GHC.Base.pure Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "gross_amount_decimal"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable :: Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullable{issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableNon_fuelNonNullableGross_amount_decimal = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuelGross_amount_decimal obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gross_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuelGross_amount_decimal obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel" (\obj -> GHC.Base.pure Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "gross_amount_decimal"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel' with all required fields.
+mkIssuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel :: Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel
+mkIssuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel = Issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuel{issuing_transaction_purchase_detailsFleetReported_breakdownNon_fuelGross_amount_decimal = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.fleet.anyOf.properties.reported_breakdown.anyOf.properties.tax.anyOf@ in the specification.
 -- 
 -- Information about tax included in this transaction.
-data Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable {
+data Issuing_transaction_purchase_detailsFleetReported_breakdownTax = Issuing_transaction_purchase_detailsFleetReported_breakdownTax {
   -- | local_amount_decimal: Amount of state or provincial Sales Tax included in the transaction amount. Null if not reported by merchant or not subject to tax.
-  issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableLocal_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_purchase_detailsFleetReported_breakdownTaxLocal_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | national_amount_decimal: Amount of national Sales Tax or VAT included in the transaction amount. Null if not reported by merchant or not subject to tax.
-  , issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableNational_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFleetReported_breakdownTaxNational_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("local_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableLocal_amount_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("national_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableNational_amount_decimal obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("local_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableLocal_amount_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("national_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableNational_amount_decimal obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable" (\obj -> (GHC.Base.pure Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "local_amount_decimal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "national_amount_decimal"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable :: Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable
-mkIssuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable = Issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullable{issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableLocal_amount_decimal = GHC.Maybe.Nothing,
-                                                                                                                                                                                                    issuing_transaction_purchase_detailsFleetNonNullableReported_breakdownNonNullableTaxNonNullableNational_amount_decimal = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFleetReported_breakdownTax
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("local_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownTaxLocal_amount_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("national_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownTaxNational_amount_decimal obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("local_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownTaxLocal_amount_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("national_amount_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFleetReported_breakdownTaxNational_amount_decimal obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFleetReported_breakdownTax
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFleetReported_breakdownTax" (\obj -> (GHC.Base.pure Issuing_transaction_purchase_detailsFleetReported_breakdownTax GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "local_amount_decimal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "national_amount_decimal"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFleetReported_breakdownTax' with all required fields.
+mkIssuing_transaction_purchase_detailsFleetReported_breakdownTax :: Issuing_transaction_purchase_detailsFleetReported_breakdownTax
+mkIssuing_transaction_purchase_detailsFleetReported_breakdownTax = Issuing_transaction_purchase_detailsFleetReported_breakdownTax{issuing_transaction_purchase_detailsFleetReported_breakdownTaxLocal_amount_decimal = GHC.Maybe.Nothing,
+                                                                                                                                  issuing_transaction_purchase_detailsFleetReported_breakdownTaxNational_amount_decimal = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.flight.anyOf@ in the specification.
 -- 
 -- Information about the flight that was purchased with this transaction.
-data Issuing_transaction_purchase_detailsFlightNonNullable = Issuing_transaction_purchase_detailsFlightNonNullable {
+data Issuing_transaction_purchase_detailsFlight = Issuing_transaction_purchase_detailsFlight {
   -- | departure_at: The time that the flight departed.
-  issuing_transaction_purchase_detailsFlightNonNullableDeparture_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_transaction_purchase_detailsFlightDeparture_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | passenger_name: The name of the passenger.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFlightNonNullablePassenger_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFlightPassenger_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refundable: Whether the ticket is refundable.
-  , issuing_transaction_purchase_detailsFlightNonNullableRefundable :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , issuing_transaction_purchase_detailsFlightRefundable :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | segments: The legs of the trip.
-  , issuing_transaction_purchase_detailsFlightNonNullableSegments :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Issuing_transaction_flight_data_leg]))
+  , issuing_transaction_purchase_detailsFlightSegments :: (GHC.Maybe.Maybe [Issuing_transaction_flight_data_leg])
   -- | travel_agency: The travel agency that issued the ticket.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFlightNonNullableTravel_agency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFlightTravel_agency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFlightNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("departure_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableDeparture_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("passenger_name" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullablePassenger_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refundable" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableRefundable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("segments" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableSegments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("travel_agency" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableTravel_agency obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("departure_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableDeparture_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("passenger_name" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullablePassenger_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refundable" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableRefundable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("segments" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableSegments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("travel_agency" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightNonNullableTravel_agency obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFlightNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFlightNonNullable" (\obj -> ((((GHC.Base.pure Issuing_transaction_purchase_detailsFlightNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "departure_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "passenger_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "refundable")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "segments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "travel_agency"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFlightNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFlightNonNullable :: Issuing_transaction_purchase_detailsFlightNonNullable
-mkIssuing_transaction_purchase_detailsFlightNonNullable = Issuing_transaction_purchase_detailsFlightNonNullable{issuing_transaction_purchase_detailsFlightNonNullableDeparture_at = GHC.Maybe.Nothing,
-                                                                                                                issuing_transaction_purchase_detailsFlightNonNullablePassenger_name = GHC.Maybe.Nothing,
-                                                                                                                issuing_transaction_purchase_detailsFlightNonNullableRefundable = GHC.Maybe.Nothing,
-                                                                                                                issuing_transaction_purchase_detailsFlightNonNullableSegments = GHC.Maybe.Nothing,
-                                                                                                                issuing_transaction_purchase_detailsFlightNonNullableTravel_agency = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFlight
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("departure_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightDeparture_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("passenger_name" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightPassenger_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refundable" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightRefundable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("segments" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightSegments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("travel_agency" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightTravel_agency obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("departure_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightDeparture_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("passenger_name" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightPassenger_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refundable" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightRefundable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("segments" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightSegments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("travel_agency" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFlightTravel_agency obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFlight
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFlight" (\obj -> ((((GHC.Base.pure Issuing_transaction_purchase_detailsFlight GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "departure_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "passenger_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "refundable")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "segments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "travel_agency"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFlight' with all required fields.
+mkIssuing_transaction_purchase_detailsFlight :: Issuing_transaction_purchase_detailsFlight
+mkIssuing_transaction_purchase_detailsFlight = Issuing_transaction_purchase_detailsFlight{issuing_transaction_purchase_detailsFlightDeparture_at = GHC.Maybe.Nothing,
+                                                                                          issuing_transaction_purchase_detailsFlightPassenger_name = GHC.Maybe.Nothing,
+                                                                                          issuing_transaction_purchase_detailsFlightRefundable = GHC.Maybe.Nothing,
+                                                                                          issuing_transaction_purchase_detailsFlightSegments = GHC.Maybe.Nothing,
+                                                                                          issuing_transaction_purchase_detailsFlightTravel_agency = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.fuel.anyOf@ in the specification.
 -- 
 -- Information about fuel that was purchased with this transaction.
-data Issuing_transaction_purchase_detailsFuelNonNullable = Issuing_transaction_purchase_detailsFuelNonNullable {
+data Issuing_transaction_purchase_detailsFuel = Issuing_transaction_purchase_detailsFuel {
   -- | industry_product_code: [Conexxus Payment System Product Code](https:\/\/www.conexxus.org\/conexxus-payment-system-product-codes) identifying the primary fuel product purchased.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_purchase_detailsFuelNonNullableIndustry_product_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_purchase_detailsFuelIndustry_product_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | quantity_decimal: The quantity of \`unit\`s of fuel that was dispensed, represented as a decimal string with at most 12 decimal places.
-  , issuing_transaction_purchase_detailsFuelNonNullableQuantity_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_purchase_detailsFuelQuantity_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The type of fuel that was purchased. One of \`diesel\`, \`unleaded_plus\`, \`unleaded_regular\`, \`unleaded_super\`, or \`other\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFuelNonNullableType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , issuing_transaction_purchase_detailsFuelType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | unit: The units for \`quantity_decimal\`. One of \`charging_minute\`, \`imperial_gallon\`, \`kilogram\`, \`kilowatt_hour\`, \`liter\`, \`pound\`, \`us_gallon\`, or \`other\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_purchase_detailsFuelNonNullableUnit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , issuing_transaction_purchase_detailsFuelUnit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | unit_cost_decimal: The cost in cents per each unit of fuel, represented as a decimal string with at most 12 decimal places.
-  , issuing_transaction_purchase_detailsFuelNonNullableUnit_cost_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , issuing_transaction_purchase_detailsFuelUnit_cost_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFuelNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("industry_product_code" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableIndustry_product_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableQuantity_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_cost_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableUnit_cost_decimal obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("industry_product_code" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableIndustry_product_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableQuantity_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_cost_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelNonNullableUnit_cost_decimal obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFuelNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFuelNonNullable" (\obj -> ((((GHC.Base.pure Issuing_transaction_purchase_detailsFuelNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "industry_product_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quantity_decimal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_cost_decimal"))}
--- | Create a new 'Issuing_transaction_purchase_detailsFuelNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsFuelNonNullable :: Issuing_transaction_purchase_detailsFuelNonNullable
-mkIssuing_transaction_purchase_detailsFuelNonNullable = Issuing_transaction_purchase_detailsFuelNonNullable{issuing_transaction_purchase_detailsFuelNonNullableIndustry_product_code = GHC.Maybe.Nothing,
-                                                                                                            issuing_transaction_purchase_detailsFuelNonNullableQuantity_decimal = GHC.Maybe.Nothing,
-                                                                                                            issuing_transaction_purchase_detailsFuelNonNullableType = GHC.Maybe.Nothing,
-                                                                                                            issuing_transaction_purchase_detailsFuelNonNullableUnit = GHC.Maybe.Nothing,
-                                                                                                            issuing_transaction_purchase_detailsFuelNonNullableUnit_cost_decimal = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsFuel
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("industry_product_code" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelIndustry_product_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelQuantity_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_cost_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelUnit_cost_decimal obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("industry_product_code" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelIndustry_product_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("quantity_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelQuantity_decimal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit_cost_decimal" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsFuelUnit_cost_decimal obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsFuel
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsFuel" (\obj -> ((((GHC.Base.pure Issuing_transaction_purchase_detailsFuel GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "industry_product_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "quantity_decimal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit_cost_decimal"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsFuel' with all required fields.
+mkIssuing_transaction_purchase_detailsFuel :: Issuing_transaction_purchase_detailsFuel
+mkIssuing_transaction_purchase_detailsFuel = Issuing_transaction_purchase_detailsFuel{issuing_transaction_purchase_detailsFuelIndustry_product_code = GHC.Maybe.Nothing,
+                                                                                      issuing_transaction_purchase_detailsFuelQuantity_decimal = GHC.Maybe.Nothing,
+                                                                                      issuing_transaction_purchase_detailsFuelType = GHC.Maybe.Nothing,
+                                                                                      issuing_transaction_purchase_detailsFuelUnit = GHC.Maybe.Nothing,
+                                                                                      issuing_transaction_purchase_detailsFuelUnit_cost_decimal = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_transaction_purchase_details.properties.lodging.anyOf@ in the specification.
 -- 
 -- Information about lodging that was purchased with this transaction.
-data Issuing_transaction_purchase_detailsLodgingNonNullable = Issuing_transaction_purchase_detailsLodgingNonNullable {
+data Issuing_transaction_purchase_detailsLodging = Issuing_transaction_purchase_detailsLodging {
   -- | check_in_at: The time of checking into the lodging.
-  issuing_transaction_purchase_detailsLodgingNonNullableCheck_in_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_transaction_purchase_detailsLodgingCheck_in_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | nights: The number of nights stayed at the lodging.
-  , issuing_transaction_purchase_detailsLodgingNonNullableNights :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_transaction_purchase_detailsLodgingNights :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsLodgingNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("check_in_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingNonNullableCheck_in_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nights" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingNonNullableNights obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("check_in_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingNonNullableCheck_in_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nights" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingNonNullableNights obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsLodgingNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsLodgingNonNullable" (\obj -> (GHC.Base.pure Issuing_transaction_purchase_detailsLodgingNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "check_in_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nights"))}
--- | Create a new 'Issuing_transaction_purchase_detailsLodgingNonNullable' with all required fields.
-mkIssuing_transaction_purchase_detailsLodgingNonNullable :: Issuing_transaction_purchase_detailsLodgingNonNullable
-mkIssuing_transaction_purchase_detailsLodgingNonNullable = Issuing_transaction_purchase_detailsLodgingNonNullable{issuing_transaction_purchase_detailsLodgingNonNullableCheck_in_at = GHC.Maybe.Nothing,
-                                                                                                                  issuing_transaction_purchase_detailsLodgingNonNullableNights = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_purchase_detailsLodging
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("check_in_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingCheck_in_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nights" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingNights obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("check_in_at" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingCheck_in_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nights" Data.Aeson.Types.ToJSON..=)) (issuing_transaction_purchase_detailsLodgingNights obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_transaction_purchase_detailsLodging
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_transaction_purchase_detailsLodging" (\obj -> (GHC.Base.pure Issuing_transaction_purchase_detailsLodging GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "check_in_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nights"))}
+-- | Create a new 'Issuing_transaction_purchase_detailsLodging' with all required fields.
+mkIssuing_transaction_purchase_detailsLodging :: Issuing_transaction_purchase_detailsLodging
+mkIssuing_transaction_purchase_detailsLodging = Issuing_transaction_purchase_detailsLodging{issuing_transaction_purchase_detailsLodgingCheck_in_at = GHC.Maybe.Nothing,
+                                                                                            issuing_transaction_purchase_detailsLodgingNights = GHC.Maybe.Nothing}

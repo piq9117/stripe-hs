@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Dispute_payment_method_details_amazon_pay = Dispute_payment_method_details_amazon_pay {
   -- | dispute_type: The AmazonPay dispute type, chargeback or claim
-  dispute_payment_method_details_amazon_payDispute_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_payment_method_details_amazon_payDispute_typeNonNullable))
+  dispute_payment_method_details_amazon_payDispute_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details_amazon_pay
@@ -57,21 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Dispute_payment_method_details_amazo
 -- | Create a new 'Dispute_payment_method_details_amazon_pay' with all required fields.
 mkDispute_payment_method_details_amazon_pay :: Dispute_payment_method_details_amazon_pay
 mkDispute_payment_method_details_amazon_pay = Dispute_payment_method_details_amazon_pay{dispute_payment_method_details_amazon_payDispute_type = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.dispute_payment_method_details_amazon_pay.properties.dispute_type@ in the specification.
--- 
--- The AmazonPay dispute type, chargeback or claim
-data Dispute_payment_method_details_amazon_payDispute_typeNonNullable =
-   Dispute_payment_method_details_amazon_payDispute_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Dispute_payment_method_details_amazon_payDispute_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Dispute_payment_method_details_amazon_payDispute_typeNonNullableEnumChargeback -- ^ Represents the JSON value @"chargeback"@
-  | Dispute_payment_method_details_amazon_payDispute_typeNonNullableEnumClaim -- ^ Represents the JSON value @"claim"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details_amazon_payDispute_typeNonNullable
-    where {toJSON (Dispute_payment_method_details_amazon_payDispute_typeNonNullableOther val) = val;
-           toJSON (Dispute_payment_method_details_amazon_payDispute_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Dispute_payment_method_details_amazon_payDispute_typeNonNullableEnumChargeback) = "chargeback";
-           toJSON (Dispute_payment_method_details_amazon_payDispute_typeNonNullableEnumClaim) = "claim"}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_payment_method_details_amazon_payDispute_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "chargeback" -> Dispute_payment_method_details_amazon_payDispute_typeNonNullableEnumChargeback
-                                             | val GHC.Classes.== "claim" -> Dispute_payment_method_details_amazon_payDispute_typeNonNullableEnumClaim
-                                             | GHC.Base.otherwise -> Dispute_payment_method_details_amazon_payDispute_typeNonNullableOther val)}

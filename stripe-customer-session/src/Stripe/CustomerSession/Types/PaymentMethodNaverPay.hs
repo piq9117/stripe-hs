@@ -50,9 +50,9 @@ data Payment_method_naver_pay = Payment_method_naver_pay {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_naver_payBuyer_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_naver_payBuyer_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding: Whether to fund this transaction with Naver Pay points or a card.
-  , payment_method_naver_payFunding :: Payment_method_naver_payFunding
+  , payment_method_naver_payFunding :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_naver_pay
@@ -61,25 +61,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_naver_pay
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_naver_pay
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_naver_pay" (\obj -> (GHC.Base.pure Payment_method_naver_pay GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "buyer_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "funding"))}
 -- | Create a new 'Payment_method_naver_pay' with all required fields.
-mkPayment_method_naver_pay :: Payment_method_naver_payFunding -- ^ 'payment_method_naver_payFunding'
+mkPayment_method_naver_pay :: Data.Text.Internal.Text -- ^ 'payment_method_naver_payFunding'
   -> Payment_method_naver_pay
 mkPayment_method_naver_pay payment_method_naver_payFunding = Payment_method_naver_pay{payment_method_naver_payBuyer_id = GHC.Maybe.Nothing,
                                                                                       payment_method_naver_payFunding = payment_method_naver_payFunding}
--- | Defines the enum schema located at @components.schemas.payment_method_naver_pay.properties.funding@ in the specification.
--- 
--- Whether to fund this transaction with Naver Pay points or a card.
-data Payment_method_naver_payFunding =
-   Payment_method_naver_payFundingOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_naver_payFundingTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_naver_payFundingEnumCard -- ^ Represents the JSON value @"card"@
-  | Payment_method_naver_payFundingEnumPoints -- ^ Represents the JSON value @"points"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_naver_payFunding
-    where {toJSON (Payment_method_naver_payFundingOther val) = val;
-           toJSON (Payment_method_naver_payFundingTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_naver_payFundingEnumCard) = "card";
-           toJSON (Payment_method_naver_payFundingEnumPoints) = "points"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_naver_payFunding
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "card" -> Payment_method_naver_payFundingEnumCard
-                                             | val GHC.Classes.== "points" -> Payment_method_naver_payFundingEnumPoints
-                                             | GHC.Base.otherwise -> Payment_method_naver_payFundingOther val)}

@@ -50,7 +50,7 @@ data Billing_credit_grants_resource_applicable_price = Billing_credit_grants_res
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  billing_credit_grants_resource_applicable_priceId :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  billing_credit_grants_resource_applicable_priceId :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_applicable_price

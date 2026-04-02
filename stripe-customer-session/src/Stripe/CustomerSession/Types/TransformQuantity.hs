@@ -48,7 +48,7 @@ data Transform_quantity = Transform_quantity {
   -- | divide_by: Divide usage by this number.
   transform_quantityDivide_by :: GHC.Types.Int
   -- | round: After division, either round the result \`up\` or \`down\`.
-  , transform_quantityRound :: Transform_quantityRound
+  , transform_quantityRound :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Transform_quantity
@@ -58,25 +58,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Transform_quantity
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Transform_quantity" (\obj -> (GHC.Base.pure Transform_quantity GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "divide_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "round"))}
 -- | Create a new 'Transform_quantity' with all required fields.
 mkTransform_quantity :: GHC.Types.Int -- ^ 'transform_quantityDivide_by'
-  -> Transform_quantityRound -- ^ 'transform_quantityRound'
+  -> Data.Text.Internal.Text -- ^ 'transform_quantityRound'
   -> Transform_quantity
 mkTransform_quantity transform_quantityDivide_by transform_quantityRound = Transform_quantity{transform_quantityDivide_by = transform_quantityDivide_by,
                                                                                               transform_quantityRound = transform_quantityRound}
--- | Defines the enum schema located at @components.schemas.transform_quantity.properties.round@ in the specification.
--- 
--- After division, either round the result \`up\` or \`down\`.
-data Transform_quantityRound =
-   Transform_quantityRoundOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Transform_quantityRoundTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Transform_quantityRoundEnumDown -- ^ Represents the JSON value @"down"@
-  | Transform_quantityRoundEnumUp -- ^ Represents the JSON value @"up"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Transform_quantityRound
-    where {toJSON (Transform_quantityRoundOther val) = val;
-           toJSON (Transform_quantityRoundTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Transform_quantityRoundEnumDown) = "down";
-           toJSON (Transform_quantityRoundEnumUp) = "up"}
-instance Data.Aeson.Types.FromJSON.FromJSON Transform_quantityRound
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "down" -> Transform_quantityRoundEnumDown
-                                             | val GHC.Classes.== "up" -> Transform_quantityRoundEnumUp
-                                             | GHC.Base.otherwise -> Transform_quantityRoundOther val)}

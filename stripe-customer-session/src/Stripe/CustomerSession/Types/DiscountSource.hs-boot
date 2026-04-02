@@ -6,8 +6,8 @@ instance Show Discount_source
 instance Eq Discount_source
 instance Data.Aeson.FromJSON Discount_source
 instance Data.Aeson.ToJSON Discount_source
-data Discount_sourceCouponNonNullableVariants
-instance Show Discount_sourceCouponNonNullableVariants
-instance Eq Discount_sourceCouponNonNullableVariants
-instance Data.Aeson.FromJSON Discount_sourceCouponNonNullableVariants
-instance Data.Aeson.ToJSON Discount_sourceCouponNonNullableVariants
+data Discount_sourceCouponVariants
+instance Show Discount_sourceCouponVariants
+instance Eq Discount_sourceCouponVariants
+instance Data.Aeson.FromJSON Discount_sourceCouponVariants
+instance Data.Aeson.ToJSON Discount_sourceCouponVariants

@@ -50,7 +50,7 @@ data Setup_attempt_payment_method_details_card_wallet = Setup_attempt_payment_me
   -- | google_pay: 
   , setup_attempt_payment_method_details_card_walletGoogle_pay :: (GHC.Maybe.Maybe Payment_method_details_card_wallet_google_pay)
   -- | type: The type of the card wallet, one of \`apple_pay\`, \`google_pay\`, or \`link\`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
-  , setup_attempt_payment_method_details_card_walletType :: Setup_attempt_payment_method_details_card_walletType
+  , setup_attempt_payment_method_details_card_walletType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_card_wallet
@@ -59,29 +59,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_car
 instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_card_wallet
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_attempt_payment_method_details_card_wallet" (\obj -> ((GHC.Base.pure Setup_attempt_payment_method_details_card_wallet GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "apple_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "google_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Setup_attempt_payment_method_details_card_wallet' with all required fields.
-mkSetup_attempt_payment_method_details_card_wallet :: Setup_attempt_payment_method_details_card_walletType -- ^ 'setup_attempt_payment_method_details_card_walletType'
+mkSetup_attempt_payment_method_details_card_wallet :: Data.Text.Internal.Text -- ^ 'setup_attempt_payment_method_details_card_walletType'
   -> Setup_attempt_payment_method_details_card_wallet
 mkSetup_attempt_payment_method_details_card_wallet setup_attempt_payment_method_details_card_walletType = Setup_attempt_payment_method_details_card_wallet{setup_attempt_payment_method_details_card_walletApple_pay = GHC.Maybe.Nothing,
                                                                                                                                                            setup_attempt_payment_method_details_card_walletGoogle_pay = GHC.Maybe.Nothing,
                                                                                                                                                            setup_attempt_payment_method_details_card_walletType = setup_attempt_payment_method_details_card_walletType}
--- | Defines the enum schema located at @components.schemas.setup_attempt_payment_method_details_card_wallet.properties.type@ in the specification.
--- 
--- The type of the card wallet, one of \`apple_pay\`, \`google_pay\`, or \`link\`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
-data Setup_attempt_payment_method_details_card_walletType =
-   Setup_attempt_payment_method_details_card_walletTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_attempt_payment_method_details_card_walletTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_attempt_payment_method_details_card_walletTypeEnumApple_pay -- ^ Represents the JSON value @"apple_pay"@
-  | Setup_attempt_payment_method_details_card_walletTypeEnumGoogle_pay -- ^ Represents the JSON value @"google_pay"@
-  | Setup_attempt_payment_method_details_card_walletTypeEnumLink -- ^ Represents the JSON value @"link"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_attempt_payment_method_details_card_walletType
-    where {toJSON (Setup_attempt_payment_method_details_card_walletTypeOther val) = val;
-           toJSON (Setup_attempt_payment_method_details_card_walletTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_attempt_payment_method_details_card_walletTypeEnumApple_pay) = "apple_pay";
-           toJSON (Setup_attempt_payment_method_details_card_walletTypeEnumGoogle_pay) = "google_pay";
-           toJSON (Setup_attempt_payment_method_details_card_walletTypeEnumLink) = "link"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_attempt_payment_method_details_card_walletType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "apple_pay" -> Setup_attempt_payment_method_details_card_walletTypeEnumApple_pay
-                                             | val GHC.Classes.== "google_pay" -> Setup_attempt_payment_method_details_card_walletTypeEnumGoogle_pay
-                                             | val GHC.Classes.== "link" -> Setup_attempt_payment_method_details_card_walletTypeEnumLink
-                                             | GHC.Base.otherwise -> Setup_attempt_payment_method_details_card_walletTypeOther val)}

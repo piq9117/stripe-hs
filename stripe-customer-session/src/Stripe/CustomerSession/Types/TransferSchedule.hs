@@ -64,7 +64,7 @@ data Transfer_schedule = Transfer_schedule {
   -- * Maximum length of 5000
   , transfer_scheduleWeekly_anchor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | weekly_payout_days: The days of the week when available funds are paid out, specified as an array, for example, [\`monday\`, \`tuesday\`]. Only shown if \`interval\` is weekly.
-  , transfer_scheduleWeekly_payout_days :: (GHC.Maybe.Maybe [Transfer_scheduleWeekly_payout_days])
+  , transfer_scheduleWeekly_payout_days :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Transfer_schedule
@@ -82,30 +82,3 @@ mkTransfer_schedule transfer_scheduleDelay_days transfer_scheduleInterval = Tran
                                                                                               transfer_scheduleMonthly_payout_days = GHC.Maybe.Nothing,
                                                                                               transfer_scheduleWeekly_anchor = GHC.Maybe.Nothing,
                                                                                               transfer_scheduleWeekly_payout_days = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.transfer_schedule.properties.weekly_payout_days.items@ in the specification.
--- 
--- 
-data Transfer_scheduleWeekly_payout_days =
-   Transfer_scheduleWeekly_payout_daysOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Transfer_scheduleWeekly_payout_daysTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Transfer_scheduleWeekly_payout_daysEnumFriday -- ^ Represents the JSON value @"friday"@
-  | Transfer_scheduleWeekly_payout_daysEnumMonday -- ^ Represents the JSON value @"monday"@
-  | Transfer_scheduleWeekly_payout_daysEnumThursday -- ^ Represents the JSON value @"thursday"@
-  | Transfer_scheduleWeekly_payout_daysEnumTuesday -- ^ Represents the JSON value @"tuesday"@
-  | Transfer_scheduleWeekly_payout_daysEnumWednesday -- ^ Represents the JSON value @"wednesday"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Transfer_scheduleWeekly_payout_days
-    where {toJSON (Transfer_scheduleWeekly_payout_daysOther val) = val;
-           toJSON (Transfer_scheduleWeekly_payout_daysTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Transfer_scheduleWeekly_payout_daysEnumFriday) = "friday";
-           toJSON (Transfer_scheduleWeekly_payout_daysEnumMonday) = "monday";
-           toJSON (Transfer_scheduleWeekly_payout_daysEnumThursday) = "thursday";
-           toJSON (Transfer_scheduleWeekly_payout_daysEnumTuesday) = "tuesday";
-           toJSON (Transfer_scheduleWeekly_payout_daysEnumWednesday) = "wednesday"}
-instance Data.Aeson.Types.FromJSON.FromJSON Transfer_scheduleWeekly_payout_days
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "friday" -> Transfer_scheduleWeekly_payout_daysEnumFriday
-                                             | val GHC.Classes.== "monday" -> Transfer_scheduleWeekly_payout_daysEnumMonday
-                                             | val GHC.Classes.== "thursday" -> Transfer_scheduleWeekly_payout_daysEnumThursday
-                                             | val GHC.Classes.== "tuesday" -> Transfer_scheduleWeekly_payout_daysEnumTuesday
-                                             | val GHC.Classes.== "wednesday" -> Transfer_scheduleWeekly_payout_daysEnumWednesday
-                                             | GHC.Base.otherwise -> Transfer_scheduleWeekly_payout_daysOther val)}

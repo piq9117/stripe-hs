@@ -63,18 +63,22 @@ data Tax_code = Tax_code {
   -- 
   -- * Maximum length of 5000
   , tax_codeName :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , tax_codeObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Tax_code
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["description" Data.Aeson.Types.ToJSON..= tax_codeDescription obj] : ["id" Data.Aeson.Types.ToJSON..= tax_codeId obj] : ["name" Data.Aeson.Types.ToJSON..= tax_codeName obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_code"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["description" Data.Aeson.Types.ToJSON..= tax_codeDescription obj] : ["id" Data.Aeson.Types.ToJSON..= tax_codeId obj] : ["name" Data.Aeson.Types.ToJSON..= tax_codeName obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_code"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["description" Data.Aeson.Types.ToJSON..= tax_codeDescription obj] : ["id" Data.Aeson.Types.ToJSON..= tax_codeId obj] : ["name" Data.Aeson.Types.ToJSON..= tax_codeName obj] : ["object" Data.Aeson.Types.ToJSON..= tax_codeObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["description" Data.Aeson.Types.ToJSON..= tax_codeDescription obj] : ["id" Data.Aeson.Types.ToJSON..= tax_codeId obj] : ["name" Data.Aeson.Types.ToJSON..= tax_codeName obj] : ["object" Data.Aeson.Types.ToJSON..= tax_codeObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Tax_code
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Tax_code" (\obj -> ((GHC.Base.pure Tax_code GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "name"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Tax_code" (\obj -> (((GHC.Base.pure Tax_code GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Tax_code' with all required fields.
 mkTax_code :: Data.Text.Internal.Text -- ^ 'tax_codeDescription'
   -> Data.Text.Internal.Text -- ^ 'tax_codeId'
   -> Data.Text.Internal.Text -- ^ 'tax_codeName'
+  -> Data.Text.Internal.Text -- ^ 'tax_codeObject'
   -> Tax_code
-mkTax_code tax_codeDescription tax_codeId tax_codeName = Tax_code{tax_codeDescription = tax_codeDescription,
-                                                                  tax_codeId = tax_codeId,
-                                                                  tax_codeName = tax_codeName}
+mkTax_code tax_codeDescription tax_codeId tax_codeName tax_codeObject = Tax_code{tax_codeDescription = tax_codeDescription,
+                                                                                 tax_codeId = tax_codeId,
+                                                                                 tax_codeName = tax_codeName,
+                                                                                 tax_codeObject = tax_codeObject}

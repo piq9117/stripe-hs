@@ -6,8 +6,3 @@ instance Show Issuing_dispute_evidence
 instance Eq Issuing_dispute_evidence
 instance Data.Aeson.FromJSON Issuing_dispute_evidence
 instance Data.Aeson.ToJSON Issuing_dispute_evidence
-data Issuing_dispute_evidenceReason
-instance Show Issuing_dispute_evidenceReason
-instance Eq Issuing_dispute_evidenceReason
-instance Data.Aeson.FromJSON Issuing_dispute_evidenceReason
-instance Data.Aeson.ToJSON Issuing_dispute_evidenceReason

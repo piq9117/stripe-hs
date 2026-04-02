@@ -225,6 +225,8 @@ library
       Stripe.CustomerSession.Types.IssuingCardAuthorizationControls
       Stripe.CustomerSession.Types.IssuingCardFraudWarning
       Stripe.CustomerSession.Types.IssuingCardGooglePay
+      Stripe.CustomerSession.Types.IssuingCardLifecycleConditions
+      Stripe.CustomerSession.Types.IssuingCardLifecycleControls
       Stripe.CustomerSession.Types.IssuingCardShipping
       Stripe.CustomerSession.Types.IssuingCardShippingAddressValidation
       Stripe.CustomerSession.Types.IssuingCardShippingCustoms
@@ -301,6 +303,7 @@ library
       Stripe.CustomerSession.Types.MandatePayto
       Stripe.CustomerSession.Types.MandateSepaDebit
       Stripe.CustomerSession.Types.MandateSingleUse
+      Stripe.CustomerSession.Types.MandateUpi
       Stripe.CustomerSession.Types.MandateUsBankAccount
       Stripe.CustomerSession.Types.Networks
       Stripe.CustomerSession.Types.OnlineAcceptance
@@ -361,6 +364,8 @@ library
       Stripe.CustomerSession.Types.PaymentIntentNextActionRedirectToUrl
       Stripe.CustomerSession.Types.PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode
       Stripe.CustomerSession.Types.PaymentIntentNextActionSwishQrCode
+      Stripe.CustomerSession.Types.PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode
+      Stripe.CustomerSession.Types.PaymentIntentNextActionUpiqrCode
       Stripe.CustomerSession.Types.PaymentIntentNextActionVerifyWithMicrodeposits
       Stripe.CustomerSession.Types.PaymentIntentNextActionWechatPayDisplayQrCode
       Stripe.CustomerSession.Types.PaymentIntentNextActionWechatPayRedirectToAndroidApp
@@ -456,13 +461,21 @@ library
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordBoleto
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordCashapp
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordGiropay
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordIdeal
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordKakaoPay
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordKonbini
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordMobilepay
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordMultibanco
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordNaverPay
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordOxxo
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordPayco
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordPaynow
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordPix
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordPromptpay
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordSamsungPay
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordSepaDebit
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordSofort
+      Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordSwish
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordUsBankAccount
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaymentRecordWechatPay
       Stripe.CustomerSession.Types.PaymentMethodDetailsPaynow
@@ -476,6 +489,7 @@ library
       Stripe.CustomerSession.Types.PaymentMethodDetailsSepaDebit
       Stripe.CustomerSession.Types.PaymentMethodDetailsSofort
       Stripe.CustomerSession.Types.PaymentMethodDetailsSwish
+      Stripe.CustomerSession.Types.PaymentMethodDetailsUpi
       Stripe.CustomerSession.Types.PaymentMethodDetailsUsBankAccount
       Stripe.CustomerSession.Types.PaymentMethodDetailsWechatPay
       Stripe.CustomerSession.Types.PaymentMethodEps
@@ -511,6 +525,7 @@ library
       Stripe.CustomerSession.Types.PaymentMethodOptionsKlarna
       Stripe.CustomerSession.Types.PaymentMethodOptionsKonbini
       Stripe.CustomerSession.Types.PaymentMethodOptionsKrCard
+      Stripe.CustomerSession.Types.PaymentMethodOptionsMandateOptionsUpi
       Stripe.CustomerSession.Types.PaymentMethodOptionsMbWay
       Stripe.CustomerSession.Types.PaymentMethodOptionsMultibanco
       Stripe.CustomerSession.Types.PaymentMethodOptionsOxxo
@@ -523,6 +538,7 @@ library
       Stripe.CustomerSession.Types.PaymentMethodOptionsSatispay
       Stripe.CustomerSession.Types.PaymentMethodOptionsSofort
       Stripe.CustomerSession.Types.PaymentMethodOptionsTwint
+      Stripe.CustomerSession.Types.PaymentMethodOptionsUpi
       Stripe.CustomerSession.Types.PaymentMethodOptionsUsBankAccountMandateOptions
       Stripe.CustomerSession.Types.PaymentMethodOptionsWechatPay
       Stripe.CustomerSession.Types.PaymentMethodOptionsZip
@@ -531,6 +547,7 @@ library
       Stripe.CustomerSession.Types.PaymentMethodPayto
       Stripe.CustomerSession.Types.PaymentMethodSepaDebit
       Stripe.CustomerSession.Types.PaymentMethodSofort
+      Stripe.CustomerSession.Types.PaymentMethodUpi
       Stripe.CustomerSession.Types.PaymentMethodUsBankAccount
       Stripe.CustomerSession.Types.PaymentMethodUsBankAccountBlocked
       Stripe.CustomerSession.Types.PaymentMethodUsBankAccountStatusDetails
@@ -550,6 +567,7 @@ library
       Stripe.CustomerSession.Types.PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCustomDetails
       Stripe.CustomerSession.Types.PaymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails
       Stripe.CustomerSession.Types.PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDetailsResourceStore
+      Stripe.CustomerSession.Types.PaymentsPrimitivesPaymentRecordsResourcePaymentMethodMobilepayDetailsResourceCard
       Stripe.CustomerSession.Types.PaymentsPrimitivesPaymentRecordsResourceProcessorDetails
       Stripe.CustomerSession.Types.PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResourceCustomDetails
       Stripe.CustomerSession.Types.PaymentsPrimitivesPaymentRecordsResourceShippingDetails
@@ -629,6 +647,7 @@ library
       Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsPaypal
       Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsPayto
       Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsSepaDebit
+      Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsUpi
       Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsUsBankAccount
       Stripe.CustomerSession.Types.SetupIntentTypeSpecificPaymentMethodOptionsClient
       Stripe.CustomerSession.Types.Shipping
@@ -689,6 +708,7 @@ library
       Stripe.CustomerSession.Types.SubscriptionsResourcePaymentSettings
       Stripe.CustomerSession.Types.SubscriptionsResourcePendingUpdate
       Stripe.CustomerSession.Types.SubscriptionsResourceSubscriptionInvoiceSettings
+      Stripe.CustomerSession.Types.SubscriptionsResourceSubscriptionPresentmentDetails
       Stripe.CustomerSession.Types.SubscriptionsResourceTrialSettingsEndBehavior
       Stripe.CustomerSession.Types.SubscriptionsResourceTrialSettingsTrialSettings
       Stripe.CustomerSession.Types.TaxCode

@@ -50,29 +50,29 @@ data Payment_method_details_passthrough_card = Payment_method_details_passthroug
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_passthrough_cardBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_passthrough_cardBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you\'ve collected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_passthrough_cardCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_passthrough_cardCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
-  , payment_method_details_passthrough_cardExp_month :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_details_passthrough_cardExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year: Four-digit number representing the card\'s expiration year.
-  , payment_method_details_passthrough_cardExp_year :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_details_passthrough_cardExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | funding: Card funding type. Can be \`credit\`, \`debit\`, \`prepaid\`, or \`unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_passthrough_cardFunding :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_passthrough_cardFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: The last four digits of the card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_passthrough_cardLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_passthrough_cardLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_passthrough_card

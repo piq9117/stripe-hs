@@ -6,8 +6,3 @@ instance Show Transform_quantity
 instance Eq Transform_quantity
 instance Data.Aeson.FromJSON Transform_quantity
 instance Data.Aeson.ToJSON Transform_quantity
-data Transform_quantityRound
-instance Show Transform_quantityRound
-instance Eq Transform_quantityRound
-instance Data.Aeson.FromJSON Transform_quantityRound
-instance Data.Aeson.ToJSON Transform_quantityRound

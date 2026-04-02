@@ -64,7 +64,7 @@ data Refund_destination_details_card = Refund_destination_details_card {
   -- * Maximum length of 5000
   , refund_destination_details_cardReference_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The type of refund. This can be \`refund\`, \`reversal\`, or \`pending\`.
-  , refund_destination_details_cardType :: Refund_destination_details_cardType
+  , refund_destination_details_cardType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Refund_destination_details_card
@@ -73,30 +73,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON Refund_destination_details_card
 instance Data.Aeson.Types.FromJSON.FromJSON Refund_destination_details_card
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Refund_destination_details_card" (\obj -> (((GHC.Base.pure Refund_destination_details_card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Refund_destination_details_card' with all required fields.
-mkRefund_destination_details_card :: Refund_destination_details_cardType -- ^ 'refund_destination_details_cardType'
+mkRefund_destination_details_card :: Data.Text.Internal.Text -- ^ 'refund_destination_details_cardType'
   -> Refund_destination_details_card
 mkRefund_destination_details_card refund_destination_details_cardType = Refund_destination_details_card{refund_destination_details_cardReference = GHC.Maybe.Nothing,
                                                                                                         refund_destination_details_cardReference_status = GHC.Maybe.Nothing,
                                                                                                         refund_destination_details_cardReference_type = GHC.Maybe.Nothing,
                                                                                                         refund_destination_details_cardType = refund_destination_details_cardType}
--- | Defines the enum schema located at @components.schemas.refund_destination_details_card.properties.type@ in the specification.
--- 
--- The type of refund. This can be \`refund\`, \`reversal\`, or \`pending\`.
-data Refund_destination_details_cardType =
-   Refund_destination_details_cardTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Refund_destination_details_cardTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Refund_destination_details_cardTypeEnumPending -- ^ Represents the JSON value @"pending"@
-  | Refund_destination_details_cardTypeEnumRefund -- ^ Represents the JSON value @"refund"@
-  | Refund_destination_details_cardTypeEnumReversal -- ^ Represents the JSON value @"reversal"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Refund_destination_details_cardType
-    where {toJSON (Refund_destination_details_cardTypeOther val) = val;
-           toJSON (Refund_destination_details_cardTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Refund_destination_details_cardTypeEnumPending) = "pending";
-           toJSON (Refund_destination_details_cardTypeEnumRefund) = "refund";
-           toJSON (Refund_destination_details_cardTypeEnumReversal) = "reversal"}
-instance Data.Aeson.Types.FromJSON.FromJSON Refund_destination_details_cardType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "pending" -> Refund_destination_details_cardTypeEnumPending
-                                             | val GHC.Classes.== "refund" -> Refund_destination_details_cardTypeEnumRefund
-                                             | val GHC.Classes.== "reversal" -> Refund_destination_details_cardTypeEnumReversal
-                                             | GHC.Base.otherwise -> Refund_destination_details_cardTypeOther val)}

@@ -6,8 +6,3 @@ instance Show Line_items_tax_amount
 instance Eq Line_items_tax_amount
 instance Data.Aeson.FromJSON Line_items_tax_amount
 instance Data.Aeson.ToJSON Line_items_tax_amount
-data Line_items_tax_amountTaxability_reasonNonNullable
-instance Show Line_items_tax_amountTaxability_reasonNonNullable
-instance Eq Line_items_tax_amountTaxability_reasonNonNullable
-instance Data.Aeson.FromJSON Line_items_tax_amountTaxability_reasonNonNullable
-instance Data.Aeson.ToJSON Line_items_tax_amountTaxability_reasonNonNullable

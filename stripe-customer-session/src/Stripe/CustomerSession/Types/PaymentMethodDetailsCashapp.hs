@@ -50,19 +50,19 @@ data Payment_method_details_cashapp = Payment_method_details_cashapp {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_cashappBuyer_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_cashappBuyer_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cashtag: A public identifier for buyers using Cash App.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_cashappCashtag :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_cashappCashtag :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_id: A unique and immutable identifier of payments assigned by Cash App
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_cashappTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_cashappTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_cashapp

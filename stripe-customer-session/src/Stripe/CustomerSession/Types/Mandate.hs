@@ -57,10 +57,12 @@ data Mandate = Mandate {
   -- 
   -- * Maximum length of 5000
   , mandateId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , mandateLivemode :: GHC.Types.Bool
   -- | multi_use: 
   , mandateMulti_use :: (GHC.Maybe.Maybe Mandate_multi_use)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , mandateObject :: Data.Text.Internal.Text
   -- | on_behalf_of: The account (if any) that the mandate is intended for.
   -- 
   -- Constraints:
@@ -74,35 +76,37 @@ data Mandate = Mandate {
   -- | single_use: 
   , mandateSingle_use :: (GHC.Maybe.Maybe Mandate_single_use)
   -- | status: The mandate status indicates whether or not you can use it to initiate a payment.
-  , mandateStatus :: MandateStatus
+  , mandateStatus :: Data.Text.Internal.Text
   -- | type: The type of the mandate.
-  , mandateType :: MandateType
+  , mandateType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Mandate
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["customer_acceptance" Data.Aeson.Types.ToJSON..= mandateCustomer_acceptance obj] : ["id" Data.Aeson.Types.ToJSON..= mandateId obj] : ["livemode" Data.Aeson.Types.ToJSON..= mandateLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multi_use" Data.Aeson.Types.ToJSON..=)) (mandateMulti_use obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (mandateOn_behalf_of obj) : ["payment_method" Data.Aeson.Types.ToJSON..= mandatePayment_method obj] : ["payment_method_details" Data.Aeson.Types.ToJSON..= mandatePayment_method_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use" Data.Aeson.Types.ToJSON..=)) (mandateSingle_use obj) : ["status" Data.Aeson.Types.ToJSON..= mandateStatus obj] : ["type" Data.Aeson.Types.ToJSON..= mandateType obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "mandate"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["customer_acceptance" Data.Aeson.Types.ToJSON..= mandateCustomer_acceptance obj] : ["id" Data.Aeson.Types.ToJSON..= mandateId obj] : ["livemode" Data.Aeson.Types.ToJSON..= mandateLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multi_use" Data.Aeson.Types.ToJSON..=)) (mandateMulti_use obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (mandateOn_behalf_of obj) : ["payment_method" Data.Aeson.Types.ToJSON..= mandatePayment_method obj] : ["payment_method_details" Data.Aeson.Types.ToJSON..= mandatePayment_method_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use" Data.Aeson.Types.ToJSON..=)) (mandateSingle_use obj) : ["status" Data.Aeson.Types.ToJSON..= mandateStatus obj] : ["type" Data.Aeson.Types.ToJSON..= mandateType obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "mandate"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["customer_acceptance" Data.Aeson.Types.ToJSON..= mandateCustomer_acceptance obj] : ["id" Data.Aeson.Types.ToJSON..= mandateId obj] : ["livemode" Data.Aeson.Types.ToJSON..= mandateLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multi_use" Data.Aeson.Types.ToJSON..=)) (mandateMulti_use obj) : ["object" Data.Aeson.Types.ToJSON..= mandateObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (mandateOn_behalf_of obj) : ["payment_method" Data.Aeson.Types.ToJSON..= mandatePayment_method obj] : ["payment_method_details" Data.Aeson.Types.ToJSON..= mandatePayment_method_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use" Data.Aeson.Types.ToJSON..=)) (mandateSingle_use obj) : ["status" Data.Aeson.Types.ToJSON..= mandateStatus obj] : ["type" Data.Aeson.Types.ToJSON..= mandateType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["customer_acceptance" Data.Aeson.Types.ToJSON..= mandateCustomer_acceptance obj] : ["id" Data.Aeson.Types.ToJSON..= mandateId obj] : ["livemode" Data.Aeson.Types.ToJSON..= mandateLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multi_use" Data.Aeson.Types.ToJSON..=)) (mandateMulti_use obj) : ["object" Data.Aeson.Types.ToJSON..= mandateObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (mandateOn_behalf_of obj) : ["payment_method" Data.Aeson.Types.ToJSON..= mandatePayment_method obj] : ["payment_method_details" Data.Aeson.Types.ToJSON..= mandatePayment_method_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use" Data.Aeson.Types.ToJSON..=)) (mandateSingle_use obj) : ["status" Data.Aeson.Types.ToJSON..= mandateStatus obj] : ["type" Data.Aeson.Types.ToJSON..= mandateType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Mandate
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Mandate" (\obj -> (((((((((GHC.Base.pure Mandate GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer_acceptance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multi_use")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "single_use")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Mandate" (\obj -> ((((((((((GHC.Base.pure Mandate GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer_acceptance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multi_use")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "single_use")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Mandate' with all required fields.
 mkMandate :: Customer_acceptance -- ^ 'mandateCustomer_acceptance'
   -> Data.Text.Internal.Text -- ^ 'mandateId'
   -> GHC.Types.Bool -- ^ 'mandateLivemode'
+  -> Data.Text.Internal.Text -- ^ 'mandateObject'
   -> MandatePayment_methodVariants -- ^ 'mandatePayment_method'
   -> Mandate_payment_method_details -- ^ 'mandatePayment_method_details'
-  -> MandateStatus -- ^ 'mandateStatus'
-  -> MandateType -- ^ 'mandateType'
+  -> Data.Text.Internal.Text -- ^ 'mandateStatus'
+  -> Data.Text.Internal.Text -- ^ 'mandateType'
   -> Mandate
-mkMandate mandateCustomer_acceptance mandateId mandateLivemode mandatePayment_method mandatePayment_method_details mandateStatus mandateType = Mandate{mandateCustomer_acceptance = mandateCustomer_acceptance,
-                                                                                                                                                       mandateId = mandateId,
-                                                                                                                                                       mandateLivemode = mandateLivemode,
-                                                                                                                                                       mandateMulti_use = GHC.Maybe.Nothing,
-                                                                                                                                                       mandateOn_behalf_of = GHC.Maybe.Nothing,
-                                                                                                                                                       mandatePayment_method = mandatePayment_method,
-                                                                                                                                                       mandatePayment_method_details = mandatePayment_method_details,
-                                                                                                                                                       mandateSingle_use = GHC.Maybe.Nothing,
-                                                                                                                                                       mandateStatus = mandateStatus,
-                                                                                                                                                       mandateType = mandateType}
+mkMandate mandateCustomer_acceptance mandateId mandateLivemode mandateObject mandatePayment_method mandatePayment_method_details mandateStatus mandateType = Mandate{mandateCustomer_acceptance = mandateCustomer_acceptance,
+                                                                                                                                                                     mandateId = mandateId,
+                                                                                                                                                                     mandateLivemode = mandateLivemode,
+                                                                                                                                                                     mandateMulti_use = GHC.Maybe.Nothing,
+                                                                                                                                                                     mandateObject = mandateObject,
+                                                                                                                                                                     mandateOn_behalf_of = GHC.Maybe.Nothing,
+                                                                                                                                                                     mandatePayment_method = mandatePayment_method,
+                                                                                                                                                                     mandatePayment_method_details = mandatePayment_method_details,
+                                                                                                                                                                     mandateSingle_use = GHC.Maybe.Nothing,
+                                                                                                                                                                     mandateStatus = mandateStatus,
+                                                                                                                                                                     mandateType = mandateType}
 -- | Defines the oneOf schema located at @components.schemas.mandate.properties.payment_method.anyOf@ in the specification.
 -- 
 -- ID of the payment method associated with this mandate.
@@ -117,42 +121,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON MandatePayment_methodVariants
     where {parseJSON val = case (MandatePayment_methodText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((MandatePayment_methodPayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.mandate.properties.status@ in the specification.
--- 
--- The mandate status indicates whether or not you can use it to initiate a payment.
-data MandateStatus =
-   MandateStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | MandateStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | MandateStatusEnumActive -- ^ Represents the JSON value @"active"@
-  | MandateStatusEnumInactive -- ^ Represents the JSON value @"inactive"@
-  | MandateStatusEnumPending -- ^ Represents the JSON value @"pending"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON MandateStatus
-    where {toJSON (MandateStatusOther val) = val;
-           toJSON (MandateStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (MandateStatusEnumActive) = "active";
-           toJSON (MandateStatusEnumInactive) = "inactive";
-           toJSON (MandateStatusEnumPending) = "pending"}
-instance Data.Aeson.Types.FromJSON.FromJSON MandateStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "active" -> MandateStatusEnumActive
-                                             | val GHC.Classes.== "inactive" -> MandateStatusEnumInactive
-                                             | val GHC.Classes.== "pending" -> MandateStatusEnumPending
-                                             | GHC.Base.otherwise -> MandateStatusOther val)}
--- | Defines the enum schema located at @components.schemas.mandate.properties.type@ in the specification.
--- 
--- The type of the mandate.
-data MandateType =
-   MandateTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | MandateTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | MandateTypeEnumMulti_use -- ^ Represents the JSON value @"multi_use"@
-  | MandateTypeEnumSingle_use -- ^ Represents the JSON value @"single_use"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON MandateType
-    where {toJSON (MandateTypeOther val) = val;
-           toJSON (MandateTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (MandateTypeEnumMulti_use) = "multi_use";
-           toJSON (MandateTypeEnumSingle_use) = "single_use"}
-instance Data.Aeson.Types.FromJSON.FromJSON MandateType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "multi_use" -> MandateTypeEnumMulti_use
-                                             | val GHC.Classes.== "single_use" -> MandateTypeEnumSingle_use
-                                             | GHC.Base.otherwise -> MandateTypeOther val)}

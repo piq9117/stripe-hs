@@ -57,17 +57,17 @@ data Discount = Discount {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  discountCheckout_session :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  discountCheckout_session :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer: The ID of the customer associated with this discount.
-  , discountCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable DiscountCustomerNonNullableVariants))
+  , discountCustomer :: (GHC.Maybe.Maybe DiscountCustomerVariants)
   -- | customer_account: The ID of the account representing the customer associated with this discount.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , discountCustomer_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , discountCustomer_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | end: If the coupon has a duration of \`repeating\`, the date that this discount will end. If the coupon has a duration of \`once\` or \`forever\`, this attribute will be null.
-  , discountEnd :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , discountEnd :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | id: The ID of the discount object. Discounts cannot be fetched by ID. Use \`expand[]=discounts\` in API calls to expand discount IDs in an array.
   -- 
   -- Constraints:
@@ -79,15 +79,17 @@ data Discount = Discount {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , discountInvoice :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , discountInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | invoice_item: The invoice item \`id\` (or invoice line item \`id\` for invoice line items of type=\'subscription\') that the discount\'s coupon was applied to, if it was applied directly to a particular invoice item or invoice line item.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , discountInvoice_item :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , discountInvoice_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , discountObject :: Data.Text.Internal.Text
   -- | promotion_code: The promotion code applied to create this discount.
-  , discountPromotion_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable DiscountPromotion_codeNonNullableVariants))
+  , discountPromotion_code :: (GHC.Maybe.Maybe DiscountPromotion_codeVariants)
   -- | source: 
   , discountSource :: Discount_source
   -- | start: Date that the coupon was applied.
@@ -97,64 +99,66 @@ data Discount = Discount {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , discountSubscription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , discountSubscription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | subscription_item: The subscription item that this coupon is applied to, if it is applied to a particular subscription item.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , discountSubscription_item :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , discountSubscription_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Discount
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("checkout_session" Data.Aeson.Types.ToJSON..=)) (discountCheckout_session obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (discountCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (discountCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end" Data.Aeson.Types.ToJSON..=)) (discountEnd obj) : ["id" Data.Aeson.Types.ToJSON..= discountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (discountInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (discountInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promotion_code" Data.Aeson.Types.ToJSON..=)) (discountPromotion_code obj) : ["source" Data.Aeson.Types.ToJSON..= discountSource obj] : ["start" Data.Aeson.Types.ToJSON..= discountStart obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (discountSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (discountSubscription_item obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "discount"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("checkout_session" Data.Aeson.Types.ToJSON..=)) (discountCheckout_session obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (discountCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (discountCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end" Data.Aeson.Types.ToJSON..=)) (discountEnd obj) : ["id" Data.Aeson.Types.ToJSON..= discountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (discountInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (discountInvoice_item obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promotion_code" Data.Aeson.Types.ToJSON..=)) (discountPromotion_code obj) : ["source" Data.Aeson.Types.ToJSON..= discountSource obj] : ["start" Data.Aeson.Types.ToJSON..= discountStart obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (discountSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (discountSubscription_item obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "discount"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("checkout_session" Data.Aeson.Types.ToJSON..=)) (discountCheckout_session obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (discountCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (discountCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end" Data.Aeson.Types.ToJSON..=)) (discountEnd obj) : ["id" Data.Aeson.Types.ToJSON..= discountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (discountInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (discountInvoice_item obj) : ["object" Data.Aeson.Types.ToJSON..= discountObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promotion_code" Data.Aeson.Types.ToJSON..=)) (discountPromotion_code obj) : ["source" Data.Aeson.Types.ToJSON..= discountSource obj] : ["start" Data.Aeson.Types.ToJSON..= discountStart obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (discountSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (discountSubscription_item obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("checkout_session" Data.Aeson.Types.ToJSON..=)) (discountCheckout_session obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (discountCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (discountCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end" Data.Aeson.Types.ToJSON..=)) (discountEnd obj) : ["id" Data.Aeson.Types.ToJSON..= discountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (discountInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_item" Data.Aeson.Types.ToJSON..=)) (discountInvoice_item obj) : ["object" Data.Aeson.Types.ToJSON..= discountObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promotion_code" Data.Aeson.Types.ToJSON..=)) (discountPromotion_code obj) : ["source" Data.Aeson.Types.ToJSON..= discountSource obj] : ["start" Data.Aeson.Types.ToJSON..= discountStart obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription" Data.Aeson.Types.ToJSON..=)) (discountSubscription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_item" Data.Aeson.Types.ToJSON..=)) (discountSubscription_item obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Discount
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Discount" (\obj -> (((((((((((GHC.Base.pure Discount GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "checkout_session")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "promotion_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "start")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_item"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Discount" (\obj -> ((((((((((((GHC.Base.pure Discount GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "checkout_session")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_item")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "promotion_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "start")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_item"))}
 -- | Create a new 'Discount' with all required fields.
 mkDiscount :: Data.Text.Internal.Text -- ^ 'discountId'
+  -> Data.Text.Internal.Text -- ^ 'discountObject'
   -> Discount_source -- ^ 'discountSource'
   -> GHC.Types.Int -- ^ 'discountStart'
   -> Discount
-mkDiscount discountId discountSource discountStart = Discount{discountCheckout_session = GHC.Maybe.Nothing,
-                                                              discountCustomer = GHC.Maybe.Nothing,
-                                                              discountCustomer_account = GHC.Maybe.Nothing,
-                                                              discountEnd = GHC.Maybe.Nothing,
-                                                              discountId = discountId,
-                                                              discountInvoice = GHC.Maybe.Nothing,
-                                                              discountInvoice_item = GHC.Maybe.Nothing,
-                                                              discountPromotion_code = GHC.Maybe.Nothing,
-                                                              discountSource = discountSource,
-                                                              discountStart = discountStart,
-                                                              discountSubscription = GHC.Maybe.Nothing,
-                                                              discountSubscription_item = GHC.Maybe.Nothing}
+mkDiscount discountId discountObject discountSource discountStart = Discount{discountCheckout_session = GHC.Maybe.Nothing,
+                                                                             discountCustomer = GHC.Maybe.Nothing,
+                                                                             discountCustomer_account = GHC.Maybe.Nothing,
+                                                                             discountEnd = GHC.Maybe.Nothing,
+                                                                             discountId = discountId,
+                                                                             discountInvoice = GHC.Maybe.Nothing,
+                                                                             discountInvoice_item = GHC.Maybe.Nothing,
+                                                                             discountObject = discountObject,
+                                                                             discountPromotion_code = GHC.Maybe.Nothing,
+                                                                             discountSource = discountSource,
+                                                                             discountStart = discountStart,
+                                                                             discountSubscription = GHC.Maybe.Nothing,
+                                                                             discountSubscription_item = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.discount.properties.customer.anyOf@ in the specification.
 -- 
 -- The ID of the customer associated with this discount.
-data DiscountCustomerNonNullableVariants =
-   DiscountCustomerNonNullableText Data.Text.Internal.Text
-  | DiscountCustomerNonNullableCustomer Customer
-  | DiscountCustomerNonNullableDeleted_customer Deleted_customer
+data DiscountCustomerVariants =
+   DiscountCustomerText Data.Text.Internal.Text
+  | DiscountCustomerCustomer Customer
+  | DiscountCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON DiscountCustomerNonNullableVariants
-    where {toJSON (DiscountCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (DiscountCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (DiscountCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON DiscountCustomerNonNullableVariants
-    where {parseJSON val = case (DiscountCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((DiscountCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((DiscountCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON DiscountCustomerVariants
+    where {toJSON (DiscountCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (DiscountCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (DiscountCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON DiscountCustomerVariants
+    where {parseJSON val = case (DiscountCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((DiscountCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((DiscountCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.discount.properties.promotion_code.anyOf@ in the specification.
 -- 
 -- The promotion code applied to create this discount.
-data DiscountPromotion_codeNonNullableVariants =
-   DiscountPromotion_codeNonNullableText Data.Text.Internal.Text
-  | DiscountPromotion_codeNonNullablePromotion_code Promotion_code
+data DiscountPromotion_codeVariants =
+   DiscountPromotion_codeText Data.Text.Internal.Text
+  | DiscountPromotion_codePromotion_code Promotion_code
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON DiscountPromotion_codeNonNullableVariants
-    where {toJSON (DiscountPromotion_codeNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (DiscountPromotion_codeNonNullablePromotion_code a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON DiscountPromotion_codeNonNullableVariants
-    where {parseJSON val = case (DiscountPromotion_codeNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((DiscountPromotion_codeNonNullablePromotion_code Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON DiscountPromotion_codeVariants
+    where {toJSON (DiscountPromotion_codeText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (DiscountPromotion_codePromotion_code a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON DiscountPromotion_codeVariants
+    where {parseJSON val = case (DiscountPromotion_codeText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((DiscountPromotion_codePromotion_code Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

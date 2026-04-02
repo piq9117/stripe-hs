@@ -49,125 +49,51 @@ data Billing_bill_resource_invoicing_taxes_tax = Billing_bill_resource_invoicing
   -- | amount: The amount of the tax, in cents (or local equivalent).
   billing_bill_resource_invoicing_taxes_taxAmount :: GHC.Types.Int
   -- | tax_behavior: Whether this tax is inclusive or exclusive.
-  , billing_bill_resource_invoicing_taxes_taxTax_behavior :: Billing_bill_resource_invoicing_taxes_taxTax_behavior
+  , billing_bill_resource_invoicing_taxes_taxTax_behavior :: Data.Text.Internal.Text
   -- | tax_rate_details: Additional details about the tax rate. Only present when \`type\` is \`tax_rate_details\`.
-  , billing_bill_resource_invoicing_taxes_taxTax_rate_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable))
+  , billing_bill_resource_invoicing_taxes_taxTax_rate_details :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_taxes_taxTax_rate_details)
   -- | taxability_reason: The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
-  , billing_bill_resource_invoicing_taxes_taxTaxability_reason :: Billing_bill_resource_invoicing_taxes_taxTaxability_reason
+  , billing_bill_resource_invoicing_taxes_taxTaxability_reason :: Data.Text.Internal.Text
   -- | taxable_amount: The amount on which tax is calculated, in cents (or local equivalent).
-  , billing_bill_resource_invoicing_taxes_taxTaxable_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , billing_bill_resource_invoicing_taxes_taxTaxable_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
+  -- | type: The type of tax information.
+  , billing_bill_resource_invoicing_taxes_taxType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_taxes_tax
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxAmount obj] : ["tax_behavior" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTax_behavior obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate_details" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_details obj) : ["taxability_reason" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTaxability_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxable_amount" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTaxable_amount obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_rate_details"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxAmount obj] : ["tax_behavior" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTax_behavior obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate_details" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_details obj) : ["taxability_reason" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTaxability_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxable_amount" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTaxable_amount obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_rate_details"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxAmount obj] : ["tax_behavior" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTax_behavior obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate_details" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_details obj) : ["taxability_reason" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTaxability_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxable_amount" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTaxable_amount obj) : ["type" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxAmount obj] : ["tax_behavior" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTax_behavior obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate_details" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_details obj) : ["taxability_reason" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxTaxability_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("taxable_amount" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTaxable_amount obj) : ["type" Data.Aeson.Types.ToJSON..= billing_bill_resource_invoicing_taxes_taxType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_taxes_tax
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_taxes_tax" (\obj -> ((((GHC.Base.pure Billing_bill_resource_invoicing_taxes_tax GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "tax_behavior")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_rate_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "taxability_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "taxable_amount"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_taxes_tax" (\obj -> (((((GHC.Base.pure Billing_bill_resource_invoicing_taxes_tax GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "tax_behavior")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_rate_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "taxability_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "taxable_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Billing_bill_resource_invoicing_taxes_tax' with all required fields.
 mkBilling_bill_resource_invoicing_taxes_tax :: GHC.Types.Int -- ^ 'billing_bill_resource_invoicing_taxes_taxAmount'
-  -> Billing_bill_resource_invoicing_taxes_taxTax_behavior -- ^ 'billing_bill_resource_invoicing_taxes_taxTax_behavior'
-  -> Billing_bill_resource_invoicing_taxes_taxTaxability_reason -- ^ 'billing_bill_resource_invoicing_taxes_taxTaxability_reason'
+  -> Data.Text.Internal.Text -- ^ 'billing_bill_resource_invoicing_taxes_taxTax_behavior'
+  -> Data.Text.Internal.Text -- ^ 'billing_bill_resource_invoicing_taxes_taxTaxability_reason'
+  -> Data.Text.Internal.Text -- ^ 'billing_bill_resource_invoicing_taxes_taxType'
   -> Billing_bill_resource_invoicing_taxes_tax
-mkBilling_bill_resource_invoicing_taxes_tax billing_bill_resource_invoicing_taxes_taxAmount billing_bill_resource_invoicing_taxes_taxTax_behavior billing_bill_resource_invoicing_taxes_taxTaxability_reason = Billing_bill_resource_invoicing_taxes_tax{billing_bill_resource_invoicing_taxes_taxAmount = billing_bill_resource_invoicing_taxes_taxAmount,
-                                                                                                                                                                                                                                                         billing_bill_resource_invoicing_taxes_taxTax_behavior = billing_bill_resource_invoicing_taxes_taxTax_behavior,
-                                                                                                                                                                                                                                                         billing_bill_resource_invoicing_taxes_taxTax_rate_details = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                         billing_bill_resource_invoicing_taxes_taxTaxability_reason = billing_bill_resource_invoicing_taxes_taxTaxability_reason,
-                                                                                                                                                                                                                                                         billing_bill_resource_invoicing_taxes_taxTaxable_amount = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.billing_bill_resource_invoicing_taxes_tax.properties.tax_behavior@ in the specification.
--- 
--- Whether this tax is inclusive or exclusive.
-data Billing_bill_resource_invoicing_taxes_taxTax_behavior =
-   Billing_bill_resource_invoicing_taxes_taxTax_behaviorOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Billing_bill_resource_invoicing_taxes_taxTax_behaviorTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Billing_bill_resource_invoicing_taxes_taxTax_behaviorEnumExclusive -- ^ Represents the JSON value @"exclusive"@
-  | Billing_bill_resource_invoicing_taxes_taxTax_behaviorEnumInclusive -- ^ Represents the JSON value @"inclusive"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_taxes_taxTax_behavior
-    where {toJSON (Billing_bill_resource_invoicing_taxes_taxTax_behaviorOther val) = val;
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTax_behaviorTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTax_behaviorEnumExclusive) = "exclusive";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTax_behaviorEnumInclusive) = "inclusive"}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_taxes_taxTax_behavior
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "exclusive" -> Billing_bill_resource_invoicing_taxes_taxTax_behaviorEnumExclusive
-                                             | val GHC.Classes.== "inclusive" -> Billing_bill_resource_invoicing_taxes_taxTax_behaviorEnumInclusive
-                                             | GHC.Base.otherwise -> Billing_bill_resource_invoicing_taxes_taxTax_behaviorOther val)}
+mkBilling_bill_resource_invoicing_taxes_tax billing_bill_resource_invoicing_taxes_taxAmount billing_bill_resource_invoicing_taxes_taxTax_behavior billing_bill_resource_invoicing_taxes_taxTaxability_reason billing_bill_resource_invoicing_taxes_taxType = Billing_bill_resource_invoicing_taxes_tax{billing_bill_resource_invoicing_taxes_taxAmount = billing_bill_resource_invoicing_taxes_taxAmount,
+                                                                                                                                                                                                                                                                                                       billing_bill_resource_invoicing_taxes_taxTax_behavior = billing_bill_resource_invoicing_taxes_taxTax_behavior,
+                                                                                                                                                                                                                                                                                                       billing_bill_resource_invoicing_taxes_taxTax_rate_details = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                       billing_bill_resource_invoicing_taxes_taxTaxability_reason = billing_bill_resource_invoicing_taxes_taxTaxability_reason,
+                                                                                                                                                                                                                                                                                                       billing_bill_resource_invoicing_taxes_taxTaxable_amount = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                       billing_bill_resource_invoicing_taxes_taxType = billing_bill_resource_invoicing_taxes_taxType}
 -- | Defines the object schema located at @components.schemas.billing_bill_resource_invoicing_taxes_tax.properties.tax_rate_details.anyOf@ in the specification.
 -- 
 -- Additional details about the tax rate. Only present when \\\`type\\\` is \\\`tax_rate_details\\\`.
-data Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable = Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable {
+data Billing_bill_resource_invoicing_taxes_taxTax_rate_details = Billing_bill_resource_invoicing_taxes_taxTax_rate_details {
   -- | tax_rate: ID of the tax rate
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullableTax_rate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  billing_bill_resource_invoicing_taxes_taxTax_rate_detailsTax_rate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullableTax_rate obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullableTax_rate obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable" (\obj -> GHC.Base.pure Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_rate"))}
--- | Create a new 'Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable' with all required fields.
-mkBilling_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable :: Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable
-mkBilling_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable = Billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullable{billing_bill_resource_invoicing_taxes_taxTax_rate_detailsNonNullableTax_rate = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.billing_bill_resource_invoicing_taxes_tax.properties.taxability_reason@ in the specification.
--- 
--- The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
-data Billing_bill_resource_invoicing_taxes_taxTaxability_reason =
-   Billing_bill_resource_invoicing_taxes_taxTaxability_reasonOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumCustomer_exempt -- ^ Represents the JSON value @"customer_exempt"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_available -- ^ Represents the JSON value @"not_available"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_collecting -- ^ Represents the JSON value @"not_collecting"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_subject_to_tax -- ^ Represents the JSON value @"not_subject_to_tax"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_supported -- ^ Represents the JSON value @"not_supported"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_product_exempt -- ^ Represents the JSON value @"portion_product_exempt"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_reduced_rated -- ^ Represents the JSON value @"portion_reduced_rated"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_standard_rated -- ^ Represents the JSON value @"portion_standard_rated"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProduct_exempt -- ^ Represents the JSON value @"product_exempt"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProduct_exempt_holiday -- ^ Represents the JSON value @"product_exempt_holiday"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProportionally_rated -- ^ Represents the JSON value @"proportionally_rated"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumReduced_rated -- ^ Represents the JSON value @"reduced_rated"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumReverse_charge -- ^ Represents the JSON value @"reverse_charge"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumStandard_rated -- ^ Represents the JSON value @"standard_rated"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumTaxable_basis_reduced -- ^ Represents the JSON value @"taxable_basis_reduced"@
-  | Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumZero_rated -- ^ Represents the JSON value @"zero_rated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_taxes_taxTaxability_reason
-    where {toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonOther val) = val;
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumCustomer_exempt) = "customer_exempt";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_available) = "not_available";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_collecting) = "not_collecting";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_subject_to_tax) = "not_subject_to_tax";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_supported) = "not_supported";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_product_exempt) = "portion_product_exempt";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_reduced_rated) = "portion_reduced_rated";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_standard_rated) = "portion_standard_rated";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProduct_exempt) = "product_exempt";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProduct_exempt_holiday) = "product_exempt_holiday";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProportionally_rated) = "proportionally_rated";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumReduced_rated) = "reduced_rated";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumReverse_charge) = "reverse_charge";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumStandard_rated) = "standard_rated";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumTaxable_basis_reduced) = "taxable_basis_reduced";
-           toJSON (Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumZero_rated) = "zero_rated"}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_taxes_taxTaxability_reason
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "customer_exempt" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumCustomer_exempt
-                                             | val GHC.Classes.== "not_available" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_available
-                                             | val GHC.Classes.== "not_collecting" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_collecting
-                                             | val GHC.Classes.== "not_subject_to_tax" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_subject_to_tax
-                                             | val GHC.Classes.== "not_supported" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumNot_supported
-                                             | val GHC.Classes.== "portion_product_exempt" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_product_exempt
-                                             | val GHC.Classes.== "portion_reduced_rated" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_reduced_rated
-                                             | val GHC.Classes.== "portion_standard_rated" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumPortion_standard_rated
-                                             | val GHC.Classes.== "product_exempt" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProduct_exempt
-                                             | val GHC.Classes.== "product_exempt_holiday" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProduct_exempt_holiday
-                                             | val GHC.Classes.== "proportionally_rated" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumProportionally_rated
-                                             | val GHC.Classes.== "reduced_rated" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumReduced_rated
-                                             | val GHC.Classes.== "reverse_charge" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumReverse_charge
-                                             | val GHC.Classes.== "standard_rated" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumStandard_rated
-                                             | val GHC.Classes.== "taxable_basis_reduced" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumTaxable_basis_reduced
-                                             | val GHC.Classes.== "zero_rated" -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonEnumZero_rated
-                                             | GHC.Base.otherwise -> Billing_bill_resource_invoicing_taxes_taxTaxability_reasonOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_taxes_taxTax_rate_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_detailsTax_rate obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tax_rate" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_taxes_taxTax_rate_detailsTax_rate obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_taxes_taxTax_rate_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_taxes_taxTax_rate_details" (\obj -> GHC.Base.pure Billing_bill_resource_invoicing_taxes_taxTax_rate_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tax_rate"))}
+-- | Create a new 'Billing_bill_resource_invoicing_taxes_taxTax_rate_details' with all required fields.
+mkBilling_bill_resource_invoicing_taxes_taxTax_rate_details :: Billing_bill_resource_invoicing_taxes_taxTax_rate_details
+mkBilling_bill_resource_invoicing_taxes_taxTax_rate_details = Billing_bill_resource_invoicing_taxes_taxTax_rate_details{billing_bill_resource_invoicing_taxes_taxTax_rate_detailsTax_rate = GHC.Maybe.Nothing}

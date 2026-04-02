@@ -50,21 +50,21 @@ data Payment_intent_next_action_display_multibanco_details = Payment_intent_next
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_next_action_display_multibanco_detailsEntity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_intent_next_action_display_multibanco_detailsEntity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expires_at: The timestamp at which the Multibanco voucher expires.
-  , payment_intent_next_action_display_multibanco_detailsExpires_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_next_action_display_multibanco_detailsExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | hosted_voucher_url: The URL for the hosted Multibanco voucher page, which allows customers to view a Multibanco voucher.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_display_multibanco_detailsHosted_voucher_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_display_multibanco_detailsHosted_voucher_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference: Reference number associated with this Multibanco payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_display_multibanco_detailsReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_display_multibanco_detailsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_display_multibanco_details

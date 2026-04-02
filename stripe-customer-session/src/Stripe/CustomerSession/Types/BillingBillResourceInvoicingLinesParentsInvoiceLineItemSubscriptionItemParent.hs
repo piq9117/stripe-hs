@@ -52,17 +52,17 @@ data Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscriptio
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentInvoice_item :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentInvoice_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | proration: Whether this is a proration
   , billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration :: GHC.Types.Bool
   -- | proration_details: Additional details for proration line items
-  , billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable))
+  , billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details)
   -- | subscription: The subscription that the subscription item belongs to
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentSubscription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentSubscription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | subscription_item: The subscription item that generated this line item
   -- 
   -- Constraints:
@@ -88,39 +88,39 @@ mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_i
 -- | Defines the object schema located at @components.schemas.billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parent.properties.proration_details.anyOf@ in the specification.
 -- 
 -- Additional details for proration line items
-data Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable {
+data Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details {
   -- | credited_items: For a credit proration \`line_item\`, the original debit line_items to which the credit proration applies.
-  billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_items :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable))
+  billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items :: (GHC.Maybe.Maybe Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_items obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_items obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable" (\obj -> GHC.Base.pure Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credited_items"))}
--- | Create a new 'Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable' with all required fields.
-mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable :: Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable
-mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullable{billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_items = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("credited_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details" (\obj -> GHC.Base.pure Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credited_items"))}
+-- | Create a new 'Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details' with all required fields.
+mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details :: Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details
+mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_details{billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parent.properties.proration_details.anyOf.properties.credited_items.anyOf@ in the specification.
 -- 
 -- For a credit proration \\\`line_item\\\`, the original debit line_items to which the credit proration applies.
-data Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable {
+data Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items {
   -- | invoice: Invoice containing the credited invoice line items
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | invoice_line_items: Credited invoice line items
-  , billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice_line_items :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable" (\obj -> (GHC.Base.pure Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_items"))}
--- | Create a new 'Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable' with all required fields.
-mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable :: Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable
-mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullable{billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsNonNullableCredited_itemsNonNullableInvoice_line_items = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice_line_items obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_items" Data.Aeson.Types.ToJSON..=)) (billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice_line_items obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items" (\obj -> (GHC.Base.pure Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_items"))}
+-- | Create a new 'Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items' with all required fields.
+mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items :: Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items
+mkBilling_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items = Billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_items{billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                    billing_bill_resource_invoicing_lines_parents_invoice_line_item_subscription_item_parentProration_detailsCredited_itemsInvoice_line_items = GHC.Maybe.Nothing}

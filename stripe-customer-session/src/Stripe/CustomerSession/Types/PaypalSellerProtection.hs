@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Paypal_seller_protection = Paypal_seller_protection {
   -- | dispute_categories: An array of conditions that are covered for the transaction, if applicable.
-  paypal_seller_protectionDispute_categories :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Paypal_seller_protectionDispute_categoriesNonNullable]))
+  paypal_seller_protectionDispute_categories :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | status: Indicates whether the transaction is eligible for PayPal\'s seller protection.
-  , paypal_seller_protectionStatus :: Paypal_seller_protectionStatus
+  , paypal_seller_protectionStatus :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Paypal_seller_protection
@@ -57,46 +57,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Paypal_seller_protection
 instance Data.Aeson.Types.FromJSON.FromJSON Paypal_seller_protection
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Paypal_seller_protection" (\obj -> (GHC.Base.pure Paypal_seller_protection GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dispute_categories")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status"))}
 -- | Create a new 'Paypal_seller_protection' with all required fields.
-mkPaypal_seller_protection :: Paypal_seller_protectionStatus -- ^ 'paypal_seller_protectionStatus'
+mkPaypal_seller_protection :: Data.Text.Internal.Text -- ^ 'paypal_seller_protectionStatus'
   -> Paypal_seller_protection
 mkPaypal_seller_protection paypal_seller_protectionStatus = Paypal_seller_protection{paypal_seller_protectionDispute_categories = GHC.Maybe.Nothing,
                                                                                      paypal_seller_protectionStatus = paypal_seller_protectionStatus}
--- | Defines the enum schema located at @components.schemas.paypal_seller_protection.properties.dispute_categories.items@ in the specification.
--- 
--- 
-data Paypal_seller_protectionDispute_categoriesNonNullable =
-   Paypal_seller_protectionDispute_categoriesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Paypal_seller_protectionDispute_categoriesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Paypal_seller_protectionDispute_categoriesNonNullableEnumFraudulent -- ^ Represents the JSON value @"fraudulent"@
-  | Paypal_seller_protectionDispute_categoriesNonNullableEnumProduct_not_received -- ^ Represents the JSON value @"product_not_received"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Paypal_seller_protectionDispute_categoriesNonNullable
-    where {toJSON (Paypal_seller_protectionDispute_categoriesNonNullableOther val) = val;
-           toJSON (Paypal_seller_protectionDispute_categoriesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Paypal_seller_protectionDispute_categoriesNonNullableEnumFraudulent) = "fraudulent";
-           toJSON (Paypal_seller_protectionDispute_categoriesNonNullableEnumProduct_not_received) = "product_not_received"}
-instance Data.Aeson.Types.FromJSON.FromJSON Paypal_seller_protectionDispute_categoriesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fraudulent" -> Paypal_seller_protectionDispute_categoriesNonNullableEnumFraudulent
-                                             | val GHC.Classes.== "product_not_received" -> Paypal_seller_protectionDispute_categoriesNonNullableEnumProduct_not_received
-                                             | GHC.Base.otherwise -> Paypal_seller_protectionDispute_categoriesNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.paypal_seller_protection.properties.status@ in the specification.
--- 
--- Indicates whether the transaction is eligible for PayPal\'s seller protection.
-data Paypal_seller_protectionStatus =
-   Paypal_seller_protectionStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Paypal_seller_protectionStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Paypal_seller_protectionStatusEnumEligible -- ^ Represents the JSON value @"eligible"@
-  | Paypal_seller_protectionStatusEnumNot_eligible -- ^ Represents the JSON value @"not_eligible"@
-  | Paypal_seller_protectionStatusEnumPartially_eligible -- ^ Represents the JSON value @"partially_eligible"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Paypal_seller_protectionStatus
-    where {toJSON (Paypal_seller_protectionStatusOther val) = val;
-           toJSON (Paypal_seller_protectionStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Paypal_seller_protectionStatusEnumEligible) = "eligible";
-           toJSON (Paypal_seller_protectionStatusEnumNot_eligible) = "not_eligible";
-           toJSON (Paypal_seller_protectionStatusEnumPartially_eligible) = "partially_eligible"}
-instance Data.Aeson.Types.FromJSON.FromJSON Paypal_seller_protectionStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "eligible" -> Paypal_seller_protectionStatusEnumEligible
-                                             | val GHC.Classes.== "not_eligible" -> Paypal_seller_protectionStatusEnumNot_eligible
-                                             | val GHC.Classes.== "partially_eligible" -> Paypal_seller_protectionStatusEnumPartially_eligible
-                                             | GHC.Base.otherwise -> Paypal_seller_protectionStatusOther val)}

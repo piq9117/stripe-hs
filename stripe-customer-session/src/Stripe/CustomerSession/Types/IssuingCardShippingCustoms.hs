@@ -50,7 +50,7 @@ data Issuing_card_shipping_customs = Issuing_card_shipping_customs {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_card_shipping_customsEori_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_card_shipping_customsEori_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_card_shipping_customs

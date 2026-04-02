@@ -50,19 +50,19 @@ data Payment_method_details_sepa_debit = Payment_method_details_sepa_debit {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_sepa_debitBank_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_sepa_debitBank_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | branch_code: Branch code of bank associated with the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_sepa_debitBranch_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_sepa_debitBranch_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country the bank account is located in.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_sepa_debitCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_sepa_debitCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expected_debit_date: Estimated date to debit the customer\'s bank account. A date string in YYYY-MM-DD format.
   -- 
   -- Constraints:
@@ -74,19 +74,19 @@ data Payment_method_details_sepa_debit = Payment_method_details_sepa_debit {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_sepa_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_sepa_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four characters of the IBAN.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_sepa_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_sepa_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate: Find the ID of the mandate used for this payment under the [payment_method_details.sepa_debit.mandate](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-sepa_debit-mandate) property on the Charge. Use this mandate ID to [retrieve the Mandate](https:\/\/docs.stripe.com\/api\/mandates\/retrieve).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_sepa_debitMandate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_sepa_debitMandate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_sepa_debit

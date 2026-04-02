@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer = Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer {
   -- | network: The banking network used for this funding.
-  customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetwork :: (GHC.Maybe.Maybe Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetwork)
+  customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | sender_name: The full name of the sender, as supplied by the sending bank.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferSender_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferSender_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer
@@ -64,24 +64,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Customer_balance_resource_cash_balan
 mkCustomer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer :: Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer
 mkCustomer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer = Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer{customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetwork = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                                                     customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferSender_name = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer.properties.network@ in the specification.
--- 
--- The banking network used for this funding.
-data Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetwork =
-   Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumAch -- ^ Represents the JSON value @"ach"@
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumDomestic_wire_us -- ^ Represents the JSON value @"domestic_wire_us"@
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumSwift -- ^ Represents the JSON value @"swift"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetwork
-    where {toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkOther val) = val;
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumAch) = "ach";
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumDomestic_wire_us) = "domestic_wire_us";
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumSwift) = "swift"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetwork
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "ach" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumAch
-                                             | val GHC.Classes.== "domestic_wire_us" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumDomestic_wire_us
-                                             | val GHC.Classes.== "swift" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkEnumSwift
-                                             | GHC.Base.otherwise -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transferNetworkOther val)}

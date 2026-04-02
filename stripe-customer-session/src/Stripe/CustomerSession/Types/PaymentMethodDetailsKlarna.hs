@@ -48,21 +48,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.KlarnaPayerDetails
 -- 
 data Payment_method_details_klarna = Payment_method_details_klarna {
   -- | payer_details: The payer details for this transaction.
-  payment_method_details_klarnaPayer_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_klarnaPayer_detailsNonNullable))
+  payment_method_details_klarnaPayer_details :: (GHC.Maybe.Maybe Payment_method_details_klarnaPayer_details)
   -- | payment_method_category: The Klarna payment method used for this transaction.
   -- Can be one of \`pay_later\`, \`pay_now\`, \`pay_with_financing\`, or \`pay_in_installments\`
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_klarnaPayment_method_category :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_klarnaPayment_method_category :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | preferred_locale: Preferred language of the Klarna authorization page that the customer is redirected to.
   -- Can be one of \`de-AT\`, \`en-AT\`, \`nl-BE\`, \`fr-BE\`, \`en-BE\`, \`de-DE\`, \`en-DE\`, \`da-DK\`, \`en-DK\`, \`es-ES\`, \`en-ES\`, \`fi-FI\`, \`sv-FI\`, \`en-FI\`, \`en-GB\`, \`en-IE\`, \`it-IT\`, \`en-IT\`, \`nl-NL\`, \`en-NL\`, \`nb-NO\`, \`en-NO\`, \`sv-SE\`, \`en-SE\`, \`en-US\`, \`es-US\`, \`fr-FR\`, \`en-FR\`, \`cs-CZ\`, \`en-CZ\`, \`ro-RO\`, \`en-RO\`, \`el-GR\`, \`en-GR\`, \`en-AU\`, \`en-NZ\`, \`en-CA\`, \`fr-CA\`, \`pl-PL\`, \`en-PL\`, \`pt-PT\`, \`en-PT\`, \`de-CH\`, \`fr-CH\`, \`it-CH\`, or \`en-CH\`
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_klarnaPreferred_locale :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_klarnaPreferred_locale :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_klarna
@@ -78,36 +78,36 @@ mkPayment_method_details_klarna = Payment_method_details_klarna{payment_method_d
 -- | Defines the object schema located at @components.schemas.payment_method_details_klarna.properties.payer_details.anyOf@ in the specification.
 -- 
 -- The payer details for this transaction.
-data Payment_method_details_klarnaPayer_detailsNonNullable = Payment_method_details_klarnaPayer_detailsNonNullable {
+data Payment_method_details_klarnaPayer_details = Payment_method_details_klarnaPayer_details {
   -- | address: The payer\'s address
-  payment_method_details_klarnaPayer_detailsNonNullableAddress :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable))
+  payment_method_details_klarnaPayer_detailsAddress :: (GHC.Maybe.Maybe Payment_method_details_klarnaPayer_detailsAddress)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_klarnaPayer_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsNonNullableAddress obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsNonNullableAddress obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_klarnaPayer_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_details_klarnaPayer_detailsNonNullable" (\obj -> GHC.Base.pure Payment_method_details_klarnaPayer_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address"))}
--- | Create a new 'Payment_method_details_klarnaPayer_detailsNonNullable' with all required fields.
-mkPayment_method_details_klarnaPayer_detailsNonNullable :: Payment_method_details_klarnaPayer_detailsNonNullable
-mkPayment_method_details_klarnaPayer_detailsNonNullable = Payment_method_details_klarnaPayer_detailsNonNullable{payment_method_details_klarnaPayer_detailsNonNullableAddress = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_klarnaPayer_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsAddress obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsAddress obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_klarnaPayer_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_details_klarnaPayer_details" (\obj -> GHC.Base.pure Payment_method_details_klarnaPayer_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address"))}
+-- | Create a new 'Payment_method_details_klarnaPayer_details' with all required fields.
+mkPayment_method_details_klarnaPayer_details :: Payment_method_details_klarnaPayer_details
+mkPayment_method_details_klarnaPayer_details = Payment_method_details_klarnaPayer_details{payment_method_details_klarnaPayer_detailsAddress = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_method_details_klarna.properties.payer_details.anyOf.properties.address.anyOf@ in the specification.
 -- 
 -- The payer\\\'s address
-data Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable = Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable {
+data Payment_method_details_klarnaPayer_detailsAddress = Payment_method_details_klarnaPayer_detailsAddress {
   -- | country: The payer address country
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_klarnaPayer_detailsAddressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullableCountry obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullableCountry obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable" (\obj -> GHC.Base.pure Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country"))}
--- | Create a new 'Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable' with all required fields.
-mkPayment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable :: Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable
-mkPayment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable = Payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullable{payment_method_details_klarnaPayer_detailsNonNullableAddressNonNullableCountry = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_klarnaPayer_detailsAddress
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsAddressCountry obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_klarnaPayer_detailsAddressCountry obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_klarnaPayer_detailsAddress
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_details_klarnaPayer_detailsAddress" (\obj -> GHC.Base.pure Payment_method_details_klarnaPayer_detailsAddress GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country"))}
+-- | Create a new 'Payment_method_details_klarnaPayer_detailsAddress' with all required fields.
+mkPayment_method_details_klarnaPayer_detailsAddress :: Payment_method_details_klarnaPayer_detailsAddress
+mkPayment_method_details_klarnaPayer_detailsAddress = Payment_method_details_klarnaPayer_detailsAddress{payment_method_details_klarnaPayer_detailsAddressCountry = GHC.Maybe.Nothing}

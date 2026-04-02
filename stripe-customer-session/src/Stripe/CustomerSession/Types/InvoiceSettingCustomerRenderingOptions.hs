@@ -50,13 +50,13 @@ data Invoice_setting_customer_rendering_options = Invoice_setting_customer_rende
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoice_setting_customer_rendering_optionsAmount_tax_display :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoice_setting_customer_rendering_optionsAmount_tax_display :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | template: ID of the invoice rendering template to be used for this customer\'s invoices. If set, the template will be used on all invoices for this customer unless a template is set directly on the invoice.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoice_setting_customer_rendering_optionsTemplate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoice_setting_customer_rendering_optionsTemplate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_setting_customer_rendering_options

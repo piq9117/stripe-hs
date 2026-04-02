@@ -47,9 +47,9 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.FundingInstructionsBankTransf
 -- 
 data Payment_intent_next_action_display_bank_transfer_instructions = Payment_intent_next_action_display_bank_transfer_instructions {
   -- | amount_remaining: The remaining amount that needs to be transferred to complete the payment.
-  payment_intent_next_action_display_bank_transfer_instructionsAmount_remaining :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_intent_next_action_display_bank_transfer_instructionsAmount_remaining :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
-  , payment_intent_next_action_display_bank_transfer_instructionsCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_display_bank_transfer_instructionsCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | financial_addresses: A list of financial addresses that can be used to fund the customer balance
   , payment_intent_next_action_display_bank_transfer_instructionsFinancial_addresses :: (GHC.Maybe.Maybe [Funding_instructions_bank_transfer_financial_address])
   -- | hosted_instructions_url: A link to a hosted page that guides your customer through completing the transfer.
@@ -57,15 +57,15 @@ data Payment_intent_next_action_display_bank_transfer_instructions = Payment_int
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_display_bank_transfer_instructionsHosted_instructions_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_display_bank_transfer_instructionsHosted_instructions_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference: A string identifying this payment. Instruct your customer to include this code in the reference or memo field of their bank transfer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_display_bank_transfer_instructionsReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_display_bank_transfer_instructionsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Type of bank transfer
-  , payment_intent_next_action_display_bank_transfer_instructionsType :: Payment_intent_next_action_display_bank_transfer_instructionsType
+  , payment_intent_next_action_display_bank_transfer_instructionsType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_display_bank_transfer_instructions
@@ -74,7 +74,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_display_bank_
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_display_bank_transfer_instructions
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_next_action_display_bank_transfer_instructions" (\obj -> (((((GHC.Base.pure Payment_intent_next_action_display_bank_transfer_instructions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_remaining")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "financial_addresses")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "hosted_instructions_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Payment_intent_next_action_display_bank_transfer_instructions' with all required fields.
-mkPayment_intent_next_action_display_bank_transfer_instructions :: Payment_intent_next_action_display_bank_transfer_instructionsType -- ^ 'payment_intent_next_action_display_bank_transfer_instructionsType'
+mkPayment_intent_next_action_display_bank_transfer_instructions :: Data.Text.Internal.Text -- ^ 'payment_intent_next_action_display_bank_transfer_instructionsType'
   -> Payment_intent_next_action_display_bank_transfer_instructions
 mkPayment_intent_next_action_display_bank_transfer_instructions payment_intent_next_action_display_bank_transfer_instructionsType = Payment_intent_next_action_display_bank_transfer_instructions{payment_intent_next_action_display_bank_transfer_instructionsAmount_remaining = GHC.Maybe.Nothing,
                                                                                                                                                                                                   payment_intent_next_action_display_bank_transfer_instructionsCurrency = GHC.Maybe.Nothing,
@@ -82,30 +82,3 @@ mkPayment_intent_next_action_display_bank_transfer_instructions payment_intent_n
                                                                                                                                                                                                   payment_intent_next_action_display_bank_transfer_instructionsHosted_instructions_url = GHC.Maybe.Nothing,
                                                                                                                                                                                                   payment_intent_next_action_display_bank_transfer_instructionsReference = GHC.Maybe.Nothing,
                                                                                                                                                                                                   payment_intent_next_action_display_bank_transfer_instructionsType = payment_intent_next_action_display_bank_transfer_instructionsType}
--- | Defines the enum schema located at @components.schemas.payment_intent_next_action_display_bank_transfer_instructions.properties.type@ in the specification.
--- 
--- Type of bank transfer
-data Payment_intent_next_action_display_bank_transfer_instructionsType =
-   Payment_intent_next_action_display_bank_transfer_instructionsTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_next_action_display_bank_transfer_instructionsTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumEu_bank_transfer -- ^ Represents the JSON value @"eu_bank_transfer"@
-  | Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumGb_bank_transfer -- ^ Represents the JSON value @"gb_bank_transfer"@
-  | Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumJp_bank_transfer -- ^ Represents the JSON value @"jp_bank_transfer"@
-  | Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumMx_bank_transfer -- ^ Represents the JSON value @"mx_bank_transfer"@
-  | Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumUs_bank_transfer -- ^ Represents the JSON value @"us_bank_transfer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_display_bank_transfer_instructionsType
-    where {toJSON (Payment_intent_next_action_display_bank_transfer_instructionsTypeOther val) = val;
-           toJSON (Payment_intent_next_action_display_bank_transfer_instructionsTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumEu_bank_transfer) = "eu_bank_transfer";
-           toJSON (Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumGb_bank_transfer) = "gb_bank_transfer";
-           toJSON (Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumJp_bank_transfer) = "jp_bank_transfer";
-           toJSON (Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumMx_bank_transfer) = "mx_bank_transfer";
-           toJSON (Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumUs_bank_transfer) = "us_bank_transfer"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_display_bank_transfer_instructionsType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "eu_bank_transfer" -> Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumEu_bank_transfer
-                                             | val GHC.Classes.== "gb_bank_transfer" -> Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumGb_bank_transfer
-                                             | val GHC.Classes.== "jp_bank_transfer" -> Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumJp_bank_transfer
-                                             | val GHC.Classes.== "mx_bank_transfer" -> Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumMx_bank_transfer
-                                             | val GHC.Classes.== "us_bank_transfer" -> Payment_intent_next_action_display_bank_transfer_instructionsTypeEnumUs_bank_transfer
-                                             | GHC.Base.otherwise -> Payment_intent_next_action_display_bank_transfer_instructionsTypeOther val)}

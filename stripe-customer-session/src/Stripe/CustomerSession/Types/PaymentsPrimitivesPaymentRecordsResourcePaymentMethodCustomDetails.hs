@@ -58,7 +58,7 @@ data Payments_primitives_payment_records_resource_payment_method_custom_details 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_payment_method_custom_detailsType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_payment_method_custom_detailsType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_custom_details

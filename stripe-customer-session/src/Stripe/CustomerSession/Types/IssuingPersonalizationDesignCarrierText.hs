@@ -50,25 +50,25 @@ data Issuing_personalization_design_carrier_text = Issuing_personalization_desig
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_personalization_design_carrier_textFooter_body :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_personalization_design_carrier_textFooter_body :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | footer_title: The footer title text of the carrier letter.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_personalization_design_carrier_textFooter_title :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_personalization_design_carrier_textFooter_title :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | header_body: The header body text of the carrier letter.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_personalization_design_carrier_textHeader_body :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_personalization_design_carrier_textHeader_body :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | header_title: The header title text of the carrier letter.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_personalization_design_carrier_textHeader_title :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_personalization_design_carrier_textHeader_title :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_personalization_design_carrier_text

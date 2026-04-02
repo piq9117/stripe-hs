@@ -77,6 +77,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourcePaymentM
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourcePaymentSettings
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourcePendingUpdate
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourceSubscriptionInvoiceSettings
+import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourceSubscriptionPresentmentDetails
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourceTrialSettingsEndBehavior
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionsResourceTrialSettingsTrialSettings
 import {-# SOURCE #-} Stripe.CustomerSession.Types.TaxRate
@@ -89,29 +90,29 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.TestHelpers_TestClock
 -- Related guide: [Creating subscriptions](https:\/\/docs.stripe.com\/billing\/subscriptions\/creating)
 data Subscription = Subscription {
   -- | application: ID of the Connect Application that created the subscription.
-  subscriptionApplication :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionApplicationNonNullableVariants))
+  subscriptionApplication :: (GHC.Maybe.Maybe SubscriptionApplicationVariants)
   -- | application_fee_percent: A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the application owner\'s Stripe account.
-  , subscriptionApplication_fee_percent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  , subscriptionApplication_fee_percent :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | automatic_tax: 
   , subscriptionAutomatic_tax :: Subscription_automatic_tax
   -- | billing_cycle_anchor: The reference point that aligns future [billing cycle](https:\/\/docs.stripe.com\/subscriptions\/billing-cycle) dates. It sets the day of week for \`week\` intervals, the day of month for \`month\` and \`year\` intervals, and the month of year for \`year\` intervals. The timestamp is in UTC format.
   , subscriptionBilling_cycle_anchor :: GHC.Types.Int
   -- | billing_cycle_anchor_config: The fixed values used to calculate the \`billing_cycle_anchor\`.
-  , subscriptionBilling_cycle_anchor_config :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionBilling_cycle_anchor_configNonNullable))
+  , subscriptionBilling_cycle_anchor_config :: (GHC.Maybe.Maybe SubscriptionBilling_cycle_anchor_config)
   -- | billing_mode: The billing mode of the subscription.
   , subscriptionBilling_mode :: Subscriptions_resource_billing_mode
   -- | billing_thresholds: Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period
-  , subscriptionBilling_thresholds :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionBilling_thresholdsNonNullable))
+  , subscriptionBilling_thresholds :: (GHC.Maybe.Maybe SubscriptionBilling_thresholds)
   -- | cancel_at: A date in the future at which the subscription will automatically get canceled
-  , subscriptionCancel_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionCancel_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | cancel_at_period_end: Whether this subscription will (if \`status=active\`) or did (if \`status=canceled\`) cancel at the end of the current billing period.
   , subscriptionCancel_at_period_end :: GHC.Types.Bool
   -- | canceled_at: If the subscription has been canceled, the date of that cancellation. If the subscription was canceled with \`cancel_at_period_end\`, \`canceled_at\` will reflect the time of the most recent update request, not the end of the subscription period when the subscription is automatically moved to a canceled state.
-  , subscriptionCanceled_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionCanceled_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | cancellation_details: Details about why this subscription was cancelled
-  , subscriptionCancellation_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionCancellation_detailsNonNullable))
+  , subscriptionCancellation_details :: (GHC.Maybe.Maybe SubscriptionCancellation_details)
   -- | collection_method: Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay this subscription at the end of the cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as \`active\`.
-  , subscriptionCollection_method :: SubscriptionCollection_method
+  , subscriptionCollection_method :: Data.Text.Internal.Text
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , subscriptionCreated :: GHC.Types.Int
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
@@ -123,25 +124,25 @@ data Subscription = Subscription {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , subscriptionCustomer_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , subscriptionCustomer_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | days_until_due: Number of days a customer has to pay invoices generated by this subscription. This value will be \`null\` for subscriptions where \`collection_method=charge_automatically\`.
-  , subscriptionDays_until_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionDays_until_due :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | default_payment_method: ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. This takes precedence over \`default_source\`. If neither are set, invoices will use the customer\'s [invoice_settings.default_payment_method](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-invoice_settings-default_payment_method) or [default_source](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-default_source).
-  , subscriptionDefault_payment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionDefault_payment_methodNonNullableVariants))
+  , subscriptionDefault_payment_method :: (GHC.Maybe.Maybe SubscriptionDefault_payment_methodVariants)
   -- | default_source: ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If \`default_payment_method\` is also set, \`default_payment_method\` will take precedence. If neither are set, invoices will use the customer\'s [invoice_settings.default_payment_method](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-invoice_settings-default_payment_method) or [default_source](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-default_source).
-  , subscriptionDefault_source :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionDefault_sourceNonNullableVariants))
+  , subscriptionDefault_source :: (GHC.Maybe.Maybe SubscriptionDefault_sourceVariants)
   -- | default_tax_rates: The tax rates that will apply to any subscription item that does not have \`tax_rates\` set. Invoices created will have their \`default_tax_rates\` populated from the subscription.
-  , subscriptionDefault_tax_rates :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Tax_rate]))
+  , subscriptionDefault_tax_rates :: (GHC.Maybe.Maybe [Tax_rate])
   -- | description: The subscription\'s description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription for rendering in Stripe surfaces and certain local payment methods UIs.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 500
-  , subscriptionDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , subscriptionDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | discounts: The discounts applied to the subscription. Subscription item discounts are applied before subscription discounts. Use \`expand[]=discounts\` to expand each discount.
   , subscriptionDiscounts :: [SubscriptionDiscountsVariants]
   -- | ended_at: If the subscription has ended, the date the subscription ended.
-  , subscriptionEnded_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionEnded_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -153,27 +154,31 @@ data Subscription = Subscription {
   -- | items: List of subscription items, each with an attached price.
   , subscriptionItems :: SubscriptionItems
   -- | latest_invoice: The most recent invoice this subscription has generated over its lifecycle (for example, when it cycles or is updated).
-  , subscriptionLatest_invoice :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionLatest_invoiceNonNullableVariants))
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  , subscriptionLatest_invoice :: (GHC.Maybe.Maybe SubscriptionLatest_invoiceVariants)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , subscriptionLivemode :: GHC.Types.Bool
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , subscriptionMetadata :: Data.Aeson.Types.Internal.Object
   -- | next_pending_invoice_item_invoice: Specifies the approximate timestamp on which any pending invoice items will be billed according to the schedule provided at \`pending_invoice_item_interval\`.
-  , subscriptionNext_pending_invoice_item_invoice :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionNext_pending_invoice_item_invoice :: (GHC.Maybe.Maybe GHC.Types.Int)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , subscriptionObject :: Data.Text.Internal.Text
   -- | on_behalf_of: The account (if any) the charge was made on behalf of for charges associated with this subscription. See the [Connect documentation](https:\/\/docs.stripe.com\/connect\/subscriptions\#on-behalf-of) for details.
-  , subscriptionOn_behalf_of :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionOn_behalf_ofNonNullableVariants))
+  , subscriptionOn_behalf_of :: (GHC.Maybe.Maybe SubscriptionOn_behalf_ofVariants)
   -- | pause_collection: If specified, payment collection for this subscription will be paused. Note that the subscription status will be unchanged and will not be updated to \`paused\`. Learn more about [pausing collection](https:\/\/docs.stripe.com\/billing\/subscriptions\/pause-payment).
-  , subscriptionPause_collection :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPause_collectionNonNullable))
+  , subscriptionPause_collection :: (GHC.Maybe.Maybe SubscriptionPause_collection)
   -- | payment_settings: Payment settings passed on to invoices created by the subscription.
-  , subscriptionPayment_settings :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullable))
-  -- | pending_invoice_item_interval: Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](https:\/\/docs.stripe.com\/api\#create_invoice) for the given subscription at the specified interval.
-  , subscriptionPending_invoice_item_interval :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPending_invoice_item_intervalNonNullable))
+  , subscriptionPayment_settings :: (GHC.Maybe.Maybe SubscriptionPayment_settings)
+  -- | pending_invoice_item_interval: Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](\/api\/invoices\/create) for the given subscription at the specified interval.
+  , subscriptionPending_invoice_item_interval :: (GHC.Maybe.Maybe SubscriptionPending_invoice_item_interval)
   -- | pending_setup_intent: You can use this [SetupIntent](https:\/\/docs.stripe.com\/api\/setup_intents) to collect user authentication when creating a subscription without immediate payment or updating a subscription\'s payment method, allowing you to optimize for off-session payments. Learn more in the [SCA Migration Guide](https:\/\/docs.stripe.com\/billing\/migration\/strong-customer-authentication\#scenario-2).
-  , subscriptionPending_setup_intent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPending_setup_intentNonNullableVariants))
+  , subscriptionPending_setup_intent :: (GHC.Maybe.Maybe SubscriptionPending_setup_intentVariants)
   -- | pending_update: If specified, [pending updates](https:\/\/docs.stripe.com\/billing\/subscriptions\/pending-updates) that will be applied to the subscription once the \`latest_invoice\` has been paid.
-  , subscriptionPending_update :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPending_updateNonNullable))
+  , subscriptionPending_update :: (GHC.Maybe.Maybe SubscriptionPending_update)
+  -- | presentment_details: 
+  , subscriptionPresentment_details :: (GHC.Maybe.Maybe Subscriptions_resource_subscription_presentment_details)
   -- | schedule: The schedule attached to the subscription
-  , subscriptionSchedule :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionScheduleNonNullableVariants))
+  , subscriptionSchedule :: (GHC.Maybe.Maybe SubscriptionScheduleVariants)
   -- | start_date: Date when the subscription was first created. The date might differ from the \`created\` date due to backdating.
   , subscriptionStart_date :: GHC.Types.Int
   -- | status: Possible values are \`incomplete\`, \`incomplete_expired\`, \`trialing\`, \`active\`, \`past_due\`, \`canceled\`, \`unpaid\`, or \`paused\`. 
@@ -187,30 +192,30 @@ data Subscription = Subscription {
   -- If subscription \`collection_method=charge_automatically\`, it becomes \`past_due\` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become \`canceled\` or \`unpaid\` (depending on your subscriptions settings). 
   -- 
   -- If subscription \`collection_method=send_invoice\` it becomes \`past_due\` when its invoice is not paid by the due date, and \`canceled\` or \`unpaid\` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of \`unpaid\`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
-  , subscriptionStatus :: SubscriptionStatus
+  , subscriptionStatus :: Data.Text.Internal.Text
   -- | test_clock: ID of the test clock this subscription belongs to.
-  , subscriptionTest_clock :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionTest_clockNonNullableVariants))
+  , subscriptionTest_clock :: (GHC.Maybe.Maybe SubscriptionTest_clockVariants)
   -- | transfer_data: The account (if any) the subscription\'s payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription\'s invoices.
-  , subscriptionTransfer_data :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionTransfer_dataNonNullable))
+  , subscriptionTransfer_data :: (GHC.Maybe.Maybe SubscriptionTransfer_data)
   -- | trial_end: If the subscription has a trial, the end of that trial.
-  , subscriptionTrial_end :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionTrial_end :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | trial_settings: Settings related to subscription trials.
-  , subscriptionTrial_settings :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionTrial_settingsNonNullable))
+  , subscriptionTrial_settings :: (GHC.Maybe.Maybe SubscriptionTrial_settings)
   -- | trial_start: If the subscription has a trial, the beginning of that trial.
-  , subscriptionTrial_start :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionTrial_start :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication_fee_percent obj) : ["automatic_tax" Data.Aeson.Types.ToJSON..= subscriptionAutomatic_tax obj] : ["billing_cycle_anchor" Data.Aeson.Types.ToJSON..= subscriptionBilling_cycle_anchor obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor_config" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_config obj) : ["billing_mode" Data.Aeson.Types.ToJSON..= subscriptionBilling_mode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_thresholds" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancel_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCancel_at obj) : ["cancel_at_period_end" Data.Aeson.Types.ToJSON..= subscriptionCancel_at_period_end obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("canceled_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCanceled_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_details" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_details obj) : ["collection_method" Data.Aeson.Types.ToJSON..= subscriptionCollection_method obj] : ["created" Data.Aeson.Types.ToJSON..= subscriptionCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= subscriptionCurrency obj] : ["customer" Data.Aeson.Types.ToJSON..= subscriptionCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (subscriptionCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscriptionDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_source obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_tax_rates" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_tax_rates obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (subscriptionDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= subscriptionDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ended_at" Data.Aeson.Types.ToJSON..=)) (subscriptionEnded_at obj) : ["id" Data.Aeson.Types.ToJSON..= subscriptionId obj] : ["invoice_settings" Data.Aeson.Types.ToJSON..= subscriptionInvoice_settings obj] : ["items" Data.Aeson.Types.ToJSON..= subscriptionItems obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionLatest_invoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= subscriptionLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= subscriptionMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_pending_invoice_item_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionNext_pending_invoice_item_invoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (subscriptionOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pause_collection" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collection obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_invoice_item_interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_interval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_setup_intent" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_setup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_update" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_update obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("schedule" Data.Aeson.Types.ToJSON..=)) (subscriptionSchedule obj) : ["start_date" Data.Aeson.Types.ToJSON..= subscriptionStart_date obj] : ["status" Data.Aeson.Types.ToJSON..= subscriptionStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (subscriptionTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_start" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_start obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "subscription"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication_fee_percent obj) : ["automatic_tax" Data.Aeson.Types.ToJSON..= subscriptionAutomatic_tax obj] : ["billing_cycle_anchor" Data.Aeson.Types.ToJSON..= subscriptionBilling_cycle_anchor obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor_config" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_config obj) : ["billing_mode" Data.Aeson.Types.ToJSON..= subscriptionBilling_mode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_thresholds" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancel_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCancel_at obj) : ["cancel_at_period_end" Data.Aeson.Types.ToJSON..= subscriptionCancel_at_period_end obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("canceled_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCanceled_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_details" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_details obj) : ["collection_method" Data.Aeson.Types.ToJSON..= subscriptionCollection_method obj] : ["created" Data.Aeson.Types.ToJSON..= subscriptionCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= subscriptionCurrency obj] : ["customer" Data.Aeson.Types.ToJSON..= subscriptionCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (subscriptionCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscriptionDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_source obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_tax_rates" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_tax_rates obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (subscriptionDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= subscriptionDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ended_at" Data.Aeson.Types.ToJSON..=)) (subscriptionEnded_at obj) : ["id" Data.Aeson.Types.ToJSON..= subscriptionId obj] : ["invoice_settings" Data.Aeson.Types.ToJSON..= subscriptionInvoice_settings obj] : ["items" Data.Aeson.Types.ToJSON..= subscriptionItems obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionLatest_invoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= subscriptionLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= subscriptionMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_pending_invoice_item_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionNext_pending_invoice_item_invoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (subscriptionOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pause_collection" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collection obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_invoice_item_interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_interval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_setup_intent" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_setup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_update" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_update obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("schedule" Data.Aeson.Types.ToJSON..=)) (subscriptionSchedule obj) : ["start_date" Data.Aeson.Types.ToJSON..= subscriptionStart_date obj] : ["status" Data.Aeson.Types.ToJSON..= subscriptionStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (subscriptionTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_start" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_start obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "subscription"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication_fee_percent obj) : ["automatic_tax" Data.Aeson.Types.ToJSON..= subscriptionAutomatic_tax obj] : ["billing_cycle_anchor" Data.Aeson.Types.ToJSON..= subscriptionBilling_cycle_anchor obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor_config" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_config obj) : ["billing_mode" Data.Aeson.Types.ToJSON..= subscriptionBilling_mode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_thresholds" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancel_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCancel_at obj) : ["cancel_at_period_end" Data.Aeson.Types.ToJSON..= subscriptionCancel_at_period_end obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("canceled_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCanceled_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_details" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_details obj) : ["collection_method" Data.Aeson.Types.ToJSON..= subscriptionCollection_method obj] : ["created" Data.Aeson.Types.ToJSON..= subscriptionCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= subscriptionCurrency obj] : ["customer" Data.Aeson.Types.ToJSON..= subscriptionCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (subscriptionCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscriptionDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_source obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_tax_rates" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_tax_rates obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (subscriptionDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= subscriptionDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ended_at" Data.Aeson.Types.ToJSON..=)) (subscriptionEnded_at obj) : ["id" Data.Aeson.Types.ToJSON..= subscriptionId obj] : ["invoice_settings" Data.Aeson.Types.ToJSON..= subscriptionInvoice_settings obj] : ["items" Data.Aeson.Types.ToJSON..= subscriptionItems obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionLatest_invoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= subscriptionLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= subscriptionMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_pending_invoice_item_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionNext_pending_invoice_item_invoice obj) : ["object" Data.Aeson.Types.ToJSON..= subscriptionObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (subscriptionOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pause_collection" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collection obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_invoice_item_interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_interval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_setup_intent" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_setup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_update" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_update obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("presentment_details" Data.Aeson.Types.ToJSON..=)) (subscriptionPresentment_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("schedule" Data.Aeson.Types.ToJSON..=)) (subscriptionSchedule obj) : ["start_date" Data.Aeson.Types.ToJSON..= subscriptionStart_date obj] : ["status" Data.Aeson.Types.ToJSON..= subscriptionStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (subscriptionTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_start" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_start obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionApplication_fee_percent obj) : ["automatic_tax" Data.Aeson.Types.ToJSON..= subscriptionAutomatic_tax obj] : ["billing_cycle_anchor" Data.Aeson.Types.ToJSON..= subscriptionBilling_cycle_anchor obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor_config" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_config obj) : ["billing_mode" Data.Aeson.Types.ToJSON..= subscriptionBilling_mode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_thresholds" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancel_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCancel_at obj) : ["cancel_at_period_end" Data.Aeson.Types.ToJSON..= subscriptionCancel_at_period_end obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("canceled_at" Data.Aeson.Types.ToJSON..=)) (subscriptionCanceled_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_details" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_details obj) : ["collection_method" Data.Aeson.Types.ToJSON..= subscriptionCollection_method obj] : ["created" Data.Aeson.Types.ToJSON..= subscriptionCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= subscriptionCurrency obj] : ["customer" Data.Aeson.Types.ToJSON..= subscriptionCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (subscriptionCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscriptionDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_payment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_source" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_source obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_tax_rates" Data.Aeson.Types.ToJSON..=)) (subscriptionDefault_tax_rates obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (subscriptionDescription obj) : ["discounts" Data.Aeson.Types.ToJSON..= subscriptionDiscounts obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ended_at" Data.Aeson.Types.ToJSON..=)) (subscriptionEnded_at obj) : ["id" Data.Aeson.Types.ToJSON..= subscriptionId obj] : ["invoice_settings" Data.Aeson.Types.ToJSON..= subscriptionInvoice_settings obj] : ["items" Data.Aeson.Types.ToJSON..= subscriptionItems obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionLatest_invoice obj) : ["livemode" Data.Aeson.Types.ToJSON..= subscriptionLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= subscriptionMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_pending_invoice_item_invoice" Data.Aeson.Types.ToJSON..=)) (subscriptionNext_pending_invoice_item_invoice obj) : ["object" Data.Aeson.Types.ToJSON..= subscriptionObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (subscriptionOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pause_collection" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collection obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_invoice_item_interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_interval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_setup_intent" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_setup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_update" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_update obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("presentment_details" Data.Aeson.Types.ToJSON..=)) (subscriptionPresentment_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("schedule" Data.Aeson.Types.ToJSON..=)) (subscriptionSchedule obj) : ["start_date" Data.Aeson.Types.ToJSON..= subscriptionStart_date obj] : ["status" Data.Aeson.Types.ToJSON..= subscriptionStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("test_clock" Data.Aeson.Types.ToJSON..=)) (subscriptionTest_clock obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_settings" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_start" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_start obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Subscription
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription" (\obj -> (((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Subscription GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_cycle_anchor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_cycle_anchor_config")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_thresholds")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancel_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cancel_at_period_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "canceled_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancellation_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "collection_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "days_until_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_tax_rates")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ended_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "invoice_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "items")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "next_pending_invoice_item_invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pause_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_invoice_item_interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_update")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "test_clock")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_start"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Subscription GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_cycle_anchor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_cycle_anchor_config")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_thresholds")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancel_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cancel_at_period_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "canceled_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancellation_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "collection_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "days_until_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_tax_rates")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "discounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ended_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "invoice_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "items")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "next_pending_invoice_item_invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pause_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_invoice_item_interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_update")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "presentment_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "test_clock")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_start"))}
 -- | Create a new 'Subscription' with all required fields.
 mkSubscription :: Subscription_automatic_tax -- ^ 'subscriptionAutomatic_tax'
   -> GHC.Types.Int -- ^ 'subscriptionBilling_cycle_anchor'
   -> Subscriptions_resource_billing_mode -- ^ 'subscriptionBilling_mode'
   -> GHC.Types.Bool -- ^ 'subscriptionCancel_at_period_end'
-  -> SubscriptionCollection_method -- ^ 'subscriptionCollection_method'
+  -> Data.Text.Internal.Text -- ^ 'subscriptionCollection_method'
   -> GHC.Types.Int -- ^ 'subscriptionCreated'
   -> Data.Text.Internal.Text -- ^ 'subscriptionCurrency'
   -> SubscriptionCustomerVariants -- ^ 'subscriptionCustomer'
@@ -220,217 +225,145 @@ mkSubscription :: Subscription_automatic_tax -- ^ 'subscriptionAutomatic_tax'
   -> SubscriptionItems -- ^ 'subscriptionItems'
   -> GHC.Types.Bool -- ^ 'subscriptionLivemode'
   -> Data.Aeson.Types.Internal.Object -- ^ 'subscriptionMetadata'
+  -> Data.Text.Internal.Text -- ^ 'subscriptionObject'
   -> GHC.Types.Int -- ^ 'subscriptionStart_date'
-  -> SubscriptionStatus -- ^ 'subscriptionStatus'
+  -> Data.Text.Internal.Text -- ^ 'subscriptionStatus'
   -> Subscription
-mkSubscription subscriptionAutomatic_tax subscriptionBilling_cycle_anchor subscriptionBilling_mode subscriptionCancel_at_period_end subscriptionCollection_method subscriptionCreated subscriptionCurrency subscriptionCustomer subscriptionDiscounts subscriptionId subscriptionInvoice_settings subscriptionItems subscriptionLivemode subscriptionMetadata subscriptionStart_date subscriptionStatus = Subscription{subscriptionApplication = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionApplication_fee_percent = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionAutomatic_tax = subscriptionAutomatic_tax,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionBilling_cycle_anchor = subscriptionBilling_cycle_anchor,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionBilling_cycle_anchor_config = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionBilling_mode = subscriptionBilling_mode,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionBilling_thresholds = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCancel_at = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCancel_at_period_end = subscriptionCancel_at_period_end,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCanceled_at = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCancellation_details = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCollection_method = subscriptionCollection_method,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCreated = subscriptionCreated,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCurrency = subscriptionCurrency,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCustomer = subscriptionCustomer,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionCustomer_account = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionDays_until_due = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionDefault_payment_method = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionDefault_source = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionDefault_tax_rates = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionDescription = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionDiscounts = subscriptionDiscounts,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionEnded_at = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionId = subscriptionId,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionInvoice_settings = subscriptionInvoice_settings,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionItems = subscriptionItems,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionLatest_invoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionLivemode = subscriptionLivemode,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionMetadata = subscriptionMetadata,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionNext_pending_invoice_item_invoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionOn_behalf_of = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionPause_collection = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionPayment_settings = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionPending_invoice_item_interval = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionPending_setup_intent = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionPending_update = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionSchedule = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionStart_date = subscriptionStart_date,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionStatus = subscriptionStatus,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionTest_clock = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionTransfer_data = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionTrial_end = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionTrial_settings = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                                                                                                                                                                                                       subscriptionTrial_start = GHC.Maybe.Nothing}
+mkSubscription subscriptionAutomatic_tax subscriptionBilling_cycle_anchor subscriptionBilling_mode subscriptionCancel_at_period_end subscriptionCollection_method subscriptionCreated subscriptionCurrency subscriptionCustomer subscriptionDiscounts subscriptionId subscriptionInvoice_settings subscriptionItems subscriptionLivemode subscriptionMetadata subscriptionObject subscriptionStart_date subscriptionStatus = Subscription{subscriptionApplication = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionApplication_fee_percent = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionAutomatic_tax = subscriptionAutomatic_tax,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionBilling_cycle_anchor = subscriptionBilling_cycle_anchor,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionBilling_cycle_anchor_config = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionBilling_mode = subscriptionBilling_mode,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionBilling_thresholds = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCancel_at = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCancel_at_period_end = subscriptionCancel_at_period_end,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCanceled_at = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCancellation_details = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCollection_method = subscriptionCollection_method,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCreated = subscriptionCreated,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCurrency = subscriptionCurrency,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCustomer = subscriptionCustomer,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionCustomer_account = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionDays_until_due = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionDefault_payment_method = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionDefault_source = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionDefault_tax_rates = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionDiscounts = subscriptionDiscounts,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionEnded_at = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionId = subscriptionId,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionInvoice_settings = subscriptionInvoice_settings,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionItems = subscriptionItems,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionLatest_invoice = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionLivemode = subscriptionLivemode,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionMetadata = subscriptionMetadata,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionNext_pending_invoice_item_invoice = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionObject = subscriptionObject,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionOn_behalf_of = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionPause_collection = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionPayment_settings = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionPending_invoice_item_interval = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionPending_setup_intent = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionPending_update = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionPresentment_details = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionSchedule = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionStart_date = subscriptionStart_date,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionStatus = subscriptionStatus,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionTest_clock = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionTransfer_data = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionTrial_end = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionTrial_settings = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          subscriptionTrial_start = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.application.anyOf@ in the specification.
 -- 
 -- ID of the Connect Application that created the subscription.
-data SubscriptionApplicationNonNullableVariants =
-   SubscriptionApplicationNonNullableText Data.Text.Internal.Text
-  | SubscriptionApplicationNonNullableApplication Application
-  | SubscriptionApplicationNonNullableDeleted_application Deleted_application
+data SubscriptionApplicationVariants =
+   SubscriptionApplicationText Data.Text.Internal.Text
+  | SubscriptionApplicationApplication Application
+  | SubscriptionApplicationDeleted_application Deleted_application
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionApplicationNonNullableVariants
-    where {toJSON (SubscriptionApplicationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionApplicationNonNullableApplication a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionApplicationNonNullableDeleted_application a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionApplicationNonNullableVariants
-    where {parseJSON val = case (SubscriptionApplicationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionApplicationNonNullableApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionApplicationNonNullableDeleted_application Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionApplicationVariants
+    where {toJSON (SubscriptionApplicationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionApplicationApplication a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionApplicationDeleted_application a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionApplicationVariants
+    where {parseJSON val = case (SubscriptionApplicationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionApplicationApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionApplicationDeleted_application Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription.properties.billing_cycle_anchor_config.anyOf@ in the specification.
 -- 
 -- The fixed values used to calculate the \\\`billing_cycle_anchor\\\`.
-data SubscriptionBilling_cycle_anchor_configNonNullable = SubscriptionBilling_cycle_anchor_configNonNullable {
+data SubscriptionBilling_cycle_anchor_config = SubscriptionBilling_cycle_anchor_config {
   -- | day_of_month: The day of the month of the billing_cycle_anchor.
-  subscriptionBilling_cycle_anchor_configNonNullableDay_of_month :: (GHC.Maybe.Maybe GHC.Types.Int)
+  subscriptionBilling_cycle_anchor_configDay_of_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | hour: The hour of the day of the billing_cycle_anchor.
-  , subscriptionBilling_cycle_anchor_configNonNullableHour :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionBilling_cycle_anchor_configHour :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | minute: The minute of the hour of the billing_cycle_anchor.
-  , subscriptionBilling_cycle_anchor_configNonNullableMinute :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionBilling_cycle_anchor_configMinute :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month to start full cycle billing periods.
-  , subscriptionBilling_cycle_anchor_configNonNullableMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionBilling_cycle_anchor_configMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | second: The second of the minute of the billing_cycle_anchor.
-  , subscriptionBilling_cycle_anchor_configNonNullableSecond :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionBilling_cycle_anchor_configSecond :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionBilling_cycle_anchor_configNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day_of_month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableDay_of_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hour" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableHour obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minute" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableMinute obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableSecond obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day_of_month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableDay_of_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hour" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableHour obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minute" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableMinute obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configNonNullableSecond obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionBilling_cycle_anchor_configNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionBilling_cycle_anchor_configNonNullable" (\obj -> ((((GHC.Base.pure SubscriptionBilling_cycle_anchor_configNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "day_of_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "hour")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "minute")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "second"))}
--- | Create a new 'SubscriptionBilling_cycle_anchor_configNonNullable' with all required fields.
-mkSubscriptionBilling_cycle_anchor_configNonNullable :: SubscriptionBilling_cycle_anchor_configNonNullable
-mkSubscriptionBilling_cycle_anchor_configNonNullable = SubscriptionBilling_cycle_anchor_configNonNullable{subscriptionBilling_cycle_anchor_configNonNullableDay_of_month = GHC.Maybe.Nothing,
-                                                                                                          subscriptionBilling_cycle_anchor_configNonNullableHour = GHC.Maybe.Nothing,
-                                                                                                          subscriptionBilling_cycle_anchor_configNonNullableMinute = GHC.Maybe.Nothing,
-                                                                                                          subscriptionBilling_cycle_anchor_configNonNullableMonth = GHC.Maybe.Nothing,
-                                                                                                          subscriptionBilling_cycle_anchor_configNonNullableSecond = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionBilling_cycle_anchor_config
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day_of_month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configDay_of_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hour" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configHour obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minute" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configMinute obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configSecond obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day_of_month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configDay_of_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("hour" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configHour obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minute" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configMinute obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("second" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_cycle_anchor_configSecond obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionBilling_cycle_anchor_config
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionBilling_cycle_anchor_config" (\obj -> ((((GHC.Base.pure SubscriptionBilling_cycle_anchor_config GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "day_of_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "hour")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "minute")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "second"))}
+-- | Create a new 'SubscriptionBilling_cycle_anchor_config' with all required fields.
+mkSubscriptionBilling_cycle_anchor_config :: SubscriptionBilling_cycle_anchor_config
+mkSubscriptionBilling_cycle_anchor_config = SubscriptionBilling_cycle_anchor_config{subscriptionBilling_cycle_anchor_configDay_of_month = GHC.Maybe.Nothing,
+                                                                                    subscriptionBilling_cycle_anchor_configHour = GHC.Maybe.Nothing,
+                                                                                    subscriptionBilling_cycle_anchor_configMinute = GHC.Maybe.Nothing,
+                                                                                    subscriptionBilling_cycle_anchor_configMonth = GHC.Maybe.Nothing,
+                                                                                    subscriptionBilling_cycle_anchor_configSecond = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.billing_thresholds.anyOf@ in the specification.
 -- 
 -- Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period
-data SubscriptionBilling_thresholdsNonNullable = SubscriptionBilling_thresholdsNonNullable {
+data SubscriptionBilling_thresholds = SubscriptionBilling_thresholds {
   -- | amount_gte: Monetary threshold that triggers the subscription to create an invoice
-  subscriptionBilling_thresholdsNonNullableAmount_gte :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscriptionBilling_thresholdsAmount_gte :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reset_billing_cycle_anchor: Indicates if the \`billing_cycle_anchor\` should be reset when a threshold is reached. If true, \`billing_cycle_anchor\` will be updated to the date\/time the threshold was last reached; otherwise, the value will remain unchanged. This value may not be \`true\` if the subscription contains items with plans that have \`aggregate_usage=last_ever\`.
-  , subscriptionBilling_thresholdsNonNullableReset_billing_cycle_anchor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , subscriptionBilling_thresholdsReset_billing_cycle_anchor :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionBilling_thresholdsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsNonNullableAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsNonNullableReset_billing_cycle_anchor obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsNonNullableAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsNonNullableReset_billing_cycle_anchor obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionBilling_thresholdsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionBilling_thresholdsNonNullable" (\obj -> (GHC.Base.pure SubscriptionBilling_thresholdsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_gte")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reset_billing_cycle_anchor"))}
--- | Create a new 'SubscriptionBilling_thresholdsNonNullable' with all required fields.
-mkSubscriptionBilling_thresholdsNonNullable :: SubscriptionBilling_thresholdsNonNullable
-mkSubscriptionBilling_thresholdsNonNullable = SubscriptionBilling_thresholdsNonNullable{subscriptionBilling_thresholdsNonNullableAmount_gte = GHC.Maybe.Nothing,
-                                                                                        subscriptionBilling_thresholdsNonNullableReset_billing_cycle_anchor = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionBilling_thresholds
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsReset_billing_cycle_anchor obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionBilling_thresholdsReset_billing_cycle_anchor obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionBilling_thresholds
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionBilling_thresholds" (\obj -> (GHC.Base.pure SubscriptionBilling_thresholds GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_gte")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reset_billing_cycle_anchor"))}
+-- | Create a new 'SubscriptionBilling_thresholds' with all required fields.
+mkSubscriptionBilling_thresholds :: SubscriptionBilling_thresholds
+mkSubscriptionBilling_thresholds = SubscriptionBilling_thresholds{subscriptionBilling_thresholdsAmount_gte = GHC.Maybe.Nothing,
+                                                                  subscriptionBilling_thresholdsReset_billing_cycle_anchor = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.cancellation_details.anyOf@ in the specification.
 -- 
 -- Details about why this subscription was cancelled
-data SubscriptionCancellation_detailsNonNullable = SubscriptionCancellation_detailsNonNullable {
+data SubscriptionCancellation_details = SubscriptionCancellation_details {
   -- | comment: Additional comments about why the user canceled the subscription, if the subscription was canceled explicitly by the user.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  subscriptionCancellation_detailsNonNullableComment :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  subscriptionCancellation_detailsComment :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | feedback: The customer submitted reason for why they canceled, if the subscription was canceled explicitly by the user.
-  , subscriptionCancellation_detailsNonNullableFeedback :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionCancellation_detailsNonNullableFeedbackNonNullable))
+  , subscriptionCancellation_detailsFeedback :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reason: Why this subscription was canceled.
-  , subscriptionCancellation_detailsNonNullableReason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionCancellation_detailsNonNullableReasonNonNullable))
+  , subscriptionCancellation_detailsReason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionCancellation_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("comment" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsNonNullableComment obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("feedback" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsNonNullableFeedback obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsNonNullableReason obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("comment" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsNonNullableComment obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("feedback" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsNonNullableFeedback obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsNonNullableReason obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionCancellation_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionCancellation_detailsNonNullable" (\obj -> ((GHC.Base.pure SubscriptionCancellation_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "comment")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "feedback")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reason"))}
--- | Create a new 'SubscriptionCancellation_detailsNonNullable' with all required fields.
-mkSubscriptionCancellation_detailsNonNullable :: SubscriptionCancellation_detailsNonNullable
-mkSubscriptionCancellation_detailsNonNullable = SubscriptionCancellation_detailsNonNullable{subscriptionCancellation_detailsNonNullableComment = GHC.Maybe.Nothing,
-                                                                                            subscriptionCancellation_detailsNonNullableFeedback = GHC.Maybe.Nothing,
-                                                                                            subscriptionCancellation_detailsNonNullableReason = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.cancellation_details.anyOf.properties.feedback@ in the specification.
--- 
--- The customer submitted reason for why they canceled, if the subscription was canceled explicitly by the user.
-data SubscriptionCancellation_detailsNonNullableFeedbackNonNullable =
-   SubscriptionCancellation_detailsNonNullableFeedbackNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumCustomer_service -- ^ Represents the JSON value @"customer_service"@
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumLow_quality -- ^ Represents the JSON value @"low_quality"@
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumMissing_features -- ^ Represents the JSON value @"missing_features"@
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumSwitched_service -- ^ Represents the JSON value @"switched_service"@
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumToo_complex -- ^ Represents the JSON value @"too_complex"@
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumToo_expensive -- ^ Represents the JSON value @"too_expensive"@
-  | SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumUnused -- ^ Represents the JSON value @"unused"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionCancellation_detailsNonNullableFeedbackNonNullable
-    where {toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableOther val) = val;
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumCustomer_service) = "customer_service";
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumLow_quality) = "low_quality";
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumMissing_features) = "missing_features";
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumOther) = "other";
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumSwitched_service) = "switched_service";
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumToo_complex) = "too_complex";
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumToo_expensive) = "too_expensive";
-           toJSON (SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumUnused) = "unused"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionCancellation_detailsNonNullableFeedbackNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "customer_service" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumCustomer_service
-                                             | val GHC.Classes.== "low_quality" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumLow_quality
-                                             | val GHC.Classes.== "missing_features" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumMissing_features
-                                             | val GHC.Classes.== "other" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumOther
-                                             | val GHC.Classes.== "switched_service" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumSwitched_service
-                                             | val GHC.Classes.== "too_complex" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumToo_complex
-                                             | val GHC.Classes.== "too_expensive" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumToo_expensive
-                                             | val GHC.Classes.== "unused" -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableEnumUnused
-                                             | GHC.Base.otherwise -> SubscriptionCancellation_detailsNonNullableFeedbackNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.subscription.properties.cancellation_details.anyOf.properties.reason@ in the specification.
--- 
--- Why this subscription was canceled.
-data SubscriptionCancellation_detailsNonNullableReasonNonNullable =
-   SubscriptionCancellation_detailsNonNullableReasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionCancellation_detailsNonNullableReasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumCancellation_requested -- ^ Represents the JSON value @"cancellation_requested"@
-  | SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumPayment_disputed -- ^ Represents the JSON value @"payment_disputed"@
-  | SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumPayment_failed -- ^ Represents the JSON value @"payment_failed"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionCancellation_detailsNonNullableReasonNonNullable
-    where {toJSON (SubscriptionCancellation_detailsNonNullableReasonNonNullableOther val) = val;
-           toJSON (SubscriptionCancellation_detailsNonNullableReasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumCancellation_requested) = "cancellation_requested";
-           toJSON (SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumPayment_disputed) = "payment_disputed";
-           toJSON (SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumPayment_failed) = "payment_failed"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionCancellation_detailsNonNullableReasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cancellation_requested" -> SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumCancellation_requested
-                                             | val GHC.Classes.== "payment_disputed" -> SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumPayment_disputed
-                                             | val GHC.Classes.== "payment_failed" -> SubscriptionCancellation_detailsNonNullableReasonNonNullableEnumPayment_failed
-                                             | GHC.Base.otherwise -> SubscriptionCancellation_detailsNonNullableReasonNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.subscription.properties.collection_method@ in the specification.
--- 
--- Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay this subscription at the end of the cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as \`active\`.
-data SubscriptionCollection_method =
-   SubscriptionCollection_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionCollection_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionCollection_methodEnumCharge_automatically -- ^ Represents the JSON value @"charge_automatically"@
-  | SubscriptionCollection_methodEnumSend_invoice -- ^ Represents the JSON value @"send_invoice"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionCollection_method
-    where {toJSON (SubscriptionCollection_methodOther val) = val;
-           toJSON (SubscriptionCollection_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionCollection_methodEnumCharge_automatically) = "charge_automatically";
-           toJSON (SubscriptionCollection_methodEnumSend_invoice) = "send_invoice"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionCollection_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "charge_automatically" -> SubscriptionCollection_methodEnumCharge_automatically
-                                             | val GHC.Classes.== "send_invoice" -> SubscriptionCollection_methodEnumSend_invoice
-                                             | GHC.Base.otherwise -> SubscriptionCollection_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionCancellation_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("comment" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsComment obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("feedback" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsFeedback obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsReason obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("comment" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsComment obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("feedback" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsFeedback obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (subscriptionCancellation_detailsReason obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionCancellation_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionCancellation_details" (\obj -> ((GHC.Base.pure SubscriptionCancellation_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "comment")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "feedback")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reason"))}
+-- | Create a new 'SubscriptionCancellation_details' with all required fields.
+mkSubscriptionCancellation_details :: SubscriptionCancellation_details
+mkSubscriptionCancellation_details = SubscriptionCancellation_details{subscriptionCancellation_detailsComment = GHC.Maybe.Nothing,
+                                                                      subscriptionCancellation_detailsFeedback = GHC.Maybe.Nothing,
+                                                                      subscriptionCancellation_detailsReason = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.customer.anyOf@ in the specification.
 -- 
 -- ID of the customer who owns the subscription.
@@ -450,33 +383,33 @@ instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionCustomerVariants
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.default_payment_method.anyOf@ in the specification.
 -- 
 -- ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. This takes precedence over \`default_source\`. If neither are set, invoices will use the customer\'s [invoice_settings.default_payment_method](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-invoice_settings-default_payment_method) or [default_source](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-default_source).
-data SubscriptionDefault_payment_methodNonNullableVariants =
-   SubscriptionDefault_payment_methodNonNullableText Data.Text.Internal.Text
-  | SubscriptionDefault_payment_methodNonNullablePayment_method Payment_method
+data SubscriptionDefault_payment_methodVariants =
+   SubscriptionDefault_payment_methodText Data.Text.Internal.Text
+  | SubscriptionDefault_payment_methodPayment_method Payment_method
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionDefault_payment_methodNonNullableVariants
-    where {toJSON (SubscriptionDefault_payment_methodNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionDefault_payment_methodNonNullablePayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionDefault_payment_methodNonNullableVariants
-    where {parseJSON val = case (SubscriptionDefault_payment_methodNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_payment_methodNonNullablePayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionDefault_payment_methodVariants
+    where {toJSON (SubscriptionDefault_payment_methodText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionDefault_payment_methodPayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionDefault_payment_methodVariants
+    where {parseJSON val = case (SubscriptionDefault_payment_methodText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_payment_methodPayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.default_source.anyOf@ in the specification.
 -- 
 -- ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If \`default_payment_method\` is also set, \`default_payment_method\` will take precedence. If neither are set, invoices will use the customer\'s [invoice_settings.default_payment_method](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-invoice_settings-default_payment_method) or [default_source](https:\/\/docs.stripe.com\/api\/customers\/object\#customer_object-default_source).
-data SubscriptionDefault_sourceNonNullableVariants =
-   SubscriptionDefault_sourceNonNullableText Data.Text.Internal.Text
-  | SubscriptionDefault_sourceNonNullableBank_account Bank_account
-  | SubscriptionDefault_sourceNonNullableCard Card
-  | SubscriptionDefault_sourceNonNullableSource Source
+data SubscriptionDefault_sourceVariants =
+   SubscriptionDefault_sourceText Data.Text.Internal.Text
+  | SubscriptionDefault_sourceBank_account Bank_account
+  | SubscriptionDefault_sourceCard Card
+  | SubscriptionDefault_sourceSource Source
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionDefault_sourceNonNullableVariants
-    where {toJSON (SubscriptionDefault_sourceNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionDefault_sourceNonNullableBank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionDefault_sourceNonNullableCard a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionDefault_sourceNonNullableSource a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionDefault_sourceNonNullableVariants
-    where {parseJSON val = case (SubscriptionDefault_sourceNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_sourceNonNullableBank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_sourceNonNullableCard Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_sourceNonNullableSource Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched"))) of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionDefault_sourceVariants
+    where {toJSON (SubscriptionDefault_sourceText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionDefault_sourceBank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionDefault_sourceCard a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionDefault_sourceSource a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionDefault_sourceVariants
+    where {parseJSON val = case (SubscriptionDefault_sourceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_sourceBank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_sourceCard Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionDefault_sourceSource Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched"))) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.discounts.items.anyOf@ in the specification.
@@ -501,6 +434,8 @@ data SubscriptionItems = SubscriptionItems {
   subscriptionItemsData :: [Subscription_item]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
   , subscriptionItemsHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , subscriptionItemsObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
@@ -510,770 +445,372 @@ data SubscriptionItems = SubscriptionItems {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionItems
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= subscriptionItemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= subscriptionItemsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= subscriptionItemsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= subscriptionItemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= subscriptionItemsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= subscriptionItemsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= subscriptionItemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= subscriptionItemsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= subscriptionItemsObject obj] : ["url" Data.Aeson.Types.ToJSON..= subscriptionItemsUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= subscriptionItemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= subscriptionItemsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= subscriptionItemsObject obj] : ["url" Data.Aeson.Types.ToJSON..= subscriptionItemsUrl obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionItems
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionItems" (\obj -> ((GHC.Base.pure SubscriptionItems GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionItems" (\obj -> (((GHC.Base.pure SubscriptionItems GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
 -- | Create a new 'SubscriptionItems' with all required fields.
 mkSubscriptionItems :: [Subscription_item] -- ^ 'subscriptionItemsData'
   -> GHC.Types.Bool -- ^ 'subscriptionItemsHas_more'
+  -> Data.Text.Internal.Text -- ^ 'subscriptionItemsObject'
   -> Data.Text.Internal.Text -- ^ 'subscriptionItemsUrl'
   -> SubscriptionItems
-mkSubscriptionItems subscriptionItemsData subscriptionItemsHas_more subscriptionItemsUrl = SubscriptionItems{subscriptionItemsData = subscriptionItemsData,
-                                                                                                             subscriptionItemsHas_more = subscriptionItemsHas_more,
-                                                                                                             subscriptionItemsUrl = subscriptionItemsUrl}
+mkSubscriptionItems subscriptionItemsData subscriptionItemsHas_more subscriptionItemsObject subscriptionItemsUrl = SubscriptionItems{subscriptionItemsData = subscriptionItemsData,
+                                                                                                                                     subscriptionItemsHas_more = subscriptionItemsHas_more,
+                                                                                                                                     subscriptionItemsObject = subscriptionItemsObject,
+                                                                                                                                     subscriptionItemsUrl = subscriptionItemsUrl}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.latest_invoice.anyOf@ in the specification.
 -- 
 -- The most recent invoice this subscription has generated over its lifecycle (for example, when it cycles or is updated).
-data SubscriptionLatest_invoiceNonNullableVariants =
-   SubscriptionLatest_invoiceNonNullableText Data.Text.Internal.Text
-  | SubscriptionLatest_invoiceNonNullableInvoice Invoice
+data SubscriptionLatest_invoiceVariants =
+   SubscriptionLatest_invoiceText Data.Text.Internal.Text
+  | SubscriptionLatest_invoiceInvoice Invoice
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionLatest_invoiceNonNullableVariants
-    where {toJSON (SubscriptionLatest_invoiceNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionLatest_invoiceNonNullableInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionLatest_invoiceNonNullableVariants
-    where {parseJSON val = case (SubscriptionLatest_invoiceNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionLatest_invoiceNonNullableInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionLatest_invoiceVariants
+    where {toJSON (SubscriptionLatest_invoiceText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionLatest_invoiceInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionLatest_invoiceVariants
+    where {parseJSON val = case (SubscriptionLatest_invoiceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionLatest_invoiceInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.on_behalf_of.anyOf@ in the specification.
 -- 
 -- The account (if any) the charge was made on behalf of for charges associated with this subscription. See the [Connect documentation](https:\/\/docs.stripe.com\/connect\/subscriptions\#on-behalf-of) for details.
-data SubscriptionOn_behalf_ofNonNullableVariants =
-   SubscriptionOn_behalf_ofNonNullableText Data.Text.Internal.Text
-  | SubscriptionOn_behalf_ofNonNullableAccount Account
+data SubscriptionOn_behalf_ofVariants =
+   SubscriptionOn_behalf_ofText Data.Text.Internal.Text
+  | SubscriptionOn_behalf_ofAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionOn_behalf_ofNonNullableVariants
-    where {toJSON (SubscriptionOn_behalf_ofNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionOn_behalf_ofNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionOn_behalf_ofNonNullableVariants
-    where {parseJSON val = case (SubscriptionOn_behalf_ofNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionOn_behalf_ofNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionOn_behalf_ofVariants
+    where {toJSON (SubscriptionOn_behalf_ofText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionOn_behalf_ofAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionOn_behalf_ofVariants
+    where {parseJSON val = case (SubscriptionOn_behalf_ofText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionOn_behalf_ofAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription.properties.pause_collection.anyOf@ in the specification.
 -- 
 -- If specified, payment collection for this subscription will be paused. Note that the subscription status will be unchanged and will not be updated to \\\`paused\\\`. Learn more about [pausing collection](https:\\\/\\\/docs.stripe.com\\\/billing\\\/subscriptions\\\/pause-payment).
-data SubscriptionPause_collectionNonNullable = SubscriptionPause_collectionNonNullable {
-  -- | behavior: The payment collection behavior for this subscription while paused. One of \`keep_as_draft\`, \`mark_uncollectible\`, or \`void\`.
-  subscriptionPause_collectionNonNullableBehavior :: (GHC.Maybe.Maybe SubscriptionPause_collectionNonNullableBehavior)
+data SubscriptionPause_collection = SubscriptionPause_collection {
+  -- | behavior: The payment collection behavior for this subscription while paused.
+  subscriptionPause_collectionBehavior :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | resumes_at: The time after which the subscription will resume collecting payments.
-  , subscriptionPause_collectionNonNullableResumes_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionPause_collectionResumes_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPause_collectionNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionNonNullableBehavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("resumes_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionNonNullableResumes_at obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionNonNullableBehavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("resumes_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionNonNullableResumes_at obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPause_collectionNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPause_collectionNonNullable" (\obj -> (GHC.Base.pure SubscriptionPause_collectionNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "behavior")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "resumes_at"))}
--- | Create a new 'SubscriptionPause_collectionNonNullable' with all required fields.
-mkSubscriptionPause_collectionNonNullable :: SubscriptionPause_collectionNonNullable
-mkSubscriptionPause_collectionNonNullable = SubscriptionPause_collectionNonNullable{subscriptionPause_collectionNonNullableBehavior = GHC.Maybe.Nothing,
-                                                                                    subscriptionPause_collectionNonNullableResumes_at = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.pause_collection.anyOf.properties.behavior@ in the specification.
--- 
--- The payment collection behavior for this subscription while paused. One of \`keep_as_draft\`, \`mark_uncollectible\`, or \`void\`.
-data SubscriptionPause_collectionNonNullableBehavior =
-   SubscriptionPause_collectionNonNullableBehaviorOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPause_collectionNonNullableBehaviorTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPause_collectionNonNullableBehaviorEnumKeep_as_draft -- ^ Represents the JSON value @"keep_as_draft"@
-  | SubscriptionPause_collectionNonNullableBehaviorEnumMark_uncollectible -- ^ Represents the JSON value @"mark_uncollectible"@
-  | SubscriptionPause_collectionNonNullableBehaviorEnumVoid -- ^ Represents the JSON value @"void"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPause_collectionNonNullableBehavior
-    where {toJSON (SubscriptionPause_collectionNonNullableBehaviorOther val) = val;
-           toJSON (SubscriptionPause_collectionNonNullableBehaviorTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPause_collectionNonNullableBehaviorEnumKeep_as_draft) = "keep_as_draft";
-           toJSON (SubscriptionPause_collectionNonNullableBehaviorEnumMark_uncollectible) = "mark_uncollectible";
-           toJSON (SubscriptionPause_collectionNonNullableBehaviorEnumVoid) = "void"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPause_collectionNonNullableBehavior
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "keep_as_draft" -> SubscriptionPause_collectionNonNullableBehaviorEnumKeep_as_draft
-                                             | val GHC.Classes.== "mark_uncollectible" -> SubscriptionPause_collectionNonNullableBehaviorEnumMark_uncollectible
-                                             | val GHC.Classes.== "void" -> SubscriptionPause_collectionNonNullableBehaviorEnumVoid
-                                             | GHC.Base.otherwise -> SubscriptionPause_collectionNonNullableBehaviorOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPause_collection
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionBehavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("resumes_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionResumes_at obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionBehavior obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("resumes_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPause_collectionResumes_at obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPause_collection
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPause_collection" (\obj -> (GHC.Base.pure SubscriptionPause_collection GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "behavior")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "resumes_at"))}
+-- | Create a new 'SubscriptionPause_collection' with all required fields.
+mkSubscriptionPause_collection :: SubscriptionPause_collection
+mkSubscriptionPause_collection = SubscriptionPause_collection{subscriptionPause_collectionBehavior = GHC.Maybe.Nothing,
+                                                              subscriptionPause_collectionResumes_at = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf@ in the specification.
 -- 
 -- Payment settings passed on to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullable = SubscriptionPayment_settingsNonNullable {
+data SubscriptionPayment_settings = SubscriptionPayment_settings {
   -- | payment_method_options: Payment-method-specific configuration to provide to invoices created by the subscription.
-  subscriptionPayment_settingsNonNullablePayment_method_options :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable))
+  subscriptionPayment_settingsPayment_method_options :: (GHC.Maybe.Maybe SubscriptionPayment_settingsPayment_method_options)
   -- | payment_method_types: The list of payment method types to provide to every invoice created by the subscription. If not set, Stripe attempts to automatically determine the types to use by looking at the invoice’s default payment method, the subscription’s default payment method, the customer’s default payment method, and your [invoice template settings](https:\/\/dashboard.stripe.com\/settings\/billing\/invoice).
-  , subscriptionPayment_settingsNonNullablePayment_method_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullable]))
+  , subscriptionPayment_settingsPayment_method_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | save_default_payment_method: Configure whether Stripe updates \`subscription.default_payment_method\` when payment succeeds. Defaults to \`off\`.
-  , subscriptionPayment_settingsNonNullableSave_default_payment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullable))
+  , subscriptionPayment_settingsSave_default_payment_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_types" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("save_default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullableSave_default_payment_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_types" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("save_default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullableSave_default_payment_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullable" (\obj -> ((GHC.Base.pure SubscriptionPayment_settingsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "save_default_payment_method"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullable :: SubscriptionPayment_settingsNonNullable
-mkSubscriptionPayment_settingsNonNullable = SubscriptionPayment_settingsNonNullable{subscriptionPayment_settingsNonNullablePayment_method_options = GHC.Maybe.Nothing,
-                                                                                    subscriptionPayment_settingsNonNullablePayment_method_types = GHC.Maybe.Nothing,
-                                                                                    subscriptionPayment_settingsNonNullableSave_default_payment_method = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settings
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_types" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("save_default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsSave_default_payment_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_types" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("save_default_payment_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsSave_default_payment_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settings
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settings" (\obj -> ((GHC.Base.pure SubscriptionPayment_settings GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "save_default_payment_method"))}
+-- | Create a new 'SubscriptionPayment_settings' with all required fields.
+mkSubscriptionPayment_settings :: SubscriptionPayment_settings
+mkSubscriptionPayment_settings = SubscriptionPayment_settings{subscriptionPayment_settingsPayment_method_options = GHC.Maybe.Nothing,
+                                                              subscriptionPayment_settingsPayment_method_types = GHC.Maybe.Nothing,
+                                                              subscriptionPayment_settingsSave_default_payment_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf@ in the specification.
 -- 
 -- Payment-method-specific configuration to provide to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable {
+data SubscriptionPayment_settingsPayment_method_options = SubscriptionPayment_settingsPayment_method_options {
   -- | acss_debit: This sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to invoices created by the subscription.
-  subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debit :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable))
+  subscriptionPayment_settingsPayment_method_optionsAcss_debit :: (GHC.Maybe.Maybe SubscriptionPayment_settingsPayment_method_optionsAcss_debit)
   -- | bancontact: This sub-hash contains details about the Bancontact payment method options to pass to invoices created by the subscription.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontact :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsBancontact :: (GHC.Maybe.Maybe SubscriptionPayment_settingsPayment_method_optionsBancontact)
   -- | card: This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCard :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsCard :: (GHC.Maybe.Maybe SubscriptionPayment_settingsPayment_method_optionsCard)
   -- | customer_balance: This sub-hash contains details about the Bank transfer payment method options to pass to invoices created by the subscription.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balance :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsCustomer_balance :: (GHC.Maybe.Maybe SubscriptionPayment_settingsPayment_method_optionsCustomer_balance)
   -- | konbini: This sub-hash contains details about the Konbini payment method options to pass to invoices created by the subscription.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableKonbini :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , subscriptionPayment_settingsPayment_method_optionsKonbini :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | payto: This sub-hash contains details about the PayTo payment method options to pass to invoices created by the subscription.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePayto :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsPayto :: (GHC.Maybe.Maybe SubscriptionPayment_settingsPayment_method_optionsPayto)
   -- | sepa_debit: This sub-hash contains details about the SEPA Direct Debit payment method options to pass to invoices created by the subscription.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableSepa_debit :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , subscriptionPayment_settingsPayment_method_optionsSepa_debit :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | us_bank_account: This sub-hash contains details about the ACH direct debit payment method options to pass to invoices created by the subscription.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsUs_bank_account :: (GHC.Maybe.Maybe SubscriptionPayment_settingsPayment_method_optionsUs_bank_account)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_account obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_account obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable" (\obj -> (((((((GHC.Base.pure SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "konbini")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable :: SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullable{subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debit = GHC.Maybe.Nothing,
-                                                                                                                                                      subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontact = GHC.Maybe.Nothing,
-                                                                                                                                                      subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCard = GHC.Maybe.Nothing,
-                                                                                                                                                      subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balance = GHC.Maybe.Nothing,
-                                                                                                                                                      subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableKonbini = GHC.Maybe.Nothing,
-                                                                                                                                                      subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePayto = GHC.Maybe.Nothing,
-                                                                                                                                                      subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableSepa_debit = GHC.Maybe.Nothing,
-                                                                                                                                                      subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_account = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsPayment_method_options
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsUs_bank_account obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsUs_bank_account obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsPayment_method_options
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsPayment_method_options" (\obj -> (((((((GHC.Base.pure SubscriptionPayment_settingsPayment_method_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "konbini")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account"))}
+-- | Create a new 'SubscriptionPayment_settingsPayment_method_options' with all required fields.
+mkSubscriptionPayment_settingsPayment_method_options :: SubscriptionPayment_settingsPayment_method_options
+mkSubscriptionPayment_settingsPayment_method_options = SubscriptionPayment_settingsPayment_method_options{subscriptionPayment_settingsPayment_method_optionsAcss_debit = GHC.Maybe.Nothing,
+                                                                                                          subscriptionPayment_settingsPayment_method_optionsBancontact = GHC.Maybe.Nothing,
+                                                                                                          subscriptionPayment_settingsPayment_method_optionsCard = GHC.Maybe.Nothing,
+                                                                                                          subscriptionPayment_settingsPayment_method_optionsCustomer_balance = GHC.Maybe.Nothing,
+                                                                                                          subscriptionPayment_settingsPayment_method_optionsKonbini = GHC.Maybe.Nothing,
+                                                                                                          subscriptionPayment_settingsPayment_method_optionsPayto = GHC.Maybe.Nothing,
+                                                                                                          subscriptionPayment_settingsPayment_method_optionsSepa_debit = GHC.Maybe.Nothing,
+                                                                                                          subscriptionPayment_settingsPayment_method_optionsUs_bank_account = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.acss_debit.anyOf@ in the specification.
 -- 
 -- This sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable {
+data SubscriptionPayment_settingsPayment_method_optionsAcss_debit = SubscriptionPayment_settingsPayment_method_optionsAcss_debit {
   -- | mandate_options: 
-  subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableMandate_options :: (GHC.Maybe.Maybe Invoice_payment_method_options_acss_debit_mandate_options)
-  -- | verification_method: Bank account verification method.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method :: (GHC.Maybe.Maybe SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method)
+  subscriptionPayment_settingsPayment_method_optionsAcss_debitMandate_options :: (GHC.Maybe.Maybe Invoice_payment_method_options_acss_debit_mandate_options)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , subscriptionPayment_settingsPayment_method_optionsAcss_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable" (\obj -> (GHC.Base.pure SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable :: SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullable{subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableMandate_options = GHC.Maybe.Nothing,
-                                                                                                                                                                                                subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.acss_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method =
-   SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method
-    where {toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumAutomatic) = "automatic";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumInstant) = "instant";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableAcss_debitNonNullableVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsPayment_method_optionsAcss_debit
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsAcss_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsAcss_debitVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsAcss_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsAcss_debitVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsPayment_method_optionsAcss_debit
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsPayment_method_optionsAcss_debit" (\obj -> (GHC.Base.pure SubscriptionPayment_settingsPayment_method_optionsAcss_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'SubscriptionPayment_settingsPayment_method_optionsAcss_debit' with all required fields.
+mkSubscriptionPayment_settingsPayment_method_optionsAcss_debit :: SubscriptionPayment_settingsPayment_method_optionsAcss_debit
+mkSubscriptionPayment_settingsPayment_method_optionsAcss_debit = SubscriptionPayment_settingsPayment_method_optionsAcss_debit{subscriptionPayment_settingsPayment_method_optionsAcss_debitMandate_options = GHC.Maybe.Nothing,
+                                                                                                                              subscriptionPayment_settingsPayment_method_optionsAcss_debitVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.bancontact.anyOf@ in the specification.
 -- 
 -- This sub-hash contains details about the Bancontact payment method options to pass to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable {
+data SubscriptionPayment_settingsPayment_method_optionsBancontact = SubscriptionPayment_settingsPayment_method_optionsBancontact {
   -- | preferred_language: Preferred language of the Bancontact authorization page that the customer is redirected to.
-  subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language :: (GHC.Maybe.Maybe SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language)
+  subscriptionPayment_settingsPayment_method_optionsBancontactPreferred_language :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_language" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_language" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable" (\obj -> GHC.Base.pure SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred_language"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable :: SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullable{subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.bancontact.anyOf.properties.preferred_language@ in the specification.
--- 
--- Preferred language of the Bancontact authorization page that the customer is redirected to.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language =
-   SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumDe -- ^ Represents the JSON value @"de"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumEn -- ^ Represents the JSON value @"en"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumFr -- ^ Represents the JSON value @"fr"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumNl -- ^ Represents the JSON value @"nl"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language
-    where {toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumDe) = "de";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumEn) = "en";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumFr) = "fr";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumNl) = "nl"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_language
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "de" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumDe
-                                             | val GHC.Classes.== "en" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumEn
-                                             | val GHC.Classes.== "fr" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumFr
-                                             | val GHC.Classes.== "nl" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageEnumNl
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableBancontactNonNullablePreferred_languageOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsPayment_method_optionsBancontact
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_language" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsBancontactPreferred_language obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_language" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsBancontactPreferred_language obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsPayment_method_optionsBancontact
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsPayment_method_optionsBancontact" (\obj -> GHC.Base.pure SubscriptionPayment_settingsPayment_method_optionsBancontact GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred_language"))}
+-- | Create a new 'SubscriptionPayment_settingsPayment_method_optionsBancontact' with all required fields.
+mkSubscriptionPayment_settingsPayment_method_optionsBancontact :: SubscriptionPayment_settingsPayment_method_optionsBancontact
+mkSubscriptionPayment_settingsPayment_method_optionsBancontact = SubscriptionPayment_settingsPayment_method_optionsBancontact{subscriptionPayment_settingsPayment_method_optionsBancontactPreferred_language = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.card.anyOf@ in the specification.
 -- 
 -- This sub-hash contains details about the Card payment method options to pass to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable {
+data SubscriptionPayment_settingsPayment_method_optionsCard = SubscriptionPayment_settingsPayment_method_optionsCard {
   -- | mandate_options: 
-  subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableMandate_options :: (GHC.Maybe.Maybe Invoice_mandate_options_card)
+  subscriptionPayment_settingsPayment_method_optionsCardMandate_options :: (GHC.Maybe.Maybe Invoice_mandate_options_card)
   -- | network: Selected network to process this Subscription on. Depends on the available networks of the card attached to the Subscription. Can be only set confirm-time.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetwork :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsCardNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsCardRequest_three_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secure obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secure obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable" (\obj -> ((GHC.Base.pure SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_three_d_secure"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable :: SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullable{subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableMandate_options = GHC.Maybe.Nothing,
-                                                                                                                                                                                    subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetwork = GHC.Maybe.Nothing,
-                                                                                                                                                                                    subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secure = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.card.anyOf.properties.network@ in the specification.
--- 
--- Selected network to process this Subscription on. Depends on the available networks of the card attached to the Subscription. Can be only set confirm-time.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullable =
-   SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumAmex -- ^ Represents the JSON value @"amex"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumCartes_bancaires -- ^ Represents the JSON value @"cartes_bancaires"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumDiners -- ^ Represents the JSON value @"diners"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumDiscover -- ^ Represents the JSON value @"discover"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumEftpos_au -- ^ Represents the JSON value @"eftpos_au"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumGirocard -- ^ Represents the JSON value @"girocard"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumInterac -- ^ Represents the JSON value @"interac"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumJcb -- ^ Represents the JSON value @"jcb"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumLink -- ^ Represents the JSON value @"link"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumUnionpay -- ^ Represents the JSON value @"unionpay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullable
-    where {toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumAmex) = "amex";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumCartes_bancaires) = "cartes_bancaires";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumDiners) = "diners";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumDiscover) = "discover";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumEftpos_au) = "eftpos_au";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumGirocard) = "girocard";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumInterac) = "interac";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumJcb) = "jcb";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumLink) = "link";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumMastercard) = "mastercard";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumUnionpay) = "unionpay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumUnknown) = "unknown";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amex" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumAmex
-                                             | val GHC.Classes.== "cartes_bancaires" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumCartes_bancaires
-                                             | val GHC.Classes.== "diners" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumDiners
-                                             | val GHC.Classes.== "discover" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumDiscover
-                                             | val GHC.Classes.== "eftpos_au" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumEftpos_au
-                                             | val GHC.Classes.== "girocard" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumGirocard
-                                             | val GHC.Classes.== "interac" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumInterac
-                                             | val GHC.Classes.== "jcb" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumJcb
-                                             | val GHC.Classes.== "link" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumLink
-                                             | val GHC.Classes.== "mastercard" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumMastercard
-                                             | val GHC.Classes.== "unionpay" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumUnionpay
-                                             | val GHC.Classes.== "unknown" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumUnknown
-                                             | val GHC.Classes.== "visa" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableEnumVisa
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableNetworkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.card.anyOf.properties.request_three_d_secure@ in the specification.
--- 
--- We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullable =
-   SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumAny -- ^ Represents the JSON value @"any"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullable
-    where {toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumAny) = "any";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumAutomatic) = "automatic";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumChallenge) = "challenge"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "any" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumAny
-                                             | val GHC.Classes.== "automatic" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "challenge" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableEnumChallenge
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCardNonNullableRequest_three_d_secureNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsPayment_method_optionsCard
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCardMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCardNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCardRequest_three_d_secure obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCardMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCardNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCardRequest_three_d_secure obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsPayment_method_optionsCard
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsPayment_method_optionsCard" (\obj -> ((GHC.Base.pure SubscriptionPayment_settingsPayment_method_optionsCard GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_three_d_secure"))}
+-- | Create a new 'SubscriptionPayment_settingsPayment_method_optionsCard' with all required fields.
+mkSubscriptionPayment_settingsPayment_method_optionsCard :: SubscriptionPayment_settingsPayment_method_optionsCard
+mkSubscriptionPayment_settingsPayment_method_optionsCard = SubscriptionPayment_settingsPayment_method_optionsCard{subscriptionPayment_settingsPayment_method_optionsCardMandate_options = GHC.Maybe.Nothing,
+                                                                                                                  subscriptionPayment_settingsPayment_method_optionsCardNetwork = GHC.Maybe.Nothing,
+                                                                                                                  subscriptionPayment_settingsPayment_method_optionsCardRequest_three_d_secure = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.customer_balance.anyOf@ in the specification.
 -- 
 -- This sub-hash contains details about the Bank transfer payment method options to pass to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable {
+data SubscriptionPayment_settingsPayment_method_optionsCustomer_balance = SubscriptionPayment_settingsPayment_method_optionsCustomer_balance {
   -- | bank_transfer: 
-  subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableBank_transfer :: (GHC.Maybe.Maybe Invoice_payment_method_options_customer_balance_bank_transfer)
+  subscriptionPayment_settingsPayment_method_optionsCustomer_balanceBank_transfer :: (GHC.Maybe.Maybe Invoice_payment_method_options_customer_balance_bank_transfer)
   -- | funding_type: The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: \`bank_transfer\`.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullable))
+  , subscriptionPayment_settingsPayment_method_optionsCustomer_balanceFunding_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_transfer" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableBank_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding_type" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_type obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_transfer" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableBank_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding_type" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_type obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable" (\obj -> (GHC.Base.pure SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bank_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "funding_type"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable :: SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullable{subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableBank_transfer = GHC.Maybe.Nothing,
-                                                                                                                                                                                                            subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_type = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.customer_balance.anyOf.properties.funding_type@ in the specification.
--- 
--- The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: \`bank_transfer\`.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullable =
-   SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableEnumBank_transfer -- ^ Represents the JSON value @"bank_transfer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullable
-    where {toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableEnumBank_transfer) = "bank_transfer"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_transfer" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableEnumBank_transfer
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableCustomer_balanceNonNullableFunding_typeNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsPayment_method_optionsCustomer_balance
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_transfer" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCustomer_balanceBank_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding_type" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCustomer_balanceFunding_type obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_transfer" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCustomer_balanceBank_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding_type" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsCustomer_balanceFunding_type obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsPayment_method_optionsCustomer_balance
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsPayment_method_optionsCustomer_balance" (\obj -> (GHC.Base.pure SubscriptionPayment_settingsPayment_method_optionsCustomer_balance GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bank_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "funding_type"))}
+-- | Create a new 'SubscriptionPayment_settingsPayment_method_optionsCustomer_balance' with all required fields.
+mkSubscriptionPayment_settingsPayment_method_optionsCustomer_balance :: SubscriptionPayment_settingsPayment_method_optionsCustomer_balance
+mkSubscriptionPayment_settingsPayment_method_optionsCustomer_balance = SubscriptionPayment_settingsPayment_method_optionsCustomer_balance{subscriptionPayment_settingsPayment_method_optionsCustomer_balanceBank_transfer = GHC.Maybe.Nothing,
+                                                                                                                                          subscriptionPayment_settingsPayment_method_optionsCustomer_balanceFunding_type = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.payto.anyOf@ in the specification.
 -- 
 -- This sub-hash contains details about the PayTo payment method options to pass to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable {
+data SubscriptionPayment_settingsPayment_method_optionsPayto = SubscriptionPayment_settingsPayment_method_optionsPayto {
   -- | mandate_options: 
-  subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullableMandate_options :: (GHC.Maybe.Maybe Invoice_mandate_options_payto)
+  subscriptionPayment_settingsPayment_method_optionsPaytoMandate_options :: (GHC.Maybe.Maybe Invoice_mandate_options_payto)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullableMandate_options obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullableMandate_options obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable" (\obj -> GHC.Base.pure SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable :: SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullable{subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullablePaytoNonNullableMandate_options = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsPayment_method_optionsPayto
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsPaytoMandate_options obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsPaytoMandate_options obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsPayment_method_optionsPayto
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsPayment_method_optionsPayto" (\obj -> GHC.Base.pure SubscriptionPayment_settingsPayment_method_optionsPayto GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options"))}
+-- | Create a new 'SubscriptionPayment_settingsPayment_method_optionsPayto' with all required fields.
+mkSubscriptionPayment_settingsPayment_method_optionsPayto :: SubscriptionPayment_settingsPayment_method_optionsPayto
+mkSubscriptionPayment_settingsPayment_method_optionsPayto = SubscriptionPayment_settingsPayment_method_optionsPayto{subscriptionPayment_settingsPayment_method_optionsPaytoMandate_options = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.us_bank_account.anyOf@ in the specification.
 -- 
 -- This sub-hash contains details about the ACH direct debit payment method options to pass to invoices created by the subscription.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable {
+data SubscriptionPayment_settingsPayment_method_optionsUs_bank_account = SubscriptionPayment_settingsPayment_method_optionsUs_bank_account {
   -- | financial_connections: 
-  subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableFinancial_connections :: (GHC.Maybe.Maybe Invoice_payment_method_options_us_bank_account_linked_account_options)
-  -- | verification_method: Bank account verification method.
-  , subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method :: (GHC.Maybe.Maybe SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method)
+  subscriptionPayment_settingsPayment_method_optionsUs_bank_accountFinancial_connections :: (GHC.Maybe.Maybe Invoice_payment_method_options_us_bank_account_linked_account_options)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , subscriptionPayment_settingsPayment_method_optionsUs_bank_accountVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable" (\obj -> (GHC.Base.pure SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "financial_connections")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable' with all required fields.
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable :: SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable
-mkSubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable = SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullable{subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableFinancial_connections = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          subscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_options.anyOf.properties.us_bank_account.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method =
-   SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method
-    where {toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumAutomatic) = "automatic";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumInstant) = "instant";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullablePayment_method_optionsNonNullableUs_bank_accountNonNullableVerification_methodOther val)}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.payment_method_types.items@ in the specification.
--- 
--- 
-data SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullable =
-   SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAch_credit_transfer -- ^ Represents the JSON value @"ach_credit_transfer"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAch_debit -- ^ Represents the JSON value @"ach_debit"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAcss_debit -- ^ Represents the JSON value @"acss_debit"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAffirm -- ^ Represents the JSON value @"affirm"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAmazon_pay -- ^ Represents the JSON value @"amazon_pay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAu_becs_debit -- ^ Represents the JSON value @"au_becs_debit"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBacs_debit -- ^ Represents the JSON value @"bacs_debit"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBancontact -- ^ Represents the JSON value @"bancontact"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBoleto -- ^ Represents the JSON value @"boleto"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCard -- ^ Represents the JSON value @"card"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCashapp -- ^ Represents the JSON value @"cashapp"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCrypto -- ^ Represents the JSON value @"crypto"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCustom -- ^ Represents the JSON value @"custom"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCustomer_balance -- ^ Represents the JSON value @"customer_balance"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumEps -- ^ Represents the JSON value @"eps"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumFpx -- ^ Represents the JSON value @"fpx"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumGiropay -- ^ Represents the JSON value @"giropay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumGrabpay -- ^ Represents the JSON value @"grabpay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumIdeal -- ^ Represents the JSON value @"ideal"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumJp_credit_transfer -- ^ Represents the JSON value @"jp_credit_transfer"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKakao_pay -- ^ Represents the JSON value @"kakao_pay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKlarna -- ^ Represents the JSON value @"klarna"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKonbini -- ^ Represents the JSON value @"konbini"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKr_card -- ^ Represents the JSON value @"kr_card"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumLink -- ^ Represents the JSON value @"link"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumMultibanco -- ^ Represents the JSON value @"multibanco"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumNaver_pay -- ^ Represents the JSON value @"naver_pay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumNz_bank_account -- ^ Represents the JSON value @"nz_bank_account"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumP24 -- ^ Represents the JSON value @"p24"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPay_by_bank -- ^ Represents the JSON value @"pay_by_bank"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPayco -- ^ Represents the JSON value @"payco"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPaynow -- ^ Represents the JSON value @"paynow"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPaypal -- ^ Represents the JSON value @"paypal"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPayto -- ^ Represents the JSON value @"payto"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPromptpay -- ^ Represents the JSON value @"promptpay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumRevolut_pay -- ^ Represents the JSON value @"revolut_pay"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSepa_credit_transfer -- ^ Represents the JSON value @"sepa_credit_transfer"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSepa_debit -- ^ Represents the JSON value @"sepa_debit"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSofort -- ^ Represents the JSON value @"sofort"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSwish -- ^ Represents the JSON value @"swish"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumUs_bank_account -- ^ Represents the JSON value @"us_bank_account"@
-  | SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumWechat_pay -- ^ Represents the JSON value @"wechat_pay"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullable
-    where {toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAch_credit_transfer) = "ach_credit_transfer";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAch_debit) = "ach_debit";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAcss_debit) = "acss_debit";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAffirm) = "affirm";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAmazon_pay) = "amazon_pay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAu_becs_debit) = "au_becs_debit";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBacs_debit) = "bacs_debit";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBancontact) = "bancontact";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBoleto) = "boleto";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCard) = "card";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCashapp) = "cashapp";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCrypto) = "crypto";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCustom) = "custom";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCustomer_balance) = "customer_balance";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumEps) = "eps";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumFpx) = "fpx";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumGiropay) = "giropay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumGrabpay) = "grabpay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumIdeal) = "ideal";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumJp_credit_transfer) = "jp_credit_transfer";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKakao_pay) = "kakao_pay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKlarna) = "klarna";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKonbini) = "konbini";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKr_card) = "kr_card";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumLink) = "link";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumMultibanco) = "multibanco";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumNaver_pay) = "naver_pay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumNz_bank_account) = "nz_bank_account";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumP24) = "p24";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPay_by_bank) = "pay_by_bank";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPayco) = "payco";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPaynow) = "paynow";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPaypal) = "paypal";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPayto) = "payto";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPromptpay) = "promptpay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumRevolut_pay) = "revolut_pay";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSepa_credit_transfer) = "sepa_credit_transfer";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSepa_debit) = "sepa_debit";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSofort) = "sofort";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSwish) = "swish";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumUs_bank_account) = "us_bank_account";
-           toJSON (SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumWechat_pay) = "wechat_pay"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "ach_credit_transfer" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAch_credit_transfer
-                                             | val GHC.Classes.== "ach_debit" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAch_debit
-                                             | val GHC.Classes.== "acss_debit" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAcss_debit
-                                             | val GHC.Classes.== "affirm" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAffirm
-                                             | val GHC.Classes.== "amazon_pay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAmazon_pay
-                                             | val GHC.Classes.== "au_becs_debit" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumAu_becs_debit
-                                             | val GHC.Classes.== "bacs_debit" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBacs_debit
-                                             | val GHC.Classes.== "bancontact" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBancontact
-                                             | val GHC.Classes.== "boleto" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumBoleto
-                                             | val GHC.Classes.== "card" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCard
-                                             | val GHC.Classes.== "cashapp" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCashapp
-                                             | val GHC.Classes.== "crypto" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCrypto
-                                             | val GHC.Classes.== "custom" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCustom
-                                             | val GHC.Classes.== "customer_balance" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumCustomer_balance
-                                             | val GHC.Classes.== "eps" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumEps
-                                             | val GHC.Classes.== "fpx" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumFpx
-                                             | val GHC.Classes.== "giropay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumGiropay
-                                             | val GHC.Classes.== "grabpay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumGrabpay
-                                             | val GHC.Classes.== "ideal" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumIdeal
-                                             | val GHC.Classes.== "jp_credit_transfer" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumJp_credit_transfer
-                                             | val GHC.Classes.== "kakao_pay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKakao_pay
-                                             | val GHC.Classes.== "klarna" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKlarna
-                                             | val GHC.Classes.== "konbini" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKonbini
-                                             | val GHC.Classes.== "kr_card" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumKr_card
-                                             | val GHC.Classes.== "link" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumLink
-                                             | val GHC.Classes.== "multibanco" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumMultibanco
-                                             | val GHC.Classes.== "naver_pay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumNaver_pay
-                                             | val GHC.Classes.== "nz_bank_account" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumNz_bank_account
-                                             | val GHC.Classes.== "p24" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumP24
-                                             | val GHC.Classes.== "pay_by_bank" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPay_by_bank
-                                             | val GHC.Classes.== "payco" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPayco
-                                             | val GHC.Classes.== "paynow" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPaynow
-                                             | val GHC.Classes.== "paypal" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPaypal
-                                             | val GHC.Classes.== "payto" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPayto
-                                             | val GHC.Classes.== "promptpay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumPromptpay
-                                             | val GHC.Classes.== "revolut_pay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumRevolut_pay
-                                             | val GHC.Classes.== "sepa_credit_transfer" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSepa_credit_transfer
-                                             | val GHC.Classes.== "sepa_debit" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSepa_debit
-                                             | val GHC.Classes.== "sofort" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSofort
-                                             | val GHC.Classes.== "swish" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumSwish
-                                             | val GHC.Classes.== "us_bank_account" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumUs_bank_account
-                                             | val GHC.Classes.== "wechat_pay" -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableEnumWechat_pay
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullablePayment_method_typesNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.subscription.properties.payment_settings.anyOf.properties.save_default_payment_method@ in the specification.
--- 
--- Configure whether Stripe updates \`subscription.default_payment_method\` when payment succeeds. Defaults to \`off\`.
-data SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullable =
-   SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableEnumOff -- ^ Represents the JSON value @"off"@
-  | SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableEnumOn_subscription -- ^ Represents the JSON value @"on_subscription"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullable
-    where {toJSON (SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableOther val) = val;
-           toJSON (SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableEnumOff) = "off";
-           toJSON (SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableEnumOn_subscription) = "on_subscription"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "off" -> SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableEnumOff
-                                             | val GHC.Classes.== "on_subscription" -> SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableEnumOn_subscription
-                                             | GHC.Base.otherwise -> SubscriptionPayment_settingsNonNullableSave_default_payment_methodNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPayment_settingsPayment_method_optionsUs_bank_account
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsUs_bank_accountFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsUs_bank_accountVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsUs_bank_accountFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (subscriptionPayment_settingsPayment_method_optionsUs_bank_accountVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPayment_settingsPayment_method_optionsUs_bank_account
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPayment_settingsPayment_method_optionsUs_bank_account" (\obj -> (GHC.Base.pure SubscriptionPayment_settingsPayment_method_optionsUs_bank_account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "financial_connections")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'SubscriptionPayment_settingsPayment_method_optionsUs_bank_account' with all required fields.
+mkSubscriptionPayment_settingsPayment_method_optionsUs_bank_account :: SubscriptionPayment_settingsPayment_method_optionsUs_bank_account
+mkSubscriptionPayment_settingsPayment_method_optionsUs_bank_account = SubscriptionPayment_settingsPayment_method_optionsUs_bank_account{subscriptionPayment_settingsPayment_method_optionsUs_bank_accountFinancial_connections = GHC.Maybe.Nothing,
+                                                                                                                                        subscriptionPayment_settingsPayment_method_optionsUs_bank_accountVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.subscription.properties.pending_invoice_item_interval.anyOf@ in the specification.
 -- 
--- Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](https:\\\/\\\/docs.stripe.com\\\/api\\\#create_invoice) for the given subscription at the specified interval.
-data SubscriptionPending_invoice_item_intervalNonNullable = SubscriptionPending_invoice_item_intervalNonNullable {
+-- Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](\\\/api\\\/invoices\\\/create) for the given subscription at the specified interval.
+data SubscriptionPending_invoice_item_interval = SubscriptionPending_invoice_item_interval {
   -- | interval: Specifies invoicing frequency. Either \`day\`, \`week\`, \`month\` or \`year\`.
-  subscriptionPending_invoice_item_intervalNonNullableInterval :: (GHC.Maybe.Maybe SubscriptionPending_invoice_item_intervalNonNullableInterval)
+  subscriptionPending_invoice_item_intervalInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | interval_count: The number of intervals between invoices. For example, \`interval=month\` and \`interval_count=3\` bills every 3 months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks).
-  , subscriptionPending_invoice_item_intervalNonNullableInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , subscriptionPending_invoice_item_intervalInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPending_invoice_item_intervalNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalNonNullableInterval_count obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalNonNullableInterval_count obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPending_invoice_item_intervalNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPending_invoice_item_intervalNonNullable" (\obj -> (GHC.Base.pure SubscriptionPending_invoice_item_intervalNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count"))}
--- | Create a new 'SubscriptionPending_invoice_item_intervalNonNullable' with all required fields.
-mkSubscriptionPending_invoice_item_intervalNonNullable :: SubscriptionPending_invoice_item_intervalNonNullable
-mkSubscriptionPending_invoice_item_intervalNonNullable = SubscriptionPending_invoice_item_intervalNonNullable{subscriptionPending_invoice_item_intervalNonNullableInterval = GHC.Maybe.Nothing,
-                                                                                                              subscriptionPending_invoice_item_intervalNonNullableInterval_count = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription.properties.pending_invoice_item_interval.anyOf.properties.interval@ in the specification.
--- 
--- Specifies invoicing frequency. Either \`day\`, \`week\`, \`month\` or \`year\`.
-data SubscriptionPending_invoice_item_intervalNonNullableInterval =
-   SubscriptionPending_invoice_item_intervalNonNullableIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionPending_invoice_item_intervalNonNullableIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPending_invoice_item_intervalNonNullableInterval
-    where {toJSON (SubscriptionPending_invoice_item_intervalNonNullableIntervalOther val) = val;
-           toJSON (SubscriptionPending_invoice_item_intervalNonNullableIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumDay) = "day";
-           toJSON (SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumMonth) = "month";
-           toJSON (SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumWeek) = "week";
-           toJSON (SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPending_invoice_item_intervalNonNullableInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumMonth
-                                             | val GHC.Classes.== "week" -> SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> SubscriptionPending_invoice_item_intervalNonNullableIntervalEnumYear
-                                             | GHC.Base.otherwise -> SubscriptionPending_invoice_item_intervalNonNullableIntervalOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPending_invoice_item_interval
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalInterval_count obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_invoice_item_intervalInterval_count obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPending_invoice_item_interval
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPending_invoice_item_interval" (\obj -> (GHC.Base.pure SubscriptionPending_invoice_item_interval GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count"))}
+-- | Create a new 'SubscriptionPending_invoice_item_interval' with all required fields.
+mkSubscriptionPending_invoice_item_interval :: SubscriptionPending_invoice_item_interval
+mkSubscriptionPending_invoice_item_interval = SubscriptionPending_invoice_item_interval{subscriptionPending_invoice_item_intervalInterval = GHC.Maybe.Nothing,
+                                                                                        subscriptionPending_invoice_item_intervalInterval_count = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.pending_setup_intent.anyOf@ in the specification.
 -- 
 -- You can use this [SetupIntent](https:\/\/docs.stripe.com\/api\/setup_intents) to collect user authentication when creating a subscription without immediate payment or updating a subscription\'s payment method, allowing you to optimize for off-session payments. Learn more in the [SCA Migration Guide](https:\/\/docs.stripe.com\/billing\/migration\/strong-customer-authentication\#scenario-2).
-data SubscriptionPending_setup_intentNonNullableVariants =
-   SubscriptionPending_setup_intentNonNullableText Data.Text.Internal.Text
-  | SubscriptionPending_setup_intentNonNullableSetup_intent Setup_intent
+data SubscriptionPending_setup_intentVariants =
+   SubscriptionPending_setup_intentText Data.Text.Internal.Text
+  | SubscriptionPending_setup_intentSetup_intent Setup_intent
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPending_setup_intentNonNullableVariants
-    where {toJSON (SubscriptionPending_setup_intentNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionPending_setup_intentNonNullableSetup_intent a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPending_setup_intentNonNullableVariants
-    where {parseJSON val = case (SubscriptionPending_setup_intentNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionPending_setup_intentNonNullableSetup_intent Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPending_setup_intentVariants
+    where {toJSON (SubscriptionPending_setup_intentText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionPending_setup_intentSetup_intent a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPending_setup_intentVariants
+    where {parseJSON val = case (SubscriptionPending_setup_intentText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionPending_setup_intentSetup_intent Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription.properties.pending_update.anyOf@ in the specification.
 -- 
 -- If specified, [pending updates](https:\\\/\\\/docs.stripe.com\\\/billing\\\/subscriptions\\\/pending-updates) that will be applied to the subscription once the \\\`latest_invoice\\\` has been paid.
-data SubscriptionPending_updateNonNullable = SubscriptionPending_updateNonNullable {
+data SubscriptionPending_update = SubscriptionPending_update {
   -- | billing_cycle_anchor: If the update is applied, determines the date of the first full invoice, and, for plans with \`month\` or \`year\` intervals, the day of the month for subsequent invoices. The timestamp is in UTC format.
-  subscriptionPending_updateNonNullableBilling_cycle_anchor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscriptionPending_updateBilling_cycle_anchor :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | expires_at: The point after which the changes reflected by this update will be discarded and no longer applied.
-  , subscriptionPending_updateNonNullableExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , subscriptionPending_updateExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | subscription_items: List of subscription items, each with an attached plan, that will be set if the update is applied.
-  , subscriptionPending_updateNonNullableSubscription_items :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Subscription_item]))
+  , subscriptionPending_updateSubscription_items :: (GHC.Maybe.Maybe [Subscription_item])
   -- | trial_end: Unix timestamp representing the end of the trial period the customer will get before being charged for the first time, if the update is applied.
-  , subscriptionPending_updateNonNullableTrial_end :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptionPending_updateTrial_end :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | trial_from_plan: Indicates if a plan\'s \`trial_period_days\` should be applied to the subscription. Setting \`trial_end\` per subscription is preferred, and this defaults to \`false\`. Setting this flag to \`true\` together with \`trial_end\` is not allowed. See [Using trial periods on subscriptions](https:\/\/docs.stripe.com\/billing\/subscriptions\/trials) to learn more.
-  , subscriptionPending_updateNonNullableTrial_from_plan :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , subscriptionPending_updateTrial_from_plan :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPending_updateNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableBilling_cycle_anchor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_items" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableSubscription_items obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_from_plan" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableTrial_from_plan obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableBilling_cycle_anchor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_items" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableSubscription_items obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_from_plan" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateNonNullableTrial_from_plan obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPending_updateNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPending_updateNonNullable" (\obj -> ((((GHC.Base.pure SubscriptionPending_updateNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_cycle_anchor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_items")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_from_plan"))}
--- | Create a new 'SubscriptionPending_updateNonNullable' with all required fields.
-mkSubscriptionPending_updateNonNullable :: SubscriptionPending_updateNonNullable
-mkSubscriptionPending_updateNonNullable = SubscriptionPending_updateNonNullable{subscriptionPending_updateNonNullableBilling_cycle_anchor = GHC.Maybe.Nothing,
-                                                                                subscriptionPending_updateNonNullableExpires_at = GHC.Maybe.Nothing,
-                                                                                subscriptionPending_updateNonNullableSubscription_items = GHC.Maybe.Nothing,
-                                                                                subscriptionPending_updateNonNullableTrial_end = GHC.Maybe.Nothing,
-                                                                                subscriptionPending_updateNonNullableTrial_from_plan = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionPending_update
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateBilling_cycle_anchor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_items" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateSubscription_items obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_from_plan" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateTrial_from_plan obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateBilling_cycle_anchor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("subscription_items" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateSubscription_items obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_end" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateTrial_end obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trial_from_plan" Data.Aeson.Types.ToJSON..=)) (subscriptionPending_updateTrial_from_plan obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionPending_update
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionPending_update" (\obj -> ((((GHC.Base.pure SubscriptionPending_update GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_cycle_anchor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "subscription_items")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_end")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trial_from_plan"))}
+-- | Create a new 'SubscriptionPending_update' with all required fields.
+mkSubscriptionPending_update :: SubscriptionPending_update
+mkSubscriptionPending_update = SubscriptionPending_update{subscriptionPending_updateBilling_cycle_anchor = GHC.Maybe.Nothing,
+                                                          subscriptionPending_updateExpires_at = GHC.Maybe.Nothing,
+                                                          subscriptionPending_updateSubscription_items = GHC.Maybe.Nothing,
+                                                          subscriptionPending_updateTrial_end = GHC.Maybe.Nothing,
+                                                          subscriptionPending_updateTrial_from_plan = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.schedule.anyOf@ in the specification.
 -- 
 -- The schedule attached to the subscription
-data SubscriptionScheduleNonNullableVariants =
-   SubscriptionScheduleNonNullableText Data.Text.Internal.Text
-  | SubscriptionScheduleNonNullableSubscription_schedule Subscription_schedule
+data SubscriptionScheduleVariants =
+   SubscriptionScheduleText Data.Text.Internal.Text
+  | SubscriptionScheduleSubscription_schedule Subscription_schedule
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionScheduleNonNullableVariants
-    where {toJSON (SubscriptionScheduleNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionScheduleNonNullableSubscription_schedule a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionScheduleNonNullableVariants
-    where {parseJSON val = case (SubscriptionScheduleNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionScheduleNonNullableSubscription_schedule Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionScheduleVariants
+    where {toJSON (SubscriptionScheduleText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionScheduleSubscription_schedule a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionScheduleVariants
+    where {parseJSON val = case (SubscriptionScheduleText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionScheduleSubscription_schedule Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.subscription.properties.status@ in the specification.
--- 
--- Possible values are \`incomplete\`, \`incomplete_expired\`, \`trialing\`, \`active\`, \`past_due\`, \`canceled\`, \`unpaid\`, or \`paused\`. 
--- 
--- For \`collection_method=charge_automatically\` a subscription moves into \`incomplete\` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an \`active\` status. If the first invoice is not paid within 23 hours, the subscription transitions to \`incomplete_expired\`. This is a terminal status, the open invoice will be voided and no further invoices will be generated. 
--- 
--- A subscription that is currently in a trial period is \`trialing\` and moves to \`active\` when the trial period is over. 
--- 
--- A subscription can only enter a \`paused\` status [when a trial ends without a payment method](https:\/\/docs.stripe.com\/billing\/subscriptions\/trials\#create-free-trials-without-payment). A \`paused\` subscription doesn\'t generate invoices and can be resumed after your customer adds their payment method. The \`paused\` status is different from [pausing collection](https:\/\/docs.stripe.com\/billing\/subscriptions\/pause-payment), which still generates invoices and leaves the subscription\'s status unchanged. 
--- 
--- If subscription \`collection_method=charge_automatically\`, it becomes \`past_due\` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become \`canceled\` or \`unpaid\` (depending on your subscriptions settings). 
--- 
--- If subscription \`collection_method=send_invoice\` it becomes \`past_due\` when its invoice is not paid by the due date, and \`canceled\` or \`unpaid\` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of \`unpaid\`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
-data SubscriptionStatus =
-   SubscriptionStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | SubscriptionStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | SubscriptionStatusEnumActive -- ^ Represents the JSON value @"active"@
-  | SubscriptionStatusEnumCanceled -- ^ Represents the JSON value @"canceled"@
-  | SubscriptionStatusEnumIncomplete -- ^ Represents the JSON value @"incomplete"@
-  | SubscriptionStatusEnumIncomplete_expired -- ^ Represents the JSON value @"incomplete_expired"@
-  | SubscriptionStatusEnumPast_due -- ^ Represents the JSON value @"past_due"@
-  | SubscriptionStatusEnumPaused -- ^ Represents the JSON value @"paused"@
-  | SubscriptionStatusEnumTrialing -- ^ Represents the JSON value @"trialing"@
-  | SubscriptionStatusEnumUnpaid -- ^ Represents the JSON value @"unpaid"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionStatus
-    where {toJSON (SubscriptionStatusOther val) = val;
-           toJSON (SubscriptionStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (SubscriptionStatusEnumActive) = "active";
-           toJSON (SubscriptionStatusEnumCanceled) = "canceled";
-           toJSON (SubscriptionStatusEnumIncomplete) = "incomplete";
-           toJSON (SubscriptionStatusEnumIncomplete_expired) = "incomplete_expired";
-           toJSON (SubscriptionStatusEnumPast_due) = "past_due";
-           toJSON (SubscriptionStatusEnumPaused) = "paused";
-           toJSON (SubscriptionStatusEnumTrialing) = "trialing";
-           toJSON (SubscriptionStatusEnumUnpaid) = "unpaid"}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "active" -> SubscriptionStatusEnumActive
-                                             | val GHC.Classes.== "canceled" -> SubscriptionStatusEnumCanceled
-                                             | val GHC.Classes.== "incomplete" -> SubscriptionStatusEnumIncomplete
-                                             | val GHC.Classes.== "incomplete_expired" -> SubscriptionStatusEnumIncomplete_expired
-                                             | val GHC.Classes.== "past_due" -> SubscriptionStatusEnumPast_due
-                                             | val GHC.Classes.== "paused" -> SubscriptionStatusEnumPaused
-                                             | val GHC.Classes.== "trialing" -> SubscriptionStatusEnumTrialing
-                                             | val GHC.Classes.== "unpaid" -> SubscriptionStatusEnumUnpaid
-                                             | GHC.Base.otherwise -> SubscriptionStatusOther val)}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.test_clock.anyOf@ in the specification.
 -- 
 -- ID of the test clock this subscription belongs to.
-data SubscriptionTest_clockNonNullableVariants =
-   SubscriptionTest_clockNonNullableText Data.Text.Internal.Text
-  | SubscriptionTest_clockNonNullableTest_helpers'test_clock Test_helpers'test_clock
+data SubscriptionTest_clockVariants =
+   SubscriptionTest_clockText Data.Text.Internal.Text
+  | SubscriptionTest_clockTest_helpers'test_clock Test_helpers'test_clock
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTest_clockNonNullableVariants
-    where {toJSON (SubscriptionTest_clockNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionTest_clockNonNullableTest_helpers'test_clock a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTest_clockNonNullableVariants
-    where {parseJSON val = case (SubscriptionTest_clockNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionTest_clockNonNullableTest_helpers'test_clock Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTest_clockVariants
+    where {toJSON (SubscriptionTest_clockText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionTest_clockTest_helpers'test_clock a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTest_clockVariants
+    where {parseJSON val = case (SubscriptionTest_clockText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionTest_clockTest_helpers'test_clock Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription.properties.transfer_data.anyOf@ in the specification.
 -- 
 -- The account (if any) the subscription\\\'s payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription\\\'s invoices.
-data SubscriptionTransfer_dataNonNullable = SubscriptionTransfer_dataNonNullable {
+data SubscriptionTransfer_data = SubscriptionTransfer_data {
   -- | amount_percent: A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the destination account. By default, the entire amount is transferred to the destination.
-  subscriptionTransfer_dataNonNullableAmount_percent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  subscriptionTransfer_dataAmount_percent :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | destination: The account where funds from the payment will be transferred to upon payment success.
-  , subscriptionTransfer_dataNonNullableDestination :: (GHC.Maybe.Maybe SubscriptionTransfer_dataNonNullableDestinationVariants)
+  , subscriptionTransfer_dataDestination :: (GHC.Maybe.Maybe SubscriptionTransfer_dataDestinationVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTransfer_dataNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataNonNullableAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataNonNullableDestination obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataNonNullableAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataNonNullableDestination obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTransfer_dataNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionTransfer_dataNonNullable" (\obj -> (GHC.Base.pure SubscriptionTransfer_dataNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
--- | Create a new 'SubscriptionTransfer_dataNonNullable' with all required fields.
-mkSubscriptionTransfer_dataNonNullable :: SubscriptionTransfer_dataNonNullable
-mkSubscriptionTransfer_dataNonNullable = SubscriptionTransfer_dataNonNullable{subscriptionTransfer_dataNonNullableAmount_percent = GHC.Maybe.Nothing,
-                                                                              subscriptionTransfer_dataNonNullableDestination = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTransfer_data
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataDestination obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscriptionTransfer_dataDestination obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTransfer_data
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionTransfer_data" (\obj -> (GHC.Base.pure SubscriptionTransfer_data GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
+-- | Create a new 'SubscriptionTransfer_data' with all required fields.
+mkSubscriptionTransfer_data :: SubscriptionTransfer_data
+mkSubscriptionTransfer_data = SubscriptionTransfer_data{subscriptionTransfer_dataAmount_percent = GHC.Maybe.Nothing,
+                                                        subscriptionTransfer_dataDestination = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription.properties.transfer_data.anyOf.properties.destination.anyOf@ in the specification.
 -- 
 -- The account where funds from the payment will be transferred to upon payment success.
-data SubscriptionTransfer_dataNonNullableDestinationVariants =
-   SubscriptionTransfer_dataNonNullableDestinationText Data.Text.Internal.Text
-  | SubscriptionTransfer_dataNonNullableDestinationAccount Account
+data SubscriptionTransfer_dataDestinationVariants =
+   SubscriptionTransfer_dataDestinationText Data.Text.Internal.Text
+  | SubscriptionTransfer_dataDestinationAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTransfer_dataNonNullableDestinationVariants
-    where {toJSON (SubscriptionTransfer_dataNonNullableDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (SubscriptionTransfer_dataNonNullableDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTransfer_dataNonNullableDestinationVariants
-    where {parseJSON val = case (SubscriptionTransfer_dataNonNullableDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionTransfer_dataNonNullableDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTransfer_dataDestinationVariants
+    where {toJSON (SubscriptionTransfer_dataDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (SubscriptionTransfer_dataDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTransfer_dataDestinationVariants
+    where {parseJSON val = case (SubscriptionTransfer_dataDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((SubscriptionTransfer_dataDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription.properties.trial_settings.anyOf@ in the specification.
 -- 
 -- Settings related to subscription trials.
-data SubscriptionTrial_settingsNonNullable = SubscriptionTrial_settingsNonNullable {
+data SubscriptionTrial_settings = SubscriptionTrial_settings {
   -- | end_behavior: Defines how a subscription behaves when a trial ends.
-  subscriptionTrial_settingsNonNullableEnd_behavior :: (GHC.Maybe.Maybe Subscriptions_resource_trial_settings_end_behavior)
+  subscriptionTrial_settingsEnd_behavior :: (GHC.Maybe.Maybe Subscriptions_resource_trial_settings_end_behavior)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTrial_settingsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settingsNonNullableEnd_behavior obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settingsNonNullableEnd_behavior obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTrial_settingsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionTrial_settingsNonNullable" (\obj -> GHC.Base.pure SubscriptionTrial_settingsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_behavior"))}
--- | Create a new 'SubscriptionTrial_settingsNonNullable' with all required fields.
-mkSubscriptionTrial_settingsNonNullable :: SubscriptionTrial_settingsNonNullable
-mkSubscriptionTrial_settingsNonNullable = SubscriptionTrial_settingsNonNullable{subscriptionTrial_settingsNonNullableEnd_behavior = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON SubscriptionTrial_settings
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settingsEnd_behavior obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_behavior" Data.Aeson.Types.ToJSON..=)) (subscriptionTrial_settingsEnd_behavior obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON SubscriptionTrial_settings
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "SubscriptionTrial_settings" (\obj -> GHC.Base.pure SubscriptionTrial_settings GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_behavior"))}
+-- | Create a new 'SubscriptionTrial_settings' with all required fields.
+mkSubscriptionTrial_settings :: SubscriptionTrial_settings
+mkSubscriptionTrial_settings = SubscriptionTrial_settings{subscriptionTrial_settingsEnd_behavior = GHC.Maybe.Nothing}

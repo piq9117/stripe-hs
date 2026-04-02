@@ -50,7 +50,7 @@ data Payment_method_details_au_becs_debit = Payment_method_details_au_becs_debit
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_au_becs_debitBsb_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_au_becs_debitBsb_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expected_debit_date: Estimated date to debit the customer\'s bank account. A date string in YYYY-MM-DD format.
   -- 
   -- Constraints:
@@ -62,13 +62,13 @@ data Payment_method_details_au_becs_debit = Payment_method_details_au_becs_debit
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_au_becs_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_au_becs_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_au_becs_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_au_becs_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate: ID of the mandate used to make this payment.
   -- 
   -- Constraints:

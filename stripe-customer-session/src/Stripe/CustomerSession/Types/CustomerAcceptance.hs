@@ -47,13 +47,13 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.OnlineAcceptance
 -- 
 data Customer_acceptance = Customer_acceptance {
   -- | accepted_at: The time that the customer accepts the mandate.
-  customer_acceptanceAccepted_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  customer_acceptanceAccepted_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | offline: 
   , customer_acceptanceOffline :: (GHC.Maybe.Maybe Offline_acceptance)
   -- | online: 
   , customer_acceptanceOnline :: (GHC.Maybe.Maybe Online_acceptance)
   -- | type: The mandate includes the type of customer acceptance information, such as: \`online\` or \`offline\`.
-  , customer_acceptanceType :: Customer_acceptanceType
+  , customer_acceptanceType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Customer_acceptance
@@ -62,27 +62,9 @@ instance Data.Aeson.Types.ToJSON.ToJSON Customer_acceptance
 instance Data.Aeson.Types.FromJSON.FromJSON Customer_acceptance
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Customer_acceptance" (\obj -> (((GHC.Base.pure Customer_acceptance GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "accepted_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "offline")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "online")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Customer_acceptance' with all required fields.
-mkCustomer_acceptance :: Customer_acceptanceType -- ^ 'customer_acceptanceType'
+mkCustomer_acceptance :: Data.Text.Internal.Text -- ^ 'customer_acceptanceType'
   -> Customer_acceptance
 mkCustomer_acceptance customer_acceptanceType = Customer_acceptance{customer_acceptanceAccepted_at = GHC.Maybe.Nothing,
                                                                     customer_acceptanceOffline = GHC.Maybe.Nothing,
                                                                     customer_acceptanceOnline = GHC.Maybe.Nothing,
                                                                     customer_acceptanceType = customer_acceptanceType}
--- | Defines the enum schema located at @components.schemas.customer_acceptance.properties.type@ in the specification.
--- 
--- The mandate includes the type of customer acceptance information, such as: \`online\` or \`offline\`.
-data Customer_acceptanceType =
-   Customer_acceptanceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_acceptanceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_acceptanceTypeEnumOffline -- ^ Represents the JSON value @"offline"@
-  | Customer_acceptanceTypeEnumOnline -- ^ Represents the JSON value @"online"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_acceptanceType
-    where {toJSON (Customer_acceptanceTypeOther val) = val;
-           toJSON (Customer_acceptanceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_acceptanceTypeEnumOffline) = "offline";
-           toJSON (Customer_acceptanceTypeEnumOnline) = "online"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_acceptanceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "offline" -> Customer_acceptanceTypeEnumOffline
-                                             | val GHC.Classes.== "online" -> Customer_acceptanceTypeEnumOnline
-                                             | GHC.Base.otherwise -> Customer_acceptanceTypeOther val)}

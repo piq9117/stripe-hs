@@ -50,7 +50,7 @@ data Token_card_networks = Token_card_networks {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  token_card_networksPreferred :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  token_card_networksPreferred :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Token_card_networks

@@ -45,20 +45,28 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Deleted_price = Deleted_price {
+  -- | deleted: Always true for a deleted object
+  deleted_priceDeleted :: GHC.Types.Bool
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  deleted_priceId :: Data.Text.Internal.Text
+  , deleted_priceId :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , deleted_priceObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Deleted_price
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_priceId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "price"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_priceId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "price"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_priceDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_priceId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_priceObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_priceDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_priceId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_priceObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Deleted_price
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_price" (\obj -> GHC.Base.pure Deleted_price GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_price" (\obj -> ((GHC.Base.pure Deleted_price GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deleted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Deleted_price' with all required fields.
-mkDeleted_price :: Data.Text.Internal.Text -- ^ 'deleted_priceId'
+mkDeleted_price :: GHC.Types.Bool -- ^ 'deleted_priceDeleted'
+  -> Data.Text.Internal.Text -- ^ 'deleted_priceId'
+  -> Data.Text.Internal.Text -- ^ 'deleted_priceObject'
   -> Deleted_price
-mkDeleted_price deleted_priceId = Deleted_price{deleted_priceId = deleted_priceId}
+mkDeleted_price deleted_priceDeleted deleted_priceId deleted_priceObject = Deleted_price{deleted_priceDeleted = deleted_priceDeleted,
+                                                                                         deleted_priceId = deleted_priceId,
+                                                                                         deleted_priceObject = deleted_priceObject}

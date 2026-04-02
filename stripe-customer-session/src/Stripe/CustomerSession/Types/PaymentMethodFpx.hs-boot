@@ -6,8 +6,3 @@ instance Show Payment_method_fpx
 instance Eq Payment_method_fpx
 instance Data.Aeson.FromJSON Payment_method_fpx
 instance Data.Aeson.ToJSON Payment_method_fpx
-data Payment_method_fpxBank
-instance Show Payment_method_fpxBank
-instance Eq Payment_method_fpxBank
-instance Data.Aeson.FromJSON Payment_method_fpxBank
-instance Data.Aeson.ToJSON Payment_method_fpxBank

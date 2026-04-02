@@ -55,13 +55,13 @@ data File = File {
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   fileCreated :: GHC.Types.Int
   -- | expires_at: The file expires and isn\'t available at this time in epoch seconds.
-  , fileExpires_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , fileExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | filename: The suitable name for saving the file to a filesystem.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , fileFilename :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , fileFilename :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -69,9 +69,11 @@ data File = File {
   -- * Maximum length of 5000
   , fileId :: Data.Text.Internal.Text
   -- | links: A list of [file links](https:\/\/api.stripe.com\#file_links) that point at this file.
-  , fileLinks :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable FileLinksNonNullable))
+  , fileLinks :: (GHC.Maybe.Maybe FileLinks)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , fileObject :: Data.Text.Internal.Text
   -- | purpose: The [purpose](https:\/\/docs.stripe.com\/file-upload\#uploading-a-file) of the uploaded file.
-  , filePurpose :: FilePurpose
+  , filePurpose :: Data.Text.Internal.Text
   -- | size: The size of the file object in bytes.
   , fileSize :: GHC.Types.Int
   -- | title: A suitable title for the document.
@@ -79,144 +81,74 @@ data File = File {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , fileTitle :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , fileTitle :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The returned file type (for example, \`csv\`, \`pdf\`, \`jpg\`, or \`png\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , fileType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , fileType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: Use your live secret API key to download the file from this URL.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , fileUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , fileUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON File
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= fileCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (fileExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("filename" Data.Aeson.Types.ToJSON..=)) (fileFilename obj) : ["id" Data.Aeson.Types.ToJSON..= fileId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("links" Data.Aeson.Types.ToJSON..=)) (fileLinks obj) : ["purpose" Data.Aeson.Types.ToJSON..= filePurpose obj] : ["size" Data.Aeson.Types.ToJSON..= fileSize obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("title" Data.Aeson.Types.ToJSON..=)) (fileTitle obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (fileType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (fileUrl obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "file"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= fileCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (fileExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("filename" Data.Aeson.Types.ToJSON..=)) (fileFilename obj) : ["id" Data.Aeson.Types.ToJSON..= fileId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("links" Data.Aeson.Types.ToJSON..=)) (fileLinks obj) : ["purpose" Data.Aeson.Types.ToJSON..= filePurpose obj] : ["size" Data.Aeson.Types.ToJSON..= fileSize obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("title" Data.Aeson.Types.ToJSON..=)) (fileTitle obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (fileType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (fileUrl obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "file"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= fileCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (fileExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("filename" Data.Aeson.Types.ToJSON..=)) (fileFilename obj) : ["id" Data.Aeson.Types.ToJSON..= fileId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("links" Data.Aeson.Types.ToJSON..=)) (fileLinks obj) : ["object" Data.Aeson.Types.ToJSON..= fileObject obj] : ["purpose" Data.Aeson.Types.ToJSON..= filePurpose obj] : ["size" Data.Aeson.Types.ToJSON..= fileSize obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("title" Data.Aeson.Types.ToJSON..=)) (fileTitle obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (fileType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (fileUrl obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["created" Data.Aeson.Types.ToJSON..= fileCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (fileExpires_at obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("filename" Data.Aeson.Types.ToJSON..=)) (fileFilename obj) : ["id" Data.Aeson.Types.ToJSON..= fileId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("links" Data.Aeson.Types.ToJSON..=)) (fileLinks obj) : ["object" Data.Aeson.Types.ToJSON..= fileObject obj] : ["purpose" Data.Aeson.Types.ToJSON..= filePurpose obj] : ["size" Data.Aeson.Types.ToJSON..= fileSize obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("title" Data.Aeson.Types.ToJSON..=)) (fileTitle obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (fileType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (fileUrl obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON File
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "File" (\obj -> (((((((((GHC.Base.pure File GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "filename")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "links")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "purpose")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "size")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "title")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "File" (\obj -> ((((((((((GHC.Base.pure File GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "filename")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "links")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "purpose")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "size")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "title")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
 -- | Create a new 'File' with all required fields.
 mkFile :: GHC.Types.Int -- ^ 'fileCreated'
   -> Data.Text.Internal.Text -- ^ 'fileId'
-  -> FilePurpose -- ^ 'filePurpose'
+  -> Data.Text.Internal.Text -- ^ 'fileObject'
+  -> Data.Text.Internal.Text -- ^ 'filePurpose'
   -> GHC.Types.Int -- ^ 'fileSize'
   -> File
-mkFile fileCreated fileId filePurpose fileSize = File{fileCreated = fileCreated,
-                                                      fileExpires_at = GHC.Maybe.Nothing,
-                                                      fileFilename = GHC.Maybe.Nothing,
-                                                      fileId = fileId,
-                                                      fileLinks = GHC.Maybe.Nothing,
-                                                      filePurpose = filePurpose,
-                                                      fileSize = fileSize,
-                                                      fileTitle = GHC.Maybe.Nothing,
-                                                      fileType = GHC.Maybe.Nothing,
-                                                      fileUrl = GHC.Maybe.Nothing}
+mkFile fileCreated fileId fileObject filePurpose fileSize = File{fileCreated = fileCreated,
+                                                                 fileExpires_at = GHC.Maybe.Nothing,
+                                                                 fileFilename = GHC.Maybe.Nothing,
+                                                                 fileId = fileId,
+                                                                 fileLinks = GHC.Maybe.Nothing,
+                                                                 fileObject = fileObject,
+                                                                 filePurpose = filePurpose,
+                                                                 fileSize = fileSize,
+                                                                 fileTitle = GHC.Maybe.Nothing,
+                                                                 fileType = GHC.Maybe.Nothing,
+                                                                 fileUrl = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.file.properties.links@ in the specification.
 -- 
 -- A list of [file links](https:\/\/api.stripe.com\#file_links) that point at this file.
-data FileLinksNonNullable = FileLinksNonNullable {
+data FileLinks = FileLinks {
   -- | data: Details about each object.
-  fileLinksNonNullableData :: [File_link]
+  fileLinksData :: [File_link]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
-  , fileLinksNonNullableHas_more :: GHC.Types.Bool
+  , fileLinksHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , fileLinksObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  -- * Must match pattern \'^\/v1\/file_links\'
-  , fileLinksNonNullableUrl :: Data.Text.Internal.Text
+  , fileLinksUrl :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON FileLinksNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= fileLinksNonNullableData obj] : ["has_more" Data.Aeson.Types.ToJSON..= fileLinksNonNullableHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= fileLinksNonNullableUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= fileLinksNonNullableData obj] : ["has_more" Data.Aeson.Types.ToJSON..= fileLinksNonNullableHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= fileLinksNonNullableUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON FileLinksNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "FileLinksNonNullable" (\obj -> ((GHC.Base.pure FileLinksNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
--- | Create a new 'FileLinksNonNullable' with all required fields.
-mkFileLinksNonNullable :: [File_link] -- ^ 'fileLinksNonNullableData'
-  -> GHC.Types.Bool -- ^ 'fileLinksNonNullableHas_more'
-  -> Data.Text.Internal.Text -- ^ 'fileLinksNonNullableUrl'
-  -> FileLinksNonNullable
-mkFileLinksNonNullable fileLinksNonNullableData fileLinksNonNullableHas_more fileLinksNonNullableUrl = FileLinksNonNullable{fileLinksNonNullableData = fileLinksNonNullableData,
-                                                                                                                            fileLinksNonNullableHas_more = fileLinksNonNullableHas_more,
-                                                                                                                            fileLinksNonNullableUrl = fileLinksNonNullableUrl}
--- | Defines the enum schema located at @components.schemas.file.properties.purpose@ in the specification.
--- 
--- The [purpose](https:\/\/docs.stripe.com\/file-upload\#uploading-a-file) of the uploaded file.
-data FilePurpose =
-   FilePurposeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | FilePurposeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | FilePurposeEnumAccount_requirement -- ^ Represents the JSON value @"account_requirement"@
-  | FilePurposeEnumAdditional_verification -- ^ Represents the JSON value @"additional_verification"@
-  | FilePurposeEnumBusiness_icon -- ^ Represents the JSON value @"business_icon"@
-  | FilePurposeEnumBusiness_logo -- ^ Represents the JSON value @"business_logo"@
-  | FilePurposeEnumCustomer_signature -- ^ Represents the JSON value @"customer_signature"@
-  | FilePurposeEnumDispute_evidence -- ^ Represents the JSON value @"dispute_evidence"@
-  | FilePurposeEnumDocument_provider_identity_document -- ^ Represents the JSON value @"document_provider_identity_document"@
-  | FilePurposeEnumFinance_report_run -- ^ Represents the JSON value @"finance_report_run"@
-  | FilePurposeEnumFinancial_account_statement -- ^ Represents the JSON value @"financial_account_statement"@
-  | FilePurposeEnumIdentity_document -- ^ Represents the JSON value @"identity_document"@
-  | FilePurposeEnumIdentity_document_downloadable -- ^ Represents the JSON value @"identity_document_downloadable"@
-  | FilePurposeEnumIssuing_regulatory_reporting -- ^ Represents the JSON value @"issuing_regulatory_reporting"@
-  | FilePurposeEnumPci_document -- ^ Represents the JSON value @"pci_document"@
-  | FilePurposeEnumPlatform_terms_of_service -- ^ Represents the JSON value @"platform_terms_of_service"@
-  | FilePurposeEnumSelfie -- ^ Represents the JSON value @"selfie"@
-  | FilePurposeEnumSigma_scheduled_query -- ^ Represents the JSON value @"sigma_scheduled_query"@
-  | FilePurposeEnumTax_document_user_upload -- ^ Represents the JSON value @"tax_document_user_upload"@
-  | FilePurposeEnumTerminal_android_apk -- ^ Represents the JSON value @"terminal_android_apk"@
-  | FilePurposeEnumTerminal_reader_splashscreen -- ^ Represents the JSON value @"terminal_reader_splashscreen"@
-  | FilePurposeEnumTerminal_wifi_certificate -- ^ Represents the JSON value @"terminal_wifi_certificate"@
-  | FilePurposeEnumTerminal_wifi_private_key -- ^ Represents the JSON value @"terminal_wifi_private_key"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON FilePurpose
-    where {toJSON (FilePurposeOther val) = val;
-           toJSON (FilePurposeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (FilePurposeEnumAccount_requirement) = "account_requirement";
-           toJSON (FilePurposeEnumAdditional_verification) = "additional_verification";
-           toJSON (FilePurposeEnumBusiness_icon) = "business_icon";
-           toJSON (FilePurposeEnumBusiness_logo) = "business_logo";
-           toJSON (FilePurposeEnumCustomer_signature) = "customer_signature";
-           toJSON (FilePurposeEnumDispute_evidence) = "dispute_evidence";
-           toJSON (FilePurposeEnumDocument_provider_identity_document) = "document_provider_identity_document";
-           toJSON (FilePurposeEnumFinance_report_run) = "finance_report_run";
-           toJSON (FilePurposeEnumFinancial_account_statement) = "financial_account_statement";
-           toJSON (FilePurposeEnumIdentity_document) = "identity_document";
-           toJSON (FilePurposeEnumIdentity_document_downloadable) = "identity_document_downloadable";
-           toJSON (FilePurposeEnumIssuing_regulatory_reporting) = "issuing_regulatory_reporting";
-           toJSON (FilePurposeEnumPci_document) = "pci_document";
-           toJSON (FilePurposeEnumPlatform_terms_of_service) = "platform_terms_of_service";
-           toJSON (FilePurposeEnumSelfie) = "selfie";
-           toJSON (FilePurposeEnumSigma_scheduled_query) = "sigma_scheduled_query";
-           toJSON (FilePurposeEnumTax_document_user_upload) = "tax_document_user_upload";
-           toJSON (FilePurposeEnumTerminal_android_apk) = "terminal_android_apk";
-           toJSON (FilePurposeEnumTerminal_reader_splashscreen) = "terminal_reader_splashscreen";
-           toJSON (FilePurposeEnumTerminal_wifi_certificate) = "terminal_wifi_certificate";
-           toJSON (FilePurposeEnumTerminal_wifi_private_key) = "terminal_wifi_private_key"}
-instance Data.Aeson.Types.FromJSON.FromJSON FilePurpose
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account_requirement" -> FilePurposeEnumAccount_requirement
-                                             | val GHC.Classes.== "additional_verification" -> FilePurposeEnumAdditional_verification
-                                             | val GHC.Classes.== "business_icon" -> FilePurposeEnumBusiness_icon
-                                             | val GHC.Classes.== "business_logo" -> FilePurposeEnumBusiness_logo
-                                             | val GHC.Classes.== "customer_signature" -> FilePurposeEnumCustomer_signature
-                                             | val GHC.Classes.== "dispute_evidence" -> FilePurposeEnumDispute_evidence
-                                             | val GHC.Classes.== "document_provider_identity_document" -> FilePurposeEnumDocument_provider_identity_document
-                                             | val GHC.Classes.== "finance_report_run" -> FilePurposeEnumFinance_report_run
-                                             | val GHC.Classes.== "financial_account_statement" -> FilePurposeEnumFinancial_account_statement
-                                             | val GHC.Classes.== "identity_document" -> FilePurposeEnumIdentity_document
-                                             | val GHC.Classes.== "identity_document_downloadable" -> FilePurposeEnumIdentity_document_downloadable
-                                             | val GHC.Classes.== "issuing_regulatory_reporting" -> FilePurposeEnumIssuing_regulatory_reporting
-                                             | val GHC.Classes.== "pci_document" -> FilePurposeEnumPci_document
-                                             | val GHC.Classes.== "platform_terms_of_service" -> FilePurposeEnumPlatform_terms_of_service
-                                             | val GHC.Classes.== "selfie" -> FilePurposeEnumSelfie
-                                             | val GHC.Classes.== "sigma_scheduled_query" -> FilePurposeEnumSigma_scheduled_query
-                                             | val GHC.Classes.== "tax_document_user_upload" -> FilePurposeEnumTax_document_user_upload
-                                             | val GHC.Classes.== "terminal_android_apk" -> FilePurposeEnumTerminal_android_apk
-                                             | val GHC.Classes.== "terminal_reader_splashscreen" -> FilePurposeEnumTerminal_reader_splashscreen
-                                             | val GHC.Classes.== "terminal_wifi_certificate" -> FilePurposeEnumTerminal_wifi_certificate
-                                             | val GHC.Classes.== "terminal_wifi_private_key" -> FilePurposeEnumTerminal_wifi_private_key
-                                             | GHC.Base.otherwise -> FilePurposeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON FileLinks
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= fileLinksData obj] : ["has_more" Data.Aeson.Types.ToJSON..= fileLinksHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= fileLinksObject obj] : ["url" Data.Aeson.Types.ToJSON..= fileLinksUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= fileLinksData obj] : ["has_more" Data.Aeson.Types.ToJSON..= fileLinksHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= fileLinksObject obj] : ["url" Data.Aeson.Types.ToJSON..= fileLinksUrl obj] : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON FileLinks
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "FileLinks" (\obj -> (((GHC.Base.pure FileLinks GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+-- | Create a new 'FileLinks' with all required fields.
+mkFileLinks :: [File_link] -- ^ 'fileLinksData'
+  -> GHC.Types.Bool -- ^ 'fileLinksHas_more'
+  -> Data.Text.Internal.Text -- ^ 'fileLinksObject'
+  -> Data.Text.Internal.Text -- ^ 'fileLinksUrl'
+  -> FileLinks
+mkFileLinks fileLinksData fileLinksHas_more fileLinksObject fileLinksUrl = FileLinks{fileLinksData = fileLinksData,
+                                                                                     fileLinksHas_more = fileLinksHas_more,
+                                                                                     fileLinksObject = fileLinksObject,
+                                                                                     fileLinksUrl = fileLinksUrl}

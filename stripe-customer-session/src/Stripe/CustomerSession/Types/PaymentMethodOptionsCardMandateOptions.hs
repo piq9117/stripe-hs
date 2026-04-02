@@ -45,22 +45,22 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Payment_method_options_card_mandate_options = Payment_method_options_card_mandate_options {
-  -- | amount: Amount to be charged for future payments.
+  -- | amount: Amount to be charged for future payments, specified in the presentment currency.
   payment_method_options_card_mandate_optionsAmount :: GHC.Types.Int
   -- | amount_type: One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-  , payment_method_options_card_mandate_optionsAmount_type :: Payment_method_options_card_mandate_optionsAmount_type
+  , payment_method_options_card_mandate_optionsAmount_type :: Data.Text.Internal.Text
   -- | description: A description of the mandate or subscription that is meant to be displayed to the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 200
-  , payment_method_options_card_mandate_optionsDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_options_card_mandate_optionsDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | end_date: End date of the mandate or subscription. If not provided, the mandate will be active until canceled. If provided, end date should be after start date.
-  , payment_method_options_card_mandate_optionsEnd_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_options_card_mandate_optionsEnd_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-  , payment_method_options_card_mandate_optionsInterval :: Payment_method_options_card_mandate_optionsInterval
+  , payment_method_options_card_mandate_optionsInterval :: Data.Text.Internal.Text
   -- | interval_count: The number of intervals between payments. For example, \`interval=month\` and \`interval_count=3\` indicates one payment every three months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks). This parameter is optional when \`interval=sporadic\`.
-  , payment_method_options_card_mandate_optionsInterval_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_options_card_mandate_optionsInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reference: Unique identifier for the mandate or subscription.
   -- 
   -- Constraints:
@@ -70,7 +70,7 @@ data Payment_method_options_card_mandate_options = Payment_method_options_card_m
   -- | start_date: Start date of the mandate or subscription. Start date should not be lesser than yesterday.
   , payment_method_options_card_mandate_optionsStart_date :: GHC.Types.Int
   -- | supported_types: Specifies the type of mandates supported. Possible values are \`india\`.
-  , payment_method_options_card_mandate_optionsSupported_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Payment_method_options_card_mandate_optionsSupported_typesNonNullable]))
+  , payment_method_options_card_mandate_optionsSupported_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_mandate_options
@@ -80,8 +80,8 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_mandate_
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_options_card_mandate_options" (\obj -> ((((((((GHC.Base.pure Payment_method_options_card_mandate_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
 -- | Create a new 'Payment_method_options_card_mandate_options' with all required fields.
 mkPayment_method_options_card_mandate_options :: GHC.Types.Int -- ^ 'payment_method_options_card_mandate_optionsAmount'
-  -> Payment_method_options_card_mandate_optionsAmount_type -- ^ 'payment_method_options_card_mandate_optionsAmount_type'
-  -> Payment_method_options_card_mandate_optionsInterval -- ^ 'payment_method_options_card_mandate_optionsInterval'
+  -> Data.Text.Internal.Text -- ^ 'payment_method_options_card_mandate_optionsAmount_type'
+  -> Data.Text.Internal.Text -- ^ 'payment_method_options_card_mandate_optionsInterval'
   -> Data.Text.Internal.Text -- ^ 'payment_method_options_card_mandate_optionsReference'
   -> GHC.Types.Int -- ^ 'payment_method_options_card_mandate_optionsStart_date'
   -> Payment_method_options_card_mandate_options
@@ -94,63 +94,3 @@ mkPayment_method_options_card_mandate_options payment_method_options_card_mandat
                                                                                                                                                                                                                                                                                                                                                                     payment_method_options_card_mandate_optionsReference = payment_method_options_card_mandate_optionsReference,
                                                                                                                                                                                                                                                                                                                                                                     payment_method_options_card_mandate_optionsStart_date = payment_method_options_card_mandate_optionsStart_date,
                                                                                                                                                                                                                                                                                                                                                                     payment_method_options_card_mandate_optionsSupported_types = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_card_mandate_options.properties.amount_type@ in the specification.
--- 
--- One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-data Payment_method_options_card_mandate_optionsAmount_type =
-   Payment_method_options_card_mandate_optionsAmount_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_card_mandate_optionsAmount_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_card_mandate_optionsAmount_typeEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Payment_method_options_card_mandate_optionsAmount_typeEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_mandate_optionsAmount_type
-    where {toJSON (Payment_method_options_card_mandate_optionsAmount_typeOther val) = val;
-           toJSON (Payment_method_options_card_mandate_optionsAmount_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_card_mandate_optionsAmount_typeEnumFixed) = "fixed";
-           toJSON (Payment_method_options_card_mandate_optionsAmount_typeEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_mandate_optionsAmount_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Payment_method_options_card_mandate_optionsAmount_typeEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Payment_method_options_card_mandate_optionsAmount_typeEnumMaximum
-                                             | GHC.Base.otherwise -> Payment_method_options_card_mandate_optionsAmount_typeOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_options_card_mandate_options.properties.interval@ in the specification.
--- 
--- Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-data Payment_method_options_card_mandate_optionsInterval =
-   Payment_method_options_card_mandate_optionsIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_card_mandate_optionsIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_card_mandate_optionsIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | Payment_method_options_card_mandate_optionsIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | Payment_method_options_card_mandate_optionsIntervalEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  | Payment_method_options_card_mandate_optionsIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | Payment_method_options_card_mandate_optionsIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_mandate_optionsInterval
-    where {toJSON (Payment_method_options_card_mandate_optionsIntervalOther val) = val;
-           toJSON (Payment_method_options_card_mandate_optionsIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_card_mandate_optionsIntervalEnumDay) = "day";
-           toJSON (Payment_method_options_card_mandate_optionsIntervalEnumMonth) = "month";
-           toJSON (Payment_method_options_card_mandate_optionsIntervalEnumSporadic) = "sporadic";
-           toJSON (Payment_method_options_card_mandate_optionsIntervalEnumWeek) = "week";
-           toJSON (Payment_method_options_card_mandate_optionsIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_mandate_optionsInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> Payment_method_options_card_mandate_optionsIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> Payment_method_options_card_mandate_optionsIntervalEnumMonth
-                                             | val GHC.Classes.== "sporadic" -> Payment_method_options_card_mandate_optionsIntervalEnumSporadic
-                                             | val GHC.Classes.== "week" -> Payment_method_options_card_mandate_optionsIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> Payment_method_options_card_mandate_optionsIntervalEnumYear
-                                             | GHC.Base.otherwise -> Payment_method_options_card_mandate_optionsIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_options_card_mandate_options.properties.supported_types.items@ in the specification.
--- 
--- 
-data Payment_method_options_card_mandate_optionsSupported_typesNonNullable =
-   Payment_method_options_card_mandate_optionsSupported_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_card_mandate_optionsSupported_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_card_mandate_optionsSupported_typesNonNullableEnumIndia -- ^ Represents the JSON value @"india"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_mandate_optionsSupported_typesNonNullable
-    where {toJSON (Payment_method_options_card_mandate_optionsSupported_typesNonNullableOther val) = val;
-           toJSON (Payment_method_options_card_mandate_optionsSupported_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_card_mandate_optionsSupported_typesNonNullableEnumIndia) = "india"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_mandate_optionsSupported_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "india" -> Payment_method_options_card_mandate_optionsSupported_typesNonNullableEnumIndia
-                                             | GHC.Base.otherwise -> Payment_method_options_card_mandate_optionsSupported_typesNonNullableOther val)}

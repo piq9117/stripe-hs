@@ -47,13 +47,13 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.AccountRequirementsError
 -- 
 data External_account_requirements = External_account_requirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  external_account_requirementsCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  external_account_requirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , external_account_requirementsErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , external_account_requirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , external_account_requirementsPast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , external_account_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , external_account_requirementsPending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , external_account_requirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON External_account_requirements

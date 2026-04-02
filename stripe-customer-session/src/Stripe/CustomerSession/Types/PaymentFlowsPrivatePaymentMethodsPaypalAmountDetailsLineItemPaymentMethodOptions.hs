@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_options = Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_options {
   -- | category: Type of the line item.
-  payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategory :: (GHC.Maybe.Maybe Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategory)
+  payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategory :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: Description of the line item.
   -- 
   -- Constraints:
@@ -71,24 +71,3 @@ mkPayment_flows_private_payment_methods_paypal_amount_details_line_item_payment_
 mkPayment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_options = Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_options{payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategory = GHC.Maybe.Nothing,
                                                                                                                                                                                               payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsDescription = GHC.Maybe.Nothing,
                                                                                                                                                                                               payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsSold_by = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_options.properties.category@ in the specification.
--- 
--- Type of the line item.
-data Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategory =
-   Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumDigital_goods -- ^ Represents the JSON value @"digital_goods"@
-  | Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumDonation -- ^ Represents the JSON value @"donation"@
-  | Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumPhysical_goods -- ^ Represents the JSON value @"physical_goods"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategory
-    where {toJSON (Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryOther val) = val;
-           toJSON (Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumDigital_goods) = "digital_goods";
-           toJSON (Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumDonation) = "donation";
-           toJSON (Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumPhysical_goods) = "physical_goods"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategory
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "digital_goods" -> Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumDigital_goods
-                                             | val GHC.Classes.== "donation" -> Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumDonation
-                                             | val GHC.Classes.== "physical_goods" -> Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryEnumPhysical_goods
-                                             | GHC.Base.otherwise -> Payment_flows_private_payment_methods_paypal_amount_details_line_item_payment_method_optionsCategoryOther val)}

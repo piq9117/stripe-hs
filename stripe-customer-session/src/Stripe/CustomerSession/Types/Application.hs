@@ -56,16 +56,20 @@ data Application = Application {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , applicationName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , applicationName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , applicationObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Application
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (applicationName obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "application"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (applicationName obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "application"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (applicationName obj) : ["object" Data.Aeson.Types.ToJSON..= applicationObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (applicationName obj) : ["object" Data.Aeson.Types.ToJSON..= applicationObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Application
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Application" (\obj -> (GHC.Base.pure Application GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Application" (\obj -> ((GHC.Base.pure Application GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Application' with all required fields.
 mkApplication :: Data.Text.Internal.Text -- ^ 'applicationId'
+  -> Data.Text.Internal.Text -- ^ 'applicationObject'
   -> Application
-mkApplication applicationId = Application{applicationId = applicationId,
-                                          applicationName = GHC.Maybe.Nothing}
+mkApplication applicationId applicationObject = Application{applicationId = applicationId,
+                                                            applicationName = GHC.Maybe.Nothing,
+                                                            applicationObject = applicationObject}

@@ -6,18 +6,18 @@ instance Show Product
 instance Eq Product
 instance Data.Aeson.FromJSON Product
 instance Data.Aeson.ToJSON Product
-data ProductDefault_priceNonNullableVariants
-instance Show ProductDefault_priceNonNullableVariants
-instance Eq ProductDefault_priceNonNullableVariants
-instance Data.Aeson.FromJSON ProductDefault_priceNonNullableVariants
-instance Data.Aeson.ToJSON ProductDefault_priceNonNullableVariants
-data ProductPackage_dimensionsNonNullable
-instance Show ProductPackage_dimensionsNonNullable
-instance Eq ProductPackage_dimensionsNonNullable
-instance Data.Aeson.FromJSON ProductPackage_dimensionsNonNullable
-instance Data.Aeson.ToJSON ProductPackage_dimensionsNonNullable
-data ProductTax_codeNonNullableVariants
-instance Show ProductTax_codeNonNullableVariants
-instance Eq ProductTax_codeNonNullableVariants
-instance Data.Aeson.FromJSON ProductTax_codeNonNullableVariants
-instance Data.Aeson.ToJSON ProductTax_codeNonNullableVariants
+data ProductDefault_priceVariants
+instance Show ProductDefault_priceVariants
+instance Eq ProductDefault_priceVariants
+instance Data.Aeson.FromJSON ProductDefault_priceVariants
+instance Data.Aeson.ToJSON ProductDefault_priceVariants
+data ProductPackage_dimensions
+instance Show ProductPackage_dimensions
+instance Eq ProductPackage_dimensions
+instance Data.Aeson.FromJSON ProductPackage_dimensions
+instance Data.Aeson.ToJSON ProductPackage_dimensions
+data ProductTax_codeVariants
+instance Show ProductTax_codeVariants
+instance Eq ProductTax_codeVariants
+instance Data.Aeson.FromJSON ProductTax_codeVariants
+instance Data.Aeson.ToJSON ProductTax_codeVariants

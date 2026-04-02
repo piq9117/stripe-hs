@@ -6,8 +6,3 @@ instance Show Platform_earning_fee_source
 instance Eq Platform_earning_fee_source
 instance Data.Aeson.FromJSON Platform_earning_fee_source
 instance Data.Aeson.ToJSON Platform_earning_fee_source
-data Platform_earning_fee_sourceType
-instance Show Platform_earning_fee_sourceType
-instance Eq Platform_earning_fee_sourceType
-instance Data.Aeson.FromJSON Platform_earning_fee_sourceType
-instance Data.Aeson.ToJSON Platform_earning_fee_sourceType

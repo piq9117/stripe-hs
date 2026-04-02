@@ -49,7 +49,7 @@ data Revolut_pay_underlying_payment_method_funding_details = Revolut_pay_underly
   -- | card: 
   revolut_pay_underlying_payment_method_funding_detailsCard :: (GHC.Maybe.Maybe Payment_method_details_passthrough_card)
   -- | type: funding type of the underlying payment method.
-  , revolut_pay_underlying_payment_method_funding_detailsType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullable))
+  , revolut_pay_underlying_payment_method_funding_detailsType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Revolut_pay_underlying_payment_method_funding_details
@@ -61,18 +61,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Revolut_pay_underlying_payment_metho
 mkRevolut_pay_underlying_payment_method_funding_details :: Revolut_pay_underlying_payment_method_funding_details
 mkRevolut_pay_underlying_payment_method_funding_details = Revolut_pay_underlying_payment_method_funding_details{revolut_pay_underlying_payment_method_funding_detailsCard = GHC.Maybe.Nothing,
                                                                                                                 revolut_pay_underlying_payment_method_funding_detailsType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.revolut_pay_underlying_payment_method_funding_details.properties.type@ in the specification.
--- 
--- funding type of the underlying payment method.
-data Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullable =
-   Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableEnumCard -- ^ Represents the JSON value @"card"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullable
-    where {toJSON (Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableOther val) = val;
-           toJSON (Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableEnumCard) = "card"}
-instance Data.Aeson.Types.FromJSON.FromJSON Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "card" -> Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableEnumCard
-                                             | GHC.Base.otherwise -> Revolut_pay_underlying_payment_method_funding_detailsTypeNonNullableOther val)}

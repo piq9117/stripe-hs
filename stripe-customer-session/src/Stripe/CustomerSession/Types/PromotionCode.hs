@@ -64,27 +64,29 @@ data Promotion_code = Promotion_code {
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , promotion_codeCreated :: GHC.Types.Int
   -- | customer: The customer who can use this promotion code.
-  , promotion_codeCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Promotion_codeCustomerNonNullableVariants))
+  , promotion_codeCustomer :: (GHC.Maybe.Maybe Promotion_codeCustomerVariants)
   -- | customer_account: The account representing the customer who can use this promotion code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , promotion_codeCustomer_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , promotion_codeCustomer_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expires_at: Date at which the promotion code can no longer be redeemed.
-  , promotion_codeExpires_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , promotion_codeExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , promotion_codeId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , promotion_codeLivemode :: GHC.Types.Bool
   -- | max_redemptions: Maximum number of times this promotion code can be redeemed.
-  , promotion_codeMax_redemptions :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , promotion_codeMax_redemptions :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , promotion_codeMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , promotion_codeMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , promotion_codeObject :: Data.Text.Internal.Text
   -- | promotion: 
   , promotion_codePromotion :: Promotion_codes_resource_promotion
   -- | restrictions: 
@@ -94,46 +96,48 @@ data Promotion_code = Promotion_code {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Promotion_code
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= promotion_codeActive obj] : ["code" Data.Aeson.Types.ToJSON..= promotion_codeCode obj] : ["created" Data.Aeson.Types.ToJSON..= promotion_codeCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (promotion_codeExpires_at obj) : ["id" Data.Aeson.Types.ToJSON..= promotion_codeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= promotion_codeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("max_redemptions" Data.Aeson.Types.ToJSON..=)) (promotion_codeMax_redemptions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (promotion_codeMetadata obj) : ["promotion" Data.Aeson.Types.ToJSON..= promotion_codePromotion obj] : ["restrictions" Data.Aeson.Types.ToJSON..= promotion_codeRestrictions obj] : ["times_redeemed" Data.Aeson.Types.ToJSON..= promotion_codeTimes_redeemed obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "promotion_code"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= promotion_codeActive obj] : ["code" Data.Aeson.Types.ToJSON..= promotion_codeCode obj] : ["created" Data.Aeson.Types.ToJSON..= promotion_codeCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (promotion_codeExpires_at obj) : ["id" Data.Aeson.Types.ToJSON..= promotion_codeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= promotion_codeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("max_redemptions" Data.Aeson.Types.ToJSON..=)) (promotion_codeMax_redemptions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (promotion_codeMetadata obj) : ["promotion" Data.Aeson.Types.ToJSON..= promotion_codePromotion obj] : ["restrictions" Data.Aeson.Types.ToJSON..= promotion_codeRestrictions obj] : ["times_redeemed" Data.Aeson.Types.ToJSON..= promotion_codeTimes_redeemed obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "promotion_code"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= promotion_codeActive obj] : ["code" Data.Aeson.Types.ToJSON..= promotion_codeCode obj] : ["created" Data.Aeson.Types.ToJSON..= promotion_codeCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (promotion_codeExpires_at obj) : ["id" Data.Aeson.Types.ToJSON..= promotion_codeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= promotion_codeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("max_redemptions" Data.Aeson.Types.ToJSON..=)) (promotion_codeMax_redemptions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (promotion_codeMetadata obj) : ["object" Data.Aeson.Types.ToJSON..= promotion_codeObject obj] : ["promotion" Data.Aeson.Types.ToJSON..= promotion_codePromotion obj] : ["restrictions" Data.Aeson.Types.ToJSON..= promotion_codeRestrictions obj] : ["times_redeemed" Data.Aeson.Types.ToJSON..= promotion_codeTimes_redeemed obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["active" Data.Aeson.Types.ToJSON..= promotion_codeActive obj] : ["code" Data.Aeson.Types.ToJSON..= promotion_codeCode obj] : ["created" Data.Aeson.Types.ToJSON..= promotion_codeCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (promotion_codeCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("expires_at" Data.Aeson.Types.ToJSON..=)) (promotion_codeExpires_at obj) : ["id" Data.Aeson.Types.ToJSON..= promotion_codeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= promotion_codeLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("max_redemptions" Data.Aeson.Types.ToJSON..=)) (promotion_codeMax_redemptions obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (promotion_codeMetadata obj) : ["object" Data.Aeson.Types.ToJSON..= promotion_codeObject obj] : ["promotion" Data.Aeson.Types.ToJSON..= promotion_codePromotion obj] : ["restrictions" Data.Aeson.Types.ToJSON..= promotion_codeRestrictions obj] : ["times_redeemed" Data.Aeson.Types.ToJSON..= promotion_codeTimes_redeemed obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Promotion_code
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Promotion_code" (\obj -> ((((((((((((GHC.Base.pure Promotion_code GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "active")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "max_redemptions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "promotion")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "restrictions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "times_redeemed"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Promotion_code" (\obj -> (((((((((((((GHC.Base.pure Promotion_code GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "active")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "max_redemptions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "promotion")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "restrictions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "times_redeemed"))}
 -- | Create a new 'Promotion_code' with all required fields.
 mkPromotion_code :: GHC.Types.Bool -- ^ 'promotion_codeActive'
   -> Data.Text.Internal.Text -- ^ 'promotion_codeCode'
   -> GHC.Types.Int -- ^ 'promotion_codeCreated'
   -> Data.Text.Internal.Text -- ^ 'promotion_codeId'
   -> GHC.Types.Bool -- ^ 'promotion_codeLivemode'
+  -> Data.Text.Internal.Text -- ^ 'promotion_codeObject'
   -> Promotion_codes_resource_promotion -- ^ 'promotion_codePromotion'
   -> Promotion_codes_resource_restrictions -- ^ 'promotion_codeRestrictions'
   -> GHC.Types.Int -- ^ 'promotion_codeTimes_redeemed'
   -> Promotion_code
-mkPromotion_code promotion_codeActive promotion_codeCode promotion_codeCreated promotion_codeId promotion_codeLivemode promotion_codePromotion promotion_codeRestrictions promotion_codeTimes_redeemed = Promotion_code{promotion_codeActive = promotion_codeActive,
-                                                                                                                                                                                                                        promotion_codeCode = promotion_codeCode,
-                                                                                                                                                                                                                        promotion_codeCreated = promotion_codeCreated,
-                                                                                                                                                                                                                        promotion_codeCustomer = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                        promotion_codeCustomer_account = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                        promotion_codeExpires_at = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                        promotion_codeId = promotion_codeId,
-                                                                                                                                                                                                                        promotion_codeLivemode = promotion_codeLivemode,
-                                                                                                                                                                                                                        promotion_codeMax_redemptions = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                        promotion_codeMetadata = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                        promotion_codePromotion = promotion_codePromotion,
-                                                                                                                                                                                                                        promotion_codeRestrictions = promotion_codeRestrictions,
-                                                                                                                                                                                                                        promotion_codeTimes_redeemed = promotion_codeTimes_redeemed}
+mkPromotion_code promotion_codeActive promotion_codeCode promotion_codeCreated promotion_codeId promotion_codeLivemode promotion_codeObject promotion_codePromotion promotion_codeRestrictions promotion_codeTimes_redeemed = Promotion_code{promotion_codeActive = promotion_codeActive,
+                                                                                                                                                                                                                                             promotion_codeCode = promotion_codeCode,
+                                                                                                                                                                                                                                             promotion_codeCreated = promotion_codeCreated,
+                                                                                                                                                                                                                                             promotion_codeCustomer = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                             promotion_codeCustomer_account = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                             promotion_codeExpires_at = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                             promotion_codeId = promotion_codeId,
+                                                                                                                                                                                                                                             promotion_codeLivemode = promotion_codeLivemode,
+                                                                                                                                                                                                                                             promotion_codeMax_redemptions = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                             promotion_codeMetadata = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                             promotion_codeObject = promotion_codeObject,
+                                                                                                                                                                                                                                             promotion_codePromotion = promotion_codePromotion,
+                                                                                                                                                                                                                                             promotion_codeRestrictions = promotion_codeRestrictions,
+                                                                                                                                                                                                                                             promotion_codeTimes_redeemed = promotion_codeTimes_redeemed}
 -- | Defines the oneOf schema located at @components.schemas.promotion_code.properties.customer.anyOf@ in the specification.
 -- 
 -- The customer who can use this promotion code.
-data Promotion_codeCustomerNonNullableVariants =
-   Promotion_codeCustomerNonNullableText Data.Text.Internal.Text
-  | Promotion_codeCustomerNonNullableCustomer Customer
-  | Promotion_codeCustomerNonNullableDeleted_customer Deleted_customer
+data Promotion_codeCustomerVariants =
+   Promotion_codeCustomerText Data.Text.Internal.Text
+  | Promotion_codeCustomerCustomer Customer
+  | Promotion_codeCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Promotion_codeCustomerNonNullableVariants
-    where {toJSON (Promotion_codeCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Promotion_codeCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Promotion_codeCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Promotion_codeCustomerNonNullableVariants
-    where {parseJSON val = case (Promotion_codeCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Promotion_codeCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Promotion_codeCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON Promotion_codeCustomerVariants
+    where {toJSON (Promotion_codeCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Promotion_codeCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Promotion_codeCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Promotion_codeCustomerVariants
+    where {parseJSON val = case (Promotion_codeCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Promotion_codeCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Promotion_codeCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

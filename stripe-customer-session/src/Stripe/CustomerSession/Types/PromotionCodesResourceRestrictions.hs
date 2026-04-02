@@ -50,13 +50,13 @@ data Promotion_codes_resource_restrictions = Promotion_codes_resource_restrictio
   -- | first_time_transaction: A Boolean indicating if the Promotion Code should only be redeemed for Customers without any successful payments or invoices
   , promotion_codes_resource_restrictionsFirst_time_transaction :: GHC.Types.Bool
   -- | minimum_amount: Minimum amount required to redeem this Promotion Code into a Coupon (e.g., a purchase must be \$100 or more to work).
-  , promotion_codes_resource_restrictionsMinimum_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , promotion_codes_resource_restrictionsMinimum_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | minimum_amount_currency: Three-letter [ISO code](https:\/\/stripe.com\/docs\/currencies) for minimum_amount
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , promotion_codes_resource_restrictionsMinimum_amount_currency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , promotion_codes_resource_restrictionsMinimum_amount_currency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Promotion_codes_resource_restrictions

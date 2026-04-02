@@ -49,9 +49,9 @@ data Invoice_payment_method_options_us_bank_account_linked_account_options = Inv
   -- | filters: 
   invoice_payment_method_options_us_bank_account_linked_account_optionsFilters :: (GHC.Maybe.Maybe Invoice_payment_method_options_us_bank_account_linked_account_options_filters)
   -- | permissions: The list of permissions to request. The \`payment_method\` permission must be included.
-  , invoice_payment_method_options_us_bank_account_linked_account_optionsPermissions :: (GHC.Maybe.Maybe [Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissions])
+  , invoice_payment_method_options_us_bank_account_linked_account_optionsPermissions :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | prefetch: Data features requested to be retrieved upon account creation.
-  , invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetch :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullable]))
+  , invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetch :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_us_bank_account_linked_account_options
@@ -64,48 +64,3 @@ mkInvoice_payment_method_options_us_bank_account_linked_account_options :: Invoi
 mkInvoice_payment_method_options_us_bank_account_linked_account_options = Invoice_payment_method_options_us_bank_account_linked_account_options{invoice_payment_method_options_us_bank_account_linked_account_optionsFilters = GHC.Maybe.Nothing,
                                                                                                                                                 invoice_payment_method_options_us_bank_account_linked_account_optionsPermissions = GHC.Maybe.Nothing,
                                                                                                                                                 invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetch = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_us_bank_account_linked_account_options.properties.permissions.items@ in the specification.
--- 
--- 
-data Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissions =
-   Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumBalances -- ^ Represents the JSON value @"balances"@
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumOwnership -- ^ Represents the JSON value @"ownership"@
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumPayment_method -- ^ Represents the JSON value @"payment_method"@
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumTransactions -- ^ Represents the JSON value @"transactions"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissions
-    where {toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsOther val) = val;
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumBalances) = "balances";
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumOwnership) = "ownership";
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumPayment_method) = "payment_method";
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumTransactions) = "transactions"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissions
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "balances" -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumBalances
-                                             | val GHC.Classes.== "ownership" -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumOwnership
-                                             | val GHC.Classes.== "payment_method" -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumPayment_method
-                                             | val GHC.Classes.== "transactions" -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsEnumTransactions
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPermissionsOther val)}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_us_bank_account_linked_account_options.properties.prefetch.items@ in the specification.
--- 
--- 
-data Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullable =
-   Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumBalances -- ^ Represents the JSON value @"balances"@
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumOwnership -- ^ Represents the JSON value @"ownership"@
-  | Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumTransactions -- ^ Represents the JSON value @"transactions"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullable
-    where {toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableOther val) = val;
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumBalances) = "balances";
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumOwnership) = "ownership";
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumTransactions) = "transactions"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "balances" -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumBalances
-                                             | val GHC.Classes.== "ownership" -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumOwnership
-                                             | val GHC.Classes.== "transactions" -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableEnumTransactions
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_us_bank_account_linked_account_optionsPrefetchNonNullableOther val)}

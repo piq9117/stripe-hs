@@ -50,19 +50,19 @@ data Refund_destination_details_blik = Refund_destination_details_blik {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  refund_destination_details_blikNetwork_decline_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  refund_destination_details_blikNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference: The reference assigned to the refund.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , refund_destination_details_blikReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , refund_destination_details_blikReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference_status: Status of the reference on the refund. This can be \`pending\`, \`available\` or \`unavailable\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , refund_destination_details_blikReference_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , refund_destination_details_blikReference_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Refund_destination_details_blik

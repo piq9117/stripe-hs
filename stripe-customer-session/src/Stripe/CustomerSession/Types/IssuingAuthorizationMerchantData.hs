@@ -62,19 +62,19 @@ data Issuing_authorization_merchant_data = Issuing_authorization_merchant_data {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Country where the seller is located
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Name of the seller
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_id: Identifier assigned to the seller by the card network. Different card networks may assign different network_id fields to the same merchant.
   -- 
   -- Constraints:
@@ -86,31 +86,31 @@ data Issuing_authorization_merchant_data = Issuing_authorization_merchant_data {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataPostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State where the seller is located
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tax_id: The seller\'s tax identification number. Currently populated for French merchants only.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataTax_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataTax_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | terminal_id: An ID assigned by the seller to the location of the sale.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataTerminal_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataTerminal_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: URL provided by the merchant on a 3DS request
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_merchant_dataUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_merchant_dataUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_merchant_data

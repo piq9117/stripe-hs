@@ -50,19 +50,19 @@ data Payment_method_au_becs_debit = Payment_method_au_becs_debit {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_au_becs_debitBsb_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_au_becs_debitBsb_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint: Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_au_becs_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_au_becs_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_au_becs_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_au_becs_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_au_becs_debit

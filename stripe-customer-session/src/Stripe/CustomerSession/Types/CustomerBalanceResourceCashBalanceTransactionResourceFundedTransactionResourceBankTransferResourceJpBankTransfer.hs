@@ -50,19 +50,19 @@ data Customer_balance_resource_cash_balance_transaction_resource_funded_transact
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transferSender_bank :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transferSender_bank :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | sender_branch: The name of the bank branch of the sender of the funding.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transferSender_branch :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transferSender_branch :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | sender_name: The full name of the sender, as supplied by the sending bank.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transferSender_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transferSender_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transfer

@@ -49,9 +49,9 @@ data Linked_account_options_common = Linked_account_options_common {
   -- | filters: 
   linked_account_options_commonFilters :: (GHC.Maybe.Maybe Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters)
   -- | permissions: The list of permissions to request. The \`payment_method\` permission must be included.
-  , linked_account_options_commonPermissions :: (GHC.Maybe.Maybe [Linked_account_options_commonPermissions])
+  , linked_account_options_commonPermissions :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | prefetch: Data features requested to be retrieved upon account creation.
-  , linked_account_options_commonPrefetch :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Linked_account_options_commonPrefetchNonNullable]))
+  , linked_account_options_commonPrefetch :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | return_url: For webview integrations only. Upon completing OAuth login in the native browser, the user will be redirected to this URL to return to your app.
   -- 
   -- Constraints:
@@ -71,48 +71,3 @@ mkLinked_account_options_common = Linked_account_options_common{linked_account_o
                                                                 linked_account_options_commonPermissions = GHC.Maybe.Nothing,
                                                                 linked_account_options_commonPrefetch = GHC.Maybe.Nothing,
                                                                 linked_account_options_commonReturn_url = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.linked_account_options_common.properties.permissions.items@ in the specification.
--- 
--- 
-data Linked_account_options_commonPermissions =
-   Linked_account_options_commonPermissionsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Linked_account_options_commonPermissionsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Linked_account_options_commonPermissionsEnumBalances -- ^ Represents the JSON value @"balances"@
-  | Linked_account_options_commonPermissionsEnumOwnership -- ^ Represents the JSON value @"ownership"@
-  | Linked_account_options_commonPermissionsEnumPayment_method -- ^ Represents the JSON value @"payment_method"@
-  | Linked_account_options_commonPermissionsEnumTransactions -- ^ Represents the JSON value @"transactions"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Linked_account_options_commonPermissions
-    where {toJSON (Linked_account_options_commonPermissionsOther val) = val;
-           toJSON (Linked_account_options_commonPermissionsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Linked_account_options_commonPermissionsEnumBalances) = "balances";
-           toJSON (Linked_account_options_commonPermissionsEnumOwnership) = "ownership";
-           toJSON (Linked_account_options_commonPermissionsEnumPayment_method) = "payment_method";
-           toJSON (Linked_account_options_commonPermissionsEnumTransactions) = "transactions"}
-instance Data.Aeson.Types.FromJSON.FromJSON Linked_account_options_commonPermissions
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "balances" -> Linked_account_options_commonPermissionsEnumBalances
-                                             | val GHC.Classes.== "ownership" -> Linked_account_options_commonPermissionsEnumOwnership
-                                             | val GHC.Classes.== "payment_method" -> Linked_account_options_commonPermissionsEnumPayment_method
-                                             | val GHC.Classes.== "transactions" -> Linked_account_options_commonPermissionsEnumTransactions
-                                             | GHC.Base.otherwise -> Linked_account_options_commonPermissionsOther val)}
--- | Defines the enum schema located at @components.schemas.linked_account_options_common.properties.prefetch.items@ in the specification.
--- 
--- 
-data Linked_account_options_commonPrefetchNonNullable =
-   Linked_account_options_commonPrefetchNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Linked_account_options_commonPrefetchNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Linked_account_options_commonPrefetchNonNullableEnumBalances -- ^ Represents the JSON value @"balances"@
-  | Linked_account_options_commonPrefetchNonNullableEnumOwnership -- ^ Represents the JSON value @"ownership"@
-  | Linked_account_options_commonPrefetchNonNullableEnumTransactions -- ^ Represents the JSON value @"transactions"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Linked_account_options_commonPrefetchNonNullable
-    where {toJSON (Linked_account_options_commonPrefetchNonNullableOther val) = val;
-           toJSON (Linked_account_options_commonPrefetchNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Linked_account_options_commonPrefetchNonNullableEnumBalances) = "balances";
-           toJSON (Linked_account_options_commonPrefetchNonNullableEnumOwnership) = "ownership";
-           toJSON (Linked_account_options_commonPrefetchNonNullableEnumTransactions) = "transactions"}
-instance Data.Aeson.Types.FromJSON.FromJSON Linked_account_options_commonPrefetchNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "balances" -> Linked_account_options_commonPrefetchNonNullableEnumBalances
-                                             | val GHC.Classes.== "ownership" -> Linked_account_options_commonPrefetchNonNullableEnumOwnership
-                                             | val GHC.Classes.== "transactions" -> Linked_account_options_commonPrefetchNonNullableEnumTransactions
-                                             | GHC.Base.otherwise -> Linked_account_options_commonPrefetchNonNullableOther val)}

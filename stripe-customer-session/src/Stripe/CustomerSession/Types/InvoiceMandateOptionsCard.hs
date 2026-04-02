@@ -45,16 +45,16 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Invoice_mandate_options_card = Invoice_mandate_options_card {
-  -- | amount: Amount to be charged for future payments.
-  invoice_mandate_options_cardAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  -- | amount: Amount to be charged for future payments, specified in the presentment currency.
+  invoice_mandate_options_cardAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_type: One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-  , invoice_mandate_options_cardAmount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_mandate_options_cardAmount_typeNonNullable))
+  , invoice_mandate_options_cardAmount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: A description of the mandate or subscription that is meant to be displayed to the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 200
-  , invoice_mandate_options_cardDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoice_mandate_options_cardDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_mandate_options_card
@@ -67,21 +67,3 @@ mkInvoice_mandate_options_card :: Invoice_mandate_options_card
 mkInvoice_mandate_options_card = Invoice_mandate_options_card{invoice_mandate_options_cardAmount = GHC.Maybe.Nothing,
                                                               invoice_mandate_options_cardAmount_type = GHC.Maybe.Nothing,
                                                               invoice_mandate_options_cardDescription = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_mandate_options_card.properties.amount_type@ in the specification.
--- 
--- One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-data Invoice_mandate_options_cardAmount_typeNonNullable =
-   Invoice_mandate_options_cardAmount_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_mandate_options_cardAmount_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_mandate_options_cardAmount_typeNonNullableEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Invoice_mandate_options_cardAmount_typeNonNullableEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_mandate_options_cardAmount_typeNonNullable
-    where {toJSON (Invoice_mandate_options_cardAmount_typeNonNullableOther val) = val;
-           toJSON (Invoice_mandate_options_cardAmount_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_mandate_options_cardAmount_typeNonNullableEnumFixed) = "fixed";
-           toJSON (Invoice_mandate_options_cardAmount_typeNonNullableEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_mandate_options_cardAmount_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Invoice_mandate_options_cardAmount_typeNonNullableEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Invoice_mandate_options_cardAmount_typeNonNullableEnumMaximum
-                                             | GHC.Base.otherwise -> Invoice_mandate_options_cardAmount_typeNonNullableOther val)}

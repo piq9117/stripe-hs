@@ -50,19 +50,19 @@ data Account_payments_settings = Account_payments_settings {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  account_payments_settingsStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  account_payments_settingsStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor_kana: The Kana variation of \`statement_descriptor\` used for charges in Japan. Japanese statement descriptors have [special requirements](https:\/\/docs.stripe.com\/get-started\/account\/statement-descriptors\#set-japanese-statement-descriptors).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_payments_settingsStatement_descriptor_kana :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_payments_settingsStatement_descriptor_kana :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor_kanji: The Kanji variation of \`statement_descriptor\` used for charges in Japan. Japanese statement descriptors have [special requirements](https:\/\/docs.stripe.com\/get-started\/account\/statement-descriptors\#set-japanese-statement-descriptors).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_payments_settingsStatement_descriptor_kanji :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_payments_settingsStatement_descriptor_kanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_payments_settings

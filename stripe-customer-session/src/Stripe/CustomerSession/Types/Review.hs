@@ -57,11 +57,11 @@ data Review = Review {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  reviewBilling_zip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  reviewBilling_zip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | charge: The charge associated with this review.
-  , reviewCharge :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ReviewChargeNonNullableVariants))
+  , reviewCharge :: (GHC.Maybe.Maybe ReviewChargeVariants)
   -- | closed_reason: The reason the review was closed, or null if it has not yet been closed. One of \`approved\`, \`refunded\`, \`refunded_as_fraud\`, \`disputed\`, \`redacted\`, \`canceled\`, \`payment_never_settled\`, or \`acknowledged\`.
-  , reviewClosed_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ReviewClosed_reasonNonNullable))
+  , reviewClosed_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , reviewCreated :: GHC.Types.Int
   -- | id: Unique identifier for the object.
@@ -75,15 +75,17 @@ data Review = Review {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , reviewIp_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , reviewIp_address :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | ip_address_location: Information related to the location of the payment. Note that this information is an approximation and attempts to locate the nearest population center - it should not be used to determine a specific address.
-  , reviewIp_address_location :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ReviewIp_address_locationNonNullable))
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  , reviewIp_address_location :: (GHC.Maybe.Maybe ReviewIp_address_location)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , reviewLivemode :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , reviewObject :: Data.Text.Internal.Text
   -- | open: If \`true\`, the review needs action.
   , reviewOpen :: GHC.Types.Bool
   -- | opened_reason: The reason the review was opened. One of \`rule\` or \`manual\`.
-  , reviewOpened_reason :: ReviewOpened_reason
+  , reviewOpened_reason :: Data.Text.Internal.Text
   -- | payment_intent: The PaymentIntent ID associated with this review, if one exists.
   , reviewPayment_intent :: (GHC.Maybe.Maybe ReviewPayment_intentVariants)
   -- | reason: The reason the review is currently open or closed. One of \`rule\`, \`manual\`, \`approved\`, \`refunded\`, \`refunded_as_fraud\`, \`disputed\`, \`redacted\`, \`canceled\`, \`payment_never_settled\`, or \`acknowledged\`.
@@ -93,143 +95,91 @@ data Review = Review {
   -- * Maximum length of 5000
   , reviewReason :: Data.Text.Internal.Text
   -- | session: Information related to the browsing session of the user who initiated the payment.
-  , reviewSession :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ReviewSessionNonNullable))
+  , reviewSession :: (GHC.Maybe.Maybe ReviewSession)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Review
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_zip" Data.Aeson.Types.ToJSON..=)) (reviewBilling_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (reviewCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("closed_reason" Data.Aeson.Types.ToJSON..=)) (reviewClosed_reason obj) : ["created" Data.Aeson.Types.ToJSON..= reviewCreated obj] : ["id" Data.Aeson.Types.ToJSON..= reviewId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address" Data.Aeson.Types.ToJSON..=)) (reviewIp_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address_location" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_location obj) : ["livemode" Data.Aeson.Types.ToJSON..= reviewLivemode obj] : ["open" Data.Aeson.Types.ToJSON..= reviewOpen obj] : ["opened_reason" Data.Aeson.Types.ToJSON..= reviewOpened_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (reviewPayment_intent obj) : ["reason" Data.Aeson.Types.ToJSON..= reviewReason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("session" Data.Aeson.Types.ToJSON..=)) (reviewSession obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "review"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_zip" Data.Aeson.Types.ToJSON..=)) (reviewBilling_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (reviewCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("closed_reason" Data.Aeson.Types.ToJSON..=)) (reviewClosed_reason obj) : ["created" Data.Aeson.Types.ToJSON..= reviewCreated obj] : ["id" Data.Aeson.Types.ToJSON..= reviewId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address" Data.Aeson.Types.ToJSON..=)) (reviewIp_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address_location" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_location obj) : ["livemode" Data.Aeson.Types.ToJSON..= reviewLivemode obj] : ["open" Data.Aeson.Types.ToJSON..= reviewOpen obj] : ["opened_reason" Data.Aeson.Types.ToJSON..= reviewOpened_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (reviewPayment_intent obj) : ["reason" Data.Aeson.Types.ToJSON..= reviewReason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("session" Data.Aeson.Types.ToJSON..=)) (reviewSession obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "review"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_zip" Data.Aeson.Types.ToJSON..=)) (reviewBilling_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (reviewCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("closed_reason" Data.Aeson.Types.ToJSON..=)) (reviewClosed_reason obj) : ["created" Data.Aeson.Types.ToJSON..= reviewCreated obj] : ["id" Data.Aeson.Types.ToJSON..= reviewId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address" Data.Aeson.Types.ToJSON..=)) (reviewIp_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address_location" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_location obj) : ["livemode" Data.Aeson.Types.ToJSON..= reviewLivemode obj] : ["object" Data.Aeson.Types.ToJSON..= reviewObject obj] : ["open" Data.Aeson.Types.ToJSON..= reviewOpen obj] : ["opened_reason" Data.Aeson.Types.ToJSON..= reviewOpened_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (reviewPayment_intent obj) : ["reason" Data.Aeson.Types.ToJSON..= reviewReason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("session" Data.Aeson.Types.ToJSON..=)) (reviewSession obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_zip" Data.Aeson.Types.ToJSON..=)) (reviewBilling_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (reviewCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("closed_reason" Data.Aeson.Types.ToJSON..=)) (reviewClosed_reason obj) : ["created" Data.Aeson.Types.ToJSON..= reviewCreated obj] : ["id" Data.Aeson.Types.ToJSON..= reviewId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address" Data.Aeson.Types.ToJSON..=)) (reviewIp_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip_address_location" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_location obj) : ["livemode" Data.Aeson.Types.ToJSON..= reviewLivemode obj] : ["object" Data.Aeson.Types.ToJSON..= reviewObject obj] : ["open" Data.Aeson.Types.ToJSON..= reviewOpen obj] : ["opened_reason" Data.Aeson.Types.ToJSON..= reviewOpened_reason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (reviewPayment_intent obj) : ["reason" Data.Aeson.Types.ToJSON..= reviewReason obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("session" Data.Aeson.Types.ToJSON..=)) (reviewSession obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Review
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Review" (\obj -> ((((((((((((GHC.Base.pure Review GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "closed_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip_address_location")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "open")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "opened_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "session"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Review" (\obj -> (((((((((((((GHC.Base.pure Review GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "closed_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip_address_location")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "open")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "opened_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "session"))}
 -- | Create a new 'Review' with all required fields.
 mkReview :: GHC.Types.Int -- ^ 'reviewCreated'
   -> Data.Text.Internal.Text -- ^ 'reviewId'
   -> GHC.Types.Bool -- ^ 'reviewLivemode'
+  -> Data.Text.Internal.Text -- ^ 'reviewObject'
   -> GHC.Types.Bool -- ^ 'reviewOpen'
-  -> ReviewOpened_reason -- ^ 'reviewOpened_reason'
+  -> Data.Text.Internal.Text -- ^ 'reviewOpened_reason'
   -> Data.Text.Internal.Text -- ^ 'reviewReason'
   -> Review
-mkReview reviewCreated reviewId reviewLivemode reviewOpen reviewOpened_reason reviewReason = Review{reviewBilling_zip = GHC.Maybe.Nothing,
-                                                                                                    reviewCharge = GHC.Maybe.Nothing,
-                                                                                                    reviewClosed_reason = GHC.Maybe.Nothing,
-                                                                                                    reviewCreated = reviewCreated,
-                                                                                                    reviewId = reviewId,
-                                                                                                    reviewIp_address = GHC.Maybe.Nothing,
-                                                                                                    reviewIp_address_location = GHC.Maybe.Nothing,
-                                                                                                    reviewLivemode = reviewLivemode,
-                                                                                                    reviewOpen = reviewOpen,
-                                                                                                    reviewOpened_reason = reviewOpened_reason,
-                                                                                                    reviewPayment_intent = GHC.Maybe.Nothing,
-                                                                                                    reviewReason = reviewReason,
-                                                                                                    reviewSession = GHC.Maybe.Nothing}
+mkReview reviewCreated reviewId reviewLivemode reviewObject reviewOpen reviewOpened_reason reviewReason = Review{reviewBilling_zip = GHC.Maybe.Nothing,
+                                                                                                                 reviewCharge = GHC.Maybe.Nothing,
+                                                                                                                 reviewClosed_reason = GHC.Maybe.Nothing,
+                                                                                                                 reviewCreated = reviewCreated,
+                                                                                                                 reviewId = reviewId,
+                                                                                                                 reviewIp_address = GHC.Maybe.Nothing,
+                                                                                                                 reviewIp_address_location = GHC.Maybe.Nothing,
+                                                                                                                 reviewLivemode = reviewLivemode,
+                                                                                                                 reviewObject = reviewObject,
+                                                                                                                 reviewOpen = reviewOpen,
+                                                                                                                 reviewOpened_reason = reviewOpened_reason,
+                                                                                                                 reviewPayment_intent = GHC.Maybe.Nothing,
+                                                                                                                 reviewReason = reviewReason,
+                                                                                                                 reviewSession = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.review.properties.charge.anyOf@ in the specification.
 -- 
 -- The charge associated with this review.
-data ReviewChargeNonNullableVariants =
-   ReviewChargeNonNullableText Data.Text.Internal.Text
-  | ReviewChargeNonNullableCharge Charge
+data ReviewChargeVariants =
+   ReviewChargeText Data.Text.Internal.Text
+  | ReviewChargeCharge Charge
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ReviewChargeNonNullableVariants
-    where {toJSON (ReviewChargeNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ReviewChargeNonNullableCharge a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ReviewChargeNonNullableVariants
-    where {parseJSON val = case (ReviewChargeNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ReviewChargeNonNullableCharge Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ReviewChargeVariants
+    where {toJSON (ReviewChargeText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ReviewChargeCharge a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ReviewChargeVariants
+    where {parseJSON val = case (ReviewChargeText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ReviewChargeCharge Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.review.properties.closed_reason@ in the specification.
--- 
--- The reason the review was closed, or null if it has not yet been closed. One of \`approved\`, \`refunded\`, \`refunded_as_fraud\`, \`disputed\`, \`redacted\`, \`canceled\`, \`payment_never_settled\`, or \`acknowledged\`.
-data ReviewClosed_reasonNonNullable =
-   ReviewClosed_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | ReviewClosed_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | ReviewClosed_reasonNonNullableEnumAcknowledged -- ^ Represents the JSON value @"acknowledged"@
-  | ReviewClosed_reasonNonNullableEnumApproved -- ^ Represents the JSON value @"approved"@
-  | ReviewClosed_reasonNonNullableEnumCanceled -- ^ Represents the JSON value @"canceled"@
-  | ReviewClosed_reasonNonNullableEnumDisputed -- ^ Represents the JSON value @"disputed"@
-  | ReviewClosed_reasonNonNullableEnumPayment_never_settled -- ^ Represents the JSON value @"payment_never_settled"@
-  | ReviewClosed_reasonNonNullableEnumRedacted -- ^ Represents the JSON value @"redacted"@
-  | ReviewClosed_reasonNonNullableEnumRefunded -- ^ Represents the JSON value @"refunded"@
-  | ReviewClosed_reasonNonNullableEnumRefunded_as_fraud -- ^ Represents the JSON value @"refunded_as_fraud"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ReviewClosed_reasonNonNullable
-    where {toJSON (ReviewClosed_reasonNonNullableOther val) = val;
-           toJSON (ReviewClosed_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (ReviewClosed_reasonNonNullableEnumAcknowledged) = "acknowledged";
-           toJSON (ReviewClosed_reasonNonNullableEnumApproved) = "approved";
-           toJSON (ReviewClosed_reasonNonNullableEnumCanceled) = "canceled";
-           toJSON (ReviewClosed_reasonNonNullableEnumDisputed) = "disputed";
-           toJSON (ReviewClosed_reasonNonNullableEnumPayment_never_settled) = "payment_never_settled";
-           toJSON (ReviewClosed_reasonNonNullableEnumRedacted) = "redacted";
-           toJSON (ReviewClosed_reasonNonNullableEnumRefunded) = "refunded";
-           toJSON (ReviewClosed_reasonNonNullableEnumRefunded_as_fraud) = "refunded_as_fraud"}
-instance Data.Aeson.Types.FromJSON.FromJSON ReviewClosed_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "acknowledged" -> ReviewClosed_reasonNonNullableEnumAcknowledged
-                                             | val GHC.Classes.== "approved" -> ReviewClosed_reasonNonNullableEnumApproved
-                                             | val GHC.Classes.== "canceled" -> ReviewClosed_reasonNonNullableEnumCanceled
-                                             | val GHC.Classes.== "disputed" -> ReviewClosed_reasonNonNullableEnumDisputed
-                                             | val GHC.Classes.== "payment_never_settled" -> ReviewClosed_reasonNonNullableEnumPayment_never_settled
-                                             | val GHC.Classes.== "redacted" -> ReviewClosed_reasonNonNullableEnumRedacted
-                                             | val GHC.Classes.== "refunded" -> ReviewClosed_reasonNonNullableEnumRefunded
-                                             | val GHC.Classes.== "refunded_as_fraud" -> ReviewClosed_reasonNonNullableEnumRefunded_as_fraud
-                                             | GHC.Base.otherwise -> ReviewClosed_reasonNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.review.properties.ip_address_location.anyOf@ in the specification.
 -- 
 -- Information related to the location of the payment. Note that this information is an approximation and attempts to locate the nearest population center - it should not be used to determine a specific address.
-data ReviewIp_address_locationNonNullable = ReviewIp_address_locationNonNullable {
+data ReviewIp_address_location = ReviewIp_address_location {
   -- | city: The city where the payment originated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  reviewIp_address_locationNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  reviewIp_address_locationCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country where the payment originated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , reviewIp_address_locationNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , reviewIp_address_locationCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | latitude: The geographic latitude where the payment originated.
-  , reviewIp_address_locationNonNullableLatitude :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  , reviewIp_address_locationLatitude :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | longitude: The geographic longitude where the payment originated.
-  , reviewIp_address_locationNonNullableLongitude :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  , reviewIp_address_locationLongitude :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | region: The state\/county\/province\/region where the payment originated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , reviewIp_address_locationNonNullableRegion :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , reviewIp_address_locationRegion :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ReviewIp_address_locationNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableLatitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("longitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableLongitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("region" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableRegion obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableLatitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("longitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableLongitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("region" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationNonNullableRegion obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ReviewIp_address_locationNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ReviewIp_address_locationNonNullable" (\obj -> ((((GHC.Base.pure ReviewIp_address_locationNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latitude")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "longitude")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "region"))}
--- | Create a new 'ReviewIp_address_locationNonNullable' with all required fields.
-mkReviewIp_address_locationNonNullable :: ReviewIp_address_locationNonNullable
-mkReviewIp_address_locationNonNullable = ReviewIp_address_locationNonNullable{reviewIp_address_locationNonNullableCity = GHC.Maybe.Nothing,
-                                                                              reviewIp_address_locationNonNullableCountry = GHC.Maybe.Nothing,
-                                                                              reviewIp_address_locationNonNullableLatitude = GHC.Maybe.Nothing,
-                                                                              reviewIp_address_locationNonNullableLongitude = GHC.Maybe.Nothing,
-                                                                              reviewIp_address_locationNonNullableRegion = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.review.properties.opened_reason@ in the specification.
--- 
--- The reason the review was opened. One of \`rule\` or \`manual\`.
-data ReviewOpened_reason =
-   ReviewOpened_reasonOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | ReviewOpened_reasonTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | ReviewOpened_reasonEnumManual -- ^ Represents the JSON value @"manual"@
-  | ReviewOpened_reasonEnumRule -- ^ Represents the JSON value @"rule"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ReviewOpened_reason
-    where {toJSON (ReviewOpened_reasonOther val) = val;
-           toJSON (ReviewOpened_reasonTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (ReviewOpened_reasonEnumManual) = "manual";
-           toJSON (ReviewOpened_reasonEnumRule) = "rule"}
-instance Data.Aeson.Types.FromJSON.FromJSON ReviewOpened_reason
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> ReviewOpened_reasonEnumManual
-                                             | val GHC.Classes.== "rule" -> ReviewOpened_reasonEnumRule
-                                             | GHC.Base.otherwise -> ReviewOpened_reasonOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON ReviewIp_address_location
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationLatitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("longitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationLongitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("region" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationRegion obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationLatitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("longitude" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationLongitude obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("region" Data.Aeson.Types.ToJSON..=)) (reviewIp_address_locationRegion obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ReviewIp_address_location
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ReviewIp_address_location" (\obj -> ((((GHC.Base.pure ReviewIp_address_location GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latitude")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "longitude")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "region"))}
+-- | Create a new 'ReviewIp_address_location' with all required fields.
+mkReviewIp_address_location :: ReviewIp_address_location
+mkReviewIp_address_location = ReviewIp_address_location{reviewIp_address_locationCity = GHC.Maybe.Nothing,
+                                                        reviewIp_address_locationCountry = GHC.Maybe.Nothing,
+                                                        reviewIp_address_locationLatitude = GHC.Maybe.Nothing,
+                                                        reviewIp_address_locationLongitude = GHC.Maybe.Nothing,
+                                                        reviewIp_address_locationRegion = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.review.properties.payment_intent.anyOf@ in the specification.
 -- 
 -- The PaymentIntent ID associated with this review, if one exists.
@@ -247,41 +197,41 @@ instance Data.Aeson.Types.FromJSON.FromJSON ReviewPayment_intentVariants
 -- | Defines the object schema located at @components.schemas.review.properties.session.anyOf@ in the specification.
 -- 
 -- Information related to the browsing session of the user who initiated the payment.
-data ReviewSessionNonNullable = ReviewSessionNonNullable {
+data ReviewSession = ReviewSession {
   -- | browser: The browser used in this browser session (e.g., \`Chrome\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  reviewSessionNonNullableBrowser :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  reviewSessionBrowser :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | device: Information about the device used for the browser session (e.g., \`Samsung SM-G930T\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , reviewSessionNonNullableDevice :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , reviewSessionDevice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | platform: The platform for the browser session (e.g., \`Macintosh\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , reviewSessionNonNullablePlatform :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , reviewSessionPlatform :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | version: The version for the browser session (e.g., \`61.0.3163.100\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , reviewSessionNonNullableVersion :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , reviewSessionVersion :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ReviewSessionNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("browser" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullableBrowser obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullableDevice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("platform" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullablePlatform obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullableVersion obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("browser" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullableBrowser obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullableDevice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("platform" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullablePlatform obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (reviewSessionNonNullableVersion obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ReviewSessionNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ReviewSessionNonNullable" (\obj -> (((GHC.Base.pure ReviewSessionNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "browser")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "device")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "platform")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "version"))}
--- | Create a new 'ReviewSessionNonNullable' with all required fields.
-mkReviewSessionNonNullable :: ReviewSessionNonNullable
-mkReviewSessionNonNullable = ReviewSessionNonNullable{reviewSessionNonNullableBrowser = GHC.Maybe.Nothing,
-                                                      reviewSessionNonNullableDevice = GHC.Maybe.Nothing,
-                                                      reviewSessionNonNullablePlatform = GHC.Maybe.Nothing,
-                                                      reviewSessionNonNullableVersion = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON ReviewSession
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("browser" Data.Aeson.Types.ToJSON..=)) (reviewSessionBrowser obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device" Data.Aeson.Types.ToJSON..=)) (reviewSessionDevice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("platform" Data.Aeson.Types.ToJSON..=)) (reviewSessionPlatform obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (reviewSessionVersion obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("browser" Data.Aeson.Types.ToJSON..=)) (reviewSessionBrowser obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("device" Data.Aeson.Types.ToJSON..=)) (reviewSessionDevice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("platform" Data.Aeson.Types.ToJSON..=)) (reviewSessionPlatform obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("version" Data.Aeson.Types.ToJSON..=)) (reviewSessionVersion obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ReviewSession
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ReviewSession" (\obj -> (((GHC.Base.pure ReviewSession GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "browser")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "device")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "platform")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "version"))}
+-- | Create a new 'ReviewSession' with all required fields.
+mkReviewSession :: ReviewSession
+mkReviewSession = ReviewSession{reviewSessionBrowser = GHC.Maybe.Nothing,
+                                reviewSessionDevice = GHC.Maybe.Nothing,
+                                reviewSessionPlatform = GHC.Maybe.Nothing,
+                                reviewSessionVersion = GHC.Maybe.Nothing}

@@ -6,8 +6,3 @@ instance Show Customer_acceptance
 instance Eq Customer_acceptance
 instance Data.Aeson.FromJSON Customer_acceptance
 instance Data.Aeson.ToJSON Customer_acceptance
-data Customer_acceptanceType
-instance Show Customer_acceptanceType
-instance Eq Customer_acceptanceType
-instance Data.Aeson.FromJSON Customer_acceptanceType
-instance Data.Aeson.ToJSON Customer_acceptanceType

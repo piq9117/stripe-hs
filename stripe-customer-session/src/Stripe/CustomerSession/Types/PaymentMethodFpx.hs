@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_fpx = Payment_method_fpx {
   -- | bank: The customer\'s bank, if provided. Can be one of \`affin_bank\`, \`agrobank\`, \`alliance_bank\`, \`ambank\`, \`bank_islam\`, \`bank_muamalat\`, \`bank_rakyat\`, \`bsn\`, \`cimb\`, \`hong_leong_bank\`, \`hsbc\`, \`kfh\`, \`maybank2u\`, \`ocbc\`, \`public_bank\`, \`rhb\`, \`standard_chartered\`, \`uob\`, \`deutsche_bank\`, \`maybank2e\`, \`pb_enterprise\`, or \`bank_of_china\`.
-  payment_method_fpxBank :: Payment_method_fpxBank
+  payment_method_fpxBank :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_fpx
@@ -55,84 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_fpx
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_fpx
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_fpx" (\obj -> GHC.Base.pure Payment_method_fpx GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "bank"))}
 -- | Create a new 'Payment_method_fpx' with all required fields.
-mkPayment_method_fpx :: Payment_method_fpxBank -- ^ 'payment_method_fpxBank'
+mkPayment_method_fpx :: Data.Text.Internal.Text -- ^ 'payment_method_fpxBank'
   -> Payment_method_fpx
 mkPayment_method_fpx payment_method_fpxBank = Payment_method_fpx{payment_method_fpxBank = payment_method_fpxBank}
--- | Defines the enum schema located at @components.schemas.payment_method_fpx.properties.bank@ in the specification.
--- 
--- The customer\'s bank, if provided. Can be one of \`affin_bank\`, \`agrobank\`, \`alliance_bank\`, \`ambank\`, \`bank_islam\`, \`bank_muamalat\`, \`bank_rakyat\`, \`bsn\`, \`cimb\`, \`hong_leong_bank\`, \`hsbc\`, \`kfh\`, \`maybank2u\`, \`ocbc\`, \`public_bank\`, \`rhb\`, \`standard_chartered\`, \`uob\`, \`deutsche_bank\`, \`maybank2e\`, \`pb_enterprise\`, or \`bank_of_china\`.
-data Payment_method_fpxBank =
-   Payment_method_fpxBankOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_fpxBankTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_fpxBankEnumAffin_bank -- ^ Represents the JSON value @"affin_bank"@
-  | Payment_method_fpxBankEnumAgrobank -- ^ Represents the JSON value @"agrobank"@
-  | Payment_method_fpxBankEnumAlliance_bank -- ^ Represents the JSON value @"alliance_bank"@
-  | Payment_method_fpxBankEnumAmbank -- ^ Represents the JSON value @"ambank"@
-  | Payment_method_fpxBankEnumBank_islam -- ^ Represents the JSON value @"bank_islam"@
-  | Payment_method_fpxBankEnumBank_muamalat -- ^ Represents the JSON value @"bank_muamalat"@
-  | Payment_method_fpxBankEnumBank_of_china -- ^ Represents the JSON value @"bank_of_china"@
-  | Payment_method_fpxBankEnumBank_rakyat -- ^ Represents the JSON value @"bank_rakyat"@
-  | Payment_method_fpxBankEnumBsn -- ^ Represents the JSON value @"bsn"@
-  | Payment_method_fpxBankEnumCimb -- ^ Represents the JSON value @"cimb"@
-  | Payment_method_fpxBankEnumDeutsche_bank -- ^ Represents the JSON value @"deutsche_bank"@
-  | Payment_method_fpxBankEnumHong_leong_bank -- ^ Represents the JSON value @"hong_leong_bank"@
-  | Payment_method_fpxBankEnumHsbc -- ^ Represents the JSON value @"hsbc"@
-  | Payment_method_fpxBankEnumKfh -- ^ Represents the JSON value @"kfh"@
-  | Payment_method_fpxBankEnumMaybank2e -- ^ Represents the JSON value @"maybank2e"@
-  | Payment_method_fpxBankEnumMaybank2u -- ^ Represents the JSON value @"maybank2u"@
-  | Payment_method_fpxBankEnumOcbc -- ^ Represents the JSON value @"ocbc"@
-  | Payment_method_fpxBankEnumPb_enterprise -- ^ Represents the JSON value @"pb_enterprise"@
-  | Payment_method_fpxBankEnumPublic_bank -- ^ Represents the JSON value @"public_bank"@
-  | Payment_method_fpxBankEnumRhb -- ^ Represents the JSON value @"rhb"@
-  | Payment_method_fpxBankEnumStandard_chartered -- ^ Represents the JSON value @"standard_chartered"@
-  | Payment_method_fpxBankEnumUob -- ^ Represents the JSON value @"uob"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_fpxBank
-    where {toJSON (Payment_method_fpxBankOther val) = val;
-           toJSON (Payment_method_fpxBankTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_fpxBankEnumAffin_bank) = "affin_bank";
-           toJSON (Payment_method_fpxBankEnumAgrobank) = "agrobank";
-           toJSON (Payment_method_fpxBankEnumAlliance_bank) = "alliance_bank";
-           toJSON (Payment_method_fpxBankEnumAmbank) = "ambank";
-           toJSON (Payment_method_fpxBankEnumBank_islam) = "bank_islam";
-           toJSON (Payment_method_fpxBankEnumBank_muamalat) = "bank_muamalat";
-           toJSON (Payment_method_fpxBankEnumBank_of_china) = "bank_of_china";
-           toJSON (Payment_method_fpxBankEnumBank_rakyat) = "bank_rakyat";
-           toJSON (Payment_method_fpxBankEnumBsn) = "bsn";
-           toJSON (Payment_method_fpxBankEnumCimb) = "cimb";
-           toJSON (Payment_method_fpxBankEnumDeutsche_bank) = "deutsche_bank";
-           toJSON (Payment_method_fpxBankEnumHong_leong_bank) = "hong_leong_bank";
-           toJSON (Payment_method_fpxBankEnumHsbc) = "hsbc";
-           toJSON (Payment_method_fpxBankEnumKfh) = "kfh";
-           toJSON (Payment_method_fpxBankEnumMaybank2e) = "maybank2e";
-           toJSON (Payment_method_fpxBankEnumMaybank2u) = "maybank2u";
-           toJSON (Payment_method_fpxBankEnumOcbc) = "ocbc";
-           toJSON (Payment_method_fpxBankEnumPb_enterprise) = "pb_enterprise";
-           toJSON (Payment_method_fpxBankEnumPublic_bank) = "public_bank";
-           toJSON (Payment_method_fpxBankEnumRhb) = "rhb";
-           toJSON (Payment_method_fpxBankEnumStandard_chartered) = "standard_chartered";
-           toJSON (Payment_method_fpxBankEnumUob) = "uob"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_fpxBank
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "affin_bank" -> Payment_method_fpxBankEnumAffin_bank
-                                             | val GHC.Classes.== "agrobank" -> Payment_method_fpxBankEnumAgrobank
-                                             | val GHC.Classes.== "alliance_bank" -> Payment_method_fpxBankEnumAlliance_bank
-                                             | val GHC.Classes.== "ambank" -> Payment_method_fpxBankEnumAmbank
-                                             | val GHC.Classes.== "bank_islam" -> Payment_method_fpxBankEnumBank_islam
-                                             | val GHC.Classes.== "bank_muamalat" -> Payment_method_fpxBankEnumBank_muamalat
-                                             | val GHC.Classes.== "bank_of_china" -> Payment_method_fpxBankEnumBank_of_china
-                                             | val GHC.Classes.== "bank_rakyat" -> Payment_method_fpxBankEnumBank_rakyat
-                                             | val GHC.Classes.== "bsn" -> Payment_method_fpxBankEnumBsn
-                                             | val GHC.Classes.== "cimb" -> Payment_method_fpxBankEnumCimb
-                                             | val GHC.Classes.== "deutsche_bank" -> Payment_method_fpxBankEnumDeutsche_bank
-                                             | val GHC.Classes.== "hong_leong_bank" -> Payment_method_fpxBankEnumHong_leong_bank
-                                             | val GHC.Classes.== "hsbc" -> Payment_method_fpxBankEnumHsbc
-                                             | val GHC.Classes.== "kfh" -> Payment_method_fpxBankEnumKfh
-                                             | val GHC.Classes.== "maybank2e" -> Payment_method_fpxBankEnumMaybank2e
-                                             | val GHC.Classes.== "maybank2u" -> Payment_method_fpxBankEnumMaybank2u
-                                             | val GHC.Classes.== "ocbc" -> Payment_method_fpxBankEnumOcbc
-                                             | val GHC.Classes.== "pb_enterprise" -> Payment_method_fpxBankEnumPb_enterprise
-                                             | val GHC.Classes.== "public_bank" -> Payment_method_fpxBankEnumPublic_bank
-                                             | val GHC.Classes.== "rhb" -> Payment_method_fpxBankEnumRhb
-                                             | val GHC.Classes.== "standard_chartered" -> Payment_method_fpxBankEnumStandard_chartered
-                                             | val GHC.Classes.== "uob" -> Payment_method_fpxBankEnumUob
-                                             | GHC.Base.otherwise -> Payment_method_fpxBankOther val)}

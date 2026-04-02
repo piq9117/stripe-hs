@@ -1,0 +1,8 @@
+module Stripe.CustomerSession.Types.IssuingCardLifecycleControls where
+import qualified Data.Aeson
+import qualified Stripe.CustomerSession.Common
+data Issuing_card_lifecycle_controls
+instance Show Issuing_card_lifecycle_controls
+instance Eq Issuing_card_lifecycle_controls
+instance Data.Aeson.FromJSON Issuing_card_lifecycle_controls
+instance Data.Aeson.ToJSON Issuing_card_lifecycle_controls

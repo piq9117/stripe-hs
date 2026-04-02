@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Dispute_enhanced_eligibility_visa_compliance = Dispute_enhanced_eligibility_visa_compliance {
   -- | status: Visa compliance eligibility status.
-  dispute_enhanced_eligibility_visa_complianceStatus :: Dispute_enhanced_eligibility_visa_complianceStatus
+  dispute_enhanced_eligibility_visa_complianceStatus :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_enhanced_eligibility_visa_compliance
@@ -55,24 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Dispute_enhanced_eligibility_visa_compli
 instance Data.Aeson.Types.FromJSON.FromJSON Dispute_enhanced_eligibility_visa_compliance
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Dispute_enhanced_eligibility_visa_compliance" (\obj -> GHC.Base.pure Dispute_enhanced_eligibility_visa_compliance GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status"))}
 -- | Create a new 'Dispute_enhanced_eligibility_visa_compliance' with all required fields.
-mkDispute_enhanced_eligibility_visa_compliance :: Dispute_enhanced_eligibility_visa_complianceStatus -- ^ 'dispute_enhanced_eligibility_visa_complianceStatus'
+mkDispute_enhanced_eligibility_visa_compliance :: Data.Text.Internal.Text -- ^ 'dispute_enhanced_eligibility_visa_complianceStatus'
   -> Dispute_enhanced_eligibility_visa_compliance
 mkDispute_enhanced_eligibility_visa_compliance dispute_enhanced_eligibility_visa_complianceStatus = Dispute_enhanced_eligibility_visa_compliance{dispute_enhanced_eligibility_visa_complianceStatus = dispute_enhanced_eligibility_visa_complianceStatus}
--- | Defines the enum schema located at @components.schemas.dispute_enhanced_eligibility_visa_compliance.properties.status@ in the specification.
--- 
--- Visa compliance eligibility status.
-data Dispute_enhanced_eligibility_visa_complianceStatus =
-   Dispute_enhanced_eligibility_visa_complianceStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Dispute_enhanced_eligibility_visa_complianceStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Dispute_enhanced_eligibility_visa_complianceStatusEnumFee_acknowledged -- ^ Represents the JSON value @"fee_acknowledged"@
-  | Dispute_enhanced_eligibility_visa_complianceStatusEnumRequires_fee_acknowledgement -- ^ Represents the JSON value @"requires_fee_acknowledgement"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_enhanced_eligibility_visa_complianceStatus
-    where {toJSON (Dispute_enhanced_eligibility_visa_complianceStatusOther val) = val;
-           toJSON (Dispute_enhanced_eligibility_visa_complianceStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Dispute_enhanced_eligibility_visa_complianceStatusEnumFee_acknowledged) = "fee_acknowledged";
-           toJSON (Dispute_enhanced_eligibility_visa_complianceStatusEnumRequires_fee_acknowledgement) = "requires_fee_acknowledgement"}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_enhanced_eligibility_visa_complianceStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fee_acknowledged" -> Dispute_enhanced_eligibility_visa_complianceStatusEnumFee_acknowledged
-                                             | val GHC.Classes.== "requires_fee_acknowledgement" -> Dispute_enhanced_eligibility_visa_complianceStatusEnumRequires_fee_acknowledgement
-                                             | GHC.Base.otherwise -> Dispute_enhanced_eligibility_visa_complianceStatusOther val)}

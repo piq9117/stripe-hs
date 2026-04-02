@@ -49,17 +49,17 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Address
 -- 
 data Account_business_profile = Account_business_profile {
   -- | annual_revenue: The applicant\'s gross annual revenue for its preceding fiscal year.
-  account_business_profileAnnual_revenue :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Account_business_profileAnnual_revenueNonNullable))
+  account_business_profileAnnual_revenue :: (GHC.Maybe.Maybe Account_business_profileAnnual_revenue)
   -- | estimated_worker_count: An estimated upper bound of employees, contractors, vendors, etc. currently working for the business.
-  , account_business_profileEstimated_worker_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , account_business_profileEstimated_worker_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | mcc: [The merchant category code for the account](\/connect\/setting-mcc). MCCs are used to classify businesses based on the goods or services they provide.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileMcc :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileMcc :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | minority_owned_business_designation: Whether the business is a minority-owned, women-owned, and\/or LGBTQI+ -owned business.
-  , account_business_profileMinority_owned_business_designation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_business_profileMinority_owned_business_designationNonNullable]))
+  , account_business_profileMinority_owned_business_designation :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | monthly_estimated_revenue: 
   , account_business_profileMonthly_estimated_revenue :: (GHC.Maybe.Maybe Account_monthly_estimated_revenue)
   -- | name: The customer-facing business name.
@@ -67,39 +67,39 @@ data Account_business_profile = Account_business_profile {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | product_description: Internal-only description of the product sold or service provided by the business. It\'s used by Stripe for risk and underwriting purposes.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 40000
-  , account_business_profileProduct_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileProduct_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | support_address: A publicly available mailing address for sending support issues to.
-  , account_business_profileSupport_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Account_business_profileSupport_addressNonNullable))
+  , account_business_profileSupport_address :: (GHC.Maybe.Maybe Account_business_profileSupport_address)
   -- | support_email: A publicly available email address for sending support issues to.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | support_phone: A publicly available phone number to call with support issues.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_phone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_phone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | support_url: A publicly available website for handling support issues.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: The business\'s publicly available website.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_business_profile
@@ -124,108 +124,81 @@ mkAccount_business_profile = Account_business_profile{account_business_profileAn
 -- | Defines the object schema located at @components.schemas.account_business_profile.properties.annual_revenue.anyOf@ in the specification.
 -- 
 -- The applicant\\\'s gross annual revenue for its preceding fiscal year.
-data Account_business_profileAnnual_revenueNonNullable = Account_business_profileAnnual_revenueNonNullable {
+data Account_business_profileAnnual_revenue = Account_business_profileAnnual_revenue {
   -- | amount: A non-negative integer representing the amount in the [smallest currency unit](\/currencies\#zero-decimal).
-  account_business_profileAnnual_revenueNonNullableAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  account_business_profileAnnual_revenueAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
-  , account_business_profileAnnual_revenueNonNullableCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileAnnual_revenueCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fiscal_year_end: The close-out date of the preceding fiscal year in ISO 8601 format. E.g. 2023-12-31 for the 31st of December, 2023.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileAnnual_revenueNonNullableFiscal_year_end :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileAnnual_revenueFiscal_year_end :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_business_profileAnnual_revenueNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueNonNullableFiscal_year_end obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueNonNullableFiscal_year_end obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_business_profileAnnual_revenueNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_business_profileAnnual_revenueNonNullable" (\obj -> ((GHC.Base.pure Account_business_profileAnnual_revenueNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fiscal_year_end"))}
--- | Create a new 'Account_business_profileAnnual_revenueNonNullable' with all required fields.
-mkAccount_business_profileAnnual_revenueNonNullable :: Account_business_profileAnnual_revenueNonNullable
-mkAccount_business_profileAnnual_revenueNonNullable = Account_business_profileAnnual_revenueNonNullable{account_business_profileAnnual_revenueNonNullableAmount = GHC.Maybe.Nothing,
-                                                                                                        account_business_profileAnnual_revenueNonNullableCurrency = GHC.Maybe.Nothing,
-                                                                                                        account_business_profileAnnual_revenueNonNullableFiscal_year_end = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.account_business_profile.properties.minority_owned_business_designation.items@ in the specification.
--- 
--- 
-data Account_business_profileMinority_owned_business_designationNonNullable =
-   Account_business_profileMinority_owned_business_designationNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_business_profileMinority_owned_business_designationNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_business_profileMinority_owned_business_designationNonNullableEnumLgbtqi_owned_business -- ^ Represents the JSON value @"lgbtqi_owned_business"@
-  | Account_business_profileMinority_owned_business_designationNonNullableEnumMinority_owned_business -- ^ Represents the JSON value @"minority_owned_business"@
-  | Account_business_profileMinority_owned_business_designationNonNullableEnumNone_of_these_apply -- ^ Represents the JSON value @"none_of_these_apply"@
-  | Account_business_profileMinority_owned_business_designationNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | Account_business_profileMinority_owned_business_designationNonNullableEnumWomen_owned_business -- ^ Represents the JSON value @"women_owned_business"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_business_profileMinority_owned_business_designationNonNullable
-    where {toJSON (Account_business_profileMinority_owned_business_designationNonNullableOther val) = val;
-           toJSON (Account_business_profileMinority_owned_business_designationNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_business_profileMinority_owned_business_designationNonNullableEnumLgbtqi_owned_business) = "lgbtqi_owned_business";
-           toJSON (Account_business_profileMinority_owned_business_designationNonNullableEnumMinority_owned_business) = "minority_owned_business";
-           toJSON (Account_business_profileMinority_owned_business_designationNonNullableEnumNone_of_these_apply) = "none_of_these_apply";
-           toJSON (Account_business_profileMinority_owned_business_designationNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (Account_business_profileMinority_owned_business_designationNonNullableEnumWomen_owned_business) = "women_owned_business"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_business_profileMinority_owned_business_designationNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "lgbtqi_owned_business" -> Account_business_profileMinority_owned_business_designationNonNullableEnumLgbtqi_owned_business
-                                             | val GHC.Classes.== "minority_owned_business" -> Account_business_profileMinority_owned_business_designationNonNullableEnumMinority_owned_business
-                                             | val GHC.Classes.== "none_of_these_apply" -> Account_business_profileMinority_owned_business_designationNonNullableEnumNone_of_these_apply
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> Account_business_profileMinority_owned_business_designationNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "women_owned_business" -> Account_business_profileMinority_owned_business_designationNonNullableEnumWomen_owned_business
-                                             | GHC.Base.otherwise -> Account_business_profileMinority_owned_business_designationNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Account_business_profileAnnual_revenue
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueFiscal_year_end obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (account_business_profileAnnual_revenueFiscal_year_end obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Account_business_profileAnnual_revenue
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_business_profileAnnual_revenue" (\obj -> ((GHC.Base.pure Account_business_profileAnnual_revenue GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fiscal_year_end"))}
+-- | Create a new 'Account_business_profileAnnual_revenue' with all required fields.
+mkAccount_business_profileAnnual_revenue :: Account_business_profileAnnual_revenue
+mkAccount_business_profileAnnual_revenue = Account_business_profileAnnual_revenue{account_business_profileAnnual_revenueAmount = GHC.Maybe.Nothing,
+                                                                                  account_business_profileAnnual_revenueCurrency = GHC.Maybe.Nothing,
+                                                                                  account_business_profileAnnual_revenueFiscal_year_end = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account_business_profile.properties.support_address.anyOf@ in the specification.
 -- 
 -- A publicly available mailing address for sending support issues to.
-data Account_business_profileSupport_addressNonNullable = Account_business_profileSupport_addressNonNullable {
+data Account_business_profileSupport_address = Account_business_profileSupport_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  account_business_profileSupport_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  account_business_profileSupport_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_business_profileSupport_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_business_profileSupport_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_business_profileSupport_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_business_profileSupport_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_business_profileSupport_addressNonNullable" (\obj -> (((((GHC.Base.pure Account_business_profileSupport_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Account_business_profileSupport_addressNonNullable' with all required fields.
-mkAccount_business_profileSupport_addressNonNullable :: Account_business_profileSupport_addressNonNullable
-mkAccount_business_profileSupport_addressNonNullable = Account_business_profileSupport_addressNonNullable{account_business_profileSupport_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                          account_business_profileSupport_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                          account_business_profileSupport_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                          account_business_profileSupport_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                          account_business_profileSupport_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                          account_business_profileSupport_addressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Account_business_profileSupport_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (account_business_profileSupport_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Account_business_profileSupport_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_business_profileSupport_address" (\obj -> (((((GHC.Base.pure Account_business_profileSupport_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Account_business_profileSupport_address' with all required fields.
+mkAccount_business_profileSupport_address :: Account_business_profileSupport_address
+mkAccount_business_profileSupport_address = Account_business_profileSupport_address{account_business_profileSupport_addressCity = GHC.Maybe.Nothing,
+                                                                                    account_business_profileSupport_addressCountry = GHC.Maybe.Nothing,
+                                                                                    account_business_profileSupport_addressLine1 = GHC.Maybe.Nothing,
+                                                                                    account_business_profileSupport_addressLine2 = GHC.Maybe.Nothing,
+                                                                                    account_business_profileSupport_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                    account_business_profileSupport_addressState = GHC.Maybe.Nothing}

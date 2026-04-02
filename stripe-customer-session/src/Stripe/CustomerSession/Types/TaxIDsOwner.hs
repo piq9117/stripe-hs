@@ -59,9 +59,9 @@ data Tax_i_ds_owner = Tax_i_ds_owner {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , tax_i_ds_ownerCustomer_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , tax_i_ds_ownerCustomer_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Type of owner referenced.
-  , tax_i_ds_ownerType :: Tax_i_ds_ownerType
+  , tax_i_ds_ownerType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Tax_i_ds_owner
@@ -70,7 +70,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Tax_i_ds_owner
 instance Data.Aeson.Types.FromJSON.FromJSON Tax_i_ds_owner
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Tax_i_ds_owner" (\obj -> ((((GHC.Base.pure Tax_i_ds_owner GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Tax_i_ds_owner' with all required fields.
-mkTax_i_ds_owner :: Tax_i_ds_ownerType -- ^ 'tax_i_ds_ownerType'
+mkTax_i_ds_owner :: Data.Text.Internal.Text -- ^ 'tax_i_ds_ownerType'
   -> Tax_i_ds_owner
 mkTax_i_ds_owner tax_i_ds_ownerType = Tax_i_ds_owner{tax_i_ds_ownerAccount = GHC.Maybe.Nothing,
                                                      tax_i_ds_ownerApplication = GHC.Maybe.Nothing,
@@ -119,27 +119,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Tax_i_ds_ownerCustomerVariants
     where {parseJSON val = case (Tax_i_ds_ownerCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Tax_i_ds_ownerCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.tax_i_ds_owner.properties.type@ in the specification.
--- 
--- Type of owner referenced.
-data Tax_i_ds_ownerType =
-   Tax_i_ds_ownerTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Tax_i_ds_ownerTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Tax_i_ds_ownerTypeEnumAccount -- ^ Represents the JSON value @"account"@
-  | Tax_i_ds_ownerTypeEnumApplication -- ^ Represents the JSON value @"application"@
-  | Tax_i_ds_ownerTypeEnumCustomer -- ^ Represents the JSON value @"customer"@
-  | Tax_i_ds_ownerTypeEnumSelf -- ^ Represents the JSON value @"self"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Tax_i_ds_ownerType
-    where {toJSON (Tax_i_ds_ownerTypeOther val) = val;
-           toJSON (Tax_i_ds_ownerTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Tax_i_ds_ownerTypeEnumAccount) = "account";
-           toJSON (Tax_i_ds_ownerTypeEnumApplication) = "application";
-           toJSON (Tax_i_ds_ownerTypeEnumCustomer) = "customer";
-           toJSON (Tax_i_ds_ownerTypeEnumSelf) = "self"}
-instance Data.Aeson.Types.FromJSON.FromJSON Tax_i_ds_ownerType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Tax_i_ds_ownerTypeEnumAccount
-                                             | val GHC.Classes.== "application" -> Tax_i_ds_ownerTypeEnumApplication
-                                             | val GHC.Classes.== "customer" -> Tax_i_ds_ownerTypeEnumCustomer
-                                             | val GHC.Classes.== "self" -> Tax_i_ds_ownerTypeEnumSelf
-                                             | GHC.Base.otherwise -> Tax_i_ds_ownerTypeOther val)}

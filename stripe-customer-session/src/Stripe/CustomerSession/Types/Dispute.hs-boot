@@ -11,18 +11,8 @@ instance Show DisputeChargeVariants
 instance Eq DisputeChargeVariants
 instance Data.Aeson.FromJSON DisputeChargeVariants
 instance Data.Aeson.ToJSON DisputeChargeVariants
-data DisputeEnhanced_eligibility_types
-instance Show DisputeEnhanced_eligibility_types
-instance Eq DisputeEnhanced_eligibility_types
-instance Data.Aeson.FromJSON DisputeEnhanced_eligibility_types
-instance Data.Aeson.ToJSON DisputeEnhanced_eligibility_types
-data DisputePayment_intentNonNullableVariants
-instance Show DisputePayment_intentNonNullableVariants
-instance Eq DisputePayment_intentNonNullableVariants
-instance Data.Aeson.FromJSON DisputePayment_intentNonNullableVariants
-instance Data.Aeson.ToJSON DisputePayment_intentNonNullableVariants
-data DisputeStatus
-instance Show DisputeStatus
-instance Eq DisputeStatus
-instance Data.Aeson.FromJSON DisputeStatus
-instance Data.Aeson.ToJSON DisputeStatus
+data DisputePayment_intentVariants
+instance Show DisputePayment_intentVariants
+instance Eq DisputePayment_intentVariants
+instance Data.Aeson.FromJSON DisputePayment_intentVariants
+instance Data.Aeson.ToJSON DisputePayment_intentVariants

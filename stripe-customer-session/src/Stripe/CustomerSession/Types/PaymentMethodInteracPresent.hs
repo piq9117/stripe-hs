@@ -51,25 +51,25 @@ data Payment_method_interac_present = Payment_method_interac_present {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_interac_presentBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_interac_presentBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cardholder_name: The cardholder name as read from the card, in [ISO 7813](https:\/\/en.wikipedia.org\/wiki\/ISO\/IEC_7813) format. May include alphanumeric characters, special characters and first\/last name separator (\`\/\`). In some cases, the cardholder name may not be available depending on how the issuer has configured the card. Cardholder name is typically not available on swipe or contactless payments, such as those made with Apple Pay and Google Pay.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentCardholder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentCardholder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you\'ve collected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: A high-level description of the type of cards issued in this range.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
   , payment_method_interac_presentExp_month :: GHC.Types.Int
   -- | exp_year: Four-digit number representing the card\'s expiration year.
@@ -81,31 +81,31 @@ data Payment_method_interac_present = Payment_method_interac_present {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding: Card funding type. Can be \`credit\`, \`debit\`, \`prepaid\`, or \`unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentFunding :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | issuer: The name of the card\'s issuing bank.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentIssuer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentIssuer :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: The last four digits of the card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | networks: Contains information about card networks that can be used to process the payment.
-  , payment_method_interac_presentNetworks :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_interac_presentNetworksNonNullable))
+  , payment_method_interac_presentNetworks :: (GHC.Maybe.Maybe Payment_method_interac_presentNetworks)
   -- | preferred_locales: The languages that the issuing bank recommends using for localizing any customer-facing text, as read from the card. Referenced from EMV tag 5F2D, data encoded on the card\'s chip.
-  , payment_method_interac_presentPreferred_locales :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , payment_method_interac_presentPreferred_locales :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | read_method: How card details were read in this transaction.
-  , payment_method_interac_presentRead_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_interac_presentRead_methodNonNullable))
+  , payment_method_interac_presentRead_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_interac_present
@@ -133,50 +133,23 @@ mkPayment_method_interac_present payment_method_interac_presentExp_month payment
 -- | Defines the object schema located at @components.schemas.payment_method_interac_present.properties.networks.anyOf@ in the specification.
 -- 
 -- Contains information about card networks that can be used to process the payment.
-data Payment_method_interac_presentNetworksNonNullable = Payment_method_interac_presentNetworksNonNullable {
+data Payment_method_interac_presentNetworks = Payment_method_interac_presentNetworks {
   -- | available: All networks available for selection via [payment_method_options.card.network](\/api\/payment_intents\/confirm\#confirm_payment_intent-payment_method_options-card-network).
-  payment_method_interac_presentNetworksNonNullableAvailable :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  payment_method_interac_presentNetworksAvailable :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | preferred: The preferred network for the card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_interac_presentNetworksNonNullablePreferred :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_interac_presentNetworksPreferred :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_interac_presentNetworksNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksNonNullableAvailable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksNonNullablePreferred obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksNonNullableAvailable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksNonNullablePreferred obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_interac_presentNetworksNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_interac_presentNetworksNonNullable" (\obj -> (GHC.Base.pure Payment_method_interac_presentNetworksNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred"))}
--- | Create a new 'Payment_method_interac_presentNetworksNonNullable' with all required fields.
-mkPayment_method_interac_presentNetworksNonNullable :: Payment_method_interac_presentNetworksNonNullable
-mkPayment_method_interac_presentNetworksNonNullable = Payment_method_interac_presentNetworksNonNullable{payment_method_interac_presentNetworksNonNullableAvailable = GHC.Maybe.Nothing,
-                                                                                                        payment_method_interac_presentNetworksNonNullablePreferred = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_interac_present.properties.read_method@ in the specification.
--- 
--- How card details were read in this transaction.
-data Payment_method_interac_presentRead_methodNonNullable =
-   Payment_method_interac_presentRead_methodNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_interac_presentRead_methodNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_interac_presentRead_methodNonNullableEnumContact_emv -- ^ Represents the JSON value @"contact_emv"@
-  | Payment_method_interac_presentRead_methodNonNullableEnumContactless_emv -- ^ Represents the JSON value @"contactless_emv"@
-  | Payment_method_interac_presentRead_methodNonNullableEnumContactless_magstripe_mode -- ^ Represents the JSON value @"contactless_magstripe_mode"@
-  | Payment_method_interac_presentRead_methodNonNullableEnumMagnetic_stripe_fallback -- ^ Represents the JSON value @"magnetic_stripe_fallback"@
-  | Payment_method_interac_presentRead_methodNonNullableEnumMagnetic_stripe_track2 -- ^ Represents the JSON value @"magnetic_stripe_track2"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_interac_presentRead_methodNonNullable
-    where {toJSON (Payment_method_interac_presentRead_methodNonNullableOther val) = val;
-           toJSON (Payment_method_interac_presentRead_methodNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_interac_presentRead_methodNonNullableEnumContact_emv) = "contact_emv";
-           toJSON (Payment_method_interac_presentRead_methodNonNullableEnumContactless_emv) = "contactless_emv";
-           toJSON (Payment_method_interac_presentRead_methodNonNullableEnumContactless_magstripe_mode) = "contactless_magstripe_mode";
-           toJSON (Payment_method_interac_presentRead_methodNonNullableEnumMagnetic_stripe_fallback) = "magnetic_stripe_fallback";
-           toJSON (Payment_method_interac_presentRead_methodNonNullableEnumMagnetic_stripe_track2) = "magnetic_stripe_track2"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_interac_presentRead_methodNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "contact_emv" -> Payment_method_interac_presentRead_methodNonNullableEnumContact_emv
-                                             | val GHC.Classes.== "contactless_emv" -> Payment_method_interac_presentRead_methodNonNullableEnumContactless_emv
-                                             | val GHC.Classes.== "contactless_magstripe_mode" -> Payment_method_interac_presentRead_methodNonNullableEnumContactless_magstripe_mode
-                                             | val GHC.Classes.== "magnetic_stripe_fallback" -> Payment_method_interac_presentRead_methodNonNullableEnumMagnetic_stripe_fallback
-                                             | val GHC.Classes.== "magnetic_stripe_track2" -> Payment_method_interac_presentRead_methodNonNullableEnumMagnetic_stripe_track2
-                                             | GHC.Base.otherwise -> Payment_method_interac_presentRead_methodNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_interac_presentNetworks
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksAvailable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksPreferred obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksAvailable obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_interac_presentNetworksPreferred obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_interac_presentNetworks
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_interac_presentNetworks" (\obj -> (GHC.Base.pure Payment_method_interac_presentNetworks GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred"))}
+-- | Create a new 'Payment_method_interac_presentNetworks' with all required fields.
+mkPayment_method_interac_presentNetworks :: Payment_method_interac_presentNetworks
+mkPayment_method_interac_presentNetworks = Payment_method_interac_presentNetworks{payment_method_interac_presentNetworksAvailable = GHC.Maybe.Nothing,
+                                                                                  payment_method_interac_presentNetworksPreferred = GHC.Maybe.Nothing}

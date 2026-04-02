@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Setup_intent_payment_method_options_klarna = Setup_intent_payment_method_options_klarna {
   -- | currency: The currency of the setup intent. Three letter ISO currency code.
-  setup_intent_payment_method_options_klarnaCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intent_payment_method_options_klarnaCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | preferred_locale: Preferred locale of the Klarna checkout page that the customer is redirected to.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intent_payment_method_options_klarnaPreferred_locale :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intent_payment_method_options_klarnaPreferred_locale :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_klarna

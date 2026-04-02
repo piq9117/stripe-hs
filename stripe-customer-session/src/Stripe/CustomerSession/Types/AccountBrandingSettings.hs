@@ -47,21 +47,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.File
 -- 
 data Account_branding_settings = Account_branding_settings {
   -- | icon: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) An icon for the account. Must be square and at least 128px x 128px.
-  account_branding_settingsIcon :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Account_branding_settingsIconNonNullableVariants))
+  account_branding_settingsIcon :: (GHC.Maybe.Maybe Account_branding_settingsIconVariants)
   -- | logo: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) A logo for the account that will be used in Checkout instead of the icon and without the account\'s name next to it if provided. Must be at least 128px x 128px.
-  , account_branding_settingsLogo :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Account_branding_settingsLogoNonNullableVariants))
+  , account_branding_settingsLogo :: (GHC.Maybe.Maybe Account_branding_settingsLogoVariants)
   -- | primary_color: A CSS hex color value representing the primary branding color for this account
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_branding_settingsPrimary_color :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_branding_settingsPrimary_color :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | secondary_color: A CSS hex color value representing the secondary branding color for this account
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_branding_settingsSecondary_color :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_branding_settingsSecondary_color :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_branding_settings
@@ -78,28 +78,28 @@ mkAccount_branding_settings = Account_branding_settings{account_branding_setting
 -- | Defines the oneOf schema located at @components.schemas.account_branding_settings.properties.icon.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) An icon for the account. Must be square and at least 128px x 128px.
-data Account_branding_settingsIconNonNullableVariants =
-   Account_branding_settingsIconNonNullableText Data.Text.Internal.Text
-  | Account_branding_settingsIconNonNullableFile File
+data Account_branding_settingsIconVariants =
+   Account_branding_settingsIconText Data.Text.Internal.Text
+  | Account_branding_settingsIconFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_branding_settingsIconNonNullableVariants
-    where {toJSON (Account_branding_settingsIconNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Account_branding_settingsIconNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_branding_settingsIconNonNullableVariants
-    where {parseJSON val = case (Account_branding_settingsIconNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Account_branding_settingsIconNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Account_branding_settingsIconVariants
+    where {toJSON (Account_branding_settingsIconText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Account_branding_settingsIconFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Account_branding_settingsIconVariants
+    where {parseJSON val = case (Account_branding_settingsIconText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Account_branding_settingsIconFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.account_branding_settings.properties.logo.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) A logo for the account that will be used in Checkout instead of the icon and without the account\'s name next to it if provided. Must be at least 128px x 128px.
-data Account_branding_settingsLogoNonNullableVariants =
-   Account_branding_settingsLogoNonNullableText Data.Text.Internal.Text
-  | Account_branding_settingsLogoNonNullableFile File
+data Account_branding_settingsLogoVariants =
+   Account_branding_settingsLogoText Data.Text.Internal.Text
+  | Account_branding_settingsLogoFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_branding_settingsLogoNonNullableVariants
-    where {toJSON (Account_branding_settingsLogoNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Account_branding_settingsLogoNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_branding_settingsLogoNonNullableVariants
-    where {parseJSON val = case (Account_branding_settingsLogoNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Account_branding_settingsLogoNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Account_branding_settingsLogoVariants
+    where {toJSON (Account_branding_settingsLogoText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Account_branding_settingsLogoFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Account_branding_settingsLogoVariants
+    where {parseJSON val = case (Account_branding_settingsLogoText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Account_branding_settingsLogoFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

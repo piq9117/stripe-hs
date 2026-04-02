@@ -50,20 +50,20 @@ data Payment_method_paypal = Payment_method_paypal {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_paypalCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_paypalCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payer_email: Owner\'s email. Values are provided by PayPal directly
   -- (if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_paypalPayer_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_paypalPayer_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payer_id: PayPal account PayerID. This identifier uniquely identifies the PayPal customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_paypalPayer_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_paypalPayer_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_paypal

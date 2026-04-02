@@ -55,8 +55,10 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Mandate
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentFlowsAutomaticPaymentMethodsSetupIntent
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentIntent
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode
+import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethod
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodConfigBizPaymentMethodConfigurationDetails
+import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsMandateOptionsUpi
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsUsBankAccountMandateOptions
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupAttempt
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentNextAction
@@ -75,6 +77,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptio
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsPaypal
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsPayto
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsSepaDebit
+import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsUpi
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsUsBankAccount
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentTypeSpecificPaymentMethodOptionsClient
 import {-# SOURCE #-} Stripe.CustomerSession.Types.Source
@@ -128,15 +131,15 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.TokenCardNetworks
 -- Related guide: [Setup Intents API](https:\/\/docs.stripe.com\/payments\/setup-intents)
 data Setup_intent = Setup_intent {
   -- | application: ID of the Connect application that created the SetupIntent.
-  setup_intentApplication :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentApplicationNonNullableVariants))
+  setup_intentApplication :: (GHC.Maybe.Maybe Setup_intentApplicationVariants)
   -- | attach_to_self: If present, the SetupIntent\'s payment method will be attached to the in-context Stripe Account.
   -- 
   -- It can only be used for this Stripe Account’s own money movement flows like InboundTransfer and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a Customer, and defaults to false when attaching a PaymentMethod to a Customer.
   , setup_intentAttach_to_self :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | automatic_payment_methods: Settings for dynamic payment methods compatible with this Setup Intent
-  , setup_intentAutomatic_payment_methods :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentAutomatic_payment_methodsNonNullable))
+  , setup_intentAutomatic_payment_methods :: (GHC.Maybe.Maybe Setup_intentAutomatic_payment_methods)
   -- | cancellation_reason: Reason for cancellation of this SetupIntent, one of \`abandoned\`, \`requested_by_customer\`, or \`duplicate\`.
-  , setup_intentCancellation_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentCancellation_reasonNonNullable))
+  , setup_intentCancellation_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | client_secret: The client secret of this SetupIntent. Used for client-side retrieval using a publishable key.
   -- 
   -- The client secret can be used to complete payment setup from your frontend. It should not be stored, logged, or exposed to anyone other than the customer. Make sure that you have TLS enabled on any page that includes the client secret.
@@ -144,13 +147,13 @@ data Setup_intent = Setup_intent {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentClient_secret :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentClient_secret :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , setup_intentCreated :: GHC.Types.Int
   -- | customer: ID of the Customer this SetupIntent belongs to, if one exists.
   -- 
   -- If present, the SetupIntent\'s payment method will be attached to the Customer on successful setup. Payment methods attached to other Customers cannot be used with this SetupIntent.
-  , setup_intentCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentCustomerNonNullableVariants))
+  , setup_intentCustomer :: (GHC.Maybe.Maybe Setup_intentCustomerVariants)
   -- | customer_account: ID of the Account this SetupIntent belongs to, if one exists.
   -- 
   -- If present, the SetupIntent\'s payment method will be attached to the Account on successful setup. Payment methods attached to other Accounts cannot be used with this SetupIntent.
@@ -158,19 +161,19 @@ data Setup_intent = Setup_intent {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentCustomer_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentCustomer_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: An arbitrary string attached to the object. Often useful for displaying to users.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | excluded_payment_method_types: Payment method types that are excluded from this SetupIntent.
-  , setup_intentExcluded_payment_method_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Setup_intentExcluded_payment_method_typesNonNullable]))
+  , setup_intentExcluded_payment_method_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | flow_directions: Indicates the directions of money movement for which this payment method is intended to be used.
   -- 
   -- Include \`inbound\` if you intend to use the payment method as the origin to pull funds from. Include \`outbound\` if you intend to use the payment method as the destination to send funds to. You can include both if you intend to use the payment method for both purposes.
-  , setup_intentFlow_directions :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Setup_intentFlow_directionsNonNullable]))
+  , setup_intentFlow_directions :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -178,31 +181,33 @@ data Setup_intent = Setup_intent {
   -- * Maximum length of 5000
   , setup_intentId :: Data.Text.Internal.Text
   -- | last_setup_error: The error encountered in the previous SetupIntent confirmation.
-  , setup_intentLast_setup_error :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullable))
+  , setup_intentLast_setup_error :: (GHC.Maybe.Maybe Setup_intentLast_setup_error)
   -- | latest_attempt: The most recent SetupAttempt for this SetupIntent.
-  , setup_intentLatest_attempt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLatest_attemptNonNullableVariants))
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  , setup_intentLatest_attempt :: (GHC.Maybe.Maybe Setup_intentLatest_attemptVariants)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , setup_intentLivemode :: GHC.Types.Bool
   -- | mandate: ID of the multi use Mandate generated by the SetupIntent.
-  , setup_intentMandate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentMandateNonNullableVariants))
+  , setup_intentMandate :: (GHC.Maybe.Maybe Setup_intentMandateVariants)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , setup_intentMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , setup_intentMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | next_action: If present, this property tells you what actions you need to take in order for your customer to continue payment setup.
-  , setup_intentNext_action :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentNext_actionNonNullable))
+  , setup_intentNext_action :: (GHC.Maybe.Maybe Setup_intentNext_action)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , setup_intentObject :: Data.Text.Internal.Text
   -- | on_behalf_of: The account (if any) for which the setup is intended.
-  , setup_intentOn_behalf_of :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentOn_behalf_ofNonNullableVariants))
+  , setup_intentOn_behalf_of :: (GHC.Maybe.Maybe Setup_intentOn_behalf_ofVariants)
   -- | payment_method: ID of the payment method used with this SetupIntent. If the payment method is \`card_present\` and isn\'t a digital wallet, then the [generated_card](https:\/\/docs.stripe.com\/api\/setup_attempts\/object\#setup_attempt_object-payment_method_details-card_present-generated_card) associated with the \`latest_attempt\` is attached to the Customer instead.
-  , setup_intentPayment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentPayment_methodNonNullableVariants))
+  , setup_intentPayment_method :: (GHC.Maybe.Maybe Setup_intentPayment_methodVariants)
   -- | payment_method_configuration_details: Information about the [payment method configuration](https:\/\/docs.stripe.com\/api\/payment_method_configurations) used for this Setup Intent.
-  , setup_intentPayment_method_configuration_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentPayment_method_configuration_detailsNonNullable))
+  , setup_intentPayment_method_configuration_details :: (GHC.Maybe.Maybe Setup_intentPayment_method_configuration_details)
   -- | payment_method_options: Payment method-specific configuration for this SetupIntent.
-  , setup_intentPayment_method_options :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentPayment_method_optionsNonNullable))
+  , setup_intentPayment_method_options :: (GHC.Maybe.Maybe Setup_intentPayment_method_options)
   -- | payment_method_types: The list of payment method types (e.g. card) that this SetupIntent is allowed to set up. A list of valid payment method types can be found [here](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-type).
   , setup_intentPayment_method_types :: [Data.Text.Internal.Text]
   -- | single_use_mandate: ID of the single_use Mandate generated by the SetupIntent.
-  , setup_intentSingle_use_mandate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentSingle_use_mandateNonNullableVariants))
+  , setup_intentSingle_use_mandate :: (GHC.Maybe.Maybe Setup_intentSingle_use_mandateVariants)
   -- | status: [Status](https:\/\/docs.stripe.com\/payments\/intents\#intent-statuses) of this SetupIntent, one of \`requires_payment_method\`, \`requires_confirmation\`, \`requires_action\`, \`processing\`, \`canceled\`, or \`succeeded\`.
-  , setup_intentStatus :: Setup_intentStatus
+  , setup_intentStatus :: Data.Text.Internal.Text
   -- | usage: Indicates how the payment method is intended to be used in the future.
   -- 
   -- Use \`on_session\` if you intend to only reuse the payment method when the customer is in your checkout flow. Use \`off_session\` if your customer may or may not be in your checkout flow. If not provided, this value defaults to \`off_session\`.
@@ -214,373 +219,157 @@ data Setup_intent = Setup_intent {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (setup_intentApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("attach_to_self" Data.Aeson.Types.ToJSON..=)) (setup_intentAttach_to_self obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatic_payment_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (setup_intentCancellation_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentClient_secret obj) : ["created" Data.Aeson.Types.ToJSON..= setup_intentCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("excluded_payment_method_types" Data.Aeson.Types.ToJSON..=)) (setup_intentExcluded_payment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow_directions" Data.Aeson.Types.ToJSON..=)) (setup_intentFlow_directions obj) : ["id" Data.Aeson.Types.ToJSON..= setup_intentId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_setup_error" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_attempt" Data.Aeson.Types.ToJSON..=)) (setup_intentLatest_attempt obj) : ["livemode" Data.Aeson.Types.ToJSON..= setup_intentLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentMandate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_action" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_action obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (setup_intentOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_configuration_details" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_options obj) : ["payment_method_types" Data.Aeson.Types.ToJSON..= setup_intentPayment_method_types obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use_mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentSingle_use_mandate obj) : ["status" Data.Aeson.Types.ToJSON..= setup_intentStatus obj] : ["usage" Data.Aeson.Types.ToJSON..= setup_intentUsage obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "setup_intent"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (setup_intentApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("attach_to_self" Data.Aeson.Types.ToJSON..=)) (setup_intentAttach_to_self obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatic_payment_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (setup_intentCancellation_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentClient_secret obj) : ["created" Data.Aeson.Types.ToJSON..= setup_intentCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("excluded_payment_method_types" Data.Aeson.Types.ToJSON..=)) (setup_intentExcluded_payment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow_directions" Data.Aeson.Types.ToJSON..=)) (setup_intentFlow_directions obj) : ["id" Data.Aeson.Types.ToJSON..= setup_intentId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_setup_error" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_attempt" Data.Aeson.Types.ToJSON..=)) (setup_intentLatest_attempt obj) : ["livemode" Data.Aeson.Types.ToJSON..= setup_intentLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentMandate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_action" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_action obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (setup_intentOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_configuration_details" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_options obj) : ["payment_method_types" Data.Aeson.Types.ToJSON..= setup_intentPayment_method_types obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use_mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentSingle_use_mandate obj) : ["status" Data.Aeson.Types.ToJSON..= setup_intentStatus obj] : ["usage" Data.Aeson.Types.ToJSON..= setup_intentUsage obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "setup_intent"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (setup_intentApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("attach_to_self" Data.Aeson.Types.ToJSON..=)) (setup_intentAttach_to_self obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatic_payment_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (setup_intentCancellation_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentClient_secret obj) : ["created" Data.Aeson.Types.ToJSON..= setup_intentCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("excluded_payment_method_types" Data.Aeson.Types.ToJSON..=)) (setup_intentExcluded_payment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow_directions" Data.Aeson.Types.ToJSON..=)) (setup_intentFlow_directions obj) : ["id" Data.Aeson.Types.ToJSON..= setup_intentId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_setup_error" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_attempt" Data.Aeson.Types.ToJSON..=)) (setup_intentLatest_attempt obj) : ["livemode" Data.Aeson.Types.ToJSON..= setup_intentLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentMandate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_action" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_action obj) : ["object" Data.Aeson.Types.ToJSON..= setup_intentObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (setup_intentOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_configuration_details" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_options obj) : ["payment_method_types" Data.Aeson.Types.ToJSON..= setup_intentPayment_method_types obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use_mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentSingle_use_mandate obj) : ["status" Data.Aeson.Types.ToJSON..= setup_intentStatus obj] : ["usage" Data.Aeson.Types.ToJSON..= setup_intentUsage obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (setup_intentApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("attach_to_self" Data.Aeson.Types.ToJSON..=)) (setup_intentAttach_to_self obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("automatic_payment_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cancellation_reason" Data.Aeson.Types.ToJSON..=)) (setup_intentCancellation_reason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentClient_secret obj) : ["created" Data.Aeson.Types.ToJSON..= setup_intentCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (setup_intentCustomer_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("excluded_payment_method_types" Data.Aeson.Types.ToJSON..=)) (setup_intentExcluded_payment_method_types obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow_directions" Data.Aeson.Types.ToJSON..=)) (setup_intentFlow_directions obj) : ["id" Data.Aeson.Types.ToJSON..= setup_intentId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_setup_error" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_error obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("latest_attempt" Data.Aeson.Types.ToJSON..=)) (setup_intentLatest_attempt obj) : ["livemode" Data.Aeson.Types.ToJSON..= setup_intentLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentMandate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("next_action" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_action obj) : ["object" Data.Aeson.Types.ToJSON..= setup_intentObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (setup_intentOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_configuration_details" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_options obj) : ["payment_method_types" Data.Aeson.Types.ToJSON..= setup_intentPayment_method_types obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("single_use_mandate" Data.Aeson.Types.ToJSON..=)) (setup_intentSingle_use_mandate obj) : ["status" Data.Aeson.Types.ToJSON..= setup_intentStatus obj] : ["usage" Data.Aeson.Types.ToJSON..= setup_intentUsage obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent" (\obj -> (((((((((((((((((((((((((GHC.Base.pure Setup_intent GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "attach_to_self")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "automatic_payment_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancellation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "excluded_payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "flow_directions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_setup_error")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_attempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "next_action")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_configuration_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "single_use_mandate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "usage"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent" (\obj -> ((((((((((((((((((((((((((GHC.Base.pure Setup_intent GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "attach_to_self")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "automatic_payment_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cancellation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "excluded_payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "flow_directions")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_setup_error")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "latest_attempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "next_action")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_configuration_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "single_use_mandate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "usage"))}
 -- | Create a new 'Setup_intent' with all required fields.
 mkSetup_intent :: GHC.Types.Int -- ^ 'setup_intentCreated'
   -> Data.Text.Internal.Text -- ^ 'setup_intentId'
   -> GHC.Types.Bool -- ^ 'setup_intentLivemode'
+  -> Data.Text.Internal.Text -- ^ 'setup_intentObject'
   -> [Data.Text.Internal.Text] -- ^ 'setup_intentPayment_method_types'
-  -> Setup_intentStatus -- ^ 'setup_intentStatus'
+  -> Data.Text.Internal.Text -- ^ 'setup_intentStatus'
   -> Data.Text.Internal.Text -- ^ 'setup_intentUsage'
   -> Setup_intent
-mkSetup_intent setup_intentCreated setup_intentId setup_intentLivemode setup_intentPayment_method_types setup_intentStatus setup_intentUsage = Setup_intent{setup_intentApplication = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentAttach_to_self = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentAutomatic_payment_methods = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentCancellation_reason = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentClient_secret = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentCreated = setup_intentCreated,
-                                                                                                                                                            setup_intentCustomer = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentCustomer_account = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentDescription = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentExcluded_payment_method_types = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentFlow_directions = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentId = setup_intentId,
-                                                                                                                                                            setup_intentLast_setup_error = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentLatest_attempt = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentLivemode = setup_intentLivemode,
-                                                                                                                                                            setup_intentMandate = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentMetadata = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentNext_action = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentOn_behalf_of = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_configuration_details = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_options = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_types = setup_intentPayment_method_types,
-                                                                                                                                                            setup_intentSingle_use_mandate = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentStatus = setup_intentStatus,
-                                                                                                                                                            setup_intentUsage = setup_intentUsage}
+mkSetup_intent setup_intentCreated setup_intentId setup_intentLivemode setup_intentObject setup_intentPayment_method_types setup_intentStatus setup_intentUsage = Setup_intent{setup_intentApplication = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentAttach_to_self = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentAutomatic_payment_methods = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentCancellation_reason = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentClient_secret = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentCreated = setup_intentCreated,
+                                                                                                                                                                               setup_intentCustomer = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentCustomer_account = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentExcluded_payment_method_types = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentFlow_directions = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentId = setup_intentId,
+                                                                                                                                                                               setup_intentLast_setup_error = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentLatest_attempt = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentLivemode = setup_intentLivemode,
+                                                                                                                                                                               setup_intentMandate = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentMetadata = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentNext_action = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentObject = setup_intentObject,
+                                                                                                                                                                               setup_intentOn_behalf_of = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentPayment_method = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentPayment_method_configuration_details = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentPayment_method_options = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentPayment_method_types = setup_intentPayment_method_types,
+                                                                                                                                                                               setup_intentSingle_use_mandate = GHC.Maybe.Nothing,
+                                                                                                                                                                               setup_intentStatus = setup_intentStatus,
+                                                                                                                                                                               setup_intentUsage = setup_intentUsage}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.application.anyOf@ in the specification.
 -- 
 -- ID of the Connect application that created the SetupIntent.
-data Setup_intentApplicationNonNullableVariants =
-   Setup_intentApplicationNonNullableText Data.Text.Internal.Text
-  | Setup_intentApplicationNonNullableApplication Application
+data Setup_intentApplicationVariants =
+   Setup_intentApplicationText Data.Text.Internal.Text
+  | Setup_intentApplicationApplication Application
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentApplicationNonNullableVariants
-    where {toJSON (Setup_intentApplicationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentApplicationNonNullableApplication a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentApplicationNonNullableVariants
-    where {parseJSON val = case (Setup_intentApplicationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentApplicationNonNullableApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentApplicationVariants
+    where {toJSON (Setup_intentApplicationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentApplicationApplication a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentApplicationVariants
+    where {parseJSON val = case (Setup_intentApplicationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentApplicationApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.automatic_payment_methods.anyOf@ in the specification.
 -- 
 -- Settings for dynamic payment methods compatible with this Setup Intent
-data Setup_intentAutomatic_payment_methodsNonNullable = Setup_intentAutomatic_payment_methodsNonNullable {
+data Setup_intentAutomatic_payment_methods = Setup_intentAutomatic_payment_methods {
   -- | allow_redirects: Controls whether this SetupIntent will accept redirect-based payment methods.
   -- 
   -- Redirect-based payment methods may require your customer to be redirected to a payment method\'s app or site for authentication or additional steps. To [confirm](https:\/\/docs.stripe.com\/api\/setup_intents\/confirm) this SetupIntent, you may be required to provide a \`return_url\` to redirect customers back to your site after they authenticate or complete the setup.
-  setup_intentAutomatic_payment_methodsNonNullableAllow_redirects :: (GHC.Maybe.Maybe Setup_intentAutomatic_payment_methodsNonNullableAllow_redirects)
+  setup_intentAutomatic_payment_methodsAllow_redirects :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | enabled: Automatically calculates compatible payment methods
-  , setup_intentAutomatic_payment_methodsNonNullableEnabled :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , setup_intentAutomatic_payment_methodsEnabled :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentAutomatic_payment_methodsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redirects" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsNonNullableAllow_redirects obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsNonNullableEnabled obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redirects" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsNonNullableAllow_redirects obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsNonNullableEnabled obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentAutomatic_payment_methodsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentAutomatic_payment_methodsNonNullable" (\obj -> (GHC.Base.pure Setup_intentAutomatic_payment_methodsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redirects")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "enabled"))}
--- | Create a new 'Setup_intentAutomatic_payment_methodsNonNullable' with all required fields.
-mkSetup_intentAutomatic_payment_methodsNonNullable :: Setup_intentAutomatic_payment_methodsNonNullable
-mkSetup_intentAutomatic_payment_methodsNonNullable = Setup_intentAutomatic_payment_methodsNonNullable{setup_intentAutomatic_payment_methodsNonNullableAllow_redirects = GHC.Maybe.Nothing,
-                                                                                                      setup_intentAutomatic_payment_methodsNonNullableEnabled = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.automatic_payment_methods.anyOf.properties.allow_redirects@ in the specification.
--- 
--- Controls whether this SetupIntent will accept redirect-based payment methods.
--- 
--- Redirect-based payment methods may require your customer to be redirected to a payment method\'s app or site for authentication or additional steps. To [confirm](https:\/\/docs.stripe.com\/api\/setup_intents\/confirm) this SetupIntent, you may be required to provide a \`return_url\` to redirect customers back to your site after they authenticate or complete the setup.
-data Setup_intentAutomatic_payment_methodsNonNullableAllow_redirects =
-   Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsEnumAlways -- ^ Represents the JSON value @"always"@
-  | Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentAutomatic_payment_methodsNonNullableAllow_redirects
-    where {toJSON (Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsOther val) = val;
-           toJSON (Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsEnumAlways) = "always";
-           toJSON (Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentAutomatic_payment_methodsNonNullableAllow_redirects
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsEnumAlways
-                                             | val GHC.Classes.== "never" -> Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsEnumNever
-                                             | GHC.Base.otherwise -> Setup_intentAutomatic_payment_methodsNonNullableAllow_redirectsOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.cancellation_reason@ in the specification.
--- 
--- Reason for cancellation of this SetupIntent, one of \`abandoned\`, \`requested_by_customer\`, or \`duplicate\`.
-data Setup_intentCancellation_reasonNonNullable =
-   Setup_intentCancellation_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentCancellation_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentCancellation_reasonNonNullableEnumAbandoned -- ^ Represents the JSON value @"abandoned"@
-  | Setup_intentCancellation_reasonNonNullableEnumDuplicate -- ^ Represents the JSON value @"duplicate"@
-  | Setup_intentCancellation_reasonNonNullableEnumRequested_by_customer -- ^ Represents the JSON value @"requested_by_customer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentCancellation_reasonNonNullable
-    where {toJSON (Setup_intentCancellation_reasonNonNullableOther val) = val;
-           toJSON (Setup_intentCancellation_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentCancellation_reasonNonNullableEnumAbandoned) = "abandoned";
-           toJSON (Setup_intentCancellation_reasonNonNullableEnumDuplicate) = "duplicate";
-           toJSON (Setup_intentCancellation_reasonNonNullableEnumRequested_by_customer) = "requested_by_customer"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentCancellation_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "abandoned" -> Setup_intentCancellation_reasonNonNullableEnumAbandoned
-                                             | val GHC.Classes.== "duplicate" -> Setup_intentCancellation_reasonNonNullableEnumDuplicate
-                                             | val GHC.Classes.== "requested_by_customer" -> Setup_intentCancellation_reasonNonNullableEnumRequested_by_customer
-                                             | GHC.Base.otherwise -> Setup_intentCancellation_reasonNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentAutomatic_payment_methods
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redirects" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsAllow_redirects obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsEnabled obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redirects" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsAllow_redirects obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (setup_intentAutomatic_payment_methodsEnabled obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentAutomatic_payment_methods
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentAutomatic_payment_methods" (\obj -> (GHC.Base.pure Setup_intentAutomatic_payment_methods GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redirects")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "enabled"))}
+-- | Create a new 'Setup_intentAutomatic_payment_methods' with all required fields.
+mkSetup_intentAutomatic_payment_methods :: Setup_intentAutomatic_payment_methods
+mkSetup_intentAutomatic_payment_methods = Setup_intentAutomatic_payment_methods{setup_intentAutomatic_payment_methodsAllow_redirects = GHC.Maybe.Nothing,
+                                                                                setup_intentAutomatic_payment_methodsEnabled = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.customer.anyOf@ in the specification.
 -- 
 -- ID of the Customer this SetupIntent belongs to, if one exists.
 -- 
 -- If present, the SetupIntent\'s payment method will be attached to the Customer on successful setup. Payment methods attached to other Customers cannot be used with this SetupIntent.
-data Setup_intentCustomerNonNullableVariants =
-   Setup_intentCustomerNonNullableText Data.Text.Internal.Text
-  | Setup_intentCustomerNonNullableCustomer Customer
-  | Setup_intentCustomerNonNullableDeleted_customer Deleted_customer
+data Setup_intentCustomerVariants =
+   Setup_intentCustomerText Data.Text.Internal.Text
+  | Setup_intentCustomerCustomer Customer
+  | Setup_intentCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentCustomerNonNullableVariants
-    where {toJSON (Setup_intentCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentCustomerNonNullableVariants
-    where {parseJSON val = case (Setup_intentCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentCustomerVariants
+    where {toJSON (Setup_intentCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentCustomerVariants
+    where {parseJSON val = case (Setup_intentCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.excluded_payment_method_types.items@ in the specification.
--- 
--- 
-data Setup_intentExcluded_payment_method_typesNonNullable =
-   Setup_intentExcluded_payment_method_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentExcluded_payment_method_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumAcss_debit -- ^ Represents the JSON value @"acss_debit"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumAffirm -- ^ Represents the JSON value @"affirm"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumAfterpay_clearpay -- ^ Represents the JSON value @"afterpay_clearpay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumAlipay -- ^ Represents the JSON value @"alipay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumAlma -- ^ Represents the JSON value @"alma"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumAmazon_pay -- ^ Represents the JSON value @"amazon_pay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumAu_becs_debit -- ^ Represents the JSON value @"au_becs_debit"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumBacs_debit -- ^ Represents the JSON value @"bacs_debit"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumBancontact -- ^ Represents the JSON value @"bancontact"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumBillie -- ^ Represents the JSON value @"billie"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumBlik -- ^ Represents the JSON value @"blik"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumBoleto -- ^ Represents the JSON value @"boleto"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumCard -- ^ Represents the JSON value @"card"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumCashapp -- ^ Represents the JSON value @"cashapp"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumCrypto -- ^ Represents the JSON value @"crypto"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumCustomer_balance -- ^ Represents the JSON value @"customer_balance"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumEps -- ^ Represents the JSON value @"eps"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumFpx -- ^ Represents the JSON value @"fpx"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumGiropay -- ^ Represents the JSON value @"giropay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumGrabpay -- ^ Represents the JSON value @"grabpay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumIdeal -- ^ Represents the JSON value @"ideal"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumKakao_pay -- ^ Represents the JSON value @"kakao_pay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumKlarna -- ^ Represents the JSON value @"klarna"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumKonbini -- ^ Represents the JSON value @"konbini"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumKr_card -- ^ Represents the JSON value @"kr_card"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumMb_way -- ^ Represents the JSON value @"mb_way"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumMobilepay -- ^ Represents the JSON value @"mobilepay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumMultibanco -- ^ Represents the JSON value @"multibanco"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumNaver_pay -- ^ Represents the JSON value @"naver_pay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumNz_bank_account -- ^ Represents the JSON value @"nz_bank_account"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumOxxo -- ^ Represents the JSON value @"oxxo"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumP24 -- ^ Represents the JSON value @"p24"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumPay_by_bank -- ^ Represents the JSON value @"pay_by_bank"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumPayco -- ^ Represents the JSON value @"payco"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumPaynow -- ^ Represents the JSON value @"paynow"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumPaypal -- ^ Represents the JSON value @"paypal"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumPayto -- ^ Represents the JSON value @"payto"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumPix -- ^ Represents the JSON value @"pix"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumPromptpay -- ^ Represents the JSON value @"promptpay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumRevolut_pay -- ^ Represents the JSON value @"revolut_pay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumSamsung_pay -- ^ Represents the JSON value @"samsung_pay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumSatispay -- ^ Represents the JSON value @"satispay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumSepa_debit -- ^ Represents the JSON value @"sepa_debit"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumSofort -- ^ Represents the JSON value @"sofort"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumSwish -- ^ Represents the JSON value @"swish"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumTwint -- ^ Represents the JSON value @"twint"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumUs_bank_account -- ^ Represents the JSON value @"us_bank_account"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumWechat_pay -- ^ Represents the JSON value @"wechat_pay"@
-  | Setup_intentExcluded_payment_method_typesNonNullableEnumZip -- ^ Represents the JSON value @"zip"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentExcluded_payment_method_typesNonNullable
-    where {toJSON (Setup_intentExcluded_payment_method_typesNonNullableOther val) = val;
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumAcss_debit) = "acss_debit";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumAffirm) = "affirm";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumAfterpay_clearpay) = "afterpay_clearpay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumAlipay) = "alipay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumAlma) = "alma";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumAmazon_pay) = "amazon_pay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumAu_becs_debit) = "au_becs_debit";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumBacs_debit) = "bacs_debit";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumBancontact) = "bancontact";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumBillie) = "billie";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumBlik) = "blik";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumBoleto) = "boleto";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumCard) = "card";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumCashapp) = "cashapp";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumCrypto) = "crypto";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumCustomer_balance) = "customer_balance";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumEps) = "eps";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumFpx) = "fpx";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumGiropay) = "giropay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumGrabpay) = "grabpay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumIdeal) = "ideal";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumKakao_pay) = "kakao_pay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumKlarna) = "klarna";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumKonbini) = "konbini";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumKr_card) = "kr_card";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumMb_way) = "mb_way";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumMobilepay) = "mobilepay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumMultibanco) = "multibanco";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumNaver_pay) = "naver_pay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumNz_bank_account) = "nz_bank_account";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumOxxo) = "oxxo";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumP24) = "p24";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumPay_by_bank) = "pay_by_bank";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumPayco) = "payco";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumPaynow) = "paynow";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumPaypal) = "paypal";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumPayto) = "payto";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumPix) = "pix";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumPromptpay) = "promptpay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumRevolut_pay) = "revolut_pay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumSamsung_pay) = "samsung_pay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumSatispay) = "satispay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumSepa_debit) = "sepa_debit";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumSofort) = "sofort";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumSwish) = "swish";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumTwint) = "twint";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumUs_bank_account) = "us_bank_account";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumWechat_pay) = "wechat_pay";
-           toJSON (Setup_intentExcluded_payment_method_typesNonNullableEnumZip) = "zip"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentExcluded_payment_method_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "acss_debit" -> Setup_intentExcluded_payment_method_typesNonNullableEnumAcss_debit
-                                             | val GHC.Classes.== "affirm" -> Setup_intentExcluded_payment_method_typesNonNullableEnumAffirm
-                                             | val GHC.Classes.== "afterpay_clearpay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumAfterpay_clearpay
-                                             | val GHC.Classes.== "alipay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumAlipay
-                                             | val GHC.Classes.== "alma" -> Setup_intentExcluded_payment_method_typesNonNullableEnumAlma
-                                             | val GHC.Classes.== "amazon_pay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumAmazon_pay
-                                             | val GHC.Classes.== "au_becs_debit" -> Setup_intentExcluded_payment_method_typesNonNullableEnumAu_becs_debit
-                                             | val GHC.Classes.== "bacs_debit" -> Setup_intentExcluded_payment_method_typesNonNullableEnumBacs_debit
-                                             | val GHC.Classes.== "bancontact" -> Setup_intentExcluded_payment_method_typesNonNullableEnumBancontact
-                                             | val GHC.Classes.== "billie" -> Setup_intentExcluded_payment_method_typesNonNullableEnumBillie
-                                             | val GHC.Classes.== "blik" -> Setup_intentExcluded_payment_method_typesNonNullableEnumBlik
-                                             | val GHC.Classes.== "boleto" -> Setup_intentExcluded_payment_method_typesNonNullableEnumBoleto
-                                             | val GHC.Classes.== "card" -> Setup_intentExcluded_payment_method_typesNonNullableEnumCard
-                                             | val GHC.Classes.== "cashapp" -> Setup_intentExcluded_payment_method_typesNonNullableEnumCashapp
-                                             | val GHC.Classes.== "crypto" -> Setup_intentExcluded_payment_method_typesNonNullableEnumCrypto
-                                             | val GHC.Classes.== "customer_balance" -> Setup_intentExcluded_payment_method_typesNonNullableEnumCustomer_balance
-                                             | val GHC.Classes.== "eps" -> Setup_intentExcluded_payment_method_typesNonNullableEnumEps
-                                             | val GHC.Classes.== "fpx" -> Setup_intentExcluded_payment_method_typesNonNullableEnumFpx
-                                             | val GHC.Classes.== "giropay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumGiropay
-                                             | val GHC.Classes.== "grabpay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumGrabpay
-                                             | val GHC.Classes.== "ideal" -> Setup_intentExcluded_payment_method_typesNonNullableEnumIdeal
-                                             | val GHC.Classes.== "kakao_pay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumKakao_pay
-                                             | val GHC.Classes.== "klarna" -> Setup_intentExcluded_payment_method_typesNonNullableEnumKlarna
-                                             | val GHC.Classes.== "konbini" -> Setup_intentExcluded_payment_method_typesNonNullableEnumKonbini
-                                             | val GHC.Classes.== "kr_card" -> Setup_intentExcluded_payment_method_typesNonNullableEnumKr_card
-                                             | val GHC.Classes.== "mb_way" -> Setup_intentExcluded_payment_method_typesNonNullableEnumMb_way
-                                             | val GHC.Classes.== "mobilepay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumMobilepay
-                                             | val GHC.Classes.== "multibanco" -> Setup_intentExcluded_payment_method_typesNonNullableEnumMultibanco
-                                             | val GHC.Classes.== "naver_pay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumNaver_pay
-                                             | val GHC.Classes.== "nz_bank_account" -> Setup_intentExcluded_payment_method_typesNonNullableEnumNz_bank_account
-                                             | val GHC.Classes.== "oxxo" -> Setup_intentExcluded_payment_method_typesNonNullableEnumOxxo
-                                             | val GHC.Classes.== "p24" -> Setup_intentExcluded_payment_method_typesNonNullableEnumP24
-                                             | val GHC.Classes.== "pay_by_bank" -> Setup_intentExcluded_payment_method_typesNonNullableEnumPay_by_bank
-                                             | val GHC.Classes.== "payco" -> Setup_intentExcluded_payment_method_typesNonNullableEnumPayco
-                                             | val GHC.Classes.== "paynow" -> Setup_intentExcluded_payment_method_typesNonNullableEnumPaynow
-                                             | val GHC.Classes.== "paypal" -> Setup_intentExcluded_payment_method_typesNonNullableEnumPaypal
-                                             | val GHC.Classes.== "payto" -> Setup_intentExcluded_payment_method_typesNonNullableEnumPayto
-                                             | val GHC.Classes.== "pix" -> Setup_intentExcluded_payment_method_typesNonNullableEnumPix
-                                             | val GHC.Classes.== "promptpay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumPromptpay
-                                             | val GHC.Classes.== "revolut_pay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumRevolut_pay
-                                             | val GHC.Classes.== "samsung_pay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumSamsung_pay
-                                             | val GHC.Classes.== "satispay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumSatispay
-                                             | val GHC.Classes.== "sepa_debit" -> Setup_intentExcluded_payment_method_typesNonNullableEnumSepa_debit
-                                             | val GHC.Classes.== "sofort" -> Setup_intentExcluded_payment_method_typesNonNullableEnumSofort
-                                             | val GHC.Classes.== "swish" -> Setup_intentExcluded_payment_method_typesNonNullableEnumSwish
-                                             | val GHC.Classes.== "twint" -> Setup_intentExcluded_payment_method_typesNonNullableEnumTwint
-                                             | val GHC.Classes.== "us_bank_account" -> Setup_intentExcluded_payment_method_typesNonNullableEnumUs_bank_account
-                                             | val GHC.Classes.== "wechat_pay" -> Setup_intentExcluded_payment_method_typesNonNullableEnumWechat_pay
-                                             | val GHC.Classes.== "zip" -> Setup_intentExcluded_payment_method_typesNonNullableEnumZip
-                                             | GHC.Base.otherwise -> Setup_intentExcluded_payment_method_typesNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.flow_directions.items@ in the specification.
--- 
--- 
-data Setup_intentFlow_directionsNonNullable =
-   Setup_intentFlow_directionsNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentFlow_directionsNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentFlow_directionsNonNullableEnumInbound -- ^ Represents the JSON value @"inbound"@
-  | Setup_intentFlow_directionsNonNullableEnumOutbound -- ^ Represents the JSON value @"outbound"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentFlow_directionsNonNullable
-    where {toJSON (Setup_intentFlow_directionsNonNullableOther val) = val;
-           toJSON (Setup_intentFlow_directionsNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentFlow_directionsNonNullableEnumInbound) = "inbound";
-           toJSON (Setup_intentFlow_directionsNonNullableEnumOutbound) = "outbound"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentFlow_directionsNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "inbound" -> Setup_intentFlow_directionsNonNullableEnumInbound
-                                             | val GHC.Classes.== "outbound" -> Setup_intentFlow_directionsNonNullableEnumOutbound
-                                             | GHC.Base.otherwise -> Setup_intentFlow_directionsNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf@ in the specification.
 -- 
 -- The error encountered in the previous SetupIntent confirmation.
-data Setup_intentLast_setup_errorNonNullable = Setup_intentLast_setup_errorNonNullable {
+data Setup_intentLast_setup_error = Setup_intentLast_setup_error {
   -- | advice_code: For card errors resulting from a card issuer decline, a short string indicating [how to proceed with an error](https:\/\/docs.stripe.com\/declines\#retrying-issuer-declines) if they provide one.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intentLast_setup_errorNonNullableAdvice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  setup_intentLast_setup_errorAdvice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | charge: For card errors, the ID of the failed charge.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableCharge :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorCharge :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | code: For some errors that could be handled programmatically, a short string indicating the [error code](https:\/\/docs.stripe.com\/error-codes) reported.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableCode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorCode :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | decline_code: For card errors resulting from a card issuer decline, a short string indicating the [card issuer\'s reason for the decline](https:\/\/docs.stripe.com\/declines\#issuer-declines) if they provide one.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableDecline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorDecline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | doc_url: A URL to more information about the [error code](https:\/\/docs.stripe.com\/error-codes) reported.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableDoc_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorDoc_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | message: A human-readable message providing more details about the error. For card errors, these messages can be shown to your users.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 40000
-  , setup_intentLast_setup_errorNonNullableMessage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorMessage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_advice_code: For card errors resulting from a card issuer decline, a 2 digit code which indicates the advice given to merchant by the card network on how to proceed with an error.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableNetwork_advice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorNetwork_advice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_decline_code: For payments declined by the network, an alphanumeric code which indicates the reason the payment failed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | param: If the error is parameter-specific, the parameter related to the error. For example, you can use this to display a message near the correct form field.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableParam :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorParam :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_intent: A PaymentIntent guides you through the process of collecting a payment from your customer.
   -- We recommend that you create exactly one PaymentIntent for each order or
   -- customer session in your system. You can reference the PaymentIntent later to
@@ -592,25 +381,25 @@ data Setup_intentLast_setup_errorNonNullable = Setup_intentLast_setup_errorNonNu
   -- authentication flows and ultimately creates at most one successful charge.
   -- 
   -- Related guide: [Payment Intents API](https:\/\/docs.stripe.com\/payments\/payment-intents)
-  , setup_intentLast_setup_errorNonNullablePayment_intent :: (GHC.Maybe.Maybe Payment_intent)
+  , setup_intentLast_setup_errorPayment_intent :: (GHC.Maybe.Maybe Payment_intent)
   -- | payment_method: PaymentMethod objects represent your customer\'s payment instruments.
   -- You can use them with [PaymentIntents](https:\/\/docs.stripe.com\/payments\/payment-intents) to collect payments or save them to
   -- Customer objects to store instrument details for future payments.
   -- 
   -- Related guides: [Payment Methods](https:\/\/docs.stripe.com\/payments\/payment-methods) and [More Payment Scenarios](https:\/\/docs.stripe.com\/payments\/more-payment-scenarios).
-  , setup_intentLast_setup_errorNonNullablePayment_method :: (GHC.Maybe.Maybe Payment_method)
+  , setup_intentLast_setup_errorPayment_method :: (GHC.Maybe.Maybe Payment_method)
   -- | payment_method_type: If the error is specific to the type of payment method, the payment method type that had a problem. This field is only populated for invoice-related errors.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullablePayment_method_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorPayment_method_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_log_url: A URL to the request log entry in your dashboard.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableRequest_log_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorRequest_log_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | setup_intent: A SetupIntent guides you through the process of setting up and saving a customer\'s payment credentials for future payments.
   -- For example, you can use a SetupIntent to set up and save your customer\'s card without immediately collecting a payment.
   -- Later, you can use [PaymentIntents](https:\/\/api.stripe.com\#payment_intents) to drive the payment flow.
@@ -632,272 +421,272 @@ data Setup_intentLast_setup_errorNonNullable = Setup_intentLast_setup_errorNonNu
   -- By using SetupIntents, you can reduce friction for your customers, even as regulations change over time.
   -- 
   -- Related guide: [Setup Intents API](https:\/\/docs.stripe.com\/payments\/setup-intents)
-  , setup_intentLast_setup_errorNonNullableSetup_intent :: (GHC.Maybe.Maybe Setup_intent)
+  , setup_intentLast_setup_errorSetup_intent :: (GHC.Maybe.Maybe Setup_intent)
   -- | source: The [source object](https:\/\/docs.stripe.com\/api\/sources\/object) for errors returned on a request involving a source.
-  , setup_intentLast_setup_errorNonNullableSource :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorNonNullableSource)
+  , setup_intentLast_setup_errorSource :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSource)
   -- | type: The type of error returned. One of \`api_error\`, \`card_error\`, \`idempotency_error\`, or \`invalid_request_error\`
-  , setup_intentLast_setup_errorNonNullableType :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorNonNullableType)
+  , setup_intentLast_setup_errorType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullablePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullablePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullablePayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullablePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullablePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullablePayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorNonNullable" (\obj -> (((((((((((((((GHC.Base.pure Setup_intentLast_setup_errorNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "doc_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "param")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_log_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Setup_intentLast_setup_errorNonNullable' with all required fields.
-mkSetup_intentLast_setup_errorNonNullable :: Setup_intentLast_setup_errorNonNullable
-mkSetup_intentLast_setup_errorNonNullable = Setup_intentLast_setup_errorNonNullable{setup_intentLast_setup_errorNonNullableAdvice_code = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableCharge = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableCode = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableDecline_code = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableDoc_url = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableMessage = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableNetwork_advice_code = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableNetwork_decline_code = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableParam = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullablePayment_intent = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullablePayment_method = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullablePayment_method_type = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableRequest_log_url = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableSetup_intent = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableSource = GHC.Maybe.Nothing,
-                                                                                    setup_intentLast_setup_errorNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_error
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorPayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorPayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charge" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorCharge obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorCode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorDecline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("doc_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorDoc_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("message" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorMessage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("param" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorParam obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorPayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorPayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorPayment_method_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_log_url" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorRequest_log_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_intent" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSetup_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSource obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_error
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_error" (\obj -> (((((((((((((((GHC.Base.pure Setup_intentLast_setup_error GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "doc_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "param")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_log_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Setup_intentLast_setup_error' with all required fields.
+mkSetup_intentLast_setup_error :: Setup_intentLast_setup_error
+mkSetup_intentLast_setup_error = Setup_intentLast_setup_error{setup_intentLast_setup_errorAdvice_code = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorCharge = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorCode = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorDecline_code = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorDoc_url = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorMessage = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorNetwork_advice_code = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorNetwork_decline_code = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorParam = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorPayment_intent = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorPayment_method = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorPayment_method_type = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorRequest_log_url = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorSetup_intent = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorSource = GHC.Maybe.Nothing,
+                                                              setup_intentLast_setup_errorType = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf@ in the specification.
 -- 
 -- The [source object](https:\\\/\\\/docs.stripe.com\\\/api\\\/sources\\\/object) for errors returned on a request involving a source.
-data Setup_intentLast_setup_errorNonNullableSource = Setup_intentLast_setup_errorNonNullableSource {
+data Setup_intentLast_setup_errorSource = Setup_intentLast_setup_errorSource {
   -- | account: The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-  setup_intentLast_setup_errorNonNullableSourceAccount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableVariants))
+  setup_intentLast_setup_errorSourceAccount :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSourceAccountVariants)
   -- | account_holder_name: The name of the person or business that owns the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAccount_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAccount_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_holder_type: The type of entity that holds the account. This can be either \`individual\` or \`company\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAccount_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAccount_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_type: The bank account type. This can only be \`checking\` or \`savings\` in most countries. In Japan, this can only be \`futsu\` or \`toza\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAccount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAccount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | ach_credit_transfer
-  , setup_intentLast_setup_errorNonNullableSourceAch_credit_transfer :: (GHC.Maybe.Maybe Source_type_ach_credit_transfer)
+  , setup_intentLast_setup_errorSourceAch_credit_transfer :: (GHC.Maybe.Maybe Source_type_ach_credit_transfer)
   -- | ach_debit
-  , setup_intentLast_setup_errorNonNullableSourceAch_debit :: (GHC.Maybe.Maybe Source_type_ach_debit)
+  , setup_intentLast_setup_errorSourceAch_debit :: (GHC.Maybe.Maybe Source_type_ach_debit)
   -- | acss_debit
-  , setup_intentLast_setup_errorNonNullableSourceAcss_debit :: (GHC.Maybe.Maybe Source_type_acss_debit)
+  , setup_intentLast_setup_errorSourceAcss_debit :: (GHC.Maybe.Maybe Source_type_acss_debit)
   -- | address_city: City\/District\/Suburb\/Town\/Village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_city :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_city :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_country: Billing address country, if provided when creating card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_country :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_country :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1: Address line 1 (Street address\/PO Box\/Company name).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_line1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1_check: If \`address_line1\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line2: Address line 2 (Apartment\/Suite\/Unit\/Building).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_line2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_line2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_state: State\/County\/Province\/Region.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_state :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_state :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_zip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_zip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip_check: If \`address_zip\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceAddress_zip_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceAddress_zip_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | alipay
-  , setup_intentLast_setup_errorNonNullableSourceAlipay :: (GHC.Maybe.Maybe Source_type_alipay)
+  , setup_intentLast_setup_errorSourceAlipay :: (GHC.Maybe.Maybe Source_type_alipay)
   -- | allow_redisplay: This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-  , setup_intentLast_setup_errorNonNullableSourceAllow_redisplay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullable))
+  , setup_intentLast_setup_errorSourceAllow_redisplay :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | amount: A positive integer in the smallest currency unit (that is, 100 cents for \$1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the total amount associated with the source. This is the amount for which the source will be chargeable once ready. Required for \`single_use\` sources.
-  , setup_intentLast_setup_errorNonNullableSourceAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intentLast_setup_errorSourceAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | au_becs_debit
-  , setup_intentLast_setup_errorNonNullableSourceAu_becs_debit :: (GHC.Maybe.Maybe Source_type_au_becs_debit)
+  , setup_intentLast_setup_errorSourceAu_becs_debit :: (GHC.Maybe.Maybe Source_type_au_becs_debit)
   -- | available_payout_methods: A set of available payout methods for this bank account. Only values from this set should be passed as the \`method\` when creating a payout.
-  , setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methods :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullable]))
+  , setup_intentLast_setup_errorSourceAvailable_payout_methods :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | bancontact
-  , setup_intentLast_setup_errorNonNullableSourceBancontact :: (GHC.Maybe.Maybe Source_type_bancontact)
+  , setup_intentLast_setup_errorSourceBancontact :: (GHC.Maybe.Maybe Source_type_bancontact)
   -- | bank_name: Name of the bank associated with the routing number (e.g., \`WELLS FARGO\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | brand: Card brand. Can be \`American Express\`, \`Cartes Bancaires\`, \`Diners Club\`, \`Discover\`, \`Eftpos Australia\`, \`Girocard\`, \`JCB\`, \`MasterCard\`, \`UnionPay\`, \`Visa\`, or \`Unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | card
-  , setup_intentLast_setup_errorNonNullableSourceCard :: (GHC.Maybe.Maybe Source_type_card)
+  , setup_intentLast_setup_errorSourceCard :: (GHC.Maybe.Maybe Source_type_card)
   -- | card_present
-  , setup_intentLast_setup_errorNonNullableSourceCard_present :: (GHC.Maybe.Maybe Source_type_card_present)
+  , setup_intentLast_setup_errorSourceCard_present :: (GHC.Maybe.Maybe Source_type_card_present)
   -- | client_secret: The client secret of the source. Used for client-side retrieval using a publishable key.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceClient_secret :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceClient_secret :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | code_verification: 
-  , setup_intentLast_setup_errorNonNullableSourceCode_verification :: (GHC.Maybe.Maybe Source_code_verification_flow)
+  , setup_intentLast_setup_errorSourceCode_verification :: (GHC.Maybe.Maybe Source_code_verification_flow)
   -- | country: Two-letter ISO code representing the country the bank account is located in.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
-  , setup_intentLast_setup_errorNonNullableSourceCreated :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , setup_intentLast_setup_errorSourceCreated :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currency: Three-letter [ISO code for the currency](https:\/\/stripe.com\/docs\/payouts) paid out to the bank account.
-  , setup_intentLast_setup_errorNonNullableSourceCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer: The ID of the customer that the bank account is associated with.
-  , setup_intentLast_setup_errorNonNullableSourceCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableVariants))
+  , setup_intentLast_setup_errorSourceCustomer :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSourceCustomerVariants)
   -- | cvc_check: If a CVC was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`. A result of unchecked indicates that CVC was provided but hasn\'t been checked yet. Checks are typically performed when attaching a card to a Customer object, or when creating a charge. For more details, see [Check if a card is valid without a charge](https:\/\/support.stripe.com\/questions\/check-if-a-card-is-valid-without-a-charge).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | default_for_currency: Whether this bank account is the default external account for its currency.
-  , setup_intentLast_setup_errorNonNullableSourceDefault_for_currency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , setup_intentLast_setup_errorSourceDefault_for_currency :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | dynamic_last4: (For tokenized numbers only.) The last four digits of the device account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceDynamic_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceDynamic_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | eps
-  , setup_intentLast_setup_errorNonNullableSourceEps :: (GHC.Maybe.Maybe Source_type_eps)
+  , setup_intentLast_setup_errorSourceEps :: (GHC.Maybe.Maybe Source_type_eps)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
-  , setup_intentLast_setup_errorNonNullableSourceExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , setup_intentLast_setup_errorSourceExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year: Four-digit number representing the card\'s expiration year.
-  , setup_intentLast_setup_errorNonNullableSourceExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , setup_intentLast_setup_errorSourceExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | fingerprint: Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | flow: The authentication \`flow\` of the source. \`flow\` is one of \`redirect\`, \`receiver\`, \`code_verification\`, \`none\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceFlow :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceFlow :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding: Card funding type. Can be \`credit\`, \`debit\`, \`prepaid\`, or \`unknown\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | future_requirements: Information about the [upcoming new requirements for the bank account](https:\/\/docs.stripe.com\/connect\/custom-accounts\/future-requirements), including what information needs to be collected, and by when.
-  , setup_intentLast_setup_errorNonNullableSourceFuture_requirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable))
+  , setup_intentLast_setup_errorSourceFuture_requirements :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSourceFuture_requirements)
   -- | giropay
-  , setup_intentLast_setup_errorNonNullableSourceGiropay :: (GHC.Maybe.Maybe Source_type_giropay)
+  , setup_intentLast_setup_errorSourceGiropay :: (GHC.Maybe.Maybe Source_type_giropay)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceId :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceId :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | ideal
-  , setup_intentLast_setup_errorNonNullableSourceIdeal :: (GHC.Maybe.Maybe Source_type_ideal)
+  , setup_intentLast_setup_errorSourceIdeal :: (GHC.Maybe.Maybe Source_type_ideal)
   -- | iin: Issuer identification number of the card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceIin :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceIin :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | klarna
-  , setup_intentLast_setup_errorNonNullableSourceKlarna :: (GHC.Maybe.Maybe Source_type_klarna)
+  , setup_intentLast_setup_errorSourceKlarna :: (GHC.Maybe.Maybe Source_type_klarna)
   -- | last4: The last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
-  , setup_intentLast_setup_errorNonNullableSourceLivemode :: (GHC.Maybe.Maybe GHC.Types.Bool)
+  , setup_intentLast_setup_errorSourceLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
+  , setup_intentLast_setup_errorSourceLivemode :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , setup_intentLast_setup_errorNonNullableSourceMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , setup_intentLast_setup_errorSourceMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | multibanco
-  , setup_intentLast_setup_errorNonNullableSourceMultibanco :: (GHC.Maybe.Maybe Source_type_multibanco)
+  , setup_intentLast_setup_errorSourceMultibanco :: (GHC.Maybe.Maybe Source_type_multibanco)
   -- | name: Cardholder name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | networks: 
-  , setup_intentLast_setup_errorNonNullableSourceNetworks :: (GHC.Maybe.Maybe Token_card_networks)
+  , setup_intentLast_setup_errorSourceNetworks :: (GHC.Maybe.Maybe Token_card_networks)
   -- | object: String representing the object\'s type. Objects of the same type share the same value.
-  , setup_intentLast_setup_errorNonNullableSourceObject :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorNonNullableSourceObject)
+  , setup_intentLast_setup_errorSourceObject :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | owner: Information about the owner of the payment instrument that may be used or required by particular source types.
-  , setup_intentLast_setup_errorNonNullableSourceOwner :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable))
+  , setup_intentLast_setup_errorSourceOwner :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSourceOwner)
   -- | p24
-  , setup_intentLast_setup_errorNonNullableSourceP24 :: (GHC.Maybe.Maybe Source_type_p24)
+  , setup_intentLast_setup_errorSourceP24 :: (GHC.Maybe.Maybe Source_type_p24)
   -- | receiver: 
-  , setup_intentLast_setup_errorNonNullableSourceReceiver :: (GHC.Maybe.Maybe Source_receiver_flow)
+  , setup_intentLast_setup_errorSourceReceiver :: (GHC.Maybe.Maybe Source_receiver_flow)
   -- | redirect: 
-  , setup_intentLast_setup_errorNonNullableSourceRedirect :: (GHC.Maybe.Maybe Source_redirect_flow)
+  , setup_intentLast_setup_errorSourceRedirect :: (GHC.Maybe.Maybe Source_redirect_flow)
   -- | regulated_status: Status of a card based on the card issuer.
-  , setup_intentLast_setup_errorNonNullableSourceRegulated_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullable))
+  , setup_intentLast_setup_errorSourceRegulated_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | requirements: Information about the requirements for the bank account, including what information needs to be collected.
-  , setup_intentLast_setup_errorNonNullableSourceRequirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable))
+  , setup_intentLast_setup_errorSourceRequirements :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSourceRequirements)
   -- | routing_number: The routing transit number for the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | sepa_debit
-  , setup_intentLast_setup_errorNonNullableSourceSepa_debit :: (GHC.Maybe.Maybe Source_type_sepa_debit)
+  , setup_intentLast_setup_errorSourceSepa_debit :: (GHC.Maybe.Maybe Source_type_sepa_debit)
   -- | sofort
-  , setup_intentLast_setup_errorNonNullableSourceSofort :: (GHC.Maybe.Maybe Source_type_sofort)
+  , setup_intentLast_setup_errorSourceSofort :: (GHC.Maybe.Maybe Source_type_sofort)
   -- | source_order: 
-  , setup_intentLast_setup_errorNonNullableSourceSource_order :: (GHC.Maybe.Maybe Source_order)
+  , setup_intentLast_setup_errorSourceSource_order :: (GHC.Maybe.Maybe Source_order)
   -- | statement_descriptor: Extra information about a source. This will appear on your customer\'s statement every time you charge the source.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: For bank accounts, possible values are \`new\`, \`validated\`, \`verified\`, \`verification_failed\`, \`tokenized_account_number_deactivated\` or \`errored\`. A bank account that hasn\'t had any activity or validation performed is \`new\`. If Stripe can determine that the bank account exists, its status will be \`validated\`. Note that there often isn’t enough information to know (e.g., for smaller credit unions), and the validation is not always run. If customer bank account verification has succeeded, the bank account status will be \`verified\`. If the verification failed for any reason, such as microdeposit failure, the status will be \`verification_failed\`. If the status is \`tokenized_account_number_deactivated\`, the account utilizes a tokenized account number which has been deactivated due to expiration or revocation. This account will need to be reverified to continue using it for money movement. If a payout sent to this bank account fails, we\'ll set the status to \`errored\` and will not continue to send [scheduled payouts](https:\/\/stripe.com\/docs\/payouts\#payout-schedule) until the bank details are updated.
   -- 
   -- For external accounts, possible values are \`new\`, \`errored\`, \`verification_failed\`, and \`tokenized_account_number_deactivated\`. If a payout fails, the status is set to \`errored\` and scheduled payouts are stopped until account details are updated. In the US and India, if we can\'t [verify the owner of the bank account](https:\/\/support.stripe.com\/questions\/bank-account-ownership-verification), we\'ll set the status to \`verification_failed\`. Other validations aren\'t run against external accounts because they\'re only used for payouts. This means the other statuses don\'t apply.
@@ -905,1389 +694,841 @@ data Setup_intentLast_setup_errorNonNullableSource = Setup_intentLast_setup_erro
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentLast_setup_errorSourceStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | three_d_secure
-  , setup_intentLast_setup_errorNonNullableSourceThree_d_secure :: (GHC.Maybe.Maybe Source_type_three_d_secure)
+  , setup_intentLast_setup_errorSourceThree_d_secure :: (GHC.Maybe.Maybe Source_type_three_d_secure)
   -- | tokenization_method: If the card number is tokenized, this is the method that was used. Can be \`android_pay\` (includes Google Pay), \`apple_pay\`, \`masterpass\`, \`visa_checkout\`, or null.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceTokenization_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceTokenization_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The \`type\` of the source. The \`type\` is a payment method, one of \`ach_credit_transfer\`, \`ach_debit\`, \`alipay\`, \`bancontact\`, \`card\`, \`card_present\`, \`eps\`, \`giropay\`, \`ideal\`, \`multibanco\`, \`klarna\`, \`p24\`, \`sepa_debit\`, \`sofort\`, \`three_d_secure\`, or \`wechat\`. An additional hash is included on the source with a name matching this value. It contains additional information specific to the [payment method](https:\/\/docs.stripe.com\/sources) used.
-  , setup_intentLast_setup_errorNonNullableSourceType :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorNonNullableSourceType)
+  , setup_intentLast_setup_errorSourceType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | usage: Either \`reusable\` or \`single_use\`. Whether this source should be reusable or not. Some source types may or may not be reusable by construction, while others may leave the option at creation. If an incompatible value is passed, an error will be returned.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceUsage :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceUsage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | wechat
-  , setup_intentLast_setup_errorNonNullableSourceWechat :: (GHC.Maybe.Maybe Source_type_wechat)
+  , setup_intentLast_setup_errorSourceWechat :: (GHC.Maybe.Maybe Source_type_wechat)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSource
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceWechat obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceWechat obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSource
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorNonNullableSource" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Setup_intentLast_setup_errorNonNullableSource GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_credit_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redisplay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_payout_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bank_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code_verification")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_for_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dynamic_last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "iin")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "networks")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "owner")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receiver")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "redirect")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "regulated_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "routing_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_order")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "three_d_secure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tokenization_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat"))}
--- | Create a new 'Setup_intentLast_setup_errorNonNullableSource' with all required fields.
-mkSetup_intentLast_setup_errorNonNullableSource :: Setup_intentLast_setup_errorNonNullableSource
-mkSetup_intentLast_setup_errorNonNullableSource = Setup_intentLast_setup_errorNonNullableSource{setup_intentLast_setup_errorNonNullableSourceAccount = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAccount_holder_name = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAccount_holder_type = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAccount_type = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAch_credit_transfer = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAch_debit = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAcss_debit = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_city = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_country = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_line1 = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_line1_check = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_line2 = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_state = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_zip = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAddress_zip_check = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAlipay = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAllow_redisplay = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAmount = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAu_becs_debit = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methods = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceBancontact = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceBank_name = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceBrand = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCard = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCard_present = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceClient_secret = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCode_verification = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCountry = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCreated = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCurrency = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCustomer = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceCvc_check = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceDefault_for_currency = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceDynamic_last4 = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceEps = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceExp_month = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceExp_year = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceFingerprint = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceFlow = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceFunding = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceFuture_requirements = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceGiropay = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceId = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceIdeal = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceIin = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceKlarna = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceLast4 = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceLivemode = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceMetadata = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceMultibanco = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceName = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceNetworks = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceObject = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceOwner = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceP24 = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceReceiver = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceRedirect = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceRegulated_status = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceRequirements = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceRouting_number = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceSepa_debit = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceSofort = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceSource_order = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceStatement_descriptor = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceStatus = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceThree_d_secure = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceTokenization_method = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceType = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceUsage = GHC.Maybe.Nothing,
-                                                                                                setup_intentLast_setup_errorNonNullableSourceWechat = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSource
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceWechat obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount_holder_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_holder_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount_holder_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAccount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceAvailable_payout_methods obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bank_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceBank_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("client_secret" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceClient_secret obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("code_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCode_verification obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceDynamic_last4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFingerprint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("flow" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFlow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("funding" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFunding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceIin obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceLast4 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("livemode" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceLivemode obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("object" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceObject obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("owner" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwner obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receiver" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceReceiver obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRedirect obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing_number" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRouting_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_order" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceSource_order obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceThree_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceTokenization_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("usage" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceUsage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceWechat obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSource
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorSource" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Setup_intentLast_setup_errorSource GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_holder_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_credit_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redisplay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_payout_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bank_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "client_secret")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code_verification")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_for_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dynamic_last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "iin")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "networks")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "owner")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receiver")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "redirect")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "regulated_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "routing_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_order")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "three_d_secure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tokenization_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "usage")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat"))}
+-- | Create a new 'Setup_intentLast_setup_errorSource' with all required fields.
+mkSetup_intentLast_setup_errorSource :: Setup_intentLast_setup_errorSource
+mkSetup_intentLast_setup_errorSource = Setup_intentLast_setup_errorSource{setup_intentLast_setup_errorSourceAccount = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAccount_holder_name = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAccount_holder_type = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAccount_type = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAch_credit_transfer = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAch_debit = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAcss_debit = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_city = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_country = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_line1 = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_line1_check = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_line2 = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_state = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_zip = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAddress_zip_check = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAlipay = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAllow_redisplay = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAmount = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAu_becs_debit = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceAvailable_payout_methods = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceBancontact = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceBank_name = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceBrand = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCard = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCard_present = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceClient_secret = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCode_verification = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCountry = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCreated = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCurrency = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCustomer = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceCvc_check = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceDefault_for_currency = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceDynamic_last4 = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceEps = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceExp_month = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceExp_year = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceFingerprint = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceFlow = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceFunding = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceFuture_requirements = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceGiropay = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceId = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceIdeal = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceIin = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceKlarna = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceLast4 = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceLivemode = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceMetadata = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceMultibanco = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceName = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceNetworks = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceObject = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceOwner = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceP24 = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceReceiver = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceRedirect = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceRegulated_status = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceRequirements = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceRouting_number = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceSepa_debit = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceSofort = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceSource_order = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceStatement_descriptor = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceStatus = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceThree_d_secure = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceTokenization_method = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceType = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceUsage = GHC.Maybe.Nothing,
+                                                                          setup_intentLast_setup_errorSourceWechat = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-data Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableVariants =
-   Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableText Data.Text.Internal.Text
-  | Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableAccount Account
+data Setup_intentLast_setup_errorSourceAccountVariants =
+   Setup_intentLast_setup_errorSourceAccountText Data.Text.Internal.Text
+  | Setup_intentLast_setup_errorSourceAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableVariants
-    where {toJSON (Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableVariants
-    where {parseJSON val = case (Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLast_setup_errorNonNullableSourceAccountNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSourceAccountVariants
+    where {toJSON (Setup_intentLast_setup_errorSourceAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentLast_setup_errorSourceAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSourceAccountVariants
+    where {parseJSON val = case (Setup_intentLast_setup_errorSourceAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLast_setup_errorSourceAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.allow_redisplay@ in the specification.
--- 
--- This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-data Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullable =
-   Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumAlways -- ^ Represents the JSON value @"always"@
-  | Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumLimited -- ^ Represents the JSON value @"limited"@
-  | Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullable
-    where {toJSON (Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableOther val) = val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumAlways) = "always";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumLimited) = "limited";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumAlways
-                                             | val GHC.Classes.== "limited" -> Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumLimited
-                                             | val GHC.Classes.== "unspecified" -> Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableEnumUnspecified
-                                             | GHC.Base.otherwise -> Setup_intentLast_setup_errorNonNullableSourceAllow_redisplayNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.available_payout_methods.items@ in the specification.
--- 
--- 
-data Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullable =
-   Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullable
-    where {toJSON (Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableOther val) = val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumInstant) = "instant";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "instant" -> Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumInstant
-                                             | val GHC.Classes.== "standard" -> Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableEnumStandard
-                                             | GHC.Base.otherwise -> Setup_intentLast_setup_errorNonNullableSourceAvailable_payout_methodsNonNullableOther val)}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.customer.anyOf@ in the specification.
 -- 
 -- The ID of the customer that the bank account is associated with.
-data Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableVariants =
-   Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableText Data.Text.Internal.Text
-  | Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableCustomer Customer
-  | Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableDeleted_customer Deleted_customer
+data Setup_intentLast_setup_errorSourceCustomerVariants =
+   Setup_intentLast_setup_errorSourceCustomerText Data.Text.Internal.Text
+  | Setup_intentLast_setup_errorSourceCustomerCustomer Customer
+  | Setup_intentLast_setup_errorSourceCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableVariants
-    where {toJSON (Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableVariants
-    where {parseJSON val = case (Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLast_setup_errorNonNullableSourceCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSourceCustomerVariants
+    where {toJSON (Setup_intentLast_setup_errorSourceCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentLast_setup_errorSourceCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentLast_setup_errorSourceCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSourceCustomerVariants
+    where {parseJSON val = case (Setup_intentLast_setup_errorSourceCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLast_setup_errorSourceCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLast_setup_errorSourceCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.future_requirements.anyOf@ in the specification.
 -- 
 -- Information about the [upcoming new requirements for the bank account](https:\\\/\\\/docs.stripe.com\\\/connect\\\/custom-accounts\\\/future-requirements), including what information needs to be collected, and by when.
-data Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable = Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable {
+data Setup_intentLast_setup_errorSourceFuture_requirements = Setup_intentLast_setup_errorSourceFuture_requirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  setup_intentLast_setup_errorSourceFuture_requirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , setup_intentLast_setup_errorSourceFuture_requirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , setup_intentLast_setup_errorSourceFuture_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , setup_intentLast_setup_errorSourceFuture_requirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable" (\obj -> (((GHC.Base.pure Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable' with all required fields.
-mkSetup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable :: Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable
-mkSetup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable = Setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullable{setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentLast_setup_errorNonNullableSourceFuture_requirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.object@ in the specification.
--- 
--- String representing the object\'s type. Objects of the same type share the same value.
-data Setup_intentLast_setup_errorNonNullableSourceObject =
-   Setup_intentLast_setup_errorNonNullableSourceObjectOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentLast_setup_errorNonNullableSourceObjectTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentLast_setup_errorNonNullableSourceObjectEnumBank_account -- ^ Represents the JSON value @"bank_account"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceObject
-    where {toJSON (Setup_intentLast_setup_errorNonNullableSourceObjectOther val) = val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceObjectTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceObjectEnumBank_account) = "bank_account"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceObject
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_account" -> Setup_intentLast_setup_errorNonNullableSourceObjectEnumBank_account
-                                             | GHC.Base.otherwise -> Setup_intentLast_setup_errorNonNullableSourceObjectOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSourceFuture_requirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceFuture_requirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSourceFuture_requirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorSourceFuture_requirements" (\obj -> (((GHC.Base.pure Setup_intentLast_setup_errorSourceFuture_requirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'Setup_intentLast_setup_errorSourceFuture_requirements' with all required fields.
+mkSetup_intentLast_setup_errorSourceFuture_requirements :: Setup_intentLast_setup_errorSourceFuture_requirements
+mkSetup_intentLast_setup_errorSourceFuture_requirements = Setup_intentLast_setup_errorSourceFuture_requirements{setup_intentLast_setup_errorSourceFuture_requirementsCurrently_due = GHC.Maybe.Nothing,
+                                                                                                                setup_intentLast_setup_errorSourceFuture_requirementsErrors = GHC.Maybe.Nothing,
+                                                                                                                setup_intentLast_setup_errorSourceFuture_requirementsPast_due = GHC.Maybe.Nothing,
+                                                                                                                setup_intentLast_setup_errorSourceFuture_requirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.owner.anyOf@ in the specification.
 -- 
 -- Information about the owner of the payment instrument that may be used or required by particular source types.
-data Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable = Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable {
+data Setup_intentLast_setup_errorSourceOwner = Setup_intentLast_setup_errorSourceOwner {
   -- | address: Owner\'s address.
-  setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddress :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable))
+  setup_intentLast_setup_errorSourceOwnerAddress :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSourceOwnerAddress)
   -- | email: Owner\'s email address.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Owner\'s full name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: Owner\'s phone number (including extension).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullablePhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_address: Verified owner\'s address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable))
+  , setup_intentLast_setup_errorSourceOwnerVerified_address :: (GHC.Maybe.Maybe Setup_intentLast_setup_errorSourceOwnerVerified_address)
   -- | verified_email: Verified owner\'s email address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_name: Verified owner\'s full name. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_phone: Verified owner\'s phone number (including extension). Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_phone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_phone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_phone obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_phone obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable" (\obj -> (((((((GHC.Base.pure Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_phone"))}
--- | Create a new 'Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable' with all required fields.
-mkSetup_intentLast_setup_errorNonNullableSourceOwnerNonNullable :: Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable
-mkSetup_intentLast_setup_errorNonNullableSourceOwnerNonNullable = Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullable{setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddress = GHC.Maybe.Nothing,
-                                                                                                                                setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableEmail = GHC.Maybe.Nothing,
-                                                                                                                                setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableName = GHC.Maybe.Nothing,
-                                                                                                                                setup_intentLast_setup_errorNonNullableSourceOwnerNonNullablePhone = GHC.Maybe.Nothing,
-                                                                                                                                setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_address = GHC.Maybe.Nothing,
-                                                                                                                                setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_email = GHC.Maybe.Nothing,
-                                                                                                                                setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_name = GHC.Maybe.Nothing,
-                                                                                                                                setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_phone = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSourceOwner
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_phone obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_phone obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSourceOwner
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorSourceOwner" (\obj -> (((((((GHC.Base.pure Setup_intentLast_setup_errorSourceOwner GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_phone"))}
+-- | Create a new 'Setup_intentLast_setup_errorSourceOwner' with all required fields.
+mkSetup_intentLast_setup_errorSourceOwner :: Setup_intentLast_setup_errorSourceOwner
+mkSetup_intentLast_setup_errorSourceOwner = Setup_intentLast_setup_errorSourceOwner{setup_intentLast_setup_errorSourceOwnerAddress = GHC.Maybe.Nothing,
+                                                                                    setup_intentLast_setup_errorSourceOwnerEmail = GHC.Maybe.Nothing,
+                                                                                    setup_intentLast_setup_errorSourceOwnerName = GHC.Maybe.Nothing,
+                                                                                    setup_intentLast_setup_errorSourceOwnerPhone = GHC.Maybe.Nothing,
+                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_address = GHC.Maybe.Nothing,
+                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_email = GHC.Maybe.Nothing,
+                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_name = GHC.Maybe.Nothing,
+                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_phone = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.owner.anyOf.properties.address.anyOf@ in the specification.
 -- 
 -- Owner\\\'s address.
-data Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable = Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable {
+data Setup_intentLast_setup_errorSourceOwnerAddress = Setup_intentLast_setup_errorSourceOwnerAddress {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intentLast_setup_errorSourceOwnerAddressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerAddressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerAddressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerAddressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerAddressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerAddressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable" (\obj -> (((((GHC.Base.pure Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable' with all required fields.
-mkSetup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable :: Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable
-mkSetup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable = Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullable{setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                                                    setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                                                    setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                                                    setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                                                    setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                                                    setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableAddressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSourceOwnerAddress
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerAddressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSourceOwnerAddress
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorSourceOwnerAddress" (\obj -> (((((GHC.Base.pure Setup_intentLast_setup_errorSourceOwnerAddress GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Setup_intentLast_setup_errorSourceOwnerAddress' with all required fields.
+mkSetup_intentLast_setup_errorSourceOwnerAddress :: Setup_intentLast_setup_errorSourceOwnerAddress
+mkSetup_intentLast_setup_errorSourceOwnerAddress = Setup_intentLast_setup_errorSourceOwnerAddress{setup_intentLast_setup_errorSourceOwnerAddressCity = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceOwnerAddressCountry = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceOwnerAddressLine1 = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceOwnerAddressLine2 = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceOwnerAddressPostal_code = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceOwnerAddressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.owner.anyOf.properties.verified_address.anyOf@ in the specification.
 -- 
 -- Verified owner\\\'s address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
-data Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable = Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable {
+data Setup_intentLast_setup_errorSourceOwnerVerified_address = Setup_intentLast_setup_errorSourceOwnerVerified_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intentLast_setup_errorSourceOwnerVerified_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentLast_setup_errorSourceOwnerVerified_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable" (\obj -> (((((GHC.Base.pure Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable' with all required fields.
-mkSetup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable :: Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable
-mkSetup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable = Setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullable{setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                                                                      setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                                                                      setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                                                                      setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                                                                      setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                                                                      setup_intentLast_setup_errorNonNullableSourceOwnerNonNullableVerified_addressNonNullableState = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.regulated_status@ in the specification.
--- 
--- Status of a card based on the card issuer.
-data Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullable =
-   Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableEnumRegulated -- ^ Represents the JSON value @"regulated"@
-  | Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableEnumUnregulated -- ^ Represents the JSON value @"unregulated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullable
-    where {toJSON (Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableOther val) = val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableEnumRegulated) = "regulated";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableEnumUnregulated) = "unregulated"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "regulated" -> Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableEnumRegulated
-                                             | val GHC.Classes.== "unregulated" -> Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableEnumUnregulated
-                                             | GHC.Base.otherwise -> Setup_intentLast_setup_errorNonNullableSourceRegulated_statusNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSourceOwnerVerified_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceOwnerVerified_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSourceOwnerVerified_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorSourceOwnerVerified_address" (\obj -> (((((GHC.Base.pure Setup_intentLast_setup_errorSourceOwnerVerified_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Setup_intentLast_setup_errorSourceOwnerVerified_address' with all required fields.
+mkSetup_intentLast_setup_errorSourceOwnerVerified_address :: Setup_intentLast_setup_errorSourceOwnerVerified_address
+mkSetup_intentLast_setup_errorSourceOwnerVerified_address = Setup_intentLast_setup_errorSourceOwnerVerified_address{setup_intentLast_setup_errorSourceOwnerVerified_addressCity = GHC.Maybe.Nothing,
+                                                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_addressCountry = GHC.Maybe.Nothing,
+                                                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                                    setup_intentLast_setup_errorSourceOwnerVerified_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.requirements.anyOf@ in the specification.
 -- 
 -- Information about the requirements for the bank account, including what information needs to be collected.
-data Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable = Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable {
+data Setup_intentLast_setup_errorSourceRequirements = Setup_intentLast_setup_errorSourceRequirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  setup_intentLast_setup_errorSourceRequirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , setup_intentLast_setup_errorSourceRequirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , setup_intentLast_setup_errorSourceRequirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , setup_intentLast_setup_errorSourceRequirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable" (\obj -> (((GHC.Base.pure Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable' with all required fields.
-mkSetup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable :: Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable
-mkSetup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable = Setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullable{setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                                                                              setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                                                                              setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                                                                              setup_intentLast_setup_errorNonNullableSourceRequirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.source.anyOf.properties.type@ in the specification.
--- 
--- The \`type\` of the source. The \`type\` is a payment method, one of \`ach_credit_transfer\`, \`ach_debit\`, \`alipay\`, \`bancontact\`, \`card\`, \`card_present\`, \`eps\`, \`giropay\`, \`ideal\`, \`multibanco\`, \`klarna\`, \`p24\`, \`sepa_debit\`, \`sofort\`, \`three_d_secure\`, or \`wechat\`. An additional hash is included on the source with a name matching this value. It contains additional information specific to the [payment method](https:\/\/docs.stripe.com\/sources) used.
-data Setup_intentLast_setup_errorNonNullableSourceType =
-   Setup_intentLast_setup_errorNonNullableSourceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentLast_setup_errorNonNullableSourceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumAch_credit_transfer -- ^ Represents the JSON value @"ach_credit_transfer"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumAch_debit -- ^ Represents the JSON value @"ach_debit"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumAcss_debit -- ^ Represents the JSON value @"acss_debit"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumAlipay -- ^ Represents the JSON value @"alipay"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumAu_becs_debit -- ^ Represents the JSON value @"au_becs_debit"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumBancontact -- ^ Represents the JSON value @"bancontact"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumCard -- ^ Represents the JSON value @"card"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumCard_present -- ^ Represents the JSON value @"card_present"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumEps -- ^ Represents the JSON value @"eps"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumGiropay -- ^ Represents the JSON value @"giropay"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumIdeal -- ^ Represents the JSON value @"ideal"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumKlarna -- ^ Represents the JSON value @"klarna"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumMultibanco -- ^ Represents the JSON value @"multibanco"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumP24 -- ^ Represents the JSON value @"p24"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumSepa_debit -- ^ Represents the JSON value @"sepa_debit"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumSofort -- ^ Represents the JSON value @"sofort"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumThree_d_secure -- ^ Represents the JSON value @"three_d_secure"@
-  | Setup_intentLast_setup_errorNonNullableSourceTypeEnumWechat -- ^ Represents the JSON value @"wechat"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableSourceType
-    where {toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeOther val) = val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumAch_credit_transfer) = "ach_credit_transfer";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumAch_debit) = "ach_debit";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumAcss_debit) = "acss_debit";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumAlipay) = "alipay";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumAu_becs_debit) = "au_becs_debit";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumBancontact) = "bancontact";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumCard) = "card";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumCard_present) = "card_present";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumEps) = "eps";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumGiropay) = "giropay";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumIdeal) = "ideal";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumKlarna) = "klarna";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumMultibanco) = "multibanco";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumP24) = "p24";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumSepa_debit) = "sepa_debit";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumSofort) = "sofort";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumThree_d_secure) = "three_d_secure";
-           toJSON (Setup_intentLast_setup_errorNonNullableSourceTypeEnumWechat) = "wechat"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableSourceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "ach_credit_transfer" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumAch_credit_transfer
-                                             | val GHC.Classes.== "ach_debit" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumAch_debit
-                                             | val GHC.Classes.== "acss_debit" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumAcss_debit
-                                             | val GHC.Classes.== "alipay" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumAlipay
-                                             | val GHC.Classes.== "au_becs_debit" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumAu_becs_debit
-                                             | val GHC.Classes.== "bancontact" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumBancontact
-                                             | val GHC.Classes.== "card" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumCard
-                                             | val GHC.Classes.== "card_present" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumCard_present
-                                             | val GHC.Classes.== "eps" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumEps
-                                             | val GHC.Classes.== "giropay" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumGiropay
-                                             | val GHC.Classes.== "ideal" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumIdeal
-                                             | val GHC.Classes.== "klarna" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumKlarna
-                                             | val GHC.Classes.== "multibanco" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumMultibanco
-                                             | val GHC.Classes.== "p24" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumP24
-                                             | val GHC.Classes.== "sepa_debit" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumSepa_debit
-                                             | val GHC.Classes.== "sofort" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumSofort
-                                             | val GHC.Classes.== "three_d_secure" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumThree_d_secure
-                                             | val GHC.Classes.== "wechat" -> Setup_intentLast_setup_errorNonNullableSourceTypeEnumWechat
-                                             | GHC.Base.otherwise -> Setup_intentLast_setup_errorNonNullableSourceTypeOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.last_setup_error.anyOf.properties.type@ in the specification.
--- 
--- The type of error returned. One of \`api_error\`, \`card_error\`, \`idempotency_error\`, or \`invalid_request_error\`
-data Setup_intentLast_setup_errorNonNullableType =
-   Setup_intentLast_setup_errorNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentLast_setup_errorNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentLast_setup_errorNonNullableTypeEnumApi_error -- ^ Represents the JSON value @"api_error"@
-  | Setup_intentLast_setup_errorNonNullableTypeEnumCard_error -- ^ Represents the JSON value @"card_error"@
-  | Setup_intentLast_setup_errorNonNullableTypeEnumIdempotency_error -- ^ Represents the JSON value @"idempotency_error"@
-  | Setup_intentLast_setup_errorNonNullableTypeEnumInvalid_request_error -- ^ Represents the JSON value @"invalid_request_error"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorNonNullableType
-    where {toJSON (Setup_intentLast_setup_errorNonNullableTypeOther val) = val;
-           toJSON (Setup_intentLast_setup_errorNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentLast_setup_errorNonNullableTypeEnumApi_error) = "api_error";
-           toJSON (Setup_intentLast_setup_errorNonNullableTypeEnumCard_error) = "card_error";
-           toJSON (Setup_intentLast_setup_errorNonNullableTypeEnumIdempotency_error) = "idempotency_error";
-           toJSON (Setup_intentLast_setup_errorNonNullableTypeEnumInvalid_request_error) = "invalid_request_error"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "api_error" -> Setup_intentLast_setup_errorNonNullableTypeEnumApi_error
-                                             | val GHC.Classes.== "card_error" -> Setup_intentLast_setup_errorNonNullableTypeEnumCard_error
-                                             | val GHC.Classes.== "idempotency_error" -> Setup_intentLast_setup_errorNonNullableTypeEnumIdempotency_error
-                                             | val GHC.Classes.== "invalid_request_error" -> Setup_intentLast_setup_errorNonNullableTypeEnumInvalid_request_error
-                                             | GHC.Base.otherwise -> Setup_intentLast_setup_errorNonNullableTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLast_setup_errorSourceRequirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (setup_intentLast_setup_errorSourceRequirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLast_setup_errorSourceRequirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentLast_setup_errorSourceRequirements" (\obj -> (((GHC.Base.pure Setup_intentLast_setup_errorSourceRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'Setup_intentLast_setup_errorSourceRequirements' with all required fields.
+mkSetup_intentLast_setup_errorSourceRequirements :: Setup_intentLast_setup_errorSourceRequirements
+mkSetup_intentLast_setup_errorSourceRequirements = Setup_intentLast_setup_errorSourceRequirements{setup_intentLast_setup_errorSourceRequirementsCurrently_due = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceRequirementsErrors = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceRequirementsPast_due = GHC.Maybe.Nothing,
+                                                                                                  setup_intentLast_setup_errorSourceRequirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.latest_attempt.anyOf@ in the specification.
 -- 
 -- The most recent SetupAttempt for this SetupIntent.
-data Setup_intentLatest_attemptNonNullableVariants =
-   Setup_intentLatest_attemptNonNullableText Data.Text.Internal.Text
-  | Setup_intentLatest_attemptNonNullableSetup_attempt Setup_attempt
+data Setup_intentLatest_attemptVariants =
+   Setup_intentLatest_attemptText Data.Text.Internal.Text
+  | Setup_intentLatest_attemptSetup_attempt Setup_attempt
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLatest_attemptNonNullableVariants
-    where {toJSON (Setup_intentLatest_attemptNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentLatest_attemptNonNullableSetup_attempt a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLatest_attemptNonNullableVariants
-    where {parseJSON val = case (Setup_intentLatest_attemptNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLatest_attemptNonNullableSetup_attempt Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentLatest_attemptVariants
+    where {toJSON (Setup_intentLatest_attemptText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentLatest_attemptSetup_attempt a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentLatest_attemptVariants
+    where {parseJSON val = case (Setup_intentLatest_attemptText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentLatest_attemptSetup_attempt Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.mandate.anyOf@ in the specification.
 -- 
 -- ID of the multi use Mandate generated by the SetupIntent.
-data Setup_intentMandateNonNullableVariants =
-   Setup_intentMandateNonNullableText Data.Text.Internal.Text
-  | Setup_intentMandateNonNullableMandate Mandate
+data Setup_intentMandateVariants =
+   Setup_intentMandateText Data.Text.Internal.Text
+  | Setup_intentMandateMandate Mandate
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentMandateNonNullableVariants
-    where {toJSON (Setup_intentMandateNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentMandateNonNullableMandate a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentMandateNonNullableVariants
-    where {parseJSON val = case (Setup_intentMandateNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentMandateNonNullableMandate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentMandateVariants
+    where {toJSON (Setup_intentMandateText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentMandateMandate a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentMandateVariants
+    where {parseJSON val = case (Setup_intentMandateText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentMandateMandate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.next_action.anyOf@ in the specification.
 -- 
 -- If present, this property tells you what actions you need to take in order for your customer to continue payment setup.
-data Setup_intentNext_actionNonNullable = Setup_intentNext_actionNonNullable {
+data Setup_intentNext_action = Setup_intentNext_action {
   -- | cashapp_handle_redirect_or_display_qr_code: 
-  setup_intentNext_actionNonNullableCashapp_handle_redirect_or_display_qr_code :: (GHC.Maybe.Maybe Payment_intent_next_action_cashapp_handle_redirect_or_display_qr_code)
+  setup_intentNext_actionCashapp_handle_redirect_or_display_qr_code :: (GHC.Maybe.Maybe Payment_intent_next_action_cashapp_handle_redirect_or_display_qr_code)
   -- | redirect_to_url: 
-  , setup_intentNext_actionNonNullableRedirect_to_url :: (GHC.Maybe.Maybe Setup_intent_next_action_redirect_to_url)
+  , setup_intentNext_actionRedirect_to_url :: (GHC.Maybe.Maybe Setup_intent_next_action_redirect_to_url)
   -- | type: Type of the next action to perform. Refer to the other child attributes under \`next_action\` for available values. Examples include: \`redirect_to_url\`, \`use_stripe_sdk\`, \`alipay_handle_redirect\`, \`oxxo_display_details\`, or \`verify_with_microdeposits\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentNext_actionNonNullableType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentNext_actionType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | upi_handle_redirect_or_display_qr_code: 
+  , setup_intentNext_actionUpi_handle_redirect_or_display_qr_code :: (GHC.Maybe.Maybe Payment_intent_next_action_upi_handle_redirect_or_display_qr_code)
   -- | use_stripe_sdk: When confirming a SetupIntent with Stripe.js, Stripe.js depends on the contents of this dictionary to invoke authentication flows. The shape of the contents is subject to change and is only intended to be used by Stripe.js.
-  , setup_intentNext_actionNonNullableUse_stripe_sdk :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
+  , setup_intentNext_actionUse_stripe_sdk :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | verify_with_microdeposits: 
-  , setup_intentNext_actionNonNullableVerify_with_microdeposits :: (GHC.Maybe.Maybe Setup_intent_next_action_verify_with_microdeposits)
+  , setup_intentNext_actionVerify_with_microdeposits :: (GHC.Maybe.Maybe Setup_intent_next_action_verify_with_microdeposits)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentNext_actionNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp_handle_redirect_or_display_qr_code" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableCashapp_handle_redirect_or_display_qr_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect_to_url" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableRedirect_to_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("use_stripe_sdk" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableUse_stripe_sdk obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verify_with_microdeposits" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableVerify_with_microdeposits obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp_handle_redirect_or_display_qr_code" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableCashapp_handle_redirect_or_display_qr_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect_to_url" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableRedirect_to_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("use_stripe_sdk" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableUse_stripe_sdk obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verify_with_microdeposits" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionNonNullableVerify_with_microdeposits obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentNext_actionNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentNext_actionNonNullable" (\obj -> ((((GHC.Base.pure Setup_intentNext_actionNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashapp_handle_redirect_or_display_qr_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "redirect_to_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "use_stripe_sdk")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verify_with_microdeposits"))}
--- | Create a new 'Setup_intentNext_actionNonNullable' with all required fields.
-mkSetup_intentNext_actionNonNullable :: Setup_intentNext_actionNonNullable
-mkSetup_intentNext_actionNonNullable = Setup_intentNext_actionNonNullable{setup_intentNext_actionNonNullableCashapp_handle_redirect_or_display_qr_code = GHC.Maybe.Nothing,
-                                                                          setup_intentNext_actionNonNullableRedirect_to_url = GHC.Maybe.Nothing,
-                                                                          setup_intentNext_actionNonNullableType = GHC.Maybe.Nothing,
-                                                                          setup_intentNext_actionNonNullableUse_stripe_sdk = GHC.Maybe.Nothing,
-                                                                          setup_intentNext_actionNonNullableVerify_with_microdeposits = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentNext_action
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp_handle_redirect_or_display_qr_code" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionCashapp_handle_redirect_or_display_qr_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect_to_url" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionRedirect_to_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi_handle_redirect_or_display_qr_code" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionUpi_handle_redirect_or_display_qr_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("use_stripe_sdk" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionUse_stripe_sdk obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verify_with_microdeposits" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionVerify_with_microdeposits obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp_handle_redirect_or_display_qr_code" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionCashapp_handle_redirect_or_display_qr_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("redirect_to_url" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionRedirect_to_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi_handle_redirect_or_display_qr_code" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionUpi_handle_redirect_or_display_qr_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("use_stripe_sdk" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionUse_stripe_sdk obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verify_with_microdeposits" Data.Aeson.Types.ToJSON..=)) (setup_intentNext_actionVerify_with_microdeposits obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentNext_action
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentNext_action" (\obj -> (((((GHC.Base.pure Setup_intentNext_action GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashapp_handle_redirect_or_display_qr_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "redirect_to_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "upi_handle_redirect_or_display_qr_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "use_stripe_sdk")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verify_with_microdeposits"))}
+-- | Create a new 'Setup_intentNext_action' with all required fields.
+mkSetup_intentNext_action :: Setup_intentNext_action
+mkSetup_intentNext_action = Setup_intentNext_action{setup_intentNext_actionCashapp_handle_redirect_or_display_qr_code = GHC.Maybe.Nothing,
+                                                    setup_intentNext_actionRedirect_to_url = GHC.Maybe.Nothing,
+                                                    setup_intentNext_actionType = GHC.Maybe.Nothing,
+                                                    setup_intentNext_actionUpi_handle_redirect_or_display_qr_code = GHC.Maybe.Nothing,
+                                                    setup_intentNext_actionUse_stripe_sdk = GHC.Maybe.Nothing,
+                                                    setup_intentNext_actionVerify_with_microdeposits = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.on_behalf_of.anyOf@ in the specification.
 -- 
 -- The account (if any) for which the setup is intended.
-data Setup_intentOn_behalf_ofNonNullableVariants =
-   Setup_intentOn_behalf_ofNonNullableText Data.Text.Internal.Text
-  | Setup_intentOn_behalf_ofNonNullableAccount Account
+data Setup_intentOn_behalf_ofVariants =
+   Setup_intentOn_behalf_ofText Data.Text.Internal.Text
+  | Setup_intentOn_behalf_ofAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentOn_behalf_ofNonNullableVariants
-    where {toJSON (Setup_intentOn_behalf_ofNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentOn_behalf_ofNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentOn_behalf_ofNonNullableVariants
-    where {parseJSON val = case (Setup_intentOn_behalf_ofNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentOn_behalf_ofNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentOn_behalf_ofVariants
+    where {toJSON (Setup_intentOn_behalf_ofText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentOn_behalf_ofAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentOn_behalf_ofVariants
+    where {parseJSON val = case (Setup_intentOn_behalf_ofText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentOn_behalf_ofAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.payment_method.anyOf@ in the specification.
 -- 
 -- ID of the payment method used with this SetupIntent. If the payment method is \`card_present\` and isn\'t a digital wallet, then the [generated_card](https:\/\/docs.stripe.com\/api\/setup_attempts\/object\#setup_attempt_object-payment_method_details-card_present-generated_card) associated with the \`latest_attempt\` is attached to the Customer instead.
-data Setup_intentPayment_methodNonNullableVariants =
-   Setup_intentPayment_methodNonNullableText Data.Text.Internal.Text
-  | Setup_intentPayment_methodNonNullablePayment_method Payment_method
+data Setup_intentPayment_methodVariants =
+   Setup_intentPayment_methodText Data.Text.Internal.Text
+  | Setup_intentPayment_methodPayment_method Payment_method
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_methodNonNullableVariants
-    where {toJSON (Setup_intentPayment_methodNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentPayment_methodNonNullablePayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_methodNonNullableVariants
-    where {parseJSON val = case (Setup_intentPayment_methodNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentPayment_methodNonNullablePayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_methodVariants
+    where {toJSON (Setup_intentPayment_methodText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentPayment_methodPayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_methodVariants
+    where {parseJSON val = case (Setup_intentPayment_methodText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentPayment_methodPayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_configuration_details.anyOf@ in the specification.
 -- 
 -- Information about the [payment method configuration](https:\\\/\\\/docs.stripe.com\\\/api\\\/payment_method_configurations) used for this Setup Intent.
-data Setup_intentPayment_method_configuration_detailsNonNullable = Setup_intentPayment_method_configuration_detailsNonNullable {
+data Setup_intentPayment_method_configuration_details = Setup_intentPayment_method_configuration_details {
   -- | id: ID of the payment method configuration used.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intentPayment_method_configuration_detailsNonNullableId :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  setup_intentPayment_method_configuration_detailsId :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | parent: ID of the parent payment method configuration used.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentPayment_method_configuration_detailsNonNullableParent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentPayment_method_configuration_detailsParent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_configuration_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsNonNullableId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsNonNullableParent obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsNonNullableId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsNonNullableParent obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_configuration_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_configuration_detailsNonNullable" (\obj -> (GHC.Base.pure Setup_intentPayment_method_configuration_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "parent"))}
--- | Create a new 'Setup_intentPayment_method_configuration_detailsNonNullable' with all required fields.
-mkSetup_intentPayment_method_configuration_detailsNonNullable :: Setup_intentPayment_method_configuration_detailsNonNullable
-mkSetup_intentPayment_method_configuration_detailsNonNullable = Setup_intentPayment_method_configuration_detailsNonNullable{setup_intentPayment_method_configuration_detailsNonNullableId = GHC.Maybe.Nothing,
-                                                                                                                            setup_intentPayment_method_configuration_detailsNonNullableParent = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_configuration_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsParent obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsId obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("parent" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_configuration_detailsParent obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_configuration_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_configuration_details" (\obj -> (GHC.Base.pure Setup_intentPayment_method_configuration_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "parent"))}
+-- | Create a new 'Setup_intentPayment_method_configuration_details' with all required fields.
+mkSetup_intentPayment_method_configuration_details :: Setup_intentPayment_method_configuration_details
+mkSetup_intentPayment_method_configuration_details = Setup_intentPayment_method_configuration_details{setup_intentPayment_method_configuration_detailsId = GHC.Maybe.Nothing,
+                                                                                                      setup_intentPayment_method_configuration_detailsParent = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf@ in the specification.
 -- 
 -- Payment method-specific configuration for this SetupIntent.
-data Setup_intentPayment_method_optionsNonNullable = Setup_intentPayment_method_optionsNonNullable {
+data Setup_intentPayment_method_options = Setup_intentPayment_method_options {
   -- | acss_debit
-  setup_intentPayment_method_optionsNonNullableAcss_debit :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableAcss_debit)
+  setup_intentPayment_method_optionsAcss_debit :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsAcss_debit)
   -- | amazon_pay
-  , setup_intentPayment_method_optionsNonNullableAmazon_pay :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableAmazon_pay)
+  , setup_intentPayment_method_optionsAmazon_pay :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsAmazon_pay)
   -- | bacs_debit
-  , setup_intentPayment_method_optionsNonNullableBacs_debit :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableBacs_debit)
+  , setup_intentPayment_method_optionsBacs_debit :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsBacs_debit)
   -- | card
-  , setup_intentPayment_method_optionsNonNullableCard :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableCard)
+  , setup_intentPayment_method_optionsCard :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsCard)
   -- | card_present
-  , setup_intentPayment_method_optionsNonNullableCard_present :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableCard_present)
+  , setup_intentPayment_method_optionsCard_present :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsCard_present)
   -- | klarna
-  , setup_intentPayment_method_optionsNonNullableKlarna :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableKlarna)
+  , setup_intentPayment_method_optionsKlarna :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsKlarna)
   -- | link
-  , setup_intentPayment_method_optionsNonNullableLink :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableLink)
+  , setup_intentPayment_method_optionsLink :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsLink)
   -- | paypal
-  , setup_intentPayment_method_optionsNonNullablePaypal :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullablePaypal)
+  , setup_intentPayment_method_optionsPaypal :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsPaypal)
   -- | payto
-  , setup_intentPayment_method_optionsNonNullablePayto :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullablePayto)
+  , setup_intentPayment_method_optionsPayto :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsPayto)
   -- | sepa_debit
-  , setup_intentPayment_method_optionsNonNullableSepa_debit :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableSepa_debit)
+  , setup_intentPayment_method_optionsSepa_debit :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsSepa_debit)
+  -- | upi
+  , setup_intentPayment_method_optionsUpi :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsUpi)
   -- | us_bank_account
-  , setup_intentPayment_method_optionsNonNullableUs_bank_account :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableUs_bank_account)
+  , setup_intentPayment_method_optionsUs_bank_account :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsUs_bank_account)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_account obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_account obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullable" (\obj -> ((((((((((GHC.Base.pure Setup_intentPayment_method_optionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullable' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullable :: Setup_intentPayment_method_optionsNonNullable
-mkSetup_intentPayment_method_optionsNonNullable = Setup_intentPayment_method_optionsNonNullable{setup_intentPayment_method_optionsNonNullableAcss_debit = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableAmazon_pay = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableBacs_debit = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableCard = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableCard_present = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableKlarna = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableLink = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullablePaypal = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullablePayto = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableSepa_debit = GHC.Maybe.Nothing,
-                                                                                                setup_intentPayment_method_optionsNonNullableUs_bank_account = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_options
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_account obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_account obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_options
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_options" (\obj -> (((((((((((GHC.Base.pure Setup_intentPayment_method_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "upi")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account"))}
+-- | Create a new 'Setup_intentPayment_method_options' with all required fields.
+mkSetup_intentPayment_method_options :: Setup_intentPayment_method_options
+mkSetup_intentPayment_method_options = Setup_intentPayment_method_options{setup_intentPayment_method_optionsAcss_debit = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsAmazon_pay = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsBacs_debit = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsCard = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsCard_present = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsKlarna = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsLink = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsPaypal = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsPayto = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsSepa_debit = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsUpi = GHC.Maybe.Nothing,
+                                                                          setup_intentPayment_method_optionsUs_bank_account = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.acss_debit.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableAcss_debit = Setup_intentPayment_method_optionsNonNullableAcss_debit {
+data Setup_intentPayment_method_optionsAcss_debit = Setup_intentPayment_method_optionsAcss_debit {
   -- | currency: Currency supported by the bank account
-  setup_intentPayment_method_optionsNonNullableAcss_debitCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullable))
+  setup_intentPayment_method_optionsAcss_debitCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_options: 
-  , setup_intentPayment_method_optionsNonNullableAcss_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_acss_debit)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method)
+  , setup_intentPayment_method_optionsAcss_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_acss_debit)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsAcss_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableAcss_debit
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debitCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debitCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableAcss_debit
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableAcss_debit" (\obj -> ((GHC.Base.pure Setup_intentPayment_method_optionsNonNullableAcss_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableAcss_debit' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableAcss_debit :: Setup_intentPayment_method_optionsNonNullableAcss_debit
-mkSetup_intentPayment_method_optionsNonNullableAcss_debit = Setup_intentPayment_method_optionsNonNullableAcss_debit{setup_intentPayment_method_optionsNonNullableAcss_debitCurrency = GHC.Maybe.Nothing,
-                                                                                                                    setup_intentPayment_method_optionsNonNullableAcss_debitMandate_options = GHC.Maybe.Nothing,
-                                                                                                                    setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.acss_debit.anyOf.properties.currency@ in the specification.
--- 
--- Currency supported by the bank account
-data Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullable =
-   Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableEnumCad -- ^ Represents the JSON value @"cad"@
-  | Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableEnumUsd -- ^ Represents the JSON value @"usd"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullable
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableEnumCad) = "cad";
-           toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableEnumUsd) = "usd"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cad" -> Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableEnumCad
-                                             | val GHC.Classes.== "usd" -> Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableEnumUsd
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableAcss_debitCurrencyNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.acss_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method =
-   Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableAcss_debitVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsAcss_debit
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debitCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debitVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debitCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAcss_debitVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsAcss_debit
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsAcss_debit" (\obj -> ((GHC.Base.pure Setup_intentPayment_method_optionsAcss_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsAcss_debit' with all required fields.
+mkSetup_intentPayment_method_optionsAcss_debit :: Setup_intentPayment_method_optionsAcss_debit
+mkSetup_intentPayment_method_optionsAcss_debit = Setup_intentPayment_method_optionsAcss_debit{setup_intentPayment_method_optionsAcss_debitCurrency = GHC.Maybe.Nothing,
+                                                                                              setup_intentPayment_method_optionsAcss_debitMandate_options = GHC.Maybe.Nothing,
+                                                                                              setup_intentPayment_method_optionsAcss_debitVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.amazon_pay.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableAmazon_pay = Setup_intentPayment_method_optionsNonNullableAmazon_pay {
+data Setup_intentPayment_method_optionsAmazon_pay = Setup_intentPayment_method_optionsAmazon_pay {
   -- | mandate_options: 
-  setup_intentPayment_method_optionsNonNullableAmazon_payMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method)
+  setup_intentPayment_method_optionsAmazon_payMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsAmazon_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableAmazon_pay
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAmazon_payMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAmazon_payMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableAmazon_pay
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableAmazon_pay" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsNonNullableAmazon_pay GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableAmazon_pay' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableAmazon_pay :: Setup_intentPayment_method_optionsNonNullableAmazon_pay
-mkSetup_intentPayment_method_optionsNonNullableAmazon_pay = Setup_intentPayment_method_optionsNonNullableAmazon_pay{setup_intentPayment_method_optionsNonNullableAmazon_payMandate_options = GHC.Maybe.Nothing,
-                                                                                                                    setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.amazon_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method =
-   Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableAmazon_payVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsAmazon_pay
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAmazon_payMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAmazon_payVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAmazon_payMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsAmazon_payVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsAmazon_pay
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsAmazon_pay" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsAmazon_pay GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsAmazon_pay' with all required fields.
+mkSetup_intentPayment_method_optionsAmazon_pay :: Setup_intentPayment_method_optionsAmazon_pay
+mkSetup_intentPayment_method_optionsAmazon_pay = Setup_intentPayment_method_optionsAmazon_pay{setup_intentPayment_method_optionsAmazon_payMandate_options = GHC.Maybe.Nothing,
+                                                                                              setup_intentPayment_method_optionsAmazon_payVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.bacs_debit.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableBacs_debit = Setup_intentPayment_method_optionsNonNullableBacs_debit {
+data Setup_intentPayment_method_optionsBacs_debit = Setup_intentPayment_method_optionsBacs_debit {
   -- | mandate_options: 
-  setup_intentPayment_method_optionsNonNullableBacs_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_bacs_debit)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method)
+  setup_intentPayment_method_optionsBacs_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_bacs_debit)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsBacs_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableBacs_debit
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableBacs_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableBacs_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableBacs_debit
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableBacs_debit" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsNonNullableBacs_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableBacs_debit' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableBacs_debit :: Setup_intentPayment_method_optionsNonNullableBacs_debit
-mkSetup_intentPayment_method_optionsNonNullableBacs_debit = Setup_intentPayment_method_optionsNonNullableBacs_debit{setup_intentPayment_method_optionsNonNullableBacs_debitMandate_options = GHC.Maybe.Nothing,
-                                                                                                                    setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.bacs_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method =
-   Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableBacs_debitVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsBacs_debit
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsBacs_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsBacs_debitVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsBacs_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsBacs_debitVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsBacs_debit
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsBacs_debit" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsBacs_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsBacs_debit' with all required fields.
+mkSetup_intentPayment_method_optionsBacs_debit :: Setup_intentPayment_method_optionsBacs_debit
+mkSetup_intentPayment_method_optionsBacs_debit = Setup_intentPayment_method_optionsBacs_debit{setup_intentPayment_method_optionsBacs_debitMandate_options = GHC.Maybe.Nothing,
+                                                                                              setup_intentPayment_method_optionsBacs_debitVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableCard = Setup_intentPayment_method_optionsNonNullableCard {
+data Setup_intentPayment_method_optionsCard = Setup_intentPayment_method_optionsCard {
   -- | mandate_options: Configuration options for setting up an eMandate for cards issued in India.
-  setup_intentPayment_method_optionsNonNullableCardMandate_options :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable))
+  setup_intentPayment_method_optionsCardMandate_options :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsCardMandate_options)
   -- | network: Selected network to process this SetupIntent on. Depends on the available networks of the card attached to the setup intent. Can be only set confirm-time.
-  , setup_intentPayment_method_optionsNonNullableCardNetwork :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullable))
+  , setup_intentPayment_method_optionsCardNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-  , setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullable))
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableCardVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableCardVerification_method)
+  , setup_intentPayment_method_optionsCardRequest_three_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsCardVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCard
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCard
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableCard" (\obj -> (((GHC.Base.pure Setup_intentPayment_method_optionsNonNullableCard GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_three_d_secure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableCard' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableCard :: Setup_intentPayment_method_optionsNonNullableCard
-mkSetup_intentPayment_method_optionsNonNullableCard = Setup_intentPayment_method_optionsNonNullableCard{setup_intentPayment_method_optionsNonNullableCardMandate_options = GHC.Maybe.Nothing,
-                                                                                                        setup_intentPayment_method_optionsNonNullableCardNetwork = GHC.Maybe.Nothing,
-                                                                                                        setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secure = GHC.Maybe.Nothing,
-                                                                                                        setup_intentPayment_method_optionsNonNullableCardVerification_method = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsCard
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardRequest_three_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardNetwork obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_three_d_secure" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardRequest_three_d_secure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsCard
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsCard" (\obj -> (((GHC.Base.pure Setup_intentPayment_method_optionsCard GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_three_d_secure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsCard' with all required fields.
+mkSetup_intentPayment_method_optionsCard :: Setup_intentPayment_method_optionsCard
+mkSetup_intentPayment_method_optionsCard = Setup_intentPayment_method_optionsCard{setup_intentPayment_method_optionsCardMandate_options = GHC.Maybe.Nothing,
+                                                                                  setup_intentPayment_method_optionsCardNetwork = GHC.Maybe.Nothing,
+                                                                                  setup_intentPayment_method_optionsCardRequest_three_d_secure = GHC.Maybe.Nothing,
+                                                                                  setup_intentPayment_method_optionsCardVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf.properties.mandate_options.anyOf@ in the specification.
 -- 
 -- Configuration options for setting up an eMandate for cards issued in India.
-data Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable = Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable {
-  -- | amount: Amount to be charged for future payments.
-  setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
+data Setup_intentPayment_method_optionsCardMandate_options = Setup_intentPayment_method_optionsCardMandate_options {
+  -- | amount: Amount to be charged for future payments, specified in the presentment currency.
+  setup_intentPayment_method_optionsCardMandate_optionsAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_type: One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type)
+  , setup_intentPayment_method_optionsCardMandate_optionsAmount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentPayment_method_optionsCardMandate_optionsCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: A description of the mandate or subscription that is meant to be displayed to the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 200
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intentPayment_method_optionsCardMandate_optionsDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | end_date: End date of the mandate or subscription. If not provided, the mandate will be active until canceled. If provided, end date should be after start date.
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableEnd_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intentPayment_method_optionsCardMandate_optionsEnd_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval)
+  , setup_intentPayment_method_optionsCardMandate_optionsInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | interval_count: The number of intervals between payments. For example, \`interval=month\` and \`interval_count=3\` indicates one payment every three months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks). This parameter is optional when \`interval=sporadic\`.
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intentPayment_method_optionsCardMandate_optionsInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reference: Unique identifier for the mandate or subscription.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 80
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intentPayment_method_optionsCardMandate_optionsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | start_date: Start date of the mandate or subscription. Start date should not be lesser than yesterday.
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , setup_intentPayment_method_optionsCardMandate_optionsStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | supported_types: Specifies the type of mandates supported. Possible values are \`india\`.
-  , setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullable]))
+  , setup_intentPayment_method_optionsCardMandate_optionsSupported_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable" (\obj -> (((((((((GHC.Base.pure Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable :: Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable
-mkSetup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable = Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullable{setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableCurrency = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableDescription = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableEnd_date = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval_count = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableReference = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableStart_date = GHC.Maybe.Nothing,
-                                                                                                                                                            setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_types = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf.properties.mandate_options.anyOf.properties.amount_type@ in the specification.
--- 
--- One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-data Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type =
-   Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeEnumFixed) = "fixed";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeEnumMaximum
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableAmount_typeOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf.properties.mandate_options.anyOf.properties.interval@ in the specification.
--- 
--- Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-data Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval =
-   Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumDay) = "day";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumMonth) = "month";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumSporadic) = "sporadic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumWeek) = "week";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumMonth
-                                             | val GHC.Classes.== "sporadic" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumSporadic
-                                             | val GHC.Classes.== "week" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalEnumYear
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf.properties.mandate_options.anyOf.properties.supported_types.items@ in the specification.
--- 
--- 
-data Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullable =
-   Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia -- ^ Represents the JSON value @"india"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullable
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia) = "india"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "india" -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableCardMandate_optionsNonNullableSupported_typesNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf.properties.network@ in the specification.
--- 
--- Selected network to process this SetupIntent on. Depends on the available networks of the card attached to the setup intent. Can be only set confirm-time.
-data Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullable =
-   Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumAmex -- ^ Represents the JSON value @"amex"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumCartes_bancaires -- ^ Represents the JSON value @"cartes_bancaires"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumDiners -- ^ Represents the JSON value @"diners"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumDiscover -- ^ Represents the JSON value @"discover"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumEftpos_au -- ^ Represents the JSON value @"eftpos_au"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumGirocard -- ^ Represents the JSON value @"girocard"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumInterac -- ^ Represents the JSON value @"interac"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumJcb -- ^ Represents the JSON value @"jcb"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumLink -- ^ Represents the JSON value @"link"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumUnionpay -- ^ Represents the JSON value @"unionpay"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  | Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullable
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumAmex) = "amex";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumCartes_bancaires) = "cartes_bancaires";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumDiners) = "diners";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumDiscover) = "discover";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumEftpos_au) = "eftpos_au";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumGirocard) = "girocard";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumInterac) = "interac";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumJcb) = "jcb";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumLink) = "link";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumMastercard) = "mastercard";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumUnionpay) = "unionpay";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumUnknown) = "unknown";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amex" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumAmex
-                                             | val GHC.Classes.== "cartes_bancaires" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumCartes_bancaires
-                                             | val GHC.Classes.== "diners" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumDiners
-                                             | val GHC.Classes.== "discover" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumDiscover
-                                             | val GHC.Classes.== "eftpos_au" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumEftpos_au
-                                             | val GHC.Classes.== "girocard" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumGirocard
-                                             | val GHC.Classes.== "interac" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumInterac
-                                             | val GHC.Classes.== "jcb" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumJcb
-                                             | val GHC.Classes.== "link" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumLink
-                                             | val GHC.Classes.== "mastercard" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumMastercard
-                                             | val GHC.Classes.== "unionpay" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumUnionpay
-                                             | val GHC.Classes.== "unknown" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumUnknown
-                                             | val GHC.Classes.== "visa" -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableEnumVisa
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableCardNetworkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf.properties.request_three_d_secure@ in the specification.
--- 
--- We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-data Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullable =
-   Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumAny -- ^ Represents the JSON value @"any"@
-  | Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullable
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumAny) = "any";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumChallenge) = "challenge"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "any" -> Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumAny
-                                             | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "challenge" -> Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableEnumChallenge
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableCardRequest_three_d_secureNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableCardVerification_method =
-   Setup_intentPayment_method_optionsNonNullableCardVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableCardVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCardVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableCardVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCardVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableCardVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableCardVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsCardMandate_options
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsSupported_types obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCardMandate_optionsSupported_types obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsCardMandate_options
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsCardMandate_options" (\obj -> (((((((((GHC.Base.pure Setup_intentPayment_method_optionsCardMandate_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
+-- | Create a new 'Setup_intentPayment_method_optionsCardMandate_options' with all required fields.
+mkSetup_intentPayment_method_optionsCardMandate_options :: Setup_intentPayment_method_optionsCardMandate_options
+mkSetup_intentPayment_method_optionsCardMandate_options = Setup_intentPayment_method_optionsCardMandate_options{setup_intentPayment_method_optionsCardMandate_optionsAmount = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsAmount_type = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsCurrency = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsDescription = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsEnd_date = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsInterval = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsInterval_count = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsReference = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsStart_date = GHC.Maybe.Nothing,
+                                                                                                                setup_intentPayment_method_optionsCardMandate_optionsSupported_types = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card_present.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableCard_present = Setup_intentPayment_method_optionsNonNullableCard_present {
+data Setup_intentPayment_method_optionsCard_present = Setup_intentPayment_method_optionsCard_present {
   -- | mandate_options: 
-  setup_intentPayment_method_optionsNonNullableCard_presentMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableCard_presentVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableCard_presentVerification_method)
+  setup_intentPayment_method_optionsCard_presentMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsCard_presentVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCard_present
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard_presentMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard_presentVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard_presentMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableCard_presentVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCard_present
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableCard_present" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsNonNullableCard_present GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableCard_present' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableCard_present :: Setup_intentPayment_method_optionsNonNullableCard_present
-mkSetup_intentPayment_method_optionsNonNullableCard_present = Setup_intentPayment_method_optionsNonNullableCard_present{setup_intentPayment_method_optionsNonNullableCard_presentMandate_options = GHC.Maybe.Nothing,
-                                                                                                                        setup_intentPayment_method_optionsNonNullableCard_presentVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.card_present.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableCard_presentVerification_method =
-   Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableCard_presentVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableCard_presentVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableCard_presentVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsCard_present
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard_presentMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard_presentVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard_presentMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsCard_presentVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsCard_present
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsCard_present" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsCard_present GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsCard_present' with all required fields.
+mkSetup_intentPayment_method_optionsCard_present :: Setup_intentPayment_method_optionsCard_present
+mkSetup_intentPayment_method_optionsCard_present = Setup_intentPayment_method_optionsCard_present{setup_intentPayment_method_optionsCard_presentMandate_options = GHC.Maybe.Nothing,
+                                                                                                  setup_intentPayment_method_optionsCard_presentVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.klarna.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableKlarna = Setup_intentPayment_method_optionsNonNullableKlarna {
+data Setup_intentPayment_method_optionsKlarna = Setup_intentPayment_method_optionsKlarna {
   -- | currency: The currency of the setup intent. Three letter ISO currency code.
-  setup_intentPayment_method_optionsNonNullableKlarnaCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intentPayment_method_optionsKlarnaCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_options: 
-  , setup_intentPayment_method_optionsNonNullableKlarnaMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
+  , setup_intentPayment_method_optionsKlarnaMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
   -- | preferred_locale: Preferred locale of the Klarna checkout page that the customer is redirected to.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intentPayment_method_optionsNonNullableKlarnaPreferred_locale :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableKlarnaVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableKlarnaVerification_method)
+  , setup_intentPayment_method_optionsKlarnaPreferred_locale :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsKlarnaVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableKlarna
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_locale" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaPreferred_locale obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_locale" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaPreferred_locale obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableKlarnaVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableKlarna
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableKlarna" (\obj -> (((GHC.Base.pure Setup_intentPayment_method_optionsNonNullableKlarna GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred_locale")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableKlarna' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableKlarna :: Setup_intentPayment_method_optionsNonNullableKlarna
-mkSetup_intentPayment_method_optionsNonNullableKlarna = Setup_intentPayment_method_optionsNonNullableKlarna{setup_intentPayment_method_optionsNonNullableKlarnaCurrency = GHC.Maybe.Nothing,
-                                                                                                            setup_intentPayment_method_optionsNonNullableKlarnaMandate_options = GHC.Maybe.Nothing,
-                                                                                                            setup_intentPayment_method_optionsNonNullableKlarnaPreferred_locale = GHC.Maybe.Nothing,
-                                                                                                            setup_intentPayment_method_optionsNonNullableKlarnaVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.klarna.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableKlarnaVerification_method =
-   Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableKlarnaVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableKlarnaVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableKlarnaVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsKlarna
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_locale" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaPreferred_locale obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred_locale" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaPreferred_locale obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsKlarnaVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsKlarna
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsKlarna" (\obj -> (((GHC.Base.pure Setup_intentPayment_method_optionsKlarna GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred_locale")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsKlarna' with all required fields.
+mkSetup_intentPayment_method_optionsKlarna :: Setup_intentPayment_method_optionsKlarna
+mkSetup_intentPayment_method_optionsKlarna = Setup_intentPayment_method_optionsKlarna{setup_intentPayment_method_optionsKlarnaCurrency = GHC.Maybe.Nothing,
+                                                                                      setup_intentPayment_method_optionsKlarnaMandate_options = GHC.Maybe.Nothing,
+                                                                                      setup_intentPayment_method_optionsKlarnaPreferred_locale = GHC.Maybe.Nothing,
+                                                                                      setup_intentPayment_method_optionsKlarnaVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.link.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableLink = Setup_intentPayment_method_optionsNonNullableLink {
+data Setup_intentPayment_method_optionsLink = Setup_intentPayment_method_optionsLink {
   -- | mandate_options: 
-  setup_intentPayment_method_optionsNonNullableLinkMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableLinkVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableLinkVerification_method)
+  setup_intentPayment_method_optionsLinkMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsLinkVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableLink
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableLinkMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableLinkVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableLinkMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableLinkVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableLink
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableLink" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsNonNullableLink GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableLink' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableLink :: Setup_intentPayment_method_optionsNonNullableLink
-mkSetup_intentPayment_method_optionsNonNullableLink = Setup_intentPayment_method_optionsNonNullableLink{setup_intentPayment_method_optionsNonNullableLinkMandate_options = GHC.Maybe.Nothing,
-                                                                                                        setup_intentPayment_method_optionsNonNullableLinkVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.link.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableLinkVerification_method =
-   Setup_intentPayment_method_optionsNonNullableLinkVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableLinkVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableLinkVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableLinkVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableLinkVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableLinkVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableLinkVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableLinkVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsLink
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsLinkMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsLinkVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsLinkMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsLinkVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsLink
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsLink" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsLink GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsLink' with all required fields.
+mkSetup_intentPayment_method_optionsLink :: Setup_intentPayment_method_optionsLink
+mkSetup_intentPayment_method_optionsLink = Setup_intentPayment_method_optionsLink{setup_intentPayment_method_optionsLinkMandate_options = GHC.Maybe.Nothing,
+                                                                                  setup_intentPayment_method_optionsLinkVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.paypal.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullablePaypal = Setup_intentPayment_method_optionsNonNullablePaypal {
+data Setup_intentPayment_method_optionsPaypal = Setup_intentPayment_method_optionsPaypal {
   -- | billing_agreement_id: The PayPal Billing Agreement ID (BAID). This is an ID generated by PayPal which represents the mandate between the merchant and the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intentPayment_method_optionsNonNullablePaypalBilling_agreement_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intentPayment_method_optionsPaypalBilling_agreement_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_options: 
-  , setup_intentPayment_method_optionsNonNullablePaypalMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullablePaypalVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullablePaypalVerification_method)
+  , setup_intentPayment_method_optionsPaypalMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsPaypalVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullablePaypal
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_agreement_id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypalBilling_agreement_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypalMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypalVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_agreement_id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypalBilling_agreement_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypalMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaypalVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullablePaypal
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullablePaypal" (\obj -> ((GHC.Base.pure Setup_intentPayment_method_optionsNonNullablePaypal GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_agreement_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullablePaypal' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullablePaypal :: Setup_intentPayment_method_optionsNonNullablePaypal
-mkSetup_intentPayment_method_optionsNonNullablePaypal = Setup_intentPayment_method_optionsNonNullablePaypal{setup_intentPayment_method_optionsNonNullablePaypalBilling_agreement_id = GHC.Maybe.Nothing,
-                                                                                                            setup_intentPayment_method_optionsNonNullablePaypalMandate_options = GHC.Maybe.Nothing,
-                                                                                                            setup_intentPayment_method_optionsNonNullablePaypalVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.paypal.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullablePaypalVerification_method =
-   Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullablePaypalVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullablePaypalVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullablePaypalVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsPaypal
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_agreement_id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypalBilling_agreement_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypalMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypalVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billing_agreement_id" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypalBilling_agreement_id obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypalMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaypalVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsPaypal
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsPaypal" (\obj -> ((GHC.Base.pure Setup_intentPayment_method_optionsPaypal GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_agreement_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsPaypal' with all required fields.
+mkSetup_intentPayment_method_optionsPaypal :: Setup_intentPayment_method_optionsPaypal
+mkSetup_intentPayment_method_optionsPaypal = Setup_intentPayment_method_optionsPaypal{setup_intentPayment_method_optionsPaypalBilling_agreement_id = GHC.Maybe.Nothing,
+                                                                                      setup_intentPayment_method_optionsPaypalMandate_options = GHC.Maybe.Nothing,
+                                                                                      setup_intentPayment_method_optionsPaypalVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.payto.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullablePayto = Setup_intentPayment_method_optionsNonNullablePayto {
+data Setup_intentPayment_method_optionsPayto = Setup_intentPayment_method_optionsPayto {
   -- | mandate_options: 
-  setup_intentPayment_method_optionsNonNullablePaytoMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullablePaytoVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullablePaytoVerification_method)
+  setup_intentPayment_method_optionsPaytoMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsPaytoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullablePayto
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaytoMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaytoVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaytoMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullablePaytoVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullablePayto
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullablePayto" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsNonNullablePayto GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullablePayto' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullablePayto :: Setup_intentPayment_method_optionsNonNullablePayto
-mkSetup_intentPayment_method_optionsNonNullablePayto = Setup_intentPayment_method_optionsNonNullablePayto{setup_intentPayment_method_optionsNonNullablePaytoMandate_options = GHC.Maybe.Nothing,
-                                                                                                          setup_intentPayment_method_optionsNonNullablePaytoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.payto.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullablePaytoVerification_method =
-   Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullablePaytoVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullablePaytoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullablePaytoVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsPayto
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaytoMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaytoVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaytoMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsPaytoVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsPayto
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsPayto" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsPayto GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsPayto' with all required fields.
+mkSetup_intentPayment_method_optionsPayto :: Setup_intentPayment_method_optionsPayto
+mkSetup_intentPayment_method_optionsPayto = Setup_intentPayment_method_optionsPayto{setup_intentPayment_method_optionsPaytoMandate_options = GHC.Maybe.Nothing,
+                                                                                    setup_intentPayment_method_optionsPaytoVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.sepa_debit.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableSepa_debit = Setup_intentPayment_method_optionsNonNullableSepa_debit {
+data Setup_intentPayment_method_optionsSepa_debit = Setup_intentPayment_method_optionsSepa_debit {
   -- | mandate_options: 
-  setup_intentPayment_method_optionsNonNullableSepa_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_sepa_debit)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method)
+  setup_intentPayment_method_optionsSepa_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_sepa_debit)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsSepa_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableSepa_debit
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableSepa_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableSepa_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableSepa_debit
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableSepa_debit" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsNonNullableSepa_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableSepa_debit' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableSepa_debit :: Setup_intentPayment_method_optionsNonNullableSepa_debit
-mkSetup_intentPayment_method_optionsNonNullableSepa_debit = Setup_intentPayment_method_optionsNonNullableSepa_debit{setup_intentPayment_method_optionsNonNullableSepa_debitMandate_options = GHC.Maybe.Nothing,
-                                                                                                                    setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.sepa_debit.anyOf.properties.verification_method@ in the specification.
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsSepa_debit
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsSepa_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsSepa_debitVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsSepa_debitMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsSepa_debitVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsSepa_debit
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsSepa_debit" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsSepa_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsSepa_debit' with all required fields.
+mkSetup_intentPayment_method_optionsSepa_debit :: Setup_intentPayment_method_optionsSepa_debit
+mkSetup_intentPayment_method_optionsSepa_debit = Setup_intentPayment_method_optionsSepa_debit{setup_intentPayment_method_optionsSepa_debitMandate_options = GHC.Maybe.Nothing,
+                                                                                              setup_intentPayment_method_optionsSepa_debitVerification_method = GHC.Maybe.Nothing}
+-- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.upi.anyOf@ in the specification.
 -- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method =
-   Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableSepa_debitVerification_methodOther val)}
+-- 
+data Setup_intentPayment_method_optionsUpi = Setup_intentPayment_method_optionsUpi {
+  -- | mandate_options: 
+  setup_intentPayment_method_optionsUpiMandate_options :: (GHC.Maybe.Maybe Payment_method_options_mandate_options_upi)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsUpiVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  } deriving (GHC.Show.Show
+  , GHC.Classes.Eq)
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsUpi
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUpiMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUpiVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUpiMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUpiVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsUpi
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsUpi" (\obj -> (GHC.Base.pure Setup_intentPayment_method_optionsUpi GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsUpi' with all required fields.
+mkSetup_intentPayment_method_optionsUpi :: Setup_intentPayment_method_optionsUpi
+mkSetup_intentPayment_method_optionsUpi = Setup_intentPayment_method_optionsUpi{setup_intentPayment_method_optionsUpiMandate_options = GHC.Maybe.Nothing,
+                                                                                setup_intentPayment_method_optionsUpiVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.us_bank_account.anyOf@ in the specification.
 -- 
 -- 
-data Setup_intentPayment_method_optionsNonNullableUs_bank_account = Setup_intentPayment_method_optionsNonNullableUs_bank_account {
+data Setup_intentPayment_method_optionsUs_bank_account = Setup_intentPayment_method_optionsUs_bank_account {
   -- | financial_connections: 
-  setup_intentPayment_method_optionsNonNullableUs_bank_accountFinancial_connections :: (GHC.Maybe.Maybe Linked_account_options_common)
+  setup_intentPayment_method_optionsUs_bank_accountFinancial_connections :: (GHC.Maybe.Maybe Linked_account_options_common)
   -- | mandate_options: 
-  , setup_intentPayment_method_optionsNonNullableUs_bank_accountMandate_options :: (GHC.Maybe.Maybe Payment_method_options_us_bank_account_mandate_options)
-  -- | verification_method: Bank account verification method.
-  , setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method :: (GHC.Maybe.Maybe Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method)
+  , setup_intentPayment_method_optionsUs_bank_accountMandate_options :: (GHC.Maybe.Maybe Payment_method_options_us_bank_account_mandate_options)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intentPayment_method_optionsUs_bank_accountVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableUs_bank_account
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_accountFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_accountMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_accountFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_accountMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableUs_bank_account
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsNonNullableUs_bank_account" (\obj -> ((GHC.Base.pure Setup_intentPayment_method_optionsNonNullableUs_bank_account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "financial_connections")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
--- | Create a new 'Setup_intentPayment_method_optionsNonNullableUs_bank_account' with all required fields.
-mkSetup_intentPayment_method_optionsNonNullableUs_bank_account :: Setup_intentPayment_method_optionsNonNullableUs_bank_account
-mkSetup_intentPayment_method_optionsNonNullableUs_bank_account = Setup_intentPayment_method_optionsNonNullableUs_bank_account{setup_intentPayment_method_optionsNonNullableUs_bank_accountFinancial_connections = GHC.Maybe.Nothing,
-                                                                                                                              setup_intentPayment_method_optionsNonNullableUs_bank_accountMandate_options = GHC.Maybe.Nothing,
-                                                                                                                              setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.payment_method_options.anyOf.properties.us_bank_account.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method =
-   Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method
-    where {toJSON (Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodOther val) = val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intentPayment_method_optionsNonNullableUs_bank_accountVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentPayment_method_optionsUs_bank_account
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_accountFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_accountMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_accountVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("financial_connections" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_accountFinancial_connections obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_accountMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intentPayment_method_optionsUs_bank_accountVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentPayment_method_optionsUs_bank_account
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intentPayment_method_optionsUs_bank_account" (\obj -> ((GHC.Base.pure Setup_intentPayment_method_optionsUs_bank_account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "financial_connections")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intentPayment_method_optionsUs_bank_account' with all required fields.
+mkSetup_intentPayment_method_optionsUs_bank_account :: Setup_intentPayment_method_optionsUs_bank_account
+mkSetup_intentPayment_method_optionsUs_bank_account = Setup_intentPayment_method_optionsUs_bank_account{setup_intentPayment_method_optionsUs_bank_accountFinancial_connections = GHC.Maybe.Nothing,
+                                                                                                        setup_intentPayment_method_optionsUs_bank_accountMandate_options = GHC.Maybe.Nothing,
+                                                                                                        setup_intentPayment_method_optionsUs_bank_accountVerification_method = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.setup_intent.properties.single_use_mandate.anyOf@ in the specification.
 -- 
 -- ID of the single_use Mandate generated by the SetupIntent.
-data Setup_intentSingle_use_mandateNonNullableVariants =
-   Setup_intentSingle_use_mandateNonNullableText Data.Text.Internal.Text
-  | Setup_intentSingle_use_mandateNonNullableMandate Mandate
+data Setup_intentSingle_use_mandateVariants =
+   Setup_intentSingle_use_mandateText Data.Text.Internal.Text
+  | Setup_intentSingle_use_mandateMandate Mandate
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentSingle_use_mandateNonNullableVariants
-    where {toJSON (Setup_intentSingle_use_mandateNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Setup_intentSingle_use_mandateNonNullableMandate a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentSingle_use_mandateNonNullableVariants
-    where {parseJSON val = case (Setup_intentSingle_use_mandateNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentSingle_use_mandateNonNullableMandate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentSingle_use_mandateVariants
+    where {toJSON (Setup_intentSingle_use_mandateText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Setup_intentSingle_use_mandateMandate a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentSingle_use_mandateVariants
+    where {parseJSON val = case (Setup_intentSingle_use_mandateText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Setup_intentSingle_use_mandateMandate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.setup_intent.properties.status@ in the specification.
--- 
--- [Status](https:\/\/docs.stripe.com\/payments\/intents\#intent-statuses) of this SetupIntent, one of \`requires_payment_method\`, \`requires_confirmation\`, \`requires_action\`, \`processing\`, \`canceled\`, or \`succeeded\`.
-data Setup_intentStatus =
-   Setup_intentStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intentStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intentStatusEnumCanceled -- ^ Represents the JSON value @"canceled"@
-  | Setup_intentStatusEnumProcessing -- ^ Represents the JSON value @"processing"@
-  | Setup_intentStatusEnumRequires_action -- ^ Represents the JSON value @"requires_action"@
-  | Setup_intentStatusEnumRequires_confirmation -- ^ Represents the JSON value @"requires_confirmation"@
-  | Setup_intentStatusEnumRequires_payment_method -- ^ Represents the JSON value @"requires_payment_method"@
-  | Setup_intentStatusEnumSucceeded -- ^ Represents the JSON value @"succeeded"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intentStatus
-    where {toJSON (Setup_intentStatusOther val) = val;
-           toJSON (Setup_intentStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intentStatusEnumCanceled) = "canceled";
-           toJSON (Setup_intentStatusEnumProcessing) = "processing";
-           toJSON (Setup_intentStatusEnumRequires_action) = "requires_action";
-           toJSON (Setup_intentStatusEnumRequires_confirmation) = "requires_confirmation";
-           toJSON (Setup_intentStatusEnumRequires_payment_method) = "requires_payment_method";
-           toJSON (Setup_intentStatusEnumSucceeded) = "succeeded"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intentStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "canceled" -> Setup_intentStatusEnumCanceled
-                                             | val GHC.Classes.== "processing" -> Setup_intentStatusEnumProcessing
-                                             | val GHC.Classes.== "requires_action" -> Setup_intentStatusEnumRequires_action
-                                             | val GHC.Classes.== "requires_confirmation" -> Setup_intentStatusEnumRequires_confirmation
-                                             | val GHC.Classes.== "requires_payment_method" -> Setup_intentStatusEnumRequires_payment_method
-                                             | val GHC.Classes.== "succeeded" -> Setup_intentStatusEnumSucceeded
-                                             | GHC.Base.otherwise -> Setup_intentStatusOther val)}

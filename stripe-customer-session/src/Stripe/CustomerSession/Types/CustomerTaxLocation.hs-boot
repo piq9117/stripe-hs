@@ -6,8 +6,3 @@ instance Show Customer_tax_location
 instance Eq Customer_tax_location
 instance Data.Aeson.FromJSON Customer_tax_location
 instance Data.Aeson.ToJSON Customer_tax_location
-data Customer_tax_locationSource
-instance Show Customer_tax_locationSource
-instance Eq Customer_tax_locationSource
-instance Data.Aeson.FromJSON Customer_tax_locationSource
-instance Data.Aeson.ToJSON Customer_tax_locationSource

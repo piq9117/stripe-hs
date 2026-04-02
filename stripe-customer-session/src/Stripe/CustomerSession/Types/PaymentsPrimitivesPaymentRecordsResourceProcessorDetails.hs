@@ -50,13 +50,17 @@ data Payments_primitives_payment_records_resource_processor_details = Payments_p
   -- the Stripe API. This resource consists of details about the custom processor
   -- used for this payment attempt.
   payments_primitives_payment_records_resource_processor_detailsCustom :: (GHC.Maybe.Maybe Payments_primitives_payment_records_resource_processor_details_resource_custom_details)
+  -- | type: The processor used for this payment attempt.
+  , payments_primitives_payment_records_resource_processor_detailsType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_processor_details
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom" Data.Aeson.Types.ToJSON..=)) (payments_primitives_payment_records_resource_processor_detailsCustom obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "custom"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom" Data.Aeson.Types.ToJSON..=)) (payments_primitives_payment_records_resource_processor_detailsCustom obj) : ["type" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "custom"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom" Data.Aeson.Types.ToJSON..=)) (payments_primitives_payment_records_resource_processor_detailsCustom obj) : ["type" Data.Aeson.Types.ToJSON..= payments_primitives_payment_records_resource_processor_detailsType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("custom" Data.Aeson.Types.ToJSON..=)) (payments_primitives_payment_records_resource_processor_detailsCustom obj) : ["type" Data.Aeson.Types.ToJSON..= payments_primitives_payment_records_resource_processor_detailsType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_processor_details
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payments_primitives_payment_records_resource_processor_details" (\obj -> GHC.Base.pure Payments_primitives_payment_records_resource_processor_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "custom"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payments_primitives_payment_records_resource_processor_details" (\obj -> (GHC.Base.pure Payments_primitives_payment_records_resource_processor_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "custom")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Payments_primitives_payment_records_resource_processor_details' with all required fields.
-mkPayments_primitives_payment_records_resource_processor_details :: Payments_primitives_payment_records_resource_processor_details
-mkPayments_primitives_payment_records_resource_processor_details = Payments_primitives_payment_records_resource_processor_details{payments_primitives_payment_records_resource_processor_detailsCustom = GHC.Maybe.Nothing}
+mkPayments_primitives_payment_records_resource_processor_details :: Data.Text.Internal.Text -- ^ 'payments_primitives_payment_records_resource_processor_detailsType'
+  -> Payments_primitives_payment_records_resource_processor_details
+mkPayments_primitives_payment_records_resource_processor_details payments_primitives_payment_records_resource_processor_detailsType = Payments_primitives_payment_records_resource_processor_details{payments_primitives_payment_records_resource_processor_detailsCustom = GHC.Maybe.Nothing,
+                                                                                                                                                                                                     payments_primitives_payment_records_resource_processor_detailsType = payments_primitives_payment_records_resource_processor_detailsType}

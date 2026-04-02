@@ -46,19 +46,19 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_cardholder_user_terms_acceptance = Issuing_cardholder_user_terms_acceptance {
   -- | date: The Unix timestamp marking when the cardholder accepted the Authorized User Terms.
-  issuing_cardholder_user_terms_acceptanceDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_cardholder_user_terms_acceptanceDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the cardholder accepted the Authorized User Terms.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_user_terms_acceptanceIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_user_terms_acceptanceIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The user agent of the browser from which the cardholder accepted the Authorized User Terms.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_user_terms_acceptanceUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_user_terms_acceptanceUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_user_terms_acceptance

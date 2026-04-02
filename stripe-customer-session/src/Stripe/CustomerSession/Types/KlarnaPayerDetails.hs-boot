@@ -6,8 +6,8 @@ instance Show Klarna_payer_details
 instance Eq Klarna_payer_details
 instance Data.Aeson.FromJSON Klarna_payer_details
 instance Data.Aeson.ToJSON Klarna_payer_details
-data Klarna_payer_detailsAddressNonNullable
-instance Show Klarna_payer_detailsAddressNonNullable
-instance Eq Klarna_payer_detailsAddressNonNullable
-instance Data.Aeson.FromJSON Klarna_payer_detailsAddressNonNullable
-instance Data.Aeson.ToJSON Klarna_payer_detailsAddressNonNullable
+data Klarna_payer_detailsAddress
+instance Show Klarna_payer_detailsAddress
+instance Eq Klarna_payer_detailsAddress
+instance Data.Aeson.FromJSON Klarna_payer_detailsAddress
+instance Data.Aeson.ToJSON Klarna_payer_detailsAddress

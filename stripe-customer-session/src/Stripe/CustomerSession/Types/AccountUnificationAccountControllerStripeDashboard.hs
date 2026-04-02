@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Account_unification_account_controller_stripe_dashboard = Account_unification_account_controller_stripe_dashboard {
   -- | type: A value indicating the Stripe dashboard this account has access to independent of the Connect application.
-  account_unification_account_controller_stripe_dashboardType :: Account_unification_account_controller_stripe_dashboardType
+  account_unification_account_controller_stripe_dashboardType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_stripe_dashboard
@@ -55,27 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_s
 instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controller_stripe_dashboard
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_unification_account_controller_stripe_dashboard" (\obj -> GHC.Base.pure Account_unification_account_controller_stripe_dashboard GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Account_unification_account_controller_stripe_dashboard' with all required fields.
-mkAccount_unification_account_controller_stripe_dashboard :: Account_unification_account_controller_stripe_dashboardType -- ^ 'account_unification_account_controller_stripe_dashboardType'
+mkAccount_unification_account_controller_stripe_dashboard :: Data.Text.Internal.Text -- ^ 'account_unification_account_controller_stripe_dashboardType'
   -> Account_unification_account_controller_stripe_dashboard
 mkAccount_unification_account_controller_stripe_dashboard account_unification_account_controller_stripe_dashboardType = Account_unification_account_controller_stripe_dashboard{account_unification_account_controller_stripe_dashboardType = account_unification_account_controller_stripe_dashboardType}
--- | Defines the enum schema located at @components.schemas.account_unification_account_controller_stripe_dashboard.properties.type@ in the specification.
--- 
--- A value indicating the Stripe dashboard this account has access to independent of the Connect application.
-data Account_unification_account_controller_stripe_dashboardType =
-   Account_unification_account_controller_stripe_dashboardTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_unification_account_controller_stripe_dashboardTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_unification_account_controller_stripe_dashboardTypeEnumExpress -- ^ Represents the JSON value @"express"@
-  | Account_unification_account_controller_stripe_dashboardTypeEnumFull -- ^ Represents the JSON value @"full"@
-  | Account_unification_account_controller_stripe_dashboardTypeEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_stripe_dashboardType
-    where {toJSON (Account_unification_account_controller_stripe_dashboardTypeOther val) = val;
-           toJSON (Account_unification_account_controller_stripe_dashboardTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_unification_account_controller_stripe_dashboardTypeEnumExpress) = "express";
-           toJSON (Account_unification_account_controller_stripe_dashboardTypeEnumFull) = "full";
-           toJSON (Account_unification_account_controller_stripe_dashboardTypeEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controller_stripe_dashboardType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "express" -> Account_unification_account_controller_stripe_dashboardTypeEnumExpress
-                                             | val GHC.Classes.== "full" -> Account_unification_account_controller_stripe_dashboardTypeEnumFull
-                                             | val GHC.Classes.== "none" -> Account_unification_account_controller_stripe_dashboardTypeEnumNone
-                                             | GHC.Base.otherwise -> Account_unification_account_controller_stripe_dashboardTypeOther val)}

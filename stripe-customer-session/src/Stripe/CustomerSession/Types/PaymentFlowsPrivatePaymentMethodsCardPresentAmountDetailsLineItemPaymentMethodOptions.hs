@@ -50,7 +50,7 @@ data Payment_flows_private_payment_methods_card_present_amount_details_line_item
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_flows_private_payment_methods_card_present_amount_details_line_item_payment_method_optionsCommodity_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_flows_private_payment_methods_card_present_amount_details_line_item_payment_method_optionsCommodity_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_card_present_amount_details_line_item_payment_method_options

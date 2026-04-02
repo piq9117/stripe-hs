@@ -58,7 +58,7 @@ data Dispute_payment_method_details = Dispute_payment_method_details {
   -- | paypal: 
   , dispute_payment_method_detailsPaypal :: (GHC.Maybe.Maybe Dispute_payment_method_details_paypal)
   -- | type: Payment method type.
-  , dispute_payment_method_detailsType :: Dispute_payment_method_detailsType
+  , dispute_payment_method_detailsType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details
@@ -67,34 +67,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details
 instance Data.Aeson.Types.FromJSON.FromJSON Dispute_payment_method_details
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Dispute_payment_method_details" (\obj -> ((((GHC.Base.pure Dispute_payment_method_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Dispute_payment_method_details' with all required fields.
-mkDispute_payment_method_details :: Dispute_payment_method_detailsType -- ^ 'dispute_payment_method_detailsType'
+mkDispute_payment_method_details :: Data.Text.Internal.Text -- ^ 'dispute_payment_method_detailsType'
   -> Dispute_payment_method_details
 mkDispute_payment_method_details dispute_payment_method_detailsType = Dispute_payment_method_details{dispute_payment_method_detailsAmazon_pay = GHC.Maybe.Nothing,
                                                                                                      dispute_payment_method_detailsCard = GHC.Maybe.Nothing,
                                                                                                      dispute_payment_method_detailsKlarna = GHC.Maybe.Nothing,
                                                                                                      dispute_payment_method_detailsPaypal = GHC.Maybe.Nothing,
                                                                                                      dispute_payment_method_detailsType = dispute_payment_method_detailsType}
--- | Defines the enum schema located at @components.schemas.dispute_payment_method_details.properties.type@ in the specification.
--- 
--- Payment method type.
-data Dispute_payment_method_detailsType =
-   Dispute_payment_method_detailsTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Dispute_payment_method_detailsTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Dispute_payment_method_detailsTypeEnumAmazon_pay -- ^ Represents the JSON value @"amazon_pay"@
-  | Dispute_payment_method_detailsTypeEnumCard -- ^ Represents the JSON value @"card"@
-  | Dispute_payment_method_detailsTypeEnumKlarna -- ^ Represents the JSON value @"klarna"@
-  | Dispute_payment_method_detailsTypeEnumPaypal -- ^ Represents the JSON value @"paypal"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_detailsType
-    where {toJSON (Dispute_payment_method_detailsTypeOther val) = val;
-           toJSON (Dispute_payment_method_detailsTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Dispute_payment_method_detailsTypeEnumAmazon_pay) = "amazon_pay";
-           toJSON (Dispute_payment_method_detailsTypeEnumCard) = "card";
-           toJSON (Dispute_payment_method_detailsTypeEnumKlarna) = "klarna";
-           toJSON (Dispute_payment_method_detailsTypeEnumPaypal) = "paypal"}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_payment_method_detailsType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amazon_pay" -> Dispute_payment_method_detailsTypeEnumAmazon_pay
-                                             | val GHC.Classes.== "card" -> Dispute_payment_method_detailsTypeEnumCard
-                                             | val GHC.Classes.== "klarna" -> Dispute_payment_method_detailsTypeEnumKlarna
-                                             | val GHC.Classes.== "paypal" -> Dispute_payment_method_detailsTypeEnumPaypal
-                                             | GHC.Base.otherwise -> Dispute_payment_method_detailsTypeOther val)}

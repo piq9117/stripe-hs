@@ -47,9 +47,9 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.TaxId
 -- 
 data Account_invoices_settings = Account_invoices_settings {
   -- | default_account_tax_ids: The list of default Account Tax IDs to automatically include on invoices. Account Tax IDs get added when an invoice is finalized.
-  account_invoices_settingsDefault_account_tax_ids :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_invoices_settingsDefault_account_tax_idsNonNullableVariants]))
+  account_invoices_settingsDefault_account_tax_ids :: (GHC.Maybe.Maybe [Account_invoices_settingsDefault_account_tax_idsVariants])
   -- | hosted_payment_method_save: Whether to save the payment method after a payment is completed for a one-time invoice or a subscription invoice when the customer already has a default payment method on the hosted invoice page.
-  , account_invoices_settingsHosted_payment_method_save :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Account_invoices_settingsHosted_payment_method_saveNonNullable))
+  , account_invoices_settingsHosted_payment_method_save :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_invoices_settings
@@ -64,35 +64,14 @@ mkAccount_invoices_settings = Account_invoices_settings{account_invoices_setting
 -- | Defines the oneOf schema located at @components.schemas.account_invoices_settings.properties.default_account_tax_ids.items.anyOf@ in the specification.
 -- 
 -- 
-data Account_invoices_settingsDefault_account_tax_idsNonNullableVariants =
-   Account_invoices_settingsDefault_account_tax_idsNonNullableText Data.Text.Internal.Text
-  | Account_invoices_settingsDefault_account_tax_idsNonNullableTax_id Tax_id
+data Account_invoices_settingsDefault_account_tax_idsVariants =
+   Account_invoices_settingsDefault_account_tax_idsText Data.Text.Internal.Text
+  | Account_invoices_settingsDefault_account_tax_idsTax_id Tax_id
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_invoices_settingsDefault_account_tax_idsNonNullableVariants
-    where {toJSON (Account_invoices_settingsDefault_account_tax_idsNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Account_invoices_settingsDefault_account_tax_idsNonNullableTax_id a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_invoices_settingsDefault_account_tax_idsNonNullableVariants
-    where {parseJSON val = case (Account_invoices_settingsDefault_account_tax_idsNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Account_invoices_settingsDefault_account_tax_idsNonNullableTax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Account_invoices_settingsDefault_account_tax_idsVariants
+    where {toJSON (Account_invoices_settingsDefault_account_tax_idsText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Account_invoices_settingsDefault_account_tax_idsTax_id a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Account_invoices_settingsDefault_account_tax_idsVariants
+    where {parseJSON val = case (Account_invoices_settingsDefault_account_tax_idsText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Account_invoices_settingsDefault_account_tax_idsTax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.account_invoices_settings.properties.hosted_payment_method_save@ in the specification.
--- 
--- Whether to save the payment method after a payment is completed for a one-time invoice or a subscription invoice when the customer already has a default payment method on the hosted invoice page.
-data Account_invoices_settingsHosted_payment_method_saveNonNullable =
-   Account_invoices_settingsHosted_payment_method_saveNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_invoices_settingsHosted_payment_method_saveNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_invoices_settingsHosted_payment_method_saveNonNullableEnumAlways -- ^ Represents the JSON value @"always"@
-  | Account_invoices_settingsHosted_payment_method_saveNonNullableEnumNever -- ^ Represents the JSON value @"never"@
-  | Account_invoices_settingsHosted_payment_method_saveNonNullableEnumOffer -- ^ Represents the JSON value @"offer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_invoices_settingsHosted_payment_method_saveNonNullable
-    where {toJSON (Account_invoices_settingsHosted_payment_method_saveNonNullableOther val) = val;
-           toJSON (Account_invoices_settingsHosted_payment_method_saveNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_invoices_settingsHosted_payment_method_saveNonNullableEnumAlways) = "always";
-           toJSON (Account_invoices_settingsHosted_payment_method_saveNonNullableEnumNever) = "never";
-           toJSON (Account_invoices_settingsHosted_payment_method_saveNonNullableEnumOffer) = "offer"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_invoices_settingsHosted_payment_method_saveNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Account_invoices_settingsHosted_payment_method_saveNonNullableEnumAlways
-                                             | val GHC.Classes.== "never" -> Account_invoices_settingsHosted_payment_method_saveNonNullableEnumNever
-                                             | val GHC.Classes.== "offer" -> Account_invoices_settingsHosted_payment_method_saveNonNullableEnumOffer
-                                             | GHC.Base.otherwise -> Account_invoices_settingsHosted_payment_method_saveNonNullableOther val)}

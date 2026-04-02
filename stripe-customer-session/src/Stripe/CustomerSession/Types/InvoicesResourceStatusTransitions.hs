@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoices_resource_status_transitions = Invoices_resource_status_transitions {
   -- | finalized_at: The time that the invoice draft was finalized.
-  invoices_resource_status_transitionsFinalized_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  invoices_resource_status_transitionsFinalized_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | marked_uncollectible_at: The time that the invoice was marked uncollectible.
-  , invoices_resource_status_transitionsMarked_uncollectible_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoices_resource_status_transitionsMarked_uncollectible_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | paid_at: The time that the invoice was paid.
-  , invoices_resource_status_transitionsPaid_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoices_resource_status_transitionsPaid_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | voided_at: The time that the invoice was voided.
-  , invoices_resource_status_transitionsVoided_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , invoices_resource_status_transitionsVoided_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_status_transitions

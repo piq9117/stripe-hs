@@ -49,7 +49,7 @@ data Invoice_payment_method_options_card = Invoice_payment_method_options_card {
   -- | installments: 
   invoice_payment_method_options_cardInstallments :: (GHC.Maybe.Maybe Invoice_installments_card)
   -- | request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-  , invoice_payment_method_options_cardRequest_three_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_payment_method_options_cardRequest_three_d_secureNonNullable))
+  , invoice_payment_method_options_cardRequest_three_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_card
@@ -61,24 +61,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_card
 mkInvoice_payment_method_options_card :: Invoice_payment_method_options_card
 mkInvoice_payment_method_options_card = Invoice_payment_method_options_card{invoice_payment_method_options_cardInstallments = GHC.Maybe.Nothing,
                                                                             invoice_payment_method_options_cardRequest_three_d_secure = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_card.properties.request_three_d_secure@ in the specification.
--- 
--- We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-data Invoice_payment_method_options_cardRequest_three_d_secureNonNullable =
-   Invoice_payment_method_options_cardRequest_three_d_secureNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_cardRequest_three_d_secureNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny -- ^ Represents the JSON value @"any"@
-  | Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_cardRequest_three_d_secureNonNullable
-    where {toJSON (Invoice_payment_method_options_cardRequest_three_d_secureNonNullableOther val) = val;
-           toJSON (Invoice_payment_method_options_cardRequest_three_d_secureNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny) = "any";
-           toJSON (Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic) = "automatic";
-           toJSON (Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge) = "challenge"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_cardRequest_three_d_secureNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "any" -> Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny
-                                             | val GHC.Classes.== "automatic" -> Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "challenge" -> Invoice_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_cardRequest_three_d_secureNonNullableOther val)}

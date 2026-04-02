@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_transaction_fleet_tax_data = Issuing_transaction_fleet_tax_data {
   -- | local_amount_decimal: Amount of state or provincial Sales Tax included in the transaction amount. Null if not reported by merchant or not subject to tax.
-  issuing_transaction_fleet_tax_dataLocal_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_fleet_tax_dataLocal_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | national_amount_decimal: Amount of national Sales Tax or VAT included in the transaction amount. Null if not reported by merchant or not subject to tax.
-  , issuing_transaction_fleet_tax_dataNational_amount_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_fleet_tax_dataNational_amount_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_fleet_tax_data

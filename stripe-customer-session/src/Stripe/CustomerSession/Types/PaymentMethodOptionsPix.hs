@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_options_pix = Payment_method_options_pix {
   -- | amount_includes_iof: Determines if the amount includes the IOF tax.
-  payment_method_options_pixAmount_includes_iof :: (GHC.Maybe.Maybe Payment_method_options_pixAmount_includes_iof)
+  payment_method_options_pixAmount_includes_iof :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expires_after_seconds: The number of seconds (between 10 and 1209600) after which Pix payment will expire.
-  , payment_method_options_pixExpires_after_seconds :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_options_pixExpires_after_seconds :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | expires_at: The timestamp at which the Pix expires.
-  , payment_method_options_pixExpires_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_options_pixExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
   -- 
   -- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
@@ -58,7 +58,7 @@ data Payment_method_options_pix = Payment_method_options_pix {
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_method_options_pixSetup_future_usage :: (GHC.Maybe.Maybe Payment_method_options_pixSetup_future_usage)
+  , payment_method_options_pixSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_pix
@@ -72,42 +72,3 @@ mkPayment_method_options_pix = Payment_method_options_pix{payment_method_options
                                                           payment_method_options_pixExpires_after_seconds = GHC.Maybe.Nothing,
                                                           payment_method_options_pixExpires_at = GHC.Maybe.Nothing,
                                                           payment_method_options_pixSetup_future_usage = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_pix.properties.amount_includes_iof@ in the specification.
--- 
--- Determines if the amount includes the IOF tax.
-data Payment_method_options_pixAmount_includes_iof =
-   Payment_method_options_pixAmount_includes_iofOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_pixAmount_includes_iofTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_pixAmount_includes_iofEnumAlways -- ^ Represents the JSON value @"always"@
-  | Payment_method_options_pixAmount_includes_iofEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_pixAmount_includes_iof
-    where {toJSON (Payment_method_options_pixAmount_includes_iofOther val) = val;
-           toJSON (Payment_method_options_pixAmount_includes_iofTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_pixAmount_includes_iofEnumAlways) = "always";
-           toJSON (Payment_method_options_pixAmount_includes_iofEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_pixAmount_includes_iof
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Payment_method_options_pixAmount_includes_iofEnumAlways
-                                             | val GHC.Classes.== "never" -> Payment_method_options_pixAmount_includes_iofEnumNever
-                                             | GHC.Base.otherwise -> Payment_method_options_pixAmount_includes_iofOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_options_pix.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_method_options_pixSetup_future_usage =
-   Payment_method_options_pixSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_pixSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_pixSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_pixSetup_future_usage
-    where {toJSON (Payment_method_options_pixSetup_future_usageOther val) = val;
-           toJSON (Payment_method_options_pixSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_pixSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_pixSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_method_options_pixSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_method_options_pixSetup_future_usageOther val)}

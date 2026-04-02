@@ -48,7 +48,7 @@ data Subscription_schedules_resource_invoice_item_period_resource_period_start =
   -- | timestamp: A precise Unix timestamp for the start of the invoice item period. Must be less than or equal to \`period.end\`.
   subscription_schedules_resource_invoice_item_period_resource_period_startTimestamp :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | type: Select how to calculate the start of the invoice item period.
-  , subscription_schedules_resource_invoice_item_period_resource_period_startType :: Subscription_schedules_resource_invoice_item_period_resource_period_startType
+  , subscription_schedules_resource_invoice_item_period_resource_period_startType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_invoice_item_period_resource_period_start
@@ -57,28 +57,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_invoice_
 instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_invoice_item_period_resource_period_start
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_invoice_item_period_resource_period_start" (\obj -> (GHC.Base.pure Subscription_schedules_resource_invoice_item_period_resource_period_start GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "timestamp")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Subscription_schedules_resource_invoice_item_period_resource_period_start' with all required fields.
-mkSubscription_schedules_resource_invoice_item_period_resource_period_start :: Subscription_schedules_resource_invoice_item_period_resource_period_startType -- ^ 'subscription_schedules_resource_invoice_item_period_resource_period_startType'
+mkSubscription_schedules_resource_invoice_item_period_resource_period_start :: Data.Text.Internal.Text -- ^ 'subscription_schedules_resource_invoice_item_period_resource_period_startType'
   -> Subscription_schedules_resource_invoice_item_period_resource_period_start
 mkSubscription_schedules_resource_invoice_item_period_resource_period_start subscription_schedules_resource_invoice_item_period_resource_period_startType = Subscription_schedules_resource_invoice_item_period_resource_period_start{subscription_schedules_resource_invoice_item_period_resource_period_startTimestamp = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                       subscription_schedules_resource_invoice_item_period_resource_period_startType = subscription_schedules_resource_invoice_item_period_resource_period_startType}
--- | Defines the enum schema located at @components.schemas.subscription_schedules_resource_invoice_item_period_resource_period_start.properties.type@ in the specification.
--- 
--- Select how to calculate the start of the invoice item period.
-data Subscription_schedules_resource_invoice_item_period_resource_period_startType =
-   Subscription_schedules_resource_invoice_item_period_resource_period_startTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedules_resource_invoice_item_period_resource_period_startTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumMax_item_period_start -- ^ Represents the JSON value @"max_item_period_start"@
-  | Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumPhase_start -- ^ Represents the JSON value @"phase_start"@
-  | Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumTimestamp -- ^ Represents the JSON value @"timestamp"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_invoice_item_period_resource_period_startType
-    where {toJSON (Subscription_schedules_resource_invoice_item_period_resource_period_startTypeOther val) = val;
-           toJSON (Subscription_schedules_resource_invoice_item_period_resource_period_startTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumMax_item_period_start) = "max_item_period_start";
-           toJSON (Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumPhase_start) = "phase_start";
-           toJSON (Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumTimestamp) = "timestamp"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_invoice_item_period_resource_period_startType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "max_item_period_start" -> Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumMax_item_period_start
-                                             | val GHC.Classes.== "phase_start" -> Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumPhase_start
-                                             | val GHC.Classes.== "timestamp" -> Subscription_schedules_resource_invoice_item_period_resource_period_startTypeEnumTimestamp
-                                             | GHC.Base.otherwise -> Subscription_schedules_resource_invoice_item_period_resource_period_startTypeOther val)}

@@ -48,7 +48,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardholderIdDocument
 -- 
 data Issuing_cardholder_verification = Issuing_cardholder_verification {
   -- | document: An identifying document, either a passport or local ID card.
-  issuing_cardholder_verificationDocument :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_verificationDocumentNonNullable))
+  issuing_cardholder_verificationDocument :: (GHC.Maybe.Maybe Issuing_cardholder_verificationDocument)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_verification
@@ -62,47 +62,47 @@ mkIssuing_cardholder_verification = Issuing_cardholder_verification{issuing_card
 -- | Defines the object schema located at @components.schemas.issuing_cardholder_verification.properties.document.anyOf@ in the specification.
 -- 
 -- An identifying document, either a passport or local ID card.
-data Issuing_cardholder_verificationDocumentNonNullable = Issuing_cardholder_verificationDocumentNonNullable {
+data Issuing_cardholder_verificationDocument = Issuing_cardholder_verificationDocument {
   -- | back: The back of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  issuing_cardholder_verificationDocumentNonNullableBack :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_verificationDocumentNonNullableBackNonNullableVariants))
+  issuing_cardholder_verificationDocumentBack :: (GHC.Maybe.Maybe Issuing_cardholder_verificationDocumentBackVariants)
   -- | front: The front of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  , issuing_cardholder_verificationDocumentNonNullableFront :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableVariants))
+  , issuing_cardholder_verificationDocumentFront :: (GHC.Maybe.Maybe Issuing_cardholder_verificationDocumentFrontVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_verificationDocumentNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentNonNullableBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentNonNullableFront obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentNonNullableBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentNonNullableFront obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_verificationDocumentNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_verificationDocumentNonNullable" (\obj -> (GHC.Base.pure Issuing_cardholder_verificationDocumentNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "back")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "front"))}
--- | Create a new 'Issuing_cardholder_verificationDocumentNonNullable' with all required fields.
-mkIssuing_cardholder_verificationDocumentNonNullable :: Issuing_cardholder_verificationDocumentNonNullable
-mkIssuing_cardholder_verificationDocumentNonNullable = Issuing_cardholder_verificationDocumentNonNullable{issuing_cardholder_verificationDocumentNonNullableBack = GHC.Maybe.Nothing,
-                                                                                                          issuing_cardholder_verificationDocumentNonNullableFront = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_verificationDocument
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentFront obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_verificationDocumentFront obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_verificationDocument
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_verificationDocument" (\obj -> (GHC.Base.pure Issuing_cardholder_verificationDocument GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "back")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "front"))}
+-- | Create a new 'Issuing_cardholder_verificationDocument' with all required fields.
+mkIssuing_cardholder_verificationDocument :: Issuing_cardholder_verificationDocument
+mkIssuing_cardholder_verificationDocument = Issuing_cardholder_verificationDocument{issuing_cardholder_verificationDocumentBack = GHC.Maybe.Nothing,
+                                                                                    issuing_cardholder_verificationDocumentFront = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.issuing_cardholder_verification.properties.document.anyOf.properties.back.anyOf@ in the specification.
 -- 
 -- The back of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Issuing_cardholder_verificationDocumentNonNullableBackNonNullableVariants =
-   Issuing_cardholder_verificationDocumentNonNullableBackNonNullableText Data.Text.Internal.Text
-  | Issuing_cardholder_verificationDocumentNonNullableBackNonNullableFile File
+data Issuing_cardholder_verificationDocumentBackVariants =
+   Issuing_cardholder_verificationDocumentBackText Data.Text.Internal.Text
+  | Issuing_cardholder_verificationDocumentBackFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_verificationDocumentNonNullableBackNonNullableVariants
-    where {toJSON (Issuing_cardholder_verificationDocumentNonNullableBackNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_cardholder_verificationDocumentNonNullableBackNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_verificationDocumentNonNullableBackNonNullableVariants
-    where {parseJSON val = case (Issuing_cardholder_verificationDocumentNonNullableBackNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_verificationDocumentNonNullableBackNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_verificationDocumentBackVariants
+    where {toJSON (Issuing_cardholder_verificationDocumentBackText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_cardholder_verificationDocumentBackFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_verificationDocumentBackVariants
+    where {parseJSON val = case (Issuing_cardholder_verificationDocumentBackText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_verificationDocumentBackFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.issuing_cardholder_verification.properties.document.anyOf.properties.front.anyOf@ in the specification.
 -- 
 -- The front of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableVariants =
-   Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableText Data.Text.Internal.Text
-  | Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableFile File
+data Issuing_cardholder_verificationDocumentFrontVariants =
+   Issuing_cardholder_verificationDocumentFrontText Data.Text.Internal.Text
+  | Issuing_cardholder_verificationDocumentFrontFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableVariants
-    where {toJSON (Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableVariants
-    where {parseJSON val = case (Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_verificationDocumentNonNullableFrontNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_verificationDocumentFrontVariants
+    where {toJSON (Issuing_cardholder_verificationDocumentFrontText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_cardholder_verificationDocumentFrontFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_verificationDocumentFrontVariants
+    where {parseJSON val = case (Issuing_cardholder_verificationDocumentFrontText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_verificationDocumentFrontFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

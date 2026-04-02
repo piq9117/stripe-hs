@@ -51,11 +51,11 @@ data Invoices_resource_pretax_credit_amount = Invoices_resource_pretax_credit_am
   -- | amount: The amount, in cents (or local equivalent), of the pretax credit amount.
   invoices_resource_pretax_credit_amountAmount :: GHC.Types.Int
   -- | credit_balance_transaction: The credit balance transaction that was applied to get this pretax credit amount.
-  , invoices_resource_pretax_credit_amountCredit_balance_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableVariants))
+  , invoices_resource_pretax_credit_amountCredit_balance_transaction :: (GHC.Maybe.Maybe Invoices_resource_pretax_credit_amountCredit_balance_transactionVariants)
   -- | discount: The discount that was applied to get this pretax credit amount.
   , invoices_resource_pretax_credit_amountDiscount :: (GHC.Maybe.Maybe Invoices_resource_pretax_credit_amountDiscountVariants)
   -- | type: Type of the pretax credit amount referenced.
-  , invoices_resource_pretax_credit_amountType :: Invoices_resource_pretax_credit_amountType
+  , invoices_resource_pretax_credit_amountType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_pretax_credit_amount
@@ -65,7 +65,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_pretax_credit_amou
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoices_resource_pretax_credit_amount" (\obj -> (((GHC.Base.pure Invoices_resource_pretax_credit_amount GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credit_balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "discount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Invoices_resource_pretax_credit_amount' with all required fields.
 mkInvoices_resource_pretax_credit_amount :: GHC.Types.Int -- ^ 'invoices_resource_pretax_credit_amountAmount'
-  -> Invoices_resource_pretax_credit_amountType -- ^ 'invoices_resource_pretax_credit_amountType'
+  -> Data.Text.Internal.Text -- ^ 'invoices_resource_pretax_credit_amountType'
   -> Invoices_resource_pretax_credit_amount
 mkInvoices_resource_pretax_credit_amount invoices_resource_pretax_credit_amountAmount invoices_resource_pretax_credit_amountType = Invoices_resource_pretax_credit_amount{invoices_resource_pretax_credit_amountAmount = invoices_resource_pretax_credit_amountAmount,
                                                                                                                                                                           invoices_resource_pretax_credit_amountCredit_balance_transaction = GHC.Maybe.Nothing,
@@ -74,15 +74,15 @@ mkInvoices_resource_pretax_credit_amount invoices_resource_pretax_credit_amountA
 -- | Defines the oneOf schema located at @components.schemas.invoices_resource_pretax_credit_amount.properties.credit_balance_transaction.anyOf@ in the specification.
 -- 
 -- The credit balance transaction that was applied to get this pretax credit amount.
-data Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableVariants =
-   Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableText Data.Text.Internal.Text
-  | Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableBilling'credit_balance_transaction Billing'credit_balance_transaction
+data Invoices_resource_pretax_credit_amountCredit_balance_transactionVariants =
+   Invoices_resource_pretax_credit_amountCredit_balance_transactionText Data.Text.Internal.Text
+  | Invoices_resource_pretax_credit_amountCredit_balance_transactionBilling'credit_balance_transaction Billing'credit_balance_transaction
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableVariants
-    where {toJSON (Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableBilling'credit_balance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableVariants
-    where {parseJSON val = case (Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoices_resource_pretax_credit_amountCredit_balance_transactionNonNullableBilling'credit_balance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_pretax_credit_amountCredit_balance_transactionVariants
+    where {toJSON (Invoices_resource_pretax_credit_amountCredit_balance_transactionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Invoices_resource_pretax_credit_amountCredit_balance_transactionBilling'credit_balance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_pretax_credit_amountCredit_balance_transactionVariants
+    where {parseJSON val = case (Invoices_resource_pretax_credit_amountCredit_balance_transactionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoices_resource_pretax_credit_amountCredit_balance_transactionBilling'credit_balance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.invoices_resource_pretax_credit_amount.properties.discount.anyOf@ in the specification.
@@ -101,21 +101,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_pretax_credit_amou
     where {parseJSON val = case (Invoices_resource_pretax_credit_amountDiscountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoices_resource_pretax_credit_amountDiscountDiscount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoices_resource_pretax_credit_amountDiscountDeleted_discount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.invoices_resource_pretax_credit_amount.properties.type@ in the specification.
--- 
--- Type of the pretax credit amount referenced.
-data Invoices_resource_pretax_credit_amountType =
-   Invoices_resource_pretax_credit_amountTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoices_resource_pretax_credit_amountTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoices_resource_pretax_credit_amountTypeEnumCredit_balance_transaction -- ^ Represents the JSON value @"credit_balance_transaction"@
-  | Invoices_resource_pretax_credit_amountTypeEnumDiscount -- ^ Represents the JSON value @"discount"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoices_resource_pretax_credit_amountType
-    where {toJSON (Invoices_resource_pretax_credit_amountTypeOther val) = val;
-           toJSON (Invoices_resource_pretax_credit_amountTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoices_resource_pretax_credit_amountTypeEnumCredit_balance_transaction) = "credit_balance_transaction";
-           toJSON (Invoices_resource_pretax_credit_amountTypeEnumDiscount) = "discount"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoices_resource_pretax_credit_amountType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "credit_balance_transaction" -> Invoices_resource_pretax_credit_amountTypeEnumCredit_balance_transaction
-                                             | val GHC.Classes.== "discount" -> Invoices_resource_pretax_credit_amountTypeEnumDiscount
-                                             | GHC.Base.otherwise -> Invoices_resource_pretax_credit_amountTypeOther val)}

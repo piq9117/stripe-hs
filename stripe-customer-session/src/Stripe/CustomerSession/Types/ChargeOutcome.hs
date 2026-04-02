@@ -47,31 +47,31 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Rule
 -- 
 data Charge_outcome = Charge_outcome {
   -- | advice_code: An enumerated value providing a more detailed explanation on [how to proceed with an error](https:\/\/docs.stripe.com\/declines\#retrying-issuer-declines).
-  charge_outcomeAdvice_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Charge_outcomeAdvice_codeNonNullable))
+  charge_outcomeAdvice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_advice_code: For charges declined by the network, a 2 digit code which indicates the advice returned by the network on how to proceed with an error.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , charge_outcomeNetwork_advice_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , charge_outcomeNetwork_advice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_decline_code: For charges declined by the network, an alphanumeric code which indicates the reason the charge failed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , charge_outcomeNetwork_decline_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , charge_outcomeNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_status: Possible values are \`approved_by_network\`, \`declined_by_network\`, \`not_sent_to_network\`, and \`reversed_after_approval\`. The value \`reversed_after_approval\` indicates the payment was [blocked by Stripe](https:\/\/docs.stripe.com\/declines\#blocked-payments) after bank authorization, and may temporarily appear as \"pending\" on a cardholder\'s statement.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , charge_outcomeNetwork_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , charge_outcomeNetwork_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reason: An enumerated value providing a more detailed explanation of the outcome\'s \`type\`. Charges blocked by Radar\'s default block rule have the value \`highest_risk_level\`. Charges placed in review by Radar\'s default review rule have the value \`elevated_risk_level\`. Charges blocked because the payment is unlikely to be authorized have the value \`low_probability_of_authorization\`. Charges authorized, blocked, or placed in review by custom rules have the value \`rule\`. See [understanding declines](https:\/\/docs.stripe.com\/declines) for more details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , charge_outcomeReason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , charge_outcomeReason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | risk_level: Stripe Radar\'s evaluation of the riskiness of the payment. Possible values for evaluated payments are \`normal\`, \`elevated\`, \`highest\`. For non-card payments, and card-based payments predating the public assignment of risk levels, this field will have the value \`not_assessed\`. In the event of an error in the evaluation, this field will have the value \`unknown\`. This field is only available with Radar.
   -- 
   -- Constraints:
@@ -87,7 +87,7 @@ data Charge_outcome = Charge_outcome {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , charge_outcomeSeller_message :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , charge_outcomeSeller_message :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Possible values are \`authorized\`, \`manual_review\`, \`issuer_declined\`, \`blocked\`, and \`invalid\`. See [understanding declines](https:\/\/docs.stripe.com\/declines) and [Radar reviews](https:\/\/docs.stripe.com\/radar\/reviews) for details.
   -- 
   -- Constraints:
@@ -114,27 +114,6 @@ mkCharge_outcome charge_outcomeType = Charge_outcome{charge_outcomeAdvice_code =
                                                      charge_outcomeRule = GHC.Maybe.Nothing,
                                                      charge_outcomeSeller_message = GHC.Maybe.Nothing,
                                                      charge_outcomeType = charge_outcomeType}
--- | Defines the enum schema located at @components.schemas.charge_outcome.properties.advice_code@ in the specification.
--- 
--- An enumerated value providing a more detailed explanation on [how to proceed with an error](https:\/\/docs.stripe.com\/declines\#retrying-issuer-declines).
-data Charge_outcomeAdvice_codeNonNullable =
-   Charge_outcomeAdvice_codeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Charge_outcomeAdvice_codeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Charge_outcomeAdvice_codeNonNullableEnumConfirm_card_data -- ^ Represents the JSON value @"confirm_card_data"@
-  | Charge_outcomeAdvice_codeNonNullableEnumDo_not_try_again -- ^ Represents the JSON value @"do_not_try_again"@
-  | Charge_outcomeAdvice_codeNonNullableEnumTry_again_later -- ^ Represents the JSON value @"try_again_later"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Charge_outcomeAdvice_codeNonNullable
-    where {toJSON (Charge_outcomeAdvice_codeNonNullableOther val) = val;
-           toJSON (Charge_outcomeAdvice_codeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Charge_outcomeAdvice_codeNonNullableEnumConfirm_card_data) = "confirm_card_data";
-           toJSON (Charge_outcomeAdvice_codeNonNullableEnumDo_not_try_again) = "do_not_try_again";
-           toJSON (Charge_outcomeAdvice_codeNonNullableEnumTry_again_later) = "try_again_later"}
-instance Data.Aeson.Types.FromJSON.FromJSON Charge_outcomeAdvice_codeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "confirm_card_data" -> Charge_outcomeAdvice_codeNonNullableEnumConfirm_card_data
-                                             | val GHC.Classes.== "do_not_try_again" -> Charge_outcomeAdvice_codeNonNullableEnumDo_not_try_again
-                                             | val GHC.Classes.== "try_again_later" -> Charge_outcomeAdvice_codeNonNullableEnumTry_again_later
-                                             | GHC.Base.otherwise -> Charge_outcomeAdvice_codeNonNullableOther val)}
 -- | Defines the oneOf schema located at @components.schemas.charge_outcome.properties.rule.anyOf@ in the specification.
 -- 
 -- The ID of the Radar rule that matched the payment, if applicable.

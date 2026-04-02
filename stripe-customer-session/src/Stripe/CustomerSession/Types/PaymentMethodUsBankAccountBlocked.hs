@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_us_bank_account_blocked = Payment_method_us_bank_account_blocked {
   -- | network_code: The ACH network code that resulted in this block.
-  payment_method_us_bank_account_blockedNetwork_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_us_bank_account_blockedNetwork_codeNonNullable))
+  payment_method_us_bank_account_blockedNetwork_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reason: The reason why this PaymentMethod\'s fingerprint has been blocked
-  , payment_method_us_bank_account_blockedReason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_us_bank_account_blockedReasonNonNullable))
+  , payment_method_us_bank_account_blockedReason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_account_blocked
@@ -60,84 +60,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_account_block
 mkPayment_method_us_bank_account_blocked :: Payment_method_us_bank_account_blocked
 mkPayment_method_us_bank_account_blocked = Payment_method_us_bank_account_blocked{payment_method_us_bank_account_blockedNetwork_code = GHC.Maybe.Nothing,
                                                                                   payment_method_us_bank_account_blockedReason = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_us_bank_account_blocked.properties.network_code@ in the specification.
--- 
--- The ACH network code that resulted in this block.
-data Payment_method_us_bank_account_blockedNetwork_codeNonNullable =
-   Payment_method_us_bank_account_blockedNetwork_codeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR02 -- ^ Represents the JSON value @"R02"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR03 -- ^ Represents the JSON value @"R03"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR04 -- ^ Represents the JSON value @"R04"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR05 -- ^ Represents the JSON value @"R05"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR07 -- ^ Represents the JSON value @"R07"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR08 -- ^ Represents the JSON value @"R08"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR10 -- ^ Represents the JSON value @"R10"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR11 -- ^ Represents the JSON value @"R11"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR16 -- ^ Represents the JSON value @"R16"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR20 -- ^ Represents the JSON value @"R20"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR29 -- ^ Represents the JSON value @"R29"@
-  | Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR31 -- ^ Represents the JSON value @"R31"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_account_blockedNetwork_codeNonNullable
-    where {toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableOther val) = val;
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR02) = "R02";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR03) = "R03";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR04) = "R04";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR05) = "R05";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR07) = "R07";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR08) = "R08";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR10) = "R10";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR11) = "R11";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR16) = "R16";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR20) = "R20";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR29) = "R29";
-           toJSON (Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR31) = "R31"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_account_blockedNetwork_codeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "R02" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR02
-                                             | val GHC.Classes.== "R03" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR03
-                                             | val GHC.Classes.== "R04" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR04
-                                             | val GHC.Classes.== "R05" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR05
-                                             | val GHC.Classes.== "R07" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR07
-                                             | val GHC.Classes.== "R08" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR08
-                                             | val GHC.Classes.== "R10" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR10
-                                             | val GHC.Classes.== "R11" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR11
-                                             | val GHC.Classes.== "R16" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR16
-                                             | val GHC.Classes.== "R20" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR20
-                                             | val GHC.Classes.== "R29" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR29
-                                             | val GHC.Classes.== "R31" -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableEnumR31
-                                             | GHC.Base.otherwise -> Payment_method_us_bank_account_blockedNetwork_codeNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_us_bank_account_blocked.properties.reason@ in the specification.
--- 
--- The reason why this PaymentMethod\'s fingerprint has been blocked
-data Payment_method_us_bank_account_blockedReasonNonNullable =
-   Payment_method_us_bank_account_blockedReasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_us_bank_account_blockedReasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_closed -- ^ Represents the JSON value @"bank_account_closed"@
-  | Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_frozen -- ^ Represents the JSON value @"bank_account_frozen"@
-  | Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_invalid_details -- ^ Represents the JSON value @"bank_account_invalid_details"@
-  | Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_restricted -- ^ Represents the JSON value @"bank_account_restricted"@
-  | Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_unusable -- ^ Represents the JSON value @"bank_account_unusable"@
-  | Payment_method_us_bank_account_blockedReasonNonNullableEnumDebit_not_authorized -- ^ Represents the JSON value @"debit_not_authorized"@
-  | Payment_method_us_bank_account_blockedReasonNonNullableEnumTokenized_account_number_deactivated -- ^ Represents the JSON value @"tokenized_account_number_deactivated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_account_blockedReasonNonNullable
-    where {toJSON (Payment_method_us_bank_account_blockedReasonNonNullableOther val) = val;
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_closed) = "bank_account_closed";
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_frozen) = "bank_account_frozen";
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_invalid_details) = "bank_account_invalid_details";
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_restricted) = "bank_account_restricted";
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_unusable) = "bank_account_unusable";
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableEnumDebit_not_authorized) = "debit_not_authorized";
-           toJSON (Payment_method_us_bank_account_blockedReasonNonNullableEnumTokenized_account_number_deactivated) = "tokenized_account_number_deactivated"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_account_blockedReasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_account_closed" -> Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_closed
-                                             | val GHC.Classes.== "bank_account_frozen" -> Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_frozen
-                                             | val GHC.Classes.== "bank_account_invalid_details" -> Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_invalid_details
-                                             | val GHC.Classes.== "bank_account_restricted" -> Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_restricted
-                                             | val GHC.Classes.== "bank_account_unusable" -> Payment_method_us_bank_account_blockedReasonNonNullableEnumBank_account_unusable
-                                             | val GHC.Classes.== "debit_not_authorized" -> Payment_method_us_bank_account_blockedReasonNonNullableEnumDebit_not_authorized
-                                             | val GHC.Classes.== "tokenized_account_number_deactivated" -> Payment_method_us_bank_account_blockedReasonNonNullableEnumTokenized_account_number_deactivated
-                                             | GHC.Base.otherwise -> Payment_method_us_bank_account_blockedReasonNonNullableOther val)}

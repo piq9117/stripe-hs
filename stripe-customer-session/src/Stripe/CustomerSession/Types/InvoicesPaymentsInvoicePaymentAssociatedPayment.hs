@@ -55,7 +55,7 @@ data Invoices_payments_invoice_payment_associated_payment = Invoices_payments_in
   -- | payment_record: ID of the PaymentRecord associated with this payment when \`type\` is \`payment_record\`.
   , invoices_payments_invoice_payment_associated_paymentPayment_record :: (GHC.Maybe.Maybe Invoices_payments_invoice_payment_associated_paymentPayment_recordVariants)
   -- | type: Type of payment object associated with this invoice payment.
-  , invoices_payments_invoice_payment_associated_paymentType :: Invoices_payments_invoice_payment_associated_paymentType
+  , invoices_payments_invoice_payment_associated_paymentType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoices_payments_invoice_payment_associated_payment
@@ -64,7 +64,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Invoices_payments_invoice_payment_associ
 instance Data.Aeson.Types.FromJSON.FromJSON Invoices_payments_invoice_payment_associated_payment
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoices_payments_invoice_payment_associated_payment" (\obj -> (((GHC.Base.pure Invoices_payments_invoice_payment_associated_payment GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_record")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Invoices_payments_invoice_payment_associated_payment' with all required fields.
-mkInvoices_payments_invoice_payment_associated_payment :: Invoices_payments_invoice_payment_associated_paymentType -- ^ 'invoices_payments_invoice_payment_associated_paymentType'
+mkInvoices_payments_invoice_payment_associated_payment :: Data.Text.Internal.Text -- ^ 'invoices_payments_invoice_payment_associated_paymentType'
   -> Invoices_payments_invoice_payment_associated_payment
 mkInvoices_payments_invoice_payment_associated_payment invoices_payments_invoice_payment_associated_paymentType = Invoices_payments_invoice_payment_associated_payment{invoices_payments_invoice_payment_associated_paymentCharge = GHC.Maybe.Nothing,
                                                                                                                                                                        invoices_payments_invoice_payment_associated_paymentPayment_intent = GHC.Maybe.Nothing,
@@ -112,24 +112,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoices_payments_invoice_payment_as
     where {parseJSON val = case (Invoices_payments_invoice_payment_associated_paymentPayment_recordText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoices_payments_invoice_payment_associated_paymentPayment_recordPayment_record Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.invoices_payments_invoice_payment_associated_payment.properties.type@ in the specification.
--- 
--- Type of payment object associated with this invoice payment.
-data Invoices_payments_invoice_payment_associated_paymentType =
-   Invoices_payments_invoice_payment_associated_paymentTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoices_payments_invoice_payment_associated_paymentTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoices_payments_invoice_payment_associated_paymentTypeEnumCharge -- ^ Represents the JSON value @"charge"@
-  | Invoices_payments_invoice_payment_associated_paymentTypeEnumPayment_intent -- ^ Represents the JSON value @"payment_intent"@
-  | Invoices_payments_invoice_payment_associated_paymentTypeEnumPayment_record -- ^ Represents the JSON value @"payment_record"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoices_payments_invoice_payment_associated_paymentType
-    where {toJSON (Invoices_payments_invoice_payment_associated_paymentTypeOther val) = val;
-           toJSON (Invoices_payments_invoice_payment_associated_paymentTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoices_payments_invoice_payment_associated_paymentTypeEnumCharge) = "charge";
-           toJSON (Invoices_payments_invoice_payment_associated_paymentTypeEnumPayment_intent) = "payment_intent";
-           toJSON (Invoices_payments_invoice_payment_associated_paymentTypeEnumPayment_record) = "payment_record"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoices_payments_invoice_payment_associated_paymentType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "charge" -> Invoices_payments_invoice_payment_associated_paymentTypeEnumCharge
-                                             | val GHC.Classes.== "payment_intent" -> Invoices_payments_invoice_payment_associated_paymentTypeEnumPayment_intent
-                                             | val GHC.Classes.== "payment_record" -> Invoices_payments_invoice_payment_associated_paymentTypeEnumPayment_record
-                                             | GHC.Base.otherwise -> Invoices_payments_invoice_payment_associated_paymentTypeOther val)}

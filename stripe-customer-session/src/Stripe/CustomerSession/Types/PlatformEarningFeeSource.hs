@@ -58,7 +58,7 @@ data Platform_earning_fee_source = Platform_earning_fee_source {
   -- * Maximum length of 5000
   , platform_earning_fee_sourcePayout :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Type of object that created the application fee.
-  , platform_earning_fee_sourceType :: Platform_earning_fee_sourceType
+  , platform_earning_fee_sourceType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Platform_earning_fee_source
@@ -67,26 +67,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Platform_earning_fee_source
 instance Data.Aeson.Types.FromJSON.FromJSON Platform_earning_fee_source
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Platform_earning_fee_source" (\obj -> ((GHC.Base.pure Platform_earning_fee_source GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payout")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Platform_earning_fee_source' with all required fields.
-mkPlatform_earning_fee_source :: Platform_earning_fee_sourceType -- ^ 'platform_earning_fee_sourceType'
+mkPlatform_earning_fee_source :: Data.Text.Internal.Text -- ^ 'platform_earning_fee_sourceType'
   -> Platform_earning_fee_source
 mkPlatform_earning_fee_source platform_earning_fee_sourceType = Platform_earning_fee_source{platform_earning_fee_sourceCharge = GHC.Maybe.Nothing,
                                                                                             platform_earning_fee_sourcePayout = GHC.Maybe.Nothing,
                                                                                             platform_earning_fee_sourceType = platform_earning_fee_sourceType}
--- | Defines the enum schema located at @components.schemas.platform_earning_fee_source.properties.type@ in the specification.
--- 
--- Type of object that created the application fee.
-data Platform_earning_fee_sourceType =
-   Platform_earning_fee_sourceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Platform_earning_fee_sourceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Platform_earning_fee_sourceTypeEnumCharge -- ^ Represents the JSON value @"charge"@
-  | Platform_earning_fee_sourceTypeEnumPayout -- ^ Represents the JSON value @"payout"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Platform_earning_fee_sourceType
-    where {toJSON (Platform_earning_fee_sourceTypeOther val) = val;
-           toJSON (Platform_earning_fee_sourceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Platform_earning_fee_sourceTypeEnumCharge) = "charge";
-           toJSON (Platform_earning_fee_sourceTypeEnumPayout) = "payout"}
-instance Data.Aeson.Types.FromJSON.FromJSON Platform_earning_fee_sourceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "charge" -> Platform_earning_fee_sourceTypeEnumCharge
-                                             | val GHC.Classes.== "payout" -> Platform_earning_fee_sourceTypeEnumPayout
-                                             | GHC.Base.otherwise -> Platform_earning_fee_sourceTypeOther val)}

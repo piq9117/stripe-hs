@@ -53,7 +53,7 @@ data Payment_intent_next_action_konbini = Payment_intent_next_action_konbini {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_konbiniHosted_voucher_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_konbiniHosted_voucher_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | stores: 
   , payment_intent_next_action_konbiniStores :: Payment_intent_next_action_konbini_stores
   } deriving (GHC.Show.Show

@@ -53,19 +53,19 @@ data Account_card_payments_settings = Account_card_payments_settings {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_card_payments_settingsStatement_descriptor_prefix :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_card_payments_settingsStatement_descriptor_prefix :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor_prefix_kana: The Kana variation of the default text that appears on credit card statements when a charge is made (Japan only). This field prefixes any dynamic \`statement_descriptor_suffix_kana\` specified on the charge. \`statement_descriptor_prefix_kana\` is useful for maximizing descriptor space for the dynamic portion.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_card_payments_settingsStatement_descriptor_prefix_kana :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_card_payments_settingsStatement_descriptor_prefix_kana :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor_prefix_kanji: The Kanji variation of the default text that appears on credit card statements when a charge is made (Japan only). This field prefixes any dynamic \`statement_descriptor_suffix_kanji\` specified on the charge. \`statement_descriptor_prefix_kanji\` is useful for maximizing descriptor space for the dynamic portion.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_card_payments_settingsStatement_descriptor_prefix_kanji :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_card_payments_settingsStatement_descriptor_prefix_kanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_card_payments_settings

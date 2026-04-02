@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Custom_unit_amount = Custom_unit_amount {
   -- | maximum: The maximum unit amount the customer can specify for this item.
-  custom_unit_amountMaximum :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  custom_unit_amountMaximum :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | minimum: The minimum unit amount the customer can specify for this item. Must be at least the minimum charge amount.
-  , custom_unit_amountMinimum :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , custom_unit_amountMinimum :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | preset: The starting unit amount which can be updated by the customer.
-  , custom_unit_amountPreset :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , custom_unit_amountPreset :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Custom_unit_amount

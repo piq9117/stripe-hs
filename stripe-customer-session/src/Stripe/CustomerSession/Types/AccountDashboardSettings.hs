@@ -50,13 +50,13 @@ data Account_dashboard_settings = Account_dashboard_settings {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  account_dashboard_settingsDisplay_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  account_dashboard_settingsDisplay_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | timezone: The timezone used in the Stripe Dashboard for this account. A list of possible time zone values is maintained at the [IANA Time Zone Database](http:\/\/www.iana.org\/time-zones).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_dashboard_settingsTimezone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_dashboard_settingsTimezone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_dashboard_settings

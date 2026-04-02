@@ -6,13 +6,3 @@ instance Show Cancellation_details
 instance Eq Cancellation_details
 instance Data.Aeson.FromJSON Cancellation_details
 instance Data.Aeson.ToJSON Cancellation_details
-data Cancellation_detailsFeedbackNonNullable
-instance Show Cancellation_detailsFeedbackNonNullable
-instance Eq Cancellation_detailsFeedbackNonNullable
-instance Data.Aeson.FromJSON Cancellation_detailsFeedbackNonNullable
-instance Data.Aeson.ToJSON Cancellation_detailsFeedbackNonNullable
-data Cancellation_detailsReasonNonNullable
-instance Show Cancellation_detailsReasonNonNullable
-instance Eq Cancellation_detailsReasonNonNullable
-instance Data.Aeson.FromJSON Cancellation_detailsReasonNonNullable
-instance Data.Aeson.ToJSON Cancellation_detailsReasonNonNullable

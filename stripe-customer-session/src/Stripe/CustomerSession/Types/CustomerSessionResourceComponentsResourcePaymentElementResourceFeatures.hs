@@ -48,23 +48,23 @@ data Customer_session_resource_components_resource_payment_element_resource_feat
   -- | payment_method_allow_redisplay_filters: A list of [\`allow_redisplay\`](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-allow_redisplay) values that controls which saved payment methods the Payment Element displays by filtering to only show payment methods with an \`allow_redisplay\` value that is present in this list.
   -- 
   -- If not specified, defaults to [\"always\"]. In order to display all saved payment methods, specify [\"always\", \"limited\", \"unspecified\"].
-  customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters :: [Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters]
+  customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters :: [Data.Text.Internal.Text]
   -- | payment_method_redisplay: Controls whether or not the Payment Element shows saved payment methods. This parameter defaults to \`disabled\`.
-  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay :: Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay
+  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay :: Data.Text.Internal.Text
   -- | payment_method_redisplay_limit: Determines the max number of saved payment methods for the Payment Element to display. This parameter defaults to \`3\`. The maximum redisplay limit is \`10\`.
-  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay_limit :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay_limit :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | payment_method_remove: Controls whether the Payment Element displays the option to remove a saved payment method. This parameter defaults to \`disabled\`.
   -- 
   -- Allowing buyers to remove their saved payment methods impacts subscriptions that depend on that payment method. Removing the payment method detaches the [\`customer\` object](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-customer) from that [PaymentMethod](https:\/\/docs.stripe.com\/api\/payment_methods).
-  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove :: Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove
+  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove :: Data.Text.Internal.Text
   -- | payment_method_save: Controls whether the Payment Element displays a checkbox offering to save a new payment method. This parameter defaults to \`disabled\`.
   -- 
   -- If a customer checks the box, the [\`allow_redisplay\`](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-allow_redisplay) value on the PaymentMethod is set to \`\'always\'\` at confirmation time. For PaymentIntents, the [\`setup_future_usage\`](https:\/\/docs.stripe.com\/api\/payment_intents\/object\#payment_intent_object-setup_future_usage) value is also set to the value defined in \`payment_method_save_usage\`.
-  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save :: Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save
+  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save :: Data.Text.Internal.Text
   -- | payment_method_save_usage: When using PaymentIntents and the customer checks the save checkbox, this field determines the [\`setup_future_usage\`](https:\/\/docs.stripe.com\/api\/payment_intents\/object\#payment_intent_object-setup_future_usage) value used to confirm the PaymentIntent.
   -- 
   -- When using SetupIntents, directly configure the [\`usage\`](https:\/\/docs.stripe.com\/api\/setup_intents\/object\#setup_intent_object-usage) value on SetupIntent creation.
-  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usage :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullable))
+  , customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_payment_element_resource_features
@@ -73,10 +73,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_res
 instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_payment_element_resource_features
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Customer_session_resource_components_resource_payment_element_resource_features" (\obj -> (((((GHC.Base.pure Customer_session_resource_components_resource_payment_element_resource_features GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_allow_redisplay_filters")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_redisplay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_redisplay_limit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_remove")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_save")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_save_usage"))}
 -- | Create a new 'Customer_session_resource_components_resource_payment_element_resource_features' with all required fields.
-mkCustomer_session_resource_components_resource_payment_element_resource_features :: [Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters] -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters'
-  -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay'
-  -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove'
-  -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save'
+mkCustomer_session_resource_components_resource_payment_element_resource_features :: [Data.Text.Internal.Text] -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters'
+  -> Data.Text.Internal.Text -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay'
+  -> Data.Text.Internal.Text -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove'
+  -> Data.Text.Internal.Text -- ^ 'customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save'
   -> Customer_session_resource_components_resource_payment_element_resource_features
 mkCustomer_session_resource_components_resource_payment_element_resource_features customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save = Customer_session_resource_components_resource_payment_element_resource_features{customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters = customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay = customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay,
@@ -84,102 +84,3 @@ mkCustomer_session_resource_components_resource_payment_element_resource_feature
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove = customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save = customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usage = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.customer_session_resource_components_resource_payment_element_resource_features.properties.payment_method_allow_redisplay_filters.items@ in the specification.
--- 
--- 
-data Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters =
-   Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumAlways -- ^ Represents the JSON value @"always"@
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumLimited -- ^ Represents the JSON value @"limited"@
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters
-    where {toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersOther val) = val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumAlways) = "always";
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumLimited) = "limited";
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filters
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumAlways
-                                             | val GHC.Classes.== "limited" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumLimited
-                                             | val GHC.Classes.== "unspecified" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersEnumUnspecified
-                                             | GHC.Base.otherwise -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_allow_redisplay_filtersOther val)}
--- | Defines the enum schema located at @components.schemas.customer_session_resource_components_resource_payment_element_resource_features.properties.payment_method_redisplay@ in the specification.
--- 
--- Controls whether or not the Payment Element shows saved payment methods. This parameter defaults to \`disabled\`.
-data Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay =
-   Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayEnumDisabled -- ^ Represents the JSON value @"disabled"@
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayEnumEnabled -- ^ Represents the JSON value @"enabled"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay
-    where {toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayOther val) = val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayEnumDisabled) = "disabled";
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayEnumEnabled) = "enabled"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplay
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "disabled" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayEnumDisabled
-                                             | val GHC.Classes.== "enabled" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayEnumEnabled
-                                             | GHC.Base.otherwise -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_redisplayOther val)}
--- | Defines the enum schema located at @components.schemas.customer_session_resource_components_resource_payment_element_resource_features.properties.payment_method_remove@ in the specification.
--- 
--- Controls whether the Payment Element displays the option to remove a saved payment method. This parameter defaults to \`disabled\`.
--- 
--- Allowing buyers to remove their saved payment methods impacts subscriptions that depend on that payment method. Removing the payment method detaches the [\`customer\` object](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-customer) from that [PaymentMethod](https:\/\/docs.stripe.com\/api\/payment_methods).
-data Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove =
-   Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeEnumDisabled -- ^ Represents the JSON value @"disabled"@
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeEnumEnabled -- ^ Represents the JSON value @"enabled"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove
-    where {toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeOther val) = val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeEnumDisabled) = "disabled";
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeEnumEnabled) = "enabled"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_remove
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "disabled" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeEnumDisabled
-                                             | val GHC.Classes.== "enabled" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeEnumEnabled
-                                             | GHC.Base.otherwise -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_removeOther val)}
--- | Defines the enum schema located at @components.schemas.customer_session_resource_components_resource_payment_element_resource_features.properties.payment_method_save@ in the specification.
--- 
--- Controls whether the Payment Element displays a checkbox offering to save a new payment method. This parameter defaults to \`disabled\`.
--- 
--- If a customer checks the box, the [\`allow_redisplay\`](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-allow_redisplay) value on the PaymentMethod is set to \`\'always\'\` at confirmation time. For PaymentIntents, the [\`setup_future_usage\`](https:\/\/docs.stripe.com\/api\/payment_intents\/object\#payment_intent_object-setup_future_usage) value is also set to the value defined in \`payment_method_save_usage\`.
-data Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save =
-   Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveEnumDisabled -- ^ Represents the JSON value @"disabled"@
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveEnumEnabled -- ^ Represents the JSON value @"enabled"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save
-    where {toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveOther val) = val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveEnumDisabled) = "disabled";
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveEnumEnabled) = "enabled"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "disabled" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveEnumDisabled
-                                             | val GHC.Classes.== "enabled" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveEnumEnabled
-                                             | GHC.Base.otherwise -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_saveOther val)}
--- | Defines the enum schema located at @components.schemas.customer_session_resource_components_resource_payment_element_resource_features.properties.payment_method_save_usage@ in the specification.
--- 
--- When using PaymentIntents and the customer checks the save checkbox, this field determines the [\`setup_future_usage\`](https:\/\/docs.stripe.com\/api\/payment_intents\/object\#payment_intent_object-setup_future_usage) value used to confirm the PaymentIntent.
--- 
--- When using SetupIntents, directly configure the [\`usage\`](https:\/\/docs.stripe.com\/api\/setup_intents\/object\#setup_intent_object-usage) value on SetupIntent creation.
-data Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullable =
-   Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullable
-    where {toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableOther val) = val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableEnumOff_session) = "off_session";
-           toJSON (Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "off_session" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableEnumOn_session
-                                             | GHC.Base.otherwise -> Customer_session_resource_components_resource_payment_element_resource_featuresPayment_method_save_usageNonNullableOther val)}

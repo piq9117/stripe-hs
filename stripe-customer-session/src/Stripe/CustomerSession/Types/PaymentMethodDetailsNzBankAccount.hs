@@ -50,7 +50,7 @@ data Payment_method_details_nz_bank_account = Payment_method_details_nz_bank_acc
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_nz_bank_accountAccount_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_nz_bank_accountAccount_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_code: The numeric code for the bank account\'s bank.
   -- 
   -- Constraints:
@@ -86,7 +86,7 @@ data Payment_method_details_nz_bank_account = Payment_method_details_nz_bank_acc
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_nz_bank_accountSuffix :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_nz_bank_accountSuffix :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_nz_bank_account

@@ -50,7 +50,7 @@ data Issuing_dispute_treasury = Issuing_dispute_treasury {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_dispute_treasuryDebit_reversal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_dispute_treasuryDebit_reversal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | received_debit: The Treasury [ReceivedDebit](https:\/\/docs.stripe.com\/api\/treasury\/received_debits) that is being disputed.
   -- 
   -- Constraints:

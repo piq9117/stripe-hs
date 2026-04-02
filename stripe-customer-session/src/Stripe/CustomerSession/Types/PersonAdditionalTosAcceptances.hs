@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PersonAdditionalTosAcceptance
 -- 
 data Person_additional_tos_acceptances = Person_additional_tos_acceptances {
   -- | account: Details on the legal guardian\'s acceptance of the main Stripe service agreement.
-  person_additional_tos_acceptancesAccount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Person_additional_tos_acceptancesAccountNonNullable))
+  person_additional_tos_acceptancesAccount :: (GHC.Maybe.Maybe Person_additional_tos_acceptancesAccount)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Person_additional_tos_acceptances
@@ -61,30 +61,30 @@ mkPerson_additional_tos_acceptances = Person_additional_tos_acceptances{person_a
 -- | Defines the object schema located at @components.schemas.person_additional_tos_acceptances.properties.account.anyOf@ in the specification.
 -- 
 -- Details on the legal guardian\\\'s acceptance of the main Stripe service agreement.
-data Person_additional_tos_acceptancesAccountNonNullable = Person_additional_tos_acceptancesAccountNonNullable {
+data Person_additional_tos_acceptancesAccount = Person_additional_tos_acceptancesAccount {
   -- | date: The Unix timestamp marking when the legal guardian accepted the service agreement.
-  person_additional_tos_acceptancesAccountNonNullableDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  person_additional_tos_acceptancesAccountDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the legal guardian accepted the service agreement.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_additional_tos_acceptancesAccountNonNullableIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_additional_tos_acceptancesAccountIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The user agent of the browser from which the legal guardian accepted the service agreement.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_additional_tos_acceptancesAccountNonNullableUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_additional_tos_acceptancesAccountUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Person_additional_tos_acceptancesAccountNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountNonNullableDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountNonNullableIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountNonNullableUser_agent obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountNonNullableDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountNonNullableIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountNonNullableUser_agent obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Person_additional_tos_acceptancesAccountNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person_additional_tos_acceptancesAccountNonNullable" (\obj -> ((GHC.Base.pure Person_additional_tos_acceptancesAccountNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_agent"))}
--- | Create a new 'Person_additional_tos_acceptancesAccountNonNullable' with all required fields.
-mkPerson_additional_tos_acceptancesAccountNonNullable :: Person_additional_tos_acceptancesAccountNonNullable
-mkPerson_additional_tos_acceptancesAccountNonNullable = Person_additional_tos_acceptancesAccountNonNullable{person_additional_tos_acceptancesAccountNonNullableDate = GHC.Maybe.Nothing,
-                                                                                                            person_additional_tos_acceptancesAccountNonNullableIp = GHC.Maybe.Nothing,
-                                                                                                            person_additional_tos_acceptancesAccountNonNullableUser_agent = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Person_additional_tos_acceptancesAccount
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountUser_agent obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (person_additional_tos_acceptancesAccountUser_agent obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Person_additional_tos_acceptancesAccount
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person_additional_tos_acceptancesAccount" (\obj -> ((GHC.Base.pure Person_additional_tos_acceptancesAccount GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_agent"))}
+-- | Create a new 'Person_additional_tos_acceptancesAccount' with all required fields.
+mkPerson_additional_tos_acceptancesAccount :: Person_additional_tos_acceptancesAccount
+mkPerson_additional_tos_acceptancesAccount = Person_additional_tos_acceptancesAccount{person_additional_tos_acceptancesAccountDate = GHC.Maybe.Nothing,
+                                                                                      person_additional_tos_acceptancesAccountIp = GHC.Maybe.Nothing,
+                                                                                      person_additional_tos_acceptancesAccountUser_agent = GHC.Maybe.Nothing}

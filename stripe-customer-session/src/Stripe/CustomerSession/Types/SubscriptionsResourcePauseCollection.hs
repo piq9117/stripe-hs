@@ -46,10 +46,10 @@ import Stripe.CustomerSession.TypeAlias
 -- The Pause Collection settings determine how we will pause collection for this subscription and for how long the subscription
 -- should be paused.
 data Subscriptions_resource_pause_collection = Subscriptions_resource_pause_collection {
-  -- | behavior: The payment collection behavior for this subscription while paused. One of \`keep_as_draft\`, \`mark_uncollectible\`, or \`void\`.
-  subscriptions_resource_pause_collectionBehavior :: Subscriptions_resource_pause_collectionBehavior
+  -- | behavior: The payment collection behavior for this subscription while paused.
+  subscriptions_resource_pause_collectionBehavior :: Data.Text.Internal.Text
   -- | resumes_at: The time after which the subscription will resume collecting payments.
-  , subscriptions_resource_pause_collectionResumes_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptions_resource_pause_collectionResumes_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_pause_collection
@@ -58,28 +58,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_pause_collection
 instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_pause_collection
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscriptions_resource_pause_collection" (\obj -> (GHC.Base.pure Subscriptions_resource_pause_collection GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "behavior")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "resumes_at"))}
 -- | Create a new 'Subscriptions_resource_pause_collection' with all required fields.
-mkSubscriptions_resource_pause_collection :: Subscriptions_resource_pause_collectionBehavior -- ^ 'subscriptions_resource_pause_collectionBehavior'
+mkSubscriptions_resource_pause_collection :: Data.Text.Internal.Text -- ^ 'subscriptions_resource_pause_collectionBehavior'
   -> Subscriptions_resource_pause_collection
 mkSubscriptions_resource_pause_collection subscriptions_resource_pause_collectionBehavior = Subscriptions_resource_pause_collection{subscriptions_resource_pause_collectionBehavior = subscriptions_resource_pause_collectionBehavior,
                                                                                                                                     subscriptions_resource_pause_collectionResumes_at = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscriptions_resource_pause_collection.properties.behavior@ in the specification.
--- 
--- The payment collection behavior for this subscription while paused. One of \`keep_as_draft\`, \`mark_uncollectible\`, or \`void\`.
-data Subscriptions_resource_pause_collectionBehavior =
-   Subscriptions_resource_pause_collectionBehaviorOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscriptions_resource_pause_collectionBehaviorTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscriptions_resource_pause_collectionBehaviorEnumKeep_as_draft -- ^ Represents the JSON value @"keep_as_draft"@
-  | Subscriptions_resource_pause_collectionBehaviorEnumMark_uncollectible -- ^ Represents the JSON value @"mark_uncollectible"@
-  | Subscriptions_resource_pause_collectionBehaviorEnumVoid -- ^ Represents the JSON value @"void"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_pause_collectionBehavior
-    where {toJSON (Subscriptions_resource_pause_collectionBehaviorOther val) = val;
-           toJSON (Subscriptions_resource_pause_collectionBehaviorTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscriptions_resource_pause_collectionBehaviorEnumKeep_as_draft) = "keep_as_draft";
-           toJSON (Subscriptions_resource_pause_collectionBehaviorEnumMark_uncollectible) = "mark_uncollectible";
-           toJSON (Subscriptions_resource_pause_collectionBehaviorEnumVoid) = "void"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_pause_collectionBehavior
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "keep_as_draft" -> Subscriptions_resource_pause_collectionBehaviorEnumKeep_as_draft
-                                             | val GHC.Classes.== "mark_uncollectible" -> Subscriptions_resource_pause_collectionBehaviorEnumMark_uncollectible
-                                             | val GHC.Classes.== "void" -> Subscriptions_resource_pause_collectionBehaviorEnumVoid
-                                             | GHC.Base.otherwise -> Subscriptions_resource_pause_collectionBehaviorOther val)}

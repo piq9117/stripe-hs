@@ -48,8 +48,8 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.InvoicePaymentMethodOptionsUs
 data Invoice_payment_method_options_us_bank_account = Invoice_payment_method_options_us_bank_account {
   -- | financial_connections: 
   invoice_payment_method_options_us_bank_accountFinancial_connections :: (GHC.Maybe.Maybe Invoice_payment_method_options_us_bank_account_linked_account_options)
-  -- | verification_method: Bank account verification method.
-  , invoice_payment_method_options_us_bank_accountVerification_method :: (GHC.Maybe.Maybe Invoice_payment_method_options_us_bank_accountVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , invoice_payment_method_options_us_bank_accountVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_us_bank_account
@@ -61,24 +61,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_us_ba
 mkInvoice_payment_method_options_us_bank_account :: Invoice_payment_method_options_us_bank_account
 mkInvoice_payment_method_options_us_bank_account = Invoice_payment_method_options_us_bank_account{invoice_payment_method_options_us_bank_accountFinancial_connections = GHC.Maybe.Nothing,
                                                                                                   invoice_payment_method_options_us_bank_accountVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_us_bank_account.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Invoice_payment_method_options_us_bank_accountVerification_method =
-   Invoice_payment_method_options_us_bank_accountVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_us_bank_accountVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_us_bank_accountVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Invoice_payment_method_options_us_bank_accountVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Invoice_payment_method_options_us_bank_accountVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_us_bank_accountVerification_method
-    where {toJSON (Invoice_payment_method_options_us_bank_accountVerification_methodOther val) = val;
-           toJSON (Invoice_payment_method_options_us_bank_accountVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_us_bank_accountVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Invoice_payment_method_options_us_bank_accountVerification_methodEnumInstant) = "instant";
-           toJSON (Invoice_payment_method_options_us_bank_accountVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_us_bank_accountVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Invoice_payment_method_options_us_bank_accountVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Invoice_payment_method_options_us_bank_accountVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Invoice_payment_method_options_us_bank_accountVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_us_bank_accountVerification_methodOther val)}

@@ -52,23 +52,23 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardholderVerification
 -- 
 data Issuing_cardholder_individual = Issuing_cardholder_individual {
   -- | card_issuing: Information related to the card_issuing program for this cardholder.
-  issuing_cardholder_individualCard_issuing :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_individualCard_issuingNonNullable))
+  issuing_cardholder_individualCard_issuing :: (GHC.Maybe.Maybe Issuing_cardholder_individualCard_issuing)
   -- | dob: The date of birth of this cardholder.
-  , issuing_cardholder_individualDob :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_individualDobNonNullable))
+  , issuing_cardholder_individualDob :: (GHC.Maybe.Maybe Issuing_cardholder_individualDob)
   -- | first_name: The first name of this cardholder. Required before activating Cards. This field cannot contain any numbers, special characters (except periods, commas, hyphens, spaces and apostrophes) or non-latin letters.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_individualFirst_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_individualFirst_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last_name: The last name of this cardholder. Required before activating Cards. This field cannot contain any numbers, special characters (except periods, commas, hyphens, spaces and apostrophes) or non-latin letters.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_individualLast_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_individualLast_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verification: Government-issued ID document for this cardholder.
-  , issuing_cardholder_individualVerification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_individualVerificationNonNullable))
+  , issuing_cardholder_individualVerification :: (GHC.Maybe.Maybe Issuing_cardholder_individualVerification)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individual
@@ -86,131 +86,131 @@ mkIssuing_cardholder_individual = Issuing_cardholder_individual{issuing_cardhold
 -- | Defines the object schema located at @components.schemas.issuing_cardholder_individual.properties.card_issuing.anyOf@ in the specification.
 -- 
 -- Information related to the card_issuing program for this cardholder.
-data Issuing_cardholder_individualCard_issuingNonNullable = Issuing_cardholder_individualCard_issuingNonNullable {
+data Issuing_cardholder_individualCard_issuing = Issuing_cardholder_individualCard_issuing {
   -- | user_terms_acceptance: Information about cardholder acceptance of Celtic [Authorized User Terms](https:\/\/stripe.com\/docs\/issuing\/cards\#accept-authorized-user-terms). Required for cards backed by a Celtic program.
-  issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptance :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable))
+  issuing_cardholder_individualCard_issuingUser_terms_acceptance :: (GHC.Maybe.Maybe Issuing_cardholder_individualCard_issuingUser_terms_acceptance)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualCard_issuingNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_terms_acceptance" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptance obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_terms_acceptance" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptance obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualCard_issuingNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualCard_issuingNonNullable" (\obj -> GHC.Base.pure Issuing_cardholder_individualCard_issuingNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_terms_acceptance"))}
--- | Create a new 'Issuing_cardholder_individualCard_issuingNonNullable' with all required fields.
-mkIssuing_cardholder_individualCard_issuingNonNullable :: Issuing_cardholder_individualCard_issuingNonNullable
-mkIssuing_cardholder_individualCard_issuingNonNullable = Issuing_cardholder_individualCard_issuingNonNullable{issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptance = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualCard_issuing
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_terms_acceptance" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptance obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_terms_acceptance" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptance obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualCard_issuing
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualCard_issuing" (\obj -> GHC.Base.pure Issuing_cardholder_individualCard_issuing GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_terms_acceptance"))}
+-- | Create a new 'Issuing_cardholder_individualCard_issuing' with all required fields.
+mkIssuing_cardholder_individualCard_issuing :: Issuing_cardholder_individualCard_issuing
+mkIssuing_cardholder_individualCard_issuing = Issuing_cardholder_individualCard_issuing{issuing_cardholder_individualCard_issuingUser_terms_acceptance = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_cardholder_individual.properties.card_issuing.anyOf.properties.user_terms_acceptance.anyOf@ in the specification.
 -- 
 -- Information about cardholder acceptance of Celtic [Authorized User Terms](https:\\\/\\\/stripe.com\\\/docs\\\/issuing\\\/cards\\\#accept-authorized-user-terms). Required for cards backed by a Celtic program.
-data Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable = Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable {
+data Issuing_cardholder_individualCard_issuingUser_terms_acceptance = Issuing_cardholder_individualCard_issuingUser_terms_acceptance {
   -- | date: The Unix timestamp marking when the cardholder accepted the Authorized User Terms.
-  issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_cardholder_individualCard_issuingUser_terms_acceptanceDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the cardholder accepted the Authorized User Terms.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_individualCard_issuingUser_terms_acceptanceIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The user agent of the browser from which the cardholder accepted the Authorized User Terms.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_individualCard_issuingUser_terms_acceptanceUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableUser_agent obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableUser_agent obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable" (\obj -> ((GHC.Base.pure Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_agent"))}
--- | Create a new 'Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable' with all required fields.
-mkIssuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable :: Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable
-mkIssuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable = Issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullable{issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableDate = GHC.Maybe.Nothing,
-                                                                                                                                                                              issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableIp = GHC.Maybe.Nothing,
-                                                                                                                                                                              issuing_cardholder_individualCard_issuingNonNullableUser_terms_acceptanceNonNullableUser_agent = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualCard_issuingUser_terms_acceptance
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptanceDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptanceIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptanceUser_agent obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptanceDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptanceIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualCard_issuingUser_terms_acceptanceUser_agent obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualCard_issuingUser_terms_acceptance
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualCard_issuingUser_terms_acceptance" (\obj -> ((GHC.Base.pure Issuing_cardholder_individualCard_issuingUser_terms_acceptance GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_agent"))}
+-- | Create a new 'Issuing_cardholder_individualCard_issuingUser_terms_acceptance' with all required fields.
+mkIssuing_cardholder_individualCard_issuingUser_terms_acceptance :: Issuing_cardholder_individualCard_issuingUser_terms_acceptance
+mkIssuing_cardholder_individualCard_issuingUser_terms_acceptance = Issuing_cardholder_individualCard_issuingUser_terms_acceptance{issuing_cardholder_individualCard_issuingUser_terms_acceptanceDate = GHC.Maybe.Nothing,
+                                                                                                                                  issuing_cardholder_individualCard_issuingUser_terms_acceptanceIp = GHC.Maybe.Nothing,
+                                                                                                                                  issuing_cardholder_individualCard_issuingUser_terms_acceptanceUser_agent = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_cardholder_individual.properties.dob.anyOf@ in the specification.
 -- 
 -- The date of birth of this cardholder.
-data Issuing_cardholder_individualDobNonNullable = Issuing_cardholder_individualDobNonNullable {
+data Issuing_cardholder_individualDob = Issuing_cardholder_individualDob {
   -- | day: The day of birth, between 1 and 31.
-  issuing_cardholder_individualDobNonNullableDay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_cardholder_individualDobDay :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month of birth, between 1 and 12.
-  , issuing_cardholder_individualDobNonNullableMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_cardholder_individualDobMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | year: The four-digit year of birth.
-  , issuing_cardholder_individualDobNonNullableYear :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_cardholder_individualDobYear :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualDobNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobNonNullableDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobNonNullableMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobNonNullableYear obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobNonNullableDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobNonNullableMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobNonNullableYear obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualDobNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualDobNonNullable" (\obj -> ((GHC.Base.pure Issuing_cardholder_individualDobNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "day")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "year"))}
--- | Create a new 'Issuing_cardholder_individualDobNonNullable' with all required fields.
-mkIssuing_cardholder_individualDobNonNullable :: Issuing_cardholder_individualDobNonNullable
-mkIssuing_cardholder_individualDobNonNullable = Issuing_cardholder_individualDobNonNullable{issuing_cardholder_individualDobNonNullableDay = GHC.Maybe.Nothing,
-                                                                                            issuing_cardholder_individualDobNonNullableMonth = GHC.Maybe.Nothing,
-                                                                                            issuing_cardholder_individualDobNonNullableYear = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualDob
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobYear obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("day" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobDay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("month" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobMonth obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("year" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualDobYear obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualDob
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualDob" (\obj -> ((GHC.Base.pure Issuing_cardholder_individualDob GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "day")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "year"))}
+-- | Create a new 'Issuing_cardholder_individualDob' with all required fields.
+mkIssuing_cardholder_individualDob :: Issuing_cardholder_individualDob
+mkIssuing_cardholder_individualDob = Issuing_cardholder_individualDob{issuing_cardholder_individualDobDay = GHC.Maybe.Nothing,
+                                                                      issuing_cardholder_individualDobMonth = GHC.Maybe.Nothing,
+                                                                      issuing_cardholder_individualDobYear = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_cardholder_individual.properties.verification.anyOf@ in the specification.
 -- 
 -- Government-issued ID document for this cardholder.
-data Issuing_cardholder_individualVerificationNonNullable = Issuing_cardholder_individualVerificationNonNullable {
+data Issuing_cardholder_individualVerification = Issuing_cardholder_individualVerification {
   -- | document: An identifying document, either a passport or local ID card.
-  issuing_cardholder_individualVerificationNonNullableDocument :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable))
+  issuing_cardholder_individualVerificationDocument :: (GHC.Maybe.Maybe Issuing_cardholder_individualVerificationDocument)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerificationNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("document" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationNonNullableDocument obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("document" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationNonNullableDocument obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerificationNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualVerificationNonNullable" (\obj -> GHC.Base.pure Issuing_cardholder_individualVerificationNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "document"))}
--- | Create a new 'Issuing_cardholder_individualVerificationNonNullable' with all required fields.
-mkIssuing_cardholder_individualVerificationNonNullable :: Issuing_cardholder_individualVerificationNonNullable
-mkIssuing_cardholder_individualVerificationNonNullable = Issuing_cardholder_individualVerificationNonNullable{issuing_cardholder_individualVerificationNonNullableDocument = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerification
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("document" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationDocument obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("document" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationDocument obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerification
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualVerification" (\obj -> GHC.Base.pure Issuing_cardholder_individualVerification GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "document"))}
+-- | Create a new 'Issuing_cardholder_individualVerification' with all required fields.
+mkIssuing_cardholder_individualVerification :: Issuing_cardholder_individualVerification
+mkIssuing_cardholder_individualVerification = Issuing_cardholder_individualVerification{issuing_cardholder_individualVerificationDocument = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.issuing_cardholder_individual.properties.verification.anyOf.properties.document.anyOf@ in the specification.
 -- 
 -- An identifying document, either a passport or local ID card.
-data Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable = Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable {
+data Issuing_cardholder_individualVerificationDocument = Issuing_cardholder_individualVerificationDocument {
   -- | back: The back of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBack :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableVariants))
+  issuing_cardholder_individualVerificationDocumentBack :: (GHC.Maybe.Maybe Issuing_cardholder_individualVerificationDocumentBackVariants)
   -- | front: The front of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-  , issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFront :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableVariants))
+  , issuing_cardholder_individualVerificationDocumentFront :: (GHC.Maybe.Maybe Issuing_cardholder_individualVerificationDocumentFrontVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFront obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFront obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable" (\obj -> (GHC.Base.pure Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "back")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "front"))}
--- | Create a new 'Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable' with all required fields.
-mkIssuing_cardholder_individualVerificationNonNullableDocumentNonNullable :: Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable
-mkIssuing_cardholder_individualVerificationNonNullableDocumentNonNullable = Issuing_cardholder_individualVerificationNonNullableDocumentNonNullable{issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBack = GHC.Maybe.Nothing,
-                                                                                                                                                    issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFront = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerificationDocument
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationDocumentBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationDocumentFront obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("back" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationDocumentBack obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("front" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_individualVerificationDocumentFront obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerificationDocument
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_individualVerificationDocument" (\obj -> (GHC.Base.pure Issuing_cardholder_individualVerificationDocument GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "back")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "front"))}
+-- | Create a new 'Issuing_cardholder_individualVerificationDocument' with all required fields.
+mkIssuing_cardholder_individualVerificationDocument :: Issuing_cardholder_individualVerificationDocument
+mkIssuing_cardholder_individualVerificationDocument = Issuing_cardholder_individualVerificationDocument{issuing_cardholder_individualVerificationDocumentBack = GHC.Maybe.Nothing,
+                                                                                                        issuing_cardholder_individualVerificationDocumentFront = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.issuing_cardholder_individual.properties.verification.anyOf.properties.document.anyOf.properties.back.anyOf@ in the specification.
 -- 
 -- The back of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableVariants =
-   Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableText Data.Text.Internal.Text
-  | Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableFile File
+data Issuing_cardholder_individualVerificationDocumentBackVariants =
+   Issuing_cardholder_individualVerificationDocumentBackText Data.Text.Internal.Text
+  | Issuing_cardholder_individualVerificationDocumentBackFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableVariants
-    where {toJSON (Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableVariants
-    where {parseJSON val = case (Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableBackNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerificationDocumentBackVariants
+    where {toJSON (Issuing_cardholder_individualVerificationDocumentBackText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_cardholder_individualVerificationDocumentBackFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerificationDocumentBackVariants
+    where {parseJSON val = case (Issuing_cardholder_individualVerificationDocumentBackText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_individualVerificationDocumentBackFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.issuing_cardholder_individual.properties.verification.anyOf.properties.document.anyOf.properties.front.anyOf@ in the specification.
 -- 
 -- The front of a document returned by a [file upload](https:\/\/api.stripe.com\#create_file) with a \`purpose\` value of \`identity_document\`.
-data Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableVariants =
-   Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableText Data.Text.Internal.Text
-  | Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableFile File
+data Issuing_cardholder_individualVerificationDocumentFrontVariants =
+   Issuing_cardholder_individualVerificationDocumentFrontText Data.Text.Internal.Text
+  | Issuing_cardholder_individualVerificationDocumentFrontFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableVariants
-    where {toJSON (Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableVariants
-    where {parseJSON val = case (Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_individualVerificationNonNullableDocumentNonNullableFrontNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_individualVerificationDocumentFrontVariants
+    where {toJSON (Issuing_cardholder_individualVerificationDocumentFrontText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_cardholder_individualVerificationDocumentFrontFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_individualVerificationDocumentFrontVariants
+    where {parseJSON val = case (Issuing_cardholder_individualVerificationDocumentFrontText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_cardholder_individualVerificationDocumentFrontFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

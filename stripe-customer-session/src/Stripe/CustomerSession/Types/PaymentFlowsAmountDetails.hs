@@ -87,6 +87,8 @@ data Payment_flows_amount_detailsLine_items = Payment_flows_amount_detailsLine_i
   payment_flows_amount_detailsLine_itemsData :: [Payment_intent_amount_details_line_item]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
   , payment_flows_amount_detailsLine_itemsHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , payment_flows_amount_detailsLine_itemsObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
@@ -96,15 +98,17 @@ data Payment_flows_amount_detailsLine_items = Payment_flows_amount_detailsLine_i
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_amount_detailsLine_items
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsObject obj] : ["url" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsObject obj] : ["url" Data.Aeson.Types.ToJSON..= payment_flows_amount_detailsLine_itemsUrl obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_amount_detailsLine_items
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_flows_amount_detailsLine_items" (\obj -> ((GHC.Base.pure Payment_flows_amount_detailsLine_items GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_flows_amount_detailsLine_items" (\obj -> (((GHC.Base.pure Payment_flows_amount_detailsLine_items GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
 -- | Create a new 'Payment_flows_amount_detailsLine_items' with all required fields.
 mkPayment_flows_amount_detailsLine_items :: [Payment_intent_amount_details_line_item] -- ^ 'payment_flows_amount_detailsLine_itemsData'
   -> GHC.Types.Bool -- ^ 'payment_flows_amount_detailsLine_itemsHas_more'
+  -> Data.Text.Internal.Text -- ^ 'payment_flows_amount_detailsLine_itemsObject'
   -> Data.Text.Internal.Text -- ^ 'payment_flows_amount_detailsLine_itemsUrl'
   -> Payment_flows_amount_detailsLine_items
-mkPayment_flows_amount_detailsLine_items payment_flows_amount_detailsLine_itemsData payment_flows_amount_detailsLine_itemsHas_more payment_flows_amount_detailsLine_itemsUrl = Payment_flows_amount_detailsLine_items{payment_flows_amount_detailsLine_itemsData = payment_flows_amount_detailsLine_itemsData,
-                                                                                                                                                                                                                      payment_flows_amount_detailsLine_itemsHas_more = payment_flows_amount_detailsLine_itemsHas_more,
-                                                                                                                                                                                                                      payment_flows_amount_detailsLine_itemsUrl = payment_flows_amount_detailsLine_itemsUrl}
+mkPayment_flows_amount_detailsLine_items payment_flows_amount_detailsLine_itemsData payment_flows_amount_detailsLine_itemsHas_more payment_flows_amount_detailsLine_itemsObject payment_flows_amount_detailsLine_itemsUrl = Payment_flows_amount_detailsLine_items{payment_flows_amount_detailsLine_itemsData = payment_flows_amount_detailsLine_itemsData,
+                                                                                                                                                                                                                                                                   payment_flows_amount_detailsLine_itemsHas_more = payment_flows_amount_detailsLine_itemsHas_more,
+                                                                                                                                                                                                                                                                   payment_flows_amount_detailsLine_itemsObject = payment_flows_amount_detailsLine_itemsObject,
+                                                                                                                                                                                                                                                                   payment_flows_amount_detailsLine_itemsUrl = payment_flows_amount_detailsLine_itemsUrl}

@@ -73,6 +73,8 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.TokenCardNetworks
 
 -- | Defines the object schema located at @components.schemas.account@ in the specification.
 -- 
+-- For new integrations, we recommend using the [Accounts v2 API](\/api\/v2\/core\/accounts), in place of \/v1\/accounts and \/v1\/customers to represent a user.
+-- 
 -- This is an object representing a Stripe account. You can retrieve it to see
 -- properties on the account like its current requirements or if the account is
 -- enabled to make live charges or receive payouts.
@@ -87,9 +89,9 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.TokenCardNetworks
 -- to start Connect Onboarding. Learn about the [differences between accounts](\/connect\/accounts).
 data Account = Account {
   -- | business_profile: Business information about the account.
-  accountBusiness_profile :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountBusiness_profileNonNullable))
+  accountBusiness_profile :: (GHC.Maybe.Maybe AccountBusiness_profile)
   -- | business_type: The business type.
-  , accountBusiness_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountBusiness_typeNonNullable))
+  , accountBusiness_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | capabilities: 
   , accountCapabilities :: (GHC.Maybe.Maybe Account_capabilities)
   -- | charges_enabled: Whether the account can process charges.
@@ -119,13 +121,13 @@ data Account = Account {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | external_accounts: External accounts (bank accounts and debit cards) currently attached to this account. External accounts are only returned for requests where \`controller[is_controller]\` is true.
   , accountExternal_accounts :: (GHC.Maybe.Maybe AccountExternal_accounts)
   -- | future_requirements: 
   , accountFuture_requirements :: (GHC.Maybe.Maybe Account_future_requirements)
   -- | groups: The groups associated with the account.
-  , accountGroups :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountGroupsNonNullable))
+  , accountGroups :: (GHC.Maybe.Maybe AccountGroups)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -140,257 +142,210 @@ data Account = Account {
   , accountIndividual :: (GHC.Maybe.Maybe Person)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , accountMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , accountObject :: Data.Text.Internal.Text
   -- | payouts_enabled: Whether the funds in this account can be paid out.
   , accountPayouts_enabled :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | requirements: 
   , accountRequirements :: (GHC.Maybe.Maybe Account_requirements)
   -- | settings: Options for customizing how the account functions within Stripe.
-  , accountSettings :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountSettingsNonNullable))
+  , accountSettings :: (GHC.Maybe.Maybe AccountSettings)
   -- | tos_acceptance: 
   , accountTos_acceptance :: (GHC.Maybe.Maybe Account_tos_acceptance)
   -- | type: The Stripe account type. Can be \`standard\`, \`express\`, \`custom\`, or \`none\`.
-  , accountType :: (GHC.Maybe.Maybe AccountType)
+  , accountType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_profile" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profile obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_type" Data.Aeson.Types.ToJSON..=)) (accountBusiness_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("capabilities" Data.Aeson.Types.ToJSON..=)) (accountCapabilities obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charges_enabled" Data.Aeson.Types.ToJSON..=)) (accountCharges_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("company" Data.Aeson.Types.ToJSON..=)) (accountCompany obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("controller" Data.Aeson.Types.ToJSON..=)) (accountController obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (accountCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_currency" Data.Aeson.Types.ToJSON..=)) (accountDefault_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_submitted" Data.Aeson.Types.ToJSON..=)) (accountDetails_submitted obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (accountEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("external_accounts" Data.Aeson.Types.ToJSON..=)) (accountExternal_accounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (accountFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("groups" Data.Aeson.Types.ToJSON..=)) (accountGroups obj) : ["id" Data.Aeson.Types.ToJSON..= accountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("individual" Data.Aeson.Types.ToJSON..=)) (accountIndividual obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (accountMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts_enabled" Data.Aeson.Types.ToJSON..=)) (accountPayouts_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (accountRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("settings" Data.Aeson.Types.ToJSON..=)) (accountSettings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tos_acceptance" Data.Aeson.Types.ToJSON..=)) (accountTos_acceptance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (accountType obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "account"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_profile" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profile obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_type" Data.Aeson.Types.ToJSON..=)) (accountBusiness_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("capabilities" Data.Aeson.Types.ToJSON..=)) (accountCapabilities obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charges_enabled" Data.Aeson.Types.ToJSON..=)) (accountCharges_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("company" Data.Aeson.Types.ToJSON..=)) (accountCompany obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("controller" Data.Aeson.Types.ToJSON..=)) (accountController obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (accountCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_currency" Data.Aeson.Types.ToJSON..=)) (accountDefault_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_submitted" Data.Aeson.Types.ToJSON..=)) (accountDetails_submitted obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (accountEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("external_accounts" Data.Aeson.Types.ToJSON..=)) (accountExternal_accounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (accountFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("groups" Data.Aeson.Types.ToJSON..=)) (accountGroups obj) : ["id" Data.Aeson.Types.ToJSON..= accountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("individual" Data.Aeson.Types.ToJSON..=)) (accountIndividual obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (accountMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts_enabled" Data.Aeson.Types.ToJSON..=)) (accountPayouts_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (accountRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("settings" Data.Aeson.Types.ToJSON..=)) (accountSettings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tos_acceptance" Data.Aeson.Types.ToJSON..=)) (accountTos_acceptance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (accountType obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "account"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_profile" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profile obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_type" Data.Aeson.Types.ToJSON..=)) (accountBusiness_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("capabilities" Data.Aeson.Types.ToJSON..=)) (accountCapabilities obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charges_enabled" Data.Aeson.Types.ToJSON..=)) (accountCharges_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("company" Data.Aeson.Types.ToJSON..=)) (accountCompany obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("controller" Data.Aeson.Types.ToJSON..=)) (accountController obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (accountCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_currency" Data.Aeson.Types.ToJSON..=)) (accountDefault_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_submitted" Data.Aeson.Types.ToJSON..=)) (accountDetails_submitted obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (accountEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("external_accounts" Data.Aeson.Types.ToJSON..=)) (accountExternal_accounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (accountFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("groups" Data.Aeson.Types.ToJSON..=)) (accountGroups obj) : ["id" Data.Aeson.Types.ToJSON..= accountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("individual" Data.Aeson.Types.ToJSON..=)) (accountIndividual obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (accountMetadata obj) : ["object" Data.Aeson.Types.ToJSON..= accountObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts_enabled" Data.Aeson.Types.ToJSON..=)) (accountPayouts_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (accountRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("settings" Data.Aeson.Types.ToJSON..=)) (accountSettings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tos_acceptance" Data.Aeson.Types.ToJSON..=)) (accountTos_acceptance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (accountType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_profile" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profile obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("business_type" Data.Aeson.Types.ToJSON..=)) (accountBusiness_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("capabilities" Data.Aeson.Types.ToJSON..=)) (accountCapabilities obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("charges_enabled" Data.Aeson.Types.ToJSON..=)) (accountCharges_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("company" Data.Aeson.Types.ToJSON..=)) (accountCompany obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("controller" Data.Aeson.Types.ToJSON..=)) (accountController obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("created" Data.Aeson.Types.ToJSON..=)) (accountCreated obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_currency" Data.Aeson.Types.ToJSON..=)) (accountDefault_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("details_submitted" Data.Aeson.Types.ToJSON..=)) (accountDetails_submitted obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (accountEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("external_accounts" Data.Aeson.Types.ToJSON..=)) (accountExternal_accounts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (accountFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("groups" Data.Aeson.Types.ToJSON..=)) (accountGroups obj) : ["id" Data.Aeson.Types.ToJSON..= accountId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("individual" Data.Aeson.Types.ToJSON..=)) (accountIndividual obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (accountMetadata obj) : ["object" Data.Aeson.Types.ToJSON..= accountObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts_enabled" Data.Aeson.Types.ToJSON..=)) (accountPayouts_enabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (accountRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("settings" Data.Aeson.Types.ToJSON..=)) (accountSettings obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tos_acceptance" Data.Aeson.Types.ToJSON..=)) (accountTos_acceptance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (accountType obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Account
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account" (\obj -> (((((((((((((((((((((GHC.Base.pure Account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "business_profile")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "business_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "capabilities")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charges_enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "company")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "controller")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "details_submitted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "external_accounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "groups")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "individual")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payouts_enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tos_acceptance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account" (\obj -> ((((((((((((((((((((((GHC.Base.pure Account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "business_profile")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "business_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "capabilities")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charges_enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "company")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "controller")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "details_submitted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "external_accounts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "groups")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "individual")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payouts_enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tos_acceptance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
 -- | Create a new 'Account' with all required fields.
 mkAccount :: Data.Text.Internal.Text -- ^ 'accountId'
+  -> Data.Text.Internal.Text -- ^ 'accountObject'
   -> Account
-mkAccount accountId = Account{accountBusiness_profile = GHC.Maybe.Nothing,
-                              accountBusiness_type = GHC.Maybe.Nothing,
-                              accountCapabilities = GHC.Maybe.Nothing,
-                              accountCharges_enabled = GHC.Maybe.Nothing,
-                              accountCompany = GHC.Maybe.Nothing,
-                              accountController = GHC.Maybe.Nothing,
-                              accountCountry = GHC.Maybe.Nothing,
-                              accountCreated = GHC.Maybe.Nothing,
-                              accountDefault_currency = GHC.Maybe.Nothing,
-                              accountDetails_submitted = GHC.Maybe.Nothing,
-                              accountEmail = GHC.Maybe.Nothing,
-                              accountExternal_accounts = GHC.Maybe.Nothing,
-                              accountFuture_requirements = GHC.Maybe.Nothing,
-                              accountGroups = GHC.Maybe.Nothing,
-                              accountId = accountId,
-                              accountIndividual = GHC.Maybe.Nothing,
-                              accountMetadata = GHC.Maybe.Nothing,
-                              accountPayouts_enabled = GHC.Maybe.Nothing,
-                              accountRequirements = GHC.Maybe.Nothing,
-                              accountSettings = GHC.Maybe.Nothing,
-                              accountTos_acceptance = GHC.Maybe.Nothing,
-                              accountType = GHC.Maybe.Nothing}
+mkAccount accountId accountObject = Account{accountBusiness_profile = GHC.Maybe.Nothing,
+                                            accountBusiness_type = GHC.Maybe.Nothing,
+                                            accountCapabilities = GHC.Maybe.Nothing,
+                                            accountCharges_enabled = GHC.Maybe.Nothing,
+                                            accountCompany = GHC.Maybe.Nothing,
+                                            accountController = GHC.Maybe.Nothing,
+                                            accountCountry = GHC.Maybe.Nothing,
+                                            accountCreated = GHC.Maybe.Nothing,
+                                            accountDefault_currency = GHC.Maybe.Nothing,
+                                            accountDetails_submitted = GHC.Maybe.Nothing,
+                                            accountEmail = GHC.Maybe.Nothing,
+                                            accountExternal_accounts = GHC.Maybe.Nothing,
+                                            accountFuture_requirements = GHC.Maybe.Nothing,
+                                            accountGroups = GHC.Maybe.Nothing,
+                                            accountId = accountId,
+                                            accountIndividual = GHC.Maybe.Nothing,
+                                            accountMetadata = GHC.Maybe.Nothing,
+                                            accountObject = accountObject,
+                                            accountPayouts_enabled = GHC.Maybe.Nothing,
+                                            accountRequirements = GHC.Maybe.Nothing,
+                                            accountSettings = GHC.Maybe.Nothing,
+                                            accountTos_acceptance = GHC.Maybe.Nothing,
+                                            accountType = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account.properties.business_profile.anyOf@ in the specification.
 -- 
 -- Business information about the account.
-data AccountBusiness_profileNonNullable = AccountBusiness_profileNonNullable {
+data AccountBusiness_profile = AccountBusiness_profile {
   -- | annual_revenue: The applicant\'s gross annual revenue for its preceding fiscal year.
-  accountBusiness_profileNonNullableAnnual_revenue :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountBusiness_profileNonNullableAnnual_revenueNonNullable))
+  accountBusiness_profileAnnual_revenue :: (GHC.Maybe.Maybe AccountBusiness_profileAnnual_revenue)
   -- | estimated_worker_count: An estimated upper bound of employees, contractors, vendors, etc. currently working for the business.
-  , accountBusiness_profileNonNullableEstimated_worker_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , accountBusiness_profileEstimated_worker_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | mcc: [The merchant category code for the account](\/connect\/setting-mcc). MCCs are used to classify businesses based on the goods or services they provide.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableMcc :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileMcc :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | minority_owned_business_designation: Whether the business is a minority-owned, women-owned, and\/or LGBTQI+ -owned business.
-  , accountBusiness_profileNonNullableMinority_owned_business_designation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullable]))
+  , accountBusiness_profileMinority_owned_business_designation :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | monthly_estimated_revenue: 
-  , accountBusiness_profileNonNullableMonthly_estimated_revenue :: (GHC.Maybe.Maybe Account_monthly_estimated_revenue)
+  , accountBusiness_profileMonthly_estimated_revenue :: (GHC.Maybe.Maybe Account_monthly_estimated_revenue)
   -- | name: The customer-facing business name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | product_description: Internal-only description of the product sold or service provided by the business. It\'s used by Stripe for risk and underwriting purposes.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 40000
-  , accountBusiness_profileNonNullableProduct_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileProduct_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | support_address: A publicly available mailing address for sending support issues to.
-  , accountBusiness_profileNonNullableSupport_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountBusiness_profileNonNullableSupport_addressNonNullable))
+  , accountBusiness_profileSupport_address :: (GHC.Maybe.Maybe AccountBusiness_profileSupport_address)
   -- | support_email: A publicly available email address for sending support issues to.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | support_phone: A publicly available phone number to call with support issues.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_phone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_phone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | support_url: A publicly available website for handling support issues.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: The business\'s publicly available website.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_profileNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("annual_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("estimated_worker_count" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableEstimated_worker_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mcc" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableMcc obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minority_owned_business_designation" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableMinority_owned_business_designation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monthly_estimated_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableMonthly_estimated_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("product_description" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableProduct_description obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_address" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_email" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_phone" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableUrl obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("annual_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("estimated_worker_count" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableEstimated_worker_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mcc" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableMcc obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minority_owned_business_designation" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableMinority_owned_business_designation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monthly_estimated_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableMonthly_estimated_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("product_description" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableProduct_description obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_address" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_email" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_phone" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableUrl obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_profileNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountBusiness_profileNonNullable" (\obj -> (((((((((((GHC.Base.pure AccountBusiness_profileNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "annual_revenue")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "estimated_worker_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mcc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "minority_owned_business_designation")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "monthly_estimated_revenue")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "product_description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
--- | Create a new 'AccountBusiness_profileNonNullable' with all required fields.
-mkAccountBusiness_profileNonNullable :: AccountBusiness_profileNonNullable
-mkAccountBusiness_profileNonNullable = AccountBusiness_profileNonNullable{accountBusiness_profileNonNullableAnnual_revenue = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableEstimated_worker_count = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableMcc = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableMinority_owned_business_designation = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableMonthly_estimated_revenue = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableName = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableProduct_description = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableSupport_address = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableSupport_email = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableSupport_phone = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableSupport_url = GHC.Maybe.Nothing,
-                                                                          accountBusiness_profileNonNullableUrl = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_profile
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("annual_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("estimated_worker_count" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileEstimated_worker_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mcc" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileMcc obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minority_owned_business_designation" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileMinority_owned_business_designation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monthly_estimated_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileMonthly_estimated_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("product_description" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileProduct_description obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_address" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_email" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_phone" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileUrl obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("annual_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("estimated_worker_count" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileEstimated_worker_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mcc" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileMcc obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("minority_owned_business_designation" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileMinority_owned_business_designation obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("monthly_estimated_revenue" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileMonthly_estimated_revenue obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("product_description" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileProduct_description obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_address" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_email" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_phone" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_phone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("support_url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_url obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("url" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileUrl obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_profile
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountBusiness_profile" (\obj -> (((((((((((GHC.Base.pure AccountBusiness_profile GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "annual_revenue")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "estimated_worker_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mcc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "minority_owned_business_designation")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "monthly_estimated_revenue")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "product_description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "support_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "url"))}
+-- | Create a new 'AccountBusiness_profile' with all required fields.
+mkAccountBusiness_profile :: AccountBusiness_profile
+mkAccountBusiness_profile = AccountBusiness_profile{accountBusiness_profileAnnual_revenue = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileEstimated_worker_count = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileMcc = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileMinority_owned_business_designation = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileMonthly_estimated_revenue = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileName = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileProduct_description = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileSupport_address = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileSupport_email = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileSupport_phone = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileSupport_url = GHC.Maybe.Nothing,
+                                                    accountBusiness_profileUrl = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account.properties.business_profile.anyOf.properties.annual_revenue.anyOf@ in the specification.
 -- 
 -- The applicant\\\'s gross annual revenue for its preceding fiscal year.
-data AccountBusiness_profileNonNullableAnnual_revenueNonNullable = AccountBusiness_profileNonNullableAnnual_revenueNonNullable {
+data AccountBusiness_profileAnnual_revenue = AccountBusiness_profileAnnual_revenue {
   -- | amount: A non-negative integer representing the amount in the [smallest currency unit](\/currencies\#zero-decimal).
-  accountBusiness_profileNonNullableAnnual_revenueNonNullableAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  accountBusiness_profileAnnual_revenueAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
-  , accountBusiness_profileNonNullableAnnual_revenueNonNullableCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileAnnual_revenueCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fiscal_year_end: The close-out date of the preceding fiscal year in ISO 8601 format. E.g. 2023-12-31 for the 31st of December, 2023.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableAnnual_revenueNonNullableFiscal_year_end :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileAnnual_revenueFiscal_year_end :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_profileNonNullableAnnual_revenueNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenueNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenueNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenueNonNullableFiscal_year_end obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenueNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenueNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableAnnual_revenueNonNullableFiscal_year_end obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_profileNonNullableAnnual_revenueNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountBusiness_profileNonNullableAnnual_revenueNonNullable" (\obj -> ((GHC.Base.pure AccountBusiness_profileNonNullableAnnual_revenueNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fiscal_year_end"))}
--- | Create a new 'AccountBusiness_profileNonNullableAnnual_revenueNonNullable' with all required fields.
-mkAccountBusiness_profileNonNullableAnnual_revenueNonNullable :: AccountBusiness_profileNonNullableAnnual_revenueNonNullable
-mkAccountBusiness_profileNonNullableAnnual_revenueNonNullable = AccountBusiness_profileNonNullableAnnual_revenueNonNullable{accountBusiness_profileNonNullableAnnual_revenueNonNullableAmount = GHC.Maybe.Nothing,
-                                                                                                                            accountBusiness_profileNonNullableAnnual_revenueNonNullableCurrency = GHC.Maybe.Nothing,
-                                                                                                                            accountBusiness_profileNonNullableAnnual_revenueNonNullableFiscal_year_end = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.account.properties.business_profile.anyOf.properties.minority_owned_business_designation.items@ in the specification.
--- 
--- 
-data AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullable =
-   AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumLgbtqi_owned_business -- ^ Represents the JSON value @"lgbtqi_owned_business"@
-  | AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumMinority_owned_business -- ^ Represents the JSON value @"minority_owned_business"@
-  | AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumNone_of_these_apply -- ^ Represents the JSON value @"none_of_these_apply"@
-  | AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumWomen_owned_business -- ^ Represents the JSON value @"women_owned_business"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullable
-    where {toJSON (AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableOther val) = val;
-           toJSON (AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumLgbtqi_owned_business) = "lgbtqi_owned_business";
-           toJSON (AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumMinority_owned_business) = "minority_owned_business";
-           toJSON (AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumNone_of_these_apply) = "none_of_these_apply";
-           toJSON (AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumWomen_owned_business) = "women_owned_business"}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "lgbtqi_owned_business" -> AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumLgbtqi_owned_business
-                                             | val GHC.Classes.== "minority_owned_business" -> AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumMinority_owned_business
-                                             | val GHC.Classes.== "none_of_these_apply" -> AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumNone_of_these_apply
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "women_owned_business" -> AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableEnumWomen_owned_business
-                                             | GHC.Base.otherwise -> AccountBusiness_profileNonNullableMinority_owned_business_designationNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_profileAnnual_revenue
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenueAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenueCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenueFiscal_year_end obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenueAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenueCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fiscal_year_end" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileAnnual_revenueFiscal_year_end obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_profileAnnual_revenue
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountBusiness_profileAnnual_revenue" (\obj -> ((GHC.Base.pure AccountBusiness_profileAnnual_revenue GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fiscal_year_end"))}
+-- | Create a new 'AccountBusiness_profileAnnual_revenue' with all required fields.
+mkAccountBusiness_profileAnnual_revenue :: AccountBusiness_profileAnnual_revenue
+mkAccountBusiness_profileAnnual_revenue = AccountBusiness_profileAnnual_revenue{accountBusiness_profileAnnual_revenueAmount = GHC.Maybe.Nothing,
+                                                                                accountBusiness_profileAnnual_revenueCurrency = GHC.Maybe.Nothing,
+                                                                                accountBusiness_profileAnnual_revenueFiscal_year_end = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account.properties.business_profile.anyOf.properties.support_address.anyOf@ in the specification.
 -- 
 -- A publicly available mailing address for sending support issues to.
-data AccountBusiness_profileNonNullableSupport_addressNonNullable = AccountBusiness_profileNonNullableSupport_addressNonNullable {
+data AccountBusiness_profileSupport_address = AccountBusiness_profileSupport_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  accountBusiness_profileNonNullableSupport_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  accountBusiness_profileSupport_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountBusiness_profileNonNullableSupport_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountBusiness_profileSupport_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_profileNonNullableSupport_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileNonNullableSupport_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_profileNonNullableSupport_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountBusiness_profileNonNullableSupport_addressNonNullable" (\obj -> (((((GHC.Base.pure AccountBusiness_profileNonNullableSupport_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'AccountBusiness_profileNonNullableSupport_addressNonNullable' with all required fields.
-mkAccountBusiness_profileNonNullableSupport_addressNonNullable :: AccountBusiness_profileNonNullableSupport_addressNonNullable
-mkAccountBusiness_profileNonNullableSupport_addressNonNullable = AccountBusiness_profileNonNullableSupport_addressNonNullable{accountBusiness_profileNonNullableSupport_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                              accountBusiness_profileNonNullableSupport_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                              accountBusiness_profileNonNullableSupport_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                              accountBusiness_profileNonNullableSupport_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                              accountBusiness_profileNonNullableSupport_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                              accountBusiness_profileNonNullableSupport_addressNonNullableState = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.account.properties.business_type@ in the specification.
--- 
--- The business type.
-data AccountBusiness_typeNonNullable =
-   AccountBusiness_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | AccountBusiness_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | AccountBusiness_typeNonNullableEnumCompany -- ^ Represents the JSON value @"company"@
-  | AccountBusiness_typeNonNullableEnumGovernment_entity -- ^ Represents the JSON value @"government_entity"@
-  | AccountBusiness_typeNonNullableEnumIndividual -- ^ Represents the JSON value @"individual"@
-  | AccountBusiness_typeNonNullableEnumNon_profit -- ^ Represents the JSON value @"non_profit"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_typeNonNullable
-    where {toJSON (AccountBusiness_typeNonNullableOther val) = val;
-           toJSON (AccountBusiness_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (AccountBusiness_typeNonNullableEnumCompany) = "company";
-           toJSON (AccountBusiness_typeNonNullableEnumGovernment_entity) = "government_entity";
-           toJSON (AccountBusiness_typeNonNullableEnumIndividual) = "individual";
-           toJSON (AccountBusiness_typeNonNullableEnumNon_profit) = "non_profit"}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "company" -> AccountBusiness_typeNonNullableEnumCompany
-                                             | val GHC.Classes.== "government_entity" -> AccountBusiness_typeNonNullableEnumGovernment_entity
-                                             | val GHC.Classes.== "individual" -> AccountBusiness_typeNonNullableEnumIndividual
-                                             | val GHC.Classes.== "non_profit" -> AccountBusiness_typeNonNullableEnumNon_profit
-                                             | GHC.Base.otherwise -> AccountBusiness_typeNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON AccountBusiness_profileSupport_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (accountBusiness_profileSupport_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountBusiness_profileSupport_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountBusiness_profileSupport_address" (\obj -> (((((GHC.Base.pure AccountBusiness_profileSupport_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'AccountBusiness_profileSupport_address' with all required fields.
+mkAccountBusiness_profileSupport_address :: AccountBusiness_profileSupport_address
+mkAccountBusiness_profileSupport_address = AccountBusiness_profileSupport_address{accountBusiness_profileSupport_addressCity = GHC.Maybe.Nothing,
+                                                                                  accountBusiness_profileSupport_addressCountry = GHC.Maybe.Nothing,
+                                                                                  accountBusiness_profileSupport_addressLine1 = GHC.Maybe.Nothing,
+                                                                                  accountBusiness_profileSupport_addressLine2 = GHC.Maybe.Nothing,
+                                                                                  accountBusiness_profileSupport_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                  accountBusiness_profileSupport_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account.properties.external_accounts@ in the specification.
 -- 
 -- External accounts (bank accounts and debit cards) currently attached to this account. External accounts are only returned for requests where \`controller[is_controller]\` is true.
@@ -399,6 +354,8 @@ data AccountExternal_accounts = AccountExternal_accounts {
   accountExternal_accountsData :: [AccountExternal_accountsData]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
   , accountExternal_accountsHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , accountExternal_accountsObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
@@ -408,100 +365,102 @@ data AccountExternal_accounts = AccountExternal_accounts {
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accounts
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= accountExternal_accountsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= accountExternal_accountsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= accountExternal_accountsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= accountExternal_accountsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= accountExternal_accountsHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= accountExternal_accountsUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= accountExternal_accountsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= accountExternal_accountsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= accountExternal_accountsObject obj] : ["url" Data.Aeson.Types.ToJSON..= accountExternal_accountsUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= accountExternal_accountsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= accountExternal_accountsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= accountExternal_accountsObject obj] : ["url" Data.Aeson.Types.ToJSON..= accountExternal_accountsUrl obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accounts
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountExternal_accounts" (\obj -> ((GHC.Base.pure AccountExternal_accounts GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountExternal_accounts" (\obj -> (((GHC.Base.pure AccountExternal_accounts GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
 -- | Create a new 'AccountExternal_accounts' with all required fields.
 mkAccountExternal_accounts :: [AccountExternal_accountsData] -- ^ 'accountExternal_accountsData'
   -> GHC.Types.Bool -- ^ 'accountExternal_accountsHas_more'
+  -> Data.Text.Internal.Text -- ^ 'accountExternal_accountsObject'
   -> Data.Text.Internal.Text -- ^ 'accountExternal_accountsUrl'
   -> AccountExternal_accounts
-mkAccountExternal_accounts accountExternal_accountsData accountExternal_accountsHas_more accountExternal_accountsUrl = AccountExternal_accounts{accountExternal_accountsData = accountExternal_accountsData,
-                                                                                                                                                accountExternal_accountsHas_more = accountExternal_accountsHas_more,
-                                                                                                                                                accountExternal_accountsUrl = accountExternal_accountsUrl}
+mkAccountExternal_accounts accountExternal_accountsData accountExternal_accountsHas_more accountExternal_accountsObject accountExternal_accountsUrl = AccountExternal_accounts{accountExternal_accountsData = accountExternal_accountsData,
+                                                                                                                                                                               accountExternal_accountsHas_more = accountExternal_accountsHas_more,
+                                                                                                                                                                               accountExternal_accountsObject = accountExternal_accountsObject,
+                                                                                                                                                                               accountExternal_accountsUrl = accountExternal_accountsUrl}
 -- | Defines the object schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf@ in the specification.
 -- 
 -- 
 data AccountExternal_accountsData = AccountExternal_accountsData {
   -- | account: The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-  accountExternal_accountsDataAccount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountExternal_accountsDataAccountNonNullableVariants))
+  accountExternal_accountsDataAccount :: (GHC.Maybe.Maybe AccountExternal_accountsDataAccountVariants)
   -- | account_holder_name: The name of the person or business that owns the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAccount_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAccount_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_holder_type: The type of entity that holds the account. This can be either \`individual\` or \`company\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAccount_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAccount_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_type: The bank account type. This can only be \`checking\` or \`savings\` in most countries. In Japan, this can only be \`futsu\` or \`toza\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAccount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAccount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_city: City\/District\/Suburb\/Town\/Village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_city :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_city :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_country: Billing address country, if provided when creating card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_country :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_country :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1: Address line 1 (Street address\/PO Box\/Company name).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_line1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1_check: If \`address_line1\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line2: Address line 2 (Apartment\/Suite\/Unit\/Building).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_line2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_line2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_state: State\/County\/Province\/Region.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_state :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_state :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_zip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_zip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip_check: If \`address_zip\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataAddress_zip_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataAddress_zip_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | allow_redisplay: This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-  , accountExternal_accountsDataAllow_redisplay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountExternal_accountsDataAllow_redisplayNonNullable))
+  , accountExternal_accountsDataAllow_redisplay :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | available_payout_methods: A set of available payout methods for this bank account. Only values from this set should be passed as the \`method\` when creating a payout.
-  , accountExternal_accountsDataAvailable_payout_methods :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [AccountExternal_accountsDataAvailable_payout_methodsNonNullable]))
+  , accountExternal_accountsDataAvailable_payout_methods :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | bank_name: Name of the bank associated with the routing number (e.g., \`WELLS FARGO\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | brand: Card brand. Can be \`American Express\`, \`Cartes Bancaires\`, \`Diners Club\`, \`Discover\`, \`Eftpos Australia\`, \`Girocard\`, \`JCB\`, \`MasterCard\`, \`UnionPay\`, \`Visa\`, or \`Unknown\`.
   -- 
   -- Constraints:
@@ -517,21 +476,21 @@ data AccountExternal_accountsData = AccountExternal_accountsData {
   -- | currency: Three-letter [ISO code for the currency](https:\/\/stripe.com\/docs\/payouts) paid out to the bank account.
   , accountExternal_accountsDataCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer: The ID of the customer that the bank account is associated with.
-  , accountExternal_accountsDataCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountExternal_accountsDataCustomerNonNullableVariants))
+  , accountExternal_accountsDataCustomer :: (GHC.Maybe.Maybe AccountExternal_accountsDataCustomerVariants)
   -- | cvc_check: If a CVC was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`. A result of unchecked indicates that CVC was provided but hasn\'t been checked yet. Checks are typically performed when attaching a card to a Customer object, or when creating a charge. For more details, see [Check if a card is valid without a charge](https:\/\/support.stripe.com\/questions\/check-if-a-card-is-valid-without-a-charge).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | default_for_currency: Whether this bank account is the default external account for its currency.
-  , accountExternal_accountsDataDefault_for_currency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , accountExternal_accountsDataDefault_for_currency :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | dynamic_last4: (For tokenized numbers only.) The last four digits of the device account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataDynamic_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataDynamic_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
   , accountExternal_accountsDataExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year: Four-digit number representing the card\'s expiration year.
@@ -541,7 +500,7 @@ data AccountExternal_accountsData = AccountExternal_accountsData {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding: Card funding type. Can be \`credit\`, \`debit\`, \`prepaid\`, or \`unknown\`.
   -- 
   -- Constraints:
@@ -549,7 +508,7 @@ data AccountExternal_accountsData = AccountExternal_accountsData {
   -- * Maximum length of 5000
   , accountExternal_accountsDataFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | future_requirements: Information about the [upcoming new requirements for the bank account](https:\/\/docs.stripe.com\/connect\/custom-accounts\/future-requirements), including what information needs to be collected, and by when.
-  , accountExternal_accountsDataFuture_requirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountExternal_accountsDataFuture_requirementsNonNullable))
+  , accountExternal_accountsDataFuture_requirements :: (GHC.Maybe.Maybe AccountExternal_accountsDataFuture_requirements)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -569,27 +528,27 @@ data AccountExternal_accountsData = AccountExternal_accountsData {
   -- * Maximum length of 5000
   , accountExternal_accountsDataLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , accountExternal_accountsDataMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , accountExternal_accountsDataMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | name: Cardholder name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | networks: 
   , accountExternal_accountsDataNetworks :: (GHC.Maybe.Maybe Token_card_networks)
   -- | object: String representing the object\'s type. Objects of the same type share the same value.
-  , accountExternal_accountsDataObject :: (GHC.Maybe.Maybe AccountExternal_accountsDataObject)
+  , accountExternal_accountsDataObject :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | regulated_status: Status of a card based on the card issuer.
-  , accountExternal_accountsDataRegulated_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountExternal_accountsDataRegulated_statusNonNullable))
+  , accountExternal_accountsDataRegulated_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | requirements: Information about the requirements for the bank account, including what information needs to be collected.
-  , accountExternal_accountsDataRequirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable AccountExternal_accountsDataRequirementsNonNullable))
+  , accountExternal_accountsDataRequirements :: (GHC.Maybe.Maybe AccountExternal_accountsDataRequirements)
   -- | routing_number: The routing transit number for the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: For bank accounts, possible values are \`new\`, \`validated\`, \`verified\`, \`verification_failed\`, \`tokenized_account_number_deactivated\` or \`errored\`. A bank account that hasn\'t had any activity or validation performed is \`new\`. If Stripe can determine that the bank account exists, its status will be \`validated\`. Note that there often isn’t enough information to know (e.g., for smaller credit unions), and the validation is not always run. If customer bank account verification has succeeded, the bank account status will be \`verified\`. If the verification failed for any reason, such as microdeposit failure, the status will be \`verification_failed\`. If the status is \`tokenized_account_number_deactivated\`, the account utilizes a tokenized account number which has been deactivated due to expiration or revocation. This account will need to be reverified to continue using it for money movement. If a payout sent to this bank account fails, we\'ll set the status to \`errored\` and will not continue to send [scheduled payouts](https:\/\/stripe.com\/docs\/payouts\#payout-schedule) until the bank details are updated.
   -- 
   -- For external accounts, possible values are \`new\`, \`errored\`, \`verification_failed\`, and \`tokenized_account_number_deactivated\`. If a payout fails, the status is set to \`errored\` and scheduled payouts are stopped until account details are updated. In the US and India, if we can\'t [verify the owner of the bank account](https:\/\/support.stripe.com\/questions\/bank-account-ownership-verification), we\'ll set the status to \`verification_failed\`. Other validations aren\'t run against external accounts because they\'re only used for payouts. This means the other statuses don\'t apply.
@@ -603,7 +562,7 @@ data AccountExternal_accountsData = AccountExternal_accountsData {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , accountExternal_accountsDataTokenization_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , accountExternal_accountsDataTokenization_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsData
@@ -655,239 +614,143 @@ mkAccountExternal_accountsData = AccountExternal_accountsData{accountExternal_ac
 -- | Defines the oneOf schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-data AccountExternal_accountsDataAccountNonNullableVariants =
-   AccountExternal_accountsDataAccountNonNullableText Data.Text.Internal.Text
-  | AccountExternal_accountsDataAccountNonNullableAccount Account
+data AccountExternal_accountsDataAccountVariants =
+   AccountExternal_accountsDataAccountText Data.Text.Internal.Text
+  | AccountExternal_accountsDataAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataAccountNonNullableVariants
-    where {toJSON (AccountExternal_accountsDataAccountNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (AccountExternal_accountsDataAccountNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataAccountNonNullableVariants
-    where {parseJSON val = case (AccountExternal_accountsDataAccountNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((AccountExternal_accountsDataAccountNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataAccountVariants
+    where {toJSON (AccountExternal_accountsDataAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (AccountExternal_accountsDataAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataAccountVariants
+    where {parseJSON val = case (AccountExternal_accountsDataAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((AccountExternal_accountsDataAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.allow_redisplay@ in the specification.
--- 
--- This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-data AccountExternal_accountsDataAllow_redisplayNonNullable =
-   AccountExternal_accountsDataAllow_redisplayNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | AccountExternal_accountsDataAllow_redisplayNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | AccountExternal_accountsDataAllow_redisplayNonNullableEnumAlways -- ^ Represents the JSON value @"always"@
-  | AccountExternal_accountsDataAllow_redisplayNonNullableEnumLimited -- ^ Represents the JSON value @"limited"@
-  | AccountExternal_accountsDataAllow_redisplayNonNullableEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataAllow_redisplayNonNullable
-    where {toJSON (AccountExternal_accountsDataAllow_redisplayNonNullableOther val) = val;
-           toJSON (AccountExternal_accountsDataAllow_redisplayNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (AccountExternal_accountsDataAllow_redisplayNonNullableEnumAlways) = "always";
-           toJSON (AccountExternal_accountsDataAllow_redisplayNonNullableEnumLimited) = "limited";
-           toJSON (AccountExternal_accountsDataAllow_redisplayNonNullableEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataAllow_redisplayNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> AccountExternal_accountsDataAllow_redisplayNonNullableEnumAlways
-                                             | val GHC.Classes.== "limited" -> AccountExternal_accountsDataAllow_redisplayNonNullableEnumLimited
-                                             | val GHC.Classes.== "unspecified" -> AccountExternal_accountsDataAllow_redisplayNonNullableEnumUnspecified
-                                             | GHC.Base.otherwise -> AccountExternal_accountsDataAllow_redisplayNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.available_payout_methods.items@ in the specification.
--- 
--- 
-data AccountExternal_accountsDataAvailable_payout_methodsNonNullable =
-   AccountExternal_accountsDataAvailable_payout_methodsNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | AccountExternal_accountsDataAvailable_payout_methodsNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | AccountExternal_accountsDataAvailable_payout_methodsNonNullableEnumInstant -- ^ Represents the JSON value @"instant"@
-  | AccountExternal_accountsDataAvailable_payout_methodsNonNullableEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataAvailable_payout_methodsNonNullable
-    where {toJSON (AccountExternal_accountsDataAvailable_payout_methodsNonNullableOther val) = val;
-           toJSON (AccountExternal_accountsDataAvailable_payout_methodsNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (AccountExternal_accountsDataAvailable_payout_methodsNonNullableEnumInstant) = "instant";
-           toJSON (AccountExternal_accountsDataAvailable_payout_methodsNonNullableEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataAvailable_payout_methodsNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "instant" -> AccountExternal_accountsDataAvailable_payout_methodsNonNullableEnumInstant
-                                             | val GHC.Classes.== "standard" -> AccountExternal_accountsDataAvailable_payout_methodsNonNullableEnumStandard
-                                             | GHC.Base.otherwise -> AccountExternal_accountsDataAvailable_payout_methodsNonNullableOther val)}
 -- | Defines the oneOf schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.customer.anyOf@ in the specification.
 -- 
 -- The ID of the customer that the bank account is associated with.
-data AccountExternal_accountsDataCustomerNonNullableVariants =
-   AccountExternal_accountsDataCustomerNonNullableText Data.Text.Internal.Text
-  | AccountExternal_accountsDataCustomerNonNullableCustomer Customer
-  | AccountExternal_accountsDataCustomerNonNullableDeleted_customer Deleted_customer
+data AccountExternal_accountsDataCustomerVariants =
+   AccountExternal_accountsDataCustomerText Data.Text.Internal.Text
+  | AccountExternal_accountsDataCustomerCustomer Customer
+  | AccountExternal_accountsDataCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataCustomerNonNullableVariants
-    where {toJSON (AccountExternal_accountsDataCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (AccountExternal_accountsDataCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (AccountExternal_accountsDataCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataCustomerNonNullableVariants
-    where {parseJSON val = case (AccountExternal_accountsDataCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((AccountExternal_accountsDataCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((AccountExternal_accountsDataCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataCustomerVariants
+    where {toJSON (AccountExternal_accountsDataCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (AccountExternal_accountsDataCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (AccountExternal_accountsDataCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataCustomerVariants
+    where {parseJSON val = case (AccountExternal_accountsDataCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((AccountExternal_accountsDataCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((AccountExternal_accountsDataCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.future_requirements.anyOf@ in the specification.
 -- 
 -- Information about the [upcoming new requirements for the bank account](https:\\\/\\\/docs.stripe.com\\\/connect\\\/custom-accounts\\\/future-requirements), including what information needs to be collected, and by when.
-data AccountExternal_accountsDataFuture_requirementsNonNullable = AccountExternal_accountsDataFuture_requirementsNonNullable {
+data AccountExternal_accountsDataFuture_requirements = AccountExternal_accountsDataFuture_requirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  accountExternal_accountsDataFuture_requirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  accountExternal_accountsDataFuture_requirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , accountExternal_accountsDataFuture_requirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , accountExternal_accountsDataFuture_requirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , accountExternal_accountsDataFuture_requirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , accountExternal_accountsDataFuture_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , accountExternal_accountsDataFuture_requirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , accountExternal_accountsDataFuture_requirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataFuture_requirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataFuture_requirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountExternal_accountsDataFuture_requirementsNonNullable" (\obj -> (((GHC.Base.pure AccountExternal_accountsDataFuture_requirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'AccountExternal_accountsDataFuture_requirementsNonNullable' with all required fields.
-mkAccountExternal_accountsDataFuture_requirementsNonNullable :: AccountExternal_accountsDataFuture_requirementsNonNullable
-mkAccountExternal_accountsDataFuture_requirementsNonNullable = AccountExternal_accountsDataFuture_requirementsNonNullable{accountExternal_accountsDataFuture_requirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                                                          accountExternal_accountsDataFuture_requirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                                                          accountExternal_accountsDataFuture_requirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                                                          accountExternal_accountsDataFuture_requirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.object@ in the specification.
--- 
--- String representing the object\'s type. Objects of the same type share the same value.
-data AccountExternal_accountsDataObject =
-   AccountExternal_accountsDataObjectOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | AccountExternal_accountsDataObjectTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | AccountExternal_accountsDataObjectEnumBank_account -- ^ Represents the JSON value @"bank_account"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataObject
-    where {toJSON (AccountExternal_accountsDataObjectOther val) = val;
-           toJSON (AccountExternal_accountsDataObjectTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (AccountExternal_accountsDataObjectEnumBank_account) = "bank_account"}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataObject
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_account" -> AccountExternal_accountsDataObjectEnumBank_account
-                                             | GHC.Base.otherwise -> AccountExternal_accountsDataObjectOther val)}
--- | Defines the enum schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.regulated_status@ in the specification.
--- 
--- Status of a card based on the card issuer.
-data AccountExternal_accountsDataRegulated_statusNonNullable =
-   AccountExternal_accountsDataRegulated_statusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | AccountExternal_accountsDataRegulated_statusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | AccountExternal_accountsDataRegulated_statusNonNullableEnumRegulated -- ^ Represents the JSON value @"regulated"@
-  | AccountExternal_accountsDataRegulated_statusNonNullableEnumUnregulated -- ^ Represents the JSON value @"unregulated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataRegulated_statusNonNullable
-    where {toJSON (AccountExternal_accountsDataRegulated_statusNonNullableOther val) = val;
-           toJSON (AccountExternal_accountsDataRegulated_statusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (AccountExternal_accountsDataRegulated_statusNonNullableEnumRegulated) = "regulated";
-           toJSON (AccountExternal_accountsDataRegulated_statusNonNullableEnumUnregulated) = "unregulated"}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataRegulated_statusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "regulated" -> AccountExternal_accountsDataRegulated_statusNonNullableEnumRegulated
-                                             | val GHC.Classes.== "unregulated" -> AccountExternal_accountsDataRegulated_statusNonNullableEnumUnregulated
-                                             | GHC.Base.otherwise -> AccountExternal_accountsDataRegulated_statusNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataFuture_requirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataFuture_requirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataFuture_requirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountExternal_accountsDataFuture_requirements" (\obj -> (((GHC.Base.pure AccountExternal_accountsDataFuture_requirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'AccountExternal_accountsDataFuture_requirements' with all required fields.
+mkAccountExternal_accountsDataFuture_requirements :: AccountExternal_accountsDataFuture_requirements
+mkAccountExternal_accountsDataFuture_requirements = AccountExternal_accountsDataFuture_requirements{accountExternal_accountsDataFuture_requirementsCurrently_due = GHC.Maybe.Nothing,
+                                                                                                    accountExternal_accountsDataFuture_requirementsErrors = GHC.Maybe.Nothing,
+                                                                                                    accountExternal_accountsDataFuture_requirementsPast_due = GHC.Maybe.Nothing,
+                                                                                                    accountExternal_accountsDataFuture_requirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account.properties.external_accounts.properties.data.items.anyOf.properties.requirements.anyOf@ in the specification.
 -- 
 -- Information about the requirements for the bank account, including what information needs to be collected.
-data AccountExternal_accountsDataRequirementsNonNullable = AccountExternal_accountsDataRequirementsNonNullable {
+data AccountExternal_accountsDataRequirements = AccountExternal_accountsDataRequirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  accountExternal_accountsDataRequirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  accountExternal_accountsDataRequirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , accountExternal_accountsDataRequirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , accountExternal_accountsDataRequirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , accountExternal_accountsDataRequirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , accountExternal_accountsDataRequirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , accountExternal_accountsDataRequirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , accountExternal_accountsDataRequirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataRequirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataRequirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountExternal_accountsDataRequirementsNonNullable" (\obj -> (((GHC.Base.pure AccountExternal_accountsDataRequirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'AccountExternal_accountsDataRequirementsNonNullable' with all required fields.
-mkAccountExternal_accountsDataRequirementsNonNullable :: AccountExternal_accountsDataRequirementsNonNullable
-mkAccountExternal_accountsDataRequirementsNonNullable = AccountExternal_accountsDataRequirementsNonNullable{accountExternal_accountsDataRequirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                                            accountExternal_accountsDataRequirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                                            accountExternal_accountsDataRequirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                                            accountExternal_accountsDataRequirementsNonNullablePending_verification = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON AccountExternal_accountsDataRequirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (accountExternal_accountsDataRequirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountExternal_accountsDataRequirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountExternal_accountsDataRequirements" (\obj -> (((GHC.Base.pure AccountExternal_accountsDataRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'AccountExternal_accountsDataRequirements' with all required fields.
+mkAccountExternal_accountsDataRequirements :: AccountExternal_accountsDataRequirements
+mkAccountExternal_accountsDataRequirements = AccountExternal_accountsDataRequirements{accountExternal_accountsDataRequirementsCurrently_due = GHC.Maybe.Nothing,
+                                                                                      accountExternal_accountsDataRequirementsErrors = GHC.Maybe.Nothing,
+                                                                                      accountExternal_accountsDataRequirementsPast_due = GHC.Maybe.Nothing,
+                                                                                      accountExternal_accountsDataRequirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account.properties.groups.anyOf@ in the specification.
 -- 
 -- The groups associated with the account.
-data AccountGroupsNonNullable = AccountGroupsNonNullable {
+data AccountGroups = AccountGroups {
   -- | payments_pricing: The group the account is in to determine their payments pricing, and null if the account is on customized pricing. [See the Platform pricing tool documentation](https:\/\/docs.stripe.com\/connect\/platform-pricing-tools) for details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  accountGroupsNonNullablePayments_pricing :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  accountGroupsPayments_pricing :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountGroupsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments_pricing" Data.Aeson.Types.ToJSON..=)) (accountGroupsNonNullablePayments_pricing obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments_pricing" Data.Aeson.Types.ToJSON..=)) (accountGroupsNonNullablePayments_pricing obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountGroupsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountGroupsNonNullable" (\obj -> GHC.Base.pure AccountGroupsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payments_pricing"))}
--- | Create a new 'AccountGroupsNonNullable' with all required fields.
-mkAccountGroupsNonNullable :: AccountGroupsNonNullable
-mkAccountGroupsNonNullable = AccountGroupsNonNullable{accountGroupsNonNullablePayments_pricing = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON AccountGroups
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments_pricing" Data.Aeson.Types.ToJSON..=)) (accountGroupsPayments_pricing obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments_pricing" Data.Aeson.Types.ToJSON..=)) (accountGroupsPayments_pricing obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountGroups
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountGroups" (\obj -> GHC.Base.pure AccountGroups GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payments_pricing"))}
+-- | Create a new 'AccountGroups' with all required fields.
+mkAccountGroups :: AccountGroups
+mkAccountGroups = AccountGroups{accountGroupsPayments_pricing = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.account.properties.settings.anyOf@ in the specification.
 -- 
 -- Options for customizing how the account functions within Stripe.
-data AccountSettingsNonNullable = AccountSettingsNonNullable {
+data AccountSettings = AccountSettings {
   -- | bacs_debit_payments: 
-  accountSettingsNonNullableBacs_debit_payments :: (GHC.Maybe.Maybe Account_bacs_debit_payments_settings)
+  accountSettingsBacs_debit_payments :: (GHC.Maybe.Maybe Account_bacs_debit_payments_settings)
   -- | branding: 
-  , accountSettingsNonNullableBranding :: (GHC.Maybe.Maybe Account_branding_settings)
+  , accountSettingsBranding :: (GHC.Maybe.Maybe Account_branding_settings)
   -- | card_issuing: 
-  , accountSettingsNonNullableCard_issuing :: (GHC.Maybe.Maybe Account_card_issuing_settings)
+  , accountSettingsCard_issuing :: (GHC.Maybe.Maybe Account_card_issuing_settings)
   -- | card_payments: 
-  , accountSettingsNonNullableCard_payments :: (GHC.Maybe.Maybe Account_card_payments_settings)
+  , accountSettingsCard_payments :: (GHC.Maybe.Maybe Account_card_payments_settings)
   -- | dashboard: 
-  , accountSettingsNonNullableDashboard :: (GHC.Maybe.Maybe Account_dashboard_settings)
+  , accountSettingsDashboard :: (GHC.Maybe.Maybe Account_dashboard_settings)
   -- | invoices: 
-  , accountSettingsNonNullableInvoices :: (GHC.Maybe.Maybe Account_invoices_settings)
+  , accountSettingsInvoices :: (GHC.Maybe.Maybe Account_invoices_settings)
   -- | payments: 
-  , accountSettingsNonNullablePayments :: (GHC.Maybe.Maybe Account_payments_settings)
+  , accountSettingsPayments :: (GHC.Maybe.Maybe Account_payments_settings)
   -- | payouts: 
-  , accountSettingsNonNullablePayouts :: (GHC.Maybe.Maybe Account_payout_settings)
+  , accountSettingsPayouts :: (GHC.Maybe.Maybe Account_payout_settings)
   -- | sepa_debit_payments: 
-  , accountSettingsNonNullableSepa_debit_payments :: (GHC.Maybe.Maybe Account_sepa_debit_payments_settings)
+  , accountSettingsSepa_debit_payments :: (GHC.Maybe.Maybe Account_sepa_debit_payments_settings)
   -- | treasury: 
-  , accountSettingsNonNullableTreasury :: (GHC.Maybe.Maybe Account_treasury_settings)
+  , accountSettingsTreasury :: (GHC.Maybe.Maybe Account_treasury_settings)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountSettingsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableBacs_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("branding" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableBranding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_issuing" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableCard_issuing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableCard_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dashboard" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableDashboard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoices" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableInvoices obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullablePayments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullablePayouts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableSepa_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableTreasury obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableBacs_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("branding" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableBranding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_issuing" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableCard_issuing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableCard_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dashboard" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableDashboard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoices" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableInvoices obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullablePayments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullablePayouts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableSepa_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (accountSettingsNonNullableTreasury obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountSettingsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountSettingsNonNullable" (\obj -> (((((((((GHC.Base.pure AccountSettingsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "branding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_issuing")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dashboard")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoices")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payouts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "treasury"))}
--- | Create a new 'AccountSettingsNonNullable' with all required fields.
-mkAccountSettingsNonNullable :: AccountSettingsNonNullable
-mkAccountSettingsNonNullable = AccountSettingsNonNullable{accountSettingsNonNullableBacs_debit_payments = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullableBranding = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullableCard_issuing = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullableCard_payments = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullableDashboard = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullableInvoices = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullablePayments = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullablePayouts = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullableSepa_debit_payments = GHC.Maybe.Nothing,
-                                                          accountSettingsNonNullableTreasury = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.account.properties.type@ in the specification.
--- 
--- The Stripe account type. Can be \`standard\`, \`express\`, \`custom\`, or \`none\`.
-data AccountType =
-   AccountTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | AccountTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | AccountTypeEnumCustom -- ^ Represents the JSON value @"custom"@
-  | AccountTypeEnumExpress -- ^ Represents the JSON value @"express"@
-  | AccountTypeEnumNone -- ^ Represents the JSON value @"none"@
-  | AccountTypeEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON AccountType
-    where {toJSON (AccountTypeOther val) = val;
-           toJSON (AccountTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (AccountTypeEnumCustom) = "custom";
-           toJSON (AccountTypeEnumExpress) = "express";
-           toJSON (AccountTypeEnumNone) = "none";
-           toJSON (AccountTypeEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON AccountType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "custom" -> AccountTypeEnumCustom
-                                             | val GHC.Classes.== "express" -> AccountTypeEnumExpress
-                                             | val GHC.Classes.== "none" -> AccountTypeEnumNone
-                                             | val GHC.Classes.== "standard" -> AccountTypeEnumStandard
-                                             | GHC.Base.otherwise -> AccountTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON AccountSettings
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsBacs_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("branding" Data.Aeson.Types.ToJSON..=)) (accountSettingsBranding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_issuing" Data.Aeson.Types.ToJSON..=)) (accountSettingsCard_issuing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsCard_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dashboard" Data.Aeson.Types.ToJSON..=)) (accountSettingsDashboard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoices" Data.Aeson.Types.ToJSON..=)) (accountSettingsInvoices obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsPayments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts" Data.Aeson.Types.ToJSON..=)) (accountSettingsPayouts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsSepa_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (accountSettingsTreasury obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsBacs_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("branding" Data.Aeson.Types.ToJSON..=)) (accountSettingsBranding obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_issuing" Data.Aeson.Types.ToJSON..=)) (accountSettingsCard_issuing obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsCard_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dashboard" Data.Aeson.Types.ToJSON..=)) (accountSettingsDashboard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoices" Data.Aeson.Types.ToJSON..=)) (accountSettingsInvoices obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsPayments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payouts" Data.Aeson.Types.ToJSON..=)) (accountSettingsPayouts obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit_payments" Data.Aeson.Types.ToJSON..=)) (accountSettingsSepa_debit_payments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("treasury" Data.Aeson.Types.ToJSON..=)) (accountSettingsTreasury obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON AccountSettings
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountSettings" (\obj -> (((((((((GHC.Base.pure AccountSettings GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "branding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_issuing")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dashboard")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoices")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payouts")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "treasury"))}
+-- | Create a new 'AccountSettings' with all required fields.
+mkAccountSettings :: AccountSettings
+mkAccountSettings = AccountSettings{accountSettingsBacs_debit_payments = GHC.Maybe.Nothing,
+                                    accountSettingsBranding = GHC.Maybe.Nothing,
+                                    accountSettingsCard_issuing = GHC.Maybe.Nothing,
+                                    accountSettingsCard_payments = GHC.Maybe.Nothing,
+                                    accountSettingsDashboard = GHC.Maybe.Nothing,
+                                    accountSettingsInvoices = GHC.Maybe.Nothing,
+                                    accountSettingsPayments = GHC.Maybe.Nothing,
+                                    accountSettingsPayouts = GHC.Maybe.Nothing,
+                                    accountSettingsSepa_debit_payments = GHC.Maybe.Nothing,
+                                    accountSettingsTreasury = GHC.Maybe.Nothing}

@@ -54,7 +54,7 @@ data Payment_method_options_boleto = Payment_method_options_boleto {
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_method_options_boletoSetup_future_usage :: (GHC.Maybe.Maybe Payment_method_options_boletoSetup_future_usage)
+  , payment_method_options_boletoSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_boleto
@@ -67,30 +67,3 @@ mkPayment_method_options_boleto :: GHC.Types.Int -- ^ 'payment_method_options_bo
   -> Payment_method_options_boleto
 mkPayment_method_options_boleto payment_method_options_boletoExpires_after_days = Payment_method_options_boleto{payment_method_options_boletoExpires_after_days = payment_method_options_boletoExpires_after_days,
                                                                                                                 payment_method_options_boletoSetup_future_usage = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_boleto.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_method_options_boletoSetup_future_usage =
-   Payment_method_options_boletoSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_boletoSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_boletoSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_method_options_boletoSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_method_options_boletoSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_boletoSetup_future_usage
-    where {toJSON (Payment_method_options_boletoSetup_future_usageOther val) = val;
-           toJSON (Payment_method_options_boletoSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_boletoSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_method_options_boletoSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_method_options_boletoSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_boletoSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_method_options_boletoSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_method_options_boletoSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_method_options_boletoSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_method_options_boletoSetup_future_usageOther val)}

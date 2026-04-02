@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_intent_processing_customer_notification = Payment_intent_processing_customer_notification {
   -- | approval_requested: Whether customer approval has been requested for this payment. For payments greater than INR 15000 or mandate amount, the customer must provide explicit approval of the payment with their bank.
-  payment_intent_processing_customer_notificationApproval_requested :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  payment_intent_processing_customer_notificationApproval_requested :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | completes_at: If customer approval is required, they need to provide approval before this time.
-  , payment_intent_processing_customer_notificationCompletes_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_processing_customer_notificationCompletes_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_processing_customer_notification

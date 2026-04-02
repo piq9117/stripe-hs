@@ -46,15 +46,15 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Account_annual_revenue = Account_annual_revenue {
   -- | amount: A non-negative integer representing the amount in the [smallest currency unit](\/currencies\#zero-decimal).
-  account_annual_revenueAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  account_annual_revenueAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
-  , account_annual_revenueCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_annual_revenueCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fiscal_year_end: The close-out date of the preceding fiscal year in ISO 8601 format. E.g. 2023-12-31 for the 31st of December, 2023.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , account_annual_revenueFiscal_year_end :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , account_annual_revenueFiscal_year_end :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_annual_revenue

@@ -6,8 +6,3 @@ instance Show Person_ethnicity_details
 instance Eq Person_ethnicity_details
 instance Data.Aeson.FromJSON Person_ethnicity_details
 instance Data.Aeson.ToJSON Person_ethnicity_details
-data Person_ethnicity_detailsEthnicityNonNullable
-instance Show Person_ethnicity_detailsEthnicityNonNullable
-instance Eq Person_ethnicity_detailsEthnicityNonNullable
-instance Data.Aeson.FromJSON Person_ethnicity_detailsEthnicityNonNullable
-instance Data.Aeson.ToJSON Person_ethnicity_detailsEthnicityNonNullable

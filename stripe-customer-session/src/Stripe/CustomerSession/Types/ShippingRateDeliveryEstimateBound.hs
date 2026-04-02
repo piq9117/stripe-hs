@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Shipping_rate_delivery_estimate_bound = Shipping_rate_delivery_estimate_bound {
   -- | unit: A unit of time.
-  shipping_rate_delivery_estimate_boundUnit :: Shipping_rate_delivery_estimate_boundUnit
+  shipping_rate_delivery_estimate_boundUnit :: Data.Text.Internal.Text
   -- | value: Must be greater than 0.
   , shipping_rate_delivery_estimate_boundValue :: GHC.Types.Int
   } deriving (GHC.Show.Show
@@ -57,35 +57,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimate_bound
 instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimate_bound
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Shipping_rate_delivery_estimate_bound" (\obj -> (GHC.Base.pure Shipping_rate_delivery_estimate_bound GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "unit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "value"))}
 -- | Create a new 'Shipping_rate_delivery_estimate_bound' with all required fields.
-mkShipping_rate_delivery_estimate_bound :: Shipping_rate_delivery_estimate_boundUnit -- ^ 'shipping_rate_delivery_estimate_boundUnit'
+mkShipping_rate_delivery_estimate_bound :: Data.Text.Internal.Text -- ^ 'shipping_rate_delivery_estimate_boundUnit'
   -> GHC.Types.Int -- ^ 'shipping_rate_delivery_estimate_boundValue'
   -> Shipping_rate_delivery_estimate_bound
 mkShipping_rate_delivery_estimate_bound shipping_rate_delivery_estimate_boundUnit shipping_rate_delivery_estimate_boundValue = Shipping_rate_delivery_estimate_bound{shipping_rate_delivery_estimate_boundUnit = shipping_rate_delivery_estimate_boundUnit,
                                                                                                                                                                      shipping_rate_delivery_estimate_boundValue = shipping_rate_delivery_estimate_boundValue}
--- | Defines the enum schema located at @components.schemas.shipping_rate_delivery_estimate_bound.properties.unit@ in the specification.
--- 
--- A unit of time.
-data Shipping_rate_delivery_estimate_boundUnit =
-   Shipping_rate_delivery_estimate_boundUnitOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Shipping_rate_delivery_estimate_boundUnitTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Shipping_rate_delivery_estimate_boundUnitEnumBusiness_day -- ^ Represents the JSON value @"business_day"@
-  | Shipping_rate_delivery_estimate_boundUnitEnumDay -- ^ Represents the JSON value @"day"@
-  | Shipping_rate_delivery_estimate_boundUnitEnumHour -- ^ Represents the JSON value @"hour"@
-  | Shipping_rate_delivery_estimate_boundUnitEnumMonth -- ^ Represents the JSON value @"month"@
-  | Shipping_rate_delivery_estimate_boundUnitEnumWeek -- ^ Represents the JSON value @"week"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimate_boundUnit
-    where {toJSON (Shipping_rate_delivery_estimate_boundUnitOther val) = val;
-           toJSON (Shipping_rate_delivery_estimate_boundUnitTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Shipping_rate_delivery_estimate_boundUnitEnumBusiness_day) = "business_day";
-           toJSON (Shipping_rate_delivery_estimate_boundUnitEnumDay) = "day";
-           toJSON (Shipping_rate_delivery_estimate_boundUnitEnumHour) = "hour";
-           toJSON (Shipping_rate_delivery_estimate_boundUnitEnumMonth) = "month";
-           toJSON (Shipping_rate_delivery_estimate_boundUnitEnumWeek) = "week"}
-instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimate_boundUnit
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "business_day" -> Shipping_rate_delivery_estimate_boundUnitEnumBusiness_day
-                                             | val GHC.Classes.== "day" -> Shipping_rate_delivery_estimate_boundUnitEnumDay
-                                             | val GHC.Classes.== "hour" -> Shipping_rate_delivery_estimate_boundUnitEnumHour
-                                             | val GHC.Classes.== "month" -> Shipping_rate_delivery_estimate_boundUnitEnumMonth
-                                             | val GHC.Classes.== "week" -> Shipping_rate_delivery_estimate_boundUnitEnumWeek
-                                             | GHC.Base.otherwise -> Shipping_rate_delivery_estimate_boundUnitOther val)}

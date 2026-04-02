@@ -16,7 +16,7 @@ import qualified Stripe.CustomerSession.Common
 defaultURL = Data.Text.Internal.pack "https://api.stripe.com/"
 -- | The default application name used in the @User-Agent@ header which is based on the @info.title@ field of the specification
 -- 
--- @Stripe Customer Session@
-defaultApplicationName = Data.Text.Internal.pack "Stripe Customer Session"
+-- @Stripe API@
+defaultApplicationName = Data.Text.Internal.pack "Stripe API"
 -- | The default configuration containing the 'defaultURL' and no authorization
 defaultConfiguration = Stripe.CustomerSession.Common.Configuration defaultURL Stripe.CustomerSession.Common.anonymousSecurityScheme GHC.Types.True defaultApplicationName

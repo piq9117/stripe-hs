@@ -50,22 +50,30 @@ data Deleted_bank_account = Deleted_bank_account {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  deleted_bank_accountCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  deleted_bank_accountCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | deleted: Always true for a deleted object
+  , deleted_bank_accountDeleted :: GHC.Types.Bool
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , deleted_bank_accountId :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , deleted_bank_accountObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Deleted_bank_account
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_bank_accountCurrency obj) : ["id" Data.Aeson.Types.ToJSON..= deleted_bank_accountId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "bank_account"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_bank_accountCurrency obj) : ["id" Data.Aeson.Types.ToJSON..= deleted_bank_accountId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "bank_account"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_bank_accountCurrency obj) : ["deleted" Data.Aeson.Types.ToJSON..= deleted_bank_accountDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_bank_accountId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_bank_accountObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (deleted_bank_accountCurrency obj) : ["deleted" Data.Aeson.Types.ToJSON..= deleted_bank_accountDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_bank_accountId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_bank_accountObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Deleted_bank_account
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_bank_account" (\obj -> (GHC.Base.pure Deleted_bank_account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_bank_account" (\obj -> (((GHC.Base.pure Deleted_bank_account GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deleted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Deleted_bank_account' with all required fields.
-mkDeleted_bank_account :: Data.Text.Internal.Text -- ^ 'deleted_bank_accountId'
+mkDeleted_bank_account :: GHC.Types.Bool -- ^ 'deleted_bank_accountDeleted'
+  -> Data.Text.Internal.Text -- ^ 'deleted_bank_accountId'
+  -> Data.Text.Internal.Text -- ^ 'deleted_bank_accountObject'
   -> Deleted_bank_account
-mkDeleted_bank_account deleted_bank_accountId = Deleted_bank_account{deleted_bank_accountCurrency = GHC.Maybe.Nothing,
-                                                                     deleted_bank_accountId = deleted_bank_accountId}
+mkDeleted_bank_account deleted_bank_accountDeleted deleted_bank_accountId deleted_bank_accountObject = Deleted_bank_account{deleted_bank_accountCurrency = GHC.Maybe.Nothing,
+                                                                                                                            deleted_bank_accountDeleted = deleted_bank_accountDeleted,
+                                                                                                                            deleted_bank_accountId = deleted_bank_accountId,
+                                                                                                                            deleted_bank_accountObject = deleted_bank_accountObject}

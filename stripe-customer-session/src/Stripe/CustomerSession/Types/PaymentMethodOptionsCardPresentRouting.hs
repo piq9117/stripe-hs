@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_options_card_present_routing = Payment_method_options_card_present_routing {
   -- | requested_priority: Requested routing priority
-  payment_method_options_card_present_routingRequested_priority :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_options_card_present_routingRequested_priorityNonNullable))
+  payment_method_options_card_present_routingRequested_priority :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_present_routing
@@ -57,21 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_present_
 -- | Create a new 'Payment_method_options_card_present_routing' with all required fields.
 mkPayment_method_options_card_present_routing :: Payment_method_options_card_present_routing
 mkPayment_method_options_card_present_routing = Payment_method_options_card_present_routing{payment_method_options_card_present_routingRequested_priority = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_card_present_routing.properties.requested_priority@ in the specification.
--- 
--- Requested routing priority
-data Payment_method_options_card_present_routingRequested_priorityNonNullable =
-   Payment_method_options_card_present_routingRequested_priorityNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_card_present_routingRequested_priorityNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_card_present_routingRequested_priorityNonNullableEnumDomestic -- ^ Represents the JSON value @"domestic"@
-  | Payment_method_options_card_present_routingRequested_priorityNonNullableEnumInternational -- ^ Represents the JSON value @"international"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_card_present_routingRequested_priorityNonNullable
-    where {toJSON (Payment_method_options_card_present_routingRequested_priorityNonNullableOther val) = val;
-           toJSON (Payment_method_options_card_present_routingRequested_priorityNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_card_present_routingRequested_priorityNonNullableEnumDomestic) = "domestic";
-           toJSON (Payment_method_options_card_present_routingRequested_priorityNonNullableEnumInternational) = "international"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_card_present_routingRequested_priorityNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "domestic" -> Payment_method_options_card_present_routingRequested_priorityNonNullableEnumDomestic
-                                             | val GHC.Classes.== "international" -> Payment_method_options_card_present_routingRequested_priorityNonNullableEnumInternational
-                                             | GHC.Base.otherwise -> Payment_method_options_card_present_routingRequested_priorityNonNullableOther val)}

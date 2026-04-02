@@ -6,8 +6,3 @@ instance Show Us_bank_account_networks
 instance Eq Us_bank_account_networks
 instance Data.Aeson.FromJSON Us_bank_account_networks
 instance Data.Aeson.ToJSON Us_bank_account_networks
-data Us_bank_account_networksSupported
-instance Show Us_bank_account_networksSupported
-instance Eq Us_bank_account_networksSupported
-instance Data.Aeson.FromJSON Us_bank_account_networksSupported
-instance Data.Aeson.ToJSON Us_bank_account_networksSupported

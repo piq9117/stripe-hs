@@ -47,9 +47,9 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.ShippingRateDeliveryEstimateB
 -- 
 data Shipping_rate_delivery_estimate = Shipping_rate_delivery_estimate {
   -- | maximum: The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
-  shipping_rate_delivery_estimateMaximum :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Shipping_rate_delivery_estimateMaximumNonNullable))
+  shipping_rate_delivery_estimateMaximum :: (GHC.Maybe.Maybe Shipping_rate_delivery_estimateMaximum)
   -- | minimum: The lower bound of the estimated range. If empty, represents no lower bound.
-  , shipping_rate_delivery_estimateMinimum :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Shipping_rate_delivery_estimateMinimumNonNullable))
+  , shipping_rate_delivery_estimateMinimum :: (GHC.Maybe.Maybe Shipping_rate_delivery_estimateMinimum)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimate
@@ -64,92 +64,38 @@ mkShipping_rate_delivery_estimate = Shipping_rate_delivery_estimate{shipping_rat
 -- | Defines the object schema located at @components.schemas.shipping_rate_delivery_estimate.properties.maximum.anyOf@ in the specification.
 -- 
 -- The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
-data Shipping_rate_delivery_estimateMaximumNonNullable = Shipping_rate_delivery_estimateMaximumNonNullable {
+data Shipping_rate_delivery_estimateMaximum = Shipping_rate_delivery_estimateMaximum {
   -- | unit: A unit of time.
-  shipping_rate_delivery_estimateMaximumNonNullableUnit :: (GHC.Maybe.Maybe Shipping_rate_delivery_estimateMaximumNonNullableUnit)
+  shipping_rate_delivery_estimateMaximumUnit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | value: Must be greater than 0.
-  , shipping_rate_delivery_estimateMaximumNonNullableValue :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , shipping_rate_delivery_estimateMaximumValue :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimateMaximumNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumNonNullableUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumNonNullableValue obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumNonNullableUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumNonNullableValue obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimateMaximumNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Shipping_rate_delivery_estimateMaximumNonNullable" (\obj -> (GHC.Base.pure Shipping_rate_delivery_estimateMaximumNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
--- | Create a new 'Shipping_rate_delivery_estimateMaximumNonNullable' with all required fields.
-mkShipping_rate_delivery_estimateMaximumNonNullable :: Shipping_rate_delivery_estimateMaximumNonNullable
-mkShipping_rate_delivery_estimateMaximumNonNullable = Shipping_rate_delivery_estimateMaximumNonNullable{shipping_rate_delivery_estimateMaximumNonNullableUnit = GHC.Maybe.Nothing,
-                                                                                                        shipping_rate_delivery_estimateMaximumNonNullableValue = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.shipping_rate_delivery_estimate.properties.maximum.anyOf.properties.unit@ in the specification.
--- 
--- A unit of time.
-data Shipping_rate_delivery_estimateMaximumNonNullableUnit =
-   Shipping_rate_delivery_estimateMaximumNonNullableUnitOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Shipping_rate_delivery_estimateMaximumNonNullableUnitTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumBusiness_day -- ^ Represents the JSON value @"business_day"@
-  | Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumDay -- ^ Represents the JSON value @"day"@
-  | Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumHour -- ^ Represents the JSON value @"hour"@
-  | Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumMonth -- ^ Represents the JSON value @"month"@
-  | Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumWeek -- ^ Represents the JSON value @"week"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimateMaximumNonNullableUnit
-    where {toJSON (Shipping_rate_delivery_estimateMaximumNonNullableUnitOther val) = val;
-           toJSON (Shipping_rate_delivery_estimateMaximumNonNullableUnitTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumBusiness_day) = "business_day";
-           toJSON (Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumDay) = "day";
-           toJSON (Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumHour) = "hour";
-           toJSON (Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumMonth) = "month";
-           toJSON (Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumWeek) = "week"}
-instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimateMaximumNonNullableUnit
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "business_day" -> Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumBusiness_day
-                                             | val GHC.Classes.== "day" -> Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumDay
-                                             | val GHC.Classes.== "hour" -> Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumHour
-                                             | val GHC.Classes.== "month" -> Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumMonth
-                                             | val GHC.Classes.== "week" -> Shipping_rate_delivery_estimateMaximumNonNullableUnitEnumWeek
-                                             | GHC.Base.otherwise -> Shipping_rate_delivery_estimateMaximumNonNullableUnitOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimateMaximum
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumValue obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMaximumValue obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimateMaximum
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Shipping_rate_delivery_estimateMaximum" (\obj -> (GHC.Base.pure Shipping_rate_delivery_estimateMaximum GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
+-- | Create a new 'Shipping_rate_delivery_estimateMaximum' with all required fields.
+mkShipping_rate_delivery_estimateMaximum :: Shipping_rate_delivery_estimateMaximum
+mkShipping_rate_delivery_estimateMaximum = Shipping_rate_delivery_estimateMaximum{shipping_rate_delivery_estimateMaximumUnit = GHC.Maybe.Nothing,
+                                                                                  shipping_rate_delivery_estimateMaximumValue = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.shipping_rate_delivery_estimate.properties.minimum.anyOf@ in the specification.
 -- 
 -- The lower bound of the estimated range. If empty, represents no lower bound.
-data Shipping_rate_delivery_estimateMinimumNonNullable = Shipping_rate_delivery_estimateMinimumNonNullable {
+data Shipping_rate_delivery_estimateMinimum = Shipping_rate_delivery_estimateMinimum {
   -- | unit: A unit of time.
-  shipping_rate_delivery_estimateMinimumNonNullableUnit :: (GHC.Maybe.Maybe Shipping_rate_delivery_estimateMinimumNonNullableUnit)
+  shipping_rate_delivery_estimateMinimumUnit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | value: Must be greater than 0.
-  , shipping_rate_delivery_estimateMinimumNonNullableValue :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , shipping_rate_delivery_estimateMinimumValue :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimateMinimumNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumNonNullableUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumNonNullableValue obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumNonNullableUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumNonNullableValue obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimateMinimumNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Shipping_rate_delivery_estimateMinimumNonNullable" (\obj -> (GHC.Base.pure Shipping_rate_delivery_estimateMinimumNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
--- | Create a new 'Shipping_rate_delivery_estimateMinimumNonNullable' with all required fields.
-mkShipping_rate_delivery_estimateMinimumNonNullable :: Shipping_rate_delivery_estimateMinimumNonNullable
-mkShipping_rate_delivery_estimateMinimumNonNullable = Shipping_rate_delivery_estimateMinimumNonNullable{shipping_rate_delivery_estimateMinimumNonNullableUnit = GHC.Maybe.Nothing,
-                                                                                                        shipping_rate_delivery_estimateMinimumNonNullableValue = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.shipping_rate_delivery_estimate.properties.minimum.anyOf.properties.unit@ in the specification.
--- 
--- A unit of time.
-data Shipping_rate_delivery_estimateMinimumNonNullableUnit =
-   Shipping_rate_delivery_estimateMinimumNonNullableUnitOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Shipping_rate_delivery_estimateMinimumNonNullableUnitTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumBusiness_day -- ^ Represents the JSON value @"business_day"@
-  | Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumDay -- ^ Represents the JSON value @"day"@
-  | Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumHour -- ^ Represents the JSON value @"hour"@
-  | Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumMonth -- ^ Represents the JSON value @"month"@
-  | Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumWeek -- ^ Represents the JSON value @"week"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimateMinimumNonNullableUnit
-    where {toJSON (Shipping_rate_delivery_estimateMinimumNonNullableUnitOther val) = val;
-           toJSON (Shipping_rate_delivery_estimateMinimumNonNullableUnitTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumBusiness_day) = "business_day";
-           toJSON (Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumDay) = "day";
-           toJSON (Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumHour) = "hour";
-           toJSON (Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumMonth) = "month";
-           toJSON (Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumWeek) = "week"}
-instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimateMinimumNonNullableUnit
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "business_day" -> Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumBusiness_day
-                                             | val GHC.Classes.== "day" -> Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumDay
-                                             | val GHC.Classes.== "hour" -> Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumHour
-                                             | val GHC.Classes.== "month" -> Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumMonth
-                                             | val GHC.Classes.== "week" -> Shipping_rate_delivery_estimateMinimumNonNullableUnitEnumWeek
-                                             | GHC.Base.otherwise -> Shipping_rate_delivery_estimateMinimumNonNullableUnitOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Shipping_rate_delivery_estimateMinimum
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumValue obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("unit" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumUnit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (shipping_rate_delivery_estimateMinimumValue obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Shipping_rate_delivery_estimateMinimum
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Shipping_rate_delivery_estimateMinimum" (\obj -> (GHC.Base.pure Shipping_rate_delivery_estimateMinimum GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "unit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
+-- | Create a new 'Shipping_rate_delivery_estimateMinimum' with all required fields.
+mkShipping_rate_delivery_estimateMinimum :: Shipping_rate_delivery_estimateMinimum
+mkShipping_rate_delivery_estimateMinimum = Shipping_rate_delivery_estimateMinimum{shipping_rate_delivery_estimateMinimumUnit = GHC.Maybe.Nothing,
+                                                                                  shipping_rate_delivery_estimateMinimumValue = GHC.Maybe.Nothing}

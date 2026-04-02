@@ -51,8 +51,8 @@ data Setup_intent_payment_method_options_us_bank_account = Setup_intent_payment_
   setup_intent_payment_method_options_us_bank_accountFinancial_connections :: (GHC.Maybe.Maybe Linked_account_options_common)
   -- | mandate_options: 
   , setup_intent_payment_method_options_us_bank_accountMandate_options :: (GHC.Maybe.Maybe Payment_method_options_us_bank_account_mandate_options)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_options_us_bank_accountVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_us_bank_accountVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_options_us_bank_accountVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_us_bank_account
@@ -65,24 +65,3 @@ mkSetup_intent_payment_method_options_us_bank_account :: Setup_intent_payment_me
 mkSetup_intent_payment_method_options_us_bank_account = Setup_intent_payment_method_options_us_bank_account{setup_intent_payment_method_options_us_bank_accountFinancial_connections = GHC.Maybe.Nothing,
                                                                                                             setup_intent_payment_method_options_us_bank_accountMandate_options = GHC.Maybe.Nothing,
                                                                                                             setup_intent_payment_method_options_us_bank_accountVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_us_bank_account.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_options_us_bank_accountVerification_method =
-   Setup_intent_payment_method_options_us_bank_accountVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_us_bank_accountVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_us_bank_accountVerification_method
-    where {toJSON (Setup_intent_payment_method_options_us_bank_accountVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_options_us_bank_accountVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_us_bank_accountVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_options_us_bank_accountVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_us_bank_accountVerification_methodOther val)}

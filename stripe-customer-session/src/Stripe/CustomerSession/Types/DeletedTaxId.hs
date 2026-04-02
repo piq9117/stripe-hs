@@ -45,20 +45,28 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Deleted_tax_id = Deleted_tax_id {
+  -- | deleted: Always true for a deleted object
+  deleted_tax_idDeleted :: GHC.Types.Bool
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  deleted_tax_idId :: Data.Text.Internal.Text
+  , deleted_tax_idId :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , deleted_tax_idObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Deleted_tax_id
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_tax_idId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_id"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_tax_idId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "tax_id"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_tax_idDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_tax_idId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_tax_idObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_tax_idDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_tax_idId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_tax_idObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Deleted_tax_id
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_tax_id" (\obj -> GHC.Base.pure Deleted_tax_id GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_tax_id" (\obj -> ((GHC.Base.pure Deleted_tax_id GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deleted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Deleted_tax_id' with all required fields.
-mkDeleted_tax_id :: Data.Text.Internal.Text -- ^ 'deleted_tax_idId'
+mkDeleted_tax_id :: GHC.Types.Bool -- ^ 'deleted_tax_idDeleted'
+  -> Data.Text.Internal.Text -- ^ 'deleted_tax_idId'
+  -> Data.Text.Internal.Text -- ^ 'deleted_tax_idObject'
   -> Deleted_tax_id
-mkDeleted_tax_id deleted_tax_idId = Deleted_tax_id{deleted_tax_idId = deleted_tax_idId}
+mkDeleted_tax_id deleted_tax_idDeleted deleted_tax_idId deleted_tax_idObject = Deleted_tax_id{deleted_tax_idDeleted = deleted_tax_idDeleted,
+                                                                                              deleted_tax_idId = deleted_tax_idId,
+                                                                                              deleted_tax_idObject = deleted_tax_idObject}

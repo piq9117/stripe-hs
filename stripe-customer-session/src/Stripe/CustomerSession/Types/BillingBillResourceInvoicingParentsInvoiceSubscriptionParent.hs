@@ -48,7 +48,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Subscription
 data Billing_bill_resource_invoicing_parents_invoice_subscription_parent = Billing_bill_resource_invoicing_parents_invoice_subscription_parent {
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) defined as subscription metadata when an invoice is created. Becomes an immutable snapshot of the subscription metadata at the time of invoice finalization.
   --  *Note: This attribute is populated only for invoices created on or after June 29, 2023.*
-  billing_bill_resource_invoicing_parents_invoice_subscription_parentMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  billing_bill_resource_invoicing_parents_invoice_subscription_parentMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | subscription: The subscription that generated this invoice
   , billing_bill_resource_invoicing_parents_invoice_subscription_parentSubscription :: Billing_bill_resource_invoicing_parents_invoice_subscription_parentSubscriptionVariants
   -- | subscription_proration_date: Only set for upcoming invoices that preview prorations. The time used to calculate prorations.

@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_private_payment_methods_card_present_common_wallet = Payment_flows_private_payment_methods_card_present_common_wallet {
   -- | type: The type of mobile wallet, one of \`apple_pay\`, \`google_pay\`, \`samsung_pay\`, or \`unknown\`.
-  payment_flows_private_payment_methods_card_present_common_walletType :: Payment_flows_private_payment_methods_card_present_common_walletType
+  payment_flows_private_payment_methods_card_present_common_walletType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_card_present_common_wallet
@@ -55,30 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_ca
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_card_present_common_wallet
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_flows_private_payment_methods_card_present_common_wallet" (\obj -> GHC.Base.pure Payment_flows_private_payment_methods_card_present_common_wallet GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Payment_flows_private_payment_methods_card_present_common_wallet' with all required fields.
-mkPayment_flows_private_payment_methods_card_present_common_wallet :: Payment_flows_private_payment_methods_card_present_common_walletType -- ^ 'payment_flows_private_payment_methods_card_present_common_walletType'
+mkPayment_flows_private_payment_methods_card_present_common_wallet :: Data.Text.Internal.Text -- ^ 'payment_flows_private_payment_methods_card_present_common_walletType'
   -> Payment_flows_private_payment_methods_card_present_common_wallet
 mkPayment_flows_private_payment_methods_card_present_common_wallet payment_flows_private_payment_methods_card_present_common_walletType = Payment_flows_private_payment_methods_card_present_common_wallet{payment_flows_private_payment_methods_card_present_common_walletType = payment_flows_private_payment_methods_card_present_common_walletType}
--- | Defines the enum schema located at @components.schemas.payment_flows_private_payment_methods_card_present_common_wallet.properties.type@ in the specification.
--- 
--- The type of mobile wallet, one of \`apple_pay\`, \`google_pay\`, \`samsung_pay\`, or \`unknown\`.
-data Payment_flows_private_payment_methods_card_present_common_walletType =
-   Payment_flows_private_payment_methods_card_present_common_walletTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_private_payment_methods_card_present_common_walletTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_private_payment_methods_card_present_common_walletTypeEnumApple_pay -- ^ Represents the JSON value @"apple_pay"@
-  | Payment_flows_private_payment_methods_card_present_common_walletTypeEnumGoogle_pay -- ^ Represents the JSON value @"google_pay"@
-  | Payment_flows_private_payment_methods_card_present_common_walletTypeEnumSamsung_pay -- ^ Represents the JSON value @"samsung_pay"@
-  | Payment_flows_private_payment_methods_card_present_common_walletTypeEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_card_present_common_walletType
-    where {toJSON (Payment_flows_private_payment_methods_card_present_common_walletTypeOther val) = val;
-           toJSON (Payment_flows_private_payment_methods_card_present_common_walletTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_private_payment_methods_card_present_common_walletTypeEnumApple_pay) = "apple_pay";
-           toJSON (Payment_flows_private_payment_methods_card_present_common_walletTypeEnumGoogle_pay) = "google_pay";
-           toJSON (Payment_flows_private_payment_methods_card_present_common_walletTypeEnumSamsung_pay) = "samsung_pay";
-           toJSON (Payment_flows_private_payment_methods_card_present_common_walletTypeEnumUnknown) = "unknown"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_card_present_common_walletType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "apple_pay" -> Payment_flows_private_payment_methods_card_present_common_walletTypeEnumApple_pay
-                                             | val GHC.Classes.== "google_pay" -> Payment_flows_private_payment_methods_card_present_common_walletTypeEnumGoogle_pay
-                                             | val GHC.Classes.== "samsung_pay" -> Payment_flows_private_payment_methods_card_present_common_walletTypeEnumSamsung_pay
-                                             | val GHC.Classes.== "unknown" -> Payment_flows_private_payment_methods_card_present_common_walletTypeEnumUnknown
-                                             | GHC.Base.otherwise -> Payment_flows_private_payment_methods_card_present_common_walletTypeOther val)}

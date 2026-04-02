@@ -6,8 +6,3 @@ instance Show Payment_method_details_p24
 instance Eq Payment_method_details_p24
 instance Data.Aeson.FromJSON Payment_method_details_p24
 instance Data.Aeson.ToJSON Payment_method_details_p24
-data Payment_method_details_p24BankNonNullable
-instance Show Payment_method_details_p24BankNonNullable
-instance Eq Payment_method_details_p24BankNonNullable
-instance Data.Aeson.FromJSON Payment_method_details_p24BankNonNullable
-instance Data.Aeson.ToJSON Payment_method_details_p24BankNonNullable

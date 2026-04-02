@@ -48,7 +48,7 @@ data Source_type_wechat = Source_type_wechat {
   -- | prepay_id
   source_type_wechatPrepay_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | qr_code_url
-  , source_type_wechatQr_code_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_wechatQr_code_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor
   , source_type_wechatStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show

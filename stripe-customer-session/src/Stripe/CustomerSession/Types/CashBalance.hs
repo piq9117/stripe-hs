@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.CustomerBalanceCustomerBalanc
 -- A customer\'s \`Cash balance\` represents real funds. Customers can add funds to their cash balance by sending a bank transfer. These funds can be used for payment and can eventually be paid out to your bank account.
 data Cash_balance = Cash_balance {
   -- | available: A hash of all cash balances available to this customer. You cannot delete a customer with any cash balances, even if the balance is 0. Amounts are represented in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal).
-  cash_balanceAvailable :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  cash_balanceAvailable :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | customer: The ID of the customer whose cash balance this object represents.
   -- 
   -- Constraints:
@@ -59,25 +59,29 @@ data Cash_balance = Cash_balance {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cash_balanceCustomer_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  , cash_balanceCustomer_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , cash_balanceLivemode :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , cash_balanceObject :: Data.Text.Internal.Text
   -- | settings: 
   , cash_balanceSettings :: Customer_balance_customer_balance_settings
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Cash_balance
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (cash_balanceAvailable obj) : ["customer" Data.Aeson.Types.ToJSON..= cash_balanceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (cash_balanceCustomer_account obj) : ["livemode" Data.Aeson.Types.ToJSON..= cash_balanceLivemode obj] : ["settings" Data.Aeson.Types.ToJSON..= cash_balanceSettings obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "cash_balance"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (cash_balanceAvailable obj) : ["customer" Data.Aeson.Types.ToJSON..= cash_balanceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (cash_balanceCustomer_account obj) : ["livemode" Data.Aeson.Types.ToJSON..= cash_balanceLivemode obj] : ["settings" Data.Aeson.Types.ToJSON..= cash_balanceSettings obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "cash_balance"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (cash_balanceAvailable obj) : ["customer" Data.Aeson.Types.ToJSON..= cash_balanceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (cash_balanceCustomer_account obj) : ["livemode" Data.Aeson.Types.ToJSON..= cash_balanceLivemode obj] : ["object" Data.Aeson.Types.ToJSON..= cash_balanceObject obj] : ["settings" Data.Aeson.Types.ToJSON..= cash_balanceSettings obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available" Data.Aeson.Types.ToJSON..=)) (cash_balanceAvailable obj) : ["customer" Data.Aeson.Types.ToJSON..= cash_balanceCustomer obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_account" Data.Aeson.Types.ToJSON..=)) (cash_balanceCustomer_account obj) : ["livemode" Data.Aeson.Types.ToJSON..= cash_balanceLivemode obj] : ["object" Data.Aeson.Types.ToJSON..= cash_balanceObject obj] : ["settings" Data.Aeson.Types.ToJSON..= cash_balanceSettings obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Cash_balance
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Cash_balance" (\obj -> ((((GHC.Base.pure Cash_balance GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "settings"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Cash_balance" (\obj -> (((((GHC.Base.pure Cash_balance GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "settings"))}
 -- | Create a new 'Cash_balance' with all required fields.
 mkCash_balance :: Data.Text.Internal.Text -- ^ 'cash_balanceCustomer'
   -> GHC.Types.Bool -- ^ 'cash_balanceLivemode'
+  -> Data.Text.Internal.Text -- ^ 'cash_balanceObject'
   -> Customer_balance_customer_balance_settings -- ^ 'cash_balanceSettings'
   -> Cash_balance
-mkCash_balance cash_balanceCustomer cash_balanceLivemode cash_balanceSettings = Cash_balance{cash_balanceAvailable = GHC.Maybe.Nothing,
-                                                                                             cash_balanceCustomer = cash_balanceCustomer,
-                                                                                             cash_balanceCustomer_account = GHC.Maybe.Nothing,
-                                                                                             cash_balanceLivemode = cash_balanceLivemode,
-                                                                                             cash_balanceSettings = cash_balanceSettings}
+mkCash_balance cash_balanceCustomer cash_balanceLivemode cash_balanceObject cash_balanceSettings = Cash_balance{cash_balanceAvailable = GHC.Maybe.Nothing,
+                                                                                                                cash_balanceCustomer = cash_balanceCustomer,
+                                                                                                                cash_balanceCustomer_account = GHC.Maybe.Nothing,
+                                                                                                                cash_balanceLivemode = cash_balanceLivemode,
+                                                                                                                cash_balanceObject = cash_balanceObject,
+                                                                                                                cash_balanceSettings = cash_balanceSettings}

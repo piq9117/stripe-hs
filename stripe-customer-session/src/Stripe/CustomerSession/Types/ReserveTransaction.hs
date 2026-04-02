@@ -54,26 +54,30 @@ data Reserve_transaction = Reserve_transaction {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , reserve_transactionDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , reserve_transactionDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , reserve_transactionId :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , reserve_transactionObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Reserve_transaction
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= reserve_transactionAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= reserve_transactionCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (reserve_transactionDescription obj) : ["id" Data.Aeson.Types.ToJSON..= reserve_transactionId obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "reserve_transaction"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= reserve_transactionAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= reserve_transactionCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (reserve_transactionDescription obj) : ["id" Data.Aeson.Types.ToJSON..= reserve_transactionId obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "reserve_transaction"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= reserve_transactionAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= reserve_transactionCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (reserve_transactionDescription obj) : ["id" Data.Aeson.Types.ToJSON..= reserve_transactionId obj] : ["object" Data.Aeson.Types.ToJSON..= reserve_transactionObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= reserve_transactionAmount obj] : ["currency" Data.Aeson.Types.ToJSON..= reserve_transactionCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (reserve_transactionDescription obj) : ["id" Data.Aeson.Types.ToJSON..= reserve_transactionId obj] : ["object" Data.Aeson.Types.ToJSON..= reserve_transactionObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Reserve_transaction
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Reserve_transaction" (\obj -> (((GHC.Base.pure Reserve_transaction GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Reserve_transaction" (\obj -> ((((GHC.Base.pure Reserve_transaction GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Reserve_transaction' with all required fields.
 mkReserve_transaction :: GHC.Types.Int -- ^ 'reserve_transactionAmount'
   -> Data.Text.Internal.Text -- ^ 'reserve_transactionCurrency'
   -> Data.Text.Internal.Text -- ^ 'reserve_transactionId'
+  -> Data.Text.Internal.Text -- ^ 'reserve_transactionObject'
   -> Reserve_transaction
-mkReserve_transaction reserve_transactionAmount reserve_transactionCurrency reserve_transactionId = Reserve_transaction{reserve_transactionAmount = reserve_transactionAmount,
-                                                                                                                        reserve_transactionCurrency = reserve_transactionCurrency,
-                                                                                                                        reserve_transactionDescription = GHC.Maybe.Nothing,
-                                                                                                                        reserve_transactionId = reserve_transactionId}
+mkReserve_transaction reserve_transactionAmount reserve_transactionCurrency reserve_transactionId reserve_transactionObject = Reserve_transaction{reserve_transactionAmount = reserve_transactionAmount,
+                                                                                                                                                  reserve_transactionCurrency = reserve_transactionCurrency,
+                                                                                                                                                  reserve_transactionDescription = GHC.Maybe.Nothing,
+                                                                                                                                                  reserve_transactionId = reserve_transactionId,
+                                                                                                                                                  reserve_transactionObject = reserve_transactionObject}

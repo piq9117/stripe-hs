@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_details_konbini_store = Payment_method_details_konbini_store {
   -- | chain: The name of the convenience store chain where the payment was completed.
-  payment_method_details_konbini_storeChain :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_konbini_storeChainNonNullable))
+  payment_method_details_konbini_storeChain :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_konbini_store
@@ -57,27 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_konbini_store
 -- | Create a new 'Payment_method_details_konbini_store' with all required fields.
 mkPayment_method_details_konbini_store :: Payment_method_details_konbini_store
 mkPayment_method_details_konbini_store = Payment_method_details_konbini_store{payment_method_details_konbini_storeChain = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_details_konbini_store.properties.chain@ in the specification.
--- 
--- The name of the convenience store chain where the payment was completed.
-data Payment_method_details_konbini_storeChainNonNullable =
-   Payment_method_details_konbini_storeChainNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_konbini_storeChainNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_konbini_storeChainNonNullableEnumFamilymart -- ^ Represents the JSON value @"familymart"@
-  | Payment_method_details_konbini_storeChainNonNullableEnumLawson -- ^ Represents the JSON value @"lawson"@
-  | Payment_method_details_konbini_storeChainNonNullableEnumMinistop -- ^ Represents the JSON value @"ministop"@
-  | Payment_method_details_konbini_storeChainNonNullableEnumSeicomart -- ^ Represents the JSON value @"seicomart"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_konbini_storeChainNonNullable
-    where {toJSON (Payment_method_details_konbini_storeChainNonNullableOther val) = val;
-           toJSON (Payment_method_details_konbini_storeChainNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_konbini_storeChainNonNullableEnumFamilymart) = "familymart";
-           toJSON (Payment_method_details_konbini_storeChainNonNullableEnumLawson) = "lawson";
-           toJSON (Payment_method_details_konbini_storeChainNonNullableEnumMinistop) = "ministop";
-           toJSON (Payment_method_details_konbini_storeChainNonNullableEnumSeicomart) = "seicomart"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_konbini_storeChainNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "familymart" -> Payment_method_details_konbini_storeChainNonNullableEnumFamilymart
-                                             | val GHC.Classes.== "lawson" -> Payment_method_details_konbini_storeChainNonNullableEnumLawson
-                                             | val GHC.Classes.== "ministop" -> Payment_method_details_konbini_storeChainNonNullableEnumMinistop
-                                             | val GHC.Classes.== "seicomart" -> Payment_method_details_konbini_storeChainNonNullableEnumSeicomart
-                                             | GHC.Base.otherwise -> Payment_method_details_konbini_storeChainNonNullableOther val)}

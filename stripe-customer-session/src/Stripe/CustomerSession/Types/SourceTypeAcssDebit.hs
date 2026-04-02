@@ -46,25 +46,25 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_acss_debit = Source_type_acss_debit {
   -- | bank_address_city
-  source_type_acss_debitBank_address_city :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_acss_debitBank_address_city :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_address_line_1
-  , source_type_acss_debitBank_address_line_1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitBank_address_line_1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_address_line_2
-  , source_type_acss_debitBank_address_line_2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitBank_address_line_2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_address_postal_code
-  , source_type_acss_debitBank_address_postal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitBank_address_postal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name
-  , source_type_acss_debitBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | category
-  , source_type_acss_debitCategory :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitCategory :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country
-  , source_type_acss_debitCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint
-  , source_type_acss_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4
-  , source_type_acss_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | routing_number
-  , source_type_acss_debitRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_acss_debitRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_acss_debit

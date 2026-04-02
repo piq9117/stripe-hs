@@ -52,13 +52,13 @@ data Customer_tax_location = Customer_tax_location {
   -- * Maximum length of 5000
   customer_tax_locationCountry :: Data.Text.Internal.Text
   -- | source: The data source used to infer the customer\'s location.
-  , customer_tax_locationSource :: Customer_tax_locationSource
+  , customer_tax_locationSource :: Data.Text.Internal.Text
   -- | state: The identified tax state, county, province, or region of the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , customer_tax_locationState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , customer_tax_locationState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Customer_tax_location
@@ -68,32 +68,8 @@ instance Data.Aeson.Types.FromJSON.FromJSON Customer_tax_location
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Customer_tax_location" (\obj -> ((GHC.Base.pure Customer_tax_location GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
 -- | Create a new 'Customer_tax_location' with all required fields.
 mkCustomer_tax_location :: Data.Text.Internal.Text -- ^ 'customer_tax_locationCountry'
-  -> Customer_tax_locationSource -- ^ 'customer_tax_locationSource'
+  -> Data.Text.Internal.Text -- ^ 'customer_tax_locationSource'
   -> Customer_tax_location
 mkCustomer_tax_location customer_tax_locationCountry customer_tax_locationSource = Customer_tax_location{customer_tax_locationCountry = customer_tax_locationCountry,
                                                                                                          customer_tax_locationSource = customer_tax_locationSource,
                                                                                                          customer_tax_locationState = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.customer_tax_location.properties.source@ in the specification.
--- 
--- The data source used to infer the customer\'s location.
-data Customer_tax_locationSource =
-   Customer_tax_locationSourceOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_tax_locationSourceTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_tax_locationSourceEnumBilling_address -- ^ Represents the JSON value @"billing_address"@
-  | Customer_tax_locationSourceEnumIp_address -- ^ Represents the JSON value @"ip_address"@
-  | Customer_tax_locationSourceEnumPayment_method -- ^ Represents the JSON value @"payment_method"@
-  | Customer_tax_locationSourceEnumShipping_destination -- ^ Represents the JSON value @"shipping_destination"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_tax_locationSource
-    where {toJSON (Customer_tax_locationSourceOther val) = val;
-           toJSON (Customer_tax_locationSourceTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_tax_locationSourceEnumBilling_address) = "billing_address";
-           toJSON (Customer_tax_locationSourceEnumIp_address) = "ip_address";
-           toJSON (Customer_tax_locationSourceEnumPayment_method) = "payment_method";
-           toJSON (Customer_tax_locationSourceEnumShipping_destination) = "shipping_destination"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_tax_locationSource
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "billing_address" -> Customer_tax_locationSourceEnumBilling_address
-                                             | val GHC.Classes.== "ip_address" -> Customer_tax_locationSourceEnumIp_address
-                                             | val GHC.Classes.== "payment_method" -> Customer_tax_locationSourceEnumPayment_method
-                                             | val GHC.Classes.== "shipping_destination" -> Customer_tax_locationSourceEnumShipping_destination
-                                             | GHC.Base.otherwise -> Customer_tax_locationSourceOther val)}

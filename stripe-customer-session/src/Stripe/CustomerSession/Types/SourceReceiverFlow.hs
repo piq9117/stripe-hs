@@ -50,7 +50,7 @@ data Source_receiver_flow = Source_receiver_flow {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  source_receiver_flowAddress :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_receiver_flowAddress :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | amount_charged: The total amount that was moved to your balance. This is almost always equal to the amount charged. In rare cases when customers deposit excess funds and we are unable to refund those, those funds get moved to your balance and show up in amount_charged as well. The amount charged is expressed in the source\'s currency.
   , source_receiver_flowAmount_charged :: GHC.Types.Int
   -- | amount_received: The total amount received by the receiver source. \`amount_received = amount_returned + amount_charged\` should be true for consumed sources unless customers deposit excess funds. The amount received is expressed in the source\'s currency.

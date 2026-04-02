@@ -52,29 +52,29 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.SubscriptionTransferData
 -- 
 data Subscription_schedules_resource_default_settings = Subscription_schedules_resource_default_settings {
   -- | application_fee_percent: A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the application owner\'s Stripe account during this phase of the schedule.
-  subscription_schedules_resource_default_settingsApplication_fee_percent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  subscription_schedules_resource_default_settingsApplication_fee_percent :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | automatic_tax: 
   , subscription_schedules_resource_default_settingsAutomatic_tax :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settings_automatic_tax)
   -- | billing_cycle_anchor: Possible values are \`phase_start\` or \`automatic\`. If \`phase_start\` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If \`automatic\` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https:\/\/docs.stripe.com\/billing\/subscriptions\/billing-cycle).
-  , subscription_schedules_resource_default_settingsBilling_cycle_anchor :: Subscription_schedules_resource_default_settingsBilling_cycle_anchor
+  , subscription_schedules_resource_default_settingsBilling_cycle_anchor :: Data.Text.Internal.Text
   -- | billing_thresholds: Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period
-  , subscription_schedules_resource_default_settingsBilling_thresholds :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable))
+  , subscription_schedules_resource_default_settingsBilling_thresholds :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settingsBilling_thresholds)
   -- | collection_method: Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay the underlying subscription at the end of each billing cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as \`active\`.
-  , subscription_schedules_resource_default_settingsCollection_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedules_resource_default_settingsCollection_methodNonNullable))
+  , subscription_schedules_resource_default_settingsCollection_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | default_payment_method: ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer\'s invoice settings.
-  , subscription_schedules_resource_default_settingsDefault_payment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullableVariants))
+  , subscription_schedules_resource_default_settingsDefault_payment_method :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settingsDefault_payment_methodVariants)
   -- | description: Subscription description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription for rendering in Stripe surfaces and certain local payment methods UIs.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , subscription_schedules_resource_default_settingsDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , subscription_schedules_resource_default_settingsDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | invoice_settings: 
   , subscription_schedules_resource_default_settingsInvoice_settings :: Invoice_setting_subscription_schedule_setting
   -- | on_behalf_of: The account (if any) the charge was made on behalf of for charges associated with the schedule\'s subscription. See the Connect documentation for details.
-  , subscription_schedules_resource_default_settingsOn_behalf_of :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableVariants))
+  , subscription_schedules_resource_default_settingsOn_behalf_of :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settingsOn_behalf_ofVariants)
   -- | transfer_data: The account (if any) the associated subscription\'s payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription\'s invoices.
-  , subscription_schedules_resource_default_settingsTransfer_data :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedules_resource_default_settingsTransfer_dataNonNullable))
+  , subscription_schedules_resource_default_settingsTransfer_data :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settingsTransfer_data)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settings
@@ -83,7 +83,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_
 instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settings
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_default_settings" (\obj -> (((((((((GHC.Base.pure Subscription_schedules_resource_default_settings GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "automatic_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_cycle_anchor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billing_thresholds")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "collection_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "invoice_settings")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_data"))}
 -- | Create a new 'Subscription_schedules_resource_default_settings' with all required fields.
-mkSubscription_schedules_resource_default_settings :: Subscription_schedules_resource_default_settingsBilling_cycle_anchor -- ^ 'subscription_schedules_resource_default_settingsBilling_cycle_anchor'
+mkSubscription_schedules_resource_default_settings :: Data.Text.Internal.Text -- ^ 'subscription_schedules_resource_default_settingsBilling_cycle_anchor'
   -> Invoice_setting_subscription_schedule_setting -- ^ 'subscription_schedules_resource_default_settingsInvoice_settings'
   -> Subscription_schedules_resource_default_settings
 mkSubscription_schedules_resource_default_settings subscription_schedules_resource_default_settingsBilling_cycle_anchor subscription_schedules_resource_default_settingsInvoice_settings = Subscription_schedules_resource_default_settings{subscription_schedules_resource_default_settingsApplication_fee_percent = GHC.Maybe.Nothing,
@@ -96,119 +96,83 @@ mkSubscription_schedules_resource_default_settings subscription_schedules_resour
                                                                                                                                                                                                                                             subscription_schedules_resource_default_settingsInvoice_settings = subscription_schedules_resource_default_settingsInvoice_settings,
                                                                                                                                                                                                                                             subscription_schedules_resource_default_settingsOn_behalf_of = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                             subscription_schedules_resource_default_settingsTransfer_data = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription_schedules_resource_default_settings.properties.billing_cycle_anchor@ in the specification.
--- 
--- Possible values are \`phase_start\` or \`automatic\`. If \`phase_start\` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If \`automatic\` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https:\/\/docs.stripe.com\/billing\/subscriptions\/billing-cycle).
-data Subscription_schedules_resource_default_settingsBilling_cycle_anchor =
-   Subscription_schedules_resource_default_settingsBilling_cycle_anchorOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedules_resource_default_settingsBilling_cycle_anchorTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedules_resource_default_settingsBilling_cycle_anchorEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Subscription_schedules_resource_default_settingsBilling_cycle_anchorEnumPhase_start -- ^ Represents the JSON value @"phase_start"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsBilling_cycle_anchor
-    where {toJSON (Subscription_schedules_resource_default_settingsBilling_cycle_anchorOther val) = val;
-           toJSON (Subscription_schedules_resource_default_settingsBilling_cycle_anchorTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedules_resource_default_settingsBilling_cycle_anchorEnumAutomatic) = "automatic";
-           toJSON (Subscription_schedules_resource_default_settingsBilling_cycle_anchorEnumPhase_start) = "phase_start"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsBilling_cycle_anchor
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Subscription_schedules_resource_default_settingsBilling_cycle_anchorEnumAutomatic
-                                             | val GHC.Classes.== "phase_start" -> Subscription_schedules_resource_default_settingsBilling_cycle_anchorEnumPhase_start
-                                             | GHC.Base.otherwise -> Subscription_schedules_resource_default_settingsBilling_cycle_anchorOther val)}
 -- | Defines the object schema located at @components.schemas.subscription_schedules_resource_default_settings.properties.billing_thresholds.anyOf@ in the specification.
 -- 
 -- Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period
-data Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable = Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable {
+data Subscription_schedules_resource_default_settingsBilling_thresholds = Subscription_schedules_resource_default_settingsBilling_thresholds {
   -- | amount_gte: Monetary threshold that triggers the subscription to create an invoice
-  subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableAmount_gte :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscription_schedules_resource_default_settingsBilling_thresholdsAmount_gte :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reset_billing_cycle_anchor: Indicates if the \`billing_cycle_anchor\` should be reset when a threshold is reached. If true, \`billing_cycle_anchor\` will be updated to the date\/time the threshold was last reached; otherwise, the value will remain unchanged. This value may not be \`true\` if the subscription contains items with plans that have \`aggregate_usage=last_ever\`.
-  , subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableReset_billing_cycle_anchor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , subscription_schedules_resource_default_settingsBilling_thresholdsReset_billing_cycle_anchor :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableReset_billing_cycle_anchor obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableReset_billing_cycle_anchor obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable" (\obj -> (GHC.Base.pure Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_gte")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reset_billing_cycle_anchor"))}
--- | Create a new 'Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable' with all required fields.
-mkSubscription_schedules_resource_default_settingsBilling_thresholdsNonNullable :: Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable
-mkSubscription_schedules_resource_default_settingsBilling_thresholdsNonNullable = Subscription_schedules_resource_default_settingsBilling_thresholdsNonNullable{subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableAmount_gte = GHC.Maybe.Nothing,
-                                                                                                                                                                subscription_schedules_resource_default_settingsBilling_thresholdsNonNullableReset_billing_cycle_anchor = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription_schedules_resource_default_settings.properties.collection_method@ in the specification.
--- 
--- Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay the underlying subscription at the end of each billing cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as \`active\`.
-data Subscription_schedules_resource_default_settingsCollection_methodNonNullable =
-   Subscription_schedules_resource_default_settingsCollection_methodNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedules_resource_default_settingsCollection_methodNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedules_resource_default_settingsCollection_methodNonNullableEnumCharge_automatically -- ^ Represents the JSON value @"charge_automatically"@
-  | Subscription_schedules_resource_default_settingsCollection_methodNonNullableEnumSend_invoice -- ^ Represents the JSON value @"send_invoice"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsCollection_methodNonNullable
-    where {toJSON (Subscription_schedules_resource_default_settingsCollection_methodNonNullableOther val) = val;
-           toJSON (Subscription_schedules_resource_default_settingsCollection_methodNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedules_resource_default_settingsCollection_methodNonNullableEnumCharge_automatically) = "charge_automatically";
-           toJSON (Subscription_schedules_resource_default_settingsCollection_methodNonNullableEnumSend_invoice) = "send_invoice"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsCollection_methodNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "charge_automatically" -> Subscription_schedules_resource_default_settingsCollection_methodNonNullableEnumCharge_automatically
-                                             | val GHC.Classes.== "send_invoice" -> Subscription_schedules_resource_default_settingsCollection_methodNonNullableEnumSend_invoice
-                                             | GHC.Base.otherwise -> Subscription_schedules_resource_default_settingsCollection_methodNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsBilling_thresholds
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsReset_billing_cycle_anchor obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsBilling_thresholdsReset_billing_cycle_anchor obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsBilling_thresholds
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_default_settingsBilling_thresholds" (\obj -> (GHC.Base.pure Subscription_schedules_resource_default_settingsBilling_thresholds GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_gte")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reset_billing_cycle_anchor"))}
+-- | Create a new 'Subscription_schedules_resource_default_settingsBilling_thresholds' with all required fields.
+mkSubscription_schedules_resource_default_settingsBilling_thresholds :: Subscription_schedules_resource_default_settingsBilling_thresholds
+mkSubscription_schedules_resource_default_settingsBilling_thresholds = Subscription_schedules_resource_default_settingsBilling_thresholds{subscription_schedules_resource_default_settingsBilling_thresholdsAmount_gte = GHC.Maybe.Nothing,
+                                                                                                                                          subscription_schedules_resource_default_settingsBilling_thresholdsReset_billing_cycle_anchor = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedules_resource_default_settings.properties.default_payment_method.anyOf@ in the specification.
 -- 
 -- ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer\'s invoice settings.
-data Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullableVariants =
-   Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullableText Data.Text.Internal.Text
-  | Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullablePayment_method Payment_method
+data Subscription_schedules_resource_default_settingsDefault_payment_methodVariants =
+   Subscription_schedules_resource_default_settingsDefault_payment_methodText Data.Text.Internal.Text
+  | Subscription_schedules_resource_default_settingsDefault_payment_methodPayment_method Payment_method
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullableVariants
-    where {toJSON (Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullablePayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullableVariants
-    where {parseJSON val = case (Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settingsDefault_payment_methodNonNullablePayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsDefault_payment_methodVariants
+    where {toJSON (Subscription_schedules_resource_default_settingsDefault_payment_methodText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedules_resource_default_settingsDefault_payment_methodPayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsDefault_payment_methodVariants
+    where {parseJSON val = case (Subscription_schedules_resource_default_settingsDefault_payment_methodText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settingsDefault_payment_methodPayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedules_resource_default_settings.properties.on_behalf_of.anyOf@ in the specification.
 -- 
 -- The account (if any) the charge was made on behalf of for charges associated with the schedule\'s subscription. See the Connect documentation for details.
-data Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableVariants =
-   Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableText Data.Text.Internal.Text
-  | Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableAccount Account
+data Subscription_schedules_resource_default_settingsOn_behalf_ofVariants =
+   Subscription_schedules_resource_default_settingsOn_behalf_ofText Data.Text.Internal.Text
+  | Subscription_schedules_resource_default_settingsOn_behalf_ofAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableVariants
-    where {toJSON (Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableVariants
-    where {parseJSON val = case (Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settingsOn_behalf_ofNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsOn_behalf_ofVariants
+    where {toJSON (Subscription_schedules_resource_default_settingsOn_behalf_ofText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedules_resource_default_settingsOn_behalf_ofAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsOn_behalf_ofVariants
+    where {parseJSON val = case (Subscription_schedules_resource_default_settingsOn_behalf_ofText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settingsOn_behalf_ofAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription_schedules_resource_default_settings.properties.transfer_data.anyOf@ in the specification.
 -- 
 -- The account (if any) the associated subscription\\\'s payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription\\\'s invoices.
-data Subscription_schedules_resource_default_settingsTransfer_dataNonNullable = Subscription_schedules_resource_default_settingsTransfer_dataNonNullable {
+data Subscription_schedules_resource_default_settingsTransfer_data = Subscription_schedules_resource_default_settingsTransfer_data {
   -- | amount_percent: A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the destination account. By default, the entire amount is transferred to the destination.
-  subscription_schedules_resource_default_settingsTransfer_dataNonNullableAmount_percent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  subscription_schedules_resource_default_settingsTransfer_dataAmount_percent :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | destination: The account where funds from the payment will be transferred to upon payment success.
-  , subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestination :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationVariants)
+  , subscription_schedules_resource_default_settingsTransfer_dataDestination :: (GHC.Maybe.Maybe Subscription_schedules_resource_default_settingsTransfer_dataDestinationVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsTransfer_dataNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataNonNullableAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestination obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataNonNullableAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestination obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsTransfer_dataNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_default_settingsTransfer_dataNonNullable" (\obj -> (GHC.Base.pure Subscription_schedules_resource_default_settingsTransfer_dataNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
--- | Create a new 'Subscription_schedules_resource_default_settingsTransfer_dataNonNullable' with all required fields.
-mkSubscription_schedules_resource_default_settingsTransfer_dataNonNullable :: Subscription_schedules_resource_default_settingsTransfer_dataNonNullable
-mkSubscription_schedules_resource_default_settingsTransfer_dataNonNullable = Subscription_schedules_resource_default_settingsTransfer_dataNonNullable{subscription_schedules_resource_default_settingsTransfer_dataNonNullableAmount_percent = GHC.Maybe.Nothing,
-                                                                                                                                                      subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestination = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsTransfer_data
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataDestination obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedules_resource_default_settingsTransfer_dataDestination obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsTransfer_data
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedules_resource_default_settingsTransfer_data" (\obj -> (GHC.Base.pure Subscription_schedules_resource_default_settingsTransfer_data GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
+-- | Create a new 'Subscription_schedules_resource_default_settingsTransfer_data' with all required fields.
+mkSubscription_schedules_resource_default_settingsTransfer_data :: Subscription_schedules_resource_default_settingsTransfer_data
+mkSubscription_schedules_resource_default_settingsTransfer_data = Subscription_schedules_resource_default_settingsTransfer_data{subscription_schedules_resource_default_settingsTransfer_dataAmount_percent = GHC.Maybe.Nothing,
+                                                                                                                                subscription_schedules_resource_default_settingsTransfer_dataDestination = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedules_resource_default_settings.properties.transfer_data.anyOf.properties.destination.anyOf@ in the specification.
 -- 
 -- The account where funds from the payment will be transferred to upon payment success.
-data Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationVariants =
-   Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationText Data.Text.Internal.Text
-  | Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationAccount Account
+data Subscription_schedules_resource_default_settingsTransfer_dataDestinationVariants =
+   Subscription_schedules_resource_default_settingsTransfer_dataDestinationText Data.Text.Internal.Text
+  | Subscription_schedules_resource_default_settingsTransfer_dataDestinationAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationVariants
-    where {toJSON (Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationVariants
-    where {parseJSON val = case (Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settingsTransfer_dataNonNullableDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedules_resource_default_settingsTransfer_dataDestinationVariants
+    where {toJSON (Subscription_schedules_resource_default_settingsTransfer_dataDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedules_resource_default_settingsTransfer_dataDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedules_resource_default_settingsTransfer_dataDestinationVariants
+    where {parseJSON val = case (Subscription_schedules_resource_default_settingsTransfer_dataDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedules_resource_default_settingsTransfer_dataDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

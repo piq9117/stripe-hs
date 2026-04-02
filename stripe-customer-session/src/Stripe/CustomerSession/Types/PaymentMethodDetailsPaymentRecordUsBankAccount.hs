@@ -47,15 +47,15 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Mandate
 -- 
 data Payment_method_details_payment_record_us_bank_account = Payment_method_details_payment_record_us_bank_account {
   -- | account_holder_type: The type of entity that holds the account. This can be either \'individual\' or \'company\'.
-  payment_method_details_payment_record_us_bank_accountAccount_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullable))
+  payment_method_details_payment_record_us_bank_accountAccount_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_type: The type of the bank account. This can be either \'checking\' or \'savings\'.
-  , payment_method_details_payment_record_us_bank_accountAccount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullable))
+  , payment_method_details_payment_record_us_bank_accountAccount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name: Name of the bank associated with the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_payment_record_us_bank_accountBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_payment_record_us_bank_accountBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expected_debit_date: Estimated date to debit the customer\'s bank account. A date string in YYYY-MM-DD format.
   -- 
   -- Constraints:
@@ -67,13 +67,13 @@ data Payment_method_details_payment_record_us_bank_account = Payment_method_deta
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_payment_record_us_bank_accountFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_payment_record_us_bank_accountFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_payment_record_us_bank_accountLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_payment_record_us_bank_accountLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate: ID of the mandate used to make this payment.
   , payment_method_details_payment_record_us_bank_accountMandate :: (GHC.Maybe.Maybe Payment_method_details_payment_record_us_bank_accountMandateVariants)
   -- | payment_reference: The ACH payment reference for this transaction.
@@ -81,13 +81,13 @@ data Payment_method_details_payment_record_us_bank_account = Payment_method_deta
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_payment_record_us_bank_accountPayment_reference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_payment_record_us_bank_accountPayment_reference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | routing_number: The routing number for the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_payment_record_us_bank_accountRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_payment_record_us_bank_accountRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_payment_record_us_bank_account
@@ -106,42 +106,6 @@ mkPayment_method_details_payment_record_us_bank_account = Payment_method_details
                                                                                                                 payment_method_details_payment_record_us_bank_accountMandate = GHC.Maybe.Nothing,
                                                                                                                 payment_method_details_payment_record_us_bank_accountPayment_reference = GHC.Maybe.Nothing,
                                                                                                                 payment_method_details_payment_record_us_bank_accountRouting_number = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_details_payment_record_us_bank_account.properties.account_holder_type@ in the specification.
--- 
--- The type of entity that holds the account. This can be either \'individual\' or \'company\'.
-data Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullable =
-   Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableEnumCompany -- ^ Represents the JSON value @"company"@
-  | Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableEnumIndividual -- ^ Represents the JSON value @"individual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullable
-    where {toJSON (Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableOther val) = val;
-           toJSON (Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableEnumCompany) = "company";
-           toJSON (Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableEnumIndividual) = "individual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "company" -> Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableEnumCompany
-                                             | val GHC.Classes.== "individual" -> Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableEnumIndividual
-                                             | GHC.Base.otherwise -> Payment_method_details_payment_record_us_bank_accountAccount_holder_typeNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_details_payment_record_us_bank_account.properties.account_type@ in the specification.
--- 
--- The type of the bank account. This can be either \'checking\' or \'savings\'.
-data Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullable =
-   Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableEnumChecking -- ^ Represents the JSON value @"checking"@
-  | Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableEnumSavings -- ^ Represents the JSON value @"savings"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullable
-    where {toJSON (Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableOther val) = val;
-           toJSON (Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableEnumChecking) = "checking";
-           toJSON (Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableEnumSavings) = "savings"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "checking" -> Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableEnumChecking
-                                             | val GHC.Classes.== "savings" -> Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableEnumSavings
-                                             | GHC.Base.otherwise -> Payment_method_details_payment_record_us_bank_accountAccount_typeNonNullableOther val)}
 -- | Defines the oneOf schema located at @components.schemas.payment_method_details_payment_record_us_bank_account.properties.mandate.anyOf@ in the specification.
 -- 
 -- ID of the mandate used to make this payment.

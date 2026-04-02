@@ -45,20 +45,28 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Deleted_product = Deleted_product {
+  -- | deleted: Always true for a deleted object
+  deleted_productDeleted :: GHC.Types.Bool
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  deleted_productId :: Data.Text.Internal.Text
+  , deleted_productId :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , deleted_productObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Deleted_product
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_productId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "product"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_productId obj] : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "product"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_productDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_productId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_productObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_productDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_productId obj] : ["object" Data.Aeson.Types.ToJSON..= deleted_productObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Deleted_product
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_product" (\obj -> GHC.Base.pure Deleted_product GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_product" (\obj -> ((GHC.Base.pure Deleted_product GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deleted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Deleted_product' with all required fields.
-mkDeleted_product :: Data.Text.Internal.Text -- ^ 'deleted_productId'
+mkDeleted_product :: GHC.Types.Bool -- ^ 'deleted_productDeleted'
+  -> Data.Text.Internal.Text -- ^ 'deleted_productId'
+  -> Data.Text.Internal.Text -- ^ 'deleted_productObject'
   -> Deleted_product
-mkDeleted_product deleted_productId = Deleted_product{deleted_productId = deleted_productId}
+mkDeleted_product deleted_productDeleted deleted_productId deleted_productObject = Deleted_product{deleted_productDeleted = deleted_productDeleted,
+                                                                                                   deleted_productId = deleted_productId,
+                                                                                                   deleted_productObject = deleted_productObject}

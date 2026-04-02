@@ -50,25 +50,25 @@ data Payments_primitives_payment_records_resource_customer_details = Payments_pr
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payments_primitives_payment_records_resource_customer_detailsCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payments_primitives_payment_records_resource_customer_detailsCustomer :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | email: The customer\'s email address.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_customer_detailsEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_customer_detailsEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: The customer\'s name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_customer_detailsName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_customer_detailsName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: The customer\'s phone number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_customer_detailsPhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_customer_detailsPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_customer_details

@@ -48,7 +48,7 @@ data Payment_flows_private_payment_methods_card_details_api_resource_enterprise_
   -- | maximum_amount_capturable: The maximum amount that can be captured.
   payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureMaximum_amount_capturable :: GHC.Types.Int
   -- | status: Indicates whether or not the authorized amount can be over-captured.
-  , payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus :: Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus
+  , payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture
@@ -58,25 +58,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_method
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture" (\obj -> (GHC.Base.pure Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "maximum_amount_capturable")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status"))}
 -- | Create a new 'Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture' with all required fields.
 mkPayment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture :: GHC.Types.Int -- ^ 'payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureMaximum_amount_capturable'
-  -> Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus -- ^ 'payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus'
+  -> Data.Text.Internal.Text -- ^ 'payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus'
   -> Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture
 mkPayment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureMaximum_amount_capturable payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus = Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture{payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureMaximum_amount_capturable = payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureMaximum_amount_capturable,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus = payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus}
--- | Defines the enum schema located at @components.schemas.payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcapture.properties.status@ in the specification.
--- 
--- Indicates whether or not the authorized amount can be over-captured.
-data Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus =
-   Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusEnumAvailable -- ^ Represents the JSON value @"available"@
-  | Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusEnumUnavailable -- ^ Represents the JSON value @"unavailable"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus
-    where {toJSON (Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusOther val) = val;
-           toJSON (Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusEnumAvailable) = "available";
-           toJSON (Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusEnumUnavailable) = "unavailable"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "available" -> Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusEnumAvailable
-                                             | val GHC.Classes.== "unavailable" -> Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusEnumUnavailable
-                                             | GHC.Base.otherwise -> Payment_flows_private_payment_methods_card_details_api_resource_enterprise_features_overcapture_overcaptureStatusOther val)}

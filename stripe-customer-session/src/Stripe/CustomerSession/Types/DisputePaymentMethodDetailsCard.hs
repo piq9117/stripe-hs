@@ -52,13 +52,13 @@ data Dispute_payment_method_details_card = Dispute_payment_method_details_card {
   -- * Maximum length of 5000
   dispute_payment_method_details_cardBrand :: Data.Text.Internal.Text
   -- | case_type: The type of dispute opened. Different case types may have varying fees and financial impact.
-  , dispute_payment_method_details_cardCase_type :: Dispute_payment_method_details_cardCase_type
+  , dispute_payment_method_details_cardCase_type :: Data.Text.Internal.Text
   -- | network_reason_code: The card network\'s specific dispute reason code, which maps to one of Stripe\'s primary dispute categories to simplify response guidance. The [Network code map](https:\/\/stripe.com\/docs\/disputes\/categories\#network-code-map) lists all available dispute reason codes by network.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_payment_method_details_cardNetwork_reason_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_payment_method_details_cardNetwork_reason_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details_card
@@ -68,35 +68,8 @@ instance Data.Aeson.Types.FromJSON.FromJSON Dispute_payment_method_details_card
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Dispute_payment_method_details_card" (\obj -> ((GHC.Base.pure Dispute_payment_method_details_card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "case_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_reason_code"))}
 -- | Create a new 'Dispute_payment_method_details_card' with all required fields.
 mkDispute_payment_method_details_card :: Data.Text.Internal.Text -- ^ 'dispute_payment_method_details_cardBrand'
-  -> Dispute_payment_method_details_cardCase_type -- ^ 'dispute_payment_method_details_cardCase_type'
+  -> Data.Text.Internal.Text -- ^ 'dispute_payment_method_details_cardCase_type'
   -> Dispute_payment_method_details_card
 mkDispute_payment_method_details_card dispute_payment_method_details_cardBrand dispute_payment_method_details_cardCase_type = Dispute_payment_method_details_card{dispute_payment_method_details_cardBrand = dispute_payment_method_details_cardBrand,
                                                                                                                                                                   dispute_payment_method_details_cardCase_type = dispute_payment_method_details_cardCase_type,
                                                                                                                                                                   dispute_payment_method_details_cardNetwork_reason_code = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.dispute_payment_method_details_card.properties.case_type@ in the specification.
--- 
--- The type of dispute opened. Different case types may have varying fees and financial impact.
-data Dispute_payment_method_details_cardCase_type =
-   Dispute_payment_method_details_cardCase_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Dispute_payment_method_details_cardCase_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Dispute_payment_method_details_cardCase_typeEnumBlock -- ^ Represents the JSON value @"block"@
-  | Dispute_payment_method_details_cardCase_typeEnumChargeback -- ^ Represents the JSON value @"chargeback"@
-  | Dispute_payment_method_details_cardCase_typeEnumCompliance -- ^ Represents the JSON value @"compliance"@
-  | Dispute_payment_method_details_cardCase_typeEnumInquiry -- ^ Represents the JSON value @"inquiry"@
-  | Dispute_payment_method_details_cardCase_typeEnumResolution -- ^ Represents the JSON value @"resolution"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_payment_method_details_cardCase_type
-    where {toJSON (Dispute_payment_method_details_cardCase_typeOther val) = val;
-           toJSON (Dispute_payment_method_details_cardCase_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Dispute_payment_method_details_cardCase_typeEnumBlock) = "block";
-           toJSON (Dispute_payment_method_details_cardCase_typeEnumChargeback) = "chargeback";
-           toJSON (Dispute_payment_method_details_cardCase_typeEnumCompliance) = "compliance";
-           toJSON (Dispute_payment_method_details_cardCase_typeEnumInquiry) = "inquiry";
-           toJSON (Dispute_payment_method_details_cardCase_typeEnumResolution) = "resolution"}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_payment_method_details_cardCase_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "block" -> Dispute_payment_method_details_cardCase_typeEnumBlock
-                                             | val GHC.Classes.== "chargeback" -> Dispute_payment_method_details_cardCase_typeEnumChargeback
-                                             | val GHC.Classes.== "compliance" -> Dispute_payment_method_details_cardCase_typeEnumCompliance
-                                             | val GHC.Classes.== "inquiry" -> Dispute_payment_method_details_cardCase_typeEnumInquiry
-                                             | val GHC.Classes.== "resolution" -> Dispute_payment_method_details_cardCase_typeEnumResolution
-                                             | GHC.Base.otherwise -> Dispute_payment_method_details_cardCase_typeOther val)}

@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Subscription_pending_invoice_item_interval = Subscription_pending_invoice_item_interval {
   -- | interval: Specifies invoicing frequency. Either \`day\`, \`week\`, \`month\` or \`year\`.
-  subscription_pending_invoice_item_intervalInterval :: Subscription_pending_invoice_item_intervalInterval
+  subscription_pending_invoice_item_intervalInterval :: Data.Text.Internal.Text
   -- | interval_count: The number of intervals between invoices. For example, \`interval=month\` and \`interval_count=3\` bills every 3 months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks).
   , subscription_pending_invoice_item_intervalInterval_count :: GHC.Types.Int
   } deriving (GHC.Show.Show
@@ -57,32 +57,8 @@ instance Data.Aeson.Types.ToJSON.ToJSON Subscription_pending_invoice_item_interv
 instance Data.Aeson.Types.FromJSON.FromJSON Subscription_pending_invoice_item_interval
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_pending_invoice_item_interval" (\obj -> (GHC.Base.pure Subscription_pending_invoice_item_interval GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "interval_count"))}
 -- | Create a new 'Subscription_pending_invoice_item_interval' with all required fields.
-mkSubscription_pending_invoice_item_interval :: Subscription_pending_invoice_item_intervalInterval -- ^ 'subscription_pending_invoice_item_intervalInterval'
+mkSubscription_pending_invoice_item_interval :: Data.Text.Internal.Text -- ^ 'subscription_pending_invoice_item_intervalInterval'
   -> GHC.Types.Int -- ^ 'subscription_pending_invoice_item_intervalInterval_count'
   -> Subscription_pending_invoice_item_interval
 mkSubscription_pending_invoice_item_interval subscription_pending_invoice_item_intervalInterval subscription_pending_invoice_item_intervalInterval_count = Subscription_pending_invoice_item_interval{subscription_pending_invoice_item_intervalInterval = subscription_pending_invoice_item_intervalInterval,
                                                                                                                                                                                                       subscription_pending_invoice_item_intervalInterval_count = subscription_pending_invoice_item_intervalInterval_count}
--- | Defines the enum schema located at @components.schemas.subscription_pending_invoice_item_interval.properties.interval@ in the specification.
--- 
--- Specifies invoicing frequency. Either \`day\`, \`week\`, \`month\` or \`year\`.
-data Subscription_pending_invoice_item_intervalInterval =
-   Subscription_pending_invoice_item_intervalIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_pending_invoice_item_intervalIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_pending_invoice_item_intervalIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | Subscription_pending_invoice_item_intervalIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | Subscription_pending_invoice_item_intervalIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | Subscription_pending_invoice_item_intervalIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_pending_invoice_item_intervalInterval
-    where {toJSON (Subscription_pending_invoice_item_intervalIntervalOther val) = val;
-           toJSON (Subscription_pending_invoice_item_intervalIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_pending_invoice_item_intervalIntervalEnumDay) = "day";
-           toJSON (Subscription_pending_invoice_item_intervalIntervalEnumMonth) = "month";
-           toJSON (Subscription_pending_invoice_item_intervalIntervalEnumWeek) = "week";
-           toJSON (Subscription_pending_invoice_item_intervalIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_pending_invoice_item_intervalInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> Subscription_pending_invoice_item_intervalIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> Subscription_pending_invoice_item_intervalIntervalEnumMonth
-                                             | val GHC.Classes.== "week" -> Subscription_pending_invoice_item_intervalIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> Subscription_pending_invoice_item_intervalIntervalEnumYear
-                                             | GHC.Base.otherwise -> Subscription_pending_invoice_item_intervalIntervalOther val)}

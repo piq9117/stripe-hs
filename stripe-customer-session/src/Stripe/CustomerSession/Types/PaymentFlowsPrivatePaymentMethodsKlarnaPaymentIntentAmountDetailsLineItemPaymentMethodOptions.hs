@@ -50,25 +50,25 @@ data Payment_flows_private_payment_methods_klarna_payment_intent_amount_details_
   -- Constraints:
   -- 
   -- * Maximum length of 2048
-  payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsImage_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsImage_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | product_url
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 2048
-  , payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsProduct_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsProduct_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 255
-  , payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | subscription_reference
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 2048
-  , payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsSubscription_reference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_optionsSubscription_reference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_klarna_payment_intent_amount_details_line_item_payment_method_options

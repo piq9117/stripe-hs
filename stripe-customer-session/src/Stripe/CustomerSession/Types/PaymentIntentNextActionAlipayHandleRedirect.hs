@@ -50,25 +50,25 @@ data Payment_intent_next_action_alipay_handle_redirect = Payment_intent_next_act
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_next_action_alipay_handle_redirectNative_data :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_intent_next_action_alipay_handle_redirectNative_data :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | native_url: The native URL you must redirect your customer to in order to authenticate the payment in an iOS App.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_alipay_handle_redirectNative_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_alipay_handle_redirectNative_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | return_url: If the customer does not exit their browser while authenticating, they will be redirected to this specified URL after completion.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_alipay_handle_redirectReturn_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_alipay_handle_redirectReturn_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: The URL you must redirect your customer to in order to authenticate the payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_alipay_handle_redirectUrl :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_alipay_handle_redirectUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_alipay_handle_redirect

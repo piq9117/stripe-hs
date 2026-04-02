@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payments_primitives_payment_records_resource_payment_method_card_details_resource_checks = Payments_primitives_payment_records_resource_payment_method_card_details_resource_checks {
   -- | address_line1_check: If you provide a value for \`address.line1\`, the check result is one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
-  payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullable))
+  payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_postal_code_check: If you provide a address postal code, the check result is one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
-  , payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullable))
+  , payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cvc_check: If you provide a CVC, the check results is one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
-  , payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullable))
+  , payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_checks
@@ -63,75 +63,3 @@ mkPayments_primitives_payment_records_resource_payment_method_card_details_resou
 mkPayments_primitives_payment_records_resource_payment_method_card_details_resource_checks = Payments_primitives_payment_records_resource_payment_method_card_details_resource_checks{payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_check = GHC.Maybe.Nothing,
                                                                                                                                                                                       payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_check = GHC.Maybe.Nothing,
                                                                                                                                                                                       payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_check = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payments_primitives_payment_records_resource_payment_method_card_details_resource_checks.properties.address_line1_check@ in the specification.
--- 
--- If you provide a value for \`address.line1\`, the check result is one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
-data Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullable =
-   Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumFail -- ^ Represents the JSON value @"fail"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumPass -- ^ Represents the JSON value @"pass"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumUnavailable -- ^ Represents the JSON value @"unavailable"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumUnchecked -- ^ Represents the JSON value @"unchecked"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullable
-    where {toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableOther val) = val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumFail) = "fail";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumPass) = "pass";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumUnavailable) = "unavailable";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumUnchecked) = "unchecked"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fail" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumFail
-                                             | val GHC.Classes.== "pass" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumPass
-                                             | val GHC.Classes.== "unavailable" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumUnavailable
-                                             | val GHC.Classes.== "unchecked" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableEnumUnchecked
-                                             | GHC.Base.otherwise -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_line1_checkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payments_primitives_payment_records_resource_payment_method_card_details_resource_checks.properties.address_postal_code_check@ in the specification.
--- 
--- If you provide a address postal code, the check result is one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
-data Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullable =
-   Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumFail -- ^ Represents the JSON value @"fail"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumPass -- ^ Represents the JSON value @"pass"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumUnavailable -- ^ Represents the JSON value @"unavailable"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumUnchecked -- ^ Represents the JSON value @"unchecked"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullable
-    where {toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableOther val) = val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumFail) = "fail";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumPass) = "pass";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumUnavailable) = "unavailable";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumUnchecked) = "unchecked"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fail" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumFail
-                                             | val GHC.Classes.== "pass" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumPass
-                                             | val GHC.Classes.== "unavailable" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumUnavailable
-                                             | val GHC.Classes.== "unchecked" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableEnumUnchecked
-                                             | GHC.Base.otherwise -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksAddress_postal_code_checkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payments_primitives_payment_records_resource_payment_method_card_details_resource_checks.properties.cvc_check@ in the specification.
--- 
--- If you provide a CVC, the check results is one of \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
-data Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullable =
-   Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumFail -- ^ Represents the JSON value @"fail"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumPass -- ^ Represents the JSON value @"pass"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumUnavailable -- ^ Represents the JSON value @"unavailable"@
-  | Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumUnchecked -- ^ Represents the JSON value @"unchecked"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullable
-    where {toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableOther val) = val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumFail) = "fail";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumPass) = "pass";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumUnavailable) = "unavailable";
-           toJSON (Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumUnchecked) = "unchecked"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fail" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumFail
-                                             | val GHC.Classes.== "pass" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumPass
-                                             | val GHC.Classes.== "unavailable" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumUnavailable
-                                             | val GHC.Classes.== "unchecked" -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableEnumUnchecked
-                                             | GHC.Base.otherwise -> Payments_primitives_payment_records_resource_payment_method_card_details_resource_checksCvc_checkNonNullableOther val)}

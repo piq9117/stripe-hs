@@ -52,63 +52,63 @@ data Dispute_evidence = Dispute_evidence {
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  dispute_evidenceAccess_activity_log :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  dispute_evidenceAccess_activity_log :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | billing_address: The billing address provided by the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceBilling_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceBilling_address :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cancellation_policy: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Your subscription cancellation policy, as shown to the customer.
-  , dispute_evidenceCancellation_policy :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceCancellation_policyNonNullableVariants))
+  , dispute_evidenceCancellation_policy :: (GHC.Maybe.Maybe Dispute_evidenceCancellation_policyVariants)
   -- | cancellation_policy_disclosure: An explanation of how and when the customer was shown your refund policy prior to purchase.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_evidenceCancellation_policy_disclosure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceCancellation_policy_disclosure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | cancellation_rebuttal: A justification for why the customer\'s subscription was not canceled.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_evidenceCancellation_rebuttal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceCancellation_rebuttal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_communication: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Any communication with the customer that you feel is relevant to your case. Examples include emails proving that the customer received the product or service, or demonstrating their use of or satisfaction with the product or service.
-  , dispute_evidenceCustomer_communication :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceCustomer_communicationNonNullableVariants))
+  , dispute_evidenceCustomer_communication :: (GHC.Maybe.Maybe Dispute_evidenceCustomer_communicationVariants)
   -- | customer_email_address: The email address of the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceCustomer_email_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceCustomer_email_address :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_name: The name of the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceCustomer_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceCustomer_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_purchase_ip: The IP address that the customer used when making the purchase.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceCustomer_purchase_ip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceCustomer_purchase_ip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer_signature: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) A relevant document or contract showing the customer\'s signature.
-  , dispute_evidenceCustomer_signature :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceCustomer_signatureNonNullableVariants))
+  , dispute_evidenceCustomer_signature :: (GHC.Maybe.Maybe Dispute_evidenceCustomer_signatureVariants)
   -- | duplicate_charge_documentation: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Documentation for the prior charge that can uniquely identify the charge, such as a receipt, shipping label, work order, etc. This document should be paired with a similar document from the disputed payment that proves the two payments are separate.
-  , dispute_evidenceDuplicate_charge_documentation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceDuplicate_charge_documentationNonNullableVariants))
+  , dispute_evidenceDuplicate_charge_documentation :: (GHC.Maybe.Maybe Dispute_evidenceDuplicate_charge_documentationVariants)
   -- | duplicate_charge_explanation: An explanation of the difference between the disputed charge versus the prior charge that appears to be a duplicate.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_evidenceDuplicate_charge_explanation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceDuplicate_charge_explanation :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | duplicate_charge_id: The Stripe ID for the prior charge which appears to be a duplicate of the disputed charge.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceDuplicate_charge_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceDuplicate_charge_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | enhanced_evidence: 
   , dispute_evidenceEnhanced_evidence :: Dispute_enhanced_evidence
   -- | product_description: A description of the product or service that was sold.
@@ -116,65 +116,65 @@ data Dispute_evidence = Dispute_evidence {
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_evidenceProduct_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceProduct_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | receipt: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Any receipt or message sent to the customer notifying them of the charge.
-  , dispute_evidenceReceipt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceReceiptNonNullableVariants))
+  , dispute_evidenceReceipt :: (GHC.Maybe.Maybe Dispute_evidenceReceiptVariants)
   -- | refund_policy: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Your refund policy, as shown to the customer.
-  , dispute_evidenceRefund_policy :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceRefund_policyNonNullableVariants))
+  , dispute_evidenceRefund_policy :: (GHC.Maybe.Maybe Dispute_evidenceRefund_policyVariants)
   -- | refund_policy_disclosure: Documentation demonstrating that the customer was shown your refund policy prior to purchase.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_evidenceRefund_policy_disclosure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceRefund_policy_disclosure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_refusal_explanation: A justification for why the customer is not entitled to a refund.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_evidenceRefund_refusal_explanation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceRefund_refusal_explanation :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | service_date: The date on which the customer received or began receiving the purchased service, in a clear human-readable format.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceService_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceService_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | service_documentation: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Documentation showing proof that a service was provided to the customer. This could include a copy of a signed contract, work order, or other form of written agreement.
-  , dispute_evidenceService_documentation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceService_documentationNonNullableVariants))
+  , dispute_evidenceService_documentation :: (GHC.Maybe.Maybe Dispute_evidenceService_documentationVariants)
   -- | shipping_address: The address to which a physical product was shipped. You should try to include as complete address information as possible.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceShipping_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceShipping_address :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | shipping_carrier: The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc. If multiple carriers were used for this purchase, please separate them with commas.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceShipping_carrier :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceShipping_carrier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | shipping_date: The date on which a physical product began its route to the shipping address, in a clear human-readable format.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceShipping_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceShipping_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | shipping_documentation: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Documentation showing proof that a product was shipped to the customer at the same address the customer provided to you. This could include a copy of the shipment receipt, shipping label, etc. It should show the customer\'s full shipping address, if possible.
-  , dispute_evidenceShipping_documentation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceShipping_documentationNonNullableVariants))
+  , dispute_evidenceShipping_documentation :: (GHC.Maybe.Maybe Dispute_evidenceShipping_documentationVariants)
   -- | shipping_tracking_number: The tracking number for a physical product, obtained from the delivery service. If multiple tracking numbers were generated for this purchase, please separate them with commas.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , dispute_evidenceShipping_tracking_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceShipping_tracking_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | uncategorized_file: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Any additional evidence or statements.
-  , dispute_evidenceUncategorized_file :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Dispute_evidenceUncategorized_fileNonNullableVariants))
+  , dispute_evidenceUncategorized_file :: (GHC.Maybe.Maybe Dispute_evidenceUncategorized_fileVariants)
   -- | uncategorized_text: Any additional evidence or statements.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 150000
-  , dispute_evidenceUncategorized_text :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , dispute_evidenceUncategorized_text :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidence
@@ -216,126 +216,126 @@ mkDispute_evidence dispute_evidenceEnhanced_evidence = Dispute_evidence{dispute_
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.cancellation_policy.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Your subscription cancellation policy, as shown to the customer.
-data Dispute_evidenceCancellation_policyNonNullableVariants =
-   Dispute_evidenceCancellation_policyNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceCancellation_policyNonNullableFile File
+data Dispute_evidenceCancellation_policyVariants =
+   Dispute_evidenceCancellation_policyText Data.Text.Internal.Text
+  | Dispute_evidenceCancellation_policyFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceCancellation_policyNonNullableVariants
-    where {toJSON (Dispute_evidenceCancellation_policyNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceCancellation_policyNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceCancellation_policyNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceCancellation_policyNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceCancellation_policyNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceCancellation_policyVariants
+    where {toJSON (Dispute_evidenceCancellation_policyText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceCancellation_policyFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceCancellation_policyVariants
+    where {parseJSON val = case (Dispute_evidenceCancellation_policyText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceCancellation_policyFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.customer_communication.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Any communication with the customer that you feel is relevant to your case. Examples include emails proving that the customer received the product or service, or demonstrating their use of or satisfaction with the product or service.
-data Dispute_evidenceCustomer_communicationNonNullableVariants =
-   Dispute_evidenceCustomer_communicationNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceCustomer_communicationNonNullableFile File
+data Dispute_evidenceCustomer_communicationVariants =
+   Dispute_evidenceCustomer_communicationText Data.Text.Internal.Text
+  | Dispute_evidenceCustomer_communicationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceCustomer_communicationNonNullableVariants
-    where {toJSON (Dispute_evidenceCustomer_communicationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceCustomer_communicationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceCustomer_communicationNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceCustomer_communicationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceCustomer_communicationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceCustomer_communicationVariants
+    where {toJSON (Dispute_evidenceCustomer_communicationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceCustomer_communicationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceCustomer_communicationVariants
+    where {parseJSON val = case (Dispute_evidenceCustomer_communicationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceCustomer_communicationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.customer_signature.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) A relevant document or contract showing the customer\'s signature.
-data Dispute_evidenceCustomer_signatureNonNullableVariants =
-   Dispute_evidenceCustomer_signatureNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceCustomer_signatureNonNullableFile File
+data Dispute_evidenceCustomer_signatureVariants =
+   Dispute_evidenceCustomer_signatureText Data.Text.Internal.Text
+  | Dispute_evidenceCustomer_signatureFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceCustomer_signatureNonNullableVariants
-    where {toJSON (Dispute_evidenceCustomer_signatureNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceCustomer_signatureNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceCustomer_signatureNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceCustomer_signatureNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceCustomer_signatureNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceCustomer_signatureVariants
+    where {toJSON (Dispute_evidenceCustomer_signatureText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceCustomer_signatureFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceCustomer_signatureVariants
+    where {parseJSON val = case (Dispute_evidenceCustomer_signatureText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceCustomer_signatureFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.duplicate_charge_documentation.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Documentation for the prior charge that can uniquely identify the charge, such as a receipt, shipping label, work order, etc. This document should be paired with a similar document from the disputed payment that proves the two payments are separate.
-data Dispute_evidenceDuplicate_charge_documentationNonNullableVariants =
-   Dispute_evidenceDuplicate_charge_documentationNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceDuplicate_charge_documentationNonNullableFile File
+data Dispute_evidenceDuplicate_charge_documentationVariants =
+   Dispute_evidenceDuplicate_charge_documentationText Data.Text.Internal.Text
+  | Dispute_evidenceDuplicate_charge_documentationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceDuplicate_charge_documentationNonNullableVariants
-    where {toJSON (Dispute_evidenceDuplicate_charge_documentationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceDuplicate_charge_documentationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceDuplicate_charge_documentationNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceDuplicate_charge_documentationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceDuplicate_charge_documentationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceDuplicate_charge_documentationVariants
+    where {toJSON (Dispute_evidenceDuplicate_charge_documentationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceDuplicate_charge_documentationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceDuplicate_charge_documentationVariants
+    where {parseJSON val = case (Dispute_evidenceDuplicate_charge_documentationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceDuplicate_charge_documentationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.receipt.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Any receipt or message sent to the customer notifying them of the charge.
-data Dispute_evidenceReceiptNonNullableVariants =
-   Dispute_evidenceReceiptNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceReceiptNonNullableFile File
+data Dispute_evidenceReceiptVariants =
+   Dispute_evidenceReceiptText Data.Text.Internal.Text
+  | Dispute_evidenceReceiptFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceReceiptNonNullableVariants
-    where {toJSON (Dispute_evidenceReceiptNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceReceiptNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceReceiptNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceReceiptNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceReceiptNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceReceiptVariants
+    where {toJSON (Dispute_evidenceReceiptText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceReceiptFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceReceiptVariants
+    where {parseJSON val = case (Dispute_evidenceReceiptText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceReceiptFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.refund_policy.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Your refund policy, as shown to the customer.
-data Dispute_evidenceRefund_policyNonNullableVariants =
-   Dispute_evidenceRefund_policyNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceRefund_policyNonNullableFile File
+data Dispute_evidenceRefund_policyVariants =
+   Dispute_evidenceRefund_policyText Data.Text.Internal.Text
+  | Dispute_evidenceRefund_policyFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceRefund_policyNonNullableVariants
-    where {toJSON (Dispute_evidenceRefund_policyNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceRefund_policyNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceRefund_policyNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceRefund_policyNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceRefund_policyNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceRefund_policyVariants
+    where {toJSON (Dispute_evidenceRefund_policyText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceRefund_policyFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceRefund_policyVariants
+    where {parseJSON val = case (Dispute_evidenceRefund_policyText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceRefund_policyFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.service_documentation.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Documentation showing proof that a service was provided to the customer. This could include a copy of a signed contract, work order, or other form of written agreement.
-data Dispute_evidenceService_documentationNonNullableVariants =
-   Dispute_evidenceService_documentationNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceService_documentationNonNullableFile File
+data Dispute_evidenceService_documentationVariants =
+   Dispute_evidenceService_documentationText Data.Text.Internal.Text
+  | Dispute_evidenceService_documentationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceService_documentationNonNullableVariants
-    where {toJSON (Dispute_evidenceService_documentationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceService_documentationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceService_documentationNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceService_documentationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceService_documentationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceService_documentationVariants
+    where {toJSON (Dispute_evidenceService_documentationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceService_documentationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceService_documentationVariants
+    where {parseJSON val = case (Dispute_evidenceService_documentationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceService_documentationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.shipping_documentation.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Documentation showing proof that a product was shipped to the customer at the same address the customer provided to you. This could include a copy of the shipment receipt, shipping label, etc. It should show the customer\'s full shipping address, if possible.
-data Dispute_evidenceShipping_documentationNonNullableVariants =
-   Dispute_evidenceShipping_documentationNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceShipping_documentationNonNullableFile File
+data Dispute_evidenceShipping_documentationVariants =
+   Dispute_evidenceShipping_documentationText Data.Text.Internal.Text
+  | Dispute_evidenceShipping_documentationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceShipping_documentationNonNullableVariants
-    where {toJSON (Dispute_evidenceShipping_documentationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceShipping_documentationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceShipping_documentationNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceShipping_documentationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceShipping_documentationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceShipping_documentationVariants
+    where {toJSON (Dispute_evidenceShipping_documentationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceShipping_documentationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceShipping_documentationVariants
+    where {parseJSON val = case (Dispute_evidenceShipping_documentationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceShipping_documentationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.dispute_evidence.properties.uncategorized_file.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Any additional evidence or statements.
-data Dispute_evidenceUncategorized_fileNonNullableVariants =
-   Dispute_evidenceUncategorized_fileNonNullableText Data.Text.Internal.Text
-  | Dispute_evidenceUncategorized_fileNonNullableFile File
+data Dispute_evidenceUncategorized_fileVariants =
+   Dispute_evidenceUncategorized_fileText Data.Text.Internal.Text
+  | Dispute_evidenceUncategorized_fileFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceUncategorized_fileNonNullableVariants
-    where {toJSON (Dispute_evidenceUncategorized_fileNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Dispute_evidenceUncategorized_fileNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceUncategorized_fileNonNullableVariants
-    where {parseJSON val = case (Dispute_evidenceUncategorized_fileNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceUncategorized_fileNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Dispute_evidenceUncategorized_fileVariants
+    where {toJSON (Dispute_evidenceUncategorized_fileText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Dispute_evidenceUncategorized_fileFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Dispute_evidenceUncategorized_fileVariants
+    where {parseJSON val = case (Dispute_evidenceUncategorized_fileText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Dispute_evidenceUncategorized_fileFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

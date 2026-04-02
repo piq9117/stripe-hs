@@ -49,7 +49,7 @@ data Invoice_payment_method_options_customer_balance_bank_transfer = Invoice_pay
   -- | eu_bank_transfer: 
   invoice_payment_method_options_customer_balance_bank_transferEu_bank_transfer :: (GHC.Maybe.Maybe Invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer)
   -- | type: The bank transfer type that can be used for funding. Permitted values include: \`eu_bank_transfer\`, \`gb_bank_transfer\`, \`jp_bank_transfer\`, \`mx_bank_transfer\`, or \`us_bank_transfer\`.
-  , invoice_payment_method_options_customer_balance_bank_transferType :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoice_payment_method_options_customer_balance_bank_transferType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_customer_balance_bank_transfer

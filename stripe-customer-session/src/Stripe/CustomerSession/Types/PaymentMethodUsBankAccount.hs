@@ -49,43 +49,43 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.UsBankAccountNetworks
 -- 
 data Payment_method_us_bank_account = Payment_method_us_bank_account {
   -- | account_holder_type: Account holder type: individual or company.
-  payment_method_us_bank_accountAccount_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_us_bank_accountAccount_holder_typeNonNullable))
+  payment_method_us_bank_accountAccount_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_type: Account type: checkings or savings. Defaults to checking if omitted.
-  , payment_method_us_bank_accountAccount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_us_bank_accountAccount_typeNonNullable))
+  , payment_method_us_bank_accountAccount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name: The name of the bank.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_us_bank_accountBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_us_bank_accountBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | financial_connections_account: The ID of the Financial Connections Account used to create the payment method.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_us_bank_accountFinancial_connections_account :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_us_bank_accountFinancial_connections_account :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint: Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_us_bank_accountFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_us_bank_accountFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_us_bank_accountLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_us_bank_accountLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | networks: Contains information about US bank account networks that can be used.
-  , payment_method_us_bank_accountNetworks :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_us_bank_accountNetworksNonNullable))
+  , payment_method_us_bank_accountNetworks :: (GHC.Maybe.Maybe Payment_method_us_bank_accountNetworks)
   -- | routing_number: Routing number of the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_us_bank_accountRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_us_bank_accountRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status_details: Contains information about the future reusability of this PaymentMethod.
-  , payment_method_us_bank_accountStatus_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_us_bank_accountStatus_detailsNonNullable))
+  , payment_method_us_bank_accountStatus_details :: (GHC.Maybe.Maybe Payment_method_us_bank_accountStatus_details)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_account
@@ -104,96 +104,42 @@ mkPayment_method_us_bank_account = Payment_method_us_bank_account{payment_method
                                                                   payment_method_us_bank_accountNetworks = GHC.Maybe.Nothing,
                                                                   payment_method_us_bank_accountRouting_number = GHC.Maybe.Nothing,
                                                                   payment_method_us_bank_accountStatus_details = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_us_bank_account.properties.account_holder_type@ in the specification.
--- 
--- Account holder type: individual or company.
-data Payment_method_us_bank_accountAccount_holder_typeNonNullable =
-   Payment_method_us_bank_accountAccount_holder_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_us_bank_accountAccount_holder_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_us_bank_accountAccount_holder_typeNonNullableEnumCompany -- ^ Represents the JSON value @"company"@
-  | Payment_method_us_bank_accountAccount_holder_typeNonNullableEnumIndividual -- ^ Represents the JSON value @"individual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_accountAccount_holder_typeNonNullable
-    where {toJSON (Payment_method_us_bank_accountAccount_holder_typeNonNullableOther val) = val;
-           toJSON (Payment_method_us_bank_accountAccount_holder_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_us_bank_accountAccount_holder_typeNonNullableEnumCompany) = "company";
-           toJSON (Payment_method_us_bank_accountAccount_holder_typeNonNullableEnumIndividual) = "individual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_accountAccount_holder_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "company" -> Payment_method_us_bank_accountAccount_holder_typeNonNullableEnumCompany
-                                             | val GHC.Classes.== "individual" -> Payment_method_us_bank_accountAccount_holder_typeNonNullableEnumIndividual
-                                             | GHC.Base.otherwise -> Payment_method_us_bank_accountAccount_holder_typeNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_method_us_bank_account.properties.account_type@ in the specification.
--- 
--- Account type: checkings or savings. Defaults to checking if omitted.
-data Payment_method_us_bank_accountAccount_typeNonNullable =
-   Payment_method_us_bank_accountAccount_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_us_bank_accountAccount_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_us_bank_accountAccount_typeNonNullableEnumChecking -- ^ Represents the JSON value @"checking"@
-  | Payment_method_us_bank_accountAccount_typeNonNullableEnumSavings -- ^ Represents the JSON value @"savings"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_accountAccount_typeNonNullable
-    where {toJSON (Payment_method_us_bank_accountAccount_typeNonNullableOther val) = val;
-           toJSON (Payment_method_us_bank_accountAccount_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_us_bank_accountAccount_typeNonNullableEnumChecking) = "checking";
-           toJSON (Payment_method_us_bank_accountAccount_typeNonNullableEnumSavings) = "savings"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_accountAccount_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "checking" -> Payment_method_us_bank_accountAccount_typeNonNullableEnumChecking
-                                             | val GHC.Classes.== "savings" -> Payment_method_us_bank_accountAccount_typeNonNullableEnumSavings
-                                             | GHC.Base.otherwise -> Payment_method_us_bank_accountAccount_typeNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.payment_method_us_bank_account.properties.networks.anyOf@ in the specification.
 -- 
 -- Contains information about US bank account networks that can be used.
-data Payment_method_us_bank_accountNetworksNonNullable = Payment_method_us_bank_accountNetworksNonNullable {
+data Payment_method_us_bank_accountNetworks = Payment_method_us_bank_accountNetworks {
   -- | preferred: The preferred network.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_us_bank_accountNetworksNonNullablePreferred :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_us_bank_accountNetworksPreferred :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | supported: All supported networks.
-  , payment_method_us_bank_accountNetworksNonNullableSupported :: (GHC.Maybe.Maybe [Payment_method_us_bank_accountNetworksNonNullableSupported])
+  , payment_method_us_bank_accountNetworksSupported :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_accountNetworksNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksNonNullablePreferred obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksNonNullableSupported obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksNonNullablePreferred obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksNonNullableSupported obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_accountNetworksNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_us_bank_accountNetworksNonNullable" (\obj -> (GHC.Base.pure Payment_method_us_bank_accountNetworksNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported"))}
--- | Create a new 'Payment_method_us_bank_accountNetworksNonNullable' with all required fields.
-mkPayment_method_us_bank_accountNetworksNonNullable :: Payment_method_us_bank_accountNetworksNonNullable
-mkPayment_method_us_bank_accountNetworksNonNullable = Payment_method_us_bank_accountNetworksNonNullable{payment_method_us_bank_accountNetworksNonNullablePreferred = GHC.Maybe.Nothing,
-                                                                                                        payment_method_us_bank_accountNetworksNonNullableSupported = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_us_bank_account.properties.networks.anyOf.properties.supported.items@ in the specification.
--- 
--- 
-data Payment_method_us_bank_accountNetworksNonNullableSupported =
-   Payment_method_us_bank_accountNetworksNonNullableSupportedOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_us_bank_accountNetworksNonNullableSupportedTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_us_bank_accountNetworksNonNullableSupportedEnumAch -- ^ Represents the JSON value @"ach"@
-  | Payment_method_us_bank_accountNetworksNonNullableSupportedEnumUs_domestic_wire -- ^ Represents the JSON value @"us_domestic_wire"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_accountNetworksNonNullableSupported
-    where {toJSON (Payment_method_us_bank_accountNetworksNonNullableSupportedOther val) = val;
-           toJSON (Payment_method_us_bank_accountNetworksNonNullableSupportedTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_us_bank_accountNetworksNonNullableSupportedEnumAch) = "ach";
-           toJSON (Payment_method_us_bank_accountNetworksNonNullableSupportedEnumUs_domestic_wire) = "us_domestic_wire"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_accountNetworksNonNullableSupported
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "ach" -> Payment_method_us_bank_accountNetworksNonNullableSupportedEnumAch
-                                             | val GHC.Classes.== "us_domestic_wire" -> Payment_method_us_bank_accountNetworksNonNullableSupportedEnumUs_domestic_wire
-                                             | GHC.Base.otherwise -> Payment_method_us_bank_accountNetworksNonNullableSupportedOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_accountNetworks
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksPreferred obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksSupported obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("preferred" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksPreferred obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountNetworksSupported obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_accountNetworks
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_us_bank_accountNetworks" (\obj -> (GHC.Base.pure Payment_method_us_bank_accountNetworks GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported"))}
+-- | Create a new 'Payment_method_us_bank_accountNetworks' with all required fields.
+mkPayment_method_us_bank_accountNetworks :: Payment_method_us_bank_accountNetworks
+mkPayment_method_us_bank_accountNetworks = Payment_method_us_bank_accountNetworks{payment_method_us_bank_accountNetworksPreferred = GHC.Maybe.Nothing,
+                                                                                  payment_method_us_bank_accountNetworksSupported = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_method_us_bank_account.properties.status_details.anyOf@ in the specification.
 -- 
 -- Contains information about the future reusability of this PaymentMethod.
-data Payment_method_us_bank_accountStatus_detailsNonNullable = Payment_method_us_bank_accountStatus_detailsNonNullable {
+data Payment_method_us_bank_accountStatus_details = Payment_method_us_bank_accountStatus_details {
   -- | blocked: 
-  payment_method_us_bank_accountStatus_detailsNonNullableBlocked :: (GHC.Maybe.Maybe Payment_method_us_bank_account_blocked)
+  payment_method_us_bank_accountStatus_detailsBlocked :: (GHC.Maybe.Maybe Payment_method_us_bank_account_blocked)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_accountStatus_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blocked" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountStatus_detailsNonNullableBlocked obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blocked" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountStatus_detailsNonNullableBlocked obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_accountStatus_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_us_bank_accountStatus_detailsNonNullable" (\obj -> GHC.Base.pure Payment_method_us_bank_accountStatus_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "blocked"))}
--- | Create a new 'Payment_method_us_bank_accountStatus_detailsNonNullable' with all required fields.
-mkPayment_method_us_bank_accountStatus_detailsNonNullable :: Payment_method_us_bank_accountStatus_detailsNonNullable
-mkPayment_method_us_bank_accountStatus_detailsNonNullable = Payment_method_us_bank_accountStatus_detailsNonNullable{payment_method_us_bank_accountStatus_detailsNonNullableBlocked = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_us_bank_accountStatus_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blocked" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountStatus_detailsBlocked obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blocked" Data.Aeson.Types.ToJSON..=)) (payment_method_us_bank_accountStatus_detailsBlocked obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_us_bank_accountStatus_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_us_bank_accountStatus_details" (\obj -> GHC.Base.pure Payment_method_us_bank_accountStatus_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "blocked"))}
+-- | Create a new 'Payment_method_us_bank_accountStatus_details' with all required fields.
+mkPayment_method_us_bank_accountStatus_details :: Payment_method_us_bank_accountStatus_details
+mkPayment_method_us_bank_accountStatus_details = Payment_method_us_bank_accountStatus_details{payment_method_us_bank_accountStatus_detailsBlocked = GHC.Maybe.Nothing}

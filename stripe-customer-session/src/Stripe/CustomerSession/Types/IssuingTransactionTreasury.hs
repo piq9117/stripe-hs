@@ -50,13 +50,13 @@ data Issuing_transaction_treasury = Issuing_transaction_treasury {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_treasuryReceived_credit :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_treasuryReceived_credit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | received_debit: The Treasury [ReceivedDebit](https:\/\/docs.stripe.com\/api\/treasury\/received_debits) representing this Issuing transaction if it is a capture
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_transaction_treasuryReceived_debit :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_treasuryReceived_debit :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_transaction_treasury

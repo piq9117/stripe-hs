@@ -50,7 +50,7 @@ data Account_group_membership = Account_group_membership {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  account_group_membershipPayments_pricing :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  account_group_membershipPayments_pricing :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_group_membership

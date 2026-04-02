@@ -50,9 +50,9 @@ data Us_bank_account_networks = Us_bank_account_networks {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  us_bank_account_networksPreferred :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  us_bank_account_networksPreferred :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | supported: All supported networks.
-  , us_bank_account_networksSupported :: [Us_bank_account_networksSupported]
+  , us_bank_account_networksSupported :: [Data.Text.Internal.Text]
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Us_bank_account_networks
@@ -61,25 +61,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Us_bank_account_networks
 instance Data.Aeson.Types.FromJSON.FromJSON Us_bank_account_networks
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Us_bank_account_networks" (\obj -> (GHC.Base.pure Us_bank_account_networks GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "preferred")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "supported"))}
 -- | Create a new 'Us_bank_account_networks' with all required fields.
-mkUs_bank_account_networks :: [Us_bank_account_networksSupported] -- ^ 'us_bank_account_networksSupported'
+mkUs_bank_account_networks :: [Data.Text.Internal.Text] -- ^ 'us_bank_account_networksSupported'
   -> Us_bank_account_networks
 mkUs_bank_account_networks us_bank_account_networksSupported = Us_bank_account_networks{us_bank_account_networksPreferred = GHC.Maybe.Nothing,
                                                                                         us_bank_account_networksSupported = us_bank_account_networksSupported}
--- | Defines the enum schema located at @components.schemas.us_bank_account_networks.properties.supported.items@ in the specification.
--- 
--- 
-data Us_bank_account_networksSupported =
-   Us_bank_account_networksSupportedOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Us_bank_account_networksSupportedTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Us_bank_account_networksSupportedEnumAch -- ^ Represents the JSON value @"ach"@
-  | Us_bank_account_networksSupportedEnumUs_domestic_wire -- ^ Represents the JSON value @"us_domestic_wire"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Us_bank_account_networksSupported
-    where {toJSON (Us_bank_account_networksSupportedOther val) = val;
-           toJSON (Us_bank_account_networksSupportedTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Us_bank_account_networksSupportedEnumAch) = "ach";
-           toJSON (Us_bank_account_networksSupportedEnumUs_domestic_wire) = "us_domestic_wire"}
-instance Data.Aeson.Types.FromJSON.FromJSON Us_bank_account_networksSupported
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "ach" -> Us_bank_account_networksSupportedEnumAch
-                                             | val GHC.Classes.== "us_domestic_wire" -> Us_bank_account_networksSupportedEnumUs_domestic_wire
-                                             | GHC.Base.otherwise -> Us_bank_account_networksSupportedOther val)}

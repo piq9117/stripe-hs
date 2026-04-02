@@ -6,8 +6,8 @@ instance Show Promotion_code
 instance Eq Promotion_code
 instance Data.Aeson.FromJSON Promotion_code
 instance Data.Aeson.ToJSON Promotion_code
-data Promotion_codeCustomerNonNullableVariants
-instance Show Promotion_codeCustomerNonNullableVariants
-instance Eq Promotion_codeCustomerNonNullableVariants
-instance Data.Aeson.FromJSON Promotion_codeCustomerNonNullableVariants
-instance Data.Aeson.ToJSON Promotion_codeCustomerNonNullableVariants
+data Promotion_codeCustomerVariants
+instance Show Promotion_codeCustomerVariants
+instance Eq Promotion_codeCustomerVariants
+instance Data.Aeson.FromJSON Promotion_codeCustomerVariants
+instance Data.Aeson.ToJSON Promotion_codeCustomerVariants

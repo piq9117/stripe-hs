@@ -45,27 +45,35 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Deleted_application = Deleted_application {
+  -- | deleted: Always true for a deleted object
+  deleted_applicationDeleted :: GHC.Types.Bool
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  deleted_applicationId :: Data.Text.Internal.Text
+  , deleted_applicationId :: Data.Text.Internal.Text
   -- | name: The name of the application.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , deleted_applicationName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , deleted_applicationName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , deleted_applicationObject :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Deleted_application
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (deleted_applicationName obj) : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "application"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["id" Data.Aeson.Types.ToJSON..= deleted_applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (deleted_applicationName obj) : ["deleted" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.Bool GHC.Types.True] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "application"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_applicationDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (deleted_applicationName obj) : ["object" Data.Aeson.Types.ToJSON..= deleted_applicationObject obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["deleted" Data.Aeson.Types.ToJSON..= deleted_applicationDeleted obj] : ["id" Data.Aeson.Types.ToJSON..= deleted_applicationId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (deleted_applicationName obj) : ["object" Data.Aeson.Types.ToJSON..= deleted_applicationObject obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Deleted_application
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_application" (\obj -> (GHC.Base.pure Deleted_application GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Deleted_application" (\obj -> (((GHC.Base.pure Deleted_application GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "deleted")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object"))}
 -- | Create a new 'Deleted_application' with all required fields.
-mkDeleted_application :: Data.Text.Internal.Text -- ^ 'deleted_applicationId'
+mkDeleted_application :: GHC.Types.Bool -- ^ 'deleted_applicationDeleted'
+  -> Data.Text.Internal.Text -- ^ 'deleted_applicationId'
+  -> Data.Text.Internal.Text -- ^ 'deleted_applicationObject'
   -> Deleted_application
-mkDeleted_application deleted_applicationId = Deleted_application{deleted_applicationId = deleted_applicationId,
-                                                                  deleted_applicationName = GHC.Maybe.Nothing}
+mkDeleted_application deleted_applicationDeleted deleted_applicationId deleted_applicationObject = Deleted_application{deleted_applicationDeleted = deleted_applicationDeleted,
+                                                                                                                       deleted_applicationId = deleted_applicationId,
+                                                                                                                       deleted_applicationName = GHC.Maybe.Nothing,
+                                                                                                                       deleted_applicationObject = deleted_applicationObject}

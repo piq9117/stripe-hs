@@ -56,7 +56,7 @@ data Payment_intent_next_action_paynow_display_qr_code = Payment_intent_next_act
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_paynow_display_qr_codeHosted_instructions_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_paynow_display_qr_codeHosted_instructions_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | image_url_png: The image_url_png string used to render QR code
   -- 
   -- Constraints:

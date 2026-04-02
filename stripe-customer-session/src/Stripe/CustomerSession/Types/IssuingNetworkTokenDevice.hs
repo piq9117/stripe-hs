@@ -76,7 +76,7 @@ data Issuing_network_token_device = Issuing_network_token_device {
   -- * Maximum length of 5000
   , issuing_network_token_devicePhone_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The type of device used for tokenization.
-  , issuing_network_token_deviceType :: (GHC.Maybe.Maybe Issuing_network_token_deviceType)
+  , issuing_network_token_deviceType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_network_token_device
@@ -92,24 +92,3 @@ mkIssuing_network_token_device = Issuing_network_token_device{issuing_network_to
                                                               issuing_network_token_deviceName = GHC.Maybe.Nothing,
                                                               issuing_network_token_devicePhone_number = GHC.Maybe.Nothing,
                                                               issuing_network_token_deviceType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_network_token_device.properties.type@ in the specification.
--- 
--- The type of device used for tokenization.
-data Issuing_network_token_deviceType =
-   Issuing_network_token_deviceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_network_token_deviceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_network_token_deviceTypeEnumOther -- ^ Represents the JSON value @"other"@
-  | Issuing_network_token_deviceTypeEnumPhone -- ^ Represents the JSON value @"phone"@
-  | Issuing_network_token_deviceTypeEnumWatch -- ^ Represents the JSON value @"watch"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_network_token_deviceType
-    where {toJSON (Issuing_network_token_deviceTypeOther val) = val;
-           toJSON (Issuing_network_token_deviceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_network_token_deviceTypeEnumOther) = "other";
-           toJSON (Issuing_network_token_deviceTypeEnumPhone) = "phone";
-           toJSON (Issuing_network_token_deviceTypeEnumWatch) = "watch"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_network_token_deviceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "other" -> Issuing_network_token_deviceTypeEnumOther
-                                             | val GHC.Classes.== "phone" -> Issuing_network_token_deviceTypeEnumPhone
-                                             | val GHC.Classes.== "watch" -> Issuing_network_token_deviceTypeEnumWatch
-                                             | GHC.Base.otherwise -> Issuing_network_token_deviceTypeOther val)}

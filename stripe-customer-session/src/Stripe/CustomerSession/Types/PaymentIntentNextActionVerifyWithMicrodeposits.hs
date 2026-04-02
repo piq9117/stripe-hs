@@ -54,7 +54,7 @@ data Payment_intent_next_action_verify_with_microdeposits = Payment_intent_next_
   -- * Maximum length of 5000
   , payment_intent_next_action_verify_with_microdepositsHosted_verification_url :: Data.Text.Internal.Text
   -- | microdeposit_type: The type of the microdeposit sent to the customer. Used to distinguish between different verification methods.
-  , payment_intent_next_action_verify_with_microdepositsMicrodeposit_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable))
+  , payment_intent_next_action_verify_with_microdepositsMicrodeposit_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_verify_with_microdeposits
@@ -69,21 +69,3 @@ mkPayment_intent_next_action_verify_with_microdeposits :: GHC.Types.Int -- ^ 'pa
 mkPayment_intent_next_action_verify_with_microdeposits payment_intent_next_action_verify_with_microdepositsArrival_date payment_intent_next_action_verify_with_microdepositsHosted_verification_url = Payment_intent_next_action_verify_with_microdeposits{payment_intent_next_action_verify_with_microdepositsArrival_date = payment_intent_next_action_verify_with_microdepositsArrival_date,
                                                                                                                                                                                                                                                            payment_intent_next_action_verify_with_microdepositsHosted_verification_url = payment_intent_next_action_verify_with_microdepositsHosted_verification_url,
                                                                                                                                                                                                                                                            payment_intent_next_action_verify_with_microdepositsMicrodeposit_type = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_next_action_verify_with_microdeposits.properties.microdeposit_type@ in the specification.
--- 
--- The type of the microdeposit sent to the customer. Used to distinguish between different verification methods.
-data Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable =
-   Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumAmounts -- ^ Represents the JSON value @"amounts"@
-  | Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumDescriptor_code -- ^ Represents the JSON value @"descriptor_code"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable
-    where {toJSON (Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableOther val) = val;
-           toJSON (Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumAmounts) = "amounts";
-           toJSON (Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumDescriptor_code) = "descriptor_code"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amounts" -> Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumAmounts
-                                             | val GHC.Classes.== "descriptor_code" -> Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumDescriptor_code
-                                             | GHC.Base.otherwise -> Payment_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableOther val)}

@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_au_becs_debit = Source_type_au_becs_debit {
   -- | bsb_number
-  source_type_au_becs_debitBsb_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_au_becs_debitBsb_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint
-  , source_type_au_becs_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_au_becs_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4
-  , source_type_au_becs_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_au_becs_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_au_becs_debit

@@ -46,25 +46,25 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_multibanco = Source_type_multibanco {
   -- | entity
-  source_type_multibancoEntity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_multibancoEntity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference
-  , source_type_multibancoReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_address_city
-  , source_type_multibancoRefund_account_holder_address_city :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_account_holder_address_city :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_address_country
-  , source_type_multibancoRefund_account_holder_address_country :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_account_holder_address_country :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_address_line1
-  , source_type_multibancoRefund_account_holder_address_line1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_account_holder_address_line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_address_line2
-  , source_type_multibancoRefund_account_holder_address_line2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_account_holder_address_line2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_address_postal_code
-  , source_type_multibancoRefund_account_holder_address_postal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_account_holder_address_postal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_address_state
-  , source_type_multibancoRefund_account_holder_address_state :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_account_holder_address_state :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_account_holder_name
-  , source_type_multibancoRefund_account_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_account_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refund_iban
-  , source_type_multibancoRefund_iban :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_multibancoRefund_iban :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_multibanco

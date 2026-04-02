@@ -54,7 +54,7 @@ data Issuing_network_token_network_data = Issuing_network_token_network_data {
   -- | mastercard: 
   , issuing_network_token_network_dataMastercard :: (GHC.Maybe.Maybe Issuing_network_token_mastercard)
   -- | type: The network that the token is associated with. An additional hash is included with a name matching this value, containing tokenization data specific to the card network.
-  , issuing_network_token_network_dataType :: Issuing_network_token_network_dataType
+  , issuing_network_token_network_dataType :: Data.Text.Internal.Text
   -- | visa: 
   , issuing_network_token_network_dataVisa :: (GHC.Maybe.Maybe Issuing_network_token_visa)
   -- | wallet_provider: 
@@ -67,28 +67,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON Issuing_network_token_network_data
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing_network_token_network_data
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_network_token_network_data" (\obj -> ((((GHC.Base.pure Issuing_network_token_network_data GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "device")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mastercard")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "visa")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wallet_provider"))}
 -- | Create a new 'Issuing_network_token_network_data' with all required fields.
-mkIssuing_network_token_network_data :: Issuing_network_token_network_dataType -- ^ 'issuing_network_token_network_dataType'
+mkIssuing_network_token_network_data :: Data.Text.Internal.Text -- ^ 'issuing_network_token_network_dataType'
   -> Issuing_network_token_network_data
 mkIssuing_network_token_network_data issuing_network_token_network_dataType = Issuing_network_token_network_data{issuing_network_token_network_dataDevice = GHC.Maybe.Nothing,
                                                                                                                  issuing_network_token_network_dataMastercard = GHC.Maybe.Nothing,
                                                                                                                  issuing_network_token_network_dataType = issuing_network_token_network_dataType,
                                                                                                                  issuing_network_token_network_dataVisa = GHC.Maybe.Nothing,
                                                                                                                  issuing_network_token_network_dataWallet_provider = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_network_token_network_data.properties.type@ in the specification.
--- 
--- The network that the token is associated with. An additional hash is included with a name matching this value, containing tokenization data specific to the card network.
-data Issuing_network_token_network_dataType =
-   Issuing_network_token_network_dataTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_network_token_network_dataTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_network_token_network_dataTypeEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | Issuing_network_token_network_dataTypeEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_network_token_network_dataType
-    where {toJSON (Issuing_network_token_network_dataTypeOther val) = val;
-           toJSON (Issuing_network_token_network_dataTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_network_token_network_dataTypeEnumMastercard) = "mastercard";
-           toJSON (Issuing_network_token_network_dataTypeEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_network_token_network_dataType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "mastercard" -> Issuing_network_token_network_dataTypeEnumMastercard
-                                             | val GHC.Classes.== "visa" -> Issuing_network_token_network_dataTypeEnumVisa
-                                             | GHC.Base.otherwise -> Issuing_network_token_network_dataTypeOther val)}

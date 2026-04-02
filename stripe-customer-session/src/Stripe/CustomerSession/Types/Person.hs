@@ -73,9 +73,9 @@ data Person = Person {
   -- | address: 
   , personAddress :: (GHC.Maybe.Maybe Address)
   -- | address_kana
-  , personAddress_kana :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PersonAddress_kanaNonNullable))
+  , personAddress_kana :: (GHC.Maybe.Maybe PersonAddress_kana)
   -- | address_kanji
-  , personAddress_kanji :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PersonAddress_kanjiNonNullable))
+  , personAddress_kanji :: (GHC.Maybe.Maybe PersonAddress_kanji)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , personCreated :: GHC.Types.Int
   -- | dob: 
@@ -85,31 +85,31 @@ data Person = Person {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | first_name: The person\'s first name. Also available for accounts where [controller.requirement_collection](\/api\/accounts\/object\#account_object-controller-requirement_collection) is \`stripe\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personFirst_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personFirst_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | first_name_kana: The Kana variation of the person\'s first name (Japan only). Also available for accounts where [controller.requirement_collection](\/api\/accounts\/object\#account_object-controller-requirement_collection) is \`stripe\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personFirst_name_kana :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personFirst_name_kana :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | first_name_kanji: The Kanji variation of the person\'s first name (Japan only). Also available for accounts where [controller.requirement_collection](\/api\/accounts\/object\#account_object-controller-requirement_collection) is \`stripe\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personFirst_name_kanji :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personFirst_name_kanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | full_name_aliases: A list of alternate names or aliases that the person is known by. Also available for accounts where [controller.requirement_collection](\/api\/accounts\/object\#account_object-controller-requirement_collection) is \`stripe\`.
   , personFull_name_aliases :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | future_requirements
-  , personFuture_requirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PersonFuture_requirementsNonNullable))
+  , personFuture_requirements :: (GHC.Maybe.Maybe PersonFuture_requirements)
   -- | gender: The person\'s gender.
-  , personGender :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personGender :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
@@ -125,25 +125,25 @@ data Person = Person {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personLast_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personLast_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last_name_kana: The Kana variation of the person\'s last name (Japan only). Also available for accounts where [controller.requirement_collection](\/api\/accounts\/object\#account_object-controller-requirement_collection) is \`stripe\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personLast_name_kana :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personLast_name_kana :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last_name_kanji: The Kanji variation of the person\'s last name (Japan only). Also available for accounts where [controller.requirement_collection](\/api\/accounts\/object\#account_object-controller-requirement_collection) is \`stripe\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personLast_name_kanji :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personLast_name_kanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | maiden_name: The person\'s maiden name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personMaiden_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personMaiden_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , personMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | nationality: The country where the person is a national.
@@ -151,460 +151,329 @@ data Person = Person {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personNationality :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personNationality :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , personObject :: Data.Text.Internal.Text
   -- | phone: The person\'s phone number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personPhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | political_exposure: Indicates if the person or any of their representatives, family members, or other closely related persons, declares that they hold or have held an important public job or function, in any jurisdiction.
-  , personPolitical_exposure :: (GHC.Maybe.Maybe PersonPolitical_exposure)
+  , personPolitical_exposure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | registered_address: 
   , personRegistered_address :: (GHC.Maybe.Maybe Address)
   -- | relationship: 
   , personRelationship :: (GHC.Maybe.Maybe Person_relationship)
   -- | requirements
-  , personRequirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PersonRequirementsNonNullable))
+  , personRequirements :: (GHC.Maybe.Maybe PersonRequirements)
   -- | ssn_last_4_provided: Whether the last four digits of the person\'s Social Security number have been provided (U.S. only).
   , personSsn_last_4_provided :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | us_cfpb_data: Demographic data related to the person.
-  , personUs_cfpb_data :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PersonUs_cfpb_dataNonNullable))
+  , personUs_cfpb_data :: (GHC.Maybe.Maybe PersonUs_cfpb_data)
   -- | verification: 
   , personVerification :: (GHC.Maybe.Maybe Legal_entity_person_verification)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Person
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["account" Data.Aeson.Types.ToJSON..= personAccount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("additional_tos_acceptances" Data.Aeson.Types.ToJSON..=)) (personAdditional_tos_acceptances obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (personAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kana" Data.Aeson.Types.ToJSON..=)) (personAddress_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kanji" Data.Aeson.Types.ToJSON..=)) (personAddress_kanji obj) : ["created" Data.Aeson.Types.ToJSON..= personCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dob" Data.Aeson.Types.ToJSON..=)) (personDob obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (personEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name" Data.Aeson.Types.ToJSON..=)) (personFirst_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kana" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kanji" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("full_name_aliases" Data.Aeson.Types.ToJSON..=)) (personFull_name_aliases obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (personFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gender" Data.Aeson.Types.ToJSON..=)) (personGender obj) : ["id" Data.Aeson.Types.ToJSON..= personId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_secondary_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_secondary_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name" Data.Aeson.Types.ToJSON..=)) (personLast_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kana" Data.Aeson.Types.ToJSON..=)) (personLast_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kanji" Data.Aeson.Types.ToJSON..=)) (personLast_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maiden_name" Data.Aeson.Types.ToJSON..=)) (personMaiden_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (personMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nationality" Data.Aeson.Types.ToJSON..=)) (personNationality obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (personPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("political_exposure" Data.Aeson.Types.ToJSON..=)) (personPolitical_exposure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("registered_address" Data.Aeson.Types.ToJSON..=)) (personRegistered_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("relationship" Data.Aeson.Types.ToJSON..=)) (personRelationship obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (personRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ssn_last_4_provided" Data.Aeson.Types.ToJSON..=)) (personSsn_last_4_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_cfpb_data" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification" Data.Aeson.Types.ToJSON..=)) (personVerification obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "person"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["account" Data.Aeson.Types.ToJSON..= personAccount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("additional_tos_acceptances" Data.Aeson.Types.ToJSON..=)) (personAdditional_tos_acceptances obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (personAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kana" Data.Aeson.Types.ToJSON..=)) (personAddress_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kanji" Data.Aeson.Types.ToJSON..=)) (personAddress_kanji obj) : ["created" Data.Aeson.Types.ToJSON..= personCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dob" Data.Aeson.Types.ToJSON..=)) (personDob obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (personEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name" Data.Aeson.Types.ToJSON..=)) (personFirst_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kana" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kanji" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("full_name_aliases" Data.Aeson.Types.ToJSON..=)) (personFull_name_aliases obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (personFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gender" Data.Aeson.Types.ToJSON..=)) (personGender obj) : ["id" Data.Aeson.Types.ToJSON..= personId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_secondary_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_secondary_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name" Data.Aeson.Types.ToJSON..=)) (personLast_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kana" Data.Aeson.Types.ToJSON..=)) (personLast_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kanji" Data.Aeson.Types.ToJSON..=)) (personLast_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maiden_name" Data.Aeson.Types.ToJSON..=)) (personMaiden_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (personMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nationality" Data.Aeson.Types.ToJSON..=)) (personNationality obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (personPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("political_exposure" Data.Aeson.Types.ToJSON..=)) (personPolitical_exposure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("registered_address" Data.Aeson.Types.ToJSON..=)) (personRegistered_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("relationship" Data.Aeson.Types.ToJSON..=)) (personRelationship obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (personRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ssn_last_4_provided" Data.Aeson.Types.ToJSON..=)) (personSsn_last_4_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_cfpb_data" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification" Data.Aeson.Types.ToJSON..=)) (personVerification obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "person"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["account" Data.Aeson.Types.ToJSON..= personAccount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("additional_tos_acceptances" Data.Aeson.Types.ToJSON..=)) (personAdditional_tos_acceptances obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (personAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kana" Data.Aeson.Types.ToJSON..=)) (personAddress_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kanji" Data.Aeson.Types.ToJSON..=)) (personAddress_kanji obj) : ["created" Data.Aeson.Types.ToJSON..= personCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dob" Data.Aeson.Types.ToJSON..=)) (personDob obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (personEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name" Data.Aeson.Types.ToJSON..=)) (personFirst_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kana" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kanji" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("full_name_aliases" Data.Aeson.Types.ToJSON..=)) (personFull_name_aliases obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (personFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gender" Data.Aeson.Types.ToJSON..=)) (personGender obj) : ["id" Data.Aeson.Types.ToJSON..= personId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_secondary_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_secondary_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name" Data.Aeson.Types.ToJSON..=)) (personLast_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kana" Data.Aeson.Types.ToJSON..=)) (personLast_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kanji" Data.Aeson.Types.ToJSON..=)) (personLast_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maiden_name" Data.Aeson.Types.ToJSON..=)) (personMaiden_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (personMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nationality" Data.Aeson.Types.ToJSON..=)) (personNationality obj) : ["object" Data.Aeson.Types.ToJSON..= personObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (personPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("political_exposure" Data.Aeson.Types.ToJSON..=)) (personPolitical_exposure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("registered_address" Data.Aeson.Types.ToJSON..=)) (personRegistered_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("relationship" Data.Aeson.Types.ToJSON..=)) (personRelationship obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (personRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ssn_last_4_provided" Data.Aeson.Types.ToJSON..=)) (personSsn_last_4_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_cfpb_data" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification" Data.Aeson.Types.ToJSON..=)) (personVerification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["account" Data.Aeson.Types.ToJSON..= personAccount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("additional_tos_acceptances" Data.Aeson.Types.ToJSON..=)) (personAdditional_tos_acceptances obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (personAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kana" Data.Aeson.Types.ToJSON..=)) (personAddress_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_kanji" Data.Aeson.Types.ToJSON..=)) (personAddress_kanji obj) : ["created" Data.Aeson.Types.ToJSON..= personCreated obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dob" Data.Aeson.Types.ToJSON..=)) (personDob obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (personEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name" Data.Aeson.Types.ToJSON..=)) (personFirst_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kana" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("first_name_kanji" Data.Aeson.Types.ToJSON..=)) (personFirst_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("full_name_aliases" Data.Aeson.Types.ToJSON..=)) (personFull_name_aliases obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("future_requirements" Data.Aeson.Types.ToJSON..=)) (personFuture_requirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("gender" Data.Aeson.Types.ToJSON..=)) (personGender obj) : ["id" Data.Aeson.Types.ToJSON..= personId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("id_number_secondary_provided" Data.Aeson.Types.ToJSON..=)) (personId_number_secondary_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name" Data.Aeson.Types.ToJSON..=)) (personLast_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kana" Data.Aeson.Types.ToJSON..=)) (personLast_name_kana obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last_name_kanji" Data.Aeson.Types.ToJSON..=)) (personLast_name_kanji obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("maiden_name" Data.Aeson.Types.ToJSON..=)) (personMaiden_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (personMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nationality" Data.Aeson.Types.ToJSON..=)) (personNationality obj) : ["object" Data.Aeson.Types.ToJSON..= personObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (personPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("political_exposure" Data.Aeson.Types.ToJSON..=)) (personPolitical_exposure obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("registered_address" Data.Aeson.Types.ToJSON..=)) (personRegistered_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("relationship" Data.Aeson.Types.ToJSON..=)) (personRelationship obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("requirements" Data.Aeson.Types.ToJSON..=)) (personRequirements obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ssn_last_4_provided" Data.Aeson.Types.ToJSON..=)) (personSsn_last_4_provided obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_cfpb_data" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification" Data.Aeson.Types.ToJSON..=)) (personVerification obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Person
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person" (\obj -> ((((((((((((((((((((((((((((((GHC.Base.pure Person GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "additional_tos_acceptances")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dob")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "first_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "first_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "first_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "full_name_aliases")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "gender")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id_number_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id_number_secondary_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "maiden_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nationality")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "political_exposure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "registered_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "relationship")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ssn_last_4_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_cfpb_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Person" (\obj -> (((((((((((((((((((((((((((((((GHC.Base.pure Person GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "additional_tos_acceptances")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dob")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "first_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "first_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "first_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "full_name_aliases")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "gender")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id_number_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "id_number_secondary_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "maiden_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nationality")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "political_exposure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "registered_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "relationship")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ssn_last_4_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_cfpb_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification"))}
 -- | Create a new 'Person' with all required fields.
 mkPerson :: Data.Text.Internal.Text -- ^ 'personAccount'
   -> GHC.Types.Int -- ^ 'personCreated'
   -> Data.Text.Internal.Text -- ^ 'personId'
+  -> Data.Text.Internal.Text -- ^ 'personObject'
   -> Person
-mkPerson personAccount personCreated personId = Person{personAccount = personAccount,
-                                                       personAdditional_tos_acceptances = GHC.Maybe.Nothing,
-                                                       personAddress = GHC.Maybe.Nothing,
-                                                       personAddress_kana = GHC.Maybe.Nothing,
-                                                       personAddress_kanji = GHC.Maybe.Nothing,
-                                                       personCreated = personCreated,
-                                                       personDob = GHC.Maybe.Nothing,
-                                                       personEmail = GHC.Maybe.Nothing,
-                                                       personFirst_name = GHC.Maybe.Nothing,
-                                                       personFirst_name_kana = GHC.Maybe.Nothing,
-                                                       personFirst_name_kanji = GHC.Maybe.Nothing,
-                                                       personFull_name_aliases = GHC.Maybe.Nothing,
-                                                       personFuture_requirements = GHC.Maybe.Nothing,
-                                                       personGender = GHC.Maybe.Nothing,
-                                                       personId = personId,
-                                                       personId_number_provided = GHC.Maybe.Nothing,
-                                                       personId_number_secondary_provided = GHC.Maybe.Nothing,
-                                                       personLast_name = GHC.Maybe.Nothing,
-                                                       personLast_name_kana = GHC.Maybe.Nothing,
-                                                       personLast_name_kanji = GHC.Maybe.Nothing,
-                                                       personMaiden_name = GHC.Maybe.Nothing,
-                                                       personMetadata = GHC.Maybe.Nothing,
-                                                       personNationality = GHC.Maybe.Nothing,
-                                                       personPhone = GHC.Maybe.Nothing,
-                                                       personPolitical_exposure = GHC.Maybe.Nothing,
-                                                       personRegistered_address = GHC.Maybe.Nothing,
-                                                       personRelationship = GHC.Maybe.Nothing,
-                                                       personRequirements = GHC.Maybe.Nothing,
-                                                       personSsn_last_4_provided = GHC.Maybe.Nothing,
-                                                       personUs_cfpb_data = GHC.Maybe.Nothing,
-                                                       personVerification = GHC.Maybe.Nothing}
+mkPerson personAccount personCreated personId personObject = Person{personAccount = personAccount,
+                                                                    personAdditional_tos_acceptances = GHC.Maybe.Nothing,
+                                                                    personAddress = GHC.Maybe.Nothing,
+                                                                    personAddress_kana = GHC.Maybe.Nothing,
+                                                                    personAddress_kanji = GHC.Maybe.Nothing,
+                                                                    personCreated = personCreated,
+                                                                    personDob = GHC.Maybe.Nothing,
+                                                                    personEmail = GHC.Maybe.Nothing,
+                                                                    personFirst_name = GHC.Maybe.Nothing,
+                                                                    personFirst_name_kana = GHC.Maybe.Nothing,
+                                                                    personFirst_name_kanji = GHC.Maybe.Nothing,
+                                                                    personFull_name_aliases = GHC.Maybe.Nothing,
+                                                                    personFuture_requirements = GHC.Maybe.Nothing,
+                                                                    personGender = GHC.Maybe.Nothing,
+                                                                    personId = personId,
+                                                                    personId_number_provided = GHC.Maybe.Nothing,
+                                                                    personId_number_secondary_provided = GHC.Maybe.Nothing,
+                                                                    personLast_name = GHC.Maybe.Nothing,
+                                                                    personLast_name_kana = GHC.Maybe.Nothing,
+                                                                    personLast_name_kanji = GHC.Maybe.Nothing,
+                                                                    personMaiden_name = GHC.Maybe.Nothing,
+                                                                    personMetadata = GHC.Maybe.Nothing,
+                                                                    personNationality = GHC.Maybe.Nothing,
+                                                                    personObject = personObject,
+                                                                    personPhone = GHC.Maybe.Nothing,
+                                                                    personPolitical_exposure = GHC.Maybe.Nothing,
+                                                                    personRegistered_address = GHC.Maybe.Nothing,
+                                                                    personRelationship = GHC.Maybe.Nothing,
+                                                                    personRequirements = GHC.Maybe.Nothing,
+                                                                    personSsn_last_4_provided = GHC.Maybe.Nothing,
+                                                                    personUs_cfpb_data = GHC.Maybe.Nothing,
+                                                                    personVerification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person.properties.address_kana.anyOf@ in the specification.
 -- 
 -- 
-data PersonAddress_kanaNonNullable = PersonAddress_kanaNonNullable {
+data PersonAddress_kana = PersonAddress_kana {
   -- | city: City\/Ward.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  personAddress_kanaNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  personAddress_kanaCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanaNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanaCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Block\/Building number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanaNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanaLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Building details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanaNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanaLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanaNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanaPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: Prefecture.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanaNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanaState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | town: Town\/cho-me.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanaNonNullableTown :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanaTown :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonAddress_kanaNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableTown obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaNonNullableTown obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonAddress_kanaNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonAddress_kanaNonNullable" (\obj -> ((((((GHC.Base.pure PersonAddress_kanaNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "town"))}
--- | Create a new 'PersonAddress_kanaNonNullable' with all required fields.
-mkPersonAddress_kanaNonNullable :: PersonAddress_kanaNonNullable
-mkPersonAddress_kanaNonNullable = PersonAddress_kanaNonNullable{personAddress_kanaNonNullableCity = GHC.Maybe.Nothing,
-                                                                personAddress_kanaNonNullableCountry = GHC.Maybe.Nothing,
-                                                                personAddress_kanaNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                personAddress_kanaNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                personAddress_kanaNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                personAddress_kanaNonNullableState = GHC.Maybe.Nothing,
-                                                                personAddress_kanaNonNullableTown = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON PersonAddress_kana
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaTown obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanaTown obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PersonAddress_kana
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonAddress_kana" (\obj -> ((((((GHC.Base.pure PersonAddress_kana GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "town"))}
+-- | Create a new 'PersonAddress_kana' with all required fields.
+mkPersonAddress_kana :: PersonAddress_kana
+mkPersonAddress_kana = PersonAddress_kana{personAddress_kanaCity = GHC.Maybe.Nothing,
+                                          personAddress_kanaCountry = GHC.Maybe.Nothing,
+                                          personAddress_kanaLine1 = GHC.Maybe.Nothing,
+                                          personAddress_kanaLine2 = GHC.Maybe.Nothing,
+                                          personAddress_kanaPostal_code = GHC.Maybe.Nothing,
+                                          personAddress_kanaState = GHC.Maybe.Nothing,
+                                          personAddress_kanaTown = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person.properties.address_kanji.anyOf@ in the specification.
 -- 
 -- 
-data PersonAddress_kanjiNonNullable = PersonAddress_kanjiNonNullable {
+data PersonAddress_kanji = PersonAddress_kanji {
   -- | city: City\/Ward.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  personAddress_kanjiNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  personAddress_kanjiCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanjiNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanjiCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Block\/Building number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanjiNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanjiLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Building details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanjiNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanjiLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanjiNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanjiPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: Prefecture.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanjiNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanjiState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | town: Town\/cho-me.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personAddress_kanjiNonNullableTown :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personAddress_kanjiTown :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonAddress_kanjiNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableTown obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiNonNullableTown obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonAddress_kanjiNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonAddress_kanjiNonNullable" (\obj -> ((((((GHC.Base.pure PersonAddress_kanjiNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "town"))}
--- | Create a new 'PersonAddress_kanjiNonNullable' with all required fields.
-mkPersonAddress_kanjiNonNullable :: PersonAddress_kanjiNonNullable
-mkPersonAddress_kanjiNonNullable = PersonAddress_kanjiNonNullable{personAddress_kanjiNonNullableCity = GHC.Maybe.Nothing,
-                                                                  personAddress_kanjiNonNullableCountry = GHC.Maybe.Nothing,
-                                                                  personAddress_kanjiNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                  personAddress_kanjiNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                  personAddress_kanjiNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                  personAddress_kanjiNonNullableState = GHC.Maybe.Nothing,
-                                                                  personAddress_kanjiNonNullableTown = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON PersonAddress_kanji
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiTown obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiState obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("town" Data.Aeson.Types.ToJSON..=)) (personAddress_kanjiTown obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PersonAddress_kanji
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonAddress_kanji" (\obj -> ((((((GHC.Base.pure PersonAddress_kanji GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "town"))}
+-- | Create a new 'PersonAddress_kanji' with all required fields.
+mkPersonAddress_kanji :: PersonAddress_kanji
+mkPersonAddress_kanji = PersonAddress_kanji{personAddress_kanjiCity = GHC.Maybe.Nothing,
+                                            personAddress_kanjiCountry = GHC.Maybe.Nothing,
+                                            personAddress_kanjiLine1 = GHC.Maybe.Nothing,
+                                            personAddress_kanjiLine2 = GHC.Maybe.Nothing,
+                                            personAddress_kanjiPostal_code = GHC.Maybe.Nothing,
+                                            personAddress_kanjiState = GHC.Maybe.Nothing,
+                                            personAddress_kanjiTown = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person.properties.future_requirements.anyOf@ in the specification.
 -- 
 -- 
-data PersonFuture_requirementsNonNullable = PersonFuture_requirementsNonNullable {
+data PersonFuture_requirements = PersonFuture_requirements {
   -- | alternatives: Fields that are due and can be resolved by providing the corresponding alternative fields instead. Many alternatives can list the same \`original_fields_due\`, and any of these alternatives can serve as a pathway for attempting to resolve the fields again. Re-providing \`original_fields_due\` also serves as a pathway for attempting to resolve the fields again.
-  personFuture_requirementsNonNullableAlternatives :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_alternative]))
+  personFuture_requirementsAlternatives :: (GHC.Maybe.Maybe [Account_requirements_alternative])
   -- | currently_due: Fields that need to be resolved to keep the person\'s account enabled. If not resolved by the account\'s \`future_requirements[current_deadline]\`, these fields will transition to the main \`requirements\` hash, and may immediately become \`past_due\`, but the account may also be given a grace period depending on the account\'s enablement state prior to transition.
-  , personFuture_requirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personFuture_requirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , personFuture_requirementsNonNullableErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
+  , personFuture_requirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | eventually_due: Fields you must collect when all thresholds are reached. As they become required, they appear in \`currently_due\` as well, and the account\'s \`future_requirements[current_deadline]\` becomes set.
-  , personFuture_requirementsNonNullableEventually_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personFuture_requirementsEventually_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | past_due: Fields that haven\'t been resolved by the account\'s \`requirements.current_deadline\`. These fields need to be resolved to enable the person\'s account. \`future_requirements.past_due\` is a subset of \`requirements.past_due\`.
-  , personFuture_requirementsNonNullablePast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personFuture_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , personFuture_requirementsNonNullablePending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personFuture_requirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonFuture_requirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullableEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonFuture_requirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonFuture_requirementsNonNullable" (\obj -> (((((GHC.Base.pure PersonFuture_requirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alternatives")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'PersonFuture_requirementsNonNullable' with all required fields.
-mkPersonFuture_requirementsNonNullable :: PersonFuture_requirementsNonNullable
-mkPersonFuture_requirementsNonNullable = PersonFuture_requirementsNonNullable{personFuture_requirementsNonNullableAlternatives = GHC.Maybe.Nothing,
-                                                                              personFuture_requirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                              personFuture_requirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                              personFuture_requirementsNonNullableEventually_due = GHC.Maybe.Nothing,
-                                                                              personFuture_requirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                              personFuture_requirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.person.properties.political_exposure@ in the specification.
--- 
--- Indicates if the person or any of their representatives, family members, or other closely related persons, declares that they hold or have held an important public job or function, in any jurisdiction.
-data PersonPolitical_exposure =
-   PersonPolitical_exposureOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PersonPolitical_exposureTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PersonPolitical_exposureEnumExisting -- ^ Represents the JSON value @"existing"@
-  | PersonPolitical_exposureEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonPolitical_exposure
-    where {toJSON (PersonPolitical_exposureOther val) = val;
-           toJSON (PersonPolitical_exposureTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PersonPolitical_exposureEnumExisting) = "existing";
-           toJSON (PersonPolitical_exposureEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonPolitical_exposure
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "existing" -> PersonPolitical_exposureEnumExisting
-                                             | val GHC.Classes.== "none" -> PersonPolitical_exposureEnumNone
-                                             | GHC.Base.otherwise -> PersonPolitical_exposureOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON PersonFuture_requirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personFuture_requirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PersonFuture_requirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonFuture_requirements" (\obj -> (((((GHC.Base.pure PersonFuture_requirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alternatives")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'PersonFuture_requirements' with all required fields.
+mkPersonFuture_requirements :: PersonFuture_requirements
+mkPersonFuture_requirements = PersonFuture_requirements{personFuture_requirementsAlternatives = GHC.Maybe.Nothing,
+                                                        personFuture_requirementsCurrently_due = GHC.Maybe.Nothing,
+                                                        personFuture_requirementsErrors = GHC.Maybe.Nothing,
+                                                        personFuture_requirementsEventually_due = GHC.Maybe.Nothing,
+                                                        personFuture_requirementsPast_due = GHC.Maybe.Nothing,
+                                                        personFuture_requirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person.properties.requirements.anyOf@ in the specification.
 -- 
 -- 
-data PersonRequirementsNonNullable = PersonRequirementsNonNullable {
+data PersonRequirements = PersonRequirements {
   -- | alternatives: Fields that are due and can be resolved by providing the corresponding alternative fields instead. Many alternatives can list the same \`original_fields_due\`, and any of these alternatives can serve as a pathway for attempting to resolve the fields again. Re-providing \`original_fields_due\` also serves as a pathway for attempting to resolve the fields again.
-  personRequirementsNonNullableAlternatives :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_alternative]))
+  personRequirementsAlternatives :: (GHC.Maybe.Maybe [Account_requirements_alternative])
   -- | currently_due: Fields that need to be resolved to keep the person\'s account enabled. If not resolved by the account\'s \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  , personRequirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personRequirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , personRequirementsNonNullableErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
+  , personRequirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | eventually_due: Fields you must collect when all thresholds are reached. As they become required, they appear in \`currently_due\` as well, and the account\'s \`current_deadline\` becomes set.
-  , personRequirementsNonNullableEventually_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personRequirementsEventually_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the person\'s account.
-  , personRequirementsNonNullablePast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personRequirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , personRequirementsNonNullablePending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
+  , personRequirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonRequirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullableEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personRequirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonRequirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonRequirementsNonNullable" (\obj -> (((((GHC.Base.pure PersonRequirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alternatives")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'PersonRequirementsNonNullable' with all required fields.
-mkPersonRequirementsNonNullable :: PersonRequirementsNonNullable
-mkPersonRequirementsNonNullable = PersonRequirementsNonNullable{personRequirementsNonNullableAlternatives = GHC.Maybe.Nothing,
-                                                                personRequirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                personRequirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                personRequirementsNonNullableEventually_due = GHC.Maybe.Nothing,
-                                                                personRequirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                personRequirementsNonNullablePending_verification = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON PersonRequirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personRequirementsAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personRequirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alternatives" Data.Aeson.Types.ToJSON..=)) (personRequirementsAlternatives obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (personRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eventually_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsEventually_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (personRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (personRequirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PersonRequirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonRequirements" (\obj -> (((((GHC.Base.pure PersonRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alternatives")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'PersonRequirements' with all required fields.
+mkPersonRequirements :: PersonRequirements
+mkPersonRequirements = PersonRequirements{personRequirementsAlternatives = GHC.Maybe.Nothing,
+                                          personRequirementsCurrently_due = GHC.Maybe.Nothing,
+                                          personRequirementsErrors = GHC.Maybe.Nothing,
+                                          personRequirementsEventually_due = GHC.Maybe.Nothing,
+                                          personRequirementsPast_due = GHC.Maybe.Nothing,
+                                          personRequirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person.properties.us_cfpb_data.anyOf@ in the specification.
 -- 
 -- Demographic data related to the person.
-data PersonUs_cfpb_dataNonNullable = PersonUs_cfpb_dataNonNullable {
+data PersonUs_cfpb_data = PersonUs_cfpb_data {
   -- | ethnicity_details: The persons ethnicity details
-  personUs_cfpb_dataNonNullableEthnicity_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable))
+  personUs_cfpb_dataEthnicity_details :: (GHC.Maybe.Maybe PersonUs_cfpb_dataEthnicity_details)
   -- | race_details: The persons race details
-  , personUs_cfpb_dataNonNullableRace_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PersonUs_cfpb_dataNonNullableRace_detailsNonNullable))
+  , personUs_cfpb_dataRace_details :: (GHC.Maybe.Maybe PersonUs_cfpb_dataRace_details)
   -- | self_identified_gender: The persons self-identified gender
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personUs_cfpb_dataNonNullableSelf_identified_gender :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personUs_cfpb_dataSelf_identified_gender :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_dataNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableEthnicity_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableRace_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("self_identified_gender" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableSelf_identified_gender obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableEthnicity_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableRace_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("self_identified_gender" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableSelf_identified_gender obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_dataNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonUs_cfpb_dataNonNullable" (\obj -> ((GHC.Base.pure PersonUs_cfpb_dataNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "self_identified_gender"))}
--- | Create a new 'PersonUs_cfpb_dataNonNullable' with all required fields.
-mkPersonUs_cfpb_dataNonNullable :: PersonUs_cfpb_dataNonNullable
-mkPersonUs_cfpb_dataNonNullable = PersonUs_cfpb_dataNonNullable{personUs_cfpb_dataNonNullableEthnicity_details = GHC.Maybe.Nothing,
-                                                                personUs_cfpb_dataNonNullableRace_details = GHC.Maybe.Nothing,
-                                                                personUs_cfpb_dataNonNullableSelf_identified_gender = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_data
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataEthnicity_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataRace_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("self_identified_gender" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataSelf_identified_gender obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataEthnicity_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_details" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataRace_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("self_identified_gender" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataSelf_identified_gender obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_data
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonUs_cfpb_data" (\obj -> ((GHC.Base.pure PersonUs_cfpb_data GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "self_identified_gender"))}
+-- | Create a new 'PersonUs_cfpb_data' with all required fields.
+mkPersonUs_cfpb_data :: PersonUs_cfpb_data
+mkPersonUs_cfpb_data = PersonUs_cfpb_data{personUs_cfpb_dataEthnicity_details = GHC.Maybe.Nothing,
+                                          personUs_cfpb_dataRace_details = GHC.Maybe.Nothing,
+                                          personUs_cfpb_dataSelf_identified_gender = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person.properties.us_cfpb_data.anyOf.properties.ethnicity_details.anyOf@ in the specification.
 -- 
 -- The persons ethnicity details
-data PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable = PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable {
+data PersonUs_cfpb_dataEthnicity_details = PersonUs_cfpb_dataEthnicity_details {
   -- | ethnicity: The persons ethnicity
-  personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullable]))
+  personUs_cfpb_dataEthnicity_detailsEthnicity :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | ethnicity_other: Please specify your origin, when other is selected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity_other :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personUs_cfpb_dataEthnicity_detailsEthnicity_other :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity_other obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity_other obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable" (\obj -> (GHC.Base.pure PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity_other"))}
--- | Create a new 'PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable' with all required fields.
-mkPersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable :: PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable
-mkPersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable = PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullable{personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity = GHC.Maybe.Nothing,
-                                                                                                                        personUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicity_other = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.person.properties.us_cfpb_data.anyOf.properties.ethnicity_details.anyOf.properties.ethnicity.items@ in the specification.
--- 
--- 
-data PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullable =
-   PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumCuban -- ^ Represents the JSON value @"cuban"@
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumHispanic_or_latino -- ^ Represents the JSON value @"hispanic_or_latino"@
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumMexican -- ^ Represents the JSON value @"mexican"@
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumNot_hispanic_or_latino -- ^ Represents the JSON value @"not_hispanic_or_latino"@
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumOther_hispanic_or_latino -- ^ Represents the JSON value @"other_hispanic_or_latino"@
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumPuerto_rican -- ^ Represents the JSON value @"puerto_rican"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullable
-    where {toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableOther val) = val;
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumCuban) = "cuban";
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumHispanic_or_latino) = "hispanic_or_latino";
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumMexican) = "mexican";
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumNot_hispanic_or_latino) = "not_hispanic_or_latino";
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumOther_hispanic_or_latino) = "other_hispanic_or_latino";
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumPuerto_rican) = "puerto_rican"}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cuban" -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumCuban
-                                             | val GHC.Classes.== "hispanic_or_latino" -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumHispanic_or_latino
-                                             | val GHC.Classes.== "mexican" -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumMexican
-                                             | val GHC.Classes.== "not_hispanic_or_latino" -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumNot_hispanic_or_latino
-                                             | val GHC.Classes.== "other_hispanic_or_latino" -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumOther_hispanic_or_latino
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "puerto_rican" -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableEnumPuerto_rican
-                                             | GHC.Base.otherwise -> PersonUs_cfpb_dataNonNullableEthnicity_detailsNonNullableEthnicityNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_dataEthnicity_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataEthnicity_detailsEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataEthnicity_detailsEthnicity_other obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataEthnicity_detailsEthnicity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ethnicity_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataEthnicity_detailsEthnicity_other obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_dataEthnicity_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonUs_cfpb_dataEthnicity_details" (\obj -> (GHC.Base.pure PersonUs_cfpb_dataEthnicity_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ethnicity_other"))}
+-- | Create a new 'PersonUs_cfpb_dataEthnicity_details' with all required fields.
+mkPersonUs_cfpb_dataEthnicity_details :: PersonUs_cfpb_dataEthnicity_details
+mkPersonUs_cfpb_dataEthnicity_details = PersonUs_cfpb_dataEthnicity_details{personUs_cfpb_dataEthnicity_detailsEthnicity = GHC.Maybe.Nothing,
+                                                                            personUs_cfpb_dataEthnicity_detailsEthnicity_other = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.person.properties.us_cfpb_data.anyOf.properties.race_details.anyOf@ in the specification.
 -- 
 -- The persons race details
-data PersonUs_cfpb_dataNonNullableRace_detailsNonNullable = PersonUs_cfpb_dataNonNullableRace_detailsNonNullable {
+data PersonUs_cfpb_dataRace_details = PersonUs_cfpb_dataRace_details {
   -- | race: The persons race.
-  personUs_cfpb_dataNonNullableRace_detailsNonNullableRace :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullable]))
+  personUs_cfpb_dataRace_detailsRace :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | race_other: Please specify your race, when other is selected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , personUs_cfpb_dataNonNullableRace_detailsNonNullableRace_other :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , personUs_cfpb_dataRace_detailsRace_other :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_dataNonNullableRace_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableRace_detailsNonNullableRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableRace_detailsNonNullableRace_other obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableRace_detailsNonNullableRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataNonNullableRace_detailsNonNullableRace_other obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_dataNonNullableRace_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonUs_cfpb_dataNonNullableRace_detailsNonNullable" (\obj -> (GHC.Base.pure PersonUs_cfpb_dataNonNullableRace_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race_other"))}
--- | Create a new 'PersonUs_cfpb_dataNonNullableRace_detailsNonNullable' with all required fields.
-mkPersonUs_cfpb_dataNonNullableRace_detailsNonNullable :: PersonUs_cfpb_dataNonNullableRace_detailsNonNullable
-mkPersonUs_cfpb_dataNonNullableRace_detailsNonNullable = PersonUs_cfpb_dataNonNullableRace_detailsNonNullable{personUs_cfpb_dataNonNullableRace_detailsNonNullableRace = GHC.Maybe.Nothing,
-                                                                                                              personUs_cfpb_dataNonNullableRace_detailsNonNullableRace_other = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.person.properties.us_cfpb_data.anyOf.properties.race_details.anyOf.properties.race.items@ in the specification.
--- 
--- 
-data PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullable =
-   PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAfrican_american -- ^ Represents the JSON value @"african_american"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAmerican_indian_or_alaska_native -- ^ Represents the JSON value @"american_indian_or_alaska_native"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAsian -- ^ Represents the JSON value @"asian"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAsian_indian -- ^ Represents the JSON value @"asian_indian"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumBlack_or_african_american -- ^ Represents the JSON value @"black_or_african_american"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumChinese -- ^ Represents the JSON value @"chinese"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumEthiopian -- ^ Represents the JSON value @"ethiopian"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumFilipino -- ^ Represents the JSON value @"filipino"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumGuamanian_or_chamorro -- ^ Represents the JSON value @"guamanian_or_chamorro"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumHaitian -- ^ Represents the JSON value @"haitian"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumJamaican -- ^ Represents the JSON value @"jamaican"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumJapanese -- ^ Represents the JSON value @"japanese"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumKorean -- ^ Represents the JSON value @"korean"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian -- ^ Represents the JSON value @"native_hawaiian"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander -- ^ Represents the JSON value @"native_hawaiian_or_other_pacific_islander"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNigerian -- ^ Represents the JSON value @"nigerian"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_asian -- ^ Represents the JSON value @"other_asian"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_black_or_african_american -- ^ Represents the JSON value @"other_black_or_african_american"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_pacific_islander -- ^ Represents the JSON value @"other_pacific_islander"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumSamoan -- ^ Represents the JSON value @"samoan"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumSomali -- ^ Represents the JSON value @"somali"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumVietnamese -- ^ Represents the JSON value @"vietnamese"@
-  | PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumWhite -- ^ Represents the JSON value @"white"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullable
-    where {toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableOther val) = val;
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAfrican_american) = "african_american";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAmerican_indian_or_alaska_native) = "american_indian_or_alaska_native";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAsian) = "asian";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAsian_indian) = "asian_indian";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumBlack_or_african_american) = "black_or_african_american";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumChinese) = "chinese";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumEthiopian) = "ethiopian";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumFilipino) = "filipino";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumGuamanian_or_chamorro) = "guamanian_or_chamorro";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumHaitian) = "haitian";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumJamaican) = "jamaican";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumJapanese) = "japanese";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumKorean) = "korean";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian) = "native_hawaiian";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander) = "native_hawaiian_or_other_pacific_islander";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNigerian) = "nigerian";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_asian) = "other_asian";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_black_or_african_american) = "other_black_or_african_american";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_pacific_islander) = "other_pacific_islander";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumSamoan) = "samoan";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumSomali) = "somali";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumVietnamese) = "vietnamese";
-           toJSON (PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumWhite) = "white"}
-instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "african_american" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAfrican_american
-                                             | val GHC.Classes.== "american_indian_or_alaska_native" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAmerican_indian_or_alaska_native
-                                             | val GHC.Classes.== "asian" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAsian
-                                             | val GHC.Classes.== "asian_indian" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumAsian_indian
-                                             | val GHC.Classes.== "black_or_african_american" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumBlack_or_african_american
-                                             | val GHC.Classes.== "chinese" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumChinese
-                                             | val GHC.Classes.== "ethiopian" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumEthiopian
-                                             | val GHC.Classes.== "filipino" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumFilipino
-                                             | val GHC.Classes.== "guamanian_or_chamorro" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumGuamanian_or_chamorro
-                                             | val GHC.Classes.== "haitian" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumHaitian
-                                             | val GHC.Classes.== "jamaican" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumJamaican
-                                             | val GHC.Classes.== "japanese" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumJapanese
-                                             | val GHC.Classes.== "korean" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumKorean
-                                             | val GHC.Classes.== "native_hawaiian" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian
-                                             | val GHC.Classes.== "native_hawaiian_or_other_pacific_islander" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander
-                                             | val GHC.Classes.== "nigerian" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumNigerian
-                                             | val GHC.Classes.== "other_asian" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_asian
-                                             | val GHC.Classes.== "other_black_or_african_american" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_black_or_african_american
-                                             | val GHC.Classes.== "other_pacific_islander" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumOther_pacific_islander
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "samoan" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumSamoan
-                                             | val GHC.Classes.== "somali" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumSomali
-                                             | val GHC.Classes.== "vietnamese" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumVietnamese
-                                             | val GHC.Classes.== "white" -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableEnumWhite
-                                             | GHC.Base.otherwise -> PersonUs_cfpb_dataNonNullableRace_detailsNonNullableRaceNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON PersonUs_cfpb_dataRace_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataRace_detailsRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataRace_detailsRace_other obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataRace_detailsRace obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("race_other" Data.Aeson.Types.ToJSON..=)) (personUs_cfpb_dataRace_detailsRace_other obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PersonUs_cfpb_dataRace_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonUs_cfpb_dataRace_details" (\obj -> (GHC.Base.pure PersonUs_cfpb_dataRace_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "race_other"))}
+-- | Create a new 'PersonUs_cfpb_dataRace_details' with all required fields.
+mkPersonUs_cfpb_dataRace_details :: PersonUs_cfpb_dataRace_details
+mkPersonUs_cfpb_dataRace_details = PersonUs_cfpb_dataRace_details{personUs_cfpb_dataRace_detailsRace = GHC.Maybe.Nothing,
+                                                                  personUs_cfpb_dataRace_detailsRace_other = GHC.Maybe.Nothing}

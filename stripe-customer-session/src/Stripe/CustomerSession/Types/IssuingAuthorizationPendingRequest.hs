@@ -49,7 +49,7 @@ data Issuing_authorization_pending_request = Issuing_authorization_pending_reque
   -- | amount: The additional amount Stripe will hold if the authorization is approved, in the card\'s [currency](https:\/\/docs.stripe.com\/api\#issuing_authorization_object-pending-request-currency) and in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal).
   issuing_authorization_pending_requestAmount :: GHC.Types.Int
   -- | amount_details: Detailed breakdown of amount components. These amounts are denominated in \`currency\` and in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal).
-  , issuing_authorization_pending_requestAmount_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_authorization_pending_requestAmount_detailsNonNullable))
+  , issuing_authorization_pending_requestAmount_details :: (GHC.Maybe.Maybe Issuing_authorization_pending_requestAmount_details)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   , issuing_authorization_pending_requestCurrency :: Data.Text.Internal.Text
   -- | is_amount_controllable: If set \`true\`, you may provide [amount](https:\/\/docs.stripe.com\/api\/issuing\/authorizations\/approve\#approve_issuing_authorization-amount) to control how much to hold for the authorization.
@@ -59,7 +59,7 @@ data Issuing_authorization_pending_request = Issuing_authorization_pending_reque
   -- | merchant_currency: The local currency the merchant is requesting to authorize.
   , issuing_authorization_pending_requestMerchant_currency :: Data.Text.Internal.Text
   -- | network_risk_score: The card network\'s estimate of the likelihood that an authorization is fraudulent. Takes on values between 1 and 99.
-  , issuing_authorization_pending_requestNetwork_risk_score :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_authorization_pending_requestNetwork_risk_score :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_pending_request
@@ -84,19 +84,19 @@ mkIssuing_authorization_pending_request issuing_authorization_pending_requestAmo
 -- | Defines the object schema located at @components.schemas.issuing_authorization_pending_request.properties.amount_details.anyOf@ in the specification.
 -- 
 -- Detailed breakdown of amount components. These amounts are denominated in \\\`currency\\\` and in the [smallest currency unit](https:\\\/\\\/docs.stripe.com\\\/currencies\\\#zero-decimal).
-data Issuing_authorization_pending_requestAmount_detailsNonNullable = Issuing_authorization_pending_requestAmount_detailsNonNullable {
+data Issuing_authorization_pending_requestAmount_details = Issuing_authorization_pending_requestAmount_details {
   -- | atm_fee: The fee charged by the ATM for the cash withdrawal.
-  issuing_authorization_pending_requestAmount_detailsNonNullableAtm_fee :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_authorization_pending_requestAmount_detailsAtm_fee :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | cashback_amount: The amount of cash requested by the cardholder.
-  , issuing_authorization_pending_requestAmount_detailsNonNullableCashback_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_authorization_pending_requestAmount_detailsCashback_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_pending_requestAmount_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsNonNullableAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsNonNullableCashback_amount obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsNonNullableAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsNonNullableCashback_amount obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_pending_requestAmount_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_pending_requestAmount_detailsNonNullable" (\obj -> (GHC.Base.pure Issuing_authorization_pending_requestAmount_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "atm_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashback_amount"))}
--- | Create a new 'Issuing_authorization_pending_requestAmount_detailsNonNullable' with all required fields.
-mkIssuing_authorization_pending_requestAmount_detailsNonNullable :: Issuing_authorization_pending_requestAmount_detailsNonNullable
-mkIssuing_authorization_pending_requestAmount_detailsNonNullable = Issuing_authorization_pending_requestAmount_detailsNonNullable{issuing_authorization_pending_requestAmount_detailsNonNullableAtm_fee = GHC.Maybe.Nothing,
-                                                                                                                                  issuing_authorization_pending_requestAmount_detailsNonNullableCashback_amount = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_pending_requestAmount_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsCashback_amount obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_pending_requestAmount_detailsCashback_amount obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_pending_requestAmount_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_pending_requestAmount_details" (\obj -> (GHC.Base.pure Issuing_authorization_pending_requestAmount_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "atm_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashback_amount"))}
+-- | Create a new 'Issuing_authorization_pending_requestAmount_details' with all required fields.
+mkIssuing_authorization_pending_requestAmount_details :: Issuing_authorization_pending_requestAmount_details
+mkIssuing_authorization_pending_requestAmount_details = Issuing_authorization_pending_requestAmount_details{issuing_authorization_pending_requestAmount_detailsAtm_fee = GHC.Maybe.Nothing,
+                                                                                                            issuing_authorization_pending_requestAmount_detailsCashback_amount = GHC.Maybe.Nothing}

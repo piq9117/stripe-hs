@@ -51,9 +51,9 @@ data Billing_credit_grants_resource_balance_credit = Billing_credit_grants_resou
   -- | amount: 
   billing_credit_grants_resource_balance_creditAmount :: Billing_credit_grants_resource_amount
   -- | credits_application_invoice_voided: Details of the invoice to which the reinstated credits were originally applied. Only present if \`type\` is \`credits_application_invoice_voided\`.
-  , billing_credit_grants_resource_balance_creditCredits_application_invoice_voided :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable))
+  , billing_credit_grants_resource_balance_creditCredits_application_invoice_voided :: (GHC.Maybe.Maybe Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided)
   -- | type: The type of credit transaction.
-  , billing_credit_grants_resource_balance_creditType :: Billing_credit_grants_resource_balance_creditType
+  , billing_credit_grants_resource_balance_creditType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_credit
@@ -63,7 +63,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balan
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_balance_credit" (\obj -> ((GHC.Base.pure Billing_credit_grants_resource_balance_credit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "credits_application_invoice_voided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Billing_credit_grants_resource_balance_credit' with all required fields.
 mkBilling_credit_grants_resource_balance_credit :: Billing_credit_grants_resource_amount -- ^ 'billing_credit_grants_resource_balance_creditAmount'
-  -> Billing_credit_grants_resource_balance_creditType -- ^ 'billing_credit_grants_resource_balance_creditType'
+  -> Data.Text.Internal.Text -- ^ 'billing_credit_grants_resource_balance_creditType'
   -> Billing_credit_grants_resource_balance_credit
 mkBilling_credit_grants_resource_balance_credit billing_credit_grants_resource_balance_creditAmount billing_credit_grants_resource_balance_creditType = Billing_credit_grants_resource_balance_credit{billing_credit_grants_resource_balance_creditAmount = billing_credit_grants_resource_balance_creditAmount,
                                                                                                                                                                                                       billing_credit_grants_resource_balance_creditCredits_application_invoice_voided = GHC.Maybe.Nothing,
@@ -71,55 +71,37 @@ mkBilling_credit_grants_resource_balance_credit billing_credit_grants_resource_b
 -- | Defines the object schema located at @components.schemas.billing_credit_grants_resource_balance_credit.properties.credits_application_invoice_voided.anyOf@ in the specification.
 -- 
 -- Details of the invoice to which the reinstated credits were originally applied. Only present if \\\`type\\\` is \\\`credits_application_invoice_voided\\\`.
-data Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable = Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable {
+data Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided = Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided {
   -- | invoice: The invoice to which the reinstated billing credits were originally applied.
-  billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice :: (GHC.Maybe.Maybe Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceVariants)
+  billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice :: (GHC.Maybe.Maybe Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceVariants)
   -- | invoice_line_item: The invoice line item to which the reinstated billing credits were originally applied.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice_line_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice_line_item :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice_line_item obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice_line_item obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable" (\obj -> (GHC.Base.pure Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_item"))}
--- | Create a new 'Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable' with all required fields.
-mkBilling_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable :: Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable
-mkBilling_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable = Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullable{billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice = GHC.Maybe.Nothing,
-                                                                                                                                                                                          billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoice_line_item = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice_line_item obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("invoice_line_item" Data.Aeson.Types.ToJSON..=)) (billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice_line_item obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided" (\obj -> (GHC.Base.pure Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "invoice_line_item"))}
+-- | Create a new 'Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided' with all required fields.
+mkBilling_credit_grants_resource_balance_creditCredits_application_invoice_voided :: Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided
+mkBilling_credit_grants_resource_balance_creditCredits_application_invoice_voided = Billing_credit_grants_resource_balance_creditCredits_application_invoice_voided{billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice = GHC.Maybe.Nothing,
+                                                                                                                                                                    billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoice_line_item = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.billing_credit_grants_resource_balance_credit.properties.credits_application_invoice_voided.anyOf.properties.invoice.anyOf@ in the specification.
 -- 
 -- The invoice to which the reinstated billing credits were originally applied.
-data Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceVariants =
-   Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceText Data.Text.Internal.Text
-  | Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceInvoice Invoice
+data Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceVariants =
+   Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceText Data.Text.Internal.Text
+  | Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceInvoice Invoice
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceVariants
-    where {toJSON (Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceVariants
-    where {parseJSON val = case (Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedNonNullableInvoiceInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceVariants
+    where {toJSON (Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceInvoice a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceVariants
+    where {parseJSON val = case (Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Billing_credit_grants_resource_balance_creditCredits_application_invoice_voidedInvoiceInvoice Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.billing_credit_grants_resource_balance_credit.properties.type@ in the specification.
--- 
--- The type of credit transaction.
-data Billing_credit_grants_resource_balance_creditType =
-   Billing_credit_grants_resource_balance_creditTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Billing_credit_grants_resource_balance_creditTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Billing_credit_grants_resource_balance_creditTypeEnumCredits_application_invoice_voided -- ^ Represents the JSON value @"credits_application_invoice_voided"@
-  | Billing_credit_grants_resource_balance_creditTypeEnumCredits_granted -- ^ Represents the JSON value @"credits_granted"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_balance_creditType
-    where {toJSON (Billing_credit_grants_resource_balance_creditTypeOther val) = val;
-           toJSON (Billing_credit_grants_resource_balance_creditTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Billing_credit_grants_resource_balance_creditTypeEnumCredits_application_invoice_voided) = "credits_application_invoice_voided";
-           toJSON (Billing_credit_grants_resource_balance_creditTypeEnumCredits_granted) = "credits_granted"}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_balance_creditType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "credits_application_invoice_voided" -> Billing_credit_grants_resource_balance_creditTypeEnumCredits_application_invoice_voided
-                                             | val GHC.Classes.== "credits_granted" -> Billing_credit_grants_resource_balance_creditTypeEnumCredits_granted
-                                             | GHC.Base.otherwise -> Billing_credit_grants_resource_balance_creditTypeOther val)}

@@ -50,9 +50,9 @@ data Mandate_bacs_debit = Mandate_bacs_debit {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  mandate_bacs_debitDisplay_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  mandate_bacs_debitDisplay_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_status: The status of the mandate on the Bacs network. Can be one of \`pending\`, \`revoked\`, \`refused\`, or \`accepted\`.
-  , mandate_bacs_debitNetwork_status :: Mandate_bacs_debitNetwork_status
+  , mandate_bacs_debitNetwork_status :: Data.Text.Internal.Text
   -- | reference: The unique reference identifying the mandate on the Bacs network.
   -- 
   -- Constraints:
@@ -60,13 +60,13 @@ data Mandate_bacs_debit = Mandate_bacs_debit {
   -- * Maximum length of 5000
   , mandate_bacs_debitReference :: Data.Text.Internal.Text
   -- | revocation_reason: When the mandate is revoked on the Bacs network this field displays the reason for the revocation.
-  , mandate_bacs_debitRevocation_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Mandate_bacs_debitRevocation_reasonNonNullable))
+  , mandate_bacs_debitRevocation_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | service_user_number: The service user number for the account on this mandate.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , mandate_bacs_debitService_user_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , mandate_bacs_debitService_user_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | url: The URL that will contain the mandate that the customer has signed.
   -- 
   -- Constraints:
@@ -81,7 +81,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Mandate_bacs_debit
 instance Data.Aeson.Types.FromJSON.FromJSON Mandate_bacs_debit
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Mandate_bacs_debit" (\obj -> (((((GHC.Base.pure Mandate_bacs_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "display_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "network_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "revocation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "service_user_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
 -- | Create a new 'Mandate_bacs_debit' with all required fields.
-mkMandate_bacs_debit :: Mandate_bacs_debitNetwork_status -- ^ 'mandate_bacs_debitNetwork_status'
+mkMandate_bacs_debit :: Data.Text.Internal.Text -- ^ 'mandate_bacs_debitNetwork_status'
   -> Data.Text.Internal.Text -- ^ 'mandate_bacs_debitReference'
   -> Data.Text.Internal.Text -- ^ 'mandate_bacs_debitUrl'
   -> Mandate_bacs_debit
@@ -91,54 +91,3 @@ mkMandate_bacs_debit mandate_bacs_debitNetwork_status mandate_bacs_debitReferenc
                                                                                                                              mandate_bacs_debitRevocation_reason = GHC.Maybe.Nothing,
                                                                                                                              mandate_bacs_debitService_user_number = GHC.Maybe.Nothing,
                                                                                                                              mandate_bacs_debitUrl = mandate_bacs_debitUrl}
--- | Defines the enum schema located at @components.schemas.mandate_bacs_debit.properties.network_status@ in the specification.
--- 
--- The status of the mandate on the Bacs network. Can be one of \`pending\`, \`revoked\`, \`refused\`, or \`accepted\`.
-data Mandate_bacs_debitNetwork_status =
-   Mandate_bacs_debitNetwork_statusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_bacs_debitNetwork_statusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_bacs_debitNetwork_statusEnumAccepted -- ^ Represents the JSON value @"accepted"@
-  | Mandate_bacs_debitNetwork_statusEnumPending -- ^ Represents the JSON value @"pending"@
-  | Mandate_bacs_debitNetwork_statusEnumRefused -- ^ Represents the JSON value @"refused"@
-  | Mandate_bacs_debitNetwork_statusEnumRevoked -- ^ Represents the JSON value @"revoked"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_bacs_debitNetwork_status
-    where {toJSON (Mandate_bacs_debitNetwork_statusOther val) = val;
-           toJSON (Mandate_bacs_debitNetwork_statusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_bacs_debitNetwork_statusEnumAccepted) = "accepted";
-           toJSON (Mandate_bacs_debitNetwork_statusEnumPending) = "pending";
-           toJSON (Mandate_bacs_debitNetwork_statusEnumRefused) = "refused";
-           toJSON (Mandate_bacs_debitNetwork_statusEnumRevoked) = "revoked"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_bacs_debitNetwork_status
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "accepted" -> Mandate_bacs_debitNetwork_statusEnumAccepted
-                                             | val GHC.Classes.== "pending" -> Mandate_bacs_debitNetwork_statusEnumPending
-                                             | val GHC.Classes.== "refused" -> Mandate_bacs_debitNetwork_statusEnumRefused
-                                             | val GHC.Classes.== "revoked" -> Mandate_bacs_debitNetwork_statusEnumRevoked
-                                             | GHC.Base.otherwise -> Mandate_bacs_debitNetwork_statusOther val)}
--- | Defines the enum schema located at @components.schemas.mandate_bacs_debit.properties.revocation_reason@ in the specification.
--- 
--- When the mandate is revoked on the Bacs network this field displays the reason for the revocation.
-data Mandate_bacs_debitRevocation_reasonNonNullable =
-   Mandate_bacs_debitRevocation_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_bacs_debitRevocation_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_bacs_debitRevocation_reasonNonNullableEnumAccount_closed -- ^ Represents the JSON value @"account_closed"@
-  | Mandate_bacs_debitRevocation_reasonNonNullableEnumBank_account_restricted -- ^ Represents the JSON value @"bank_account_restricted"@
-  | Mandate_bacs_debitRevocation_reasonNonNullableEnumBank_ownership_changed -- ^ Represents the JSON value @"bank_ownership_changed"@
-  | Mandate_bacs_debitRevocation_reasonNonNullableEnumCould_not_process -- ^ Represents the JSON value @"could_not_process"@
-  | Mandate_bacs_debitRevocation_reasonNonNullableEnumDebit_not_authorized -- ^ Represents the JSON value @"debit_not_authorized"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_bacs_debitRevocation_reasonNonNullable
-    where {toJSON (Mandate_bacs_debitRevocation_reasonNonNullableOther val) = val;
-           toJSON (Mandate_bacs_debitRevocation_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_bacs_debitRevocation_reasonNonNullableEnumAccount_closed) = "account_closed";
-           toJSON (Mandate_bacs_debitRevocation_reasonNonNullableEnumBank_account_restricted) = "bank_account_restricted";
-           toJSON (Mandate_bacs_debitRevocation_reasonNonNullableEnumBank_ownership_changed) = "bank_ownership_changed";
-           toJSON (Mandate_bacs_debitRevocation_reasonNonNullableEnumCould_not_process) = "could_not_process";
-           toJSON (Mandate_bacs_debitRevocation_reasonNonNullableEnumDebit_not_authorized) = "debit_not_authorized"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_bacs_debitRevocation_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account_closed" -> Mandate_bacs_debitRevocation_reasonNonNullableEnumAccount_closed
-                                             | val GHC.Classes.== "bank_account_restricted" -> Mandate_bacs_debitRevocation_reasonNonNullableEnumBank_account_restricted
-                                             | val GHC.Classes.== "bank_ownership_changed" -> Mandate_bacs_debitRevocation_reasonNonNullableEnumBank_ownership_changed
-                                             | val GHC.Classes.== "could_not_process" -> Mandate_bacs_debitRevocation_reasonNonNullableEnumCould_not_process
-                                             | val GHC.Classes.== "debit_not_authorized" -> Mandate_bacs_debitRevocation_reasonNonNullableEnumDebit_not_authorized
-                                             | GHC.Base.otherwise -> Mandate_bacs_debitRevocation_reasonNonNullableOther val)}

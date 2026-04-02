@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Account_unification_account_controller_fees = Account_unification_account_controller_fees {
   -- | payer: A value indicating the responsible payer of a bundle of Stripe fees for pricing-control eligible products on this account. Learn more about [fee behavior on connected accounts](https:\/\/docs.stripe.com\/connect\/direct-charges-fee-payer-behavior).
-  account_unification_account_controller_feesPayer :: Account_unification_account_controller_feesPayer
+  account_unification_account_controller_feesPayer :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_fees
@@ -55,30 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_f
 instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controller_fees
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_unification_account_controller_fees" (\obj -> GHC.Base.pure Account_unification_account_controller_fees GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payer"))}
 -- | Create a new 'Account_unification_account_controller_fees' with all required fields.
-mkAccount_unification_account_controller_fees :: Account_unification_account_controller_feesPayer -- ^ 'account_unification_account_controller_feesPayer'
+mkAccount_unification_account_controller_fees :: Data.Text.Internal.Text -- ^ 'account_unification_account_controller_feesPayer'
   -> Account_unification_account_controller_fees
 mkAccount_unification_account_controller_fees account_unification_account_controller_feesPayer = Account_unification_account_controller_fees{account_unification_account_controller_feesPayer = account_unification_account_controller_feesPayer}
--- | Defines the enum schema located at @components.schemas.account_unification_account_controller_fees.properties.payer@ in the specification.
--- 
--- A value indicating the responsible payer of a bundle of Stripe fees for pricing-control eligible products on this account. Learn more about [fee behavior on connected accounts](https:\/\/docs.stripe.com\/connect\/direct-charges-fee-payer-behavior).
-data Account_unification_account_controller_feesPayer =
-   Account_unification_account_controller_feesPayerOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_unification_account_controller_feesPayerTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_unification_account_controller_feesPayerEnumAccount -- ^ Represents the JSON value @"account"@
-  | Account_unification_account_controller_feesPayerEnumApplication -- ^ Represents the JSON value @"application"@
-  | Account_unification_account_controller_feesPayerEnumApplication_custom -- ^ Represents the JSON value @"application_custom"@
-  | Account_unification_account_controller_feesPayerEnumApplication_express -- ^ Represents the JSON value @"application_express"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller_feesPayer
-    where {toJSON (Account_unification_account_controller_feesPayerOther val) = val;
-           toJSON (Account_unification_account_controller_feesPayerTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_unification_account_controller_feesPayerEnumAccount) = "account";
-           toJSON (Account_unification_account_controller_feesPayerEnumApplication) = "application";
-           toJSON (Account_unification_account_controller_feesPayerEnumApplication_custom) = "application_custom";
-           toJSON (Account_unification_account_controller_feesPayerEnumApplication_express) = "application_express"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controller_feesPayer
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Account_unification_account_controller_feesPayerEnumAccount
-                                             | val GHC.Classes.== "application" -> Account_unification_account_controller_feesPayerEnumApplication
-                                             | val GHC.Classes.== "application_custom" -> Account_unification_account_controller_feesPayerEnumApplication_custom
-                                             | val GHC.Classes.== "application_express" -> Account_unification_account_controller_feesPayerEnumApplication_express
-                                             | GHC.Base.otherwise -> Account_unification_account_controller_feesPayerOther val)}

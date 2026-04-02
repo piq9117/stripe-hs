@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_options_satispay = Payment_method_options_satispay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_method_options_satispayCapture_method :: (GHC.Maybe.Maybe Payment_method_options_satispayCapture_method)
+  payment_method_options_satispayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_satispay
@@ -57,18 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_satispay
 -- | Create a new 'Payment_method_options_satispay' with all required fields.
 mkPayment_method_options_satispay :: Payment_method_options_satispay
 mkPayment_method_options_satispay = Payment_method_options_satispay{payment_method_options_satispayCapture_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_options_satispay.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_method_options_satispayCapture_method =
-   Payment_method_options_satispayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_options_satispayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_options_satispayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_options_satispayCapture_method
-    where {toJSON (Payment_method_options_satispayCapture_methodOther val) = val;
-           toJSON (Payment_method_options_satispayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_options_satispayCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_options_satispayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_method_options_satispayCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_method_options_satispayCapture_methodOther val)}

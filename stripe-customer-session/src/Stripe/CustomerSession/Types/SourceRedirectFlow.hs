@@ -50,7 +50,7 @@ data Source_redirect_flow = Source_redirect_flow {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  source_redirect_flowFailure_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_redirect_flowFailure_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | return_url: The URL you provide to redirect the customer to after they authenticated their payment.
   -- 
   -- Constraints:

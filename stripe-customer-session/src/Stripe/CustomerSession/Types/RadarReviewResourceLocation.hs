@@ -50,23 +50,23 @@ data Radar_review_resource_location = Radar_review_resource_location {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  radar_review_resource_locationCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  radar_review_resource_locationCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country where the payment originated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , radar_review_resource_locationCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , radar_review_resource_locationCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | latitude: The geographic latitude where the payment originated.
-  , radar_review_resource_locationLatitude :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  , radar_review_resource_locationLatitude :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | longitude: The geographic longitude where the payment originated.
-  , radar_review_resource_locationLongitude :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  , radar_review_resource_locationLongitude :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | region: The state\/county\/province\/region where the payment originated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , radar_review_resource_locationRegion :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , radar_review_resource_locationRegion :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Radar_review_resource_location

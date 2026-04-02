@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.BillingCreditGrantsResourceAp
 -- 
 data Billing_credit_grants_resource_scope = Billing_credit_grants_resource_scope {
   -- | price_type: The price type that credit grants can apply to. We currently only support the \`metered\` price type. This refers to prices that have a [Billing Meter](https:\/\/docs.stripe.com\/api\/billing\/meter) attached to them. Cannot be used in combination with \`prices\`.
-  billing_credit_grants_resource_scopePrice_type :: (GHC.Maybe.Maybe Billing_credit_grants_resource_scopePrice_type)
+  billing_credit_grants_resource_scopePrice_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | prices: The prices that credit grants can apply to. We currently only support \`metered\` prices. This refers to prices that have a [Billing Meter](https:\/\/docs.stripe.com\/api\/billing\/meter) attached to them. Cannot be used in combination with \`price_type\`.
   , billing_credit_grants_resource_scopePrices :: (GHC.Maybe.Maybe [Billing_credit_grants_resource_applicable_price])
   } deriving (GHC.Show.Show
@@ -61,18 +61,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_scope
 mkBilling_credit_grants_resource_scope :: Billing_credit_grants_resource_scope
 mkBilling_credit_grants_resource_scope = Billing_credit_grants_resource_scope{billing_credit_grants_resource_scopePrice_type = GHC.Maybe.Nothing,
                                                                               billing_credit_grants_resource_scopePrices = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.billing_credit_grants_resource_scope.properties.price_type@ in the specification.
--- 
--- The price type that credit grants can apply to. We currently only support the \`metered\` price type. This refers to prices that have a [Billing Meter](https:\/\/docs.stripe.com\/api\/billing\/meter) attached to them. Cannot be used in combination with \`prices\`.
-data Billing_credit_grants_resource_scopePrice_type =
-   Billing_credit_grants_resource_scopePrice_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Billing_credit_grants_resource_scopePrice_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Billing_credit_grants_resource_scopePrice_typeEnumMetered -- ^ Represents the JSON value @"metered"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Billing_credit_grants_resource_scopePrice_type
-    where {toJSON (Billing_credit_grants_resource_scopePrice_typeOther val) = val;
-           toJSON (Billing_credit_grants_resource_scopePrice_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Billing_credit_grants_resource_scopePrice_typeEnumMetered) = "metered"}
-instance Data.Aeson.Types.FromJSON.FromJSON Billing_credit_grants_resource_scopePrice_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "metered" -> Billing_credit_grants_resource_scopePrice_typeEnumMetered
-                                             | GHC.Base.otherwise -> Billing_credit_grants_resource_scopePrice_typeOther val)}

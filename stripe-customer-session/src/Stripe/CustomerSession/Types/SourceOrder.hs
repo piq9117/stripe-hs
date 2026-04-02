@@ -58,7 +58,7 @@ data Source_order = Source_order {
   -- * Maximum length of 5000
   , source_orderEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | items: List of items constituting the order.
-  , source_orderItems :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Source_order_item]))
+  , source_orderItems :: (GHC.Maybe.Maybe [Source_order_item])
   -- | shipping: 
   , source_orderShipping :: (GHC.Maybe.Maybe Shipping)
   } deriving (GHC.Show.Show

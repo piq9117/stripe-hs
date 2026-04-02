@@ -60,9 +60,9 @@ data Customer_balance_resource_cash_balance_transaction_resource_funded_transact
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The funding method type used to fund the customer balance. Permitted values include: \`eu_bank_transfer\`, \`gb_bank_transfer\`, \`jp_bank_transfer\`, \`mx_bank_transfer\`, or \`us_bank_transfer\`.
-  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType :: Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType
+  , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType :: Data.Text.Internal.Text
   -- | us_bank_transfer: 
   , customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferUs_bank_transfer :: (GHC.Maybe.Maybe Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer)
   } deriving (GHC.Show.Show
@@ -73,7 +73,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Customer_balance_resource_cash_balance_t
 instance Data.Aeson.Types.FromJSON.FromJSON Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer" (\obj -> (((((GHC.Base.pure Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eu_bank_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "gb_bank_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "jp_bank_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_transfer"))}
 -- | Create a new 'Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer' with all required fields.
-mkCustomer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer :: Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType -- ^ 'customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType'
+mkCustomer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer :: Data.Text.Internal.Text -- ^ 'customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType'
   -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer
 mkCustomer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType = Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer{customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferEu_bank_transfer = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                                                                                                           customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferGb_bank_transfer = GHC.Maybe.Nothing,
@@ -81,30 +81,3 @@ mkCustomer_balance_resource_cash_balance_transaction_resource_funded_transaction
                                                                                                                                                                                                                                                                                                                           customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferReference = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                                                                                                           customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType = customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType,
                                                                                                                                                                                                                                                                                                                           customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferUs_bank_transfer = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer.properties.type@ in the specification.
--- 
--- The funding method type used to fund the customer balance. Permitted values include: \`eu_bank_transfer\`, \`gb_bank_transfer\`, \`jp_bank_transfer\`, \`mx_bank_transfer\`, or \`us_bank_transfer\`.
-data Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType =
-   Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumEu_bank_transfer -- ^ Represents the JSON value @"eu_bank_transfer"@
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumGb_bank_transfer -- ^ Represents the JSON value @"gb_bank_transfer"@
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumJp_bank_transfer -- ^ Represents the JSON value @"jp_bank_transfer"@
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumMx_bank_transfer -- ^ Represents the JSON value @"mx_bank_transfer"@
-  | Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumUs_bank_transfer -- ^ Represents the JSON value @"us_bank_transfer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType
-    where {toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeOther val) = val;
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumEu_bank_transfer) = "eu_bank_transfer";
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumGb_bank_transfer) = "gb_bank_transfer";
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumJp_bank_transfer) = "jp_bank_transfer";
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumMx_bank_transfer) = "mx_bank_transfer";
-           toJSON (Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumUs_bank_transfer) = "us_bank_transfer"}
-instance Data.Aeson.Types.FromJSON.FromJSON Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "eu_bank_transfer" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumEu_bank_transfer
-                                             | val GHC.Classes.== "gb_bank_transfer" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumGb_bank_transfer
-                                             | val GHC.Classes.== "jp_bank_transfer" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumJp_bank_transfer
-                                             | val GHC.Classes.== "mx_bank_transfer" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumMx_bank_transfer
-                                             | val GHC.Classes.== "us_bank_transfer" -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeEnumUs_bank_transfer
-                                             | GHC.Base.otherwise -> Customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transferTypeOther val)}

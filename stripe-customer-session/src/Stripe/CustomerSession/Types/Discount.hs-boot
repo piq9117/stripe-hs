@@ -6,13 +6,13 @@ instance Show Discount
 instance Eq Discount
 instance Data.Aeson.FromJSON Discount
 instance Data.Aeson.ToJSON Discount
-data DiscountCustomerNonNullableVariants
-instance Show DiscountCustomerNonNullableVariants
-instance Eq DiscountCustomerNonNullableVariants
-instance Data.Aeson.FromJSON DiscountCustomerNonNullableVariants
-instance Data.Aeson.ToJSON DiscountCustomerNonNullableVariants
-data DiscountPromotion_codeNonNullableVariants
-instance Show DiscountPromotion_codeNonNullableVariants
-instance Eq DiscountPromotion_codeNonNullableVariants
-instance Data.Aeson.FromJSON DiscountPromotion_codeNonNullableVariants
-instance Data.Aeson.ToJSON DiscountPromotion_codeNonNullableVariants
+data DiscountCustomerVariants
+instance Show DiscountCustomerVariants
+instance Eq DiscountCustomerVariants
+instance Data.Aeson.FromJSON DiscountCustomerVariants
+instance Data.Aeson.ToJSON DiscountCustomerVariants
+data DiscountPromotion_codeVariants
+instance Show DiscountPromotion_codeVariants
+instance Eq DiscountPromotion_codeVariants
+instance Data.Aeson.FromJSON DiscountPromotion_codeVariants
+instance Data.Aeson.ToJSON DiscountPromotion_codeVariants

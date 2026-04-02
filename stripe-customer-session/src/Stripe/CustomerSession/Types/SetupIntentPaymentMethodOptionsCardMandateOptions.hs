@@ -45,10 +45,10 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 -- 
 data Setup_intent_payment_method_options_card_mandate_options = Setup_intent_payment_method_options_card_mandate_options {
-  -- | amount: Amount to be charged for future payments.
+  -- | amount: Amount to be charged for future payments, specified in the presentment currency.
   setup_intent_payment_method_options_card_mandate_optionsAmount :: GHC.Types.Int
   -- | amount_type: One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-  , setup_intent_payment_method_options_card_mandate_optionsAmount_type :: Setup_intent_payment_method_options_card_mandate_optionsAmount_type
+  , setup_intent_payment_method_options_card_mandate_optionsAmount_type :: Data.Text.Internal.Text
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   , setup_intent_payment_method_options_card_mandate_optionsCurrency :: Data.Text.Internal.Text
   -- | description: A description of the mandate or subscription that is meant to be displayed to the customer.
@@ -56,13 +56,13 @@ data Setup_intent_payment_method_options_card_mandate_options = Setup_intent_pay
   -- Constraints:
   -- 
   -- * Maximum length of 200
-  , setup_intent_payment_method_options_card_mandate_optionsDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intent_payment_method_options_card_mandate_optionsDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | end_date: End date of the mandate or subscription. If not provided, the mandate will be active until canceled. If provided, end date should be after start date.
-  , setup_intent_payment_method_options_card_mandate_optionsEnd_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intent_payment_method_options_card_mandate_optionsEnd_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-  , setup_intent_payment_method_options_card_mandate_optionsInterval :: Setup_intent_payment_method_options_card_mandate_optionsInterval
+  , setup_intent_payment_method_options_card_mandate_optionsInterval :: Data.Text.Internal.Text
   -- | interval_count: The number of intervals between payments. For example, \`interval=month\` and \`interval_count=3\` indicates one payment every three months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks). This parameter is optional when \`interval=sporadic\`.
-  , setup_intent_payment_method_options_card_mandate_optionsInterval_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intent_payment_method_options_card_mandate_optionsInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reference: Unique identifier for the mandate or subscription.
   -- 
   -- Constraints:
@@ -72,7 +72,7 @@ data Setup_intent_payment_method_options_card_mandate_options = Setup_intent_pay
   -- | start_date: Start date of the mandate or subscription. Start date should not be lesser than yesterday.
   , setup_intent_payment_method_options_card_mandate_optionsStart_date :: GHC.Types.Int
   -- | supported_types: Specifies the type of mandates supported. Possible values are \`india\`.
-  , setup_intent_payment_method_options_card_mandate_optionsSupported_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullable]))
+  , setup_intent_payment_method_options_card_mandate_optionsSupported_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_card_mandate_options
@@ -82,9 +82,9 @@ instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_options_card_mandate_options" (\obj -> (((((((((GHC.Base.pure Setup_intent_payment_method_options_card_mandate_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
 -- | Create a new 'Setup_intent_payment_method_options_card_mandate_options' with all required fields.
 mkSetup_intent_payment_method_options_card_mandate_options :: GHC.Types.Int -- ^ 'setup_intent_payment_method_options_card_mandate_optionsAmount'
-  -> Setup_intent_payment_method_options_card_mandate_optionsAmount_type -- ^ 'setup_intent_payment_method_options_card_mandate_optionsAmount_type'
+  -> Data.Text.Internal.Text -- ^ 'setup_intent_payment_method_options_card_mandate_optionsAmount_type'
   -> Data.Text.Internal.Text -- ^ 'setup_intent_payment_method_options_card_mandate_optionsCurrency'
-  -> Setup_intent_payment_method_options_card_mandate_optionsInterval -- ^ 'setup_intent_payment_method_options_card_mandate_optionsInterval'
+  -> Data.Text.Internal.Text -- ^ 'setup_intent_payment_method_options_card_mandate_optionsInterval'
   -> Data.Text.Internal.Text -- ^ 'setup_intent_payment_method_options_card_mandate_optionsReference'
   -> GHC.Types.Int -- ^ 'setup_intent_payment_method_options_card_mandate_optionsStart_date'
   -> Setup_intent_payment_method_options_card_mandate_options
@@ -98,63 +98,3 @@ mkSetup_intent_payment_method_options_card_mandate_options setup_intent_payment_
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 setup_intent_payment_method_options_card_mandate_optionsReference = setup_intent_payment_method_options_card_mandate_optionsReference,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 setup_intent_payment_method_options_card_mandate_optionsStart_date = setup_intent_payment_method_options_card_mandate_optionsStart_date,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 setup_intent_payment_method_options_card_mandate_optionsSupported_types = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card_mandate_options.properties.amount_type@ in the specification.
--- 
--- One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-data Setup_intent_payment_method_options_card_mandate_optionsAmount_type =
-   Setup_intent_payment_method_options_card_mandate_optionsAmount_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_card_mandate_optionsAmount_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_card_mandate_optionsAmount_typeEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Setup_intent_payment_method_options_card_mandate_optionsAmount_typeEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_card_mandate_optionsAmount_type
-    where {toJSON (Setup_intent_payment_method_options_card_mandate_optionsAmount_typeOther val) = val;
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsAmount_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsAmount_typeEnumFixed) = "fixed";
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsAmount_typeEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_card_mandate_optionsAmount_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Setup_intent_payment_method_options_card_mandate_optionsAmount_typeEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Setup_intent_payment_method_options_card_mandate_optionsAmount_typeEnumMaximum
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_card_mandate_optionsAmount_typeOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card_mandate_options.properties.interval@ in the specification.
--- 
--- Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-data Setup_intent_payment_method_options_card_mandate_optionsInterval =
-   Setup_intent_payment_method_options_card_mandate_optionsIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_card_mandate_optionsIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  | Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_card_mandate_optionsInterval
-    where {toJSON (Setup_intent_payment_method_options_card_mandate_optionsIntervalOther val) = val;
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumDay) = "day";
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumMonth) = "month";
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumSporadic) = "sporadic";
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumWeek) = "week";
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_card_mandate_optionsInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumMonth
-                                             | val GHC.Classes.== "sporadic" -> Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumSporadic
-                                             | val GHC.Classes.== "week" -> Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> Setup_intent_payment_method_options_card_mandate_optionsIntervalEnumYear
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_card_mandate_optionsIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_card_mandate_options.properties.supported_types.items@ in the specification.
--- 
--- 
-data Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullable =
-   Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableEnumIndia -- ^ Represents the JSON value @"india"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullable
-    where {toJSON (Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableEnumIndia) = "india"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "india" -> Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableEnumIndia
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_options_card_mandate_optionsSupported_typesNonNullableOther val)}

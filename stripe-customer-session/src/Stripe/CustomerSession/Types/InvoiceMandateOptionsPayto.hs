@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoice_mandate_options_payto = Invoice_mandate_options_payto {
   -- | amount: The maximum amount that can be collected in a single invoice. If you don\'t specify a maximum, then there is no limit.
-  invoice_mandate_options_paytoAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  invoice_mandate_options_paytoAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_type: Only \`maximum\` is supported.
-  , invoice_mandate_options_paytoAmount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_mandate_options_paytoAmount_typeNonNullable))
+  , invoice_mandate_options_paytoAmount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | purpose: The purpose for which payments are made. Has a default value based on your merchant category code.
-  , invoice_mandate_options_paytoPurpose :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_mandate_options_paytoPurposeNonNullable))
+  , invoice_mandate_options_paytoPurpose :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_mandate_options_payto
@@ -63,66 +63,3 @@ mkInvoice_mandate_options_payto :: Invoice_mandate_options_payto
 mkInvoice_mandate_options_payto = Invoice_mandate_options_payto{invoice_mandate_options_paytoAmount = GHC.Maybe.Nothing,
                                                                 invoice_mandate_options_paytoAmount_type = GHC.Maybe.Nothing,
                                                                 invoice_mandate_options_paytoPurpose = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_mandate_options_payto.properties.amount_type@ in the specification.
--- 
--- Only \`maximum\` is supported.
-data Invoice_mandate_options_paytoAmount_typeNonNullable =
-   Invoice_mandate_options_paytoAmount_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_mandate_options_paytoAmount_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_mandate_options_paytoAmount_typeNonNullableEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Invoice_mandate_options_paytoAmount_typeNonNullableEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_mandate_options_paytoAmount_typeNonNullable
-    where {toJSON (Invoice_mandate_options_paytoAmount_typeNonNullableOther val) = val;
-           toJSON (Invoice_mandate_options_paytoAmount_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_mandate_options_paytoAmount_typeNonNullableEnumFixed) = "fixed";
-           toJSON (Invoice_mandate_options_paytoAmount_typeNonNullableEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_mandate_options_paytoAmount_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Invoice_mandate_options_paytoAmount_typeNonNullableEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Invoice_mandate_options_paytoAmount_typeNonNullableEnumMaximum
-                                             | GHC.Base.otherwise -> Invoice_mandate_options_paytoAmount_typeNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.invoice_mandate_options_payto.properties.purpose@ in the specification.
--- 
--- The purpose for which payments are made. Has a default value based on your merchant category code.
-data Invoice_mandate_options_paytoPurposeNonNullable =
-   Invoice_mandate_options_paytoPurposeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_mandate_options_paytoPurposeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumDependant_support -- ^ Represents the JSON value @"dependant_support"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumGovernment -- ^ Represents the JSON value @"government"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumLoan -- ^ Represents the JSON value @"loan"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumMortgage -- ^ Represents the JSON value @"mortgage"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumPension -- ^ Represents the JSON value @"pension"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumPersonal -- ^ Represents the JSON value @"personal"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumRetail -- ^ Represents the JSON value @"retail"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumSalary -- ^ Represents the JSON value @"salary"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumTax -- ^ Represents the JSON value @"tax"@
-  | Invoice_mandate_options_paytoPurposeNonNullableEnumUtility -- ^ Represents the JSON value @"utility"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_mandate_options_paytoPurposeNonNullable
-    where {toJSON (Invoice_mandate_options_paytoPurposeNonNullableOther val) = val;
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumDependant_support) = "dependant_support";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumGovernment) = "government";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumLoan) = "loan";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumMortgage) = "mortgage";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumOther) = "other";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumPension) = "pension";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumPersonal) = "personal";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumRetail) = "retail";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumSalary) = "salary";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumTax) = "tax";
-           toJSON (Invoice_mandate_options_paytoPurposeNonNullableEnumUtility) = "utility"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_mandate_options_paytoPurposeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "dependant_support" -> Invoice_mandate_options_paytoPurposeNonNullableEnumDependant_support
-                                             | val GHC.Classes.== "government" -> Invoice_mandate_options_paytoPurposeNonNullableEnumGovernment
-                                             | val GHC.Classes.== "loan" -> Invoice_mandate_options_paytoPurposeNonNullableEnumLoan
-                                             | val GHC.Classes.== "mortgage" -> Invoice_mandate_options_paytoPurposeNonNullableEnumMortgage
-                                             | val GHC.Classes.== "other" -> Invoice_mandate_options_paytoPurposeNonNullableEnumOther
-                                             | val GHC.Classes.== "pension" -> Invoice_mandate_options_paytoPurposeNonNullableEnumPension
-                                             | val GHC.Classes.== "personal" -> Invoice_mandate_options_paytoPurposeNonNullableEnumPersonal
-                                             | val GHC.Classes.== "retail" -> Invoice_mandate_options_paytoPurposeNonNullableEnumRetail
-                                             | val GHC.Classes.== "salary" -> Invoice_mandate_options_paytoPurposeNonNullableEnumSalary
-                                             | val GHC.Classes.== "tax" -> Invoice_mandate_options_paytoPurposeNonNullableEnumTax
-                                             | val GHC.Classes.== "utility" -> Invoice_mandate_options_paytoPurposeNonNullableEnumUtility
-                                             | GHC.Base.otherwise -> Invoice_mandate_options_paytoPurposeNonNullableOther val)}

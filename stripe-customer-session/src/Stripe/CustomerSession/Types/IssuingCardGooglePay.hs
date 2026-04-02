@@ -48,7 +48,7 @@ data Issuing_card_google_pay = Issuing_card_google_pay {
   -- | eligible: Google Pay Eligibility
   issuing_card_google_payEligible :: GHC.Types.Bool
   -- | ineligible_reason: Reason the card is ineligible for Google Pay
-  , issuing_card_google_payIneligible_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_card_google_payIneligible_reasonNonNullable))
+  , issuing_card_google_payIneligible_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_card_google_pay
@@ -61,24 +61,3 @@ mkIssuing_card_google_pay :: GHC.Types.Bool -- ^ 'issuing_card_google_payEligibl
   -> Issuing_card_google_pay
 mkIssuing_card_google_pay issuing_card_google_payEligible = Issuing_card_google_pay{issuing_card_google_payEligible = issuing_card_google_payEligible,
                                                                                     issuing_card_google_payIneligible_reason = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_card_google_pay.properties.ineligible_reason@ in the specification.
--- 
--- Reason the card is ineligible for Google Pay
-data Issuing_card_google_payIneligible_reasonNonNullable =
-   Issuing_card_google_payIneligible_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_card_google_payIneligible_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_card_google_payIneligible_reasonNonNullableEnumMissing_agreement -- ^ Represents the JSON value @"missing_agreement"@
-  | Issuing_card_google_payIneligible_reasonNonNullableEnumMissing_cardholder_contact -- ^ Represents the JSON value @"missing_cardholder_contact"@
-  | Issuing_card_google_payIneligible_reasonNonNullableEnumUnsupported_region -- ^ Represents the JSON value @"unsupported_region"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_card_google_payIneligible_reasonNonNullable
-    where {toJSON (Issuing_card_google_payIneligible_reasonNonNullableOther val) = val;
-           toJSON (Issuing_card_google_payIneligible_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_card_google_payIneligible_reasonNonNullableEnumMissing_agreement) = "missing_agreement";
-           toJSON (Issuing_card_google_payIneligible_reasonNonNullableEnumMissing_cardholder_contact) = "missing_cardholder_contact";
-           toJSON (Issuing_card_google_payIneligible_reasonNonNullableEnumUnsupported_region) = "unsupported_region"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_card_google_payIneligible_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "missing_agreement" -> Issuing_card_google_payIneligible_reasonNonNullableEnumMissing_agreement
-                                             | val GHC.Classes.== "missing_cardholder_contact" -> Issuing_card_google_payIneligible_reasonNonNullableEnumMissing_cardholder_contact
-                                             | val GHC.Classes.== "unsupported_region" -> Issuing_card_google_payIneligible_reasonNonNullableEnumUnsupported_region
-                                             | GHC.Base.otherwise -> Issuing_card_google_payIneligible_reasonNonNullableOther val)}

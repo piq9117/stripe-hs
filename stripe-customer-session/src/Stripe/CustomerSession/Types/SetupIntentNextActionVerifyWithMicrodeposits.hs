@@ -54,7 +54,7 @@ data Setup_intent_next_action_verify_with_microdeposits = Setup_intent_next_acti
   -- * Maximum length of 5000
   , setup_intent_next_action_verify_with_microdepositsHosted_verification_url :: Data.Text.Internal.Text
   -- | microdeposit_type: The type of the microdeposit sent to the customer. Used to distinguish between different verification methods.
-  , setup_intent_next_action_verify_with_microdepositsMicrodeposit_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable))
+  , setup_intent_next_action_verify_with_microdepositsMicrodeposit_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_next_action_verify_with_microdeposits
@@ -69,21 +69,3 @@ mkSetup_intent_next_action_verify_with_microdeposits :: GHC.Types.Int -- ^ 'setu
 mkSetup_intent_next_action_verify_with_microdeposits setup_intent_next_action_verify_with_microdepositsArrival_date setup_intent_next_action_verify_with_microdepositsHosted_verification_url = Setup_intent_next_action_verify_with_microdeposits{setup_intent_next_action_verify_with_microdepositsArrival_date = setup_intent_next_action_verify_with_microdepositsArrival_date,
                                                                                                                                                                                                                                                    setup_intent_next_action_verify_with_microdepositsHosted_verification_url = setup_intent_next_action_verify_with_microdepositsHosted_verification_url,
                                                                                                                                                                                                                                                    setup_intent_next_action_verify_with_microdepositsMicrodeposit_type = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_next_action_verify_with_microdeposits.properties.microdeposit_type@ in the specification.
--- 
--- The type of the microdeposit sent to the customer. Used to distinguish between different verification methods.
-data Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable =
-   Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumAmounts -- ^ Represents the JSON value @"amounts"@
-  | Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumDescriptor_code -- ^ Represents the JSON value @"descriptor_code"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable
-    where {toJSON (Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableOther val) = val;
-           toJSON (Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumAmounts) = "amounts";
-           toJSON (Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumDescriptor_code) = "descriptor_code"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amounts" -> Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumAmounts
-                                             | val GHC.Classes.== "descriptor_code" -> Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableEnumDescriptor_code
-                                             | GHC.Base.otherwise -> Setup_intent_next_action_verify_with_microdepositsMicrodeposit_typeNonNullableOther val)}

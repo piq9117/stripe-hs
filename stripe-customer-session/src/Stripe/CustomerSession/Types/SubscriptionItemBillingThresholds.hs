@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Subscription_item_billing_thresholds = Subscription_item_billing_thresholds {
   -- | usage_gte: Usage threshold that triggers the subscription to create an invoice
-  subscription_item_billing_thresholdsUsage_gte :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscription_item_billing_thresholdsUsage_gte :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_item_billing_thresholds

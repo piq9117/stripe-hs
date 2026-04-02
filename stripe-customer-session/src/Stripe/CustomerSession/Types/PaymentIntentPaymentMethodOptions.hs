@@ -100,6 +100,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsRevolutPa
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsSatispay
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsSofort
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsTwint
+import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsUpi
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsUsBankAccountMandateOptions
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsWechatPay
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsZip
@@ -206,6 +207,8 @@ data Payment_intent_payment_method_options = Payment_intent_payment_method_optio
   , payment_intent_payment_method_optionsSwish :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSwish)
   -- | twint
   , payment_intent_payment_method_optionsTwint :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsTwint)
+  -- | upi
+  , payment_intent_payment_method_optionsUpi :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsUpi)
   -- | us_bank_account
   , payment_intent_payment_method_optionsUs_bank_account :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsUs_bank_account)
   -- | wechat_pay
@@ -215,10 +218,10 @@ data Payment_intent_payment_method_options = Payment_intent_payment_method_optio
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_options
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsZip obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsZip obj) : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsZip obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsPromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsZip obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_options
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_options" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Payment_intent_payment_method_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "affirm")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alma")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billie")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "blik")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashapp")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "crypto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fpx")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "grabpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interac_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kakao_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "konbini")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kr_card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mb_way")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mobilepay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "naver_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nz_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pay_by_bank")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paynow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pix")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "promptpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "revolut_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "samsung_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "satispay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "swish")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "twint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "zip"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_options" (\obj -> ((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Payment_intent_payment_method_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "affirm")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alma")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billie")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "blik")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashapp")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "crypto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fpx")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "grabpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interac_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kakao_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "konbini")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kr_card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mb_way")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mobilepay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "naver_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nz_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pay_by_bank")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paynow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pix")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "promptpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "revolut_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "samsung_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "satispay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "swish")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "twint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "upi")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "zip"))}
 -- | Create a new 'Payment_intent_payment_method_options' with all required fields.
 mkPayment_intent_payment_method_options :: Payment_intent_payment_method_options
 mkPayment_intent_payment_method_options = Payment_intent_payment_method_options{payment_intent_payment_method_optionsAcss_debit = GHC.Maybe.Nothing,
@@ -270,6 +273,7 @@ mkPayment_intent_payment_method_options = Payment_intent_payment_method_options{
                                                                                 payment_intent_payment_method_optionsSofort = GHC.Maybe.Nothing,
                                                                                 payment_intent_payment_method_optionsSwish = GHC.Maybe.Nothing,
                                                                                 payment_intent_payment_method_optionsTwint = GHC.Maybe.Nothing,
+                                                                                payment_intent_payment_method_optionsUpi = GHC.Maybe.Nothing,
                                                                                 payment_intent_payment_method_optionsUs_bank_account = GHC.Maybe.Nothing,
                                                                                 payment_intent_payment_method_optionsWechat_pay = GHC.Maybe.Nothing,
                                                                                 payment_intent_payment_method_optionsZip = GHC.Maybe.Nothing}
@@ -278,7 +282,7 @@ mkPayment_intent_payment_method_options = Payment_intent_payment_method_options{
 -- 
 data Payment_intent_payment_method_optionsAcss_debit = Payment_intent_payment_method_optionsAcss_debit {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsAcss_debitCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAcss_debitCapture_method)
+  payment_intent_payment_method_optionsAcss_debitCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsAcss_debitInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -296,15 +300,15 @@ data Payment_intent_payment_method_optionsAcss_debit = Payment_intent_payment_me
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsAcss_debitSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAcss_debitSetup_future_usage)
+  , payment_intent_payment_method_optionsAcss_debitSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | target_date: Controls when Stripe will attempt to debit the funds from the customer\'s account. The date must be a string in YYYY-MM-DD format. The date must be in the future and between 3 and 15 calendar days from now.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payment_intent_payment_method_optionsAcss_debitTarget_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsAcss_debitVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAcss_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsAcss_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAcss_debit
@@ -323,78 +327,12 @@ mkPayment_intent_payment_method_optionsAcss_debit = Payment_intent_payment_metho
                                                                                                     payment_intent_payment_method_optionsAcss_debitSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsAcss_debitTarget_date = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsAcss_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.acss_debit.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsAcss_debitCapture_method =
-   Payment_intent_payment_method_optionsAcss_debitCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAcss_debitCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAcss_debitCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsAcss_debitCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAcss_debitCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsAcss_debitCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAcss_debitCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAcss_debitCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsAcss_debitCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAcss_debitCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsAcss_debitCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsAcss_debitCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAcss_debitCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.acss_debit.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsAcss_debitSetup_future_usage =
-   Payment_intent_payment_method_optionsAcss_debitSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAcss_debitSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAcss_debitSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsAcss_debitSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAcss_debitSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAcss_debitSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsAcss_debitSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAcss_debitSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.acss_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsAcss_debitVerification_method =
-   Payment_intent_payment_method_optionsAcss_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAcss_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAcss_debitVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsAcss_debitVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAcss_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAcss_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsAcss_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAcss_debitVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.affirm.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsAffirm = Payment_intent_payment_method_optionsAffirm {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsAffirmCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAffirmCapture_method)
+  payment_intent_payment_method_optionsAffirmCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsAffirmInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -418,9 +356,9 @@ data Payment_intent_payment_method_optionsAffirm = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsAffirmSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAffirmSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsAffirmVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAffirmVerification_method)
+  , payment_intent_payment_method_optionsAffirmSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsAffirmVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAffirm
@@ -439,69 +377,12 @@ mkPayment_intent_payment_method_optionsAffirm = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsAffirmRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsAffirmSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsAffirmVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.affirm.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsAffirmCapture_method =
-   Payment_intent_payment_method_optionsAffirmCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAffirmCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAffirmCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAffirmCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsAffirmCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAffirmCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAffirmCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAffirmCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsAffirmCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAffirmCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.affirm.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsAffirmSetup_future_usage =
-   Payment_intent_payment_method_optionsAffirmSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAffirmSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAffirmSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAffirmSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsAffirmSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAffirmSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAffirmSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAffirmSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsAffirmSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAffirmSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.affirm.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsAffirmVerification_method =
-   Payment_intent_payment_method_optionsAffirmVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAffirmVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAffirmVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsAffirmVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsAffirmVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAffirmVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsAffirmVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAffirmVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAffirmVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsAffirmVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsAffirmVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAffirmVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsAffirmVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsAffirmVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsAffirmVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAffirmVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.afterpay_clearpay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsAfterpay_clearpay = Payment_intent_payment_method_optionsAfterpay_clearpay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsAfterpay_clearpayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAfterpay_clearpayCapture_method)
+  payment_intent_payment_method_optionsAfterpay_clearpayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsAfterpay_clearpayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -512,7 +393,7 @@ data Payment_intent_payment_method_optionsAfterpay_clearpay = Payment_intent_pay
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_payment_method_optionsAfterpay_clearpayReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsAfterpay_clearpayReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsAfterpay_clearpayRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
@@ -526,9 +407,9 @@ data Payment_intent_payment_method_optionsAfterpay_clearpay = Payment_intent_pay
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsAfterpay_clearpayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAfterpay_clearpayVerification_method)
+  , payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsAfterpay_clearpayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAfterpay_clearpay
@@ -547,69 +428,12 @@ mkPayment_intent_payment_method_optionsAfterpay_clearpay = Payment_intent_paymen
                                                                                                                   payment_intent_payment_method_optionsAfterpay_clearpayRouting = GHC.Maybe.Nothing,
                                                                                                                   payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                                   payment_intent_payment_method_optionsAfterpay_clearpayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.afterpay_clearpay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsAfterpay_clearpayCapture_method =
-   Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAfterpay_clearpayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAfterpay_clearpayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAfterpay_clearpayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.afterpay_clearpay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usage =
-   Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAfterpay_clearpaySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.afterpay_clearpay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsAfterpay_clearpayVerification_method =
-   Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAfterpay_clearpayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAfterpay_clearpayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAfterpay_clearpayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.alipay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsAlipay = Payment_intent_payment_method_optionsAlipay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsAlipayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAlipayCapture_method)
+  payment_intent_payment_method_optionsAlipayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsAlipayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -627,9 +451,9 @@ data Payment_intent_payment_method_optionsAlipay = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsAlipaySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAlipaySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsAlipayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAlipayVerification_method)
+  , payment_intent_payment_method_optionsAlipaySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsAlipayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlipay
@@ -647,75 +471,12 @@ mkPayment_intent_payment_method_optionsAlipay = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsAlipayRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsAlipaySetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsAlipayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.alipay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsAlipayCapture_method =
-   Payment_intent_payment_method_optionsAlipayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAlipayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAlipayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsAlipayCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlipayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsAlipayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAlipayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAlipayCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsAlipayCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAlipayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsAlipayCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsAlipayCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAlipayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.alipay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsAlipaySetup_future_usage =
-   Payment_intent_payment_method_optionsAlipaySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAlipaySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAlipaySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsAlipaySetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlipaySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsAlipaySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAlipaySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAlipaySetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsAlipaySetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAlipaySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsAlipaySetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsAlipaySetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAlipaySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.alipay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsAlipayVerification_method =
-   Payment_intent_payment_method_optionsAlipayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAlipayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAlipayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsAlipayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsAlipayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlipayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsAlipayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAlipayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAlipayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsAlipayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsAlipayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAlipayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsAlipayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsAlipayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsAlipayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAlipayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.alma.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsAlma = Payment_intent_payment_method_optionsAlma {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsAlmaCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAlmaCapture_method)
+  payment_intent_payment_method_optionsAlmaCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsAlmaInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -733,9 +494,9 @@ data Payment_intent_payment_method_optionsAlma = Payment_intent_payment_method_o
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsAlmaSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAlmaSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsAlmaVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAlmaVerification_method)
+  , payment_intent_payment_method_optionsAlmaSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsAlmaVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlma
@@ -753,75 +514,12 @@ mkPayment_intent_payment_method_optionsAlma = Payment_intent_payment_method_opti
                                                                                         payment_intent_payment_method_optionsAlmaRouting = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsAlmaSetup_future_usage = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsAlmaVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.alma.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsAlmaCapture_method =
-   Payment_intent_payment_method_optionsAlmaCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAlmaCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAlmaCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlmaCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsAlmaCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAlmaCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAlmaCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAlmaCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsAlmaCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAlmaCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.alma.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsAlmaSetup_future_usage =
-   Payment_intent_payment_method_optionsAlmaSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAlmaSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlmaSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsAlmaSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAlmaSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAlmaSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsAlmaSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAlmaSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.alma.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsAlmaVerification_method =
-   Payment_intent_payment_method_optionsAlmaVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAlmaVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAlmaVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsAlmaVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsAlmaVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAlmaVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsAlmaVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAlmaVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAlmaVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsAlmaVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsAlmaVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAlmaVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsAlmaVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsAlmaVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsAlmaVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAlmaVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.amazon_pay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsAmazon_pay = Payment_intent_payment_method_optionsAmazon_pay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsAmazon_payCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAmazon_payCapture_method)
+  payment_intent_payment_method_optionsAmazon_payCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsAmazon_payInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -839,9 +537,9 @@ data Payment_intent_payment_method_optionsAmazon_pay = Payment_intent_payment_me
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsAmazon_paySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAmazon_paySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsAmazon_payVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAmazon_payVerification_method)
+  , payment_intent_payment_method_optionsAmazon_paySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsAmazon_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAmazon_pay
@@ -859,72 +557,12 @@ mkPayment_intent_payment_method_optionsAmazon_pay = Payment_intent_payment_metho
                                                                                                     payment_intent_payment_method_optionsAmazon_payRouting = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsAmazon_paySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsAmazon_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.amazon_pay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsAmazon_payCapture_method =
-   Payment_intent_payment_method_optionsAmazon_payCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAmazon_payCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAmazon_payCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAmazon_payCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsAmazon_payCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAmazon_payCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAmazon_payCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAmazon_payCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsAmazon_payCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAmazon_payCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.amazon_pay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsAmazon_paySetup_future_usage =
-   Payment_intent_payment_method_optionsAmazon_paySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAmazon_paySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAmazon_paySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsAmazon_paySetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAmazon_paySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsAmazon_paySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAmazon_paySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAmazon_paySetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsAmazon_paySetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAmazon_paySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsAmazon_paySetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsAmazon_paySetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAmazon_paySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.amazon_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsAmazon_payVerification_method =
-   Payment_intent_payment_method_optionsAmazon_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAmazon_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAmazon_payVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsAmazon_payVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAmazon_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAmazon_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsAmazon_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAmazon_payVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.au_becs_debit.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsAu_becs_debit = Payment_intent_payment_method_optionsAu_becs_debit {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsAu_becs_debitCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAu_becs_debitCapture_method)
+  payment_intent_payment_method_optionsAu_becs_debitCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsAu_becs_debitInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -942,15 +580,15 @@ data Payment_intent_payment_method_optionsAu_becs_debit = Payment_intent_payment
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsAu_becs_debitSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usage)
+  , payment_intent_payment_method_optionsAu_becs_debitSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | target_date: Controls when Stripe will attempt to debit the funds from the customer\'s account. The date must be a string in YYYY-MM-DD format. The date must be in the future and between 3 and 15 calendar days from now.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payment_intent_payment_method_optionsAu_becs_debitTarget_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsAu_becs_debitVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsAu_becs_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsAu_becs_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAu_becs_debit
@@ -969,78 +607,12 @@ mkPayment_intent_payment_method_optionsAu_becs_debit = Payment_intent_payment_me
                                                                                                           payment_intent_payment_method_optionsAu_becs_debitSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                           payment_intent_payment_method_optionsAu_becs_debitTarget_date = GHC.Maybe.Nothing,
                                                                                                           payment_intent_payment_method_optionsAu_becs_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.au_becs_debit.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsAu_becs_debitCapture_method =
-   Payment_intent_payment_method_optionsAu_becs_debitCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAu_becs_debitCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAu_becs_debitCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsAu_becs_debitCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAu_becs_debitCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsAu_becs_debitCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAu_becs_debitCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsAu_becs_debitCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsAu_becs_debitCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAu_becs_debitCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.au_becs_debit.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usage =
-   Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAu_becs_debitSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.au_becs_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsAu_becs_debitVerification_method =
-   Payment_intent_payment_method_optionsAu_becs_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsAu_becs_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsAu_becs_debitVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsAu_becs_debitVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsAu_becs_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsAu_becs_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsAu_becs_debitVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.bacs_debit.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsBacs_debit = Payment_intent_payment_method_optionsBacs_debit {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsBacs_debitCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBacs_debitCapture_method)
+  payment_intent_payment_method_optionsBacs_debitCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsBacs_debitInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -1058,15 +630,15 @@ data Payment_intent_payment_method_optionsBacs_debit = Payment_intent_payment_me
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsBacs_debitSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBacs_debitSetup_future_usage)
+  , payment_intent_payment_method_optionsBacs_debitSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | target_date: Controls when Stripe will attempt to debit the funds from the customer\'s account. The date must be a string in YYYY-MM-DD format. The date must be in the future and between 3 and 15 calendar days from now.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payment_intent_payment_method_optionsBacs_debitTarget_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsBacs_debitVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBacs_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsBacs_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBacs_debit
@@ -1085,84 +657,18 @@ mkPayment_intent_payment_method_optionsBacs_debit = Payment_intent_payment_metho
                                                                                                     payment_intent_payment_method_optionsBacs_debitSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsBacs_debitTarget_date = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsBacs_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.bacs_debit.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsBacs_debitCapture_method =
-   Payment_intent_payment_method_optionsBacs_debitCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBacs_debitCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBacs_debitCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsBacs_debitCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBacs_debitCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsBacs_debitCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBacs_debitCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBacs_debitCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsBacs_debitCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBacs_debitCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsBacs_debitCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsBacs_debitCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBacs_debitCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.bacs_debit.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsBacs_debitSetup_future_usage =
-   Payment_intent_payment_method_optionsBacs_debitSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBacs_debitSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBacs_debitSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsBacs_debitSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBacs_debitSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBacs_debitSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsBacs_debitSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBacs_debitSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.bacs_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsBacs_debitVerification_method =
-   Payment_intent_payment_method_optionsBacs_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBacs_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBacs_debitVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsBacs_debitVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBacs_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBacs_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsBacs_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBacs_debitVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.bancontact.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsBancontact = Payment_intent_payment_method_optionsBancontact {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsBancontactCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBancontactCapture_method)
+  payment_intent_payment_method_optionsBancontactCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsBancontactInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
   , payment_intent_payment_method_optionsBancontactMandate_options :: (GHC.Maybe.Maybe Payment_intent_payment_method_options_mandate_options_payto)
   -- | preferred_language: Preferred language of the Bancontact authorization page that the customer is redirected to.
-  , payment_intent_payment_method_optionsBancontactPreferred_language :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBancontactPreferred_language)
+  , payment_intent_payment_method_optionsBancontactPreferred_language :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsBancontactRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
@@ -1176,9 +682,9 @@ data Payment_intent_payment_method_optionsBancontact = Payment_intent_payment_me
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsBancontactSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBancontactSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsBancontactVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBancontactVerification_method)
+  , payment_intent_payment_method_optionsBancontactSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsBancontactVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBancontact
@@ -1197,99 +703,12 @@ mkPayment_intent_payment_method_optionsBancontact = Payment_intent_payment_metho
                                                                                                     payment_intent_payment_method_optionsBancontactRouting = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsBancontactSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsBancontactVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.bancontact.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsBancontactCapture_method =
-   Payment_intent_payment_method_optionsBancontactCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBancontactCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBancontactCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsBancontactCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBancontactCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsBancontactCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBancontactCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBancontactCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsBancontactCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBancontactCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsBancontactCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsBancontactCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBancontactCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.bancontact.anyOf.properties.preferred_language@ in the specification.
--- 
--- Preferred language of the Bancontact authorization page that the customer is redirected to.
-data Payment_intent_payment_method_optionsBancontactPreferred_language =
-   Payment_intent_payment_method_optionsBancontactPreferred_languageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBancontactPreferred_languageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBancontactPreferred_languageEnumDe -- ^ Represents the JSON value @"de"@
-  | Payment_intent_payment_method_optionsBancontactPreferred_languageEnumEn -- ^ Represents the JSON value @"en"@
-  | Payment_intent_payment_method_optionsBancontactPreferred_languageEnumFr -- ^ Represents the JSON value @"fr"@
-  | Payment_intent_payment_method_optionsBancontactPreferred_languageEnumNl -- ^ Represents the JSON value @"nl"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBancontactPreferred_language
-    where {toJSON (Payment_intent_payment_method_optionsBancontactPreferred_languageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBancontactPreferred_languageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBancontactPreferred_languageEnumDe) = "de";
-           toJSON (Payment_intent_payment_method_optionsBancontactPreferred_languageEnumEn) = "en";
-           toJSON (Payment_intent_payment_method_optionsBancontactPreferred_languageEnumFr) = "fr";
-           toJSON (Payment_intent_payment_method_optionsBancontactPreferred_languageEnumNl) = "nl"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBancontactPreferred_language
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "de" -> Payment_intent_payment_method_optionsBancontactPreferred_languageEnumDe
-                                             | val GHC.Classes.== "en" -> Payment_intent_payment_method_optionsBancontactPreferred_languageEnumEn
-                                             | val GHC.Classes.== "fr" -> Payment_intent_payment_method_optionsBancontactPreferred_languageEnumFr
-                                             | val GHC.Classes.== "nl" -> Payment_intent_payment_method_optionsBancontactPreferred_languageEnumNl
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBancontactPreferred_languageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.bancontact.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsBancontactSetup_future_usage =
-   Payment_intent_payment_method_optionsBancontactSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBancontactSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBancontactSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsBancontactSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBancontactSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsBancontactSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBancontactSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBancontactSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsBancontactSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBancontactSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsBancontactSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsBancontactSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBancontactSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.bancontact.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsBancontactVerification_method =
-   Payment_intent_payment_method_optionsBancontactVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBancontactVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBancontactVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsBancontactVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsBancontactVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBancontactVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsBancontactVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBancontactVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBancontactVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsBancontactVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsBancontactVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBancontactVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsBancontactVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsBancontactVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsBancontactVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBancontactVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.billie.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsBillie = Payment_intent_payment_method_optionsBillie {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsBillieCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBillieCapture_method)
+  payment_intent_payment_method_optionsBillieCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsBillieInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -1307,9 +726,9 @@ data Payment_intent_payment_method_optionsBillie = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsBillieSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBillieSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsBillieVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBillieVerification_method)
+  , payment_intent_payment_method_optionsBillieSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsBillieVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBillie
@@ -1327,75 +746,12 @@ mkPayment_intent_payment_method_optionsBillie = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsBillieRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsBillieSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsBillieVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.billie.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsBillieCapture_method =
-   Payment_intent_payment_method_optionsBillieCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBillieCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBillieCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBillieCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsBillieCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBillieCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBillieCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBillieCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsBillieCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBillieCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.billie.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsBillieSetup_future_usage =
-   Payment_intent_payment_method_optionsBillieSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBillieSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBillieSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsBillieSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsBillieSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBillieSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsBillieSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBillieSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBillieSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsBillieSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsBillieSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBillieSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsBillieSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsBillieSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsBillieSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBillieSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.billie.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsBillieVerification_method =
-   Payment_intent_payment_method_optionsBillieVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBillieVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBillieVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsBillieVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsBillieVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBillieVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsBillieVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBillieVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBillieVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsBillieVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsBillieVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBillieVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsBillieVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsBillieVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsBillieVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBillieVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.blik.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsBlik = Payment_intent_payment_method_optionsBlik {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsBlikCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBlikCapture_method)
+  payment_intent_payment_method_optionsBlikCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsBlikInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -1413,9 +769,9 @@ data Payment_intent_payment_method_optionsBlik = Payment_intent_payment_method_o
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsBlikSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBlikSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsBlikVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBlikVerification_method)
+  , payment_intent_payment_method_optionsBlikSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsBlikVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBlik
@@ -1433,72 +789,12 @@ mkPayment_intent_payment_method_optionsBlik = Payment_intent_payment_method_opti
                                                                                         payment_intent_payment_method_optionsBlikRouting = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsBlikSetup_future_usage = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsBlikVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.blik.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsBlikCapture_method =
-   Payment_intent_payment_method_optionsBlikCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBlikCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBlikCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsBlikCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBlikCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsBlikCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBlikCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBlikCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsBlikCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBlikCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsBlikCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsBlikCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBlikCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.blik.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsBlikSetup_future_usage =
-   Payment_intent_payment_method_optionsBlikSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBlikSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBlikSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBlikSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsBlikSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBlikSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBlikSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBlikSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsBlikSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBlikSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.blik.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsBlikVerification_method =
-   Payment_intent_payment_method_optionsBlikVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBlikVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBlikVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsBlikVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsBlikVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBlikVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsBlikVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBlikVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBlikVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsBlikVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsBlikVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBlikVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsBlikVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsBlikVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsBlikVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBlikVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.boleto.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsBoleto = Payment_intent_payment_method_optionsBoleto {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsBoletoCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBoletoCapture_method)
+  payment_intent_payment_method_optionsBoletoCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expires_after_days: The number of calendar days before a Boleto voucher expires. For example, if you create a Boleto voucher on Monday and you set expires_after_days to 2, the Boleto voucher will expire on Wednesday at 23:59 America\/Sao_Paulo time.
   , payment_intent_payment_method_optionsBoletoExpires_after_days :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | installments: 
@@ -1518,9 +814,9 @@ data Payment_intent_payment_method_optionsBoleto = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsBoletoSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBoletoSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsBoletoVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsBoletoVerification_method)
+  , payment_intent_payment_method_optionsBoletoSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsBoletoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBoleto
@@ -1539,98 +835,32 @@ mkPayment_intent_payment_method_optionsBoleto = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsBoletoRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsBoletoSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsBoletoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.boleto.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsBoletoCapture_method =
-   Payment_intent_payment_method_optionsBoletoCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBoletoCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBoletoCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsBoletoCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBoletoCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsBoletoCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBoletoCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBoletoCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsBoletoCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBoletoCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsBoletoCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsBoletoCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBoletoCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.boleto.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsBoletoSetup_future_usage =
-   Payment_intent_payment_method_optionsBoletoSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBoletoSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBoletoSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsBoletoSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBoletoSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBoletoSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsBoletoSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBoletoSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.boleto.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsBoletoVerification_method =
-   Payment_intent_payment_method_optionsBoletoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsBoletoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsBoletoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsBoletoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsBoletoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsBoletoVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsBoletoVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsBoletoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsBoletoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsBoletoVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsBoletoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsBoletoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsBoletoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsBoletoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsBoletoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsBoletoVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsCard = Payment_intent_payment_method_optionsCard {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsCardCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardCapture_method)
+  payment_intent_payment_method_optionsCardCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: Installment details for this payment.
   -- 
   -- For more information, see the [installments integration guide](https:\/\/docs.stripe.com\/payments\/installments).
-  , payment_intent_payment_method_optionsCardInstallments :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsCardInstallmentsNonNullable))
+  , payment_intent_payment_method_optionsCardInstallments :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardInstallments)
   -- | mandate_options: Configuration options for setting up an eMandate for cards issued in India.
-  , payment_intent_payment_method_optionsCardMandate_options :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsCardMandate_optionsNonNullable))
+  , payment_intent_payment_method_optionsCardMandate_options :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardMandate_options)
   -- | network: Selected network to process this payment intent on. Depends on the available networks of the card attached to the payment intent. Can be only set confirm-time.
-  , payment_intent_payment_method_optionsCardNetwork :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsCardNetworkNonNullable))
+  , payment_intent_payment_method_optionsCardNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_extended_authorization: Request ability to [capture beyond the standard authorization validity window](https:\/\/docs.stripe.com\/payments\/extended-authorization) for this PaymentIntent.
-  , payment_intent_payment_method_optionsCardRequest_extended_authorization :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardRequest_extended_authorization)
+  , payment_intent_payment_method_optionsCardRequest_extended_authorization :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization: Request ability to [increment the authorization](https:\/\/docs.stripe.com\/payments\/incremental-authorization) for this PaymentIntent.
-  , payment_intent_payment_method_optionsCardRequest_incremental_authorization :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardRequest_incremental_authorization)
+  , payment_intent_payment_method_optionsCardRequest_incremental_authorization :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsCardRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | request_multicapture: Request ability to make [multiple captures](https:\/\/docs.stripe.com\/payments\/multicapture) for this PaymentIntent.
-  , payment_intent_payment_method_optionsCardRequest_multicapture :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardRequest_multicapture)
+  , payment_intent_payment_method_optionsCardRequest_multicapture :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_overcapture: Request ability to [overcapture](https:\/\/docs.stripe.com\/payments\/overcapture) for this PaymentIntent.
-  , payment_intent_payment_method_optionsCardRequest_overcapture :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardRequest_overcapture)
+  , payment_intent_payment_method_optionsCardRequest_overcapture :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-  , payment_intent_payment_method_optionsCardRequest_three_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullable))
+  , payment_intent_payment_method_optionsCardRequest_three_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
   , payment_intent_payment_method_optionsCardRequire_cvc_recollection :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | routing: 
@@ -1642,7 +872,7 @@ data Payment_intent_payment_method_optionsCard = Payment_intent_payment_method_o
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsCardSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardSetup_future_usage)
+  , payment_intent_payment_method_optionsCardSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor_suffix_kana: Provides information about a card payment that customers see on their statements. Concatenated with the Kana prefix (shortened Kana descriptor) or Kana statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 22 characters. On card statements, the *concatenation* of both prefix and suffix (including separators) will appear truncated to 22 characters.
   -- 
   -- Constraints:
@@ -1655,8 +885,8 @@ data Payment_intent_payment_method_optionsCard = Payment_intent_payment_method_o
   -- 
   -- * Maximum length of 5000
   , payment_intent_payment_method_optionsCardStatement_descriptor_suffix_kanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsCardVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsCardVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCard
@@ -1682,419 +912,115 @@ mkPayment_intent_payment_method_optionsCard = Payment_intent_payment_method_opti
                                                                                         payment_intent_payment_method_optionsCardStatement_descriptor_suffix_kana = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsCardStatement_descriptor_suffix_kanji = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsCardVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsCardCapture_method =
-   Payment_intent_payment_method_optionsCardCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsCardCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsCardCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardCapture_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.installments.anyOf@ in the specification.
 -- 
 -- Installment details for this payment.
 -- 
 -- For more information, see the [installments integration guide](https:\\\/\\\/docs.stripe.com\\\/payments\\\/installments).
-data Payment_intent_payment_method_optionsCardInstallmentsNonNullable = Payment_intent_payment_method_optionsCardInstallmentsNonNullable {
+data Payment_intent_payment_method_optionsCardInstallments = Payment_intent_payment_method_optionsCardInstallments {
   -- | available_plans: Installment plans that may be selected for this PaymentIntent.
-  payment_intent_payment_method_optionsCardInstallmentsNonNullableAvailable_plans :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Payment_method_details_card_installments_plan]))
+  payment_intent_payment_method_optionsCardInstallmentsAvailable_plans :: (GHC.Maybe.Maybe [Payment_method_details_card_installments_plan])
   -- | enabled: Whether Installments are enabled for this PaymentIntent.
-  , payment_intent_payment_method_optionsCardInstallmentsNonNullableEnabled :: (GHC.Maybe.Maybe GHC.Types.Bool)
+  , payment_intent_payment_method_optionsCardInstallmentsEnabled :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | plan: Installment plan selected for this PaymentIntent.
-  , payment_intent_payment_method_optionsCardInstallmentsNonNullablePlan :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable))
+  , payment_intent_payment_method_optionsCardInstallmentsPlan :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardInstallmentsPlan)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_plans" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullableAvailable_plans obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullableEnabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("plan" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlan obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_plans" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullableAvailable_plans obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullableEnabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("plan" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlan obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_optionsCardInstallmentsNonNullable" (\obj -> ((GHC.Base.pure Payment_intent_payment_method_optionsCardInstallmentsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_plans")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "plan"))}
--- | Create a new 'Payment_intent_payment_method_optionsCardInstallmentsNonNullable' with all required fields.
-mkPayment_intent_payment_method_optionsCardInstallmentsNonNullable :: Payment_intent_payment_method_optionsCardInstallmentsNonNullable
-mkPayment_intent_payment_method_optionsCardInstallmentsNonNullable = Payment_intent_payment_method_optionsCardInstallmentsNonNullable{payment_intent_payment_method_optionsCardInstallmentsNonNullableAvailable_plans = GHC.Maybe.Nothing,
-                                                                                                                                      payment_intent_payment_method_optionsCardInstallmentsNonNullableEnabled = GHC.Maybe.Nothing,
-                                                                                                                                      payment_intent_payment_method_optionsCardInstallmentsNonNullablePlan = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardInstallments
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_plans" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsAvailable_plans obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsEnabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("plan" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlan obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_plans" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsAvailable_plans obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("enabled" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsEnabled obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("plan" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlan obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardInstallments
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_optionsCardInstallments" (\obj -> ((GHC.Base.pure Payment_intent_payment_method_optionsCardInstallments GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_plans")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "plan"))}
+-- | Create a new 'Payment_intent_payment_method_optionsCardInstallments' with all required fields.
+mkPayment_intent_payment_method_optionsCardInstallments :: Payment_intent_payment_method_optionsCardInstallments
+mkPayment_intent_payment_method_optionsCardInstallments = Payment_intent_payment_method_optionsCardInstallments{payment_intent_payment_method_optionsCardInstallmentsAvailable_plans = GHC.Maybe.Nothing,
+                                                                                                                payment_intent_payment_method_optionsCardInstallmentsEnabled = GHC.Maybe.Nothing,
+                                                                                                                payment_intent_payment_method_optionsCardInstallmentsPlan = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.installments.anyOf.properties.plan.anyOf@ in the specification.
 -- 
 -- Installment plan selected for this PaymentIntent.
-data Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable = Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable {
+data Payment_intent_payment_method_optionsCardInstallmentsPlan = Payment_intent_payment_method_optionsCardInstallmentsPlan {
   -- | count: For \`fixed_count\` installment plans, this is the number of installment payments your customer will make to their credit card.
-  payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableCount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_intent_payment_method_optionsCardInstallmentsPlanCount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: For \`fixed_count\` installment plans, this is the interval between installment payments your customer will make to their credit card.
   -- One of \`month\`.
-  , payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableInterval :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullable))
+  , payment_intent_payment_method_optionsCardInstallmentsPlanInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Type of installment plan, one of \`fixed_count\`, \`bonus\`, or \`revolving\`.
-  , payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType)
+  , payment_intent_payment_method_optionsCardInstallmentsPlanType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable" (\obj -> ((GHC.Base.pure Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable' with all required fields.
-mkPayment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable :: Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable
-mkPayment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable = Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullable{payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableCount = GHC.Maybe.Nothing,
-                                                                                                                                                                    payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableInterval = GHC.Maybe.Nothing,
-                                                                                                                                                                    payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.installments.anyOf.properties.plan.anyOf.properties.interval@ in the specification.
--- 
--- For \`fixed_count\` installment plans, this is the interval between installment payments your customer will make to their credit card.
--- One of \`month\`.
-data Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullable =
-   Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableEnumMonth -- ^ Represents the JSON value @"month"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullable
-    where {toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableEnumMonth) = "month"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "month" -> Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableEnumMonth
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableIntervalNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.installments.anyOf.properties.plan.anyOf.properties.type@ in the specification.
--- 
--- Type of installment plan, one of \`fixed_count\`, \`bonus\`, or \`revolving\`.
-data Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType =
-   Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumBonus -- ^ Represents the JSON value @"bonus"@
-  | Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumFixed_count -- ^ Represents the JSON value @"fixed_count"@
-  | Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumRevolving -- ^ Represents the JSON value @"revolving"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType
-    where {toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumBonus) = "bonus";
-           toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumFixed_count) = "fixed_count";
-           toJSON (Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumRevolving) = "revolving"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bonus" -> Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumBonus
-                                             | val GHC.Classes.== "fixed_count" -> Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumFixed_count
-                                             | val GHC.Classes.== "revolving" -> Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeEnumRevolving
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardInstallmentsNonNullablePlanNonNullableTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardInstallmentsPlan
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlanCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlanInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlanType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlanCount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlanInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardInstallmentsPlanType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardInstallmentsPlan
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_optionsCardInstallmentsPlan" (\obj -> ((GHC.Base.pure Payment_intent_payment_method_optionsCardInstallmentsPlan GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Payment_intent_payment_method_optionsCardInstallmentsPlan' with all required fields.
+mkPayment_intent_payment_method_optionsCardInstallmentsPlan :: Payment_intent_payment_method_optionsCardInstallmentsPlan
+mkPayment_intent_payment_method_optionsCardInstallmentsPlan = Payment_intent_payment_method_optionsCardInstallmentsPlan{payment_intent_payment_method_optionsCardInstallmentsPlanCount = GHC.Maybe.Nothing,
+                                                                                                                        payment_intent_payment_method_optionsCardInstallmentsPlanInterval = GHC.Maybe.Nothing,
+                                                                                                                        payment_intent_payment_method_optionsCardInstallmentsPlanType = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf@ in the specification.
 -- 
 -- Configuration options for setting up an eMandate for cards issued in India.
-data Payment_intent_payment_method_optionsCardMandate_optionsNonNullable = Payment_intent_payment_method_optionsCardMandate_optionsNonNullable {
-  -- | amount: Amount to be charged for future payments.
-  payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
+data Payment_intent_payment_method_optionsCardMandate_options = Payment_intent_payment_method_optionsCardMandate_options {
+  -- | amount: Amount to be charged for future payments, specified in the presentment currency.
+  payment_intent_payment_method_optionsCardMandate_optionsAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_type: One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type)
+  , payment_intent_payment_method_optionsCardMandate_optionsAmount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: A description of the mandate or subscription that is meant to be displayed to the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 200
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsCardMandate_optionsDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | end_date: End date of the mandate or subscription. If not provided, the mandate will be active until canceled. If provided, end date should be after start date.
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_payment_method_optionsCardMandate_optionsEnd_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval)
+  , payment_intent_payment_method_optionsCardMandate_optionsInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | interval_count: The number of intervals between payments. For example, \`interval=month\` and \`interval_count=3\` indicates one payment every three months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks). This parameter is optional when \`interval=sporadic\`.
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_payment_method_optionsCardMandate_optionsInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reference: Unique identifier for the mandate or subscription.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 80
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , payment_intent_payment_method_optionsCardMandate_optionsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | start_date: Start date of the mandate or subscription. Start date should not be lesser than yesterday.
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , payment_intent_payment_method_optionsCardMandate_optionsStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | supported_types: Specifies the type of mandates supported. Possible values are \`india\`.
-  , payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable]))
+  , payment_intent_payment_method_optionsCardMandate_optionsSupported_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_optionsCardMandate_optionsNonNullable" (\obj -> ((((((((GHC.Base.pure Payment_intent_payment_method_optionsCardMandate_optionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
--- | Create a new 'Payment_intent_payment_method_optionsCardMandate_optionsNonNullable' with all required fields.
-mkPayment_intent_payment_method_optionsCardMandate_optionsNonNullable :: Payment_intent_payment_method_optionsCardMandate_optionsNonNullable
-mkPayment_intent_payment_method_optionsCardMandate_optionsNonNullable = Payment_intent_payment_method_optionsCardMandate_optionsNonNullable{payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableDescription = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableReference = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date = GHC.Maybe.Nothing,
-                                                                                                                                            payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf.properties.amount_type@ in the specification.
--- 
--- One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-data Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type =
-   Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type
-    where {toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumFixed) = "fixed";
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumMaximum
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf.properties.interval@ in the specification.
--- 
--- Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-data Payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval =
-   Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval
-    where {toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumDay) = "day";
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumMonth) = "month";
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumSporadic) = "sporadic";
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumWeek) = "week";
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullableInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumMonth
-                                             | val GHC.Classes.== "sporadic" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumSporadic
-                                             | val GHC.Classes.== "week" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumYear
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf.properties.supported_types.items@ in the specification.
--- 
--- 
-data Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable =
-   Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia -- ^ Represents the JSON value @"india"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable
-    where {toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia) = "india"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "india" -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.network@ in the specification.
--- 
--- Selected network to process this payment intent on. Depends on the available networks of the card attached to the payment intent. Can be only set confirm-time.
-data Payment_intent_payment_method_optionsCardNetworkNonNullable =
-   Payment_intent_payment_method_optionsCardNetworkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumAmex -- ^ Represents the JSON value @"amex"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumCartes_bancaires -- ^ Represents the JSON value @"cartes_bancaires"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumDiners -- ^ Represents the JSON value @"diners"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumDiscover -- ^ Represents the JSON value @"discover"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumEftpos_au -- ^ Represents the JSON value @"eftpos_au"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumGirocard -- ^ Represents the JSON value @"girocard"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumInterac -- ^ Represents the JSON value @"interac"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumJcb -- ^ Represents the JSON value @"jcb"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumLink -- ^ Represents the JSON value @"link"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumUnionpay -- ^ Represents the JSON value @"unionpay"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  | Payment_intent_payment_method_optionsCardNetworkNonNullableEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardNetworkNonNullable
-    where {toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumAmex) = "amex";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumCartes_bancaires) = "cartes_bancaires";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumDiners) = "diners";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumDiscover) = "discover";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumEftpos_au) = "eftpos_au";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumGirocard) = "girocard";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumInterac) = "interac";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumJcb) = "jcb";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumLink) = "link";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumMastercard) = "mastercard";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumUnionpay) = "unionpay";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumUnknown) = "unknown";
-           toJSON (Payment_intent_payment_method_optionsCardNetworkNonNullableEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardNetworkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amex" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumAmex
-                                             | val GHC.Classes.== "cartes_bancaires" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumCartes_bancaires
-                                             | val GHC.Classes.== "diners" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumDiners
-                                             | val GHC.Classes.== "discover" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumDiscover
-                                             | val GHC.Classes.== "eftpos_au" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumEftpos_au
-                                             | val GHC.Classes.== "girocard" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumGirocard
-                                             | val GHC.Classes.== "interac" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumInterac
-                                             | val GHC.Classes.== "jcb" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumJcb
-                                             | val GHC.Classes.== "link" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumLink
-                                             | val GHC.Classes.== "mastercard" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumMastercard
-                                             | val GHC.Classes.== "unionpay" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumUnionpay
-                                             | val GHC.Classes.== "unknown" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumUnknown
-                                             | val GHC.Classes.== "visa" -> Payment_intent_payment_method_optionsCardNetworkNonNullableEnumVisa
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardNetworkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.request_extended_authorization@ in the specification.
--- 
--- Request ability to [capture beyond the standard authorization validity window](https:\/\/docs.stripe.com\/payments\/extended-authorization) for this PaymentIntent.
-data Payment_intent_payment_method_optionsCardRequest_extended_authorization =
-   Payment_intent_payment_method_optionsCardRequest_extended_authorizationOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardRequest_extended_authorizationTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardRequest_extended_authorizationEnumIf_available -- ^ Represents the JSON value @"if_available"@
-  | Payment_intent_payment_method_optionsCardRequest_extended_authorizationEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardRequest_extended_authorization
-    where {toJSON (Payment_intent_payment_method_optionsCardRequest_extended_authorizationOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_extended_authorizationTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_extended_authorizationEnumIf_available) = "if_available";
-           toJSON (Payment_intent_payment_method_optionsCardRequest_extended_authorizationEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardRequest_extended_authorization
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "if_available" -> Payment_intent_payment_method_optionsCardRequest_extended_authorizationEnumIf_available
-                                             | val GHC.Classes.== "never" -> Payment_intent_payment_method_optionsCardRequest_extended_authorizationEnumNever
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardRequest_extended_authorizationOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.request_incremental_authorization@ in the specification.
--- 
--- Request ability to [increment the authorization](https:\/\/docs.stripe.com\/payments\/incremental-authorization) for this PaymentIntent.
-data Payment_intent_payment_method_optionsCardRequest_incremental_authorization =
-   Payment_intent_payment_method_optionsCardRequest_incremental_authorizationOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardRequest_incremental_authorizationTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardRequest_incremental_authorizationEnumIf_available -- ^ Represents the JSON value @"if_available"@
-  | Payment_intent_payment_method_optionsCardRequest_incremental_authorizationEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardRequest_incremental_authorization
-    where {toJSON (Payment_intent_payment_method_optionsCardRequest_incremental_authorizationOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_incremental_authorizationTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_incremental_authorizationEnumIf_available) = "if_available";
-           toJSON (Payment_intent_payment_method_optionsCardRequest_incremental_authorizationEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardRequest_incremental_authorization
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "if_available" -> Payment_intent_payment_method_optionsCardRequest_incremental_authorizationEnumIf_available
-                                             | val GHC.Classes.== "never" -> Payment_intent_payment_method_optionsCardRequest_incremental_authorizationEnumNever
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardRequest_incremental_authorizationOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.request_multicapture@ in the specification.
--- 
--- Request ability to make [multiple captures](https:\/\/docs.stripe.com\/payments\/multicapture) for this PaymentIntent.
-data Payment_intent_payment_method_optionsCardRequest_multicapture =
-   Payment_intent_payment_method_optionsCardRequest_multicaptureOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardRequest_multicaptureTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardRequest_multicaptureEnumIf_available -- ^ Represents the JSON value @"if_available"@
-  | Payment_intent_payment_method_optionsCardRequest_multicaptureEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardRequest_multicapture
-    where {toJSON (Payment_intent_payment_method_optionsCardRequest_multicaptureOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_multicaptureTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_multicaptureEnumIf_available) = "if_available";
-           toJSON (Payment_intent_payment_method_optionsCardRequest_multicaptureEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardRequest_multicapture
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "if_available" -> Payment_intent_payment_method_optionsCardRequest_multicaptureEnumIf_available
-                                             | val GHC.Classes.== "never" -> Payment_intent_payment_method_optionsCardRequest_multicaptureEnumNever
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardRequest_multicaptureOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.request_overcapture@ in the specification.
--- 
--- Request ability to [overcapture](https:\/\/docs.stripe.com\/payments\/overcapture) for this PaymentIntent.
-data Payment_intent_payment_method_optionsCardRequest_overcapture =
-   Payment_intent_payment_method_optionsCardRequest_overcaptureOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardRequest_overcaptureTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardRequest_overcaptureEnumIf_available -- ^ Represents the JSON value @"if_available"@
-  | Payment_intent_payment_method_optionsCardRequest_overcaptureEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardRequest_overcapture
-    where {toJSON (Payment_intent_payment_method_optionsCardRequest_overcaptureOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_overcaptureTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_overcaptureEnumIf_available) = "if_available";
-           toJSON (Payment_intent_payment_method_optionsCardRequest_overcaptureEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardRequest_overcapture
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "if_available" -> Payment_intent_payment_method_optionsCardRequest_overcaptureEnumIf_available
-                                             | val GHC.Classes.== "never" -> Payment_intent_payment_method_optionsCardRequest_overcaptureEnumNever
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardRequest_overcaptureOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.request_three_d_secure@ in the specification.
--- 
--- We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-data Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullable =
-   Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAny -- ^ Represents the JSON value @"any"@
-  | Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullable
-    where {toJSON (Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAny) = "any";
-           toJSON (Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumChallenge) = "challenge"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "any" -> Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAny
-                                             | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "challenge" -> Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumChallenge
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardRequest_three_d_secureNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsCardSetup_future_usage =
-   Payment_intent_payment_method_optionsCardSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsCardSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsCardSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsCardSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsCardSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsCardSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsCardSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsCardSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsCardSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsCardVerification_method =
-   Payment_intent_payment_method_optionsCardVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCardVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCardVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsCardVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsCardVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsCardVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCardVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCardVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsCardVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsCardVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsCardVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsCardVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsCardVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCardVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCardMandate_options
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsSupported_types obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsCardMandate_optionsSupported_types obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCardMandate_options
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_optionsCardMandate_options" (\obj -> ((((((((GHC.Base.pure Payment_intent_payment_method_optionsCardMandate_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
+-- | Create a new 'Payment_intent_payment_method_optionsCardMandate_options' with all required fields.
+mkPayment_intent_payment_method_optionsCardMandate_options :: Payment_intent_payment_method_optionsCardMandate_options
+mkPayment_intent_payment_method_optionsCardMandate_options = Payment_intent_payment_method_optionsCardMandate_options{payment_intent_payment_method_optionsCardMandate_optionsAmount = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsAmount_type = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsDescription = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsEnd_date = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsInterval = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsInterval_count = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsReference = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsStart_date = GHC.Maybe.Nothing,
+                                                                                                                      payment_intent_payment_method_optionsCardMandate_optionsSupported_types = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.card_present.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsCard_present = Payment_intent_payment_method_optionsCard_present {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsCard_presentCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCard_presentCapture_method)
+  payment_intent_payment_method_optionsCard_presentCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsCard_presentInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
   , payment_intent_payment_method_optionsCard_presentMandate_options :: (GHC.Maybe.Maybe Payment_intent_payment_method_options_mandate_options_payto)
   -- | request_extended_authorization: Request ability to capture this payment beyond the standard [authorization validity window](https:\/\/docs.stripe.com\/terminal\/features\/extended-authorizations\#authorization-validity)
-  , payment_intent_payment_method_optionsCard_presentRequest_extended_authorization :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , payment_intent_payment_method_optionsCard_presentRequest_extended_authorization :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
-  , payment_intent_payment_method_optionsCard_presentRequest_incremental_authorization_support :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , payment_intent_payment_method_optionsCard_presentRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
   , payment_intent_payment_method_optionsCard_presentRequire_cvc_recollection :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | routing: 
@@ -2106,9 +1032,9 @@ data Payment_intent_payment_method_optionsCard_present = Payment_intent_payment_
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsCard_presentSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCard_presentSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsCard_presentVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCard_presentVerification_method)
+  , payment_intent_payment_method_optionsCard_presentSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsCard_presentVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCard_present
@@ -2127,78 +1053,12 @@ mkPayment_intent_payment_method_optionsCard_present = Payment_intent_payment_met
                                                                                                         payment_intent_payment_method_optionsCard_presentRouting = GHC.Maybe.Nothing,
                                                                                                         payment_intent_payment_method_optionsCard_presentSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                         payment_intent_payment_method_optionsCard_presentVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card_present.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsCard_presentCapture_method =
-   Payment_intent_payment_method_optionsCard_presentCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCard_presentCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCard_presentCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsCard_presentCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCard_presentCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsCard_presentCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCard_presentCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCard_presentCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsCard_presentCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCard_presentCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsCard_presentCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsCard_presentCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCard_presentCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card_present.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsCard_presentSetup_future_usage =
-   Payment_intent_payment_method_optionsCard_presentSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCard_presentSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCard_presentSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsCard_presentSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCard_presentSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCard_presentSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsCard_presentSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCard_presentSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.card_present.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsCard_presentVerification_method =
-   Payment_intent_payment_method_optionsCard_presentVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCard_presentVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCard_presentVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsCard_presentVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsCard_presentVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCard_presentVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsCard_presentVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCard_presentVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCard_presentVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsCard_presentVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsCard_presentVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCard_presentVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsCard_presentVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsCard_presentVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsCard_presentVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCard_presentVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.cashapp.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsCashapp = Payment_intent_payment_method_optionsCashapp {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsCashappCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCashappCapture_method)
+  payment_intent_payment_method_optionsCashappCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsCashappInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2216,9 +1076,9 @@ data Payment_intent_payment_method_optionsCashapp = Payment_intent_payment_metho
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsCashappSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCashappSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsCashappVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCashappVerification_method)
+  , payment_intent_payment_method_optionsCashappSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsCashappVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCashapp
@@ -2236,75 +1096,12 @@ mkPayment_intent_payment_method_optionsCashapp = Payment_intent_payment_method_o
                                                                                               payment_intent_payment_method_optionsCashappRouting = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsCashappSetup_future_usage = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsCashappVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.cashapp.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsCashappCapture_method =
-   Payment_intent_payment_method_optionsCashappCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCashappCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCashappCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCashappCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsCashappCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCashappCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCashappCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCashappCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsCashappCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCashappCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.cashapp.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsCashappSetup_future_usage =
-   Payment_intent_payment_method_optionsCashappSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCashappSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCashappSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsCashappSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsCashappSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCashappSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsCashappSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCashappSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCashappSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsCashappSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsCashappSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCashappSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsCashappSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsCashappSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsCashappSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCashappSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.cashapp.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsCashappVerification_method =
-   Payment_intent_payment_method_optionsCashappVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCashappVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCashappVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsCashappVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsCashappVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCashappVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsCashappVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCashappVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCashappVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsCashappVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsCashappVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCashappVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsCashappVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsCashappVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsCashappVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCashappVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.crypto.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsCrypto = Payment_intent_payment_method_optionsCrypto {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsCryptoCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCryptoCapture_method)
+  payment_intent_payment_method_optionsCryptoCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsCryptoInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2322,9 +1119,9 @@ data Payment_intent_payment_method_optionsCrypto = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsCryptoSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCryptoSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsCryptoVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCryptoVerification_method)
+  , payment_intent_payment_method_optionsCryptoSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsCryptoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCrypto
@@ -2342,66 +1139,6 @@ mkPayment_intent_payment_method_optionsCrypto = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsCryptoRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsCryptoSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsCryptoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.crypto.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsCryptoCapture_method =
-   Payment_intent_payment_method_optionsCryptoCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCryptoCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCryptoCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsCryptoCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCryptoCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsCryptoCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCryptoCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCryptoCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsCryptoCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCryptoCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsCryptoCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsCryptoCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCryptoCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.crypto.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsCryptoSetup_future_usage =
-   Payment_intent_payment_method_optionsCryptoSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCryptoSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCryptoSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCryptoSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsCryptoSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCryptoSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCryptoSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCryptoSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsCryptoSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCryptoSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.crypto.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsCryptoVerification_method =
-   Payment_intent_payment_method_optionsCryptoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCryptoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCryptoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsCryptoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsCryptoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCryptoVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsCryptoVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCryptoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCryptoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsCryptoVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsCryptoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCryptoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsCryptoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsCryptoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsCryptoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCryptoVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.customer_balance.anyOf@ in the specification.
 -- 
 -- 
@@ -2409,9 +1146,9 @@ data Payment_intent_payment_method_optionsCustomer_balance = Payment_intent_paym
   -- | bank_transfer: 
   payment_intent_payment_method_optionsCustomer_balanceBank_transfer :: (GHC.Maybe.Maybe Payment_method_options_customer_balance_bank_transfer)
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  , payment_intent_payment_method_optionsCustomer_balanceCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCustomer_balanceCapture_method)
+  , payment_intent_payment_method_optionsCustomer_balanceCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding_type: The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: \`bank_transfer\`.
-  , payment_intent_payment_method_optionsCustomer_balanceFunding_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullable))
+  , payment_intent_payment_method_optionsCustomer_balanceFunding_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsCustomer_balanceInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2429,9 +1166,9 @@ data Payment_intent_payment_method_optionsCustomer_balance = Payment_intent_paym
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsCustomer_balanceSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsCustomer_balanceVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsCustomer_balanceVerification_method)
+  , payment_intent_payment_method_optionsCustomer_balanceSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsCustomer_balanceVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCustomer_balance
@@ -2451,87 +1188,12 @@ mkPayment_intent_payment_method_optionsCustomer_balance = Payment_intent_payment
                                                                                                                 payment_intent_payment_method_optionsCustomer_balanceRouting = GHC.Maybe.Nothing,
                                                                                                                 payment_intent_payment_method_optionsCustomer_balanceSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                                 payment_intent_payment_method_optionsCustomer_balanceVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.customer_balance.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsCustomer_balanceCapture_method =
-   Payment_intent_payment_method_optionsCustomer_balanceCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCustomer_balanceCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCustomer_balanceCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsCustomer_balanceCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCustomer_balanceCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsCustomer_balanceCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCustomer_balanceCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsCustomer_balanceCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsCustomer_balanceCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCustomer_balanceCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.customer_balance.anyOf.properties.funding_type@ in the specification.
--- 
--- The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: \`bank_transfer\`.
-data Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullable =
-   Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableEnumBank_transfer -- ^ Represents the JSON value @"bank_transfer"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullable
-    where {toJSON (Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableEnumBank_transfer) = "bank_transfer"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_transfer" -> Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableEnumBank_transfer
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCustomer_balanceFunding_typeNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.customer_balance.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usage =
-   Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCustomer_balanceSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.customer_balance.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsCustomer_balanceVerification_method =
-   Payment_intent_payment_method_optionsCustomer_balanceVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsCustomer_balanceVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsCustomer_balanceVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsCustomer_balanceVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsCustomer_balanceVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsCustomer_balanceVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsCustomer_balanceVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.eps.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsEps = Payment_intent_payment_method_optionsEps {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsEpsCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsEpsCapture_method)
+  payment_intent_payment_method_optionsEpsCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsEpsInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2549,9 +1211,9 @@ data Payment_intent_payment_method_optionsEps = Payment_intent_payment_method_op
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsEpsSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsEpsSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsEpsVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsEpsVerification_method)
+  , payment_intent_payment_method_optionsEpsSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsEpsVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsEps
@@ -2569,72 +1231,12 @@ mkPayment_intent_payment_method_optionsEps = Payment_intent_payment_method_optio
                                                                                       payment_intent_payment_method_optionsEpsRouting = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsEpsSetup_future_usage = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsEpsVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.eps.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsEpsCapture_method =
-   Payment_intent_payment_method_optionsEpsCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsEpsCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsEpsCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsEpsCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsEpsCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsEpsCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsEpsCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsEpsCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsEpsCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsEpsCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsEpsCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsEpsCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsEpsCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.eps.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsEpsSetup_future_usage =
-   Payment_intent_payment_method_optionsEpsSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsEpsSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsEpsSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsEpsSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsEpsSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsEpsSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsEpsSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsEpsSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsEpsSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsEpsSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.eps.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsEpsVerification_method =
-   Payment_intent_payment_method_optionsEpsVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsEpsVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsEpsVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsEpsVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsEpsVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsEpsVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsEpsVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsEpsVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsEpsVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsEpsVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsEpsVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsEpsVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsEpsVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsEpsVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsEpsVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsEpsVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.fpx.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsFpx = Payment_intent_payment_method_optionsFpx {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsFpxCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsFpxCapture_method)
+  payment_intent_payment_method_optionsFpxCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsFpxInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2652,9 +1254,9 @@ data Payment_intent_payment_method_optionsFpx = Payment_intent_payment_method_op
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsFpxSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsFpxSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsFpxVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsFpxVerification_method)
+  , payment_intent_payment_method_optionsFpxSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsFpxVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsFpx
@@ -2672,72 +1274,12 @@ mkPayment_intent_payment_method_optionsFpx = Payment_intent_payment_method_optio
                                                                                       payment_intent_payment_method_optionsFpxRouting = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsFpxSetup_future_usage = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsFpxVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.fpx.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsFpxCapture_method =
-   Payment_intent_payment_method_optionsFpxCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsFpxCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsFpxCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsFpxCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsFpxCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsFpxCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsFpxCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsFpxCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsFpxCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsFpxCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsFpxCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsFpxCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsFpxCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.fpx.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsFpxSetup_future_usage =
-   Payment_intent_payment_method_optionsFpxSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsFpxSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsFpxSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsFpxSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsFpxSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsFpxSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsFpxSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsFpxSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsFpxSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsFpxSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.fpx.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsFpxVerification_method =
-   Payment_intent_payment_method_optionsFpxVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsFpxVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsFpxVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsFpxVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsFpxVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsFpxVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsFpxVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsFpxVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsFpxVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsFpxVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsFpxVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsFpxVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsFpxVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsFpxVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsFpxVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsFpxVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.giropay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsGiropay = Payment_intent_payment_method_optionsGiropay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsGiropayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsGiropayCapture_method)
+  payment_intent_payment_method_optionsGiropayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsGiropayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2755,9 +1297,9 @@ data Payment_intent_payment_method_optionsGiropay = Payment_intent_payment_metho
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsGiropaySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsGiropaySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsGiropayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsGiropayVerification_method)
+  , payment_intent_payment_method_optionsGiropaySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsGiropayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGiropay
@@ -2775,72 +1317,12 @@ mkPayment_intent_payment_method_optionsGiropay = Payment_intent_payment_method_o
                                                                                               payment_intent_payment_method_optionsGiropayRouting = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsGiropaySetup_future_usage = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsGiropayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.giropay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsGiropayCapture_method =
-   Payment_intent_payment_method_optionsGiropayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsGiropayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsGiropayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsGiropayCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGiropayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsGiropayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsGiropayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsGiropayCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsGiropayCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsGiropayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsGiropayCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsGiropayCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsGiropayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.giropay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsGiropaySetup_future_usage =
-   Payment_intent_payment_method_optionsGiropaySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsGiropaySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsGiropaySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGiropaySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsGiropaySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsGiropaySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsGiropaySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsGiropaySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsGiropaySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsGiropaySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.giropay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsGiropayVerification_method =
-   Payment_intent_payment_method_optionsGiropayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsGiropayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsGiropayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsGiropayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsGiropayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGiropayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsGiropayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsGiropayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsGiropayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsGiropayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsGiropayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsGiropayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsGiropayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsGiropayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsGiropayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsGiropayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.grabpay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsGrabpay = Payment_intent_payment_method_optionsGrabpay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsGrabpayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsGrabpayCapture_method)
+  payment_intent_payment_method_optionsGrabpayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsGrabpayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2858,9 +1340,9 @@ data Payment_intent_payment_method_optionsGrabpay = Payment_intent_payment_metho
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsGrabpaySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsGrabpaySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsGrabpayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsGrabpayVerification_method)
+  , payment_intent_payment_method_optionsGrabpaySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsGrabpayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGrabpay
@@ -2878,72 +1360,12 @@ mkPayment_intent_payment_method_optionsGrabpay = Payment_intent_payment_method_o
                                                                                               payment_intent_payment_method_optionsGrabpayRouting = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsGrabpaySetup_future_usage = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsGrabpayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.grabpay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsGrabpayCapture_method =
-   Payment_intent_payment_method_optionsGrabpayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsGrabpayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsGrabpayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsGrabpayCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGrabpayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsGrabpayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsGrabpayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsGrabpayCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsGrabpayCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsGrabpayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsGrabpayCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsGrabpayCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsGrabpayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.grabpay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsGrabpaySetup_future_usage =
-   Payment_intent_payment_method_optionsGrabpaySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsGrabpaySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsGrabpaySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGrabpaySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsGrabpaySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsGrabpaySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsGrabpaySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsGrabpaySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsGrabpaySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsGrabpaySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.grabpay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsGrabpayVerification_method =
-   Payment_intent_payment_method_optionsGrabpayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsGrabpayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsGrabpayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsGrabpayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsGrabpayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsGrabpayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsGrabpayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsGrabpayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsGrabpayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsGrabpayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsGrabpayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsGrabpayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsGrabpayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsGrabpayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsGrabpayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsGrabpayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.ideal.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsIdeal = Payment_intent_payment_method_optionsIdeal {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsIdealCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsIdealCapture_method)
+  payment_intent_payment_method_optionsIdealCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsIdealInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -2961,9 +1383,9 @@ data Payment_intent_payment_method_optionsIdeal = Payment_intent_payment_method_
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsIdealSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsIdealSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsIdealVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsIdealVerification_method)
+  , payment_intent_payment_method_optionsIdealSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsIdealVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsIdeal
@@ -2981,75 +1403,12 @@ mkPayment_intent_payment_method_optionsIdeal = Payment_intent_payment_method_opt
                                                                                           payment_intent_payment_method_optionsIdealRouting = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsIdealSetup_future_usage = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsIdealVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.ideal.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsIdealCapture_method =
-   Payment_intent_payment_method_optionsIdealCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsIdealCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsIdealCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsIdealCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsIdealCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsIdealCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsIdealCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsIdealCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsIdealCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsIdealCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsIdealCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsIdealCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsIdealCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.ideal.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsIdealSetup_future_usage =
-   Payment_intent_payment_method_optionsIdealSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsIdealSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsIdealSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsIdealSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsIdealSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsIdealSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsIdealSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsIdealSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsIdealSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsIdealSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsIdealSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsIdealSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsIdealSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.ideal.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsIdealVerification_method =
-   Payment_intent_payment_method_optionsIdealVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsIdealVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsIdealVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsIdealVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsIdealVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsIdealVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsIdealVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsIdealVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsIdealVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsIdealVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsIdealVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsIdealVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsIdealVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsIdealVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsIdealVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsIdealVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.interac_present.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsInterac_present = Payment_intent_payment_method_optionsInterac_present {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsInterac_presentCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsInterac_presentCapture_method)
+  payment_intent_payment_method_optionsInterac_presentCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsInterac_presentInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3067,9 +1426,9 @@ data Payment_intent_payment_method_optionsInterac_present = Payment_intent_payme
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsInterac_presentSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsInterac_presentSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsInterac_presentVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsInterac_presentVerification_method)
+  , payment_intent_payment_method_optionsInterac_presentSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsInterac_presentVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsInterac_present
@@ -3087,78 +1446,12 @@ mkPayment_intent_payment_method_optionsInterac_present = Payment_intent_payment_
                                                                                                               payment_intent_payment_method_optionsInterac_presentRouting = GHC.Maybe.Nothing,
                                                                                                               payment_intent_payment_method_optionsInterac_presentSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                               payment_intent_payment_method_optionsInterac_presentVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.interac_present.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsInterac_presentCapture_method =
-   Payment_intent_payment_method_optionsInterac_presentCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsInterac_presentCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsInterac_presentCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsInterac_presentCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsInterac_presentCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsInterac_presentCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsInterac_presentCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsInterac_presentCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsInterac_presentCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsInterac_presentCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsInterac_presentCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsInterac_presentCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsInterac_presentCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.interac_present.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsInterac_presentSetup_future_usage =
-   Payment_intent_payment_method_optionsInterac_presentSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsInterac_presentSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsInterac_presentSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsInterac_presentSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsInterac_presentSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsInterac_presentSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsInterac_presentSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsInterac_presentSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.interac_present.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsInterac_presentVerification_method =
-   Payment_intent_payment_method_optionsInterac_presentVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsInterac_presentVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsInterac_presentVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsInterac_presentVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsInterac_presentVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsInterac_presentVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsInterac_presentVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsInterac_presentVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.kakao_pay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsKakao_pay = Payment_intent_payment_method_optionsKakao_pay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsKakao_payCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKakao_payCapture_method)
+  payment_intent_payment_method_optionsKakao_payCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsKakao_payInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3176,9 +1469,9 @@ data Payment_intent_payment_method_optionsKakao_pay = Payment_intent_payment_met
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsKakao_paySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKakao_paySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsKakao_payVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKakao_payVerification_method)
+  , payment_intent_payment_method_optionsKakao_paySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsKakao_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKakao_pay
@@ -3196,72 +1489,12 @@ mkPayment_intent_payment_method_optionsKakao_pay = Payment_intent_payment_method
                                                                                                   payment_intent_payment_method_optionsKakao_payRouting = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsKakao_paySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsKakao_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.kakao_pay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsKakao_payCapture_method =
-   Payment_intent_payment_method_optionsKakao_payCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKakao_payCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKakao_payCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKakao_payCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsKakao_payCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKakao_payCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKakao_payCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKakao_payCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsKakao_payCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKakao_payCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.kakao_pay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsKakao_paySetup_future_usage =
-   Payment_intent_payment_method_optionsKakao_paySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKakao_paySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKakao_paySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsKakao_paySetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKakao_paySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsKakao_paySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKakao_paySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKakao_paySetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsKakao_paySetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKakao_paySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsKakao_paySetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsKakao_paySetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKakao_paySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.kakao_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsKakao_payVerification_method =
-   Payment_intent_payment_method_optionsKakao_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKakao_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKakao_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsKakao_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsKakao_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKakao_payVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsKakao_payVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKakao_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKakao_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsKakao_payVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsKakao_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKakao_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsKakao_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsKakao_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsKakao_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKakao_payVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.klarna.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsKlarna = Payment_intent_payment_method_optionsKlarna {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsKlarnaCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKlarnaCapture_method)
+  payment_intent_payment_method_optionsKlarnaCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsKlarnaInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3271,7 +1504,7 @@ data Payment_intent_payment_method_optionsKlarna = Payment_intent_payment_method
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_payment_method_optionsKlarnaPreferred_locale :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsKlarnaPreferred_locale :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsKlarnaRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
@@ -3285,9 +1518,9 @@ data Payment_intent_payment_method_optionsKlarna = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsKlarnaSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKlarnaSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsKlarnaVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKlarnaVerification_method)
+  , payment_intent_payment_method_optionsKlarnaSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsKlarnaVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKlarna
@@ -3306,85 +1539,22 @@ mkPayment_intent_payment_method_optionsKlarna = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsKlarnaRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsKlarnaSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsKlarnaVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.klarna.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsKlarnaCapture_method =
-   Payment_intent_payment_method_optionsKlarnaCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKlarnaCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKlarnaCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKlarnaCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsKlarnaCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKlarnaCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKlarnaCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKlarnaCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsKlarnaCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKlarnaCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.klarna.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsKlarnaSetup_future_usage =
-   Payment_intent_payment_method_optionsKlarnaSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKlarnaSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKlarnaSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsKlarnaSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKlarnaSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKlarnaSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsKlarnaSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKlarnaSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.klarna.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsKlarnaVerification_method =
-   Payment_intent_payment_method_optionsKlarnaVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKlarnaVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKlarnaVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsKlarnaVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsKlarnaVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKlarnaVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsKlarnaVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKlarnaVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKlarnaVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsKlarnaVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsKlarnaVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKlarnaVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsKlarnaVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsKlarnaVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsKlarnaVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKlarnaVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.konbini.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsKonbini = Payment_intent_payment_method_optionsKonbini {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsKonbiniCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKonbiniCapture_method)
+  payment_intent_payment_method_optionsKonbiniCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | confirmation_number: An optional 10 to 11 digit numeric-only string determining the confirmation code at applicable convenience stores.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_payment_method_optionsKonbiniConfirmation_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsKonbiniConfirmation_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expires_after_days: The number of calendar days (between 1 and 60) after which Konbini payment instructions will expire. For example, if a PaymentIntent is confirmed with Konbini and \`expires_after_days\` set to 2 on Monday JST, the instructions will expire on Wednesday 23:59:59 JST.
-  , payment_intent_payment_method_optionsKonbiniExpires_after_days :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_payment_method_optionsKonbiniExpires_after_days :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | expires_at: The timestamp at which the Konbini payment instructions will expire. Only one of \`expires_after_days\` or \`expires_at\` may be set.
-  , payment_intent_payment_method_optionsKonbiniExpires_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_payment_method_optionsKonbiniExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | installments: 
   , payment_intent_payment_method_optionsKonbiniInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3394,7 +1564,7 @@ data Payment_intent_payment_method_optionsKonbini = Payment_intent_payment_metho
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_payment_method_optionsKonbiniProduct_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsKonbiniProduct_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsKonbiniRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
@@ -3408,9 +1578,9 @@ data Payment_intent_payment_method_optionsKonbini = Payment_intent_payment_metho
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsKonbiniSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKonbiniSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsKonbiniVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKonbiniVerification_method)
+  , payment_intent_payment_method_optionsKonbiniSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsKonbiniVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKonbini
@@ -3432,72 +1602,12 @@ mkPayment_intent_payment_method_optionsKonbini = Payment_intent_payment_method_o
                                                                                               payment_intent_payment_method_optionsKonbiniRouting = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsKonbiniSetup_future_usage = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsKonbiniVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.konbini.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsKonbiniCapture_method =
-   Payment_intent_payment_method_optionsKonbiniCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKonbiniCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKonbiniCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsKonbiniCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKonbiniCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsKonbiniCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKonbiniCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKonbiniCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsKonbiniCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKonbiniCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsKonbiniCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsKonbiniCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKonbiniCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.konbini.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsKonbiniSetup_future_usage =
-   Payment_intent_payment_method_optionsKonbiniSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKonbiniSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKonbiniSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKonbiniSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsKonbiniSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKonbiniSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKonbiniSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKonbiniSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsKonbiniSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKonbiniSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.konbini.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsKonbiniVerification_method =
-   Payment_intent_payment_method_optionsKonbiniVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKonbiniVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKonbiniVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsKonbiniVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsKonbiniVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKonbiniVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsKonbiniVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKonbiniVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKonbiniVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsKonbiniVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsKonbiniVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKonbiniVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsKonbiniVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsKonbiniVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsKonbiniVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKonbiniVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.kr_card.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsKr_card = Payment_intent_payment_method_optionsKr_card {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsKr_cardCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKr_cardCapture_method)
+  payment_intent_payment_method_optionsKr_cardCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsKr_cardInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3515,9 +1625,9 @@ data Payment_intent_payment_method_optionsKr_card = Payment_intent_payment_metho
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsKr_cardSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKr_cardSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsKr_cardVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsKr_cardVerification_method)
+  , payment_intent_payment_method_optionsKr_cardSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsKr_cardVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKr_card
@@ -3535,72 +1645,12 @@ mkPayment_intent_payment_method_optionsKr_card = Payment_intent_payment_method_o
                                                                                               payment_intent_payment_method_optionsKr_cardRouting = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsKr_cardSetup_future_usage = GHC.Maybe.Nothing,
                                                                                               payment_intent_payment_method_optionsKr_cardVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.kr_card.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsKr_cardCapture_method =
-   Payment_intent_payment_method_optionsKr_cardCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKr_cardCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKr_cardCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKr_cardCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsKr_cardCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKr_cardCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKr_cardCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKr_cardCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsKr_cardCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKr_cardCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.kr_card.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsKr_cardSetup_future_usage =
-   Payment_intent_payment_method_optionsKr_cardSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKr_cardSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKr_cardSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsKr_cardSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKr_cardSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsKr_cardSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKr_cardSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKr_cardSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsKr_cardSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKr_cardSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsKr_cardSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsKr_cardSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKr_cardSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.kr_card.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsKr_cardVerification_method =
-   Payment_intent_payment_method_optionsKr_cardVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsKr_cardVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsKr_cardVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsKr_cardVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsKr_cardVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsKr_cardVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsKr_cardVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsKr_cardVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsKr_cardVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsKr_cardVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsKr_cardVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsKr_cardVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsKr_cardVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsKr_cardVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsKr_cardVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsKr_cardVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.link.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsLink = Payment_intent_payment_method_optionsLink {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsLinkCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsLinkCapture_method)
+  payment_intent_payment_method_optionsLinkCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsLinkInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3618,9 +1668,9 @@ data Payment_intent_payment_method_optionsLink = Payment_intent_payment_method_o
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsLinkSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsLinkSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsLinkVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsLinkVerification_method)
+  , payment_intent_payment_method_optionsLinkSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsLinkVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsLink
@@ -3638,72 +1688,12 @@ mkPayment_intent_payment_method_optionsLink = Payment_intent_payment_method_opti
                                                                                         payment_intent_payment_method_optionsLinkRouting = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsLinkSetup_future_usage = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsLinkVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.link.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsLinkCapture_method =
-   Payment_intent_payment_method_optionsLinkCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsLinkCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsLinkCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsLinkCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsLinkCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsLinkCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsLinkCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsLinkCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsLinkCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsLinkCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.link.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsLinkSetup_future_usage =
-   Payment_intent_payment_method_optionsLinkSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsLinkSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsLinkSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsLinkSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsLinkSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsLinkSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsLinkSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsLinkSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsLinkSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsLinkSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsLinkSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsLinkSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsLinkSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.link.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsLinkVerification_method =
-   Payment_intent_payment_method_optionsLinkVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsLinkVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsLinkVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsLinkVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsLinkVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsLinkVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsLinkVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsLinkVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsLinkVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsLinkVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsLinkVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsLinkVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsLinkVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsLinkVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsLinkVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsLinkVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.mb_way.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsMb_way = Payment_intent_payment_method_optionsMb_way {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsMb_wayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMb_wayCapture_method)
+  payment_intent_payment_method_optionsMb_wayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsMb_wayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3721,9 +1711,9 @@ data Payment_intent_payment_method_optionsMb_way = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsMb_waySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMb_waySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsMb_wayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMb_wayVerification_method)
+  , payment_intent_payment_method_optionsMb_waySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsMb_wayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMb_way
@@ -3741,72 +1731,12 @@ mkPayment_intent_payment_method_optionsMb_way = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsMb_wayRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsMb_waySetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsMb_wayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.mb_way.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsMb_wayCapture_method =
-   Payment_intent_payment_method_optionsMb_wayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMb_wayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMb_wayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsMb_wayCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMb_wayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsMb_wayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMb_wayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMb_wayCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsMb_wayCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMb_wayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsMb_wayCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsMb_wayCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMb_wayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.mb_way.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsMb_waySetup_future_usage =
-   Payment_intent_payment_method_optionsMb_waySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMb_waySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMb_waySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMb_waySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsMb_waySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMb_waySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMb_waySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMb_waySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsMb_waySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMb_waySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.mb_way.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsMb_wayVerification_method =
-   Payment_intent_payment_method_optionsMb_wayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMb_wayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMb_wayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsMb_wayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsMb_wayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMb_wayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsMb_wayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMb_wayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMb_wayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsMb_wayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsMb_wayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMb_wayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsMb_wayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsMb_wayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsMb_wayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMb_wayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.mobilepay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsMobilepay = Payment_intent_payment_method_optionsMobilepay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsMobilepayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMobilepayCapture_method)
+  payment_intent_payment_method_optionsMobilepayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsMobilepayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3824,9 +1754,9 @@ data Payment_intent_payment_method_optionsMobilepay = Payment_intent_payment_met
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsMobilepaySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMobilepaySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsMobilepayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMobilepayVerification_method)
+  , payment_intent_payment_method_optionsMobilepaySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsMobilepayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMobilepay
@@ -3844,69 +1774,12 @@ mkPayment_intent_payment_method_optionsMobilepay = Payment_intent_payment_method
                                                                                                   payment_intent_payment_method_optionsMobilepayRouting = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsMobilepaySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsMobilepayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.mobilepay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsMobilepayCapture_method =
-   Payment_intent_payment_method_optionsMobilepayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMobilepayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMobilepayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMobilepayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsMobilepayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMobilepayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMobilepayCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMobilepayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsMobilepayCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMobilepayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.mobilepay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsMobilepaySetup_future_usage =
-   Payment_intent_payment_method_optionsMobilepaySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMobilepaySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMobilepaySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMobilepaySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsMobilepaySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMobilepaySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMobilepaySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMobilepaySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsMobilepaySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMobilepaySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.mobilepay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsMobilepayVerification_method =
-   Payment_intent_payment_method_optionsMobilepayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMobilepayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMobilepayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsMobilepayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsMobilepayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMobilepayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsMobilepayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMobilepayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMobilepayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsMobilepayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsMobilepayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMobilepayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsMobilepayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsMobilepayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsMobilepayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMobilepayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.multibanco.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsMultibanco = Payment_intent_payment_method_optionsMultibanco {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsMultibancoCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMultibancoCapture_method)
+  payment_intent_payment_method_optionsMultibancoCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsMultibancoInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -3924,9 +1797,9 @@ data Payment_intent_payment_method_optionsMultibanco = Payment_intent_payment_me
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsMultibancoSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMultibancoSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsMultibancoVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsMultibancoVerification_method)
+  , payment_intent_payment_method_optionsMultibancoSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsMultibancoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMultibanco
@@ -3944,72 +1817,12 @@ mkPayment_intent_payment_method_optionsMultibanco = Payment_intent_payment_metho
                                                                                                     payment_intent_payment_method_optionsMultibancoRouting = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsMultibancoSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsMultibancoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.multibanco.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsMultibancoCapture_method =
-   Payment_intent_payment_method_optionsMultibancoCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMultibancoCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMultibancoCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsMultibancoCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMultibancoCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsMultibancoCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMultibancoCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMultibancoCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsMultibancoCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMultibancoCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsMultibancoCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsMultibancoCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMultibancoCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.multibanco.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsMultibancoSetup_future_usage =
-   Payment_intent_payment_method_optionsMultibancoSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMultibancoSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMultibancoSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMultibancoSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsMultibancoSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMultibancoSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMultibancoSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMultibancoSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsMultibancoSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMultibancoSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.multibanco.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsMultibancoVerification_method =
-   Payment_intent_payment_method_optionsMultibancoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsMultibancoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsMultibancoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsMultibancoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsMultibancoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsMultibancoVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsMultibancoVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsMultibancoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsMultibancoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsMultibancoVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsMultibancoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsMultibancoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsMultibancoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsMultibancoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsMultibancoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsMultibancoVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.naver_pay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsNaver_pay = Payment_intent_payment_method_optionsNaver_pay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsNaver_payCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsNaver_payCapture_method)
+  payment_intent_payment_method_optionsNaver_payCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsNaver_payInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4027,9 +1840,9 @@ data Payment_intent_payment_method_optionsNaver_pay = Payment_intent_payment_met
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsNaver_paySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsNaver_paySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsNaver_payVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsNaver_payVerification_method)
+  , payment_intent_payment_method_optionsNaver_paySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsNaver_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNaver_pay
@@ -4047,72 +1860,12 @@ mkPayment_intent_payment_method_optionsNaver_pay = Payment_intent_payment_method
                                                                                                   payment_intent_payment_method_optionsNaver_payRouting = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsNaver_paySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsNaver_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.naver_pay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsNaver_payCapture_method =
-   Payment_intent_payment_method_optionsNaver_payCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsNaver_payCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsNaver_payCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNaver_payCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsNaver_payCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsNaver_payCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsNaver_payCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsNaver_payCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsNaver_payCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsNaver_payCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.naver_pay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsNaver_paySetup_future_usage =
-   Payment_intent_payment_method_optionsNaver_paySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsNaver_paySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsNaver_paySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsNaver_paySetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNaver_paySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsNaver_paySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsNaver_paySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsNaver_paySetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsNaver_paySetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsNaver_paySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsNaver_paySetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsNaver_paySetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsNaver_paySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.naver_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsNaver_payVerification_method =
-   Payment_intent_payment_method_optionsNaver_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsNaver_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsNaver_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsNaver_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsNaver_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNaver_payVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsNaver_payVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsNaver_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsNaver_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsNaver_payVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsNaver_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsNaver_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsNaver_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsNaver_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsNaver_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsNaver_payVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.nz_bank_account.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsNz_bank_account = Payment_intent_payment_method_optionsNz_bank_account {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsNz_bank_accountCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsNz_bank_accountCapture_method)
+  payment_intent_payment_method_optionsNz_bank_accountCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsNz_bank_accountInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4130,15 +1883,15 @@ data Payment_intent_payment_method_optionsNz_bank_account = Payment_intent_payme
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsNz_bank_accountSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usage)
+  , payment_intent_payment_method_optionsNz_bank_accountSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | target_date: Controls when Stripe will attempt to debit the funds from the customer\'s account. The date must be a string in YYYY-MM-DD format. The date must be in the future and between 3 and 15 calendar days from now.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payment_intent_payment_method_optionsNz_bank_accountTarget_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsNz_bank_accountVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsNz_bank_accountVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsNz_bank_accountVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNz_bank_account
@@ -4157,78 +1910,12 @@ mkPayment_intent_payment_method_optionsNz_bank_account = Payment_intent_payment_
                                                                                                               payment_intent_payment_method_optionsNz_bank_accountSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                               payment_intent_payment_method_optionsNz_bank_accountTarget_date = GHC.Maybe.Nothing,
                                                                                                               payment_intent_payment_method_optionsNz_bank_accountVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.nz_bank_account.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsNz_bank_accountCapture_method =
-   Payment_intent_payment_method_optionsNz_bank_accountCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsNz_bank_accountCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsNz_bank_accountCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsNz_bank_accountCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNz_bank_accountCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsNz_bank_accountCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsNz_bank_accountCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsNz_bank_accountCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsNz_bank_accountCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsNz_bank_accountCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.nz_bank_account.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usage =
-   Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsNz_bank_accountSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.nz_bank_account.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsNz_bank_accountVerification_method =
-   Payment_intent_payment_method_optionsNz_bank_accountVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsNz_bank_accountVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsNz_bank_accountVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsNz_bank_accountVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsNz_bank_accountVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsNz_bank_accountVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsNz_bank_accountVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.oxxo.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsOxxo = Payment_intent_payment_method_optionsOxxo {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsOxxoCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsOxxoCapture_method)
+  payment_intent_payment_method_optionsOxxoCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expires_after_days: The number of calendar days before an OXXO invoice expires. For example, if you create an OXXO invoice on Monday and you set expires_after_days to 2, the OXXO invoice will expire on Wednesday at 23:59 America\/Mexico_City time.
   , payment_intent_payment_method_optionsOxxoExpires_after_days :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | installments: 
@@ -4248,9 +1935,9 @@ data Payment_intent_payment_method_optionsOxxo = Payment_intent_payment_method_o
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsOxxoSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsOxxoSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsOxxoVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsOxxoVerification_method)
+  , payment_intent_payment_method_optionsOxxoSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsOxxoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsOxxo
@@ -4269,72 +1956,12 @@ mkPayment_intent_payment_method_optionsOxxo = Payment_intent_payment_method_opti
                                                                                         payment_intent_payment_method_optionsOxxoRouting = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsOxxoSetup_future_usage = GHC.Maybe.Nothing,
                                                                                         payment_intent_payment_method_optionsOxxoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.oxxo.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsOxxoCapture_method =
-   Payment_intent_payment_method_optionsOxxoCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsOxxoCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsOxxoCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsOxxoCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsOxxoCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsOxxoCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsOxxoCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsOxxoCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsOxxoCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsOxxoCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsOxxoCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsOxxoCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsOxxoCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.oxxo.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsOxxoSetup_future_usage =
-   Payment_intent_payment_method_optionsOxxoSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsOxxoSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsOxxoSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsOxxoSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsOxxoSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsOxxoSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsOxxoSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsOxxoSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsOxxoSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsOxxoSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.oxxo.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsOxxoVerification_method =
-   Payment_intent_payment_method_optionsOxxoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsOxxoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsOxxoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsOxxoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsOxxoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsOxxoVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsOxxoVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsOxxoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsOxxoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsOxxoVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsOxxoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsOxxoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsOxxoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsOxxoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsOxxoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsOxxoVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.p24.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsP24 = Payment_intent_payment_method_optionsP24 {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsP24Capture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsP24Capture_method)
+  payment_intent_payment_method_optionsP24Capture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsP24Installments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4352,9 +1979,9 @@ data Payment_intent_payment_method_optionsP24 = Payment_intent_payment_method_op
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsP24Setup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsP24Setup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsP24Verification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsP24Verification_method)
+  , payment_intent_payment_method_optionsP24Setup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsP24Verification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsP24
@@ -4372,72 +1999,12 @@ mkPayment_intent_payment_method_optionsP24 = Payment_intent_payment_method_optio
                                                                                       payment_intent_payment_method_optionsP24Routing = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsP24Setup_future_usage = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsP24Verification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.p24.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsP24Capture_method =
-   Payment_intent_payment_method_optionsP24Capture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsP24Capture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsP24Capture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsP24Capture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsP24Capture_method
-    where {toJSON (Payment_intent_payment_method_optionsP24Capture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsP24Capture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsP24Capture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsP24Capture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsP24Capture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsP24Capture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsP24Capture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsP24Capture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.p24.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsP24Setup_future_usage =
-   Payment_intent_payment_method_optionsP24Setup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsP24Setup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsP24Setup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsP24Setup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsP24Setup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsP24Setup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsP24Setup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsP24Setup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsP24Setup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsP24Setup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.p24.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsP24Verification_method =
-   Payment_intent_payment_method_optionsP24Verification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsP24Verification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsP24Verification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsP24Verification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsP24Verification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsP24Verification_method
-    where {toJSON (Payment_intent_payment_method_optionsP24Verification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsP24Verification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsP24Verification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsP24Verification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsP24Verification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsP24Verification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsP24Verification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsP24Verification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsP24Verification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsP24Verification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.pay_by_bank.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsPay_by_bank = Payment_intent_payment_method_optionsPay_by_bank {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsPay_by_bankCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPay_by_bankCapture_method)
+  payment_intent_payment_method_optionsPay_by_bankCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsPay_by_bankInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4455,9 +2022,9 @@ data Payment_intent_payment_method_optionsPay_by_bank = Payment_intent_payment_m
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsPay_by_bankSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPay_by_bankSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsPay_by_bankVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPay_by_bankVerification_method)
+  , payment_intent_payment_method_optionsPay_by_bankSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsPay_by_bankVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPay_by_bank
@@ -4475,78 +2042,12 @@ mkPayment_intent_payment_method_optionsPay_by_bank = Payment_intent_payment_meth
                                                                                                       payment_intent_payment_method_optionsPay_by_bankRouting = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_optionsPay_by_bankSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_optionsPay_by_bankVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.pay_by_bank.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsPay_by_bankCapture_method =
-   Payment_intent_payment_method_optionsPay_by_bankCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPay_by_bankCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPay_by_bankCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsPay_by_bankCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPay_by_bankCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsPay_by_bankCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPay_by_bankCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsPay_by_bankCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsPay_by_bankCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPay_by_bankCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.pay_by_bank.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsPay_by_bankSetup_future_usage =
-   Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPay_by_bankSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPay_by_bankSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPay_by_bankSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.pay_by_bank.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsPay_by_bankVerification_method =
-   Payment_intent_payment_method_optionsPay_by_bankVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPay_by_bankVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPay_by_bankVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsPay_by_bankVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPay_by_bankVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsPay_by_bankVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPay_by_bankVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.payco.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsPayco = Payment_intent_payment_method_optionsPayco {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsPaycoCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaycoCapture_method)
+  payment_intent_payment_method_optionsPaycoCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsPaycoInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4564,9 +2065,9 @@ data Payment_intent_payment_method_optionsPayco = Payment_intent_payment_method_
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsPaycoSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaycoSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsPaycoVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaycoVerification_method)
+  , payment_intent_payment_method_optionsPaycoSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsPaycoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPayco
@@ -4584,75 +2085,12 @@ mkPayment_intent_payment_method_optionsPayco = Payment_intent_payment_method_opt
                                                                                           payment_intent_payment_method_optionsPaycoRouting = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsPaycoSetup_future_usage = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsPaycoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.payco.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsPaycoCapture_method =
-   Payment_intent_payment_method_optionsPaycoCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaycoCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaycoCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaycoCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsPaycoCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaycoCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaycoCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaycoCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsPaycoCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaycoCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.payco.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsPaycoSetup_future_usage =
-   Payment_intent_payment_method_optionsPaycoSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaycoSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaycoSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsPaycoSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaycoSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaycoSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsPaycoSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaycoSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.payco.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsPaycoVerification_method =
-   Payment_intent_payment_method_optionsPaycoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaycoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaycoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsPaycoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsPaycoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaycoVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsPaycoVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaycoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaycoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsPaycoVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsPaycoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaycoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsPaycoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsPaycoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsPaycoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaycoVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.paynow.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsPaynow = Payment_intent_payment_method_optionsPaynow {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsPaynowCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaynowCapture_method)
+  payment_intent_payment_method_optionsPaynowCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsPaynowInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4670,9 +2108,9 @@ data Payment_intent_payment_method_optionsPaynow = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsPaynowSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaynowSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsPaynowVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaynowVerification_method)
+  , payment_intent_payment_method_optionsPaynowSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsPaynowVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaynow
@@ -4690,72 +2128,12 @@ mkPayment_intent_payment_method_optionsPaynow = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsPaynowRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsPaynowSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsPaynowVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.paynow.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsPaynowCapture_method =
-   Payment_intent_payment_method_optionsPaynowCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaynowCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaynowCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsPaynowCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaynowCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsPaynowCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaynowCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaynowCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsPaynowCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaynowCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsPaynowCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsPaynowCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaynowCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.paynow.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsPaynowSetup_future_usage =
-   Payment_intent_payment_method_optionsPaynowSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaynowSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaynowSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaynowSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsPaynowSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaynowSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaynowSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaynowSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsPaynowSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaynowSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.paynow.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsPaynowVerification_method =
-   Payment_intent_payment_method_optionsPaynowVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaynowVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaynowVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsPaynowVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsPaynowVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaynowVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsPaynowVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaynowVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaynowVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsPaynowVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsPaynowVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaynowVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsPaynowVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsPaynowVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsPaynowVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaynowVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.paypal.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsPaypal = Payment_intent_payment_method_optionsPaypal {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsPaypalCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaypalCapture_method)
+  payment_intent_payment_method_optionsPaypalCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsPaypalInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4765,13 +2143,13 @@ data Payment_intent_payment_method_optionsPaypal = Payment_intent_payment_method
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_payment_method_optionsPaypalPreferred_locale :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsPaypalPreferred_locale :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference: A reference of the PayPal transaction visible to customer which is mapped to PayPal\'s invoice ID. This must be a globally unique ID if you have configured in your PayPal settings to block multiple payments per invoice ID.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_payment_method_optionsPaypalReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsPaypalReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsPaypalRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
@@ -4785,9 +2163,9 @@ data Payment_intent_payment_method_optionsPaypal = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsPaypalSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaypalSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsPaypalVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaypalVerification_method)
+  , payment_intent_payment_method_optionsPaypalSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsPaypalVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaypal
@@ -4807,72 +2185,12 @@ mkPayment_intent_payment_method_optionsPaypal = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsPaypalRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsPaypalSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsPaypalVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.paypal.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsPaypalCapture_method =
-   Payment_intent_payment_method_optionsPaypalCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaypalCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaypalCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaypalCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsPaypalCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaypalCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaypalCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaypalCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsPaypalCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaypalCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.paypal.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsPaypalSetup_future_usage =
-   Payment_intent_payment_method_optionsPaypalSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaypalSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaypalSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsPaypalSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaypalSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsPaypalSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaypalSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaypalSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsPaypalSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaypalSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsPaypalSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsPaypalSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaypalSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.paypal.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsPaypalVerification_method =
-   Payment_intent_payment_method_optionsPaypalVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaypalVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaypalVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsPaypalVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsPaypalVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaypalVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsPaypalVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaypalVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaypalVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsPaypalVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsPaypalVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaypalVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsPaypalVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsPaypalVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsPaypalVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaypalVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.payto.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsPayto = Payment_intent_payment_method_optionsPayto {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsPaytoCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaytoCapture_method)
+  payment_intent_payment_method_optionsPaytoCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsPaytoInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -4890,9 +2208,9 @@ data Payment_intent_payment_method_optionsPayto = Payment_intent_payment_method_
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsPaytoSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaytoSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsPaytoVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPaytoVerification_method)
+  , payment_intent_payment_method_optionsPaytoSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsPaytoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPayto
@@ -4910,81 +2228,18 @@ mkPayment_intent_payment_method_optionsPayto = Payment_intent_payment_method_opt
                                                                                           payment_intent_payment_method_optionsPaytoRouting = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsPaytoSetup_future_usage = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsPaytoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.payto.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsPaytoCapture_method =
-   Payment_intent_payment_method_optionsPaytoCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaytoCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaytoCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsPaytoCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaytoCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsPaytoCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaytoCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaytoCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsPaytoCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaytoCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsPaytoCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsPaytoCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaytoCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.payto.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsPaytoSetup_future_usage =
-   Payment_intent_payment_method_optionsPaytoSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaytoSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaytoSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsPaytoSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaytoSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsPaytoSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaytoSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaytoSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsPaytoSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaytoSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsPaytoSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsPaytoSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaytoSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.payto.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsPaytoVerification_method =
-   Payment_intent_payment_method_optionsPaytoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPaytoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPaytoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsPaytoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsPaytoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPaytoVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsPaytoVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPaytoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPaytoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsPaytoVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsPaytoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPaytoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsPaytoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsPaytoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsPaytoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPaytoVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.pix.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsPix = Payment_intent_payment_method_optionsPix {
   -- | amount_includes_iof: Determines if the amount includes the IOF tax.
-  payment_intent_payment_method_optionsPixAmount_includes_iof :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPixAmount_includes_iof)
+  payment_intent_payment_method_optionsPixAmount_includes_iof :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  , payment_intent_payment_method_optionsPixCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPixCapture_method)
+  , payment_intent_payment_method_optionsPixCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | expires_after_seconds: The number of seconds (between 10 and 1209600) after which Pix payment will expire.
-  , payment_intent_payment_method_optionsPixExpires_after_seconds :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_payment_method_optionsPixExpires_after_seconds :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | expires_at: The timestamp at which the Pix expires.
-  , payment_intent_payment_method_optionsPixExpires_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_intent_payment_method_optionsPixExpires_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | installments: 
   , payment_intent_payment_method_optionsPixInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5002,9 +2257,9 @@ data Payment_intent_payment_method_optionsPix = Payment_intent_payment_method_op
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsPixSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPixSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsPixVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPixVerification_method)
+  , payment_intent_payment_method_optionsPixSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsPixVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPix
@@ -5025,90 +2280,12 @@ mkPayment_intent_payment_method_optionsPix = Payment_intent_payment_method_optio
                                                                                       payment_intent_payment_method_optionsPixRouting = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsPixSetup_future_usage = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsPixVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.pix.anyOf.properties.amount_includes_iof@ in the specification.
--- 
--- Determines if the amount includes the IOF tax.
-data Payment_intent_payment_method_optionsPixAmount_includes_iof =
-   Payment_intent_payment_method_optionsPixAmount_includes_iofOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPixAmount_includes_iofTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPixAmount_includes_iofEnumAlways -- ^ Represents the JSON value @"always"@
-  | Payment_intent_payment_method_optionsPixAmount_includes_iofEnumNever -- ^ Represents the JSON value @"never"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPixAmount_includes_iof
-    where {toJSON (Payment_intent_payment_method_optionsPixAmount_includes_iofOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPixAmount_includes_iofTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPixAmount_includes_iofEnumAlways) = "always";
-           toJSON (Payment_intent_payment_method_optionsPixAmount_includes_iofEnumNever) = "never"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPixAmount_includes_iof
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Payment_intent_payment_method_optionsPixAmount_includes_iofEnumAlways
-                                             | val GHC.Classes.== "never" -> Payment_intent_payment_method_optionsPixAmount_includes_iofEnumNever
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPixAmount_includes_iofOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.pix.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsPixCapture_method =
-   Payment_intent_payment_method_optionsPixCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPixCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPixCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsPixCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPixCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsPixCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPixCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPixCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsPixCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPixCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsPixCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsPixCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPixCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.pix.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsPixSetup_future_usage =
-   Payment_intent_payment_method_optionsPixSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPixSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPixSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPixSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsPixSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPixSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPixSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPixSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsPixSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPixSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.pix.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsPixVerification_method =
-   Payment_intent_payment_method_optionsPixVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPixVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPixVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsPixVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsPixVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPixVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsPixVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPixVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPixVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsPixVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsPixVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPixVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsPixVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsPixVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsPixVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPixVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.promptpay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsPromptpay = Payment_intent_payment_method_optionsPromptpay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsPromptpayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPromptpayCapture_method)
+  payment_intent_payment_method_optionsPromptpayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsPromptpayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5126,9 +2303,9 @@ data Payment_intent_payment_method_optionsPromptpay = Payment_intent_payment_met
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsPromptpaySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPromptpaySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsPromptpayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsPromptpayVerification_method)
+  , payment_intent_payment_method_optionsPromptpaySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsPromptpayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPromptpay
@@ -5146,72 +2323,12 @@ mkPayment_intent_payment_method_optionsPromptpay = Payment_intent_payment_method
                                                                                                   payment_intent_payment_method_optionsPromptpayRouting = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsPromptpaySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                   payment_intent_payment_method_optionsPromptpayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.promptpay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsPromptpayCapture_method =
-   Payment_intent_payment_method_optionsPromptpayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPromptpayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPromptpayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsPromptpayCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPromptpayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsPromptpayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPromptpayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPromptpayCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsPromptpayCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPromptpayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsPromptpayCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsPromptpayCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPromptpayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.promptpay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsPromptpaySetup_future_usage =
-   Payment_intent_payment_method_optionsPromptpaySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPromptpaySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPromptpaySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPromptpaySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsPromptpaySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPromptpaySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPromptpaySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPromptpaySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsPromptpaySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPromptpaySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.promptpay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsPromptpayVerification_method =
-   Payment_intent_payment_method_optionsPromptpayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsPromptpayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsPromptpayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsPromptpayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsPromptpayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsPromptpayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsPromptpayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsPromptpayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsPromptpayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsPromptpayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsPromptpayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsPromptpayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsPromptpayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsPromptpayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsPromptpayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsPromptpayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.revolut_pay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsRevolut_pay = Payment_intent_payment_method_optionsRevolut_pay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsRevolut_payCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsRevolut_payCapture_method)
+  payment_intent_payment_method_optionsRevolut_payCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsRevolut_payInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5229,9 +2346,9 @@ data Payment_intent_payment_method_optionsRevolut_pay = Payment_intent_payment_m
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsRevolut_paySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsRevolut_paySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsRevolut_payVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsRevolut_payVerification_method)
+  , payment_intent_payment_method_optionsRevolut_paySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsRevolut_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsRevolut_pay
@@ -5249,72 +2366,12 @@ mkPayment_intent_payment_method_optionsRevolut_pay = Payment_intent_payment_meth
                                                                                                       payment_intent_payment_method_optionsRevolut_payRouting = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_optionsRevolut_paySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_optionsRevolut_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.revolut_pay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsRevolut_payCapture_method =
-   Payment_intent_payment_method_optionsRevolut_payCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsRevolut_payCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsRevolut_payCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsRevolut_payCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsRevolut_payCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsRevolut_payCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsRevolut_payCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsRevolut_payCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsRevolut_payCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsRevolut_payCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.revolut_pay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsRevolut_paySetup_future_usage =
-   Payment_intent_payment_method_optionsRevolut_paySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsRevolut_paySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsRevolut_paySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsRevolut_paySetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsRevolut_paySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsRevolut_paySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsRevolut_paySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsRevolut_paySetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsRevolut_paySetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsRevolut_paySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsRevolut_paySetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsRevolut_paySetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsRevolut_paySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.revolut_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsRevolut_payVerification_method =
-   Payment_intent_payment_method_optionsRevolut_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsRevolut_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsRevolut_payVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsRevolut_payVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsRevolut_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsRevolut_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsRevolut_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsRevolut_payVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.samsung_pay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsSamsung_pay = Payment_intent_payment_method_optionsSamsung_pay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsSamsung_payCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSamsung_payCapture_method)
+  payment_intent_payment_method_optionsSamsung_payCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsSamsung_payInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5332,9 +2389,9 @@ data Payment_intent_payment_method_optionsSamsung_pay = Payment_intent_payment_m
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsSamsung_paySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSamsung_paySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsSamsung_payVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSamsung_payVerification_method)
+  , payment_intent_payment_method_optionsSamsung_paySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsSamsung_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSamsung_pay
@@ -5352,75 +2409,12 @@ mkPayment_intent_payment_method_optionsSamsung_pay = Payment_intent_payment_meth
                                                                                                       payment_intent_payment_method_optionsSamsung_payRouting = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_optionsSamsung_paySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                       payment_intent_payment_method_optionsSamsung_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.samsung_pay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsSamsung_payCapture_method =
-   Payment_intent_payment_method_optionsSamsung_payCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSamsung_payCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSamsung_payCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSamsung_payCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsSamsung_payCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSamsung_payCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSamsung_payCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSamsung_payCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsSamsung_payCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSamsung_payCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.samsung_pay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsSamsung_paySetup_future_usage =
-   Payment_intent_payment_method_optionsSamsung_paySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSamsung_paySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSamsung_paySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsSamsung_paySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSamsung_paySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSamsung_paySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsSamsung_paySetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSamsung_paySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.samsung_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsSamsung_payVerification_method =
-   Payment_intent_payment_method_optionsSamsung_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSamsung_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSamsung_payVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsSamsung_payVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSamsung_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSamsung_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsSamsung_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSamsung_payVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.satispay.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsSatispay = Payment_intent_payment_method_optionsSatispay {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsSatispayCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSatispayCapture_method)
+  payment_intent_payment_method_optionsSatispayCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsSatispayInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5438,9 +2432,9 @@ data Payment_intent_payment_method_optionsSatispay = Payment_intent_payment_meth
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsSatispaySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSatispaySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsSatispayVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSatispayVerification_method)
+  , payment_intent_payment_method_optionsSatispaySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsSatispayVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSatispay
@@ -5458,75 +2452,12 @@ mkPayment_intent_payment_method_optionsSatispay = Payment_intent_payment_method_
                                                                                                 payment_intent_payment_method_optionsSatispayRouting = GHC.Maybe.Nothing,
                                                                                                 payment_intent_payment_method_optionsSatispaySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                 payment_intent_payment_method_optionsSatispayVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.satispay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsSatispayCapture_method =
-   Payment_intent_payment_method_optionsSatispayCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSatispayCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSatispayCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSatispayCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsSatispayCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSatispayCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSatispayCapture_methodEnumManual) = "manual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSatispayCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsSatispayCapture_methodEnumManual
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSatispayCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.satispay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsSatispaySetup_future_usage =
-   Payment_intent_payment_method_optionsSatispaySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSatispaySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSatispaySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsSatispaySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSatispaySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSatispaySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsSatispaySetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSatispaySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.satispay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsSatispayVerification_method =
-   Payment_intent_payment_method_optionsSatispayVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSatispayVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSatispayVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsSatispayVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsSatispayVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSatispayVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsSatispayVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSatispayVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSatispayVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsSatispayVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsSatispayVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSatispayVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsSatispayVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsSatispayVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsSatispayVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSatispayVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.sepa_debit.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsSepa_debit = Payment_intent_payment_method_optionsSepa_debit {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsSepa_debitCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSepa_debitCapture_method)
+  payment_intent_payment_method_optionsSepa_debitCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsSepa_debitInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5544,15 +2475,15 @@ data Payment_intent_payment_method_optionsSepa_debit = Payment_intent_payment_me
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsSepa_debitSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSepa_debitSetup_future_usage)
+  , payment_intent_payment_method_optionsSepa_debitSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | target_date: Controls when Stripe will attempt to debit the funds from the customer\'s account. The date must be a string in YYYY-MM-DD format. The date must be in the future and between 3 and 15 calendar days from now.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payment_intent_payment_method_optionsSepa_debitTarget_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsSepa_debitVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSepa_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsSepa_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSepa_debit
@@ -5571,84 +2502,18 @@ mkPayment_intent_payment_method_optionsSepa_debit = Payment_intent_payment_metho
                                                                                                     payment_intent_payment_method_optionsSepa_debitSetup_future_usage = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsSepa_debitTarget_date = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsSepa_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.sepa_debit.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsSepa_debitCapture_method =
-   Payment_intent_payment_method_optionsSepa_debitCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSepa_debitCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSepa_debitCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsSepa_debitCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSepa_debitCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsSepa_debitCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSepa_debitCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSepa_debitCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsSepa_debitCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSepa_debitCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsSepa_debitCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsSepa_debitCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSepa_debitCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.sepa_debit.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsSepa_debitSetup_future_usage =
-   Payment_intent_payment_method_optionsSepa_debitSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSepa_debitSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSepa_debitSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsSepa_debitSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSepa_debitSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSepa_debitSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsSepa_debitSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSepa_debitSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.sepa_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsSepa_debitVerification_method =
-   Payment_intent_payment_method_optionsSepa_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSepa_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSepa_debitVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsSepa_debitVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSepa_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSepa_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsSepa_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSepa_debitVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.sofort.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsSofort = Payment_intent_payment_method_optionsSofort {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsSofortCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSofortCapture_method)
+  payment_intent_payment_method_optionsSofortCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsSofortInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
   , payment_intent_payment_method_optionsSofortMandate_options :: (GHC.Maybe.Maybe Payment_intent_payment_method_options_mandate_options_payto)
   -- | preferred_language: Preferred language of the SOFORT authorization page that the customer is redirected to.
-  , payment_intent_payment_method_optionsSofortPreferred_language :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsSofortPreferred_languageNonNullable))
+  , payment_intent_payment_method_optionsSofortPreferred_language :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsSofortRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
@@ -5662,9 +2527,9 @@ data Payment_intent_payment_method_optionsSofort = Payment_intent_payment_method
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsSofortSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSofortSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsSofortVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSofortVerification_method)
+  , payment_intent_payment_method_optionsSofortSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsSofortVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSofort
@@ -5683,108 +2548,12 @@ mkPayment_intent_payment_method_optionsSofort = Payment_intent_payment_method_op
                                                                                             payment_intent_payment_method_optionsSofortRouting = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsSofortSetup_future_usage = GHC.Maybe.Nothing,
                                                                                             payment_intent_payment_method_optionsSofortVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.sofort.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsSofortCapture_method =
-   Payment_intent_payment_method_optionsSofortCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSofortCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSofortCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsSofortCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSofortCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsSofortCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSofortCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSofortCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsSofortCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSofortCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsSofortCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsSofortCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSofortCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.sofort.anyOf.properties.preferred_language@ in the specification.
--- 
--- Preferred language of the SOFORT authorization page that the customer is redirected to.
-data Payment_intent_payment_method_optionsSofortPreferred_languageNonNullable =
-   Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumDe -- ^ Represents the JSON value @"de"@
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumEn -- ^ Represents the JSON value @"en"@
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumEs -- ^ Represents the JSON value @"es"@
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumFr -- ^ Represents the JSON value @"fr"@
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumIt -- ^ Represents the JSON value @"it"@
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumNl -- ^ Represents the JSON value @"nl"@
-  | Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumPl -- ^ Represents the JSON value @"pl"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSofortPreferred_languageNonNullable
-    where {toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumDe) = "de";
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumEn) = "en";
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumEs) = "es";
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumFr) = "fr";
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumIt) = "it";
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumNl) = "nl";
-           toJSON (Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumPl) = "pl"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSofortPreferred_languageNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "de" -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumDe
-                                             | val GHC.Classes.== "en" -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumEn
-                                             | val GHC.Classes.== "es" -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumEs
-                                             | val GHC.Classes.== "fr" -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumFr
-                                             | val GHC.Classes.== "it" -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumIt
-                                             | val GHC.Classes.== "nl" -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumNl
-                                             | val GHC.Classes.== "pl" -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableEnumPl
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSofortPreferred_languageNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.sofort.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsSofortSetup_future_usage =
-   Payment_intent_payment_method_optionsSofortSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSofortSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSofortSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsSofortSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSofortSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsSofortSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSofortSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSofortSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsSofortSetup_future_usageEnumOff_session) = "off_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSofortSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsSofortSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsSofortSetup_future_usageEnumOff_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSofortSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.sofort.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsSofortVerification_method =
-   Payment_intent_payment_method_optionsSofortVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSofortVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSofortVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsSofortVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsSofortVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSofortVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsSofortVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSofortVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSofortVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsSofortVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsSofortVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSofortVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsSofortVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsSofortVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsSofortVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSofortVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.swish.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsSwish = Payment_intent_payment_method_optionsSwish {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsSwishCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSwishCapture_method)
+  payment_intent_payment_method_optionsSwishCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsSwishInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5794,7 +2563,7 @@ data Payment_intent_payment_method_optionsSwish = Payment_intent_payment_method_
   -- Constraints:
   -- 
   -- * Maximum length of 35
-  , payment_intent_payment_method_optionsSwishReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_payment_method_optionsSwishReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
   , payment_intent_payment_method_optionsSwishRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
@@ -5808,9 +2577,9 @@ data Payment_intent_payment_method_optionsSwish = Payment_intent_payment_method_
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsSwishSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSwishSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsSwishVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsSwishVerification_method)
+  , payment_intent_payment_method_optionsSwishSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsSwishVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSwish
@@ -5829,72 +2598,12 @@ mkPayment_intent_payment_method_optionsSwish = Payment_intent_payment_method_opt
                                                                                           payment_intent_payment_method_optionsSwishRouting = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsSwishSetup_future_usage = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsSwishVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.swish.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsSwishCapture_method =
-   Payment_intent_payment_method_optionsSwishCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSwishCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSwishCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsSwishCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSwishCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsSwishCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSwishCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSwishCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsSwishCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSwishCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsSwishCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsSwishCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSwishCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.swish.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsSwishSetup_future_usage =
-   Payment_intent_payment_method_optionsSwishSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSwishSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSwishSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSwishSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsSwishSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSwishSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSwishSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSwishSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsSwishSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSwishSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.swish.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsSwishVerification_method =
-   Payment_intent_payment_method_optionsSwishVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsSwishVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsSwishVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsSwishVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsSwishVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsSwishVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsSwishVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsSwishVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsSwishVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsSwishVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsSwishVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsSwishVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsSwishVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsSwishVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsSwishVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsSwishVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.twint.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsTwint = Payment_intent_payment_method_optionsTwint {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsTwintCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsTwintCapture_method)
+  payment_intent_payment_method_optionsTwintCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsTwintInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -5912,9 +2621,9 @@ data Payment_intent_payment_method_optionsTwint = Payment_intent_payment_method_
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsTwintSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsTwintSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsTwintVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsTwintVerification_method)
+  , payment_intent_payment_method_optionsTwintSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsTwintVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsTwint
@@ -5932,72 +2641,55 @@ mkPayment_intent_payment_method_optionsTwint = Payment_intent_payment_method_opt
                                                                                           payment_intent_payment_method_optionsTwintRouting = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsTwintSetup_future_usage = GHC.Maybe.Nothing,
                                                                                           payment_intent_payment_method_optionsTwintVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.twint.anyOf.properties.capture_method@ in the specification.
+-- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.upi.anyOf@ in the specification.
 -- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsTwintCapture_method =
-   Payment_intent_payment_method_optionsTwintCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsTwintCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsTwintCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsTwintCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsTwintCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsTwintCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsTwintCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsTwintCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsTwintCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsTwintCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsTwintCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsTwintCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsTwintCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.twint.anyOf.properties.setup_future_usage@ in the specification.
 -- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsTwintSetup_future_usage =
-   Payment_intent_payment_method_optionsTwintSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsTwintSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsTwintSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsTwintSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsTwintSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsTwintSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsTwintSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsTwintSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsTwintSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsTwintSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.twint.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsTwintVerification_method =
-   Payment_intent_payment_method_optionsTwintVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsTwintVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsTwintVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsTwintVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsTwintVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsTwintVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsTwintVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsTwintVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsTwintVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsTwintVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsTwintVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsTwintVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsTwintVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsTwintVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsTwintVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsTwintVerification_methodOther val)}
+data Payment_intent_payment_method_optionsUpi = Payment_intent_payment_method_optionsUpi {
+  -- | capture_method: Controls when the funds will be captured from the customer\'s account.
+  payment_intent_payment_method_optionsUpiCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | installments: 
+  , payment_intent_payment_method_optionsUpiInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
+  -- | mandate_options: 
+  , payment_intent_payment_method_optionsUpiMandate_options :: (GHC.Maybe.Maybe Payment_intent_payment_method_options_mandate_options_payto)
+  -- | request_incremental_authorization_support: Request ability to [increment](https:\/\/docs.stripe.com\/terminal\/features\/incremental-authorizations) this PaymentIntent if the combination of MCC and card brand is eligible. Check [incremental_authorization_supported](https:\/\/docs.stripe.com\/api\/charges\/object\#charge_object-payment_method_details-card_present-incremental_authorization_supported) in the [Confirm](https:\/\/docs.stripe.com\/api\/payment_intents\/confirm) response to verify support.
+  , payment_intent_payment_method_optionsUpiRequest_incremental_authorization_support :: (GHC.Maybe.Maybe GHC.Types.Bool)
+  -- | require_cvc_recollection: When enabled, using a card that is attached to a customer will require the CVC to be provided again (i.e. using the cvc_token parameter).
+  , payment_intent_payment_method_optionsUpiRequire_cvc_recollection :: (GHC.Maybe.Maybe GHC.Types.Bool)
+  -- | routing: 
+  , payment_intent_payment_method_optionsUpiRouting :: (GHC.Maybe.Maybe Payment_method_options_card_present_routing)
+  -- | setup_future_usage: Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
+  -- 
+  -- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
+  -- 
+  -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
+  -- 
+  -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
+  , payment_intent_payment_method_optionsUpiSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsUpiVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  } deriving (GHC.Show.Show
+  , GHC.Classes.Eq)
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsUpi
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("capture_method" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiCapture_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("installments" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiInstallments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_incremental_authorization_support" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiRequest_incremental_authorization_support obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("require_cvc_recollection" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiRequire_cvc_recollection obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiRouting obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_future_usage" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiSetup_future_usage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("capture_method" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiCapture_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("installments" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiInstallments obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("request_incremental_authorization_support" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiRequest_incremental_authorization_support obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("require_cvc_recollection" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiRequire_cvc_recollection obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("routing" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiRouting obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("setup_future_usage" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiSetup_future_usage obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (payment_intent_payment_method_optionsUpiVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsUpi
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_intent_payment_method_optionsUpi" (\obj -> (((((((GHC.Base.pure Payment_intent_payment_method_optionsUpi GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "capture_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "installments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_incremental_authorization_support")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "require_cvc_recollection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "routing")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_future_usage")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Payment_intent_payment_method_optionsUpi' with all required fields.
+mkPayment_intent_payment_method_optionsUpi :: Payment_intent_payment_method_optionsUpi
+mkPayment_intent_payment_method_optionsUpi = Payment_intent_payment_method_optionsUpi{payment_intent_payment_method_optionsUpiCapture_method = GHC.Maybe.Nothing,
+                                                                                      payment_intent_payment_method_optionsUpiInstallments = GHC.Maybe.Nothing,
+                                                                                      payment_intent_payment_method_optionsUpiMandate_options = GHC.Maybe.Nothing,
+                                                                                      payment_intent_payment_method_optionsUpiRequest_incremental_authorization_support = GHC.Maybe.Nothing,
+                                                                                      payment_intent_payment_method_optionsUpiRequire_cvc_recollection = GHC.Maybe.Nothing,
+                                                                                      payment_intent_payment_method_optionsUpiRouting = GHC.Maybe.Nothing,
+                                                                                      payment_intent_payment_method_optionsUpiSetup_future_usage = GHC.Maybe.Nothing,
+                                                                                      payment_intent_payment_method_optionsUpiVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.us_bank_account.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsUs_bank_account = Payment_intent_payment_method_optionsUs_bank_account {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsUs_bank_accountCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsUs_bank_accountCapture_method)
+  payment_intent_payment_method_optionsUs_bank_accountCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | financial_connections: 
   , payment_intent_payment_method_optionsUs_bank_accountFinancial_connections :: (GHC.Maybe.Maybe Linked_account_options_common)
   -- | installments: 
@@ -6017,7 +2709,7 @@ data Payment_intent_payment_method_optionsUs_bank_account = Payment_intent_payme
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsUs_bank_accountSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usage)
+  , payment_intent_payment_method_optionsUs_bank_accountSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | target_date: Controls when Stripe will attempt to debit the funds from the customer\'s account. The date must be a string in YYYY-MM-DD format. The date must be in the future and between 3 and 15 calendar days from now.
   -- 
   -- Constraints:
@@ -6025,9 +2717,9 @@ data Payment_intent_payment_method_optionsUs_bank_account = Payment_intent_payme
   -- * Maximum length of 5000
   , payment_intent_payment_method_optionsUs_bank_accountTarget_date :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | transaction_purpose: The purpose of the transaction.
-  , payment_intent_payment_method_optionsUs_bank_accountTransaction_purpose :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsUs_bank_accountTransaction_purpose)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsUs_bank_accountVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsUs_bank_accountVerification_method)
+  , payment_intent_payment_method_optionsUs_bank_accountTransaction_purpose :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsUs_bank_accountVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsUs_bank_account
@@ -6048,96 +2740,6 @@ mkPayment_intent_payment_method_optionsUs_bank_account = Payment_intent_payment_
                                                                                                               payment_intent_payment_method_optionsUs_bank_accountTarget_date = GHC.Maybe.Nothing,
                                                                                                               payment_intent_payment_method_optionsUs_bank_accountTransaction_purpose = GHC.Maybe.Nothing,
                                                                                                               payment_intent_payment_method_optionsUs_bank_accountVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.us_bank_account.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsUs_bank_accountCapture_method =
-   Payment_intent_payment_method_optionsUs_bank_accountCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsUs_bank_accountCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsUs_bank_accountCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsUs_bank_accountCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsUs_bank_accountCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsUs_bank_accountCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsUs_bank_accountCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsUs_bank_accountCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsUs_bank_accountCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsUs_bank_accountCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.us_bank_account.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usage =
-   Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  | Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumOff_session -- ^ Represents the JSON value @"off_session"@
-  | Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumOn_session -- ^ Represents the JSON value @"on_session"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumNone) = "none";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumOff_session) = "off_session";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumOn_session) = "on_session"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumNone
-                                             | val GHC.Classes.== "off_session" -> Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumOff_session
-                                             | val GHC.Classes.== "on_session" -> Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageEnumOn_session
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsUs_bank_accountSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.us_bank_account.anyOf.properties.transaction_purpose@ in the specification.
--- 
--- The purpose of the transaction.
-data Payment_intent_payment_method_optionsUs_bank_accountTransaction_purpose =
-   Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumGoods -- ^ Represents the JSON value @"goods"@
-  | Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumOther -- ^ Represents the JSON value @"other"@
-  | Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumServices -- ^ Represents the JSON value @"services"@
-  | Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsUs_bank_accountTransaction_purpose
-    where {toJSON (Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumGoods) = "goods";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumOther) = "other";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumServices) = "services";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsUs_bank_accountTransaction_purpose
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "goods" -> Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumGoods
-                                             | val GHC.Classes.== "other" -> Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumOther
-                                             | val GHC.Classes.== "services" -> Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumServices
-                                             | val GHC.Classes.== "unspecified" -> Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeEnumUnspecified
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsUs_bank_accountTransaction_purposeOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.us_bank_account.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsUs_bank_accountVerification_method =
-   Payment_intent_payment_method_optionsUs_bank_accountVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsUs_bank_accountVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsUs_bank_accountVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsUs_bank_accountVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsUs_bank_accountVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsUs_bank_accountVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsUs_bank_accountVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.wechat_pay.anyOf@ in the specification.
 -- 
 -- 
@@ -6147,11 +2749,11 @@ data Payment_intent_payment_method_optionsWechat_pay = Payment_intent_payment_me
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_intent_payment_method_optionsWechat_payApp_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_intent_payment_method_optionsWechat_payApp_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  , payment_intent_payment_method_optionsWechat_payCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsWechat_payCapture_method)
+  , payment_intent_payment_method_optionsWechat_payCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | client: The client type that the end customer will pay from
-  , payment_intent_payment_method_optionsWechat_payClient :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_intent_payment_method_optionsWechat_payClientNonNullable))
+  , payment_intent_payment_method_optionsWechat_payClient :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsWechat_payInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -6169,9 +2771,9 @@ data Payment_intent_payment_method_optionsWechat_pay = Payment_intent_payment_me
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsWechat_paySetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsWechat_paySetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsWechat_payVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsWechat_payVerification_method)
+  , payment_intent_payment_method_optionsWechat_paySetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsWechat_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsWechat_pay
@@ -6191,93 +2793,12 @@ mkPayment_intent_payment_method_optionsWechat_pay = Payment_intent_payment_metho
                                                                                                     payment_intent_payment_method_optionsWechat_payRouting = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsWechat_paySetup_future_usage = GHC.Maybe.Nothing,
                                                                                                     payment_intent_payment_method_optionsWechat_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.wechat_pay.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsWechat_payCapture_method =
-   Payment_intent_payment_method_optionsWechat_payCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsWechat_payCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsWechat_payCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsWechat_payCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsWechat_payCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsWechat_payCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsWechat_payCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsWechat_payCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsWechat_payCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsWechat_payCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsWechat_payCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsWechat_payCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsWechat_payCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.wechat_pay.anyOf.properties.client@ in the specification.
--- 
--- The client type that the end customer will pay from
-data Payment_intent_payment_method_optionsWechat_payClientNonNullable =
-   Payment_intent_payment_method_optionsWechat_payClientNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsWechat_payClientNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumAndroid -- ^ Represents the JSON value @"android"@
-  | Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumIos -- ^ Represents the JSON value @"ios"@
-  | Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumWeb -- ^ Represents the JSON value @"web"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsWechat_payClientNonNullable
-    where {toJSON (Payment_intent_payment_method_optionsWechat_payClientNonNullableOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsWechat_payClientNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumAndroid) = "android";
-           toJSON (Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumIos) = "ios";
-           toJSON (Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumWeb) = "web"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsWechat_payClientNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "android" -> Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumAndroid
-                                             | val GHC.Classes.== "ios" -> Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumIos
-                                             | val GHC.Classes.== "web" -> Payment_intent_payment_method_optionsWechat_payClientNonNullableEnumWeb
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsWechat_payClientNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.wechat_pay.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsWechat_paySetup_future_usage =
-   Payment_intent_payment_method_optionsWechat_paySetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsWechat_paySetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsWechat_paySetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsWechat_paySetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsWechat_paySetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsWechat_paySetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsWechat_paySetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsWechat_paySetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsWechat_paySetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsWechat_paySetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.wechat_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsWechat_payVerification_method =
-   Payment_intent_payment_method_optionsWechat_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsWechat_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsWechat_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsWechat_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsWechat_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsWechat_payVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsWechat_payVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsWechat_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsWechat_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsWechat_payVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsWechat_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsWechat_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsWechat_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsWechat_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsWechat_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsWechat_payVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.payment_intent_payment_method_options.properties.zip.anyOf@ in the specification.
 -- 
 -- 
 data Payment_intent_payment_method_optionsZip = Payment_intent_payment_method_optionsZip {
   -- | capture_method: Controls when the funds will be captured from the customer\'s account.
-  payment_intent_payment_method_optionsZipCapture_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsZipCapture_method)
+  payment_intent_payment_method_optionsZipCapture_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | installments: 
   , payment_intent_payment_method_optionsZipInstallments :: (GHC.Maybe.Maybe Payment_flows_installment_options)
   -- | mandate_options: 
@@ -6295,9 +2816,9 @@ data Payment_intent_payment_method_optionsZip = Payment_intent_payment_method_op
   -- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
   -- 
   -- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-  , payment_intent_payment_method_optionsZipSetup_future_usage :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsZipSetup_future_usage)
-  -- | verification_method: Bank account verification method.
-  , payment_intent_payment_method_optionsZipVerification_method :: (GHC.Maybe.Maybe Payment_intent_payment_method_optionsZipVerification_method)
+  , payment_intent_payment_method_optionsZipSetup_future_usage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , payment_intent_payment_method_optionsZipVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsZip
@@ -6315,63 +2836,3 @@ mkPayment_intent_payment_method_optionsZip = Payment_intent_payment_method_optio
                                                                                       payment_intent_payment_method_optionsZipRouting = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsZipSetup_future_usage = GHC.Maybe.Nothing,
                                                                                       payment_intent_payment_method_optionsZipVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.zip.anyOf.properties.capture_method@ in the specification.
--- 
--- Controls when the funds will be captured from the customer\'s account.
-data Payment_intent_payment_method_optionsZipCapture_method =
-   Payment_intent_payment_method_optionsZipCapture_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsZipCapture_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsZipCapture_methodEnumManual -- ^ Represents the JSON value @"manual"@
-  | Payment_intent_payment_method_optionsZipCapture_methodEnumManual_preferred -- ^ Represents the JSON value @"manual_preferred"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsZipCapture_method
-    where {toJSON (Payment_intent_payment_method_optionsZipCapture_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsZipCapture_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsZipCapture_methodEnumManual) = "manual";
-           toJSON (Payment_intent_payment_method_optionsZipCapture_methodEnumManual_preferred) = "manual_preferred"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsZipCapture_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "manual" -> Payment_intent_payment_method_optionsZipCapture_methodEnumManual
-                                             | val GHC.Classes.== "manual_preferred" -> Payment_intent_payment_method_optionsZipCapture_methodEnumManual_preferred
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsZipCapture_methodOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.zip.anyOf.properties.setup_future_usage@ in the specification.
--- 
--- Indicates that you intend to make future payments with this PaymentIntent\'s payment method.
--- 
--- If you provide a Customer with the PaymentIntent, you can use this parameter to [attach the payment method](\/payments\/save-during-payment) to the Customer after the PaymentIntent is confirmed and the customer completes any required actions. If you don\'t provide a Customer, you can still [attach](\/api\/payment_methods\/attach) the payment method to a Customer after the transaction completes.
--- 
--- If the payment method is \`card_present\` and isn\'t a digital wallet, Stripe creates and attaches a [generated_card](\/api\/charges\/object\#charge_object-payment_method_details-card_present-generated_card) payment method representing the card to the Customer instead.
--- 
--- When processing card payments, Stripe uses \`setup_future_usage\` to help you comply with regional legislation and network rules, such as [SCA](\/strong-customer-authentication).
-data Payment_intent_payment_method_optionsZipSetup_future_usage =
-   Payment_intent_payment_method_optionsZipSetup_future_usageOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsZipSetup_future_usageTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsZipSetup_future_usageEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsZipSetup_future_usage
-    where {toJSON (Payment_intent_payment_method_optionsZipSetup_future_usageOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsZipSetup_future_usageTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsZipSetup_future_usageEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsZipSetup_future_usage
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "none" -> Payment_intent_payment_method_optionsZipSetup_future_usageEnumNone
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsZipSetup_future_usageOther val)}
--- | Defines the enum schema located at @components.schemas.payment_intent_payment_method_options.properties.zip.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Payment_intent_payment_method_optionsZipVerification_method =
-   Payment_intent_payment_method_optionsZipVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_intent_payment_method_optionsZipVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_intent_payment_method_optionsZipVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Payment_intent_payment_method_optionsZipVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Payment_intent_payment_method_optionsZipVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_payment_method_optionsZipVerification_method
-    where {toJSON (Payment_intent_payment_method_optionsZipVerification_methodOther val) = val;
-           toJSON (Payment_intent_payment_method_optionsZipVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_intent_payment_method_optionsZipVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Payment_intent_payment_method_optionsZipVerification_methodEnumInstant) = "instant";
-           toJSON (Payment_intent_payment_method_optionsZipVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_intent_payment_method_optionsZipVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Payment_intent_payment_method_optionsZipVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Payment_intent_payment_method_optionsZipVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Payment_intent_payment_method_optionsZipVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Payment_intent_payment_method_optionsZipVerification_methodOther val)}

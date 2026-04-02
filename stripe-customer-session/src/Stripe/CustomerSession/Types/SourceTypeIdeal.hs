@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Source_type_ideal = Source_type_ideal {
   -- | bank
-  source_type_idealBank :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  source_type_idealBank :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bic
-  , source_type_idealBic :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_idealBic :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | iban_last4
-  , source_type_idealIban_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_idealIban_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor
-  , source_type_idealStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , source_type_idealStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Source_type_ideal

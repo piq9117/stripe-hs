@@ -6,11 +6,6 @@ instance Show Charge_outcome
 instance Eq Charge_outcome
 instance Data.Aeson.FromJSON Charge_outcome
 instance Data.Aeson.ToJSON Charge_outcome
-data Charge_outcomeAdvice_codeNonNullable
-instance Show Charge_outcomeAdvice_codeNonNullable
-instance Eq Charge_outcomeAdvice_codeNonNullable
-instance Data.Aeson.FromJSON Charge_outcomeAdvice_codeNonNullable
-instance Data.Aeson.ToJSON Charge_outcomeAdvice_codeNonNullable
 data Charge_outcomeRuleVariants
 instance Show Charge_outcomeRuleVariants
 instance Eq Charge_outcomeRuleVariants

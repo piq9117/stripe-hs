@@ -50,9 +50,9 @@ data Issuing_transaction_fuel_data = Issuing_transaction_fuel_data {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  issuing_transaction_fuel_dataIndustry_product_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  issuing_transaction_fuel_dataIndustry_product_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | quantity_decimal: The quantity of \`unit\`s of fuel that was dispensed, represented as a decimal string with at most 12 decimal places.
-  , issuing_transaction_fuel_dataQuantity_decimal :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_transaction_fuel_dataQuantity_decimal :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The type of fuel that was purchased. One of \`diesel\`, \`unleaded_plus\`, \`unleaded_regular\`, \`unleaded_super\`, or \`other\`.
   -- 
   -- Constraints:

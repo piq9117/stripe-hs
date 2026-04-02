@@ -50,7 +50,7 @@ data Payment_method_details_wechat_pay = Payment_method_details_wechat_pay {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_wechat_payFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_wechat_payFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | location: ID of the [location](https:\/\/docs.stripe.com\/api\/terminal\/locations) that this transaction\'s reader is assigned to.
   -- 
   -- Constraints:
@@ -68,7 +68,7 @@ data Payment_method_details_wechat_pay = Payment_method_details_wechat_pay {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_wechat_payTransaction_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_wechat_payTransaction_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_wechat_pay

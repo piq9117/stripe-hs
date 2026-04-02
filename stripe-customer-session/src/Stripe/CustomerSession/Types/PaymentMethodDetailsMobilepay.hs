@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.InternalCard
 -- 
 data Payment_method_details_mobilepay = Payment_method_details_mobilepay {
   -- | card: Internal card details
-  payment_method_details_mobilepayCard :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_mobilepayCardNonNullable))
+  payment_method_details_mobilepayCard :: (GHC.Maybe.Maybe Payment_method_details_mobilepayCard)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_mobilepay
@@ -61,40 +61,40 @@ mkPayment_method_details_mobilepay = Payment_method_details_mobilepay{payment_me
 -- | Defines the object schema located at @components.schemas.payment_method_details_mobilepay.properties.card.anyOf@ in the specification.
 -- 
 -- Internal card details
-data Payment_method_details_mobilepayCardNonNullable = Payment_method_details_mobilepayCardNonNullable {
+data Payment_method_details_mobilepayCard = Payment_method_details_mobilepayCard {
   -- | brand: Brand of the card used in the transaction
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_mobilepayCardNonNullableBrand :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_mobilepayCardBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country of the card
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_mobilepayCardNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_mobilepayCardCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month: Two digit number representing the card\'s expiration month
-  , payment_method_details_mobilepayCardNonNullableExp_month :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_details_mobilepayCardExp_month :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | exp_year: Two digit number representing the card\'s expiration year
-  , payment_method_details_mobilepayCardNonNullableExp_year :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payment_method_details_mobilepayCardExp_year :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | last4: The last 4 digits of the card
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_mobilepayCardNonNullableLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_mobilepayCardLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_mobilepayCardNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableLast4 obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardNonNullableLast4 obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_mobilepayCardNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_details_mobilepayCardNonNullable" (\obj -> ((((GHC.Base.pure Payment_method_details_mobilepayCardNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4"))}
--- | Create a new 'Payment_method_details_mobilepayCardNonNullable' with all required fields.
-mkPayment_method_details_mobilepayCardNonNullable :: Payment_method_details_mobilepayCardNonNullable
-mkPayment_method_details_mobilepayCardNonNullable = Payment_method_details_mobilepayCardNonNullable{payment_method_details_mobilepayCardNonNullableBrand = GHC.Maybe.Nothing,
-                                                                                                    payment_method_details_mobilepayCardNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                    payment_method_details_mobilepayCardNonNullableExp_month = GHC.Maybe.Nothing,
-                                                                                                    payment_method_details_mobilepayCardNonNullableExp_year = GHC.Maybe.Nothing,
-                                                                                                    payment_method_details_mobilepayCardNonNullableLast4 = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_mobilepayCard
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardLast4 obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("brand" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardBrand obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_month" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardExp_month obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("exp_year" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardExp_year obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("last4" Data.Aeson.Types.ToJSON..=)) (payment_method_details_mobilepayCardLast4 obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_mobilepayCard
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_details_mobilepayCard" (\obj -> ((((GHC.Base.pure Payment_method_details_mobilepayCard GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "last4"))}
+-- | Create a new 'Payment_method_details_mobilepayCard' with all required fields.
+mkPayment_method_details_mobilepayCard :: Payment_method_details_mobilepayCard
+mkPayment_method_details_mobilepayCard = Payment_method_details_mobilepayCard{payment_method_details_mobilepayCardBrand = GHC.Maybe.Nothing,
+                                                                              payment_method_details_mobilepayCardCountry = GHC.Maybe.Nothing,
+                                                                              payment_method_details_mobilepayCardExp_month = GHC.Maybe.Nothing,
+                                                                              payment_method_details_mobilepayCardExp_year = GHC.Maybe.Nothing,
+                                                                              payment_method_details_mobilepayCardLast4 = GHC.Maybe.Nothing}

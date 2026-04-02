@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Subscriptions_resource_billing_mode_flexible = Subscriptions_resource_billing_mode_flexible {
   -- | proration_discounts: Controls how invoices and invoice items display proration amounts and discount amounts.
-  subscriptions_resource_billing_mode_flexibleProration_discounts :: (GHC.Maybe.Maybe Subscriptions_resource_billing_mode_flexibleProration_discounts)
+  subscriptions_resource_billing_mode_flexibleProration_discounts :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_mode_flexible
@@ -57,21 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_billing_mode_
 -- | Create a new 'Subscriptions_resource_billing_mode_flexible' with all required fields.
 mkSubscriptions_resource_billing_mode_flexible :: Subscriptions_resource_billing_mode_flexible
 mkSubscriptions_resource_billing_mode_flexible = Subscriptions_resource_billing_mode_flexible{subscriptions_resource_billing_mode_flexibleProration_discounts = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscriptions_resource_billing_mode_flexible.properties.proration_discounts@ in the specification.
--- 
--- Controls how invoices and invoice items display proration amounts and discount amounts.
-data Subscriptions_resource_billing_mode_flexibleProration_discounts =
-   Subscriptions_resource_billing_mode_flexibleProration_discountsOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscriptions_resource_billing_mode_flexibleProration_discountsTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscriptions_resource_billing_mode_flexibleProration_discountsEnumIncluded -- ^ Represents the JSON value @"included"@
-  | Subscriptions_resource_billing_mode_flexibleProration_discountsEnumItemized -- ^ Represents the JSON value @"itemized"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_mode_flexibleProration_discounts
-    where {toJSON (Subscriptions_resource_billing_mode_flexibleProration_discountsOther val) = val;
-           toJSON (Subscriptions_resource_billing_mode_flexibleProration_discountsTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscriptions_resource_billing_mode_flexibleProration_discountsEnumIncluded) = "included";
-           toJSON (Subscriptions_resource_billing_mode_flexibleProration_discountsEnumItemized) = "itemized"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_billing_mode_flexibleProration_discounts
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "included" -> Subscriptions_resource_billing_mode_flexibleProration_discountsEnumIncluded
-                                             | val GHC.Classes.== "itemized" -> Subscriptions_resource_billing_mode_flexibleProration_discountsEnumItemized
-                                             | GHC.Base.otherwise -> Subscriptions_resource_billing_mode_flexibleProration_discountsOther val)}

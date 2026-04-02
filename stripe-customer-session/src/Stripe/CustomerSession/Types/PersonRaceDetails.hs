@@ -46,13 +46,13 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Person_race_details = Person_race_details {
   -- | race: The persons race.
-  person_race_detailsRace :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Person_race_detailsRaceNonNullable]))
+  person_race_detailsRace :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | race_other: Please specify your race, when other is selected.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_race_detailsRace_other :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_race_detailsRace_other :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Person_race_details
@@ -64,87 +64,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Person_race_details
 mkPerson_race_details :: Person_race_details
 mkPerson_race_details = Person_race_details{person_race_detailsRace = GHC.Maybe.Nothing,
                                             person_race_detailsRace_other = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.person_race_details.properties.race.items@ in the specification.
--- 
--- 
-data Person_race_detailsRaceNonNullable =
-   Person_race_detailsRaceNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Person_race_detailsRaceNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Person_race_detailsRaceNonNullableEnumAfrican_american -- ^ Represents the JSON value @"african_american"@
-  | Person_race_detailsRaceNonNullableEnumAmerican_indian_or_alaska_native -- ^ Represents the JSON value @"american_indian_or_alaska_native"@
-  | Person_race_detailsRaceNonNullableEnumAsian -- ^ Represents the JSON value @"asian"@
-  | Person_race_detailsRaceNonNullableEnumAsian_indian -- ^ Represents the JSON value @"asian_indian"@
-  | Person_race_detailsRaceNonNullableEnumBlack_or_african_american -- ^ Represents the JSON value @"black_or_african_american"@
-  | Person_race_detailsRaceNonNullableEnumChinese -- ^ Represents the JSON value @"chinese"@
-  | Person_race_detailsRaceNonNullableEnumEthiopian -- ^ Represents the JSON value @"ethiopian"@
-  | Person_race_detailsRaceNonNullableEnumFilipino -- ^ Represents the JSON value @"filipino"@
-  | Person_race_detailsRaceNonNullableEnumGuamanian_or_chamorro -- ^ Represents the JSON value @"guamanian_or_chamorro"@
-  | Person_race_detailsRaceNonNullableEnumHaitian -- ^ Represents the JSON value @"haitian"@
-  | Person_race_detailsRaceNonNullableEnumJamaican -- ^ Represents the JSON value @"jamaican"@
-  | Person_race_detailsRaceNonNullableEnumJapanese -- ^ Represents the JSON value @"japanese"@
-  | Person_race_detailsRaceNonNullableEnumKorean -- ^ Represents the JSON value @"korean"@
-  | Person_race_detailsRaceNonNullableEnumNative_hawaiian -- ^ Represents the JSON value @"native_hawaiian"@
-  | Person_race_detailsRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander -- ^ Represents the JSON value @"native_hawaiian_or_other_pacific_islander"@
-  | Person_race_detailsRaceNonNullableEnumNigerian -- ^ Represents the JSON value @"nigerian"@
-  | Person_race_detailsRaceNonNullableEnumOther_asian -- ^ Represents the JSON value @"other_asian"@
-  | Person_race_detailsRaceNonNullableEnumOther_black_or_african_american -- ^ Represents the JSON value @"other_black_or_african_american"@
-  | Person_race_detailsRaceNonNullableEnumOther_pacific_islander -- ^ Represents the JSON value @"other_pacific_islander"@
-  | Person_race_detailsRaceNonNullableEnumPrefer_not_to_answer -- ^ Represents the JSON value @"prefer_not_to_answer"@
-  | Person_race_detailsRaceNonNullableEnumSamoan -- ^ Represents the JSON value @"samoan"@
-  | Person_race_detailsRaceNonNullableEnumSomali -- ^ Represents the JSON value @"somali"@
-  | Person_race_detailsRaceNonNullableEnumVietnamese -- ^ Represents the JSON value @"vietnamese"@
-  | Person_race_detailsRaceNonNullableEnumWhite -- ^ Represents the JSON value @"white"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Person_race_detailsRaceNonNullable
-    where {toJSON (Person_race_detailsRaceNonNullableOther val) = val;
-           toJSON (Person_race_detailsRaceNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Person_race_detailsRaceNonNullableEnumAfrican_american) = "african_american";
-           toJSON (Person_race_detailsRaceNonNullableEnumAmerican_indian_or_alaska_native) = "american_indian_or_alaska_native";
-           toJSON (Person_race_detailsRaceNonNullableEnumAsian) = "asian";
-           toJSON (Person_race_detailsRaceNonNullableEnumAsian_indian) = "asian_indian";
-           toJSON (Person_race_detailsRaceNonNullableEnumBlack_or_african_american) = "black_or_african_american";
-           toJSON (Person_race_detailsRaceNonNullableEnumChinese) = "chinese";
-           toJSON (Person_race_detailsRaceNonNullableEnumEthiopian) = "ethiopian";
-           toJSON (Person_race_detailsRaceNonNullableEnumFilipino) = "filipino";
-           toJSON (Person_race_detailsRaceNonNullableEnumGuamanian_or_chamorro) = "guamanian_or_chamorro";
-           toJSON (Person_race_detailsRaceNonNullableEnumHaitian) = "haitian";
-           toJSON (Person_race_detailsRaceNonNullableEnumJamaican) = "jamaican";
-           toJSON (Person_race_detailsRaceNonNullableEnumJapanese) = "japanese";
-           toJSON (Person_race_detailsRaceNonNullableEnumKorean) = "korean";
-           toJSON (Person_race_detailsRaceNonNullableEnumNative_hawaiian) = "native_hawaiian";
-           toJSON (Person_race_detailsRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander) = "native_hawaiian_or_other_pacific_islander";
-           toJSON (Person_race_detailsRaceNonNullableEnumNigerian) = "nigerian";
-           toJSON (Person_race_detailsRaceNonNullableEnumOther_asian) = "other_asian";
-           toJSON (Person_race_detailsRaceNonNullableEnumOther_black_or_african_american) = "other_black_or_african_american";
-           toJSON (Person_race_detailsRaceNonNullableEnumOther_pacific_islander) = "other_pacific_islander";
-           toJSON (Person_race_detailsRaceNonNullableEnumPrefer_not_to_answer) = "prefer_not_to_answer";
-           toJSON (Person_race_detailsRaceNonNullableEnumSamoan) = "samoan";
-           toJSON (Person_race_detailsRaceNonNullableEnumSomali) = "somali";
-           toJSON (Person_race_detailsRaceNonNullableEnumVietnamese) = "vietnamese";
-           toJSON (Person_race_detailsRaceNonNullableEnumWhite) = "white"}
-instance Data.Aeson.Types.FromJSON.FromJSON Person_race_detailsRaceNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "african_american" -> Person_race_detailsRaceNonNullableEnumAfrican_american
-                                             | val GHC.Classes.== "american_indian_or_alaska_native" -> Person_race_detailsRaceNonNullableEnumAmerican_indian_or_alaska_native
-                                             | val GHC.Classes.== "asian" -> Person_race_detailsRaceNonNullableEnumAsian
-                                             | val GHC.Classes.== "asian_indian" -> Person_race_detailsRaceNonNullableEnumAsian_indian
-                                             | val GHC.Classes.== "black_or_african_american" -> Person_race_detailsRaceNonNullableEnumBlack_or_african_american
-                                             | val GHC.Classes.== "chinese" -> Person_race_detailsRaceNonNullableEnumChinese
-                                             | val GHC.Classes.== "ethiopian" -> Person_race_detailsRaceNonNullableEnumEthiopian
-                                             | val GHC.Classes.== "filipino" -> Person_race_detailsRaceNonNullableEnumFilipino
-                                             | val GHC.Classes.== "guamanian_or_chamorro" -> Person_race_detailsRaceNonNullableEnumGuamanian_or_chamorro
-                                             | val GHC.Classes.== "haitian" -> Person_race_detailsRaceNonNullableEnumHaitian
-                                             | val GHC.Classes.== "jamaican" -> Person_race_detailsRaceNonNullableEnumJamaican
-                                             | val GHC.Classes.== "japanese" -> Person_race_detailsRaceNonNullableEnumJapanese
-                                             | val GHC.Classes.== "korean" -> Person_race_detailsRaceNonNullableEnumKorean
-                                             | val GHC.Classes.== "native_hawaiian" -> Person_race_detailsRaceNonNullableEnumNative_hawaiian
-                                             | val GHC.Classes.== "native_hawaiian_or_other_pacific_islander" -> Person_race_detailsRaceNonNullableEnumNative_hawaiian_or_other_pacific_islander
-                                             | val GHC.Classes.== "nigerian" -> Person_race_detailsRaceNonNullableEnumNigerian
-                                             | val GHC.Classes.== "other_asian" -> Person_race_detailsRaceNonNullableEnumOther_asian
-                                             | val GHC.Classes.== "other_black_or_african_american" -> Person_race_detailsRaceNonNullableEnumOther_black_or_african_american
-                                             | val GHC.Classes.== "other_pacific_islander" -> Person_race_detailsRaceNonNullableEnumOther_pacific_islander
-                                             | val GHC.Classes.== "prefer_not_to_answer" -> Person_race_detailsRaceNonNullableEnumPrefer_not_to_answer
-                                             | val GHC.Classes.== "samoan" -> Person_race_detailsRaceNonNullableEnumSamoan
-                                             | val GHC.Classes.== "somali" -> Person_race_detailsRaceNonNullableEnumSomali
-                                             | val GHC.Classes.== "vietnamese" -> Person_race_detailsRaceNonNullableEnumVietnamese
-                                             | val GHC.Classes.== "white" -> Person_race_detailsRaceNonNullableEnumWhite
-                                             | GHC.Base.otherwise -> Person_race_detailsRaceNonNullableOther val)}

@@ -50,25 +50,25 @@ data Payment_method_details_ach_credit_transfer = Payment_method_details_ach_cre
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_details_ach_credit_transferAccount_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_details_ach_credit_transferAccount_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name: Name of the bank associated with the routing number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_credit_transferBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_credit_transferBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | routing_number: Routing transit number for the bank account to transfer funds to.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_credit_transferRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_credit_transferRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | swift_code: SWIFT code of the bank associated with the routing number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_credit_transferSwift_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_credit_transferSwift_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_ach_credit_transfer

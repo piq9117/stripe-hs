@@ -50,13 +50,13 @@ data Refund_destination_details_multibanco = Refund_destination_details_multiban
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  refund_destination_details_multibancoReference :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  refund_destination_details_multibancoReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reference_status: Status of the reference on the refund. This can be \`pending\`, \`available\` or \`unavailable\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , refund_destination_details_multibancoReference_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , refund_destination_details_multibancoReference_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Refund_destination_details_multibanco

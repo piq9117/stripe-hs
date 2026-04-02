@@ -48,13 +48,13 @@ data Subscriptions_resource_billing_cycle_anchor_config = Subscriptions_resource
   -- | day_of_month: The day of the month of the billing_cycle_anchor.
   subscriptions_resource_billing_cycle_anchor_configDay_of_month :: GHC.Types.Int
   -- | hour: The hour of the day of the billing_cycle_anchor.
-  , subscriptions_resource_billing_cycle_anchor_configHour :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptions_resource_billing_cycle_anchor_configHour :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | minute: The minute of the hour of the billing_cycle_anchor.
-  , subscriptions_resource_billing_cycle_anchor_configMinute :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptions_resource_billing_cycle_anchor_configMinute :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month to start full cycle billing periods.
-  , subscriptions_resource_billing_cycle_anchor_configMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptions_resource_billing_cycle_anchor_configMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | second: The second of the minute of the billing_cycle_anchor.
-  , subscriptions_resource_billing_cycle_anchor_configSecond :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscriptions_resource_billing_cycle_anchor_configSecond :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_billing_cycle_anchor_config

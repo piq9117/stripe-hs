@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Recurring = Recurring {
   -- | interval: The frequency at which a subscription is billed. One of \`day\`, \`week\`, \`month\` or \`year\`.
-  recurringInterval :: RecurringInterval
+  recurringInterval :: Data.Text.Internal.Text
   -- | interval_count: The number of intervals (specified in the \`interval\` attribute) between subscription billings. For example, \`interval=month\` and \`interval_count=3\` bills every 3 months.
   , recurringInterval_count :: GHC.Types.Int
   -- | meter: The meter tracking the usage of a metered price
@@ -54,9 +54,9 @@ data Recurring = Recurring {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , recurringMeter :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , recurringMeter :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | usage_type: Configures how the quantity per period should be determined. Can be either \`metered\` or \`licensed\`. \`licensed\` automatically bills the \`quantity\` set when adding it to a subscription. \`metered\` aggregates the total usage based on usage records. Defaults to \`licensed\`.
-  , recurringUsage_type :: RecurringUsage_type
+  , recurringUsage_type :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Recurring
@@ -65,53 +65,11 @@ instance Data.Aeson.Types.ToJSON.ToJSON Recurring
 instance Data.Aeson.Types.FromJSON.FromJSON Recurring
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Recurring" (\obj -> (((GHC.Base.pure Recurring GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "meter")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "usage_type"))}
 -- | Create a new 'Recurring' with all required fields.
-mkRecurring :: RecurringInterval -- ^ 'recurringInterval'
+mkRecurring :: Data.Text.Internal.Text -- ^ 'recurringInterval'
   -> GHC.Types.Int -- ^ 'recurringInterval_count'
-  -> RecurringUsage_type -- ^ 'recurringUsage_type'
+  -> Data.Text.Internal.Text -- ^ 'recurringUsage_type'
   -> Recurring
 mkRecurring recurringInterval recurringInterval_count recurringUsage_type = Recurring{recurringInterval = recurringInterval,
                                                                                       recurringInterval_count = recurringInterval_count,
                                                                                       recurringMeter = GHC.Maybe.Nothing,
                                                                                       recurringUsage_type = recurringUsage_type}
--- | Defines the enum schema located at @components.schemas.recurring.properties.interval@ in the specification.
--- 
--- The frequency at which a subscription is billed. One of \`day\`, \`week\`, \`month\` or \`year\`.
-data RecurringInterval =
-   RecurringIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | RecurringIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | RecurringIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | RecurringIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | RecurringIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | RecurringIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON RecurringInterval
-    where {toJSON (RecurringIntervalOther val) = val;
-           toJSON (RecurringIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (RecurringIntervalEnumDay) = "day";
-           toJSON (RecurringIntervalEnumMonth) = "month";
-           toJSON (RecurringIntervalEnumWeek) = "week";
-           toJSON (RecurringIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON RecurringInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> RecurringIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> RecurringIntervalEnumMonth
-                                             | val GHC.Classes.== "week" -> RecurringIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> RecurringIntervalEnumYear
-                                             | GHC.Base.otherwise -> RecurringIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.recurring.properties.usage_type@ in the specification.
--- 
--- Configures how the quantity per period should be determined. Can be either \`metered\` or \`licensed\`. \`licensed\` automatically bills the \`quantity\` set when adding it to a subscription. \`metered\` aggregates the total usage based on usage records. Defaults to \`licensed\`.
-data RecurringUsage_type =
-   RecurringUsage_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | RecurringUsage_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | RecurringUsage_typeEnumLicensed -- ^ Represents the JSON value @"licensed"@
-  | RecurringUsage_typeEnumMetered -- ^ Represents the JSON value @"metered"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON RecurringUsage_type
-    where {toJSON (RecurringUsage_typeOther val) = val;
-           toJSON (RecurringUsage_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (RecurringUsage_typeEnumLicensed) = "licensed";
-           toJSON (RecurringUsage_typeEnumMetered) = "metered"}
-instance Data.Aeson.Types.FromJSON.FromJSON RecurringUsage_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "licensed" -> RecurringUsage_typeEnumLicensed
-                                             | val GHC.Classes.== "metered" -> RecurringUsage_typeEnumMetered
-                                             | GHC.Base.otherwise -> RecurringUsage_typeOther val)}

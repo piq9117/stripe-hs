@@ -47,21 +47,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Address
 -- 
 data Payment_method_card_wallet_visa_checkout = Payment_method_card_wallet_visa_checkout {
   -- | billing_address: Owner\'s verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-  payment_method_card_wallet_visa_checkoutBilling_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable))
+  payment_method_card_wallet_visa_checkoutBilling_address :: (GHC.Maybe.Maybe Payment_method_card_wallet_visa_checkoutBilling_address)
   -- | email: Owner\'s verified email. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Owner\'s verified full name. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | shipping_address: Owner\'s verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-  , payment_method_card_wallet_visa_checkoutShipping_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable))
+  , payment_method_card_wallet_visa_checkoutShipping_address :: (GHC.Maybe.Maybe Payment_method_card_wallet_visa_checkoutShipping_address)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_visa_checkout
@@ -78,110 +78,110 @@ mkPayment_method_card_wallet_visa_checkout = Payment_method_card_wallet_visa_che
 -- | Defines the object schema located at @components.schemas.payment_method_card_wallet_visa_checkout.properties.billing_address.anyOf@ in the specification.
 -- 
 -- Owner\\\'s verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-data Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable = Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable {
+data Payment_method_card_wallet_visa_checkoutBilling_address = Payment_method_card_wallet_visa_checkoutBilling_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_card_wallet_visa_checkoutBilling_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutBilling_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutBilling_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutBilling_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutBilling_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutBilling_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutBilling_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutBilling_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable' with all required fields.
-mkPayment_method_card_wallet_visa_checkoutBilling_addressNonNullable :: Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable
-mkPayment_method_card_wallet_visa_checkoutBilling_addressNonNullable = Payment_method_card_wallet_visa_checkoutBilling_addressNonNullable{payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                          payment_method_card_wallet_visa_checkoutBilling_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                          payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                          payment_method_card_wallet_visa_checkoutBilling_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                          payment_method_card_wallet_visa_checkoutBilling_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                          payment_method_card_wallet_visa_checkoutBilling_addressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_visa_checkoutBilling_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutBilling_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_visa_checkoutBilling_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_visa_checkoutBilling_address" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_visa_checkoutBilling_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Payment_method_card_wallet_visa_checkoutBilling_address' with all required fields.
+mkPayment_method_card_wallet_visa_checkoutBilling_address :: Payment_method_card_wallet_visa_checkoutBilling_address
+mkPayment_method_card_wallet_visa_checkoutBilling_address = Payment_method_card_wallet_visa_checkoutBilling_address{payment_method_card_wallet_visa_checkoutBilling_addressCity = GHC.Maybe.Nothing,
+                                                                                                                    payment_method_card_wallet_visa_checkoutBilling_addressCountry = GHC.Maybe.Nothing,
+                                                                                                                    payment_method_card_wallet_visa_checkoutBilling_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                                    payment_method_card_wallet_visa_checkoutBilling_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                                    payment_method_card_wallet_visa_checkoutBilling_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                                    payment_method_card_wallet_visa_checkoutBilling_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_method_card_wallet_visa_checkout.properties.shipping_address.anyOf@ in the specification.
 -- 
 -- Owner\\\'s verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-data Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable = Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable {
+data Payment_method_card_wallet_visa_checkoutShipping_address = Payment_method_card_wallet_visa_checkoutShipping_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_card_wallet_visa_checkoutShipping_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutShipping_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutShipping_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutShipping_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutShipping_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutShipping_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_visa_checkoutShipping_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_visa_checkoutShipping_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable' with all required fields.
-mkPayment_method_card_wallet_visa_checkoutShipping_addressNonNullable :: Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable
-mkPayment_method_card_wallet_visa_checkoutShipping_addressNonNullable = Payment_method_card_wallet_visa_checkoutShipping_addressNonNullable{payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                            payment_method_card_wallet_visa_checkoutShipping_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                            payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                            payment_method_card_wallet_visa_checkoutShipping_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                            payment_method_card_wallet_visa_checkoutShipping_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                            payment_method_card_wallet_visa_checkoutShipping_addressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_visa_checkoutShipping_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_visa_checkoutShipping_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_visa_checkoutShipping_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_visa_checkoutShipping_address" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_visa_checkoutShipping_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Payment_method_card_wallet_visa_checkoutShipping_address' with all required fields.
+mkPayment_method_card_wallet_visa_checkoutShipping_address :: Payment_method_card_wallet_visa_checkoutShipping_address
+mkPayment_method_card_wallet_visa_checkoutShipping_address = Payment_method_card_wallet_visa_checkoutShipping_address{payment_method_card_wallet_visa_checkoutShipping_addressCity = GHC.Maybe.Nothing,
+                                                                                                                      payment_method_card_wallet_visa_checkoutShipping_addressCountry = GHC.Maybe.Nothing,
+                                                                                                                      payment_method_card_wallet_visa_checkoutShipping_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                                      payment_method_card_wallet_visa_checkoutShipping_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                                      payment_method_card_wallet_visa_checkoutShipping_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                                      payment_method_card_wallet_visa_checkoutShipping_addressState = GHC.Maybe.Nothing}

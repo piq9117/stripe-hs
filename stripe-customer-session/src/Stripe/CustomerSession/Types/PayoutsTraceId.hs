@@ -56,7 +56,7 @@ data Payouts_trace_id = Payouts_trace_id {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payouts_trace_idValue :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payouts_trace_idValue :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payouts_trace_id

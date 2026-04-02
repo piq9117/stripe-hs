@@ -6,8 +6,3 @@ instance Show Issuing_card_fraud_warning
 instance Eq Issuing_card_fraud_warning
 instance Data.Aeson.FromJSON Issuing_card_fraud_warning
 instance Data.Aeson.ToJSON Issuing_card_fraud_warning
-data Issuing_card_fraud_warningTypeNonNullable
-instance Show Issuing_card_fraud_warningTypeNonNullable
-instance Eq Issuing_card_fraud_warningTypeNonNullable
-instance Data.Aeson.FromJSON Issuing_card_fraud_warningTypeNonNullable
-instance Data.Aeson.ToJSON Issuing_card_fraud_warningTypeNonNullable

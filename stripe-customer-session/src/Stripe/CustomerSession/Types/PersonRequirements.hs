@@ -48,7 +48,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.AccountRequirementsError
 -- 
 data Person_requirements = Person_requirements {
   -- | alternatives: Fields that are due and can be resolved by providing the corresponding alternative fields instead. Many alternatives can list the same \`original_fields_due\`, and any of these alternatives can serve as a pathway for attempting to resolve the fields again. Re-providing \`original_fields_due\` also serves as a pathway for attempting to resolve the fields again.
-  person_requirementsAlternatives :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_alternative]))
+  person_requirementsAlternatives :: (GHC.Maybe.Maybe [Account_requirements_alternative])
   -- | currently_due: Fields that need to be resolved to keep the person\'s account enabled. If not resolved by the account\'s \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
   , person_requirementsCurrently_due :: [Data.Text.Internal.Text]
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.

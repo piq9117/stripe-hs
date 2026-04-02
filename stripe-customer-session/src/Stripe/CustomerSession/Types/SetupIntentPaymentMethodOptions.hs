@@ -41,6 +41,7 @@ import qualified GHC.Types
 import qualified Stripe.CustomerSession.Common
 import Stripe.CustomerSession.TypeAlias
 import {-# SOURCE #-} Stripe.CustomerSession.Types.LinkedAccountOptionsCommon
+import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsMandateOptionsUpi
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodOptionsUsBankAccountMandateOptions
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsAcssDebit
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsBacsDebit
@@ -54,6 +55,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptio
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsPaypal
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsPayto
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsSepaDebit
+import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsUpi
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentPaymentMethodOptionsUsBankAccount
 import {-# SOURCE #-} Stripe.CustomerSession.Types.SetupIntentTypeSpecificPaymentMethodOptionsClient
 
@@ -81,15 +83,17 @@ data Setup_intent_payment_method_options = Setup_intent_payment_method_options {
   , setup_intent_payment_method_optionsPayto :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsPayto)
   -- | sepa_debit
   , setup_intent_payment_method_optionsSepa_debit :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsSepa_debit)
+  -- | upi
+  , setup_intent_payment_method_optionsUpi :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsUpi)
   -- | us_bank_account
   , setup_intent_payment_method_optionsUs_bank_account :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsUs_bank_account)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_options
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUs_bank_account obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUs_bank_account obj) : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUs_bank_account obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUs_bank_account obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_options
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_options" (\obj -> ((((((((((GHC.Base.pure Setup_intent_payment_method_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_options" (\obj -> (((((((((((GHC.Base.pure Setup_intent_payment_method_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "upi")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account"))}
 -- | Create a new 'Setup_intent_payment_method_options' with all required fields.
 mkSetup_intent_payment_method_options :: Setup_intent_payment_method_options
 mkSetup_intent_payment_method_options = Setup_intent_payment_method_options{setup_intent_payment_method_optionsAcss_debit = GHC.Maybe.Nothing,
@@ -102,17 +106,18 @@ mkSetup_intent_payment_method_options = Setup_intent_payment_method_options{setu
                                                                             setup_intent_payment_method_optionsPaypal = GHC.Maybe.Nothing,
                                                                             setup_intent_payment_method_optionsPayto = GHC.Maybe.Nothing,
                                                                             setup_intent_payment_method_optionsSepa_debit = GHC.Maybe.Nothing,
+                                                                            setup_intent_payment_method_optionsUpi = GHC.Maybe.Nothing,
                                                                             setup_intent_payment_method_optionsUs_bank_account = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.acss_debit.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsAcss_debit = Setup_intent_payment_method_optionsAcss_debit {
   -- | currency: Currency supported by the bank account
-  setup_intent_payment_method_optionsAcss_debitCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullable))
+  setup_intent_payment_method_optionsAcss_debitCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_options: 
   , setup_intent_payment_method_optionsAcss_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_acss_debit)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsAcss_debitVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsAcss_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsAcss_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsAcss_debit
@@ -125,53 +130,14 @@ mkSetup_intent_payment_method_optionsAcss_debit :: Setup_intent_payment_method_o
 mkSetup_intent_payment_method_optionsAcss_debit = Setup_intent_payment_method_optionsAcss_debit{setup_intent_payment_method_optionsAcss_debitCurrency = GHC.Maybe.Nothing,
                                                                                                 setup_intent_payment_method_optionsAcss_debitMandate_options = GHC.Maybe.Nothing,
                                                                                                 setup_intent_payment_method_optionsAcss_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.acss_debit.anyOf.properties.currency@ in the specification.
--- 
--- Currency supported by the bank account
-data Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullable =
-   Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableEnumCad -- ^ Represents the JSON value @"cad"@
-  | Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableEnumUsd -- ^ Represents the JSON value @"usd"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullable
-    where {toJSON (Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableEnumCad) = "cad";
-           toJSON (Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableEnumUsd) = "usd"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cad" -> Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableEnumCad
-                                             | val GHC.Classes.== "usd" -> Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableEnumUsd
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsAcss_debitCurrencyNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.acss_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsAcss_debitVerification_method =
-   Setup_intent_payment_method_optionsAcss_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsAcss_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsAcss_debitVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsAcss_debitVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsAcss_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsAcss_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsAcss_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsAcss_debitVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.amazon_pay.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsAmazon_pay = Setup_intent_payment_method_optionsAmazon_pay {
   -- | mandate_options: 
   setup_intent_payment_method_optionsAmazon_payMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsAmazon_payVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsAmazon_payVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsAmazon_payVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsAmazon_pay
@@ -183,35 +149,14 @@ instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsA
 mkSetup_intent_payment_method_optionsAmazon_pay :: Setup_intent_payment_method_optionsAmazon_pay
 mkSetup_intent_payment_method_optionsAmazon_pay = Setup_intent_payment_method_optionsAmazon_pay{setup_intent_payment_method_optionsAmazon_payMandate_options = GHC.Maybe.Nothing,
                                                                                                 setup_intent_payment_method_optionsAmazon_payVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.amazon_pay.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsAmazon_payVerification_method =
-   Setup_intent_payment_method_optionsAmazon_payVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsAmazon_payVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsAmazon_payVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsAmazon_payVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsAmazon_payVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsAmazon_payVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsAmazon_payVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsAmazon_payVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.bacs_debit.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsBacs_debit = Setup_intent_payment_method_optionsBacs_debit {
   -- | mandate_options: 
   setup_intent_payment_method_optionsBacs_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_bacs_debit)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsBacs_debitVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsBacs_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsBacs_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsBacs_debit
@@ -223,39 +168,18 @@ instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsB
 mkSetup_intent_payment_method_optionsBacs_debit :: Setup_intent_payment_method_optionsBacs_debit
 mkSetup_intent_payment_method_optionsBacs_debit = Setup_intent_payment_method_optionsBacs_debit{setup_intent_payment_method_optionsBacs_debitMandate_options = GHC.Maybe.Nothing,
                                                                                                 setup_intent_payment_method_optionsBacs_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.bacs_debit.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsBacs_debitVerification_method =
-   Setup_intent_payment_method_optionsBacs_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsBacs_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsBacs_debitVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsBacs_debitVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsBacs_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsBacs_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsBacs_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsBacs_debitVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsCard = Setup_intent_payment_method_optionsCard {
   -- | mandate_options: Configuration options for setting up an eMandate for cards issued in India.
-  setup_intent_payment_method_optionsCardMandate_options :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_optionsCardMandate_optionsNonNullable))
+  setup_intent_payment_method_optionsCardMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsCardMandate_options)
   -- | network: Selected network to process this SetupIntent on. Depends on the available networks of the card attached to the setup intent. Can be only set confirm-time.
-  , setup_intent_payment_method_optionsCardNetwork :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_optionsCardNetworkNonNullable))
+  , setup_intent_payment_method_optionsCardNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-  , setup_intent_payment_method_optionsCardRequest_three_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullable))
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsCardVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsCardVerification_method)
+  , setup_intent_payment_method_optionsCardRequest_three_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsCardVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCard
@@ -272,215 +196,62 @@ mkSetup_intent_payment_method_optionsCard = Setup_intent_payment_method_optionsC
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf@ in the specification.
 -- 
 -- Configuration options for setting up an eMandate for cards issued in India.
-data Setup_intent_payment_method_optionsCardMandate_optionsNonNullable = Setup_intent_payment_method_optionsCardMandate_optionsNonNullable {
-  -- | amount: Amount to be charged for future payments.
-  setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
+data Setup_intent_payment_method_optionsCardMandate_options = Setup_intent_payment_method_optionsCardMandate_options {
+  -- | amount: Amount to be charged for future payments, specified in the presentment currency.
+  setup_intent_payment_method_optionsCardMandate_optionsAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | amount_type: One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type)
+  , setup_intent_payment_method_optionsCardMandate_optionsAmount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intent_payment_method_optionsCardMandate_optionsCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | description: A description of the mandate or subscription that is meant to be displayed to the customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 200
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , setup_intent_payment_method_optionsCardMandate_optionsDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | end_date: End date of the mandate or subscription. If not provided, the mandate will be active until canceled. If provided, end date should be after start date.
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intent_payment_method_optionsCardMandate_optionsEnd_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | interval: Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval)
+  , setup_intent_payment_method_optionsCardMandate_optionsInterval :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | interval_count: The number of intervals between payments. For example, \`interval=month\` and \`interval_count=3\` indicates one payment every three months. Maximum of one year interval allowed (1 year, 12 months, or 52 weeks). This parameter is optional when \`interval=sporadic\`.
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , setup_intent_payment_method_optionsCardMandate_optionsInterval_count :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reference: Unique identifier for the mandate or subscription.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 80
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , setup_intent_payment_method_optionsCardMandate_optionsReference :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | start_date: Start date of the mandate or subscription. Start date should not be lesser than yesterday.
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , setup_intent_payment_method_optionsCardMandate_optionsStart_date :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | supported_types: Specifies the type of mandates supported. Possible values are \`india\`.
-  , setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable]))
+  , setup_intent_payment_method_optionsCardMandate_optionsSupported_types :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_optionsCardMandate_optionsNonNullable" (\obj -> (((((((((GHC.Base.pure Setup_intent_payment_method_optionsCardMandate_optionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
--- | Create a new 'Setup_intent_payment_method_optionsCardMandate_optionsNonNullable' with all required fields.
-mkSetup_intent_payment_method_optionsCardMandate_optionsNonNullable :: Setup_intent_payment_method_optionsCardMandate_optionsNonNullable
-mkSetup_intent_payment_method_optionsCardMandate_optionsNonNullable = Setup_intent_payment_method_optionsCardMandate_optionsNonNullable{setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableCurrency = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableDescription = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableEnd_date = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval_count = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableReference = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableStart_date = GHC.Maybe.Nothing,
-                                                                                                                                        setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_types = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf.properties.amount_type@ in the specification.
--- 
--- One of \`fixed\` or \`maximum\`. If \`fixed\`, the \`amount\` param refers to the exact amount to be charged in future payments. If \`maximum\`, the amount charged can be up to the value passed for the \`amount\` param.
-data Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type =
-   Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumFixed -- ^ Represents the JSON value @"fixed"@
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumMaximum -- ^ Represents the JSON value @"maximum"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type
-    where {toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumFixed) = "fixed";
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumMaximum) = "maximum"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "fixed" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumFixed
-                                             | val GHC.Classes.== "maximum" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeEnumMaximum
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableAmount_typeOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf.properties.interval@ in the specification.
--- 
--- Specifies payment frequency. One of \`day\`, \`week\`, \`month\`, \`year\`, or \`sporadic\`.
-data Setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval =
-   Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumDay -- ^ Represents the JSON value @"day"@
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumMonth -- ^ Represents the JSON value @"month"@
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumWeek -- ^ Represents the JSON value @"week"@
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumYear -- ^ Represents the JSON value @"year"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval
-    where {toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumDay) = "day";
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumMonth) = "month";
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumSporadic) = "sporadic";
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumWeek) = "week";
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumYear) = "year"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullableInterval
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "day" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumDay
-                                             | val GHC.Classes.== "month" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumMonth
-                                             | val GHC.Classes.== "sporadic" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumSporadic
-                                             | val GHC.Classes.== "week" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumWeek
-                                             | val GHC.Classes.== "year" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalEnumYear
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableIntervalOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf.properties.mandate_options.anyOf.properties.supported_types.items@ in the specification.
--- 
--- 
-data Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable =
-   Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia -- ^ Represents the JSON value @"india"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable
-    where {toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia) = "india"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "india" -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableEnumIndia
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsCardMandate_optionsNonNullableSupported_typesNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf.properties.network@ in the specification.
--- 
--- Selected network to process this SetupIntent on. Depends on the available networks of the card attached to the setup intent. Can be only set confirm-time.
-data Setup_intent_payment_method_optionsCardNetworkNonNullable =
-   Setup_intent_payment_method_optionsCardNetworkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumAmex -- ^ Represents the JSON value @"amex"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumCartes_bancaires -- ^ Represents the JSON value @"cartes_bancaires"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumDiners -- ^ Represents the JSON value @"diners"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumDiscover -- ^ Represents the JSON value @"discover"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumEftpos_au -- ^ Represents the JSON value @"eftpos_au"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumGirocard -- ^ Represents the JSON value @"girocard"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumInterac -- ^ Represents the JSON value @"interac"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumJcb -- ^ Represents the JSON value @"jcb"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumLink -- ^ Represents the JSON value @"link"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumUnionpay -- ^ Represents the JSON value @"unionpay"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  | Setup_intent_payment_method_optionsCardNetworkNonNullableEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardNetworkNonNullable
-    where {toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumAmex) = "amex";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumCartes_bancaires) = "cartes_bancaires";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumDiners) = "diners";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumDiscover) = "discover";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumEftpos_au) = "eftpos_au";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumGirocard) = "girocard";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumInterac) = "interac";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumJcb) = "jcb";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumLink) = "link";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumMastercard) = "mastercard";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumUnionpay) = "unionpay";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumUnknown) = "unknown";
-           toJSON (Setup_intent_payment_method_optionsCardNetworkNonNullableEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardNetworkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amex" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumAmex
-                                             | val GHC.Classes.== "cartes_bancaires" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumCartes_bancaires
-                                             | val GHC.Classes.== "diners" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumDiners
-                                             | val GHC.Classes.== "discover" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumDiscover
-                                             | val GHC.Classes.== "eftpos_au" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumEftpos_au
-                                             | val GHC.Classes.== "girocard" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumGirocard
-                                             | val GHC.Classes.== "interac" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumInterac
-                                             | val GHC.Classes.== "jcb" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumJcb
-                                             | val GHC.Classes.== "link" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumLink
-                                             | val GHC.Classes.== "mastercard" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumMastercard
-                                             | val GHC.Classes.== "unionpay" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumUnionpay
-                                             | val GHC.Classes.== "unknown" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumUnknown
-                                             | val GHC.Classes.== "visa" -> Setup_intent_payment_method_optionsCardNetworkNonNullableEnumVisa
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsCardNetworkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf.properties.request_three_d_secure@ in the specification.
--- 
--- We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. If not provided, this value defaults to \`automatic\`. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-data Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullable =
-   Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAny -- ^ Represents the JSON value @"any"@
-  | Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullable
-    where {toJSON (Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAny) = "any";
-           toJSON (Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumChallenge) = "challenge"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "any" -> Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAny
-                                             | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "challenge" -> Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableEnumChallenge
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsCardRequest_three_d_secureNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.card.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsCardVerification_method =
-   Setup_intent_payment_method_optionsCardVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsCardVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsCardVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsCardVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsCardVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsCardVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsCardVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsCardVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsCardVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsCardVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsCardVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsCardVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsCardVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsCardVerification_methodOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCardMandate_options
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsSupported_types obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_type" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsAmount_type obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("end_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsEnd_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsInterval obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interval_count" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsInterval_count obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reference" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsReference obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("start_date" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsStart_date obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("supported_types" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsCardMandate_optionsSupported_types obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCardMandate_options
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_optionsCardMandate_options" (\obj -> (((((((((GHC.Base.pure Setup_intent_payment_method_optionsCardMandate_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "end_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_count")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reference")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "start_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "supported_types"))}
+-- | Create a new 'Setup_intent_payment_method_optionsCardMandate_options' with all required fields.
+mkSetup_intent_payment_method_optionsCardMandate_options :: Setup_intent_payment_method_optionsCardMandate_options
+mkSetup_intent_payment_method_optionsCardMandate_options = Setup_intent_payment_method_optionsCardMandate_options{setup_intent_payment_method_optionsCardMandate_optionsAmount = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsAmount_type = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsCurrency = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsDescription = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsEnd_date = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsInterval = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsInterval_count = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsReference = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsStart_date = GHC.Maybe.Nothing,
+                                                                                                                  setup_intent_payment_method_optionsCardMandate_optionsSupported_types = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.card_present.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsCard_present = Setup_intent_payment_method_optionsCard_present {
   -- | mandate_options: 
   setup_intent_payment_method_optionsCard_presentMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsCard_presentVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsCard_presentVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsCard_presentVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCard_present
@@ -492,33 +263,12 @@ instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsC
 mkSetup_intent_payment_method_optionsCard_present :: Setup_intent_payment_method_optionsCard_present
 mkSetup_intent_payment_method_optionsCard_present = Setup_intent_payment_method_optionsCard_present{setup_intent_payment_method_optionsCard_presentMandate_options = GHC.Maybe.Nothing,
                                                                                                     setup_intent_payment_method_optionsCard_presentVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.card_present.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsCard_presentVerification_method =
-   Setup_intent_payment_method_optionsCard_presentVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsCard_presentVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsCard_presentVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsCard_presentVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsCard_presentVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsCard_presentVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsCard_presentVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsCard_presentVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsCard_presentVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsCard_presentVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsCard_presentVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsCard_presentVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsCard_presentVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsCard_presentVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsCard_presentVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsCard_presentVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.klarna.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsKlarna = Setup_intent_payment_method_optionsKlarna {
   -- | currency: The currency of the setup intent. Three letter ISO currency code.
-  setup_intent_payment_method_optionsKlarnaCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intent_payment_method_optionsKlarnaCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_options: 
   , setup_intent_payment_method_optionsKlarnaMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
   -- | preferred_locale: Preferred locale of the Klarna checkout page that the customer is redirected to.
@@ -526,9 +276,9 @@ data Setup_intent_payment_method_optionsKlarna = Setup_intent_payment_method_opt
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , setup_intent_payment_method_optionsKlarnaPreferred_locale :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsKlarnaVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsKlarnaVerification_method)
+  , setup_intent_payment_method_optionsKlarnaPreferred_locale :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsKlarnaVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsKlarna
@@ -542,35 +292,14 @@ mkSetup_intent_payment_method_optionsKlarna = Setup_intent_payment_method_option
                                                                                         setup_intent_payment_method_optionsKlarnaMandate_options = GHC.Maybe.Nothing,
                                                                                         setup_intent_payment_method_optionsKlarnaPreferred_locale = GHC.Maybe.Nothing,
                                                                                         setup_intent_payment_method_optionsKlarnaVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.klarna.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsKlarnaVerification_method =
-   Setup_intent_payment_method_optionsKlarnaVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsKlarnaVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsKlarnaVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsKlarnaVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsKlarnaVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsKlarnaVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsKlarnaVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsKlarnaVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsKlarnaVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsKlarnaVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsKlarnaVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsKlarnaVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsKlarnaVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsKlarnaVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsKlarnaVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsKlarnaVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.link.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsLink = Setup_intent_payment_method_optionsLink {
   -- | mandate_options: 
   setup_intent_payment_method_optionsLinkMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsLinkVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsLinkVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsLinkVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsLink
@@ -582,27 +311,6 @@ instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsL
 mkSetup_intent_payment_method_optionsLink :: Setup_intent_payment_method_optionsLink
 mkSetup_intent_payment_method_optionsLink = Setup_intent_payment_method_optionsLink{setup_intent_payment_method_optionsLinkMandate_options = GHC.Maybe.Nothing,
                                                                                     setup_intent_payment_method_optionsLinkVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.link.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsLinkVerification_method =
-   Setup_intent_payment_method_optionsLinkVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsLinkVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsLinkVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsLinkVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsLinkVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsLinkVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsLinkVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsLinkVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsLinkVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsLinkVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsLinkVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsLinkVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsLinkVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsLinkVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsLinkVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsLinkVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.paypal.anyOf@ in the specification.
 -- 
 -- 
@@ -612,11 +320,11 @@ data Setup_intent_payment_method_optionsPaypal = Setup_intent_payment_method_opt
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  setup_intent_payment_method_optionsPaypalBilling_agreement_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  setup_intent_payment_method_optionsPaypalBilling_agreement_id :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | mandate_options: 
   , setup_intent_payment_method_optionsPaypalMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsPaypalVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsPaypalVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsPaypalVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsPaypal
@@ -629,35 +337,14 @@ mkSetup_intent_payment_method_optionsPaypal :: Setup_intent_payment_method_optio
 mkSetup_intent_payment_method_optionsPaypal = Setup_intent_payment_method_optionsPaypal{setup_intent_payment_method_optionsPaypalBilling_agreement_id = GHC.Maybe.Nothing,
                                                                                         setup_intent_payment_method_optionsPaypalMandate_options = GHC.Maybe.Nothing,
                                                                                         setup_intent_payment_method_optionsPaypalVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.paypal.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsPaypalVerification_method =
-   Setup_intent_payment_method_optionsPaypalVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsPaypalVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsPaypalVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsPaypalVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsPaypalVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsPaypalVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsPaypalVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsPaypalVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsPaypalVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsPaypalVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsPaypalVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsPaypalVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsPaypalVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsPaypalVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsPaypalVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsPaypalVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.payto.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsPayto = Setup_intent_payment_method_optionsPayto {
   -- | mandate_options: 
   setup_intent_payment_method_optionsPaytoMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_payto)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsPaytoVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsPaytoVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsPaytoVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsPayto
@@ -669,35 +356,14 @@ instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsP
 mkSetup_intent_payment_method_optionsPayto :: Setup_intent_payment_method_optionsPayto
 mkSetup_intent_payment_method_optionsPayto = Setup_intent_payment_method_optionsPayto{setup_intent_payment_method_optionsPaytoMandate_options = GHC.Maybe.Nothing,
                                                                                       setup_intent_payment_method_optionsPaytoVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.payto.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsPaytoVerification_method =
-   Setup_intent_payment_method_optionsPaytoVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsPaytoVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsPaytoVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsPaytoVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsPaytoVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsPaytoVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsPaytoVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsPaytoVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsPaytoVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsPaytoVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsPaytoVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsPaytoVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsPaytoVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsPaytoVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsPaytoVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsPaytoVerification_methodOther val)}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.sepa_debit.anyOf@ in the specification.
 -- 
 -- 
 data Setup_intent_payment_method_optionsSepa_debit = Setup_intent_payment_method_optionsSepa_debit {
   -- | mandate_options: 
   setup_intent_payment_method_optionsSepa_debitMandate_options :: (GHC.Maybe.Maybe Setup_intent_payment_method_options_mandate_options_sepa_debit)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsSepa_debitVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsSepa_debitVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsSepa_debitVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsSepa_debit
@@ -709,27 +375,25 @@ instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsS
 mkSetup_intent_payment_method_optionsSepa_debit :: Setup_intent_payment_method_optionsSepa_debit
 mkSetup_intent_payment_method_optionsSepa_debit = Setup_intent_payment_method_optionsSepa_debit{setup_intent_payment_method_optionsSepa_debitMandate_options = GHC.Maybe.Nothing,
                                                                                                 setup_intent_payment_method_optionsSepa_debitVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.sepa_debit.anyOf.properties.verification_method@ in the specification.
+-- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.upi.anyOf@ in the specification.
 -- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsSepa_debitVerification_method =
-   Setup_intent_payment_method_optionsSepa_debitVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsSepa_debitVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsSepa_debitVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsSepa_debitVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsSepa_debitVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsSepa_debitVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsSepa_debitVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsSepa_debitVerification_methodOther val)}
+-- 
+data Setup_intent_payment_method_optionsUpi = Setup_intent_payment_method_optionsUpi {
+  -- | mandate_options: 
+  setup_intent_payment_method_optionsUpiMandate_options :: (GHC.Maybe.Maybe Payment_method_options_mandate_options_upi)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsUpiVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  } deriving (GHC.Show.Show
+  , GHC.Classes.Eq)
+instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsUpi
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUpiMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUpiVerification_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mandate_options" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUpiMandate_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verification_method" Data.Aeson.Types.ToJSON..=)) (setup_intent_payment_method_optionsUpiVerification_method obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsUpi
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Setup_intent_payment_method_optionsUpi" (\obj -> (GHC.Base.pure Setup_intent_payment_method_optionsUpi GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verification_method"))}
+-- | Create a new 'Setup_intent_payment_method_optionsUpi' with all required fields.
+mkSetup_intent_payment_method_optionsUpi :: Setup_intent_payment_method_optionsUpi
+mkSetup_intent_payment_method_optionsUpi = Setup_intent_payment_method_optionsUpi{setup_intent_payment_method_optionsUpiMandate_options = GHC.Maybe.Nothing,
+                                                                                  setup_intent_payment_method_optionsUpiVerification_method = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.setup_intent_payment_method_options.properties.us_bank_account.anyOf@ in the specification.
 -- 
 -- 
@@ -738,8 +402,8 @@ data Setup_intent_payment_method_optionsUs_bank_account = Setup_intent_payment_m
   setup_intent_payment_method_optionsUs_bank_accountFinancial_connections :: (GHC.Maybe.Maybe Linked_account_options_common)
   -- | mandate_options: 
   , setup_intent_payment_method_optionsUs_bank_accountMandate_options :: (GHC.Maybe.Maybe Payment_method_options_us_bank_account_mandate_options)
-  -- | verification_method: Bank account verification method.
-  , setup_intent_payment_method_optionsUs_bank_accountVerification_method :: (GHC.Maybe.Maybe Setup_intent_payment_method_optionsUs_bank_accountVerification_method)
+  -- | verification_method: Bank account verification method. The default value is \`automatic\`.
+  , setup_intent_payment_method_optionsUs_bank_accountVerification_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsUs_bank_account
@@ -752,24 +416,3 @@ mkSetup_intent_payment_method_optionsUs_bank_account :: Setup_intent_payment_met
 mkSetup_intent_payment_method_optionsUs_bank_account = Setup_intent_payment_method_optionsUs_bank_account{setup_intent_payment_method_optionsUs_bank_accountFinancial_connections = GHC.Maybe.Nothing,
                                                                                                           setup_intent_payment_method_optionsUs_bank_accountMandate_options = GHC.Maybe.Nothing,
                                                                                                           setup_intent_payment_method_optionsUs_bank_accountVerification_method = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options.properties.us_bank_account.anyOf.properties.verification_method@ in the specification.
--- 
--- Bank account verification method.
-data Setup_intent_payment_method_optionsUs_bank_accountVerification_method =
-   Setup_intent_payment_method_optionsUs_bank_accountVerification_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Setup_intent_payment_method_optionsUs_bank_accountVerification_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumMicrodeposits -- ^ Represents the JSON value @"microdeposits"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Setup_intent_payment_method_optionsUs_bank_accountVerification_method
-    where {toJSON (Setup_intent_payment_method_optionsUs_bank_accountVerification_methodOther val) = val;
-           toJSON (Setup_intent_payment_method_optionsUs_bank_accountVerification_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumAutomatic) = "automatic";
-           toJSON (Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumInstant) = "instant";
-           toJSON (Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumMicrodeposits) = "microdeposits"}
-instance Data.Aeson.Types.FromJSON.FromJSON Setup_intent_payment_method_optionsUs_bank_accountVerification_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumAutomatic
-                                             | val GHC.Classes.== "instant" -> Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumInstant
-                                             | val GHC.Classes.== "microdeposits" -> Setup_intent_payment_method_optionsUs_bank_accountVerification_methodEnumMicrodeposits
-                                             | GHC.Base.otherwise -> Setup_intent_payment_method_optionsUs_bank_accountVerification_methodOther val)}

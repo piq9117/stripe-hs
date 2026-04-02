@@ -54,7 +54,7 @@ data Issuing'physical_bundle = Issuing'physical_bundle {
   -- 
   -- * Maximum length of 5000
   , issuing'physical_bundleId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , issuing'physical_bundleLivemode :: GHC.Types.Bool
   -- | name: Friendly display name.
   -- 
@@ -62,67 +62,32 @@ data Issuing'physical_bundle = Issuing'physical_bundle {
   -- 
   -- * Maximum length of 5000
   , issuing'physical_bundleName :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , issuing'physical_bundleObject :: Data.Text.Internal.Text
   -- | status: Whether this physical bundle can be used to create cards.
-  , issuing'physical_bundleStatus :: Issuing'physical_bundleStatus
+  , issuing'physical_bundleStatus :: Data.Text.Internal.Text
   -- | type: Whether this physical bundle is a standard Stripe offering or custom-made for you.
-  , issuing'physical_bundleType :: Issuing'physical_bundleType
+  , issuing'physical_bundleType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing'physical_bundle
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["features" Data.Aeson.Types.ToJSON..= issuing'physical_bundleFeatures obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'physical_bundleId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'physical_bundleLivemode obj] : ["name" Data.Aeson.Types.ToJSON..= issuing'physical_bundleName obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'physical_bundleStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'physical_bundleType obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.physical_bundle"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["features" Data.Aeson.Types.ToJSON..= issuing'physical_bundleFeatures obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'physical_bundleId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'physical_bundleLivemode obj] : ["name" Data.Aeson.Types.ToJSON..= issuing'physical_bundleName obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'physical_bundleStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'physical_bundleType obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.physical_bundle"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["features" Data.Aeson.Types.ToJSON..= issuing'physical_bundleFeatures obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'physical_bundleId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'physical_bundleLivemode obj] : ["name" Data.Aeson.Types.ToJSON..= issuing'physical_bundleName obj] : ["object" Data.Aeson.Types.ToJSON..= issuing'physical_bundleObject obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'physical_bundleStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'physical_bundleType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["features" Data.Aeson.Types.ToJSON..= issuing'physical_bundleFeatures obj] : ["id" Data.Aeson.Types.ToJSON..= issuing'physical_bundleId obj] : ["livemode" Data.Aeson.Types.ToJSON..= issuing'physical_bundleLivemode obj] : ["name" Data.Aeson.Types.ToJSON..= issuing'physical_bundleName obj] : ["object" Data.Aeson.Types.ToJSON..= issuing'physical_bundleObject obj] : ["status" Data.Aeson.Types.ToJSON..= issuing'physical_bundleStatus obj] : ["type" Data.Aeson.Types.ToJSON..= issuing'physical_bundleType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing'physical_bundle
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'physical_bundle" (\obj -> (((((GHC.Base.pure Issuing'physical_bundle GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "features")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'physical_bundle" (\obj -> ((((((GHC.Base.pure Issuing'physical_bundle GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "features")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Issuing'physical_bundle' with all required fields.
 mkIssuing'physical_bundle :: Issuing_physical_bundle_features -- ^ 'issuing'physical_bundleFeatures'
   -> Data.Text.Internal.Text -- ^ 'issuing'physical_bundleId'
   -> GHC.Types.Bool -- ^ 'issuing'physical_bundleLivemode'
   -> Data.Text.Internal.Text -- ^ 'issuing'physical_bundleName'
-  -> Issuing'physical_bundleStatus -- ^ 'issuing'physical_bundleStatus'
-  -> Issuing'physical_bundleType -- ^ 'issuing'physical_bundleType'
+  -> Data.Text.Internal.Text -- ^ 'issuing'physical_bundleObject'
+  -> Data.Text.Internal.Text -- ^ 'issuing'physical_bundleStatus'
+  -> Data.Text.Internal.Text -- ^ 'issuing'physical_bundleType'
   -> Issuing'physical_bundle
-mkIssuing'physical_bundle issuing'physical_bundleFeatures issuing'physical_bundleId issuing'physical_bundleLivemode issuing'physical_bundleName issuing'physical_bundleStatus issuing'physical_bundleType = Issuing'physical_bundle{issuing'physical_bundleFeatures = issuing'physical_bundleFeatures,
-                                                                                                                                                                                                                                    issuing'physical_bundleId = issuing'physical_bundleId,
-                                                                                                                                                                                                                                    issuing'physical_bundleLivemode = issuing'physical_bundleLivemode,
-                                                                                                                                                                                                                                    issuing'physical_bundleName = issuing'physical_bundleName,
-                                                                                                                                                                                                                                    issuing'physical_bundleStatus = issuing'physical_bundleStatus,
-                                                                                                                                                                                                                                    issuing'physical_bundleType = issuing'physical_bundleType}
--- | Defines the enum schema located at @components.schemas.issuing.physical_bundle.properties.status@ in the specification.
--- 
--- Whether this physical bundle can be used to create cards.
-data Issuing'physical_bundleStatus =
-   Issuing'physical_bundleStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'physical_bundleStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'physical_bundleStatusEnumActive -- ^ Represents the JSON value @"active"@
-  | Issuing'physical_bundleStatusEnumInactive -- ^ Represents the JSON value @"inactive"@
-  | Issuing'physical_bundleStatusEnumReview -- ^ Represents the JSON value @"review"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'physical_bundleStatus
-    where {toJSON (Issuing'physical_bundleStatusOther val) = val;
-           toJSON (Issuing'physical_bundleStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'physical_bundleStatusEnumActive) = "active";
-           toJSON (Issuing'physical_bundleStatusEnumInactive) = "inactive";
-           toJSON (Issuing'physical_bundleStatusEnumReview) = "review"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'physical_bundleStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "active" -> Issuing'physical_bundleStatusEnumActive
-                                             | val GHC.Classes.== "inactive" -> Issuing'physical_bundleStatusEnumInactive
-                                             | val GHC.Classes.== "review" -> Issuing'physical_bundleStatusEnumReview
-                                             | GHC.Base.otherwise -> Issuing'physical_bundleStatusOther val)}
--- | Defines the enum schema located at @components.schemas.issuing.physical_bundle.properties.type@ in the specification.
--- 
--- Whether this physical bundle is a standard Stripe offering or custom-made for you.
-data Issuing'physical_bundleType =
-   Issuing'physical_bundleTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing'physical_bundleTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing'physical_bundleTypeEnumCustom -- ^ Represents the JSON value @"custom"@
-  | Issuing'physical_bundleTypeEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing'physical_bundleType
-    where {toJSON (Issuing'physical_bundleTypeOther val) = val;
-           toJSON (Issuing'physical_bundleTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing'physical_bundleTypeEnumCustom) = "custom";
-           toJSON (Issuing'physical_bundleTypeEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing'physical_bundleType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "custom" -> Issuing'physical_bundleTypeEnumCustom
-                                             | val GHC.Classes.== "standard" -> Issuing'physical_bundleTypeEnumStandard
-                                             | GHC.Base.otherwise -> Issuing'physical_bundleTypeOther val)}
+mkIssuing'physical_bundle issuing'physical_bundleFeatures issuing'physical_bundleId issuing'physical_bundleLivemode issuing'physical_bundleName issuing'physical_bundleObject issuing'physical_bundleStatus issuing'physical_bundleType = Issuing'physical_bundle{issuing'physical_bundleFeatures = issuing'physical_bundleFeatures,
+                                                                                                                                                                                                                                                                  issuing'physical_bundleId = issuing'physical_bundleId,
+                                                                                                                                                                                                                                                                  issuing'physical_bundleLivemode = issuing'physical_bundleLivemode,
+                                                                                                                                                                                                                                                                  issuing'physical_bundleName = issuing'physical_bundleName,
+                                                                                                                                                                                                                                                                  issuing'physical_bundleObject = issuing'physical_bundleObject,
+                                                                                                                                                                                                                                                                  issuing'physical_bundleStatus = issuing'physical_bundleStatus,
+                                                                                                                                                                                                                                                                  issuing'physical_bundleType = issuing'physical_bundleType}

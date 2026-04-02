@@ -49,7 +49,7 @@ data Issuing_authorization_request = Issuing_authorization_request {
   -- | amount: The \`pending_request.amount\` at the time of the request, presented in your card\'s currency and in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal). Stripe held this amount from your account to fund the authorization if the request was approved.
   issuing_authorization_requestAmount :: GHC.Types.Int
   -- | amount_details: Detailed breakdown of amount components. These amounts are denominated in \`currency\` and in the [smallest currency unit](https:\/\/docs.stripe.com\/currencies\#zero-decimal).
-  , issuing_authorization_requestAmount_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_authorization_requestAmount_detailsNonNullable))
+  , issuing_authorization_requestAmount_details :: (GHC.Maybe.Maybe Issuing_authorization_requestAmount_details)
   -- | approved: Whether this request was approved.
   , issuing_authorization_requestApproved :: GHC.Types.Bool
   -- | authorization_code: A code created by Stripe which is shared with the merchant to validate the authorization. This field will be populated if the authorization message was approved. The code typically starts with the letter \"S\", followed by a six-digit number. For example, \"S498162\". Please note that the code is not guaranteed to be unique across authorizations.
@@ -57,7 +57,7 @@ data Issuing_authorization_request = Issuing_authorization_request {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_requestAuthorization_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_requestAuthorization_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , issuing_authorization_requestCreated :: GHC.Types.Int
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
@@ -75,17 +75,17 @@ data Issuing_authorization_request = Issuing_authorization_request {
   -- * Maximum length of 5000
   , issuing_authorization_requestMerchant_currency :: Data.Text.Internal.Text
   -- | network_risk_score: The card network\'s estimate of the likelihood that an authorization is fraudulent. Takes on values between 1 and 99.
-  , issuing_authorization_requestNetwork_risk_score :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_authorization_requestNetwork_risk_score :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reason: When an authorization is approved or declined by you or by Stripe, this field provides additional detail on the reason for the outcome.
-  , issuing_authorization_requestReason :: Issuing_authorization_requestReason
+  , issuing_authorization_requestReason :: Data.Text.Internal.Text
   -- | reason_message: If the \`request_history.reason\` is \`webhook_error\` because the direct webhook response is invalid (for example, parsing errors or missing parameters), we surface a more detailed error message via this field.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_authorization_requestReason_message :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_authorization_requestReason_message :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | requested_at: Time when the card network received an authorization request from the acquirer in UTC. Referred to by networks as transmission time.
-  , issuing_authorization_requestRequested_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_authorization_requestRequested_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_request
@@ -100,7 +100,7 @@ mkIssuing_authorization_request :: GHC.Types.Int -- ^ 'issuing_authorization_req
   -> Data.Text.Internal.Text -- ^ 'issuing_authorization_requestCurrency'
   -> GHC.Types.Int -- ^ 'issuing_authorization_requestMerchant_amount'
   -> Data.Text.Internal.Text -- ^ 'issuing_authorization_requestMerchant_currency'
-  -> Issuing_authorization_requestReason -- ^ 'issuing_authorization_requestReason'
+  -> Data.Text.Internal.Text -- ^ 'issuing_authorization_requestReason'
   -> Issuing_authorization_request
 mkIssuing_authorization_request issuing_authorization_requestAmount issuing_authorization_requestApproved issuing_authorization_requestCreated issuing_authorization_requestCurrency issuing_authorization_requestMerchant_amount issuing_authorization_requestMerchant_currency issuing_authorization_requestReason = Issuing_authorization_request{issuing_authorization_requestAmount = issuing_authorization_requestAmount,
                                                                                                                                                                                                                                                                                                                                                      issuing_authorization_requestAmount_details = GHC.Maybe.Nothing,
@@ -117,91 +117,19 @@ mkIssuing_authorization_request issuing_authorization_requestAmount issuing_auth
 -- | Defines the object schema located at @components.schemas.issuing_authorization_request.properties.amount_details.anyOf@ in the specification.
 -- 
 -- Detailed breakdown of amount components. These amounts are denominated in \\\`currency\\\` and in the [smallest currency unit](https:\\\/\\\/docs.stripe.com\\\/currencies\\\#zero-decimal).
-data Issuing_authorization_requestAmount_detailsNonNullable = Issuing_authorization_requestAmount_detailsNonNullable {
+data Issuing_authorization_requestAmount_details = Issuing_authorization_requestAmount_details {
   -- | atm_fee: The fee charged by the ATM for the cash withdrawal.
-  issuing_authorization_requestAmount_detailsNonNullableAtm_fee :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_authorization_requestAmount_detailsAtm_fee :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | cashback_amount: The amount of cash requested by the cardholder.
-  , issuing_authorization_requestAmount_detailsNonNullableCashback_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_authorization_requestAmount_detailsCashback_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_requestAmount_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsNonNullableAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsNonNullableCashback_amount obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsNonNullableAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsNonNullableCashback_amount obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_requestAmount_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_requestAmount_detailsNonNullable" (\obj -> (GHC.Base.pure Issuing_authorization_requestAmount_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "atm_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashback_amount"))}
--- | Create a new 'Issuing_authorization_requestAmount_detailsNonNullable' with all required fields.
-mkIssuing_authorization_requestAmount_detailsNonNullable :: Issuing_authorization_requestAmount_detailsNonNullable
-mkIssuing_authorization_requestAmount_detailsNonNullable = Issuing_authorization_requestAmount_detailsNonNullable{issuing_authorization_requestAmount_detailsNonNullableAtm_fee = GHC.Maybe.Nothing,
-                                                                                                                  issuing_authorization_requestAmount_detailsNonNullableCashback_amount = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_authorization_request.properties.reason@ in the specification.
--- 
--- When an authorization is approved or declined by you or by Stripe, this field provides additional detail on the reason for the outcome.
-data Issuing_authorization_requestReason =
-   Issuing_authorization_requestReasonOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_authorization_requestReasonTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_authorization_requestReasonEnumAccount_disabled -- ^ Represents the JSON value @"account_disabled"@
-  | Issuing_authorization_requestReasonEnumCard_active -- ^ Represents the JSON value @"card_active"@
-  | Issuing_authorization_requestReasonEnumCard_canceled -- ^ Represents the JSON value @"card_canceled"@
-  | Issuing_authorization_requestReasonEnumCard_expired -- ^ Represents the JSON value @"card_expired"@
-  | Issuing_authorization_requestReasonEnumCard_inactive -- ^ Represents the JSON value @"card_inactive"@
-  | Issuing_authorization_requestReasonEnumCardholder_blocked -- ^ Represents the JSON value @"cardholder_blocked"@
-  | Issuing_authorization_requestReasonEnumCardholder_inactive -- ^ Represents the JSON value @"cardholder_inactive"@
-  | Issuing_authorization_requestReasonEnumCardholder_verification_required -- ^ Represents the JSON value @"cardholder_verification_required"@
-  | Issuing_authorization_requestReasonEnumInsecure_authorization_method -- ^ Represents the JSON value @"insecure_authorization_method"@
-  | Issuing_authorization_requestReasonEnumInsufficient_funds -- ^ Represents the JSON value @"insufficient_funds"@
-  | Issuing_authorization_requestReasonEnumNetwork_fallback -- ^ Represents the JSON value @"network_fallback"@
-  | Issuing_authorization_requestReasonEnumNot_allowed -- ^ Represents the JSON value @"not_allowed"@
-  | Issuing_authorization_requestReasonEnumPin_blocked -- ^ Represents the JSON value @"pin_blocked"@
-  | Issuing_authorization_requestReasonEnumSpending_controls -- ^ Represents the JSON value @"spending_controls"@
-  | Issuing_authorization_requestReasonEnumSuspected_fraud -- ^ Represents the JSON value @"suspected_fraud"@
-  | Issuing_authorization_requestReasonEnumVerification_failed -- ^ Represents the JSON value @"verification_failed"@
-  | Issuing_authorization_requestReasonEnumWebhook_approved -- ^ Represents the JSON value @"webhook_approved"@
-  | Issuing_authorization_requestReasonEnumWebhook_declined -- ^ Represents the JSON value @"webhook_declined"@
-  | Issuing_authorization_requestReasonEnumWebhook_error -- ^ Represents the JSON value @"webhook_error"@
-  | Issuing_authorization_requestReasonEnumWebhook_timeout -- ^ Represents the JSON value @"webhook_timeout"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_requestReason
-    where {toJSON (Issuing_authorization_requestReasonOther val) = val;
-           toJSON (Issuing_authorization_requestReasonTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_authorization_requestReasonEnumAccount_disabled) = "account_disabled";
-           toJSON (Issuing_authorization_requestReasonEnumCard_active) = "card_active";
-           toJSON (Issuing_authorization_requestReasonEnumCard_canceled) = "card_canceled";
-           toJSON (Issuing_authorization_requestReasonEnumCard_expired) = "card_expired";
-           toJSON (Issuing_authorization_requestReasonEnumCard_inactive) = "card_inactive";
-           toJSON (Issuing_authorization_requestReasonEnumCardholder_blocked) = "cardholder_blocked";
-           toJSON (Issuing_authorization_requestReasonEnumCardholder_inactive) = "cardholder_inactive";
-           toJSON (Issuing_authorization_requestReasonEnumCardholder_verification_required) = "cardholder_verification_required";
-           toJSON (Issuing_authorization_requestReasonEnumInsecure_authorization_method) = "insecure_authorization_method";
-           toJSON (Issuing_authorization_requestReasonEnumInsufficient_funds) = "insufficient_funds";
-           toJSON (Issuing_authorization_requestReasonEnumNetwork_fallback) = "network_fallback";
-           toJSON (Issuing_authorization_requestReasonEnumNot_allowed) = "not_allowed";
-           toJSON (Issuing_authorization_requestReasonEnumPin_blocked) = "pin_blocked";
-           toJSON (Issuing_authorization_requestReasonEnumSpending_controls) = "spending_controls";
-           toJSON (Issuing_authorization_requestReasonEnumSuspected_fraud) = "suspected_fraud";
-           toJSON (Issuing_authorization_requestReasonEnumVerification_failed) = "verification_failed";
-           toJSON (Issuing_authorization_requestReasonEnumWebhook_approved) = "webhook_approved";
-           toJSON (Issuing_authorization_requestReasonEnumWebhook_declined) = "webhook_declined";
-           toJSON (Issuing_authorization_requestReasonEnumWebhook_error) = "webhook_error";
-           toJSON (Issuing_authorization_requestReasonEnumWebhook_timeout) = "webhook_timeout"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_requestReason
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account_disabled" -> Issuing_authorization_requestReasonEnumAccount_disabled
-                                             | val GHC.Classes.== "card_active" -> Issuing_authorization_requestReasonEnumCard_active
-                                             | val GHC.Classes.== "card_canceled" -> Issuing_authorization_requestReasonEnumCard_canceled
-                                             | val GHC.Classes.== "card_expired" -> Issuing_authorization_requestReasonEnumCard_expired
-                                             | val GHC.Classes.== "card_inactive" -> Issuing_authorization_requestReasonEnumCard_inactive
-                                             | val GHC.Classes.== "cardholder_blocked" -> Issuing_authorization_requestReasonEnumCardholder_blocked
-                                             | val GHC.Classes.== "cardholder_inactive" -> Issuing_authorization_requestReasonEnumCardholder_inactive
-                                             | val GHC.Classes.== "cardholder_verification_required" -> Issuing_authorization_requestReasonEnumCardholder_verification_required
-                                             | val GHC.Classes.== "insecure_authorization_method" -> Issuing_authorization_requestReasonEnumInsecure_authorization_method
-                                             | val GHC.Classes.== "insufficient_funds" -> Issuing_authorization_requestReasonEnumInsufficient_funds
-                                             | val GHC.Classes.== "network_fallback" -> Issuing_authorization_requestReasonEnumNetwork_fallback
-                                             | val GHC.Classes.== "not_allowed" -> Issuing_authorization_requestReasonEnumNot_allowed
-                                             | val GHC.Classes.== "pin_blocked" -> Issuing_authorization_requestReasonEnumPin_blocked
-                                             | val GHC.Classes.== "spending_controls" -> Issuing_authorization_requestReasonEnumSpending_controls
-                                             | val GHC.Classes.== "suspected_fraud" -> Issuing_authorization_requestReasonEnumSuspected_fraud
-                                             | val GHC.Classes.== "verification_failed" -> Issuing_authorization_requestReasonEnumVerification_failed
-                                             | val GHC.Classes.== "webhook_approved" -> Issuing_authorization_requestReasonEnumWebhook_approved
-                                             | val GHC.Classes.== "webhook_declined" -> Issuing_authorization_requestReasonEnumWebhook_declined
-                                             | val GHC.Classes.== "webhook_error" -> Issuing_authorization_requestReasonEnumWebhook_error
-                                             | val GHC.Classes.== "webhook_timeout" -> Issuing_authorization_requestReasonEnumWebhook_timeout
-                                             | GHC.Base.otherwise -> Issuing_authorization_requestReasonOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_authorization_requestAmount_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsCashback_amount obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("atm_fee" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsAtm_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashback_amount" Data.Aeson.Types.ToJSON..=)) (issuing_authorization_requestAmount_detailsCashback_amount obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_authorization_requestAmount_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_authorization_requestAmount_details" (\obj -> (GHC.Base.pure Issuing_authorization_requestAmount_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "atm_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashback_amount"))}
+-- | Create a new 'Issuing_authorization_requestAmount_details' with all required fields.
+mkIssuing_authorization_requestAmount_details :: Issuing_authorization_requestAmount_details
+mkIssuing_authorization_requestAmount_details = Issuing_authorization_requestAmount_details{issuing_authorization_requestAmount_detailsAtm_fee = GHC.Maybe.Nothing,
+                                                                                            issuing_authorization_requestAmount_detailsCashback_amount = GHC.Maybe.Nothing}

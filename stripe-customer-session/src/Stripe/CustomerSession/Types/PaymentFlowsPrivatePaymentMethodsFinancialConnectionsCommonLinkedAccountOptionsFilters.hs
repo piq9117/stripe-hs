@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters = Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters {
   -- | account_subcategories: The account subcategories to use to filter for possible accounts to link. Valid subcategories are \`checking\` and \`savings\`.
-  payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategories :: (GHC.Maybe.Maybe [Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategories])
+  payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategories :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters
@@ -57,21 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_method
 -- | Create a new 'Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters' with all required fields.
 mkPayment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters :: Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters
 mkPayment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters = Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters{payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategories = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filters.properties.account_subcategories.items@ in the specification.
--- 
--- 
-data Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategories =
-   Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesEnumChecking -- ^ Represents the JSON value @"checking"@
-  | Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesEnumSavings -- ^ Represents the JSON value @"savings"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategories
-    where {toJSON (Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesOther val) = val;
-           toJSON (Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesEnumChecking) = "checking";
-           toJSON (Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesEnumSavings) = "savings"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategories
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "checking" -> Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesEnumChecking
-                                             | val GHC.Classes.== "savings" -> Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesEnumSavings
-                                             | GHC.Base.otherwise -> Payment_flows_private_payment_methods_financial_connections_common_linked_account_options_filtersAccount_subcategoriesOther val)}

@@ -46,19 +46,19 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Person_additional_tos_acceptance = Person_additional_tos_acceptance {
   -- | date: The Unix timestamp marking when the legal guardian accepted the service agreement.
-  person_additional_tos_acceptanceDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  person_additional_tos_acceptanceDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the legal guardian accepted the service agreement.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_additional_tos_acceptanceIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_additional_tos_acceptanceIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The user agent of the browser from which the legal guardian accepted the service agreement.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , person_additional_tos_acceptanceUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , person_additional_tos_acceptanceUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Person_additional_tos_acceptance

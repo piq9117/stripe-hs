@@ -46,9 +46,9 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Issuing_cardholder_requirements = Issuing_cardholder_requirements {
   -- | disabled_reason: If \`disabled_reason\` is present, all cards will decline authorizations with \`cardholder_verification_required\` reason.
-  issuing_cardholder_requirementsDisabled_reason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_requirementsDisabled_reasonNonNullable))
+  issuing_cardholder_requirementsDisabled_reason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | past_due: Array of fields that need to be collected in order to verify and re-enable the cardholder.
-  , issuing_cardholder_requirementsPast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Issuing_cardholder_requirementsPast_dueNonNullable]))
+  , issuing_cardholder_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_requirements
@@ -60,66 +60,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_requirements
 mkIssuing_cardholder_requirements :: Issuing_cardholder_requirements
 mkIssuing_cardholder_requirements = Issuing_cardholder_requirements{issuing_cardholder_requirementsDisabled_reason = GHC.Maybe.Nothing,
                                                                     issuing_cardholder_requirementsPast_due = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.issuing_cardholder_requirements.properties.disabled_reason@ in the specification.
--- 
--- If \`disabled_reason\` is present, all cards will decline authorizations with \`cardholder_verification_required\` reason.
-data Issuing_cardholder_requirementsDisabled_reasonNonNullable =
-   Issuing_cardholder_requirementsDisabled_reasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_cardholder_requirementsDisabled_reasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumListed -- ^ Represents the JSON value @"listed"@
-  | Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumRejected'listed -- ^ Represents the JSON value @"rejected.listed"@
-  | Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumRequirements'past_due -- ^ Represents the JSON value @"requirements.past_due"@
-  | Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumUnder_review -- ^ Represents the JSON value @"under_review"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_requirementsDisabled_reasonNonNullable
-    where {toJSON (Issuing_cardholder_requirementsDisabled_reasonNonNullableOther val) = val;
-           toJSON (Issuing_cardholder_requirementsDisabled_reasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumListed) = "listed";
-           toJSON (Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumRejected'listed) = "rejected.listed";
-           toJSON (Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumRequirements'past_due) = "requirements.past_due";
-           toJSON (Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumUnder_review) = "under_review"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_requirementsDisabled_reasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "listed" -> Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumListed
-                                             | val GHC.Classes.== "rejected.listed" -> Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumRejected'listed
-                                             | val GHC.Classes.== "requirements.past_due" -> Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumRequirements'past_due
-                                             | val GHC.Classes.== "under_review" -> Issuing_cardholder_requirementsDisabled_reasonNonNullableEnumUnder_review
-                                             | GHC.Base.otherwise -> Issuing_cardholder_requirementsDisabled_reasonNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.issuing_cardholder_requirements.properties.past_due.items@ in the specification.
--- 
--- 
-data Issuing_cardholder_requirementsPast_dueNonNullable =
-   Issuing_cardholder_requirementsPast_dueNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_cardholder_requirementsPast_dueNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumCompany'tax_id -- ^ Represents the JSON value @"company.tax_id"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'card_issuing'user_terms_acceptance'date -- ^ Represents the JSON value @"individual.card_issuing.user_terms_acceptance.date"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'card_issuing'user_terms_acceptance'ip -- ^ Represents the JSON value @"individual.card_issuing.user_terms_acceptance.ip"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'day -- ^ Represents the JSON value @"individual.dob.day"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'month -- ^ Represents the JSON value @"individual.dob.month"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'year -- ^ Represents the JSON value @"individual.dob.year"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'first_name -- ^ Represents the JSON value @"individual.first_name"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'last_name -- ^ Represents the JSON value @"individual.last_name"@
-  | Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'verification'document -- ^ Represents the JSON value @"individual.verification.document"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_requirementsPast_dueNonNullable
-    where {toJSON (Issuing_cardholder_requirementsPast_dueNonNullableOther val) = val;
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumCompany'tax_id) = "company.tax_id";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'card_issuing'user_terms_acceptance'date) = "individual.card_issuing.user_terms_acceptance.date";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'card_issuing'user_terms_acceptance'ip) = "individual.card_issuing.user_terms_acceptance.ip";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'day) = "individual.dob.day";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'month) = "individual.dob.month";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'year) = "individual.dob.year";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'first_name) = "individual.first_name";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'last_name) = "individual.last_name";
-           toJSON (Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'verification'document) = "individual.verification.document"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_requirementsPast_dueNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "company.tax_id" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumCompany'tax_id
-                                             | val GHC.Classes.== "individual.card_issuing.user_terms_acceptance.date" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'card_issuing'user_terms_acceptance'date
-                                             | val GHC.Classes.== "individual.card_issuing.user_terms_acceptance.ip" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'card_issuing'user_terms_acceptance'ip
-                                             | val GHC.Classes.== "individual.dob.day" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'day
-                                             | val GHC.Classes.== "individual.dob.month" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'month
-                                             | val GHC.Classes.== "individual.dob.year" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'dob'year
-                                             | val GHC.Classes.== "individual.first_name" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'first_name
-                                             | val GHC.Classes.== "individual.last_name" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'last_name
-                                             | val GHC.Classes.== "individual.verification.document" -> Issuing_cardholder_requirementsPast_dueNonNullableEnumIndividual'verification'document
-                                             | GHC.Base.otherwise -> Issuing_cardholder_requirementsPast_dueNonNullableOther val)}

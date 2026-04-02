@@ -47,25 +47,25 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.File
 -- 
 data Issuing_dispute_merchandise_not_as_described_evidence = Issuing_dispute_merchandise_not_as_described_evidence {
   -- | additional_documentation: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-  issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableVariants))
+  issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentation :: (GHC.Maybe.Maybe Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationVariants)
   -- | explanation: Explanation of why the cardholder is disputing this transaction.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_merchandise_not_as_described_evidenceExplanation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_merchandise_not_as_described_evidenceExplanation :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | received_at: Date when the product was received.
-  , issuing_dispute_merchandise_not_as_described_evidenceReceived_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_dispute_merchandise_not_as_described_evidenceReceived_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | return_description: Description of the cardholder\'s attempt to return the product.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_merchandise_not_as_described_evidenceReturn_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_merchandise_not_as_described_evidenceReturn_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | return_status: Result of cardholder\'s attempt to return the product.
-  , issuing_dispute_merchandise_not_as_described_evidenceReturn_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullable))
+  , issuing_dispute_merchandise_not_as_described_evidenceReturn_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | returned_at: Date when the product was returned or attempted to be returned.
-  , issuing_dispute_merchandise_not_as_described_evidenceReturned_at :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , issuing_dispute_merchandise_not_as_described_evidenceReturned_at :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_merchandise_not_as_described_evidence
@@ -84,32 +84,14 @@ mkIssuing_dispute_merchandise_not_as_described_evidence = Issuing_dispute_mercha
 -- | Defines the oneOf schema located at @components.schemas.issuing_dispute_merchandise_not_as_described_evidence.properties.additional_documentation.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-data Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableVariants =
-   Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableText Data.Text.Internal.Text
-  | Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableFile File
+data Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationVariants =
+   Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationText Data.Text.Internal.Text
+  | Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableVariants
-    where {toJSON (Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableVariants
-    where {parseJSON val = case (Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationVariants
+    where {toJSON (Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationVariants
+    where {parseJSON val = case (Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_merchandise_not_as_described_evidenceAdditional_documentationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.issuing_dispute_merchandise_not_as_described_evidence.properties.return_status@ in the specification.
--- 
--- Result of cardholder\'s attempt to return the product.
-data Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullable =
-   Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableEnumMerchant_rejected -- ^ Represents the JSON value @"merchant_rejected"@
-  | Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableEnumSuccessful -- ^ Represents the JSON value @"successful"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullable
-    where {toJSON (Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableOther val) = val;
-           toJSON (Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableEnumMerchant_rejected) = "merchant_rejected";
-           toJSON (Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableEnumSuccessful) = "successful"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "merchant_rejected" -> Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableEnumMerchant_rejected
-                                             | val GHC.Classes.== "successful" -> Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableEnumSuccessful
-                                             | GHC.Base.otherwise -> Issuing_dispute_merchandise_not_as_described_evidenceReturn_statusNonNullableOther val)}

@@ -46,37 +46,37 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_method_details_ach_debit = Payment_method_details_ach_debit {
   -- | account_holder_type: Type of entity that holds the account. This can be either \`individual\` or \`company\`.
-  payment_method_details_ach_debitAccount_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_details_ach_debitAccount_holder_typeNonNullable))
+  payment_method_details_ach_debitAccount_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | bank_name: Name of the bank associated with the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_debitBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_debitBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter ISO code representing the country the bank account is located in.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_debitCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_debitCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fingerprint: Uniquely identifies this particular bank account. You can use this attribute to check whether two bank accounts are the same.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_debitFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_debitFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | last4: Last four digits of the bank account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_debitLast4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_debitLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | routing_number: Routing transit number of the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_details_ach_debitRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_details_ach_debitRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_ach_debit
@@ -92,21 +92,3 @@ mkPayment_method_details_ach_debit = Payment_method_details_ach_debit{payment_me
                                                                       payment_method_details_ach_debitFingerprint = GHC.Maybe.Nothing,
                                                                       payment_method_details_ach_debitLast4 = GHC.Maybe.Nothing,
                                                                       payment_method_details_ach_debitRouting_number = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payment_method_details_ach_debit.properties.account_holder_type@ in the specification.
--- 
--- Type of entity that holds the account. This can be either \`individual\` or \`company\`.
-data Payment_method_details_ach_debitAccount_holder_typeNonNullable =
-   Payment_method_details_ach_debitAccount_holder_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Payment_method_details_ach_debitAccount_holder_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Payment_method_details_ach_debitAccount_holder_typeNonNullableEnumCompany -- ^ Represents the JSON value @"company"@
-  | Payment_method_details_ach_debitAccount_holder_typeNonNullableEnumIndividual -- ^ Represents the JSON value @"individual"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_details_ach_debitAccount_holder_typeNonNullable
-    where {toJSON (Payment_method_details_ach_debitAccount_holder_typeNonNullableOther val) = val;
-           toJSON (Payment_method_details_ach_debitAccount_holder_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Payment_method_details_ach_debitAccount_holder_typeNonNullableEnumCompany) = "company";
-           toJSON (Payment_method_details_ach_debitAccount_holder_typeNonNullableEnumIndividual) = "individual"}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_details_ach_debitAccount_holder_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "company" -> Payment_method_details_ach_debitAccount_holder_typeNonNullableEnumCompany
-                                             | val GHC.Classes.== "individual" -> Payment_method_details_ach_debitAccount_holder_typeNonNullableEnumIndividual
-                                             | GHC.Base.otherwise -> Payment_method_details_ach_debitAccount_holder_typeNonNullableOther val)}

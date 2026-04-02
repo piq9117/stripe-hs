@@ -6,58 +6,23 @@ instance Show Price
 instance Eq Price
 instance Data.Aeson.FromJSON Price
 instance Data.Aeson.ToJSON Price
-data PriceBilling_scheme
-instance Show PriceBilling_scheme
-instance Eq PriceBilling_scheme
-instance Data.Aeson.FromJSON PriceBilling_scheme
-instance Data.Aeson.ToJSON PriceBilling_scheme
-data PriceCustom_unit_amountNonNullable
-instance Show PriceCustom_unit_amountNonNullable
-instance Eq PriceCustom_unit_amountNonNullable
-instance Data.Aeson.FromJSON PriceCustom_unit_amountNonNullable
-instance Data.Aeson.ToJSON PriceCustom_unit_amountNonNullable
+data PriceCustom_unit_amount
+instance Show PriceCustom_unit_amount
+instance Eq PriceCustom_unit_amount
+instance Data.Aeson.FromJSON PriceCustom_unit_amount
+instance Data.Aeson.ToJSON PriceCustom_unit_amount
 data PriceProductVariants
 instance Show PriceProductVariants
 instance Eq PriceProductVariants
 instance Data.Aeson.FromJSON PriceProductVariants
 instance Data.Aeson.ToJSON PriceProductVariants
-data PriceRecurringNonNullable
-instance Show PriceRecurringNonNullable
-instance Eq PriceRecurringNonNullable
-instance Data.Aeson.FromJSON PriceRecurringNonNullable
-instance Data.Aeson.ToJSON PriceRecurringNonNullable
-data PriceRecurringNonNullableInterval
-instance Show PriceRecurringNonNullableInterval
-instance Eq PriceRecurringNonNullableInterval
-instance Data.Aeson.FromJSON PriceRecurringNonNullableInterval
-instance Data.Aeson.ToJSON PriceRecurringNonNullableInterval
-data PriceRecurringNonNullableUsage_type
-instance Show PriceRecurringNonNullableUsage_type
-instance Eq PriceRecurringNonNullableUsage_type
-instance Data.Aeson.FromJSON PriceRecurringNonNullableUsage_type
-instance Data.Aeson.ToJSON PriceRecurringNonNullableUsage_type
-data PriceTax_behaviorNonNullable
-instance Show PriceTax_behaviorNonNullable
-instance Eq PriceTax_behaviorNonNullable
-instance Data.Aeson.FromJSON PriceTax_behaviorNonNullable
-instance Data.Aeson.ToJSON PriceTax_behaviorNonNullable
-data PriceTiers_modeNonNullable
-instance Show PriceTiers_modeNonNullable
-instance Eq PriceTiers_modeNonNullable
-instance Data.Aeson.FromJSON PriceTiers_modeNonNullable
-instance Data.Aeson.ToJSON PriceTiers_modeNonNullable
-data PriceTransform_quantityNonNullable
-instance Show PriceTransform_quantityNonNullable
-instance Eq PriceTransform_quantityNonNullable
-instance Data.Aeson.FromJSON PriceTransform_quantityNonNullable
-instance Data.Aeson.ToJSON PriceTransform_quantityNonNullable
-data PriceTransform_quantityNonNullableRound
-instance Show PriceTransform_quantityNonNullableRound
-instance Eq PriceTransform_quantityNonNullableRound
-instance Data.Aeson.FromJSON PriceTransform_quantityNonNullableRound
-instance Data.Aeson.ToJSON PriceTransform_quantityNonNullableRound
-data PriceType
-instance Show PriceType
-instance Eq PriceType
-instance Data.Aeson.FromJSON PriceType
-instance Data.Aeson.ToJSON PriceType
+data PriceRecurring
+instance Show PriceRecurring
+instance Eq PriceRecurring
+instance Data.Aeson.FromJSON PriceRecurring
+instance Data.Aeson.ToJSON PriceRecurring
+data PriceTransform_quantity
+instance Show PriceTransform_quantity
+instance Eq PriceTransform_quantity
+instance Data.Aeson.FromJSON PriceTransform_quantity
+instance Data.Aeson.ToJSON PriceTransform_quantity

@@ -46,19 +46,19 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Payment_intent_next_action_display_oxxo_details = Payment_intent_next_action_display_oxxo_details {
   -- | expires_after: The timestamp after which the OXXO voucher expires.
-  payment_intent_next_action_display_oxxo_detailsExpires_after :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  payment_intent_next_action_display_oxxo_detailsExpires_after :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | hosted_voucher_url: The URL for the hosted OXXO voucher page, which allows customers to view and print an OXXO voucher.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_display_oxxo_detailsHosted_voucher_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_display_oxxo_detailsHosted_voucher_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | number: OXXO reference number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_intent_next_action_display_oxxo_detailsNumber :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_intent_next_action_display_oxxo_detailsNumber :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_intent_next_action_display_oxxo_details

@@ -53,13 +53,13 @@ data Payments_primitives_payment_records_resource_shipping_details = Payments_pr
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_shipping_detailsName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_shipping_detailsName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: The shipping recipient\'s phone number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_shipping_detailsPhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_shipping_detailsPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_shipping_details

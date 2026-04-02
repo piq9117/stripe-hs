@@ -61,47 +61,47 @@ data Subscription_schedule_phase_configuration = Subscription_schedule_phase_con
   -- | add_invoice_items: A list of prices and quantities that will generate invoice items appended to the next invoice for this phase.
   subscription_schedule_phase_configurationAdd_invoice_items :: [Subscription_schedule_add_invoice_item]
   -- | application_fee_percent: A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the application owner\'s Stripe account during this phase of the schedule.
-  , subscription_schedule_phase_configurationApplication_fee_percent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  , subscription_schedule_phase_configurationApplication_fee_percent :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | automatic_tax: 
   , subscription_schedule_phase_configurationAutomatic_tax :: (GHC.Maybe.Maybe Schedules_phase_automatic_tax)
   -- | billing_cycle_anchor: Possible values are \`phase_start\` or \`automatic\`. If \`phase_start\` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If \`automatic\` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https:\/\/docs.stripe.com\/billing\/subscriptions\/billing-cycle).
-  , subscription_schedule_phase_configurationBilling_cycle_anchor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullable))
+  , subscription_schedule_phase_configurationBilling_cycle_anchor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | billing_thresholds: Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period
-  , subscription_schedule_phase_configurationBilling_thresholds :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationBilling_thresholdsNonNullable))
+  , subscription_schedule_phase_configurationBilling_thresholds :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationBilling_thresholds)
   -- | collection_method: Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay the underlying subscription at the end of each billing cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as \`active\`.
-  , subscription_schedule_phase_configurationCollection_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationCollection_methodNonNullable))
+  , subscription_schedule_phase_configurationCollection_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   , subscription_schedule_phase_configurationCurrency :: Data.Text.Internal.Text
   -- | default_payment_method: ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer\'s invoice settings.
-  , subscription_schedule_phase_configurationDefault_payment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationDefault_payment_methodNonNullableVariants))
+  , subscription_schedule_phase_configurationDefault_payment_method :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationDefault_payment_methodVariants)
   -- | default_tax_rates: The default tax rates to apply to the subscription during this phase of the subscription schedule.
-  , subscription_schedule_phase_configurationDefault_tax_rates :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Tax_rate]))
+  , subscription_schedule_phase_configurationDefault_tax_rates :: (GHC.Maybe.Maybe [Tax_rate])
   -- | description: Subscription description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription for rendering in Stripe surfaces and certain local payment methods UIs.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , subscription_schedule_phase_configurationDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , subscription_schedule_phase_configurationDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | discounts: The stackable discounts that will be applied to the subscription on this phase. Subscription item discounts are applied before subscription discounts.
   , subscription_schedule_phase_configurationDiscounts :: [Stackable_discount_with_discount_settings_and_discount_end]
   -- | end_date: The end of this phase of the subscription schedule.
   , subscription_schedule_phase_configurationEnd_date :: GHC.Types.Int
   -- | invoice_settings: The invoice settings applicable during this phase.
-  , subscription_schedule_phase_configurationInvoice_settings :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationInvoice_settingsNonNullable))
+  , subscription_schedule_phase_configurationInvoice_settings :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationInvoice_settings)
   -- | items: Subscription items to configure the subscription to during this phase of the subscription schedule.
   , subscription_schedule_phase_configurationItems :: [Subscription_schedule_configuration_item]
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to a phase. Metadata on a schedule\'s phase will update the underlying subscription\'s \`metadata\` when the phase is entered. Updating the underlying subscription\'s \`metadata\` directly will not affect the current phase\'s \`metadata\`.
-  , subscription_schedule_phase_configurationMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , subscription_schedule_phase_configurationMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | on_behalf_of: The account (if any) the charge was made on behalf of for charges associated with the schedule\'s subscription. See the Connect documentation for details.
-  , subscription_schedule_phase_configurationOn_behalf_of :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationOn_behalf_ofNonNullableVariants))
+  , subscription_schedule_phase_configurationOn_behalf_of :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationOn_behalf_ofVariants)
   -- | proration_behavior: When transitioning phases, controls how prorations are handled (if any). Possible values are \`create_prorations\`, \`none\`, and \`always_invoice\`.
-  , subscription_schedule_phase_configurationProration_behavior :: Subscription_schedule_phase_configurationProration_behavior
+  , subscription_schedule_phase_configurationProration_behavior :: Data.Text.Internal.Text
   -- | start_date: The start of this phase of the subscription schedule.
   , subscription_schedule_phase_configurationStart_date :: GHC.Types.Int
   -- | transfer_data: The account (if any) the associated subscription\'s payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription\'s invoices.
-  , subscription_schedule_phase_configurationTransfer_data :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationTransfer_dataNonNullable))
+  , subscription_schedule_phase_configurationTransfer_data :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationTransfer_data)
   -- | trial_end: When the trial ends within the phase.
-  , subscription_schedule_phase_configurationTrial_end :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscription_schedule_phase_configurationTrial_end :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configuration
@@ -115,7 +115,7 @@ mkSubscription_schedule_phase_configuration :: [Subscription_schedule_add_invoic
   -> [Stackable_discount_with_discount_settings_and_discount_end] -- ^ 'subscription_schedule_phase_configurationDiscounts'
   -> GHC.Types.Int -- ^ 'subscription_schedule_phase_configurationEnd_date'
   -> [Subscription_schedule_configuration_item] -- ^ 'subscription_schedule_phase_configurationItems'
-  -> Subscription_schedule_phase_configurationProration_behavior -- ^ 'subscription_schedule_phase_configurationProration_behavior'
+  -> Data.Text.Internal.Text -- ^ 'subscription_schedule_phase_configurationProration_behavior'
   -> GHC.Types.Int -- ^ 'subscription_schedule_phase_configurationStart_date'
   -> Subscription_schedule_phase_configuration
 mkSubscription_schedule_phase_configuration subscription_schedule_phase_configurationAdd_invoice_items subscription_schedule_phase_configurationCurrency subscription_schedule_phase_configurationDiscounts subscription_schedule_phase_configurationEnd_date subscription_schedule_phase_configurationItems subscription_schedule_phase_configurationProration_behavior subscription_schedule_phase_configurationStart_date = Subscription_schedule_phase_configuration{subscription_schedule_phase_configurationAdd_invoice_items = subscription_schedule_phase_configurationAdd_invoice_items,
@@ -138,229 +138,154 @@ mkSubscription_schedule_phase_configuration subscription_schedule_phase_configur
                                                                                                                                                                                                                                                                                                                                                                                                                                                                          subscription_schedule_phase_configurationStart_date = subscription_schedule_phase_configurationStart_date,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                          subscription_schedule_phase_configurationTransfer_data = GHC.Maybe.Nothing,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                          subscription_schedule_phase_configurationTrial_end = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription_schedule_phase_configuration.properties.billing_cycle_anchor@ in the specification.
--- 
--- Possible values are \`phase_start\` or \`automatic\`. If \`phase_start\` then billing cycle anchor of the subscription is set to the start of the phase when entering the phase. If \`automatic\` then the billing cycle anchor is automatically modified as needed when entering the phase. For more information, see the billing cycle [documentation](https:\/\/docs.stripe.com\/billing\/subscriptions\/billing-cycle).
-data Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullable =
-   Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableEnumPhase_start -- ^ Represents the JSON value @"phase_start"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullable
-    where {toJSON (Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableOther val) = val;
-           toJSON (Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableEnumAutomatic) = "automatic";
-           toJSON (Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableEnumPhase_start) = "phase_start"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "automatic" -> Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "phase_start" -> Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableEnumPhase_start
-                                             | GHC.Base.otherwise -> Subscription_schedule_phase_configurationBilling_cycle_anchorNonNullableOther val)}
 -- | Defines the object schema located at @components.schemas.subscription_schedule_phase_configuration.properties.billing_thresholds.anyOf@ in the specification.
 -- 
 -- Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period
-data Subscription_schedule_phase_configurationBilling_thresholdsNonNullable = Subscription_schedule_phase_configurationBilling_thresholdsNonNullable {
+data Subscription_schedule_phase_configurationBilling_thresholds = Subscription_schedule_phase_configurationBilling_thresholds {
   -- | amount_gte: Monetary threshold that triggers the subscription to create an invoice
-  subscription_schedule_phase_configurationBilling_thresholdsNonNullableAmount_gte :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  subscription_schedule_phase_configurationBilling_thresholdsAmount_gte :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | reset_billing_cycle_anchor: Indicates if the \`billing_cycle_anchor\` should be reset when a threshold is reached. If true, \`billing_cycle_anchor\` will be updated to the date\/time the threshold was last reached; otherwise, the value will remain unchanged. This value may not be \`true\` if the subscription contains items with plans that have \`aggregate_usage=last_ever\`.
-  , subscription_schedule_phase_configurationBilling_thresholdsNonNullableReset_billing_cycle_anchor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , subscription_schedule_phase_configurationBilling_thresholdsReset_billing_cycle_anchor :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationBilling_thresholdsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsNonNullableAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsNonNullableReset_billing_cycle_anchor obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsNonNullableAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsNonNullableReset_billing_cycle_anchor obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationBilling_thresholdsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationBilling_thresholdsNonNullable" (\obj -> (GHC.Base.pure Subscription_schedule_phase_configurationBilling_thresholdsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_gte")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reset_billing_cycle_anchor"))}
--- | Create a new 'Subscription_schedule_phase_configurationBilling_thresholdsNonNullable' with all required fields.
-mkSubscription_schedule_phase_configurationBilling_thresholdsNonNullable :: Subscription_schedule_phase_configurationBilling_thresholdsNonNullable
-mkSubscription_schedule_phase_configurationBilling_thresholdsNonNullable = Subscription_schedule_phase_configurationBilling_thresholdsNonNullable{subscription_schedule_phase_configurationBilling_thresholdsNonNullableAmount_gte = GHC.Maybe.Nothing,
-                                                                                                                                                  subscription_schedule_phase_configurationBilling_thresholdsNonNullableReset_billing_cycle_anchor = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription_schedule_phase_configuration.properties.collection_method@ in the specification.
--- 
--- Either \`charge_automatically\`, or \`send_invoice\`. When charging automatically, Stripe will attempt to pay the underlying subscription at the end of each billing cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as \`active\`.
-data Subscription_schedule_phase_configurationCollection_methodNonNullable =
-   Subscription_schedule_phase_configurationCollection_methodNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedule_phase_configurationCollection_methodNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedule_phase_configurationCollection_methodNonNullableEnumCharge_automatically -- ^ Represents the JSON value @"charge_automatically"@
-  | Subscription_schedule_phase_configurationCollection_methodNonNullableEnumSend_invoice -- ^ Represents the JSON value @"send_invoice"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationCollection_methodNonNullable
-    where {toJSON (Subscription_schedule_phase_configurationCollection_methodNonNullableOther val) = val;
-           toJSON (Subscription_schedule_phase_configurationCollection_methodNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedule_phase_configurationCollection_methodNonNullableEnumCharge_automatically) = "charge_automatically";
-           toJSON (Subscription_schedule_phase_configurationCollection_methodNonNullableEnumSend_invoice) = "send_invoice"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationCollection_methodNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "charge_automatically" -> Subscription_schedule_phase_configurationCollection_methodNonNullableEnumCharge_automatically
-                                             | val GHC.Classes.== "send_invoice" -> Subscription_schedule_phase_configurationCollection_methodNonNullableEnumSend_invoice
-                                             | GHC.Base.otherwise -> Subscription_schedule_phase_configurationCollection_methodNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationBilling_thresholds
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsReset_billing_cycle_anchor obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_gte" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsAmount_gte obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reset_billing_cycle_anchor" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationBilling_thresholdsReset_billing_cycle_anchor obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationBilling_thresholds
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationBilling_thresholds" (\obj -> (GHC.Base.pure Subscription_schedule_phase_configurationBilling_thresholds GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_gte")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reset_billing_cycle_anchor"))}
+-- | Create a new 'Subscription_schedule_phase_configurationBilling_thresholds' with all required fields.
+mkSubscription_schedule_phase_configurationBilling_thresholds :: Subscription_schedule_phase_configurationBilling_thresholds
+mkSubscription_schedule_phase_configurationBilling_thresholds = Subscription_schedule_phase_configurationBilling_thresholds{subscription_schedule_phase_configurationBilling_thresholdsAmount_gte = GHC.Maybe.Nothing,
+                                                                                                                            subscription_schedule_phase_configurationBilling_thresholdsReset_billing_cycle_anchor = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedule_phase_configuration.properties.default_payment_method.anyOf@ in the specification.
 -- 
 -- ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer\'s invoice settings.
-data Subscription_schedule_phase_configurationDefault_payment_methodNonNullableVariants =
-   Subscription_schedule_phase_configurationDefault_payment_methodNonNullableText Data.Text.Internal.Text
-  | Subscription_schedule_phase_configurationDefault_payment_methodNonNullablePayment_method Payment_method
+data Subscription_schedule_phase_configurationDefault_payment_methodVariants =
+   Subscription_schedule_phase_configurationDefault_payment_methodText Data.Text.Internal.Text
+  | Subscription_schedule_phase_configurationDefault_payment_methodPayment_method Payment_method
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationDefault_payment_methodNonNullableVariants
-    where {toJSON (Subscription_schedule_phase_configurationDefault_payment_methodNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedule_phase_configurationDefault_payment_methodNonNullablePayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationDefault_payment_methodNonNullableVariants
-    where {parseJSON val = case (Subscription_schedule_phase_configurationDefault_payment_methodNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationDefault_payment_methodNonNullablePayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationDefault_payment_methodVariants
+    where {toJSON (Subscription_schedule_phase_configurationDefault_payment_methodText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedule_phase_configurationDefault_payment_methodPayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationDefault_payment_methodVariants
+    where {parseJSON val = case (Subscription_schedule_phase_configurationDefault_payment_methodText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationDefault_payment_methodPayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription_schedule_phase_configuration.properties.invoice_settings.anyOf@ in the specification.
 -- 
 -- The invoice settings applicable during this phase.
-data Subscription_schedule_phase_configurationInvoice_settingsNonNullable = Subscription_schedule_phase_configurationInvoice_settingsNonNullable {
+data Subscription_schedule_phase_configurationInvoice_settings = Subscription_schedule_phase_configurationInvoice_settings {
   -- | account_tax_ids: The account tax IDs associated with this phase of the subscription schedule. Will be set on invoices generated by this phase of the subscription schedule.
-  subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_ids :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableVariants]))
+  subscription_schedule_phase_configurationInvoice_settingsAccount_tax_ids :: (GHC.Maybe.Maybe [Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsVariants])
   -- | days_until_due: Number of days within which a customer must pay invoices generated by this subscription schedule. This value will be \`null\` for subscription schedules where \`billing=charge_automatically\`.
-  , subscription_schedule_phase_configurationInvoice_settingsNonNullableDays_until_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , subscription_schedule_phase_configurationInvoice_settingsDays_until_due :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | issuer: The connected account that issues the invoice. The invoice is presented with the branding and support information of the specified account.
-  , subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable))
+  , subscription_schedule_phase_configurationInvoice_settingsIssuer :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationInvoice_settingsIssuer)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("issuer" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuer obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("issuer" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuer obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationInvoice_settingsNonNullable" (\obj -> ((GHC.Base.pure Subscription_schedule_phase_configurationInvoice_settingsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_tax_ids")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "days_until_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "issuer"))}
--- | Create a new 'Subscription_schedule_phase_configurationInvoice_settingsNonNullable' with all required fields.
-mkSubscription_schedule_phase_configurationInvoice_settingsNonNullable :: Subscription_schedule_phase_configurationInvoice_settingsNonNullable
-mkSubscription_schedule_phase_configurationInvoice_settingsNonNullable = Subscription_schedule_phase_configurationInvoice_settingsNonNullable{subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_ids = GHC.Maybe.Nothing,
-                                                                                                                                              subscription_schedule_phase_configurationInvoice_settingsNonNullableDays_until_due = GHC.Maybe.Nothing,
-                                                                                                                                              subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuer = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settings
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsAccount_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("issuer" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsIssuer obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account_tax_ids" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsAccount_tax_ids obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("days_until_due" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsDays_until_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("issuer" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsIssuer obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settings
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationInvoice_settings" (\obj -> ((GHC.Base.pure Subscription_schedule_phase_configurationInvoice_settings GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account_tax_ids")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "days_until_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "issuer"))}
+-- | Create a new 'Subscription_schedule_phase_configurationInvoice_settings' with all required fields.
+mkSubscription_schedule_phase_configurationInvoice_settings :: Subscription_schedule_phase_configurationInvoice_settings
+mkSubscription_schedule_phase_configurationInvoice_settings = Subscription_schedule_phase_configurationInvoice_settings{subscription_schedule_phase_configurationInvoice_settingsAccount_tax_ids = GHC.Maybe.Nothing,
+                                                                                                                        subscription_schedule_phase_configurationInvoice_settingsDays_until_due = GHC.Maybe.Nothing,
+                                                                                                                        subscription_schedule_phase_configurationInvoice_settingsIssuer = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedule_phase_configuration.properties.invoice_settings.anyOf.properties.account_tax_ids.items.anyOf@ in the specification.
 -- 
 -- 
-data Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableVariants =
-   Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableText Data.Text.Internal.Text
-  | Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableTax_id Tax_id
-  | Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableDeleted_tax_id Deleted_tax_id
+data Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsVariants =
+   Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsText Data.Text.Internal.Text
+  | Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsTax_id Tax_id
+  | Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsDeleted_tax_id Deleted_tax_id
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableVariants
-    where {toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableTax_id a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableDeleted_tax_id a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableVariants
-    where {parseJSON val = case (Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableTax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationInvoice_settingsNonNullableAccount_tax_idsNonNullableDeleted_tax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsVariants
+    where {toJSON (Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsTax_id a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsDeleted_tax_id a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsVariants
+    where {parseJSON val = case (Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsTax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationInvoice_settingsAccount_tax_idsDeleted_tax_id Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.subscription_schedule_phase_configuration.properties.invoice_settings.anyOf.properties.issuer.anyOf@ in the specification.
 -- 
 -- The connected account that issues the invoice. The invoice is presented with the branding and support information of the specified account.
-data Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable = Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable {
+data Subscription_schedule_phase_configurationInvoice_settingsIssuer = Subscription_schedule_phase_configurationInvoice_settingsIssuer {
   -- | account: The connected account being referenced when \`type\` is \`account\`.
-  subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccount :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountVariants)
+  subscription_schedule_phase_configurationInvoice_settingsIssuerAccount :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountVariants)
   -- | type: Type of the account referenced.
-  , subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType)
+  , subscription_schedule_phase_configurationInvoice_settingsIssuerType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable" (\obj -> (GHC.Base.pure Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable' with all required fields.
-mkSubscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable :: Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable
-mkSubscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable = Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullable{subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccount = GHC.Maybe.Nothing,
-                                                                                                                                                                                subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsIssuer
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsIssuerAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsIssuerType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsIssuerAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationInvoice_settingsIssuerType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsIssuer
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationInvoice_settingsIssuer" (\obj -> (GHC.Base.pure Subscription_schedule_phase_configurationInvoice_settingsIssuer GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'Subscription_schedule_phase_configurationInvoice_settingsIssuer' with all required fields.
+mkSubscription_schedule_phase_configurationInvoice_settingsIssuer :: Subscription_schedule_phase_configurationInvoice_settingsIssuer
+mkSubscription_schedule_phase_configurationInvoice_settingsIssuer = Subscription_schedule_phase_configurationInvoice_settingsIssuer{subscription_schedule_phase_configurationInvoice_settingsIssuerAccount = GHC.Maybe.Nothing,
+                                                                                                                                    subscription_schedule_phase_configurationInvoice_settingsIssuerType = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedule_phase_configuration.properties.invoice_settings.anyOf.properties.issuer.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The connected account being referenced when \`type\` is \`account\`.
-data Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountVariants =
-   Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountText Data.Text.Internal.Text
-  | Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountAccount Account
+data Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountVariants =
+   Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountText Data.Text.Internal.Text
+  | Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountVariants
-    where {toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountVariants
-    where {parseJSON val = case (Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountVariants
+    where {toJSON (Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountVariants
+    where {parseJSON val = case (Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationInvoice_settingsIssuerAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.subscription_schedule_phase_configuration.properties.invoice_settings.anyOf.properties.issuer.anyOf.properties.type@ in the specification.
--- 
--- Type of the account referenced.
-data Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType =
-   Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeEnumAccount -- ^ Represents the JSON value @"account"@
-  | Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeEnumSelf -- ^ Represents the JSON value @"self"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType
-    where {toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeOther val) = val;
-           toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeEnumAccount) = "account";
-           toJSON (Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeEnumSelf) = "self"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeEnumAccount
-                                             | val GHC.Classes.== "self" -> Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeEnumSelf
-                                             | GHC.Base.otherwise -> Subscription_schedule_phase_configurationInvoice_settingsNonNullableIssuerNonNullableTypeOther val)}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedule_phase_configuration.properties.on_behalf_of.anyOf@ in the specification.
 -- 
 -- The account (if any) the charge was made on behalf of for charges associated with the schedule\'s subscription. See the Connect documentation for details.
-data Subscription_schedule_phase_configurationOn_behalf_ofNonNullableVariants =
-   Subscription_schedule_phase_configurationOn_behalf_ofNonNullableText Data.Text.Internal.Text
-  | Subscription_schedule_phase_configurationOn_behalf_ofNonNullableAccount Account
+data Subscription_schedule_phase_configurationOn_behalf_ofVariants =
+   Subscription_schedule_phase_configurationOn_behalf_ofText Data.Text.Internal.Text
+  | Subscription_schedule_phase_configurationOn_behalf_ofAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationOn_behalf_ofNonNullableVariants
-    where {toJSON (Subscription_schedule_phase_configurationOn_behalf_ofNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedule_phase_configurationOn_behalf_ofNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationOn_behalf_ofNonNullableVariants
-    where {parseJSON val = case (Subscription_schedule_phase_configurationOn_behalf_ofNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationOn_behalf_ofNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationOn_behalf_ofVariants
+    where {toJSON (Subscription_schedule_phase_configurationOn_behalf_ofText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedule_phase_configurationOn_behalf_ofAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationOn_behalf_ofVariants
+    where {parseJSON val = case (Subscription_schedule_phase_configurationOn_behalf_ofText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationOn_behalf_ofAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.subscription_schedule_phase_configuration.properties.proration_behavior@ in the specification.
--- 
--- When transitioning phases, controls how prorations are handled (if any). Possible values are \`create_prorations\`, \`none\`, and \`always_invoice\`.
-data Subscription_schedule_phase_configurationProration_behavior =
-   Subscription_schedule_phase_configurationProration_behaviorOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_schedule_phase_configurationProration_behaviorTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_schedule_phase_configurationProration_behaviorEnumAlways_invoice -- ^ Represents the JSON value @"always_invoice"@
-  | Subscription_schedule_phase_configurationProration_behaviorEnumCreate_prorations -- ^ Represents the JSON value @"create_prorations"@
-  | Subscription_schedule_phase_configurationProration_behaviorEnumNone -- ^ Represents the JSON value @"none"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationProration_behavior
-    where {toJSON (Subscription_schedule_phase_configurationProration_behaviorOther val) = val;
-           toJSON (Subscription_schedule_phase_configurationProration_behaviorTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_schedule_phase_configurationProration_behaviorEnumAlways_invoice) = "always_invoice";
-           toJSON (Subscription_schedule_phase_configurationProration_behaviorEnumCreate_prorations) = "create_prorations";
-           toJSON (Subscription_schedule_phase_configurationProration_behaviorEnumNone) = "none"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationProration_behavior
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always_invoice" -> Subscription_schedule_phase_configurationProration_behaviorEnumAlways_invoice
-                                             | val GHC.Classes.== "create_prorations" -> Subscription_schedule_phase_configurationProration_behaviorEnumCreate_prorations
-                                             | val GHC.Classes.== "none" -> Subscription_schedule_phase_configurationProration_behaviorEnumNone
-                                             | GHC.Base.otherwise -> Subscription_schedule_phase_configurationProration_behaviorOther val)}
 -- | Defines the object schema located at @components.schemas.subscription_schedule_phase_configuration.properties.transfer_data.anyOf@ in the specification.
 -- 
 -- The account (if any) the associated subscription\\\'s payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription\\\'s invoices.
-data Subscription_schedule_phase_configurationTransfer_dataNonNullable = Subscription_schedule_phase_configurationTransfer_dataNonNullable {
+data Subscription_schedule_phase_configurationTransfer_data = Subscription_schedule_phase_configurationTransfer_data {
   -- | amount_percent: A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the destination account. By default, the entire amount is transferred to the destination.
-  subscription_schedule_phase_configurationTransfer_dataNonNullableAmount_percent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Double))
+  subscription_schedule_phase_configurationTransfer_dataAmount_percent :: (GHC.Maybe.Maybe GHC.Types.Double)
   -- | destination: The account where funds from the payment will be transferred to upon payment success.
-  , subscription_schedule_phase_configurationTransfer_dataNonNullableDestination :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationVariants)
+  , subscription_schedule_phase_configurationTransfer_dataDestination :: (GHC.Maybe.Maybe Subscription_schedule_phase_configurationTransfer_dataDestinationVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationTransfer_dataNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataNonNullableAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataNonNullableDestination obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataNonNullableAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataNonNullableDestination obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationTransfer_dataNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationTransfer_dataNonNullable" (\obj -> (GHC.Base.pure Subscription_schedule_phase_configurationTransfer_dataNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
--- | Create a new 'Subscription_schedule_phase_configurationTransfer_dataNonNullable' with all required fields.
-mkSubscription_schedule_phase_configurationTransfer_dataNonNullable :: Subscription_schedule_phase_configurationTransfer_dataNonNullable
-mkSubscription_schedule_phase_configurationTransfer_dataNonNullable = Subscription_schedule_phase_configurationTransfer_dataNonNullable{subscription_schedule_phase_configurationTransfer_dataNonNullableAmount_percent = GHC.Maybe.Nothing,
-                                                                                                                                        subscription_schedule_phase_configurationTransfer_dataNonNullableDestination = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationTransfer_data
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataDestination obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_percent" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataAmount_percent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (subscription_schedule_phase_configurationTransfer_dataDestination obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationTransfer_data
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscription_schedule_phase_configurationTransfer_data" (\obj -> (GHC.Base.pure Subscription_schedule_phase_configurationTransfer_data GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_percent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
+-- | Create a new 'Subscription_schedule_phase_configurationTransfer_data' with all required fields.
+mkSubscription_schedule_phase_configurationTransfer_data :: Subscription_schedule_phase_configurationTransfer_data
+mkSubscription_schedule_phase_configurationTransfer_data = Subscription_schedule_phase_configurationTransfer_data{subscription_schedule_phase_configurationTransfer_dataAmount_percent = GHC.Maybe.Nothing,
+                                                                                                                  subscription_schedule_phase_configurationTransfer_dataDestination = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.subscription_schedule_phase_configuration.properties.transfer_data.anyOf.properties.destination.anyOf@ in the specification.
 -- 
 -- The account where funds from the payment will be transferred to upon payment success.
-data Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationVariants =
-   Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationText Data.Text.Internal.Text
-  | Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationAccount Account
+data Subscription_schedule_phase_configurationTransfer_dataDestinationVariants =
+   Subscription_schedule_phase_configurationTransfer_dataDestinationText Data.Text.Internal.Text
+  | Subscription_schedule_phase_configurationTransfer_dataDestinationAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationVariants
-    where {toJSON (Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationVariants
-    where {parseJSON val = case (Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationTransfer_dataNonNullableDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Subscription_schedule_phase_configurationTransfer_dataDestinationVariants
+    where {toJSON (Subscription_schedule_phase_configurationTransfer_dataDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Subscription_schedule_phase_configurationTransfer_dataDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Subscription_schedule_phase_configurationTransfer_dataDestinationVariants
+    where {parseJSON val = case (Subscription_schedule_phase_configurationTransfer_dataDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Subscription_schedule_phase_configurationTransfer_dataDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

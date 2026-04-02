@@ -50,11 +50,11 @@ data Cancellation_details = Cancellation_details {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  cancellation_detailsComment :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  cancellation_detailsComment :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | feedback: The customer submitted reason for why they canceled, if the subscription was canceled explicitly by the user.
-  , cancellation_detailsFeedback :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Cancellation_detailsFeedbackNonNullable))
+  , cancellation_detailsFeedback :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reason: Why this subscription was canceled.
-  , cancellation_detailsReason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Cancellation_detailsReasonNonNullable))
+  , cancellation_detailsReason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Cancellation_details
@@ -67,60 +67,3 @@ mkCancellation_details :: Cancellation_details
 mkCancellation_details = Cancellation_details{cancellation_detailsComment = GHC.Maybe.Nothing,
                                               cancellation_detailsFeedback = GHC.Maybe.Nothing,
                                               cancellation_detailsReason = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.cancellation_details.properties.feedback@ in the specification.
--- 
--- The customer submitted reason for why they canceled, if the subscription was canceled explicitly by the user.
-data Cancellation_detailsFeedbackNonNullable =
-   Cancellation_detailsFeedbackNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Cancellation_detailsFeedbackNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Cancellation_detailsFeedbackNonNullableEnumCustomer_service -- ^ Represents the JSON value @"customer_service"@
-  | Cancellation_detailsFeedbackNonNullableEnumLow_quality -- ^ Represents the JSON value @"low_quality"@
-  | Cancellation_detailsFeedbackNonNullableEnumMissing_features -- ^ Represents the JSON value @"missing_features"@
-  | Cancellation_detailsFeedbackNonNullableEnumOther -- ^ Represents the JSON value @"other"@
-  | Cancellation_detailsFeedbackNonNullableEnumSwitched_service -- ^ Represents the JSON value @"switched_service"@
-  | Cancellation_detailsFeedbackNonNullableEnumToo_complex -- ^ Represents the JSON value @"too_complex"@
-  | Cancellation_detailsFeedbackNonNullableEnumToo_expensive -- ^ Represents the JSON value @"too_expensive"@
-  | Cancellation_detailsFeedbackNonNullableEnumUnused -- ^ Represents the JSON value @"unused"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Cancellation_detailsFeedbackNonNullable
-    where {toJSON (Cancellation_detailsFeedbackNonNullableOther val) = val;
-           toJSON (Cancellation_detailsFeedbackNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumCustomer_service) = "customer_service";
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumLow_quality) = "low_quality";
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumMissing_features) = "missing_features";
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumOther) = "other";
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumSwitched_service) = "switched_service";
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumToo_complex) = "too_complex";
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumToo_expensive) = "too_expensive";
-           toJSON (Cancellation_detailsFeedbackNonNullableEnumUnused) = "unused"}
-instance Data.Aeson.Types.FromJSON.FromJSON Cancellation_detailsFeedbackNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "customer_service" -> Cancellation_detailsFeedbackNonNullableEnumCustomer_service
-                                             | val GHC.Classes.== "low_quality" -> Cancellation_detailsFeedbackNonNullableEnumLow_quality
-                                             | val GHC.Classes.== "missing_features" -> Cancellation_detailsFeedbackNonNullableEnumMissing_features
-                                             | val GHC.Classes.== "other" -> Cancellation_detailsFeedbackNonNullableEnumOther
-                                             | val GHC.Classes.== "switched_service" -> Cancellation_detailsFeedbackNonNullableEnumSwitched_service
-                                             | val GHC.Classes.== "too_complex" -> Cancellation_detailsFeedbackNonNullableEnumToo_complex
-                                             | val GHC.Classes.== "too_expensive" -> Cancellation_detailsFeedbackNonNullableEnumToo_expensive
-                                             | val GHC.Classes.== "unused" -> Cancellation_detailsFeedbackNonNullableEnumUnused
-                                             | GHC.Base.otherwise -> Cancellation_detailsFeedbackNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.cancellation_details.properties.reason@ in the specification.
--- 
--- Why this subscription was canceled.
-data Cancellation_detailsReasonNonNullable =
-   Cancellation_detailsReasonNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Cancellation_detailsReasonNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Cancellation_detailsReasonNonNullableEnumCancellation_requested -- ^ Represents the JSON value @"cancellation_requested"@
-  | Cancellation_detailsReasonNonNullableEnumPayment_disputed -- ^ Represents the JSON value @"payment_disputed"@
-  | Cancellation_detailsReasonNonNullableEnumPayment_failed -- ^ Represents the JSON value @"payment_failed"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Cancellation_detailsReasonNonNullable
-    where {toJSON (Cancellation_detailsReasonNonNullableOther val) = val;
-           toJSON (Cancellation_detailsReasonNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Cancellation_detailsReasonNonNullableEnumCancellation_requested) = "cancellation_requested";
-           toJSON (Cancellation_detailsReasonNonNullableEnumPayment_disputed) = "payment_disputed";
-           toJSON (Cancellation_detailsReasonNonNullableEnumPayment_failed) = "payment_failed"}
-instance Data.Aeson.Types.FromJSON.FromJSON Cancellation_detailsReasonNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cancellation_requested" -> Cancellation_detailsReasonNonNullableEnumCancellation_requested
-                                             | val GHC.Classes.== "payment_disputed" -> Cancellation_detailsReasonNonNullableEnumPayment_disputed
-                                             | val GHC.Classes.== "payment_failed" -> Cancellation_detailsReasonNonNullableEnumPayment_failed
-                                             | GHC.Base.otherwise -> Cancellation_detailsReasonNonNullableOther val)}

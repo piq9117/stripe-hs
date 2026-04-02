@@ -53,19 +53,19 @@ data Payments_primitives_payment_records_resource_billing_details = Payments_pri
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_billing_detailsEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_billing_detailsEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: The billing name associated with the method of payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_billing_detailsName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_billing_detailsName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: The billing phone number associated with the method of payment.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payments_primitives_payment_records_resource_billing_detailsPhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payments_primitives_payment_records_resource_billing_detailsPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payments_primitives_payment_records_resource_billing_details

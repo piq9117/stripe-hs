@@ -46,11 +46,11 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Legal_entity_dob = Legal_entity_dob {
   -- | day: The day of birth, between 1 and 31.
-  legal_entity_dobDay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  legal_entity_dobDay :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | month: The month of birth, between 1 and 12.
-  , legal_entity_dobMonth :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , legal_entity_dobMonth :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | year: The four-digit year of birth.
-  , legal_entity_dobYear :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , legal_entity_dobYear :: (GHC.Maybe.Maybe GHC.Types.Int)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_dob

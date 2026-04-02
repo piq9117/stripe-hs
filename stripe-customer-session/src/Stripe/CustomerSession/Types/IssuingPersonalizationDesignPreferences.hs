@@ -48,7 +48,7 @@ data Issuing_personalization_design_preferences = Issuing_personalization_design
   -- | is_default: Whether we use this personalization design to create cards when one isn\'t specified. A connected account uses the Connect platform\'s default design if no personalization design is set as the default design.
   issuing_personalization_design_preferencesIs_default :: GHC.Types.Bool
   -- | is_platform_default: Whether this personalization design is used to create cards when one is not specified and a default for this connected account does not exist.
-  , issuing_personalization_design_preferencesIs_platform_default :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , issuing_personalization_design_preferencesIs_platform_default :: (GHC.Maybe.Maybe GHC.Types.Bool)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_personalization_design_preferences

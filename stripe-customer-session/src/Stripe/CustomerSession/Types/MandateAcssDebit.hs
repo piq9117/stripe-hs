@@ -46,17 +46,17 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Mandate_acss_debit = Mandate_acss_debit {
   -- | default_for: List of Stripe products where this mandate can be selected automatically.
-  mandate_acss_debitDefault_for :: (GHC.Maybe.Maybe [Mandate_acss_debitDefault_for])
+  mandate_acss_debitDefault_for :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | interval_description: Description of the interval. Only required if the \'payment_schedule\' parameter is \'interval\' or \'combined\'.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , mandate_acss_debitInterval_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , mandate_acss_debitInterval_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_schedule: Payment schedule for the mandate.
-  , mandate_acss_debitPayment_schedule :: Mandate_acss_debitPayment_schedule
+  , mandate_acss_debitPayment_schedule :: Data.Text.Internal.Text
   -- | transaction_type: Transaction type of the mandate.
-  , mandate_acss_debitTransaction_type :: Mandate_acss_debitTransaction_type
+  , mandate_acss_debitTransaction_type :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Mandate_acss_debit
@@ -65,67 +65,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON Mandate_acss_debit
 instance Data.Aeson.Types.FromJSON.FromJSON Mandate_acss_debit
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Mandate_acss_debit" (\obj -> (((GHC.Base.pure Mandate_acss_debit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_for")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interval_description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "transaction_type"))}
 -- | Create a new 'Mandate_acss_debit' with all required fields.
-mkMandate_acss_debit :: Mandate_acss_debitPayment_schedule -- ^ 'mandate_acss_debitPayment_schedule'
-  -> Mandate_acss_debitTransaction_type -- ^ 'mandate_acss_debitTransaction_type'
+mkMandate_acss_debit :: Data.Text.Internal.Text -- ^ 'mandate_acss_debitPayment_schedule'
+  -> Data.Text.Internal.Text -- ^ 'mandate_acss_debitTransaction_type'
   -> Mandate_acss_debit
 mkMandate_acss_debit mandate_acss_debitPayment_schedule mandate_acss_debitTransaction_type = Mandate_acss_debit{mandate_acss_debitDefault_for = GHC.Maybe.Nothing,
                                                                                                                 mandate_acss_debitInterval_description = GHC.Maybe.Nothing,
                                                                                                                 mandate_acss_debitPayment_schedule = mandate_acss_debitPayment_schedule,
                                                                                                                 mandate_acss_debitTransaction_type = mandate_acss_debitTransaction_type}
--- | Defines the enum schema located at @components.schemas.mandate_acss_debit.properties.default_for.items@ in the specification.
--- 
--- 
-data Mandate_acss_debitDefault_for =
-   Mandate_acss_debitDefault_forOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_acss_debitDefault_forTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_acss_debitDefault_forEnumInvoice -- ^ Represents the JSON value @"invoice"@
-  | Mandate_acss_debitDefault_forEnumSubscription -- ^ Represents the JSON value @"subscription"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_acss_debitDefault_for
-    where {toJSON (Mandate_acss_debitDefault_forOther val) = val;
-           toJSON (Mandate_acss_debitDefault_forTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_acss_debitDefault_forEnumInvoice) = "invoice";
-           toJSON (Mandate_acss_debitDefault_forEnumSubscription) = "subscription"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_acss_debitDefault_for
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "invoice" -> Mandate_acss_debitDefault_forEnumInvoice
-                                             | val GHC.Classes.== "subscription" -> Mandate_acss_debitDefault_forEnumSubscription
-                                             | GHC.Base.otherwise -> Mandate_acss_debitDefault_forOther val)}
--- | Defines the enum schema located at @components.schemas.mandate_acss_debit.properties.payment_schedule@ in the specification.
--- 
--- Payment schedule for the mandate.
-data Mandate_acss_debitPayment_schedule =
-   Mandate_acss_debitPayment_scheduleOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_acss_debitPayment_scheduleTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_acss_debitPayment_scheduleEnumCombined -- ^ Represents the JSON value @"combined"@
-  | Mandate_acss_debitPayment_scheduleEnumInterval -- ^ Represents the JSON value @"interval"@
-  | Mandate_acss_debitPayment_scheduleEnumSporadic -- ^ Represents the JSON value @"sporadic"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_acss_debitPayment_schedule
-    where {toJSON (Mandate_acss_debitPayment_scheduleOther val) = val;
-           toJSON (Mandate_acss_debitPayment_scheduleTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_acss_debitPayment_scheduleEnumCombined) = "combined";
-           toJSON (Mandate_acss_debitPayment_scheduleEnumInterval) = "interval";
-           toJSON (Mandate_acss_debitPayment_scheduleEnumSporadic) = "sporadic"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_acss_debitPayment_schedule
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "combined" -> Mandate_acss_debitPayment_scheduleEnumCombined
-                                             | val GHC.Classes.== "interval" -> Mandate_acss_debitPayment_scheduleEnumInterval
-                                             | val GHC.Classes.== "sporadic" -> Mandate_acss_debitPayment_scheduleEnumSporadic
-                                             | GHC.Base.otherwise -> Mandate_acss_debitPayment_scheduleOther val)}
--- | Defines the enum schema located at @components.schemas.mandate_acss_debit.properties.transaction_type@ in the specification.
--- 
--- Transaction type of the mandate.
-data Mandate_acss_debitTransaction_type =
-   Mandate_acss_debitTransaction_typeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Mandate_acss_debitTransaction_typeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Mandate_acss_debitTransaction_typeEnumBusiness -- ^ Represents the JSON value @"business"@
-  | Mandate_acss_debitTransaction_typeEnumPersonal -- ^ Represents the JSON value @"personal"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Mandate_acss_debitTransaction_type
-    where {toJSON (Mandate_acss_debitTransaction_typeOther val) = val;
-           toJSON (Mandate_acss_debitTransaction_typeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Mandate_acss_debitTransaction_typeEnumBusiness) = "business";
-           toJSON (Mandate_acss_debitTransaction_typeEnumPersonal) = "personal"}
-instance Data.Aeson.Types.FromJSON.FromJSON Mandate_acss_debitTransaction_type
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "business" -> Mandate_acss_debitTransaction_typeEnumBusiness
-                                             | val GHC.Classes.== "personal" -> Mandate_acss_debitTransaction_typeEnumPersonal
-                                             | GHC.Base.otherwise -> Mandate_acss_debitTransaction_typeOther val)}

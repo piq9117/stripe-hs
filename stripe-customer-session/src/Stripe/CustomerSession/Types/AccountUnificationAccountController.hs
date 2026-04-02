@@ -55,11 +55,11 @@ data Account_unification_account_controller = Account_unification_account_contro
   -- | losses: 
   , account_unification_account_controllerLosses :: (GHC.Maybe.Maybe Account_unification_account_controller_losses)
   -- | requirement_collection: A value indicating responsibility for collecting requirements on this account. Only returned when the Connect application retrieving the resource controls the account.
-  , account_unification_account_controllerRequirement_collection :: (GHC.Maybe.Maybe Account_unification_account_controllerRequirement_collection)
+  , account_unification_account_controllerRequirement_collection :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | stripe_dashboard: 
   , account_unification_account_controllerStripe_dashboard :: (GHC.Maybe.Maybe Account_unification_account_controller_stripe_dashboard)
   -- | type: The controller type. Can be \`application\`, if a Connect application controls the account, or \`account\`, if the account controls itself.
-  , account_unification_account_controllerType :: Account_unification_account_controllerType
+  , account_unification_account_controllerType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller
@@ -68,7 +68,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controller
 instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controller
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Account_unification_account_controller" (\obj -> (((((GHC.Base.pure Account_unification_account_controller GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fees")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "is_controller")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "losses")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "requirement_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "stripe_dashboard")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Account_unification_account_controller' with all required fields.
-mkAccount_unification_account_controller :: Account_unification_account_controllerType -- ^ 'account_unification_account_controllerType'
+mkAccount_unification_account_controller :: Data.Text.Internal.Text -- ^ 'account_unification_account_controllerType'
   -> Account_unification_account_controller
 mkAccount_unification_account_controller account_unification_account_controllerType = Account_unification_account_controller{account_unification_account_controllerFees = GHC.Maybe.Nothing,
                                                                                                                              account_unification_account_controllerIs_controller = GHC.Maybe.Nothing,
@@ -76,39 +76,3 @@ mkAccount_unification_account_controller account_unification_account_controllerT
                                                                                                                              account_unification_account_controllerRequirement_collection = GHC.Maybe.Nothing,
                                                                                                                              account_unification_account_controllerStripe_dashboard = GHC.Maybe.Nothing,
                                                                                                                              account_unification_account_controllerType = account_unification_account_controllerType}
--- | Defines the enum schema located at @components.schemas.account_unification_account_controller.properties.requirement_collection@ in the specification.
--- 
--- A value indicating responsibility for collecting requirements on this account. Only returned when the Connect application retrieving the resource controls the account.
-data Account_unification_account_controllerRequirement_collection =
-   Account_unification_account_controllerRequirement_collectionOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_unification_account_controllerRequirement_collectionTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_unification_account_controllerRequirement_collectionEnumApplication -- ^ Represents the JSON value @"application"@
-  | Account_unification_account_controllerRequirement_collectionEnumStripe -- ^ Represents the JSON value @"stripe"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controllerRequirement_collection
-    where {toJSON (Account_unification_account_controllerRequirement_collectionOther val) = val;
-           toJSON (Account_unification_account_controllerRequirement_collectionTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_unification_account_controllerRequirement_collectionEnumApplication) = "application";
-           toJSON (Account_unification_account_controllerRequirement_collectionEnumStripe) = "stripe"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controllerRequirement_collection
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "application" -> Account_unification_account_controllerRequirement_collectionEnumApplication
-                                             | val GHC.Classes.== "stripe" -> Account_unification_account_controllerRequirement_collectionEnumStripe
-                                             | GHC.Base.otherwise -> Account_unification_account_controllerRequirement_collectionOther val)}
--- | Defines the enum schema located at @components.schemas.account_unification_account_controller.properties.type@ in the specification.
--- 
--- The controller type. Can be \`application\`, if a Connect application controls the account, or \`account\`, if the account controls itself.
-data Account_unification_account_controllerType =
-   Account_unification_account_controllerTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Account_unification_account_controllerTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Account_unification_account_controllerTypeEnumAccount -- ^ Represents the JSON value @"account"@
-  | Account_unification_account_controllerTypeEnumApplication -- ^ Represents the JSON value @"application"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Account_unification_account_controllerType
-    where {toJSON (Account_unification_account_controllerTypeOther val) = val;
-           toJSON (Account_unification_account_controllerTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Account_unification_account_controllerTypeEnumAccount) = "account";
-           toJSON (Account_unification_account_controllerTypeEnumApplication) = "application"}
-instance Data.Aeson.Types.FromJSON.FromJSON Account_unification_account_controllerType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "account" -> Account_unification_account_controllerTypeEnumAccount
-                                             | val GHC.Classes.== "application" -> Account_unification_account_controllerTypeEnumApplication
-                                             | GHC.Base.otherwise -> Account_unification_account_controllerTypeOther val)}

@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- Defines how a subscription behaves when a trial ends.
 data Subscriptions_resource_trial_settings_end_behavior = Subscriptions_resource_trial_settings_end_behavior {
   -- | missing_payment_method: Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
-  subscriptions_resource_trial_settings_end_behaviorMissing_payment_method :: Subscriptions_resource_trial_settings_end_behaviorMissing_payment_method
+  subscriptions_resource_trial_settings_end_behaviorMissing_payment_method :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_trial_settings_end_behavior
@@ -55,27 +55,6 @@ instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_trial_settings_en
 instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_trial_settings_end_behavior
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Subscriptions_resource_trial_settings_end_behavior" (\obj -> GHC.Base.pure Subscriptions_resource_trial_settings_end_behavior GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "missing_payment_method"))}
 -- | Create a new 'Subscriptions_resource_trial_settings_end_behavior' with all required fields.
-mkSubscriptions_resource_trial_settings_end_behavior :: Subscriptions_resource_trial_settings_end_behaviorMissing_payment_method -- ^ 'subscriptions_resource_trial_settings_end_behaviorMissing_payment_method'
+mkSubscriptions_resource_trial_settings_end_behavior :: Data.Text.Internal.Text -- ^ 'subscriptions_resource_trial_settings_end_behaviorMissing_payment_method'
   -> Subscriptions_resource_trial_settings_end_behavior
 mkSubscriptions_resource_trial_settings_end_behavior subscriptions_resource_trial_settings_end_behaviorMissing_payment_method = Subscriptions_resource_trial_settings_end_behavior{subscriptions_resource_trial_settings_end_behaviorMissing_payment_method = subscriptions_resource_trial_settings_end_behaviorMissing_payment_method}
--- | Defines the enum schema located at @components.schemas.subscriptions_resource_trial_settings_end_behavior.properties.missing_payment_method@ in the specification.
--- 
--- Indicates how the subscription should change when the trial ends if the user did not provide a payment method.
-data Subscriptions_resource_trial_settings_end_behaviorMissing_payment_method =
-   Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumCancel -- ^ Represents the JSON value @"cancel"@
-  | Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumCreate_invoice -- ^ Represents the JSON value @"create_invoice"@
-  | Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumPause -- ^ Represents the JSON value @"pause"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscriptions_resource_trial_settings_end_behaviorMissing_payment_method
-    where {toJSON (Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodOther val) = val;
-           toJSON (Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumCancel) = "cancel";
-           toJSON (Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumCreate_invoice) = "create_invoice";
-           toJSON (Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumPause) = "pause"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscriptions_resource_trial_settings_end_behaviorMissing_payment_method
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "cancel" -> Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumCancel
-                                             | val GHC.Classes.== "create_invoice" -> Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumCreate_invoice
-                                             | val GHC.Classes.== "pause" -> Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodEnumPause
-                                             | GHC.Base.otherwise -> Subscriptions_resource_trial_settings_end_behaviorMissing_payment_methodOther val)}

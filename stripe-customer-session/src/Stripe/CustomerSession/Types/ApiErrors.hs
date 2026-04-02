@@ -190,7 +190,7 @@ data Api_errors = Api_errors {
   -- | source: The [source object](https:\/\/docs.stripe.com\/api\/sources\/object) for errors returned on a request involving a source.
   , api_errorsSource :: (GHC.Maybe.Maybe Api_errorsSource)
   -- | type: The type of error returned. One of \`api_error\`, \`card_error\`, \`idempotency_error\`, or \`invalid_request_error\`
-  , api_errorsType :: Api_errorsType
+  , api_errorsType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Api_errors
@@ -199,7 +199,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Api_errors
 instance Data.Aeson.Types.FromJSON.FromJSON Api_errors
     where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errors" (\obj -> (((((((((((((((GHC.Base.pure Api_errors GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "charge")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "doc_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "param")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "request_log_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Api_errors' with all required fields.
-mkApi_errors :: Api_errorsType -- ^ 'api_errorsType'
+mkApi_errors :: Data.Text.Internal.Text -- ^ 'api_errorsType'
   -> Api_errors
 mkApi_errors api_errorsType = Api_errors{api_errorsAdvice_code = GHC.Maybe.Nothing,
                                          api_errorsCharge = GHC.Maybe.Nothing,
@@ -222,25 +222,25 @@ mkApi_errors api_errorsType = Api_errors{api_errorsAdvice_code = GHC.Maybe.Nothi
 -- The [source object](https:\\\/\\\/docs.stripe.com\\\/api\\\/sources\\\/object) for errors returned on a request involving a source.
 data Api_errorsSource = Api_errorsSource {
   -- | account: The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-  api_errorsSourceAccount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceAccountNonNullableVariants))
+  api_errorsSourceAccount :: (GHC.Maybe.Maybe Api_errorsSourceAccountVariants)
   -- | account_holder_name: The name of the person or business that owns the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAccount_holder_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAccount_holder_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_holder_type: The type of entity that holds the account. This can be either \`individual\` or \`company\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAccount_holder_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAccount_holder_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | account_type: The bank account type. This can only be \`checking\` or \`savings\` in most countries. In Japan, this can only be \`futsu\` or \`toza\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAccount_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAccount_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | ach_credit_transfer
   , api_errorsSourceAch_credit_transfer :: (GHC.Maybe.Maybe Source_type_ach_credit_transfer)
   -- | ach_debit
@@ -252,59 +252,59 @@ data Api_errorsSource = Api_errorsSource {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_city :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_city :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_country: Billing address country, if provided when creating card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_country :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_country :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1: Address line 1 (Street address\/PO Box\/Company name).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_line1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1_check: If \`address_line1\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line2: Address line 2 (Apartment\/Suite\/Unit\/Building).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_line2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_line2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_state: State\/County\/Province\/Region.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_state :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_state :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_zip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_zip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip_check: If \`address_zip\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceAddress_zip_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceAddress_zip_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | alipay
   , api_errorsSourceAlipay :: (GHC.Maybe.Maybe Source_type_alipay)
   -- | allow_redisplay: This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-  , api_errorsSourceAllow_redisplay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceAllow_redisplayNonNullable))
+  , api_errorsSourceAllow_redisplay :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | amount: A positive integer in the smallest currency unit (that is, 100 cents for \$1.00, or 1 for ¥1, Japanese Yen being a zero-decimal currency) representing the total amount associated with the source. This is the amount for which the source will be chargeable once ready. Required for \`single_use\` sources.
-  , api_errorsSourceAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , api_errorsSourceAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | au_becs_debit
   , api_errorsSourceAu_becs_debit :: (GHC.Maybe.Maybe Source_type_au_becs_debit)
   -- | available_payout_methods: A set of available payout methods for this bank account. Only values from this set should be passed as the \`method\` when creating a payout.
-  , api_errorsSourceAvailable_payout_methods :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Api_errorsSourceAvailable_payout_methodsNonNullable]))
+  , api_errorsSourceAvailable_payout_methods :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | bancontact
   , api_errorsSourceBancontact :: (GHC.Maybe.Maybe Source_type_bancontact)
   -- | bank_name: Name of the bank associated with the routing number (e.g., \`WELLS FARGO\`).
@@ -312,7 +312,7 @@ data Api_errorsSource = Api_errorsSource {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceBank_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceBank_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | brand: Card brand. Can be \`American Express\`, \`Cartes Bancaires\`, \`Diners Club\`, \`Discover\`, \`Eftpos Australia\`, \`Girocard\`, \`JCB\`, \`MasterCard\`, \`UnionPay\`, \`Visa\`, or \`Unknown\`.
   -- 
   -- Constraints:
@@ -342,21 +342,21 @@ data Api_errorsSource = Api_errorsSource {
   -- | currency: Three-letter [ISO code for the currency](https:\/\/stripe.com\/docs\/payouts) paid out to the bank account.
   , api_errorsSourceCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer: The ID of the customer that the bank account is associated with.
-  , api_errorsSourceCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceCustomerNonNullableVariants))
+  , api_errorsSourceCustomer :: (GHC.Maybe.Maybe Api_errorsSourceCustomerVariants)
   -- | cvc_check: If a CVC was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`. A result of unchecked indicates that CVC was provided but hasn\'t been checked yet. Checks are typically performed when attaching a card to a Customer object, or when creating a charge. For more details, see [Check if a card is valid without a charge](https:\/\/support.stripe.com\/questions\/check-if-a-card-is-valid-without-a-charge).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | default_for_currency: Whether this bank account is the default external account for its currency.
-  , api_errorsSourceDefault_for_currency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , api_errorsSourceDefault_for_currency :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | dynamic_last4: (For tokenized numbers only.) The last four digits of the device account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceDynamic_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceDynamic_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | eps
   , api_errorsSourceEps :: (GHC.Maybe.Maybe Source_type_eps)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
@@ -368,7 +368,7 @@ data Api_errorsSource = Api_errorsSource {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | flow: The authentication \`flow\` of the source. \`flow\` is one of \`redirect\`, \`receiver\`, \`code_verification\`, \`none\`.
   -- 
   -- Constraints:
@@ -382,7 +382,7 @@ data Api_errorsSource = Api_errorsSource {
   -- * Maximum length of 5000
   , api_errorsSourceFunding :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | future_requirements: Information about the [upcoming new requirements for the bank account](https:\/\/docs.stripe.com\/connect\/custom-accounts\/future-requirements), including what information needs to be collected, and by when.
-  , api_errorsSourceFuture_requirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceFuture_requirementsNonNullable))
+  , api_errorsSourceFuture_requirements :: (GHC.Maybe.Maybe Api_errorsSourceFuture_requirements)
   -- | giropay
   , api_errorsSourceGiropay :: (GHC.Maybe.Maybe Source_type_giropay)
   -- | id: Unique identifier for the object.
@@ -407,10 +407,10 @@ data Api_errorsSource = Api_errorsSource {
   -- 
   -- * Maximum length of 5000
   , api_errorsSourceLast4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , api_errorsSourceLivemode :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , api_errorsSourceMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , api_errorsSourceMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | multibanco
   , api_errorsSourceMultibanco :: (GHC.Maybe.Maybe Source_type_multibanco)
   -- | name: Cardholder name.
@@ -418,13 +418,13 @@ data Api_errorsSource = Api_errorsSource {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | networks: 
   , api_errorsSourceNetworks :: (GHC.Maybe.Maybe Token_card_networks)
   -- | object: String representing the object\'s type. Objects of the same type share the same value.
-  , api_errorsSourceObject :: (GHC.Maybe.Maybe Api_errorsSourceObject)
+  , api_errorsSourceObject :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | owner: Information about the owner of the payment instrument that may be used or required by particular source types.
-  , api_errorsSourceOwner :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceOwnerNonNullable))
+  , api_errorsSourceOwner :: (GHC.Maybe.Maybe Api_errorsSourceOwner)
   -- | p24
   , api_errorsSourceP24 :: (GHC.Maybe.Maybe Source_type_p24)
   -- | receiver: 
@@ -432,15 +432,15 @@ data Api_errorsSource = Api_errorsSource {
   -- | redirect: 
   , api_errorsSourceRedirect :: (GHC.Maybe.Maybe Source_redirect_flow)
   -- | regulated_status: Status of a card based on the card issuer.
-  , api_errorsSourceRegulated_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceRegulated_statusNonNullable))
+  , api_errorsSourceRegulated_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | requirements: Information about the requirements for the bank account, including what information needs to be collected.
-  , api_errorsSourceRequirements :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceRequirementsNonNullable))
+  , api_errorsSourceRequirements :: (GHC.Maybe.Maybe Api_errorsSourceRequirements)
   -- | routing_number: The routing transit number for the bank account.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceRouting_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceRouting_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | sepa_debit
   , api_errorsSourceSepa_debit :: (GHC.Maybe.Maybe Source_type_sepa_debit)
   -- | sofort
@@ -452,7 +452,7 @@ data Api_errorsSource = Api_errorsSource {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: For bank accounts, possible values are \`new\`, \`validated\`, \`verified\`, \`verification_failed\`, \`tokenized_account_number_deactivated\` or \`errored\`. A bank account that hasn\'t had any activity or validation performed is \`new\`. If Stripe can determine that the bank account exists, its status will be \`validated\`. Note that there often isn’t enough information to know (e.g., for smaller credit unions), and the validation is not always run. If customer bank account verification has succeeded, the bank account status will be \`verified\`. If the verification failed for any reason, such as microdeposit failure, the status will be \`verification_failed\`. If the status is \`tokenized_account_number_deactivated\`, the account utilizes a tokenized account number which has been deactivated due to expiration or revocation. This account will need to be reverified to continue using it for money movement. If a payout sent to this bank account fails, we\'ll set the status to \`errored\` and will not continue to send [scheduled payouts](https:\/\/stripe.com\/docs\/payouts\#payout-schedule) until the bank details are updated.
   -- 
   -- For external accounts, possible values are \`new\`, \`errored\`, \`verification_failed\`, and \`tokenized_account_number_deactivated\`. If a payout fails, the status is set to \`errored\` and scheduled payouts are stopped until account details are updated. In the US and India, if we can\'t [verify the owner of the bank account](https:\/\/support.stripe.com\/questions\/bank-account-ownership-verification), we\'ll set the status to \`verification_failed\`. Other validations aren\'t run against external accounts because they\'re only used for payouts. This means the other statuses don\'t apply.
@@ -468,15 +468,15 @@ data Api_errorsSource = Api_errorsSource {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceTokenization_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceTokenization_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: The \`type\` of the source. The \`type\` is a payment method, one of \`ach_credit_transfer\`, \`ach_debit\`, \`alipay\`, \`bancontact\`, \`card\`, \`card_present\`, \`eps\`, \`giropay\`, \`ideal\`, \`multibanco\`, \`klarna\`, \`p24\`, \`sepa_debit\`, \`sofort\`, \`three_d_secure\`, or \`wechat\`. An additional hash is included on the source with a name matching this value. It contains additional information specific to the [payment method](https:\/\/docs.stripe.com\/sources) used.
-  , api_errorsSourceType :: (GHC.Maybe.Maybe Api_errorsSourceType)
+  , api_errorsSourceType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | usage: Either \`reusable\` or \`single_use\`. Whether this source should be reusable or not. Some source types may or may not be reusable by construction, while others may leave the option at creation. If an incompatible value is passed, an error will be returned.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceUsage :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceUsage :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | wechat
   , api_errorsSourceWechat :: (GHC.Maybe.Maybe Source_type_wechat)
   } deriving (GHC.Show.Show
@@ -561,413 +561,251 @@ mkApi_errorsSource = Api_errorsSource{api_errorsSourceAccount = GHC.Maybe.Nothin
 -- | Defines the oneOf schema located at @components.schemas.api_errors.properties.source.anyOf.properties.account.anyOf@ in the specification.
 -- 
 -- The account this bank account belongs to. Only applicable on Accounts (not customers or recipients) This property is only available when returned as an [External Account](\/api\/external_account_bank_accounts\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-data Api_errorsSourceAccountNonNullableVariants =
-   Api_errorsSourceAccountNonNullableText Data.Text.Internal.Text
-  | Api_errorsSourceAccountNonNullableAccount Account
+data Api_errorsSourceAccountVariants =
+   Api_errorsSourceAccountText Data.Text.Internal.Text
+  | Api_errorsSourceAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceAccountNonNullableVariants
-    where {toJSON (Api_errorsSourceAccountNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Api_errorsSourceAccountNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceAccountNonNullableVariants
-    where {parseJSON val = case (Api_errorsSourceAccountNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Api_errorsSourceAccountNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceAccountVariants
+    where {toJSON (Api_errorsSourceAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Api_errorsSourceAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceAccountVariants
+    where {parseJSON val = case (Api_errorsSourceAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Api_errorsSourceAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.api_errors.properties.source.anyOf.properties.allow_redisplay@ in the specification.
--- 
--- This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-data Api_errorsSourceAllow_redisplayNonNullable =
-   Api_errorsSourceAllow_redisplayNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Api_errorsSourceAllow_redisplayNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Api_errorsSourceAllow_redisplayNonNullableEnumAlways -- ^ Represents the JSON value @"always"@
-  | Api_errorsSourceAllow_redisplayNonNullableEnumLimited -- ^ Represents the JSON value @"limited"@
-  | Api_errorsSourceAllow_redisplayNonNullableEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceAllow_redisplayNonNullable
-    where {toJSON (Api_errorsSourceAllow_redisplayNonNullableOther val) = val;
-           toJSON (Api_errorsSourceAllow_redisplayNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Api_errorsSourceAllow_redisplayNonNullableEnumAlways) = "always";
-           toJSON (Api_errorsSourceAllow_redisplayNonNullableEnumLimited) = "limited";
-           toJSON (Api_errorsSourceAllow_redisplayNonNullableEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceAllow_redisplayNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> Api_errorsSourceAllow_redisplayNonNullableEnumAlways
-                                             | val GHC.Classes.== "limited" -> Api_errorsSourceAllow_redisplayNonNullableEnumLimited
-                                             | val GHC.Classes.== "unspecified" -> Api_errorsSourceAllow_redisplayNonNullableEnumUnspecified
-                                             | GHC.Base.otherwise -> Api_errorsSourceAllow_redisplayNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.api_errors.properties.source.anyOf.properties.available_payout_methods.items@ in the specification.
--- 
--- 
-data Api_errorsSourceAvailable_payout_methodsNonNullable =
-   Api_errorsSourceAvailable_payout_methodsNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Api_errorsSourceAvailable_payout_methodsNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Api_errorsSourceAvailable_payout_methodsNonNullableEnumInstant -- ^ Represents the JSON value @"instant"@
-  | Api_errorsSourceAvailable_payout_methodsNonNullableEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceAvailable_payout_methodsNonNullable
-    where {toJSON (Api_errorsSourceAvailable_payout_methodsNonNullableOther val) = val;
-           toJSON (Api_errorsSourceAvailable_payout_methodsNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Api_errorsSourceAvailable_payout_methodsNonNullableEnumInstant) = "instant";
-           toJSON (Api_errorsSourceAvailable_payout_methodsNonNullableEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceAvailable_payout_methodsNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "instant" -> Api_errorsSourceAvailable_payout_methodsNonNullableEnumInstant
-                                             | val GHC.Classes.== "standard" -> Api_errorsSourceAvailable_payout_methodsNonNullableEnumStandard
-                                             | GHC.Base.otherwise -> Api_errorsSourceAvailable_payout_methodsNonNullableOther val)}
 -- | Defines the oneOf schema located at @components.schemas.api_errors.properties.source.anyOf.properties.customer.anyOf@ in the specification.
 -- 
 -- The ID of the customer that the bank account is associated with.
-data Api_errorsSourceCustomerNonNullableVariants =
-   Api_errorsSourceCustomerNonNullableText Data.Text.Internal.Text
-  | Api_errorsSourceCustomerNonNullableCustomer Customer
-  | Api_errorsSourceCustomerNonNullableDeleted_customer Deleted_customer
+data Api_errorsSourceCustomerVariants =
+   Api_errorsSourceCustomerText Data.Text.Internal.Text
+  | Api_errorsSourceCustomerCustomer Customer
+  | Api_errorsSourceCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceCustomerNonNullableVariants
-    where {toJSON (Api_errorsSourceCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Api_errorsSourceCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Api_errorsSourceCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceCustomerNonNullableVariants
-    where {parseJSON val = case (Api_errorsSourceCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Api_errorsSourceCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Api_errorsSourceCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceCustomerVariants
+    where {toJSON (Api_errorsSourceCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Api_errorsSourceCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Api_errorsSourceCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceCustomerVariants
+    where {parseJSON val = case (Api_errorsSourceCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Api_errorsSourceCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Api_errorsSourceCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.api_errors.properties.source.anyOf.properties.future_requirements.anyOf@ in the specification.
 -- 
 -- Information about the [upcoming new requirements for the bank account](https:\\\/\\\/docs.stripe.com\\\/connect\\\/custom-accounts\\\/future-requirements), including what information needs to be collected, and by when.
-data Api_errorsSourceFuture_requirementsNonNullable = Api_errorsSourceFuture_requirementsNonNullable {
+data Api_errorsSourceFuture_requirements = Api_errorsSourceFuture_requirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  api_errorsSourceFuture_requirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  api_errorsSourceFuture_requirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , api_errorsSourceFuture_requirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , api_errorsSourceFuture_requirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , api_errorsSourceFuture_requirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , api_errorsSourceFuture_requirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , api_errorsSourceFuture_requirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , api_errorsSourceFuture_requirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceFuture_requirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceFuture_requirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceFuture_requirementsNonNullable" (\obj -> (((GHC.Base.pure Api_errorsSourceFuture_requirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'Api_errorsSourceFuture_requirementsNonNullable' with all required fields.
-mkApi_errorsSourceFuture_requirementsNonNullable :: Api_errorsSourceFuture_requirementsNonNullable
-mkApi_errorsSourceFuture_requirementsNonNullable = Api_errorsSourceFuture_requirementsNonNullable{api_errorsSourceFuture_requirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                                  api_errorsSourceFuture_requirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                                  api_errorsSourceFuture_requirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                                  api_errorsSourceFuture_requirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.api_errors.properties.source.anyOf.properties.object@ in the specification.
--- 
--- String representing the object\'s type. Objects of the same type share the same value.
-data Api_errorsSourceObject =
-   Api_errorsSourceObjectOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Api_errorsSourceObjectTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Api_errorsSourceObjectEnumBank_account -- ^ Represents the JSON value @"bank_account"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceObject
-    where {toJSON (Api_errorsSourceObjectOther val) = val;
-           toJSON (Api_errorsSourceObjectTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Api_errorsSourceObjectEnumBank_account) = "bank_account"}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceObject
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_account" -> Api_errorsSourceObjectEnumBank_account
-                                             | GHC.Base.otherwise -> Api_errorsSourceObjectOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceFuture_requirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceFuture_requirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceFuture_requirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceFuture_requirements" (\obj -> (((GHC.Base.pure Api_errorsSourceFuture_requirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'Api_errorsSourceFuture_requirements' with all required fields.
+mkApi_errorsSourceFuture_requirements :: Api_errorsSourceFuture_requirements
+mkApi_errorsSourceFuture_requirements = Api_errorsSourceFuture_requirements{api_errorsSourceFuture_requirementsCurrently_due = GHC.Maybe.Nothing,
+                                                                            api_errorsSourceFuture_requirementsErrors = GHC.Maybe.Nothing,
+                                                                            api_errorsSourceFuture_requirementsPast_due = GHC.Maybe.Nothing,
+                                                                            api_errorsSourceFuture_requirementsPending_verification = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.api_errors.properties.source.anyOf.properties.owner.anyOf@ in the specification.
 -- 
 -- Information about the owner of the payment instrument that may be used or required by particular source types.
-data Api_errorsSourceOwnerNonNullable = Api_errorsSourceOwnerNonNullable {
+data Api_errorsSourceOwner = Api_errorsSourceOwner {
   -- | address: Owner\'s address.
-  api_errorsSourceOwnerNonNullableAddress :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceOwnerNonNullableAddressNonNullable))
+  api_errorsSourceOwnerAddress :: (GHC.Maybe.Maybe Api_errorsSourceOwnerAddress)
   -- | email: Owner\'s email address.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Owner\'s full name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: Owner\'s phone number (including extension).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullablePhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_address: Verified owner\'s address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
-  , api_errorsSourceOwnerNonNullableVerified_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Api_errorsSourceOwnerNonNullableVerified_addressNonNullable))
+  , api_errorsSourceOwnerVerified_address :: (GHC.Maybe.Maybe Api_errorsSourceOwnerVerified_address)
   -- | verified_email: Verified owner\'s email address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_name: Verified owner\'s full name. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_name :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_name :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | verified_phone: Verified owner\'s phone number (including extension). Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_phone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_phone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceOwnerNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_phone obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_phone obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceOwnerNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceOwnerNonNullable" (\obj -> (((((((GHC.Base.pure Api_errorsSourceOwnerNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_phone"))}
--- | Create a new 'Api_errorsSourceOwnerNonNullable' with all required fields.
-mkApi_errorsSourceOwnerNonNullable :: Api_errorsSourceOwnerNonNullable
-mkApi_errorsSourceOwnerNonNullable = Api_errorsSourceOwnerNonNullable{api_errorsSourceOwnerNonNullableAddress = GHC.Maybe.Nothing,
-                                                                      api_errorsSourceOwnerNonNullableEmail = GHC.Maybe.Nothing,
-                                                                      api_errorsSourceOwnerNonNullableName = GHC.Maybe.Nothing,
-                                                                      api_errorsSourceOwnerNonNullablePhone = GHC.Maybe.Nothing,
-                                                                      api_errorsSourceOwnerNonNullableVerified_address = GHC.Maybe.Nothing,
-                                                                      api_errorsSourceOwnerNonNullableVerified_email = GHC.Maybe.Nothing,
-                                                                      api_errorsSourceOwnerNonNullableVerified_name = GHC.Maybe.Nothing,
-                                                                      api_errorsSourceOwnerNonNullableVerified_phone = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceOwner
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_phone obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerEmail obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_address" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_address obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_email" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_name" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_name obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("verified_phone" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_phone obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceOwner
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceOwner" (\obj -> (((((((GHC.Base.pure Api_errorsSourceOwner GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "verified_phone"))}
+-- | Create a new 'Api_errorsSourceOwner' with all required fields.
+mkApi_errorsSourceOwner :: Api_errorsSourceOwner
+mkApi_errorsSourceOwner = Api_errorsSourceOwner{api_errorsSourceOwnerAddress = GHC.Maybe.Nothing,
+                                                api_errorsSourceOwnerEmail = GHC.Maybe.Nothing,
+                                                api_errorsSourceOwnerName = GHC.Maybe.Nothing,
+                                                api_errorsSourceOwnerPhone = GHC.Maybe.Nothing,
+                                                api_errorsSourceOwnerVerified_address = GHC.Maybe.Nothing,
+                                                api_errorsSourceOwnerVerified_email = GHC.Maybe.Nothing,
+                                                api_errorsSourceOwnerVerified_name = GHC.Maybe.Nothing,
+                                                api_errorsSourceOwnerVerified_phone = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.api_errors.properties.source.anyOf.properties.owner.anyOf.properties.address.anyOf@ in the specification.
 -- 
 -- Owner\\\'s address.
-data Api_errorsSourceOwnerNonNullableAddressNonNullable = Api_errorsSourceOwnerNonNullableAddressNonNullable {
+data Api_errorsSourceOwnerAddress = Api_errorsSourceOwnerAddress {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  api_errorsSourceOwnerNonNullableAddressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  api_errorsSourceOwnerAddressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableAddressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerAddressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableAddressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerAddressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableAddressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerAddressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableAddressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerAddressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableAddressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerAddressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceOwnerNonNullableAddressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableAddressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceOwnerNonNullableAddressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceOwnerNonNullableAddressNonNullable" (\obj -> (((((GHC.Base.pure Api_errorsSourceOwnerNonNullableAddressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Api_errorsSourceOwnerNonNullableAddressNonNullable' with all required fields.
-mkApi_errorsSourceOwnerNonNullableAddressNonNullable :: Api_errorsSourceOwnerNonNullableAddressNonNullable
-mkApi_errorsSourceOwnerNonNullableAddressNonNullable = Api_errorsSourceOwnerNonNullableAddressNonNullable{api_errorsSourceOwnerNonNullableAddressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                          api_errorsSourceOwnerNonNullableAddressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                          api_errorsSourceOwnerNonNullableAddressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                          api_errorsSourceOwnerNonNullableAddressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                          api_errorsSourceOwnerNonNullableAddressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                          api_errorsSourceOwnerNonNullableAddressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceOwnerAddress
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerAddressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceOwnerAddress
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceOwnerAddress" (\obj -> (((((GHC.Base.pure Api_errorsSourceOwnerAddress GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Api_errorsSourceOwnerAddress' with all required fields.
+mkApi_errorsSourceOwnerAddress :: Api_errorsSourceOwnerAddress
+mkApi_errorsSourceOwnerAddress = Api_errorsSourceOwnerAddress{api_errorsSourceOwnerAddressCity = GHC.Maybe.Nothing,
+                                                              api_errorsSourceOwnerAddressCountry = GHC.Maybe.Nothing,
+                                                              api_errorsSourceOwnerAddressLine1 = GHC.Maybe.Nothing,
+                                                              api_errorsSourceOwnerAddressLine2 = GHC.Maybe.Nothing,
+                                                              api_errorsSourceOwnerAddressPostal_code = GHC.Maybe.Nothing,
+                                                              api_errorsSourceOwnerAddressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.api_errors.properties.source.anyOf.properties.owner.anyOf.properties.verified_address.anyOf@ in the specification.
 -- 
 -- Verified owner\\\'s address. Verified values are verified or provided by the payment method directly (and if supported) at the time of authorization or settlement. They cannot be set or mutated.
-data Api_errorsSourceOwnerNonNullableVerified_addressNonNullable = Api_errorsSourceOwnerNonNullableVerified_addressNonNullable {
+data Api_errorsSourceOwnerVerified_address = Api_errorsSourceOwnerVerified_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  api_errorsSourceOwnerNonNullableVerified_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  api_errorsSourceOwnerVerified_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , api_errorsSourceOwnerNonNullableVerified_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , api_errorsSourceOwnerVerified_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceOwnerNonNullableVerified_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerNonNullableVerified_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceOwnerNonNullableVerified_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceOwnerNonNullableVerified_addressNonNullable" (\obj -> (((((GHC.Base.pure Api_errorsSourceOwnerNonNullableVerified_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Api_errorsSourceOwnerNonNullableVerified_addressNonNullable' with all required fields.
-mkApi_errorsSourceOwnerNonNullableVerified_addressNonNullable :: Api_errorsSourceOwnerNonNullableVerified_addressNonNullable
-mkApi_errorsSourceOwnerNonNullableVerified_addressNonNullable = Api_errorsSourceOwnerNonNullableVerified_addressNonNullable{api_errorsSourceOwnerNonNullableVerified_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                            api_errorsSourceOwnerNonNullableVerified_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                            api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                            api_errorsSourceOwnerNonNullableVerified_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                            api_errorsSourceOwnerNonNullableVerified_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                            api_errorsSourceOwnerNonNullableVerified_addressNonNullableState = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.api_errors.properties.source.anyOf.properties.regulated_status@ in the specification.
--- 
--- Status of a card based on the card issuer.
-data Api_errorsSourceRegulated_statusNonNullable =
-   Api_errorsSourceRegulated_statusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Api_errorsSourceRegulated_statusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Api_errorsSourceRegulated_statusNonNullableEnumRegulated -- ^ Represents the JSON value @"regulated"@
-  | Api_errorsSourceRegulated_statusNonNullableEnumUnregulated -- ^ Represents the JSON value @"unregulated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceRegulated_statusNonNullable
-    where {toJSON (Api_errorsSourceRegulated_statusNonNullableOther val) = val;
-           toJSON (Api_errorsSourceRegulated_statusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Api_errorsSourceRegulated_statusNonNullableEnumRegulated) = "regulated";
-           toJSON (Api_errorsSourceRegulated_statusNonNullableEnumUnregulated) = "unregulated"}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceRegulated_statusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "regulated" -> Api_errorsSourceRegulated_statusNonNullableEnumRegulated
-                                             | val GHC.Classes.== "unregulated" -> Api_errorsSourceRegulated_statusNonNullableEnumUnregulated
-                                             | GHC.Base.otherwise -> Api_errorsSourceRegulated_statusNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceOwnerVerified_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceOwnerVerified_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceOwnerVerified_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceOwnerVerified_address" (\obj -> (((((GHC.Base.pure Api_errorsSourceOwnerVerified_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Api_errorsSourceOwnerVerified_address' with all required fields.
+mkApi_errorsSourceOwnerVerified_address :: Api_errorsSourceOwnerVerified_address
+mkApi_errorsSourceOwnerVerified_address = Api_errorsSourceOwnerVerified_address{api_errorsSourceOwnerVerified_addressCity = GHC.Maybe.Nothing,
+                                                                                api_errorsSourceOwnerVerified_addressCountry = GHC.Maybe.Nothing,
+                                                                                api_errorsSourceOwnerVerified_addressLine1 = GHC.Maybe.Nothing,
+                                                                                api_errorsSourceOwnerVerified_addressLine2 = GHC.Maybe.Nothing,
+                                                                                api_errorsSourceOwnerVerified_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                api_errorsSourceOwnerVerified_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.api_errors.properties.source.anyOf.properties.requirements.anyOf@ in the specification.
 -- 
 -- Information about the requirements for the bank account, including what information needs to be collected.
-data Api_errorsSourceRequirementsNonNullable = Api_errorsSourceRequirementsNonNullable {
+data Api_errorsSourceRequirements = Api_errorsSourceRequirements {
   -- | currently_due: Fields that need to be resolved to keep the external account enabled. If not resolved by \`current_deadline\`, these fields will appear in \`past_due\` as well, and the account is disabled.
-  api_errorsSourceRequirementsNonNullableCurrently_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  api_errorsSourceRequirementsCurrently_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | errors: Details about validation and verification failures for \`due\` requirements that must be resolved.
-  , api_errorsSourceRequirementsNonNullableErrors :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Account_requirements_error]))
+  , api_errorsSourceRequirementsErrors :: (GHC.Maybe.Maybe [Account_requirements_error])
   -- | past_due: Fields that haven\'t been resolved by \`current_deadline\`. These fields need to be resolved to enable the external account.
-  , api_errorsSourceRequirementsNonNullablePast_due :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , api_errorsSourceRequirementsPast_due :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | pending_verification: Fields that are being reviewed, or might become required depending on the results of a review. If the review fails, these fields can move to \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\`. Fields might appear in \`eventually_due\`, \`currently_due\`, \`past_due\` or \`alternatives\` and in \`pending_verification\` if one verification fails but another is still pending.
-  , api_errorsSourceRequirementsNonNullablePending_verification :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Data.Text.Internal.Text]))
+  , api_errorsSourceRequirementsPending_verification :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceRequirementsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullablePending_verification obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullableCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullableErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullablePast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsNonNullablePending_verification obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceRequirementsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceRequirementsNonNullable" (\obj -> (((GHC.Base.pure Api_errorsSourceRequirementsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
--- | Create a new 'Api_errorsSourceRequirementsNonNullable' with all required fields.
-mkApi_errorsSourceRequirementsNonNullable :: Api_errorsSourceRequirementsNonNullable
-mkApi_errorsSourceRequirementsNonNullable = Api_errorsSourceRequirementsNonNullable{api_errorsSourceRequirementsNonNullableCurrently_due = GHC.Maybe.Nothing,
-                                                                                    api_errorsSourceRequirementsNonNullableErrors = GHC.Maybe.Nothing,
-                                                                                    api_errorsSourceRequirementsNonNullablePast_due = GHC.Maybe.Nothing,
-                                                                                    api_errorsSourceRequirementsNonNullablePending_verification = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.api_errors.properties.source.anyOf.properties.type@ in the specification.
--- 
--- The \`type\` of the source. The \`type\` is a payment method, one of \`ach_credit_transfer\`, \`ach_debit\`, \`alipay\`, \`bancontact\`, \`card\`, \`card_present\`, \`eps\`, \`giropay\`, \`ideal\`, \`multibanco\`, \`klarna\`, \`p24\`, \`sepa_debit\`, \`sofort\`, \`three_d_secure\`, or \`wechat\`. An additional hash is included on the source with a name matching this value. It contains additional information specific to the [payment method](https:\/\/docs.stripe.com\/sources) used.
-data Api_errorsSourceType =
-   Api_errorsSourceTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Api_errorsSourceTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Api_errorsSourceTypeEnumAch_credit_transfer -- ^ Represents the JSON value @"ach_credit_transfer"@
-  | Api_errorsSourceTypeEnumAch_debit -- ^ Represents the JSON value @"ach_debit"@
-  | Api_errorsSourceTypeEnumAcss_debit -- ^ Represents the JSON value @"acss_debit"@
-  | Api_errorsSourceTypeEnumAlipay -- ^ Represents the JSON value @"alipay"@
-  | Api_errorsSourceTypeEnumAu_becs_debit -- ^ Represents the JSON value @"au_becs_debit"@
-  | Api_errorsSourceTypeEnumBancontact -- ^ Represents the JSON value @"bancontact"@
-  | Api_errorsSourceTypeEnumCard -- ^ Represents the JSON value @"card"@
-  | Api_errorsSourceTypeEnumCard_present -- ^ Represents the JSON value @"card_present"@
-  | Api_errorsSourceTypeEnumEps -- ^ Represents the JSON value @"eps"@
-  | Api_errorsSourceTypeEnumGiropay -- ^ Represents the JSON value @"giropay"@
-  | Api_errorsSourceTypeEnumIdeal -- ^ Represents the JSON value @"ideal"@
-  | Api_errorsSourceTypeEnumKlarna -- ^ Represents the JSON value @"klarna"@
-  | Api_errorsSourceTypeEnumMultibanco -- ^ Represents the JSON value @"multibanco"@
-  | Api_errorsSourceTypeEnumP24 -- ^ Represents the JSON value @"p24"@
-  | Api_errorsSourceTypeEnumSepa_debit -- ^ Represents the JSON value @"sepa_debit"@
-  | Api_errorsSourceTypeEnumSofort -- ^ Represents the JSON value @"sofort"@
-  | Api_errorsSourceTypeEnumThree_d_secure -- ^ Represents the JSON value @"three_d_secure"@
-  | Api_errorsSourceTypeEnumWechat -- ^ Represents the JSON value @"wechat"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceType
-    where {toJSON (Api_errorsSourceTypeOther val) = val;
-           toJSON (Api_errorsSourceTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Api_errorsSourceTypeEnumAch_credit_transfer) = "ach_credit_transfer";
-           toJSON (Api_errorsSourceTypeEnumAch_debit) = "ach_debit";
-           toJSON (Api_errorsSourceTypeEnumAcss_debit) = "acss_debit";
-           toJSON (Api_errorsSourceTypeEnumAlipay) = "alipay";
-           toJSON (Api_errorsSourceTypeEnumAu_becs_debit) = "au_becs_debit";
-           toJSON (Api_errorsSourceTypeEnumBancontact) = "bancontact";
-           toJSON (Api_errorsSourceTypeEnumCard) = "card";
-           toJSON (Api_errorsSourceTypeEnumCard_present) = "card_present";
-           toJSON (Api_errorsSourceTypeEnumEps) = "eps";
-           toJSON (Api_errorsSourceTypeEnumGiropay) = "giropay";
-           toJSON (Api_errorsSourceTypeEnumIdeal) = "ideal";
-           toJSON (Api_errorsSourceTypeEnumKlarna) = "klarna";
-           toJSON (Api_errorsSourceTypeEnumMultibanco) = "multibanco";
-           toJSON (Api_errorsSourceTypeEnumP24) = "p24";
-           toJSON (Api_errorsSourceTypeEnumSepa_debit) = "sepa_debit";
-           toJSON (Api_errorsSourceTypeEnumSofort) = "sofort";
-           toJSON (Api_errorsSourceTypeEnumThree_d_secure) = "three_d_secure";
-           toJSON (Api_errorsSourceTypeEnumWechat) = "wechat"}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "ach_credit_transfer" -> Api_errorsSourceTypeEnumAch_credit_transfer
-                                             | val GHC.Classes.== "ach_debit" -> Api_errorsSourceTypeEnumAch_debit
-                                             | val GHC.Classes.== "acss_debit" -> Api_errorsSourceTypeEnumAcss_debit
-                                             | val GHC.Classes.== "alipay" -> Api_errorsSourceTypeEnumAlipay
-                                             | val GHC.Classes.== "au_becs_debit" -> Api_errorsSourceTypeEnumAu_becs_debit
-                                             | val GHC.Classes.== "bancontact" -> Api_errorsSourceTypeEnumBancontact
-                                             | val GHC.Classes.== "card" -> Api_errorsSourceTypeEnumCard
-                                             | val GHC.Classes.== "card_present" -> Api_errorsSourceTypeEnumCard_present
-                                             | val GHC.Classes.== "eps" -> Api_errorsSourceTypeEnumEps
-                                             | val GHC.Classes.== "giropay" -> Api_errorsSourceTypeEnumGiropay
-                                             | val GHC.Classes.== "ideal" -> Api_errorsSourceTypeEnumIdeal
-                                             | val GHC.Classes.== "klarna" -> Api_errorsSourceTypeEnumKlarna
-                                             | val GHC.Classes.== "multibanco" -> Api_errorsSourceTypeEnumMultibanco
-                                             | val GHC.Classes.== "p24" -> Api_errorsSourceTypeEnumP24
-                                             | val GHC.Classes.== "sepa_debit" -> Api_errorsSourceTypeEnumSepa_debit
-                                             | val GHC.Classes.== "sofort" -> Api_errorsSourceTypeEnumSofort
-                                             | val GHC.Classes.== "three_d_secure" -> Api_errorsSourceTypeEnumThree_d_secure
-                                             | val GHC.Classes.== "wechat" -> Api_errorsSourceTypeEnumWechat
-                                             | GHC.Base.otherwise -> Api_errorsSourceTypeOther val)}
--- | Defines the enum schema located at @components.schemas.api_errors.properties.type@ in the specification.
--- 
--- The type of error returned. One of \`api_error\`, \`card_error\`, \`idempotency_error\`, or \`invalid_request_error\`
-data Api_errorsType =
-   Api_errorsTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Api_errorsTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Api_errorsTypeEnumApi_error -- ^ Represents the JSON value @"api_error"@
-  | Api_errorsTypeEnumCard_error -- ^ Represents the JSON value @"card_error"@
-  | Api_errorsTypeEnumIdempotency_error -- ^ Represents the JSON value @"idempotency_error"@
-  | Api_errorsTypeEnumInvalid_request_error -- ^ Represents the JSON value @"invalid_request_error"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsType
-    where {toJSON (Api_errorsTypeOther val) = val;
-           toJSON (Api_errorsTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Api_errorsTypeEnumApi_error) = "api_error";
-           toJSON (Api_errorsTypeEnumCard_error) = "card_error";
-           toJSON (Api_errorsTypeEnumIdempotency_error) = "idempotency_error";
-           toJSON (Api_errorsTypeEnumInvalid_request_error) = "invalid_request_error"}
-instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "api_error" -> Api_errorsTypeEnumApi_error
-                                             | val GHC.Classes.== "card_error" -> Api_errorsTypeEnumCard_error
-                                             | val GHC.Classes.== "idempotency_error" -> Api_errorsTypeEnumIdempotency_error
-                                             | val GHC.Classes.== "invalid_request_error" -> Api_errorsTypeEnumInvalid_request_error
-                                             | GHC.Base.otherwise -> Api_errorsTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON Api_errorsSourceRequirements
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsPending_verification obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currently_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsCurrently_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("errors" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsErrors obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("past_due" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsPast_due obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pending_verification" Data.Aeson.Types.ToJSON..=)) (api_errorsSourceRequirementsPending_verification obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Api_errorsSourceRequirements
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Api_errorsSourceRequirements" (\obj -> (((GHC.Base.pure Api_errorsSourceRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pending_verification"))}
+-- | Create a new 'Api_errorsSourceRequirements' with all required fields.
+mkApi_errorsSourceRequirements :: Api_errorsSourceRequirements
+mkApi_errorsSourceRequirements = Api_errorsSourceRequirements{api_errorsSourceRequirementsCurrently_due = GHC.Maybe.Nothing,
+                                                              api_errorsSourceRequirementsErrors = GHC.Maybe.Nothing,
+                                                              api_errorsSourceRequirementsPast_due = GHC.Maybe.Nothing,
+                                                              api_errorsSourceRequirementsPending_verification = GHC.Maybe.Nothing}

@@ -50,7 +50,7 @@ data Refund_destination_details_paypal = Refund_destination_details_paypal {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  refund_destination_details_paypalNetwork_decline_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  refund_destination_details_paypalNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Refund_destination_details_paypal

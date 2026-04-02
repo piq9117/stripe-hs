@@ -50,25 +50,25 @@ data Radar_review_resource_session = Radar_review_resource_session {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  radar_review_resource_sessionBrowser :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  radar_review_resource_sessionBrowser :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | device: Information about the device used for the browser session (e.g., \`Samsung SM-G930T\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , radar_review_resource_sessionDevice :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , radar_review_resource_sessionDevice :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | platform: The platform for the browser session (e.g., \`Macintosh\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , radar_review_resource_sessionPlatform :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , radar_review_resource_sessionPlatform :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | version: The version for the browser session (e.g., \`61.0.3163.100\`).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , radar_review_resource_sessionVersion :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , radar_review_resource_sessionVersion :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Radar_review_resource_session

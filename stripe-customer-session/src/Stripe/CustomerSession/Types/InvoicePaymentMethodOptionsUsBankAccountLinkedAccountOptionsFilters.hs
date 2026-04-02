@@ -46,7 +46,7 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Invoice_payment_method_options_us_bank_account_linked_account_options_filters = Invoice_payment_method_options_us_bank_account_linked_account_options_filters {
   -- | account_subcategories: The account subcategories to use to filter for possible accounts to link. Valid subcategories are \`checking\` and \`savings\`.
-  invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategories :: (GHC.Maybe.Maybe [Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategories])
+  invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategories :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_us_bank_account_linked_account_options_filters
@@ -57,21 +57,3 @@ instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_us_ba
 -- | Create a new 'Invoice_payment_method_options_us_bank_account_linked_account_options_filters' with all required fields.
 mkInvoice_payment_method_options_us_bank_account_linked_account_options_filters :: Invoice_payment_method_options_us_bank_account_linked_account_options_filters
 mkInvoice_payment_method_options_us_bank_account_linked_account_options_filters = Invoice_payment_method_options_us_bank_account_linked_account_options_filters{invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategories = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.invoice_payment_method_options_us_bank_account_linked_account_options_filters.properties.account_subcategories.items@ in the specification.
--- 
--- 
-data Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategories =
-   Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesEnumChecking -- ^ Represents the JSON value @"checking"@
-  | Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesEnumSavings -- ^ Represents the JSON value @"savings"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategories
-    where {toJSON (Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesOther val) = val;
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesEnumChecking) = "checking";
-           toJSON (Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesEnumSavings) = "savings"}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategories
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "checking" -> Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesEnumChecking
-                                             | val GHC.Classes.== "savings" -> Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesEnumSavings
-                                             | GHC.Base.otherwise -> Invoice_payment_method_options_us_bank_account_linked_account_options_filtersAccount_subcategoriesOther val)}

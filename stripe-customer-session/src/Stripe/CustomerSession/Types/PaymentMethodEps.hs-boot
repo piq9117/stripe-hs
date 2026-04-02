@@ -6,8 +6,3 @@ instance Show Payment_method_eps
 instance Eq Payment_method_eps
 instance Data.Aeson.FromJSON Payment_method_eps
 instance Data.Aeson.ToJSON Payment_method_eps
-data Payment_method_epsBankNonNullable
-instance Show Payment_method_epsBankNonNullable
-instance Eq Payment_method_epsBankNonNullable
-instance Data.Aeson.FromJSON Payment_method_epsBankNonNullable
-instance Data.Aeson.ToJSON Payment_method_epsBankNonNullable

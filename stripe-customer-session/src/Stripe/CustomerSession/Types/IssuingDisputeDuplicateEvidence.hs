@@ -47,25 +47,25 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.File
 -- 
 data Issuing_dispute_duplicate_evidence = Issuing_dispute_duplicate_evidence {
   -- | additional_documentation: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-  issuing_dispute_duplicate_evidenceAdditional_documentation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableVariants))
+  issuing_dispute_duplicate_evidenceAdditional_documentation :: (GHC.Maybe.Maybe Issuing_dispute_duplicate_evidenceAdditional_documentationVariants)
   -- | card_statement: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Copy of the card statement showing that the product had already been paid for.
-  , issuing_dispute_duplicate_evidenceCard_statement :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_duplicate_evidenceCard_statementNonNullableVariants))
+  , issuing_dispute_duplicate_evidenceCard_statement :: (GHC.Maybe.Maybe Issuing_dispute_duplicate_evidenceCard_statementVariants)
   -- | cash_receipt: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Copy of the receipt showing that the product had been paid for in cash.
-  , issuing_dispute_duplicate_evidenceCash_receipt :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_duplicate_evidenceCash_receiptNonNullableVariants))
+  , issuing_dispute_duplicate_evidenceCash_receipt :: (GHC.Maybe.Maybe Issuing_dispute_duplicate_evidenceCash_receiptVariants)
   -- | check_image: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Image of the front and back of the check that was used to pay for the product.
-  , issuing_dispute_duplicate_evidenceCheck_image :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_duplicate_evidenceCheck_imageNonNullableVariants))
+  , issuing_dispute_duplicate_evidenceCheck_image :: (GHC.Maybe.Maybe Issuing_dispute_duplicate_evidenceCheck_imageVariants)
   -- | explanation: Explanation of why the cardholder is disputing this transaction.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_duplicate_evidenceExplanation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_duplicate_evidenceExplanation :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | original_transaction: Transaction (e.g., ipi_...) that the disputed transaction is a duplicate of. Of the two or more transactions that are copies of each other, this is original undisputed one.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_duplicate_evidenceOriginal_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_duplicate_evidenceOriginal_transaction :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidence
@@ -84,56 +84,56 @@ mkIssuing_dispute_duplicate_evidence = Issuing_dispute_duplicate_evidence{issuin
 -- | Defines the oneOf schema located at @components.schemas.issuing_dispute_duplicate_evidence.properties.additional_documentation.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-data Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableVariants =
-   Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableText Data.Text.Internal.Text
-  | Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableFile File
+data Issuing_dispute_duplicate_evidenceAdditional_documentationVariants =
+   Issuing_dispute_duplicate_evidenceAdditional_documentationText Data.Text.Internal.Text
+  | Issuing_dispute_duplicate_evidenceAdditional_documentationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableVariants
-    where {toJSON (Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableVariants
-    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceAdditional_documentationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceAdditional_documentationVariants
+    where {toJSON (Issuing_dispute_duplicate_evidenceAdditional_documentationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_dispute_duplicate_evidenceAdditional_documentationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceAdditional_documentationVariants
+    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceAdditional_documentationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceAdditional_documentationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.issuing_dispute_duplicate_evidence.properties.card_statement.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Copy of the card statement showing that the product had already been paid for.
-data Issuing_dispute_duplicate_evidenceCard_statementNonNullableVariants =
-   Issuing_dispute_duplicate_evidenceCard_statementNonNullableText Data.Text.Internal.Text
-  | Issuing_dispute_duplicate_evidenceCard_statementNonNullableFile File
+data Issuing_dispute_duplicate_evidenceCard_statementVariants =
+   Issuing_dispute_duplicate_evidenceCard_statementText Data.Text.Internal.Text
+  | Issuing_dispute_duplicate_evidenceCard_statementFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceCard_statementNonNullableVariants
-    where {toJSON (Issuing_dispute_duplicate_evidenceCard_statementNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_dispute_duplicate_evidenceCard_statementNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceCard_statementNonNullableVariants
-    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceCard_statementNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceCard_statementNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceCard_statementVariants
+    where {toJSON (Issuing_dispute_duplicate_evidenceCard_statementText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_dispute_duplicate_evidenceCard_statementFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceCard_statementVariants
+    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceCard_statementText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceCard_statementFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.issuing_dispute_duplicate_evidence.properties.cash_receipt.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Copy of the receipt showing that the product had been paid for in cash.
-data Issuing_dispute_duplicate_evidenceCash_receiptNonNullableVariants =
-   Issuing_dispute_duplicate_evidenceCash_receiptNonNullableText Data.Text.Internal.Text
-  | Issuing_dispute_duplicate_evidenceCash_receiptNonNullableFile File
+data Issuing_dispute_duplicate_evidenceCash_receiptVariants =
+   Issuing_dispute_duplicate_evidenceCash_receiptText Data.Text.Internal.Text
+  | Issuing_dispute_duplicate_evidenceCash_receiptFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceCash_receiptNonNullableVariants
-    where {toJSON (Issuing_dispute_duplicate_evidenceCash_receiptNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_dispute_duplicate_evidenceCash_receiptNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceCash_receiptNonNullableVariants
-    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceCash_receiptNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceCash_receiptNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceCash_receiptVariants
+    where {toJSON (Issuing_dispute_duplicate_evidenceCash_receiptText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_dispute_duplicate_evidenceCash_receiptFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceCash_receiptVariants
+    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceCash_receiptText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceCash_receiptFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.issuing_dispute_duplicate_evidence.properties.check_image.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Image of the front and back of the check that was used to pay for the product.
-data Issuing_dispute_duplicate_evidenceCheck_imageNonNullableVariants =
-   Issuing_dispute_duplicate_evidenceCheck_imageNonNullableText Data.Text.Internal.Text
-  | Issuing_dispute_duplicate_evidenceCheck_imageNonNullableFile File
+data Issuing_dispute_duplicate_evidenceCheck_imageVariants =
+   Issuing_dispute_duplicate_evidenceCheck_imageText Data.Text.Internal.Text
+  | Issuing_dispute_duplicate_evidenceCheck_imageFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceCheck_imageNonNullableVariants
-    where {toJSON (Issuing_dispute_duplicate_evidenceCheck_imageNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_dispute_duplicate_evidenceCheck_imageNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceCheck_imageNonNullableVariants
-    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceCheck_imageNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceCheck_imageNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_duplicate_evidenceCheck_imageVariants
+    where {toJSON (Issuing_dispute_duplicate_evidenceCheck_imageText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_dispute_duplicate_evidenceCheck_imageFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_duplicate_evidenceCheck_imageVariants
+    where {parseJSON val = case (Issuing_dispute_duplicate_evidenceCheck_imageText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_duplicate_evidenceCheck_imageFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

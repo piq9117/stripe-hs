@@ -47,21 +47,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.File
 -- 
 data Issuing_dispute_other_evidence = Issuing_dispute_other_evidence {
   -- | additional_documentation: (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-  issuing_dispute_other_evidenceAdditional_documentation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_other_evidenceAdditional_documentationNonNullableVariants))
+  issuing_dispute_other_evidenceAdditional_documentation :: (GHC.Maybe.Maybe Issuing_dispute_other_evidenceAdditional_documentationVariants)
   -- | explanation: Explanation of why the cardholder is disputing this transaction.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_other_evidenceExplanation :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_other_evidenceExplanation :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | product_description: Description of the merchandise or service that was purchased.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_dispute_other_evidenceProduct_description :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_dispute_other_evidenceProduct_description :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | product_type: Whether the product was a merchandise or service.
-  , issuing_dispute_other_evidenceProduct_type :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_dispute_other_evidenceProduct_typeNonNullable))
+  , issuing_dispute_other_evidenceProduct_type :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_other_evidence
@@ -78,32 +78,14 @@ mkIssuing_dispute_other_evidence = Issuing_dispute_other_evidence{issuing_disput
 -- | Defines the oneOf schema located at @components.schemas.issuing_dispute_other_evidence.properties.additional_documentation.anyOf@ in the specification.
 -- 
 -- (ID of a [file upload](https:\/\/stripe.com\/docs\/guides\/file-upload)) Additional documentation supporting the dispute.
-data Issuing_dispute_other_evidenceAdditional_documentationNonNullableVariants =
-   Issuing_dispute_other_evidenceAdditional_documentationNonNullableText Data.Text.Internal.Text
-  | Issuing_dispute_other_evidenceAdditional_documentationNonNullableFile File
+data Issuing_dispute_other_evidenceAdditional_documentationVariants =
+   Issuing_dispute_other_evidenceAdditional_documentationText Data.Text.Internal.Text
+  | Issuing_dispute_other_evidenceAdditional_documentationFile File
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_other_evidenceAdditional_documentationNonNullableVariants
-    where {toJSON (Issuing_dispute_other_evidenceAdditional_documentationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Issuing_dispute_other_evidenceAdditional_documentationNonNullableFile a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_other_evidenceAdditional_documentationNonNullableVariants
-    where {parseJSON val = case (Issuing_dispute_other_evidenceAdditional_documentationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_other_evidenceAdditional_documentationNonNullableFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_other_evidenceAdditional_documentationVariants
+    where {toJSON (Issuing_dispute_other_evidenceAdditional_documentationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Issuing_dispute_other_evidenceAdditional_documentationFile a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_other_evidenceAdditional_documentationVariants
+    where {parseJSON val = case (Issuing_dispute_other_evidenceAdditional_documentationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Issuing_dispute_other_evidenceAdditional_documentationFile Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.issuing_dispute_other_evidence.properties.product_type@ in the specification.
--- 
--- Whether the product was a merchandise or service.
-data Issuing_dispute_other_evidenceProduct_typeNonNullable =
-   Issuing_dispute_other_evidenceProduct_typeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Issuing_dispute_other_evidenceProduct_typeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Issuing_dispute_other_evidenceProduct_typeNonNullableEnumMerchandise -- ^ Represents the JSON value @"merchandise"@
-  | Issuing_dispute_other_evidenceProduct_typeNonNullableEnumService -- ^ Represents the JSON value @"service"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_dispute_other_evidenceProduct_typeNonNullable
-    where {toJSON (Issuing_dispute_other_evidenceProduct_typeNonNullableOther val) = val;
-           toJSON (Issuing_dispute_other_evidenceProduct_typeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Issuing_dispute_other_evidenceProduct_typeNonNullableEnumMerchandise) = "merchandise";
-           toJSON (Issuing_dispute_other_evidenceProduct_typeNonNullableEnumService) = "service"}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_dispute_other_evidenceProduct_typeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "merchandise" -> Issuing_dispute_other_evidenceProduct_typeNonNullableEnumMerchandise
-                                             | val GHC.Classes.== "service" -> Issuing_dispute_other_evidenceProduct_typeNonNullableEnumService
-                                             | GHC.Base.otherwise -> Issuing_dispute_other_evidenceProduct_typeNonNullableOther val)}

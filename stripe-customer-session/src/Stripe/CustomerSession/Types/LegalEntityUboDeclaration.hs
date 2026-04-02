@@ -46,19 +46,19 @@ import Stripe.CustomerSession.TypeAlias
 -- 
 data Legal_entity_ubo_declaration = Legal_entity_ubo_declaration {
   -- | date: The Unix timestamp marking when the beneficial owner attestation was made.
-  legal_entity_ubo_declarationDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  legal_entity_ubo_declarationDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the beneficial owner attestation was made.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_ubo_declarationIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_ubo_declarationIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The user-agent string from the browser where the beneficial owner attestation was made.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , legal_entity_ubo_declarationUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , legal_entity_ubo_declarationUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Legal_entity_ubo_declaration

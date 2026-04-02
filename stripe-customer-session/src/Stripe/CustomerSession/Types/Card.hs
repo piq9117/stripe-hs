@@ -54,59 +54,59 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.TokenCardNetworks
 -- Related guide: [Card payments with Sources](https:\/\/docs.stripe.com\/sources\/cards)
 data Card = Card {
   -- | account
-  cardAccount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable CardAccountNonNullableVariants))
+  cardAccount :: (GHC.Maybe.Maybe CardAccountVariants)
   -- | address_city: City\/District\/Suburb\/Town\/Village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_city :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_city :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_country: Billing address country, if provided when creating card.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_country :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_country :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1: Address line 1 (Street address\/PO Box\/Company name).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_line1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line1_check: If \`address_line1\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_line1_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_line1_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_line2: Address line 2 (Apartment\/Suite\/Unit\/Building).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_line2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_line2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_state: State\/County\/Province\/Region.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_state :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_state :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_zip :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_zip :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | address_zip_check: If \`address_zip\` was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardAddress_zip_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardAddress_zip_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | allow_redisplay: This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-  , cardAllow_redisplay :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable CardAllow_redisplayNonNullable))
+  , cardAllow_redisplay :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | available_payout_methods: A set of available payout methods for this card. Only values from this set should be passed as the \`method\` when creating a payout.
-  , cardAvailable_payout_methods :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [CardAvailable_payout_methodsNonNullable]))
+  , cardAvailable_payout_methods :: (GHC.Maybe.Maybe [Data.Text.Internal.Text])
   -- | brand: Card brand. Can be \`American Express\`, \`Cartes Bancaires\`, \`Diners Club\`, \`Discover\`, \`Eftpos Australia\`, \`Girocard\`, \`JCB\`, \`MasterCard\`, \`UnionPay\`, \`Visa\`, or \`Unknown\`.
   -- 
   -- Constraints:
@@ -118,25 +118,25 @@ data Card = Card {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | currency: Three-letter [ISO code for currency](https:\/\/www.iso.org\/iso-4217-currency-codes.html) in lowercase. Must be a [supported currency](https:\/\/docs.stripe.com\/currencies). Only applicable on accounts (not customers or recipients). The card can be used as a transfer destination for funds in this currency. This property is only available when returned as an [External Account](\/api\/external_account_cards\/object) where [controller.is_controller](\/api\/accounts\/object\#account_object-controller-is_controller) is \`true\`.
-  , cardCurrency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | customer: The customer that this card belongs to. This attribute will not be in the card object if the card belongs to an account or recipient instead.
-  , cardCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable CardCustomerNonNullableVariants))
+  , cardCustomer :: (GHC.Maybe.Maybe CardCustomerVariants)
   -- | cvc_check: If a CVC was provided, results of the check: \`pass\`, \`fail\`, \`unavailable\`, or \`unchecked\`. A result of unchecked indicates that CVC was provided but hasn\'t been checked yet. Checks are typically performed when attaching a card to a Customer object, or when creating a charge. For more details, see [Check if a card is valid without a charge](https:\/\/support.stripe.com\/questions\/check-if-a-card-is-valid-without-a-charge).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardCvc_check :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardCvc_check :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | default_for_currency: Whether this card is the default external account for its currency. This property is only available for accounts where [controller.requirement_collection](\/api\/accounts\/object\#account_object-controller-requirement_collection) is \`application\`, which includes Custom accounts.
-  , cardDefault_for_currency :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Bool))
+  , cardDefault_for_currency :: (GHC.Maybe.Maybe GHC.Types.Bool)
   -- | dynamic_last4: (For tokenized numbers only.) The last four digits of the device account number.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardDynamic_last4 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardDynamic_last4 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | exp_month: Two-digit number representing the card\'s expiration month.
   , cardExp_month :: GHC.Types.Int
   -- | exp_year: Four-digit number representing the card\'s expiration year.
@@ -148,7 +148,7 @@ data Card = Card {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardFingerprint :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardFingerprint :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | funding: Card funding type. Can be \`credit\`, \`debit\`, \`prepaid\`, or \`unknown\`.
   -- 
   -- Constraints:
@@ -174,36 +174,38 @@ data Card = Card {
   -- * Maximum length of 5000
   , cardLast4 :: Data.Text.Internal.Text
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , cardMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , cardMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | name: Cardholder name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | networks: 
   , cardNetworks :: (GHC.Maybe.Maybe Token_card_networks)
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , cardObject :: Data.Text.Internal.Text
   -- | regulated_status: Status of a card based on the card issuer.
-  , cardRegulated_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable CardRegulated_statusNonNullable))
+  , cardRegulated_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: For external accounts that are cards, possible values are \`new\` and \`errored\`. If a payout fails, the status is set to \`errored\` and [scheduled payouts](https:\/\/stripe.com\/docs\/payouts\#payout-schedule) are stopped until account details are updated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardStatus :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tokenization_method: If the card number is tokenized, this is the method that was used. Can be \`android_pay\` (includes Google Pay), \`apple_pay\`, \`masterpass\`, \`visa_checkout\`, or null.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , cardTokenization_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , cardTokenization_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Card
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (cardAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (cardAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (cardAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (cardAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (cardAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (cardAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (cardAvailable_payout_methods obj) : ["brand" Data.Aeson.Types.ToJSON..= cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (cardCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (cardCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (cardCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (cardCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (cardDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (cardDynamic_last4 obj) : ["exp_month" Data.Aeson.Types.ToJSON..= cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (cardFingerprint obj) : ["funding" Data.Aeson.Types.ToJSON..= cardFunding obj] : ["id" Data.Aeson.Types.ToJSON..= cardId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (cardIin obj) : ["last4" Data.Aeson.Types.ToJSON..= cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (cardMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (cardName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (cardNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (cardRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (cardStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (cardTokenization_method obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "card"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (cardAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (cardAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (cardAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (cardAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (cardAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (cardAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (cardAvailable_payout_methods obj) : ["brand" Data.Aeson.Types.ToJSON..= cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (cardCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (cardCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (cardCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (cardCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (cardDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (cardDynamic_last4 obj) : ["exp_month" Data.Aeson.Types.ToJSON..= cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (cardFingerprint obj) : ["funding" Data.Aeson.Types.ToJSON..= cardFunding obj] : ["id" Data.Aeson.Types.ToJSON..= cardId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (cardIin obj) : ["last4" Data.Aeson.Types.ToJSON..= cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (cardMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (cardName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (cardNetworks obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (cardRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (cardStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (cardTokenization_method obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "card"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (cardAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (cardAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (cardAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (cardAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (cardAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (cardAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (cardAvailable_payout_methods obj) : ["brand" Data.Aeson.Types.ToJSON..= cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (cardCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (cardCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (cardCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (cardCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (cardDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (cardDynamic_last4 obj) : ["exp_month" Data.Aeson.Types.ToJSON..= cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (cardFingerprint obj) : ["funding" Data.Aeson.Types.ToJSON..= cardFunding obj] : ["id" Data.Aeson.Types.ToJSON..= cardId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (cardIin obj) : ["last4" Data.Aeson.Types.ToJSON..= cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (cardMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (cardName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (cardNetworks obj) : ["object" Data.Aeson.Types.ToJSON..= cardObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (cardRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (cardStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (cardTokenization_method obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("account" Data.Aeson.Types.ToJSON..=)) (cardAccount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_city" Data.Aeson.Types.ToJSON..=)) (cardAddress_city obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_country" Data.Aeson.Types.ToJSON..=)) (cardAddress_country obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line1_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_line1_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_line2" Data.Aeson.Types.ToJSON..=)) (cardAddress_line2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_state" Data.Aeson.Types.ToJSON..=)) (cardAddress_state obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address_zip_check" Data.Aeson.Types.ToJSON..=)) (cardAddress_zip_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("allow_redisplay" Data.Aeson.Types.ToJSON..=)) (cardAllow_redisplay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("available_payout_methods" Data.Aeson.Types.ToJSON..=)) (cardAvailable_payout_methods obj) : ["brand" Data.Aeson.Types.ToJSON..= cardBrand obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (cardCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("currency" Data.Aeson.Types.ToJSON..=)) (cardCurrency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (cardCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cvc_check" Data.Aeson.Types.ToJSON..=)) (cardCvc_check obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("default_for_currency" Data.Aeson.Types.ToJSON..=)) (cardDefault_for_currency obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("dynamic_last4" Data.Aeson.Types.ToJSON..=)) (cardDynamic_last4 obj) : ["exp_month" Data.Aeson.Types.ToJSON..= cardExp_month obj] : ["exp_year" Data.Aeson.Types.ToJSON..= cardExp_year obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fingerprint" Data.Aeson.Types.ToJSON..=)) (cardFingerprint obj) : ["funding" Data.Aeson.Types.ToJSON..= cardFunding obj] : ["id" Data.Aeson.Types.ToJSON..= cardId obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("iin" Data.Aeson.Types.ToJSON..=)) (cardIin obj) : ["last4" Data.Aeson.Types.ToJSON..= cardLast4 obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (cardMetadata obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (cardName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("networks" Data.Aeson.Types.ToJSON..=)) (cardNetworks obj) : ["object" Data.Aeson.Types.ToJSON..= cardObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("regulated_status" Data.Aeson.Types.ToJSON..=)) (cardRegulated_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (cardStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tokenization_method" Data.Aeson.Types.ToJSON..=)) (cardTokenization_method obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Card
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Card" (\obj -> ((((((((((((((((((((((((((((((GHC.Base.pure Card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redisplay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_payout_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_for_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dynamic_last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "iin")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "networks")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "regulated_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tokenization_method"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Card" (\obj -> (((((((((((((((((((((((((((((((GHC.Base.pure Card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line1_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_state")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address_zip_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "allow_redisplay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "available_payout_methods")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cvc_check")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "default_for_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "dynamic_last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "iin")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "networks")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "regulated_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tokenization_method"))}
 -- | Create a new 'Card' with all required fields.
 mkCard :: Data.Text.Internal.Text -- ^ 'cardBrand'
   -> GHC.Types.Int -- ^ 'cardExp_month'
@@ -211,122 +213,67 @@ mkCard :: Data.Text.Internal.Text -- ^ 'cardBrand'
   -> Data.Text.Internal.Text -- ^ 'cardFunding'
   -> Data.Text.Internal.Text -- ^ 'cardId'
   -> Data.Text.Internal.Text -- ^ 'cardLast4'
+  -> Data.Text.Internal.Text -- ^ 'cardObject'
   -> Card
-mkCard cardBrand cardExp_month cardExp_year cardFunding cardId cardLast4 = Card{cardAccount = GHC.Maybe.Nothing,
-                                                                                cardAddress_city = GHC.Maybe.Nothing,
-                                                                                cardAddress_country = GHC.Maybe.Nothing,
-                                                                                cardAddress_line1 = GHC.Maybe.Nothing,
-                                                                                cardAddress_line1_check = GHC.Maybe.Nothing,
-                                                                                cardAddress_line2 = GHC.Maybe.Nothing,
-                                                                                cardAddress_state = GHC.Maybe.Nothing,
-                                                                                cardAddress_zip = GHC.Maybe.Nothing,
-                                                                                cardAddress_zip_check = GHC.Maybe.Nothing,
-                                                                                cardAllow_redisplay = GHC.Maybe.Nothing,
-                                                                                cardAvailable_payout_methods = GHC.Maybe.Nothing,
-                                                                                cardBrand = cardBrand,
-                                                                                cardCountry = GHC.Maybe.Nothing,
-                                                                                cardCurrency = GHC.Maybe.Nothing,
-                                                                                cardCustomer = GHC.Maybe.Nothing,
-                                                                                cardCvc_check = GHC.Maybe.Nothing,
-                                                                                cardDefault_for_currency = GHC.Maybe.Nothing,
-                                                                                cardDynamic_last4 = GHC.Maybe.Nothing,
-                                                                                cardExp_month = cardExp_month,
-                                                                                cardExp_year = cardExp_year,
-                                                                                cardFingerprint = GHC.Maybe.Nothing,
-                                                                                cardFunding = cardFunding,
-                                                                                cardId = cardId,
-                                                                                cardIin = GHC.Maybe.Nothing,
-                                                                                cardLast4 = cardLast4,
-                                                                                cardMetadata = GHC.Maybe.Nothing,
-                                                                                cardName = GHC.Maybe.Nothing,
-                                                                                cardNetworks = GHC.Maybe.Nothing,
-                                                                                cardRegulated_status = GHC.Maybe.Nothing,
-                                                                                cardStatus = GHC.Maybe.Nothing,
-                                                                                cardTokenization_method = GHC.Maybe.Nothing}
+mkCard cardBrand cardExp_month cardExp_year cardFunding cardId cardLast4 cardObject = Card{cardAccount = GHC.Maybe.Nothing,
+                                                                                           cardAddress_city = GHC.Maybe.Nothing,
+                                                                                           cardAddress_country = GHC.Maybe.Nothing,
+                                                                                           cardAddress_line1 = GHC.Maybe.Nothing,
+                                                                                           cardAddress_line1_check = GHC.Maybe.Nothing,
+                                                                                           cardAddress_line2 = GHC.Maybe.Nothing,
+                                                                                           cardAddress_state = GHC.Maybe.Nothing,
+                                                                                           cardAddress_zip = GHC.Maybe.Nothing,
+                                                                                           cardAddress_zip_check = GHC.Maybe.Nothing,
+                                                                                           cardAllow_redisplay = GHC.Maybe.Nothing,
+                                                                                           cardAvailable_payout_methods = GHC.Maybe.Nothing,
+                                                                                           cardBrand = cardBrand,
+                                                                                           cardCountry = GHC.Maybe.Nothing,
+                                                                                           cardCurrency = GHC.Maybe.Nothing,
+                                                                                           cardCustomer = GHC.Maybe.Nothing,
+                                                                                           cardCvc_check = GHC.Maybe.Nothing,
+                                                                                           cardDefault_for_currency = GHC.Maybe.Nothing,
+                                                                                           cardDynamic_last4 = GHC.Maybe.Nothing,
+                                                                                           cardExp_month = cardExp_month,
+                                                                                           cardExp_year = cardExp_year,
+                                                                                           cardFingerprint = GHC.Maybe.Nothing,
+                                                                                           cardFunding = cardFunding,
+                                                                                           cardId = cardId,
+                                                                                           cardIin = GHC.Maybe.Nothing,
+                                                                                           cardLast4 = cardLast4,
+                                                                                           cardMetadata = GHC.Maybe.Nothing,
+                                                                                           cardName = GHC.Maybe.Nothing,
+                                                                                           cardNetworks = GHC.Maybe.Nothing,
+                                                                                           cardObject = cardObject,
+                                                                                           cardRegulated_status = GHC.Maybe.Nothing,
+                                                                                           cardStatus = GHC.Maybe.Nothing,
+                                                                                           cardTokenization_method = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.card.properties.account.anyOf@ in the specification.
 -- 
 -- 
-data CardAccountNonNullableVariants =
-   CardAccountNonNullableText Data.Text.Internal.Text
-  | CardAccountNonNullableAccount Account
+data CardAccountVariants =
+   CardAccountText Data.Text.Internal.Text
+  | CardAccountAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON CardAccountNonNullableVariants
-    where {toJSON (CardAccountNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (CardAccountNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON CardAccountNonNullableVariants
-    where {parseJSON val = case (CardAccountNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((CardAccountNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON CardAccountVariants
+    where {toJSON (CardAccountText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (CardAccountAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON CardAccountVariants
+    where {parseJSON val = case (CardAccountText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((CardAccountAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.card.properties.allow_redisplay@ in the specification.
--- 
--- This field indicates whether this payment method can be shown again to its customer in a checkout flow. Stripe products such as Checkout and Elements use this field to determine whether a payment method can be shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-data CardAllow_redisplayNonNullable =
-   CardAllow_redisplayNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | CardAllow_redisplayNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | CardAllow_redisplayNonNullableEnumAlways -- ^ Represents the JSON value @"always"@
-  | CardAllow_redisplayNonNullableEnumLimited -- ^ Represents the JSON value @"limited"@
-  | CardAllow_redisplayNonNullableEnumUnspecified -- ^ Represents the JSON value @"unspecified"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON CardAllow_redisplayNonNullable
-    where {toJSON (CardAllow_redisplayNonNullableOther val) = val;
-           toJSON (CardAllow_redisplayNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (CardAllow_redisplayNonNullableEnumAlways) = "always";
-           toJSON (CardAllow_redisplayNonNullableEnumLimited) = "limited";
-           toJSON (CardAllow_redisplayNonNullableEnumUnspecified) = "unspecified"}
-instance Data.Aeson.Types.FromJSON.FromJSON CardAllow_redisplayNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "always" -> CardAllow_redisplayNonNullableEnumAlways
-                                             | val GHC.Classes.== "limited" -> CardAllow_redisplayNonNullableEnumLimited
-                                             | val GHC.Classes.== "unspecified" -> CardAllow_redisplayNonNullableEnumUnspecified
-                                             | GHC.Base.otherwise -> CardAllow_redisplayNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.card.properties.available_payout_methods.items@ in the specification.
--- 
--- 
-data CardAvailable_payout_methodsNonNullable =
-   CardAvailable_payout_methodsNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | CardAvailable_payout_methodsNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | CardAvailable_payout_methodsNonNullableEnumInstant -- ^ Represents the JSON value @"instant"@
-  | CardAvailable_payout_methodsNonNullableEnumStandard -- ^ Represents the JSON value @"standard"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON CardAvailable_payout_methodsNonNullable
-    where {toJSON (CardAvailable_payout_methodsNonNullableOther val) = val;
-           toJSON (CardAvailable_payout_methodsNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (CardAvailable_payout_methodsNonNullableEnumInstant) = "instant";
-           toJSON (CardAvailable_payout_methodsNonNullableEnumStandard) = "standard"}
-instance Data.Aeson.Types.FromJSON.FromJSON CardAvailable_payout_methodsNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "instant" -> CardAvailable_payout_methodsNonNullableEnumInstant
-                                             | val GHC.Classes.== "standard" -> CardAvailable_payout_methodsNonNullableEnumStandard
-                                             | GHC.Base.otherwise -> CardAvailable_payout_methodsNonNullableOther val)}
 -- | Defines the oneOf schema located at @components.schemas.card.properties.customer.anyOf@ in the specification.
 -- 
 -- The customer that this card belongs to. This attribute will not be in the card object if the card belongs to an account or recipient instead.
-data CardCustomerNonNullableVariants =
-   CardCustomerNonNullableText Data.Text.Internal.Text
-  | CardCustomerNonNullableCustomer Customer
-  | CardCustomerNonNullableDeleted_customer Deleted_customer
+data CardCustomerVariants =
+   CardCustomerText Data.Text.Internal.Text
+  | CardCustomerCustomer Customer
+  | CardCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON CardCustomerNonNullableVariants
-    where {toJSON (CardCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (CardCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (CardCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON CardCustomerNonNullableVariants
-    where {parseJSON val = case (CardCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((CardCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((CardCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON CardCustomerVariants
+    where {toJSON (CardCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (CardCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (CardCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON CardCustomerVariants
+    where {parseJSON val = case (CardCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((CardCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((CardCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.card.properties.regulated_status@ in the specification.
--- 
--- Status of a card based on the card issuer.
-data CardRegulated_statusNonNullable =
-   CardRegulated_statusNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | CardRegulated_statusNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | CardRegulated_statusNonNullableEnumRegulated -- ^ Represents the JSON value @"regulated"@
-  | CardRegulated_statusNonNullableEnumUnregulated -- ^ Represents the JSON value @"unregulated"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON CardRegulated_statusNonNullable
-    where {toJSON (CardRegulated_statusNonNullableOther val) = val;
-           toJSON (CardRegulated_statusNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (CardRegulated_statusNonNullableEnumRegulated) = "regulated";
-           toJSON (CardRegulated_statusNonNullableEnumUnregulated) = "unregulated"}
-instance Data.Aeson.Types.FromJSON.FromJSON CardRegulated_statusNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "regulated" -> CardRegulated_statusNonNullableEnumRegulated
-                                             | val GHC.Classes.== "unregulated" -> CardRegulated_statusNonNullableEnumUnregulated
-                                             | GHC.Base.otherwise -> CardRegulated_statusNonNullableOther val)}

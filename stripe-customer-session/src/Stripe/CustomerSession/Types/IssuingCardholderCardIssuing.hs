@@ -47,7 +47,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.IssuingCardholderUserTermsAcc
 -- 
 data Issuing_cardholder_card_issuing = Issuing_cardholder_card_issuing {
   -- | user_terms_acceptance: Information about cardholder acceptance of Celtic [Authorized User Terms](https:\/\/stripe.com\/docs\/issuing\/cards\#accept-authorized-user-terms). Required for cards backed by a Celtic program.
-  issuing_cardholder_card_issuingUser_terms_acceptance :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable))
+  issuing_cardholder_card_issuingUser_terms_acceptance :: (GHC.Maybe.Maybe Issuing_cardholder_card_issuingUser_terms_acceptance)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_card_issuing
@@ -61,30 +61,30 @@ mkIssuing_cardholder_card_issuing = Issuing_cardholder_card_issuing{issuing_card
 -- | Defines the object schema located at @components.schemas.issuing_cardholder_card_issuing.properties.user_terms_acceptance.anyOf@ in the specification.
 -- 
 -- Information about cardholder acceptance of Celtic [Authorized User Terms](https:\\\/\\\/stripe.com\\\/docs\\\/issuing\\\/cards\\\#accept-authorized-user-terms). Required for cards backed by a Celtic program.
-data Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable = Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable {
+data Issuing_cardholder_card_issuingUser_terms_acceptance = Issuing_cardholder_card_issuingUser_terms_acceptance {
   -- | date: The Unix timestamp marking when the cardholder accepted the Authorized User Terms.
-  issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableDate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  issuing_cardholder_card_issuingUser_terms_acceptanceDate :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | ip: The IP address from which the cardholder accepted the Authorized User Terms.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableIp :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_card_issuingUser_terms_acceptanceIp :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_agent: The user agent of the browser from which the cardholder accepted the Authorized User Terms.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableUser_agent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , issuing_cardholder_card_issuingUser_terms_acceptanceUser_agent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableUser_agent obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableUser_agent obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable" (\obj -> ((GHC.Base.pure Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_agent"))}
--- | Create a new 'Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable' with all required fields.
-mkIssuing_cardholder_card_issuingUser_terms_acceptanceNonNullable :: Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable
-mkIssuing_cardholder_card_issuingUser_terms_acceptanceNonNullable = Issuing_cardholder_card_issuingUser_terms_acceptanceNonNullable{issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableDate = GHC.Maybe.Nothing,
-                                                                                                                                    issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableIp = GHC.Maybe.Nothing,
-                                                                                                                                    issuing_cardholder_card_issuingUser_terms_acceptanceNonNullableUser_agent = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing_cardholder_card_issuingUser_terms_acceptance
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceUser_agent obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("date" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceDate obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ip" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceIp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_agent" Data.Aeson.Types.ToJSON..=)) (issuing_cardholder_card_issuingUser_terms_acceptanceUser_agent obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing_cardholder_card_issuingUser_terms_acceptance
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing_cardholder_card_issuingUser_terms_acceptance" (\obj -> ((GHC.Base.pure Issuing_cardholder_card_issuingUser_terms_acceptance GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_agent"))}
+-- | Create a new 'Issuing_cardholder_card_issuingUser_terms_acceptance' with all required fields.
+mkIssuing_cardholder_card_issuingUser_terms_acceptance :: Issuing_cardholder_card_issuingUser_terms_acceptance
+mkIssuing_cardholder_card_issuingUser_terms_acceptance = Issuing_cardholder_card_issuingUser_terms_acceptance{issuing_cardholder_card_issuingUser_terms_acceptanceDate = GHC.Maybe.Nothing,
+                                                                                                              issuing_cardholder_card_issuingUser_terms_acceptanceIp = GHC.Maybe.Nothing,
+                                                                                                              issuing_cardholder_card_issuingUser_terms_acceptanceUser_agent = GHC.Maybe.Nothing}

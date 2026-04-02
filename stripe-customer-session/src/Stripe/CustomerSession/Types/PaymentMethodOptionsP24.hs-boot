@@ -6,8 +6,3 @@ instance Show Payment_method_options_p24
 instance Eq Payment_method_options_p24
 instance Data.Aeson.FromJSON Payment_method_options_p24
 instance Data.Aeson.ToJSON Payment_method_options_p24
-data Payment_method_options_p24Setup_future_usage
-instance Show Payment_method_options_p24Setup_future_usage
-instance Eq Payment_method_options_p24Setup_future_usage
-instance Data.Aeson.FromJSON Payment_method_options_p24Setup_future_usage
-instance Data.Aeson.ToJSON Payment_method_options_p24Setup_future_usage

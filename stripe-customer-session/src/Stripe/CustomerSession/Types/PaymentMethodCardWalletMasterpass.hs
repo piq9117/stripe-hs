@@ -47,21 +47,21 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.Address
 -- 
 data Payment_method_card_wallet_masterpass = Payment_method_card_wallet_masterpass {
   -- | billing_address: Owner\'s verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-  payment_method_card_wallet_masterpassBilling_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_card_wallet_masterpassBilling_addressNonNullable))
+  payment_method_card_wallet_masterpassBilling_address :: (GHC.Maybe.Maybe Payment_method_card_wallet_masterpassBilling_address)
   -- | email: Owner\'s verified email. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassEmail :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Owner\'s verified full name. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassName :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | shipping_address: Owner\'s verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-  , payment_method_card_wallet_masterpassShipping_address :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Payment_method_card_wallet_masterpassShipping_addressNonNullable))
+  , payment_method_card_wallet_masterpassShipping_address :: (GHC.Maybe.Maybe Payment_method_card_wallet_masterpassShipping_address)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_masterpass
@@ -78,110 +78,110 @@ mkPayment_method_card_wallet_masterpass = Payment_method_card_wallet_masterpass{
 -- | Defines the object schema located at @components.schemas.payment_method_card_wallet_masterpass.properties.billing_address.anyOf@ in the specification.
 -- 
 -- Owner\\\'s verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-data Payment_method_card_wallet_masterpassBilling_addressNonNullable = Payment_method_card_wallet_masterpassBilling_addressNonNullable {
+data Payment_method_card_wallet_masterpassBilling_address = Payment_method_card_wallet_masterpassBilling_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_card_wallet_masterpassBilling_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_card_wallet_masterpassBilling_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassBilling_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassBilling_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassBilling_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassBilling_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassBilling_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassBilling_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassBilling_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassBilling_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassBilling_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassBilling_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_masterpassBilling_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_masterpassBilling_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_masterpassBilling_addressNonNullable" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_masterpassBilling_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Payment_method_card_wallet_masterpassBilling_addressNonNullable' with all required fields.
-mkPayment_method_card_wallet_masterpassBilling_addressNonNullable :: Payment_method_card_wallet_masterpassBilling_addressNonNullable
-mkPayment_method_card_wallet_masterpassBilling_addressNonNullable = Payment_method_card_wallet_masterpassBilling_addressNonNullable{payment_method_card_wallet_masterpassBilling_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                    payment_method_card_wallet_masterpassBilling_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                    payment_method_card_wallet_masterpassBilling_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                    payment_method_card_wallet_masterpassBilling_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                    payment_method_card_wallet_masterpassBilling_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                    payment_method_card_wallet_masterpassBilling_addressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_masterpassBilling_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassBilling_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_masterpassBilling_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_masterpassBilling_address" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_masterpassBilling_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Payment_method_card_wallet_masterpassBilling_address' with all required fields.
+mkPayment_method_card_wallet_masterpassBilling_address :: Payment_method_card_wallet_masterpassBilling_address
+mkPayment_method_card_wallet_masterpassBilling_address = Payment_method_card_wallet_masterpassBilling_address{payment_method_card_wallet_masterpassBilling_addressCity = GHC.Maybe.Nothing,
+                                                                                                              payment_method_card_wallet_masterpassBilling_addressCountry = GHC.Maybe.Nothing,
+                                                                                                              payment_method_card_wallet_masterpassBilling_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                              payment_method_card_wallet_masterpassBilling_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                              payment_method_card_wallet_masterpassBilling_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                              payment_method_card_wallet_masterpassBilling_addressState = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.payment_method_card_wallet_masterpass.properties.shipping_address.anyOf@ in the specification.
 -- 
 -- Owner\\\'s verified shipping address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
-data Payment_method_card_wallet_masterpassShipping_addressNonNullable = Payment_method_card_wallet_masterpassShipping_addressNonNullable {
+data Payment_method_card_wallet_masterpassShipping_address = Payment_method_card_wallet_masterpassShipping_address {
   -- | city: City, district, suburb, town, or village.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payment_method_card_wallet_masterpassShipping_addressNonNullableCity :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  payment_method_card_wallet_masterpassShipping_addressCity :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | country: Two-letter country code ([ISO 3166-1 alpha-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-1_alpha-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassShipping_addressNonNullableCountry :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassShipping_addressCountry :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line1: Address line 1, such as the street, PO Box, or company name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassShipping_addressNonNullableLine1 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassShipping_addressLine1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | line2: Address line 2, such as the apartment, suite, unit, or building.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassShipping_addressNonNullableLine2 :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassShipping_addressLine2 :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | postal_code: ZIP or postal code.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassShipping_addressNonNullablePostal_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassShipping_addressPostal_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | state: State, county, province, or region ([ISO 3166-2](https:\/\/en.wikipedia.org\/wiki\/ISO_3166-2)).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payment_method_card_wallet_masterpassShipping_addressNonNullableState :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payment_method_card_wallet_masterpassShipping_addressState :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_masterpassShipping_addressNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableState obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullablePostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressNonNullableState obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_masterpassShipping_addressNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_masterpassShipping_addressNonNullable" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_masterpassShipping_addressNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
--- | Create a new 'Payment_method_card_wallet_masterpassShipping_addressNonNullable' with all required fields.
-mkPayment_method_card_wallet_masterpassShipping_addressNonNullable :: Payment_method_card_wallet_masterpassShipping_addressNonNullable
-mkPayment_method_card_wallet_masterpassShipping_addressNonNullable = Payment_method_card_wallet_masterpassShipping_addressNonNullable{payment_method_card_wallet_masterpassShipping_addressNonNullableCity = GHC.Maybe.Nothing,
-                                                                                                                                      payment_method_card_wallet_masterpassShipping_addressNonNullableCountry = GHC.Maybe.Nothing,
-                                                                                                                                      payment_method_card_wallet_masterpassShipping_addressNonNullableLine1 = GHC.Maybe.Nothing,
-                                                                                                                                      payment_method_card_wallet_masterpassShipping_addressNonNullableLine2 = GHC.Maybe.Nothing,
-                                                                                                                                      payment_method_card_wallet_masterpassShipping_addressNonNullablePostal_code = GHC.Maybe.Nothing,
-                                                                                                                                      payment_method_card_wallet_masterpassShipping_addressNonNullableState = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Payment_method_card_wallet_masterpassShipping_address
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressState obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("city" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressCity obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("country" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressCountry obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line1" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressLine1 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("line2" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressLine2 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("postal_code" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressPostal_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("state" Data.Aeson.Types.ToJSON..=)) (payment_method_card_wallet_masterpassShipping_addressState obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Payment_method_card_wallet_masterpassShipping_address
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payment_method_card_wallet_masterpassShipping_address" (\obj -> (((((GHC.Base.pure Payment_method_card_wallet_masterpassShipping_address GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "state"))}
+-- | Create a new 'Payment_method_card_wallet_masterpassShipping_address' with all required fields.
+mkPayment_method_card_wallet_masterpassShipping_address :: Payment_method_card_wallet_masterpassShipping_address
+mkPayment_method_card_wallet_masterpassShipping_address = Payment_method_card_wallet_masterpassShipping_address{payment_method_card_wallet_masterpassShipping_addressCity = GHC.Maybe.Nothing,
+                                                                                                                payment_method_card_wallet_masterpassShipping_addressCountry = GHC.Maybe.Nothing,
+                                                                                                                payment_method_card_wallet_masterpassShipping_addressLine1 = GHC.Maybe.Nothing,
+                                                                                                                payment_method_card_wallet_masterpassShipping_addressLine2 = GHC.Maybe.Nothing,
+                                                                                                                payment_method_card_wallet_masterpassShipping_addressPostal_code = GHC.Maybe.Nothing,
+                                                                                                                payment_method_card_wallet_masterpassShipping_addressState = GHC.Maybe.Nothing}

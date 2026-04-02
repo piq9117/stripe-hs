@@ -101,6 +101,7 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsSatispay
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsSepaDebit
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsSofort
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsSwish
+import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsUpi
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsUsBankAccount
 import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethodDetailsWechatPay
 import {-# SOURCE #-} Stripe.CustomerSession.Types.RadarRadarOptions
@@ -123,13 +124,13 @@ data Charge = Charge {
   -- | amount_refunded: Amount in cents (or local equivalent) refunded (can be less than the amount attribute on the charge if a partial refund was issued).
   , chargeAmount_refunded :: GHC.Types.Int
   -- | application: ID of the Connect application that created the charge.
-  , chargeApplication :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeApplicationNonNullableVariants))
+  , chargeApplication :: (GHC.Maybe.Maybe ChargeApplicationVariants)
   -- | application_fee: The application fee (if any) for the charge. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/direct-charges\#collect-fees) for details.
-  , chargeApplication_fee :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeApplication_feeNonNullableVariants))
+  , chargeApplication_fee :: (GHC.Maybe.Maybe ChargeApplication_feeVariants)
   -- | application_fee_amount: The amount of the application fee (if any) requested for the charge. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/direct-charges\#collect-fees) for details.
-  , chargeApplication_fee_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , chargeApplication_fee_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | balance_transaction: ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
-  , chargeBalance_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeBalance_transactionNonNullableVariants))
+  , chargeBalance_transaction :: (GHC.Maybe.Maybe ChargeBalance_transactionVariants)
   -- | billing_details: 
   , chargeBilling_details :: Billing_details
   -- | calculated_statement_descriptor: The full statement descriptor that is passed to card networks, and that is displayed on your customers\' credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined. This value only exists for card payments.
@@ -137,7 +138,7 @@ data Charge = Charge {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeCalculated_statement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeCalculated_statement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | captured: If the charge was created without capturing, this Boolean represents whether it is still uncaptured or has since been captured.
   , chargeCaptured :: GHC.Types.Bool
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -145,57 +146,59 @@ data Charge = Charge {
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
   , chargeCurrency :: Data.Text.Internal.Text
   -- | customer: ID of the customer this charge is for if one exists.
-  , chargeCustomer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeCustomerNonNullableVariants))
+  , chargeCustomer :: (GHC.Maybe.Maybe ChargeCustomerVariants)
   -- | description: An arbitrary string attached to the object. Often useful for displaying to users.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 40000
-  , chargeDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | disputed: Whether the charge has been disputed.
   , chargeDisputed :: GHC.Types.Bool
   -- | failure_balance_transaction: ID of the balance transaction that describes the reversal of the balance on your account due to payment failure.
-  , chargeFailure_balance_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeFailure_balance_transactionNonNullableVariants))
+  , chargeFailure_balance_transaction :: (GHC.Maybe.Maybe ChargeFailure_balance_transactionVariants)
   -- | failure_code: Error code explaining reason for charge failure if available (see [the errors section](https:\/\/docs.stripe.com\/error-codes) for a list of codes).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeFailure_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeFailure_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | failure_message: Message to user further explaining reason for charge failure if available.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeFailure_message :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeFailure_message :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | fraud_details: Information on fraud assessments for the charge.
-  , chargeFraud_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeFraud_detailsNonNullable))
+  , chargeFraud_details :: (GHC.Maybe.Maybe ChargeFraud_details)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , chargeId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , chargeLivemode :: GHC.Types.Bool
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
   , chargeMetadata :: Data.Aeson.Types.Internal.Object
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , chargeObject :: Data.Text.Internal.Text
   -- | on_behalf_of: The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https:\/\/docs.stripe.com\/connect\/separate-charges-and-transfers) for details.
-  , chargeOn_behalf_of :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeOn_behalf_ofNonNullableVariants))
+  , chargeOn_behalf_of :: (GHC.Maybe.Maybe ChargeOn_behalf_ofVariants)
   -- | outcome: Details about whether the payment was accepted, and why. See [understanding declines](https:\/\/docs.stripe.com\/declines) for details.
-  , chargeOutcome :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeOutcomeNonNullable))
+  , chargeOutcome :: (GHC.Maybe.Maybe ChargeOutcome)
   -- | paid: \`true\` if the charge succeeded, or was successfully authorized for later capture.
   , chargePaid :: GHC.Types.Bool
   -- | payment_intent: ID of the PaymentIntent associated with this charge, if one exists.
-  , chargePayment_intent :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargePayment_intentNonNullableVariants))
+  , chargePayment_intent :: (GHC.Maybe.Maybe ChargePayment_intentVariants)
   -- | payment_method: ID of the payment method used in this charge.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargePayment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargePayment_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | payment_method_details: Details about the payment method at the time of the transaction.
-  , chargePayment_method_details :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargePayment_method_detailsNonNullable))
+  , chargePayment_method_details :: (GHC.Maybe.Maybe ChargePayment_method_details)
   -- | presentment_details: 
   , chargePresentment_details :: (GHC.Maybe.Maybe Payment_flows_payment_intent_presentment_details)
   -- | radar_options: Options to configure Radar. See [Radar Session](https:\/\/docs.stripe.com\/radar\/radar-session) for more information.
@@ -205,29 +208,29 @@ data Charge = Charge {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeReceipt_email :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeReceipt_email :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | receipt_number: This is the transaction number that appears on email receipts sent for this charge. This attribute will be \`null\` until a receipt has been sent.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeReceipt_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeReceipt_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | receipt_url: This is the URL to view the receipt for this charge. The receipt is kept up-to-date to the latest state of the charge, including any refunds. If the charge is for an Invoice, the receipt will be stylized as an Invoice receipt.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeReceipt_url :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeReceipt_url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | refunded: Whether the charge has been fully refunded. If the charge is only partially refunded, this attribute will still be false.
   , chargeRefunded :: GHC.Types.Bool
   -- | refunds: A list of refunds that have been applied to the charge.
-  , chargeRefunds :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeRefundsNonNullable))
+  , chargeRefunds :: (GHC.Maybe.Maybe ChargeRefunds)
   -- | review: ID of the review associated with this charge if one exists.
-  , chargeReview :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeReviewNonNullableVariants))
+  , chargeReview :: (GHC.Maybe.Maybe ChargeReviewVariants)
   -- | shipping: Shipping information for the charge.
-  , chargeShipping :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeShippingNonNullable))
+  , chargeShipping :: (GHC.Maybe.Maybe ChargeShipping)
   -- | source_transfer: The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/destination-charges) for details.
-  , chargeSource_transfer :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeSource_transferNonNullableVariants))
+  , chargeSource_transfer :: (GHC.Maybe.Maybe ChargeSource_transferVariants)
   -- | statement_descriptor: For a non-card charge, text that appears on the customer\'s statement as the statement descriptor. This value overrides the account\'s default statement descriptor. For information about requirements, including the 22-character limit, see [the Statement Descriptor docs](https:\/\/docs.stripe.com\/get-started\/account\/statement-descriptors).
   -- 
   -- For a card charge, this value is ignored unless you don\'t specify a \`statement_descriptor_suffix\`, in which case this value is used as the suffix.
@@ -235,32 +238,32 @@ data Charge = Charge {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | statement_descriptor_suffix: Provides information about a card charge. Concatenated to the account\'s [statement descriptor prefix](https:\/\/docs.stripe.com\/get-started\/account\/statement-descriptors\#static) to form the complete statement descriptor that appears on the customer\'s statement. If the account has no prefix value, the suffix is concatenated to the account\'s statement descriptor.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeStatement_descriptor_suffix :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeStatement_descriptor_suffix :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: The status of the payment is either \`succeeded\`, \`pending\`, or \`failed\`.
-  , chargeStatus :: ChargeStatus
+  , chargeStatus :: Data.Text.Internal.Text
   -- | transfer: ID of the transfer to the \`destination\` account (only applicable if the charge was created using the \`destination\` parameter).
   , chargeTransfer :: (GHC.Maybe.Maybe ChargeTransferVariants)
   -- | transfer_data: An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/destination-charges) for details.
-  , chargeTransfer_data :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeTransfer_dataNonNullable))
+  , chargeTransfer_data :: (GHC.Maybe.Maybe ChargeTransfer_data)
   -- | transfer_group: A string that identifies this transaction as part of a group. See the [Connect documentation](https:\/\/docs.stripe.com\/connect\/separate-charges-and-transfers\#transfer-options) for details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeTransfer_group :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeTransfer_group :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Charge
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= chargeAmount obj] : ["amount_captured" Data.Aeson.Types.ToJSON..= chargeAmount_captured obj] : ["amount_refunded" Data.Aeson.Types.ToJSON..= chargeAmount_refunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (chargeApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeBalance_transaction obj) : ["billing_details" Data.Aeson.Types.ToJSON..= chargeBilling_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("calculated_statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeCalculated_statement_descriptor obj) : ["captured" Data.Aeson.Types.ToJSON..= chargeCaptured obj] : ["created" Data.Aeson.Types.ToJSON..= chargeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= chargeCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (chargeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (chargeDescription obj) : ["disputed" Data.Aeson.Types.ToJSON..= chargeDisputed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (chargeFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (chargeFailure_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fraud_details" Data.Aeson.Types.ToJSON..=)) (chargeFraud_details obj) : ["id" Data.Aeson.Types.ToJSON..= chargeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= chargeLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= chargeMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (chargeOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("outcome" Data.Aeson.Types.ToJSON..=)) (chargeOutcome obj) : ["paid" Data.Aeson.Types.ToJSON..= chargePaid obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (chargePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (chargePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_details" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("presentment_details" Data.Aeson.Types.ToJSON..=)) (chargePresentment_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("radar_options" Data.Aeson.Types.ToJSON..=)) (chargeRadar_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_email" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_url" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_url obj) : ["refunded" Data.Aeson.Types.ToJSON..= chargeRefunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refunds" Data.Aeson.Types.ToJSON..=)) (chargeRefunds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("review" Data.Aeson.Types.ToJSON..=)) (chargeReview obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (chargeShipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transfer" Data.Aeson.Types.ToJSON..=)) (chargeSource_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor_suffix" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor_suffix obj) : ["status" Data.Aeson.Types.ToJSON..= chargeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer" Data.Aeson.Types.ToJSON..=)) (chargeTransfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_group obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "charge"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= chargeAmount obj] : ["amount_captured" Data.Aeson.Types.ToJSON..= chargeAmount_captured obj] : ["amount_refunded" Data.Aeson.Types.ToJSON..= chargeAmount_refunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (chargeApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeBalance_transaction obj) : ["billing_details" Data.Aeson.Types.ToJSON..= chargeBilling_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("calculated_statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeCalculated_statement_descriptor obj) : ["captured" Data.Aeson.Types.ToJSON..= chargeCaptured obj] : ["created" Data.Aeson.Types.ToJSON..= chargeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= chargeCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (chargeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (chargeDescription obj) : ["disputed" Data.Aeson.Types.ToJSON..= chargeDisputed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (chargeFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (chargeFailure_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fraud_details" Data.Aeson.Types.ToJSON..=)) (chargeFraud_details obj) : ["id" Data.Aeson.Types.ToJSON..= chargeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= chargeLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= chargeMetadata obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (chargeOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("outcome" Data.Aeson.Types.ToJSON..=)) (chargeOutcome obj) : ["paid" Data.Aeson.Types.ToJSON..= chargePaid obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (chargePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (chargePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_details" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("presentment_details" Data.Aeson.Types.ToJSON..=)) (chargePresentment_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("radar_options" Data.Aeson.Types.ToJSON..=)) (chargeRadar_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_email" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_url" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_url obj) : ["refunded" Data.Aeson.Types.ToJSON..= chargeRefunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refunds" Data.Aeson.Types.ToJSON..=)) (chargeRefunds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("review" Data.Aeson.Types.ToJSON..=)) (chargeReview obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (chargeShipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transfer" Data.Aeson.Types.ToJSON..=)) (chargeSource_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor_suffix" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor_suffix obj) : ["status" Data.Aeson.Types.ToJSON..= chargeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer" Data.Aeson.Types.ToJSON..=)) (chargeTransfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_group obj) : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "charge"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= chargeAmount obj] : ["amount_captured" Data.Aeson.Types.ToJSON..= chargeAmount_captured obj] : ["amount_refunded" Data.Aeson.Types.ToJSON..= chargeAmount_refunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (chargeApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeBalance_transaction obj) : ["billing_details" Data.Aeson.Types.ToJSON..= chargeBilling_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("calculated_statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeCalculated_statement_descriptor obj) : ["captured" Data.Aeson.Types.ToJSON..= chargeCaptured obj] : ["created" Data.Aeson.Types.ToJSON..= chargeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= chargeCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (chargeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (chargeDescription obj) : ["disputed" Data.Aeson.Types.ToJSON..= chargeDisputed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (chargeFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (chargeFailure_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fraud_details" Data.Aeson.Types.ToJSON..=)) (chargeFraud_details obj) : ["id" Data.Aeson.Types.ToJSON..= chargeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= chargeLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= chargeMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= chargeObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (chargeOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("outcome" Data.Aeson.Types.ToJSON..=)) (chargeOutcome obj) : ["paid" Data.Aeson.Types.ToJSON..= chargePaid obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (chargePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (chargePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_details" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("presentment_details" Data.Aeson.Types.ToJSON..=)) (chargePresentment_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("radar_options" Data.Aeson.Types.ToJSON..=)) (chargeRadar_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_email" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_url" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_url obj) : ["refunded" Data.Aeson.Types.ToJSON..= chargeRefunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refunds" Data.Aeson.Types.ToJSON..=)) (chargeRefunds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("review" Data.Aeson.Types.ToJSON..=)) (chargeReview obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (chargeShipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transfer" Data.Aeson.Types.ToJSON..=)) (chargeSource_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor_suffix" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor_suffix obj) : ["status" Data.Aeson.Types.ToJSON..= chargeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer" Data.Aeson.Types.ToJSON..=)) (chargeTransfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_group obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= chargeAmount obj] : ["amount_captured" Data.Aeson.Types.ToJSON..= chargeAmount_captured obj] : ["amount_refunded" Data.Aeson.Types.ToJSON..= chargeAmount_refunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application" Data.Aeson.Types.ToJSON..=)) (chargeApplication obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (chargeApplication_fee_amount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeBalance_transaction obj) : ["billing_details" Data.Aeson.Types.ToJSON..= chargeBilling_details obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("calculated_statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeCalculated_statement_descriptor obj) : ["captured" Data.Aeson.Types.ToJSON..= chargeCaptured obj] : ["created" Data.Aeson.Types.ToJSON..= chargeCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= chargeCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer" Data.Aeson.Types.ToJSON..=)) (chargeCustomer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (chargeDescription obj) : ["disputed" Data.Aeson.Types.ToJSON..= chargeDisputed obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (chargeFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (chargeFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (chargeFailure_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fraud_details" Data.Aeson.Types.ToJSON..=)) (chargeFraud_details obj) : ["id" Data.Aeson.Types.ToJSON..= chargeId obj] : ["livemode" Data.Aeson.Types.ToJSON..= chargeLivemode obj] : ["metadata" Data.Aeson.Types.ToJSON..= chargeMetadata obj] : ["object" Data.Aeson.Types.ToJSON..= chargeObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("on_behalf_of" Data.Aeson.Types.ToJSON..=)) (chargeOn_behalf_of obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("outcome" Data.Aeson.Types.ToJSON..=)) (chargeOutcome obj) : ["paid" Data.Aeson.Types.ToJSON..= chargePaid obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_intent" Data.Aeson.Types.ToJSON..=)) (chargePayment_intent obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method" Data.Aeson.Types.ToJSON..=)) (chargePayment_method obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payment_method_details" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("presentment_details" Data.Aeson.Types.ToJSON..=)) (chargePresentment_details obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("radar_options" Data.Aeson.Types.ToJSON..=)) (chargeRadar_options obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_email" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_email obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_number" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_number obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("receipt_url" Data.Aeson.Types.ToJSON..=)) (chargeReceipt_url obj) : ["refunded" Data.Aeson.Types.ToJSON..= chargeRefunded obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("refunds" Data.Aeson.Types.ToJSON..=)) (chargeRefunds obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("review" Data.Aeson.Types.ToJSON..=)) (chargeReview obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("shipping" Data.Aeson.Types.ToJSON..=)) (chargeShipping obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("source_transfer" Data.Aeson.Types.ToJSON..=)) (chargeSource_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor_suffix" Data.Aeson.Types.ToJSON..=)) (chargeStatement_descriptor_suffix obj) : ["status" Data.Aeson.Types.ToJSON..= chargeStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer" Data.Aeson.Types.ToJSON..=)) (chargeTransfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_data" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_data obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("transfer_group" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_group obj) : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Charge
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Charge" (\obj -> (((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Charge GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_captured")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_refunded")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "calculated_statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "captured")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "disputed")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fraud_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "outcome")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "paid")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "presentment_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "radar_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "refunded")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "refunds")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "review")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor_suffix")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_group"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Charge" (\obj -> ((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure Charge GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_captured")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount_refunded")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "calculated_statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "captured")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "disputed")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fraud_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "outcome")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "paid")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payment_method_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "presentment_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "radar_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "receipt_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "refunded")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "refunds")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "review")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "source_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor_suffix")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "transfer_group"))}
 -- | Create a new 'Charge' with all required fields.
 mkCharge :: GHC.Types.Int -- ^ 'chargeAmount'
   -> GHC.Types.Int -- ^ 'chargeAmount_captured'
@@ -273,395 +276,376 @@ mkCharge :: GHC.Types.Int -- ^ 'chargeAmount'
   -> Data.Text.Internal.Text -- ^ 'chargeId'
   -> GHC.Types.Bool -- ^ 'chargeLivemode'
   -> Data.Aeson.Types.Internal.Object -- ^ 'chargeMetadata'
+  -> Data.Text.Internal.Text -- ^ 'chargeObject'
   -> GHC.Types.Bool -- ^ 'chargePaid'
   -> GHC.Types.Bool -- ^ 'chargeRefunded'
-  -> ChargeStatus -- ^ 'chargeStatus'
+  -> Data.Text.Internal.Text -- ^ 'chargeStatus'
   -> Charge
-mkCharge chargeAmount chargeAmount_captured chargeAmount_refunded chargeBilling_details chargeCaptured chargeCreated chargeCurrency chargeDisputed chargeId chargeLivemode chargeMetadata chargePaid chargeRefunded chargeStatus = Charge{chargeAmount = chargeAmount,
-                                                                                                                                                                                                                                          chargeAmount_captured = chargeAmount_captured,
-                                                                                                                                                                                                                                          chargeAmount_refunded = chargeAmount_refunded,
-                                                                                                                                                                                                                                          chargeApplication = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeApplication_fee = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeApplication_fee_amount = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeBalance_transaction = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeBilling_details = chargeBilling_details,
-                                                                                                                                                                                                                                          chargeCalculated_statement_descriptor = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeCaptured = chargeCaptured,
-                                                                                                                                                                                                                                          chargeCreated = chargeCreated,
-                                                                                                                                                                                                                                          chargeCurrency = chargeCurrency,
-                                                                                                                                                                                                                                          chargeCustomer = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeDescription = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeDisputed = chargeDisputed,
-                                                                                                                                                                                                                                          chargeFailure_balance_transaction = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeFailure_code = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeFailure_message = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeFraud_details = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeId = chargeId,
-                                                                                                                                                                                                                                          chargeLivemode = chargeLivemode,
-                                                                                                                                                                                                                                          chargeMetadata = chargeMetadata,
-                                                                                                                                                                                                                                          chargeOn_behalf_of = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeOutcome = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargePaid = chargePaid,
-                                                                                                                                                                                                                                          chargePayment_intent = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargePayment_method = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargePayment_method_details = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargePresentment_details = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeRadar_options = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeReceipt_email = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeReceipt_number = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeReceipt_url = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeRefunded = chargeRefunded,
-                                                                                                                                                                                                                                          chargeRefunds = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeReview = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeShipping = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeSource_transfer = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeStatement_descriptor = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeStatement_descriptor_suffix = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeStatus = chargeStatus,
-                                                                                                                                                                                                                                          chargeTransfer = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeTransfer_data = GHC.Maybe.Nothing,
-                                                                                                                                                                                                                                          chargeTransfer_group = GHC.Maybe.Nothing}
+mkCharge chargeAmount chargeAmount_captured chargeAmount_refunded chargeBilling_details chargeCaptured chargeCreated chargeCurrency chargeDisputed chargeId chargeLivemode chargeMetadata chargeObject chargePaid chargeRefunded chargeStatus = Charge{chargeAmount = chargeAmount,
+                                                                                                                                                                                                                                                       chargeAmount_captured = chargeAmount_captured,
+                                                                                                                                                                                                                                                       chargeAmount_refunded = chargeAmount_refunded,
+                                                                                                                                                                                                                                                       chargeApplication = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeApplication_fee = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeApplication_fee_amount = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeBalance_transaction = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeBilling_details = chargeBilling_details,
+                                                                                                                                                                                                                                                       chargeCalculated_statement_descriptor = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeCaptured = chargeCaptured,
+                                                                                                                                                                                                                                                       chargeCreated = chargeCreated,
+                                                                                                                                                                                                                                                       chargeCurrency = chargeCurrency,
+                                                                                                                                                                                                                                                       chargeCustomer = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeDisputed = chargeDisputed,
+                                                                                                                                                                                                                                                       chargeFailure_balance_transaction = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeFailure_code = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeFailure_message = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeFraud_details = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeId = chargeId,
+                                                                                                                                                                                                                                                       chargeLivemode = chargeLivemode,
+                                                                                                                                                                                                                                                       chargeMetadata = chargeMetadata,
+                                                                                                                                                                                                                                                       chargeObject = chargeObject,
+                                                                                                                                                                                                                                                       chargeOn_behalf_of = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeOutcome = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargePaid = chargePaid,
+                                                                                                                                                                                                                                                       chargePayment_intent = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargePayment_method = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargePayment_method_details = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargePresentment_details = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeRadar_options = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeReceipt_email = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeReceipt_number = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeReceipt_url = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeRefunded = chargeRefunded,
+                                                                                                                                                                                                                                                       chargeRefunds = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeReview = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeShipping = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeSource_transfer = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeStatement_descriptor = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeStatement_descriptor_suffix = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeStatus = chargeStatus,
+                                                                                                                                                                                                                                                       chargeTransfer = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeTransfer_data = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                                                       chargeTransfer_group = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.application.anyOf@ in the specification.
 -- 
 -- ID of the Connect application that created the charge.
-data ChargeApplicationNonNullableVariants =
-   ChargeApplicationNonNullableText Data.Text.Internal.Text
-  | ChargeApplicationNonNullableApplication Application
+data ChargeApplicationVariants =
+   ChargeApplicationText Data.Text.Internal.Text
+  | ChargeApplicationApplication Application
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeApplicationNonNullableVariants
-    where {toJSON (ChargeApplicationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeApplicationNonNullableApplication a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeApplicationNonNullableVariants
-    where {parseJSON val = case (ChargeApplicationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeApplicationNonNullableApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeApplicationVariants
+    where {toJSON (ChargeApplicationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeApplicationApplication a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeApplicationVariants
+    where {parseJSON val = case (ChargeApplicationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeApplicationApplication Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.application_fee.anyOf@ in the specification.
 -- 
 -- The application fee (if any) for the charge. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/direct-charges\#collect-fees) for details.
-data ChargeApplication_feeNonNullableVariants =
-   ChargeApplication_feeNonNullableText Data.Text.Internal.Text
-  | ChargeApplication_feeNonNullableApplication_fee Application_fee
+data ChargeApplication_feeVariants =
+   ChargeApplication_feeText Data.Text.Internal.Text
+  | ChargeApplication_feeApplication_fee Application_fee
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeApplication_feeNonNullableVariants
-    where {toJSON (ChargeApplication_feeNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeApplication_feeNonNullableApplication_fee a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeApplication_feeNonNullableVariants
-    where {parseJSON val = case (ChargeApplication_feeNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeApplication_feeNonNullableApplication_fee Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeApplication_feeVariants
+    where {toJSON (ChargeApplication_feeText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeApplication_feeApplication_fee a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeApplication_feeVariants
+    where {parseJSON val = case (ChargeApplication_feeText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeApplication_feeApplication_fee Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.balance_transaction.anyOf@ in the specification.
 -- 
 -- ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
-data ChargeBalance_transactionNonNullableVariants =
-   ChargeBalance_transactionNonNullableText Data.Text.Internal.Text
-  | ChargeBalance_transactionNonNullableBalance_transaction Balance_transaction
+data ChargeBalance_transactionVariants =
+   ChargeBalance_transactionText Data.Text.Internal.Text
+  | ChargeBalance_transactionBalance_transaction Balance_transaction
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeBalance_transactionNonNullableVariants
-    where {toJSON (ChargeBalance_transactionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeBalance_transactionNonNullableBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeBalance_transactionNonNullableVariants
-    where {parseJSON val = case (ChargeBalance_transactionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeBalance_transactionNonNullableBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeBalance_transactionVariants
+    where {toJSON (ChargeBalance_transactionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeBalance_transactionBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeBalance_transactionVariants
+    where {parseJSON val = case (ChargeBalance_transactionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeBalance_transactionBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.customer.anyOf@ in the specification.
 -- 
 -- ID of the customer this charge is for if one exists.
-data ChargeCustomerNonNullableVariants =
-   ChargeCustomerNonNullableText Data.Text.Internal.Text
-  | ChargeCustomerNonNullableCustomer Customer
-  | ChargeCustomerNonNullableDeleted_customer Deleted_customer
+data ChargeCustomerVariants =
+   ChargeCustomerText Data.Text.Internal.Text
+  | ChargeCustomerCustomer Customer
+  | ChargeCustomerDeleted_customer Deleted_customer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeCustomerNonNullableVariants
-    where {toJSON (ChargeCustomerNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeCustomerNonNullableCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeCustomerNonNullableDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeCustomerNonNullableVariants
-    where {parseJSON val = case (ChargeCustomerNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeCustomerNonNullableCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeCustomerNonNullableDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeCustomerVariants
+    where {toJSON (ChargeCustomerText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeCustomerCustomer a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeCustomerDeleted_customer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeCustomerVariants
+    where {parseJSON val = case (ChargeCustomerText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeCustomerCustomer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeCustomerDeleted_customer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.failure_balance_transaction.anyOf@ in the specification.
 -- 
 -- ID of the balance transaction that describes the reversal of the balance on your account due to payment failure.
-data ChargeFailure_balance_transactionNonNullableVariants =
-   ChargeFailure_balance_transactionNonNullableText Data.Text.Internal.Text
-  | ChargeFailure_balance_transactionNonNullableBalance_transaction Balance_transaction
+data ChargeFailure_balance_transactionVariants =
+   ChargeFailure_balance_transactionText Data.Text.Internal.Text
+  | ChargeFailure_balance_transactionBalance_transaction Balance_transaction
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeFailure_balance_transactionNonNullableVariants
-    where {toJSON (ChargeFailure_balance_transactionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeFailure_balance_transactionNonNullableBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeFailure_balance_transactionNonNullableVariants
-    where {parseJSON val = case (ChargeFailure_balance_transactionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeFailure_balance_transactionNonNullableBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeFailure_balance_transactionVariants
+    where {toJSON (ChargeFailure_balance_transactionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeFailure_balance_transactionBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeFailure_balance_transactionVariants
+    where {parseJSON val = case (ChargeFailure_balance_transactionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeFailure_balance_transactionBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.charge.properties.fraud_details.anyOf@ in the specification.
 -- 
 -- Information on fraud assessments for the charge.
-data ChargeFraud_detailsNonNullable = ChargeFraud_detailsNonNullable {
+data ChargeFraud_details = ChargeFraud_details {
   -- | stripe_report: Assessments from Stripe. If set, the value is \`fraudulent\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  chargeFraud_detailsNonNullableStripe_report :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  chargeFraud_detailsStripe_report :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | user_report: Assessments reported by you. If set, possible values of are \`safe\` and \`fraudulent\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeFraud_detailsNonNullableUser_report :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , chargeFraud_detailsUser_report :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeFraud_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsNonNullableStripe_report obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsNonNullableUser_report obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsNonNullableStripe_report obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsNonNullableUser_report obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeFraud_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeFraud_detailsNonNullable" (\obj -> (GHC.Base.pure ChargeFraud_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "stripe_report")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_report"))}
--- | Create a new 'ChargeFraud_detailsNonNullable' with all required fields.
-mkChargeFraud_detailsNonNullable :: ChargeFraud_detailsNonNullable
-mkChargeFraud_detailsNonNullable = ChargeFraud_detailsNonNullable{chargeFraud_detailsNonNullableStripe_report = GHC.Maybe.Nothing,
-                                                                  chargeFraud_detailsNonNullableUser_report = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeFraud_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsStripe_report obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsUser_report obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsStripe_report obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("user_report" Data.Aeson.Types.ToJSON..=)) (chargeFraud_detailsUser_report obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeFraud_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeFraud_details" (\obj -> (GHC.Base.pure ChargeFraud_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "stripe_report")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "user_report"))}
+-- | Create a new 'ChargeFraud_details' with all required fields.
+mkChargeFraud_details :: ChargeFraud_details
+mkChargeFraud_details = ChargeFraud_details{chargeFraud_detailsStripe_report = GHC.Maybe.Nothing,
+                                            chargeFraud_detailsUser_report = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.on_behalf_of.anyOf@ in the specification.
 -- 
 -- The account (if any) the charge was made on behalf of without triggering an automatic transfer. See the [Connect documentation](https:\/\/docs.stripe.com\/connect\/separate-charges-and-transfers) for details.
-data ChargeOn_behalf_ofNonNullableVariants =
-   ChargeOn_behalf_ofNonNullableText Data.Text.Internal.Text
-  | ChargeOn_behalf_ofNonNullableAccount Account
+data ChargeOn_behalf_ofVariants =
+   ChargeOn_behalf_ofText Data.Text.Internal.Text
+  | ChargeOn_behalf_ofAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeOn_behalf_ofNonNullableVariants
-    where {toJSON (ChargeOn_behalf_ofNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeOn_behalf_ofNonNullableAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeOn_behalf_ofNonNullableVariants
-    where {parseJSON val = case (ChargeOn_behalf_ofNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeOn_behalf_ofNonNullableAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeOn_behalf_ofVariants
+    where {toJSON (ChargeOn_behalf_ofText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeOn_behalf_ofAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeOn_behalf_ofVariants
+    where {parseJSON val = case (ChargeOn_behalf_ofText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeOn_behalf_ofAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.charge.properties.outcome.anyOf@ in the specification.
 -- 
 -- Details about whether the payment was accepted, and why. See [understanding declines](https:\\\/\\\/docs.stripe.com\\\/declines) for details.
-data ChargeOutcomeNonNullable = ChargeOutcomeNonNullable {
+data ChargeOutcome = ChargeOutcome {
   -- | advice_code: An enumerated value providing a more detailed explanation on [how to proceed with an error](https:\/\/docs.stripe.com\/declines\#retrying-issuer-declines).
-  chargeOutcomeNonNullableAdvice_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable ChargeOutcomeNonNullableAdvice_codeNonNullable))
+  chargeOutcomeAdvice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_advice_code: For charges declined by the network, a 2 digit code which indicates the advice returned by the network on how to proceed with an error.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeOutcomeNonNullableNetwork_advice_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeOutcomeNetwork_advice_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_decline_code: For charges declined by the network, an alphanumeric code which indicates the reason the charge failed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeOutcomeNonNullableNetwork_decline_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeOutcomeNetwork_decline_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | network_status: Possible values are \`approved_by_network\`, \`declined_by_network\`, \`not_sent_to_network\`, and \`reversed_after_approval\`. The value \`reversed_after_approval\` indicates the payment was [blocked by Stripe](https:\/\/docs.stripe.com\/declines\#blocked-payments) after bank authorization, and may temporarily appear as \"pending\" on a cardholder\'s statement.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeOutcomeNonNullableNetwork_status :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeOutcomeNetwork_status :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reason: An enumerated value providing a more detailed explanation of the outcome\'s \`type\`. Charges blocked by Radar\'s default block rule have the value \`highest_risk_level\`. Charges placed in review by Radar\'s default review rule have the value \`elevated_risk_level\`. Charges blocked because the payment is unlikely to be authorized have the value \`low_probability_of_authorization\`. Charges authorized, blocked, or placed in review by custom rules have the value \`rule\`. See [understanding declines](https:\/\/docs.stripe.com\/declines) for more details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeOutcomeNonNullableReason :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeOutcomeReason :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | risk_level: Stripe Radar\'s evaluation of the riskiness of the payment. Possible values for evaluated payments are \`normal\`, \`elevated\`, \`highest\`. For non-card payments, and card-based payments predating the public assignment of risk levels, this field will have the value \`not_assessed\`. In the event of an error in the evaluation, this field will have the value \`unknown\`. This field is only available with Radar.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeOutcomeNonNullableRisk_level :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , chargeOutcomeRisk_level :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | risk_score: Stripe Radar\'s evaluation of the riskiness of the payment. Possible values for evaluated payments are between 0 and 100. For non-card payments, card-based payments predating the public assignment of risk scores, or in the event of an error during evaluation, this field will not be present. This field is only available with Radar for Fraud Teams.
-  , chargeOutcomeNonNullableRisk_score :: (GHC.Maybe.Maybe GHC.Types.Int)
+  , chargeOutcomeRisk_score :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | rule: The ID of the Radar rule that matched the payment, if applicable.
-  , chargeOutcomeNonNullableRule :: (GHC.Maybe.Maybe ChargeOutcomeNonNullableRuleVariants)
+  , chargeOutcomeRule :: (GHC.Maybe.Maybe ChargeOutcomeRuleVariants)
   -- | seller_message: A human-readable description of the outcome type and reason, designed for you (the recipient of the payment), not your customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeOutcomeNonNullableSeller_message :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeOutcomeSeller_message :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | type: Possible values are \`authorized\`, \`manual_review\`, \`issuer_declined\`, \`blocked\`, and \`invalid\`. See [understanding declines](https:\/\/docs.stripe.com\/declines) and [Radar reviews](https:\/\/docs.stripe.com\/radar\/reviews) for details.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeOutcomeNonNullableType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , chargeOutcomeType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeOutcomeNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_status" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableNetwork_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableReason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_level" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableRisk_level obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_score" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableRisk_score obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rule" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableRule obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("seller_message" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableSeller_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableType obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_status" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableNetwork_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableReason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_level" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableRisk_level obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_score" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableRisk_score obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rule" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableRule obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("seller_message" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableSeller_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNonNullableType obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeOutcomeNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeOutcomeNonNullable" (\obj -> (((((((((GHC.Base.pure ChargeOutcomeNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "risk_level")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "risk_score")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "rule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "seller_message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
--- | Create a new 'ChargeOutcomeNonNullable' with all required fields.
-mkChargeOutcomeNonNullable :: ChargeOutcomeNonNullable
-mkChargeOutcomeNonNullable = ChargeOutcomeNonNullable{chargeOutcomeNonNullableAdvice_code = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableNetwork_advice_code = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableNetwork_decline_code = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableNetwork_status = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableReason = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableRisk_level = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableRisk_score = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableRule = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableSeller_message = GHC.Maybe.Nothing,
-                                                      chargeOutcomeNonNullableType = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.charge.properties.outcome.anyOf.properties.advice_code@ in the specification.
--- 
--- An enumerated value providing a more detailed explanation on [how to proceed with an error](https:\/\/docs.stripe.com\/declines\#retrying-issuer-declines).
-data ChargeOutcomeNonNullableAdvice_codeNonNullable =
-   ChargeOutcomeNonNullableAdvice_codeNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | ChargeOutcomeNonNullableAdvice_codeNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | ChargeOutcomeNonNullableAdvice_codeNonNullableEnumConfirm_card_data -- ^ Represents the JSON value @"confirm_card_data"@
-  | ChargeOutcomeNonNullableAdvice_codeNonNullableEnumDo_not_try_again -- ^ Represents the JSON value @"do_not_try_again"@
-  | ChargeOutcomeNonNullableAdvice_codeNonNullableEnumTry_again_later -- ^ Represents the JSON value @"try_again_later"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeOutcomeNonNullableAdvice_codeNonNullable
-    where {toJSON (ChargeOutcomeNonNullableAdvice_codeNonNullableOther val) = val;
-           toJSON (ChargeOutcomeNonNullableAdvice_codeNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (ChargeOutcomeNonNullableAdvice_codeNonNullableEnumConfirm_card_data) = "confirm_card_data";
-           toJSON (ChargeOutcomeNonNullableAdvice_codeNonNullableEnumDo_not_try_again) = "do_not_try_again";
-           toJSON (ChargeOutcomeNonNullableAdvice_codeNonNullableEnumTry_again_later) = "try_again_later"}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeOutcomeNonNullableAdvice_codeNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "confirm_card_data" -> ChargeOutcomeNonNullableAdvice_codeNonNullableEnumConfirm_card_data
-                                             | val GHC.Classes.== "do_not_try_again" -> ChargeOutcomeNonNullableAdvice_codeNonNullableEnumDo_not_try_again
-                                             | val GHC.Classes.== "try_again_later" -> ChargeOutcomeNonNullableAdvice_codeNonNullableEnumTry_again_later
-                                             | GHC.Base.otherwise -> ChargeOutcomeNonNullableAdvice_codeNonNullableOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeOutcome
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_status" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNetwork_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeReason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_level" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeRisk_level obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_score" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeRisk_score obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rule" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeRule obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("seller_message" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeSeller_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeType obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeAdvice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_advice_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNetwork_advice_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_decline_code" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNetwork_decline_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("network_status" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeNetwork_status obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reason" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeReason obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_level" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeRisk_level obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("risk_score" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeRisk_score obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("rule" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeRule obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("seller_message" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeSeller_message obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargeOutcomeType obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeOutcome
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeOutcome" (\obj -> (((((((((GHC.Base.pure ChargeOutcome GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_advice_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_decline_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "network_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "risk_level")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "risk_score")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "rule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "seller_message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type"))}
+-- | Create a new 'ChargeOutcome' with all required fields.
+mkChargeOutcome :: ChargeOutcome
+mkChargeOutcome = ChargeOutcome{chargeOutcomeAdvice_code = GHC.Maybe.Nothing,
+                                chargeOutcomeNetwork_advice_code = GHC.Maybe.Nothing,
+                                chargeOutcomeNetwork_decline_code = GHC.Maybe.Nothing,
+                                chargeOutcomeNetwork_status = GHC.Maybe.Nothing,
+                                chargeOutcomeReason = GHC.Maybe.Nothing,
+                                chargeOutcomeRisk_level = GHC.Maybe.Nothing,
+                                chargeOutcomeRisk_score = GHC.Maybe.Nothing,
+                                chargeOutcomeRule = GHC.Maybe.Nothing,
+                                chargeOutcomeSeller_message = GHC.Maybe.Nothing,
+                                chargeOutcomeType = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.outcome.anyOf.properties.rule.anyOf@ in the specification.
 -- 
 -- The ID of the Radar rule that matched the payment, if applicable.
-data ChargeOutcomeNonNullableRuleVariants =
-   ChargeOutcomeNonNullableRuleText Data.Text.Internal.Text
-  | ChargeOutcomeNonNullableRuleRule Rule
+data ChargeOutcomeRuleVariants =
+   ChargeOutcomeRuleText Data.Text.Internal.Text
+  | ChargeOutcomeRuleRule Rule
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeOutcomeNonNullableRuleVariants
-    where {toJSON (ChargeOutcomeNonNullableRuleText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeOutcomeNonNullableRuleRule a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeOutcomeNonNullableRuleVariants
-    where {parseJSON val = case (ChargeOutcomeNonNullableRuleText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeOutcomeNonNullableRuleRule Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeOutcomeRuleVariants
+    where {toJSON (ChargeOutcomeRuleText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeOutcomeRuleRule a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeOutcomeRuleVariants
+    where {parseJSON val = case (ChargeOutcomeRuleText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeOutcomeRuleRule Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.payment_intent.anyOf@ in the specification.
 -- 
 -- ID of the PaymentIntent associated with this charge, if one exists.
-data ChargePayment_intentNonNullableVariants =
-   ChargePayment_intentNonNullableText Data.Text.Internal.Text
-  | ChargePayment_intentNonNullablePayment_intent Payment_intent
+data ChargePayment_intentVariants =
+   ChargePayment_intentText Data.Text.Internal.Text
+  | ChargePayment_intentPayment_intent Payment_intent
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargePayment_intentNonNullableVariants
-    where {toJSON (ChargePayment_intentNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargePayment_intentNonNullablePayment_intent a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargePayment_intentNonNullableVariants
-    where {parseJSON val = case (ChargePayment_intentNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargePayment_intentNonNullablePayment_intent Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargePayment_intentVariants
+    where {toJSON (ChargePayment_intentText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargePayment_intentPayment_intent a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargePayment_intentVariants
+    where {parseJSON val = case (ChargePayment_intentText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargePayment_intentPayment_intent Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.charge.properties.payment_method_details.anyOf@ in the specification.
 -- 
 -- Details about the payment method at the time of the transaction.
-data ChargePayment_method_detailsNonNullable = ChargePayment_method_detailsNonNullable {
+data ChargePayment_method_details = ChargePayment_method_details {
   -- | ach_credit_transfer: 
-  chargePayment_method_detailsNonNullableAch_credit_transfer :: (GHC.Maybe.Maybe Payment_method_details_ach_credit_transfer)
+  chargePayment_method_detailsAch_credit_transfer :: (GHC.Maybe.Maybe Payment_method_details_ach_credit_transfer)
   -- | ach_debit: 
-  , chargePayment_method_detailsNonNullableAch_debit :: (GHC.Maybe.Maybe Payment_method_details_ach_debit)
+  , chargePayment_method_detailsAch_debit :: (GHC.Maybe.Maybe Payment_method_details_ach_debit)
   -- | acss_debit: 
-  , chargePayment_method_detailsNonNullableAcss_debit :: (GHC.Maybe.Maybe Payment_method_details_acss_debit)
+  , chargePayment_method_detailsAcss_debit :: (GHC.Maybe.Maybe Payment_method_details_acss_debit)
   -- | affirm: 
-  , chargePayment_method_detailsNonNullableAffirm :: (GHC.Maybe.Maybe Payment_method_details_affirm)
+  , chargePayment_method_detailsAffirm :: (GHC.Maybe.Maybe Payment_method_details_affirm)
   -- | afterpay_clearpay: 
-  , chargePayment_method_detailsNonNullableAfterpay_clearpay :: (GHC.Maybe.Maybe Payment_method_details_afterpay_clearpay)
+  , chargePayment_method_detailsAfterpay_clearpay :: (GHC.Maybe.Maybe Payment_method_details_afterpay_clearpay)
   -- | alipay: 
-  , chargePayment_method_detailsNonNullableAlipay :: (GHC.Maybe.Maybe Payment_flows_private_payment_methods_alipay_details)
+  , chargePayment_method_detailsAlipay :: (GHC.Maybe.Maybe Payment_flows_private_payment_methods_alipay_details)
   -- | alma: 
-  , chargePayment_method_detailsNonNullableAlma :: (GHC.Maybe.Maybe Payment_method_details_alma)
+  , chargePayment_method_detailsAlma :: (GHC.Maybe.Maybe Payment_method_details_alma)
   -- | amazon_pay: 
-  , chargePayment_method_detailsNonNullableAmazon_pay :: (GHC.Maybe.Maybe Payment_method_details_amazon_pay)
+  , chargePayment_method_detailsAmazon_pay :: (GHC.Maybe.Maybe Payment_method_details_amazon_pay)
   -- | au_becs_debit: 
-  , chargePayment_method_detailsNonNullableAu_becs_debit :: (GHC.Maybe.Maybe Payment_method_details_au_becs_debit)
+  , chargePayment_method_detailsAu_becs_debit :: (GHC.Maybe.Maybe Payment_method_details_au_becs_debit)
   -- | bacs_debit: 
-  , chargePayment_method_detailsNonNullableBacs_debit :: (GHC.Maybe.Maybe Payment_method_details_bacs_debit)
+  , chargePayment_method_detailsBacs_debit :: (GHC.Maybe.Maybe Payment_method_details_bacs_debit)
   -- | bancontact: 
-  , chargePayment_method_detailsNonNullableBancontact :: (GHC.Maybe.Maybe Payment_method_details_bancontact)
+  , chargePayment_method_detailsBancontact :: (GHC.Maybe.Maybe Payment_method_details_bancontact)
   -- | billie: 
-  , chargePayment_method_detailsNonNullableBillie :: (GHC.Maybe.Maybe Payment_method_details_billie)
+  , chargePayment_method_detailsBillie :: (GHC.Maybe.Maybe Payment_method_details_billie)
   -- | blik: 
-  , chargePayment_method_detailsNonNullableBlik :: (GHC.Maybe.Maybe Payment_method_details_blik)
+  , chargePayment_method_detailsBlik :: (GHC.Maybe.Maybe Payment_method_details_blik)
   -- | boleto: 
-  , chargePayment_method_detailsNonNullableBoleto :: (GHC.Maybe.Maybe Payment_method_details_boleto)
+  , chargePayment_method_detailsBoleto :: (GHC.Maybe.Maybe Payment_method_details_boleto)
   -- | card: 
-  , chargePayment_method_detailsNonNullableCard :: (GHC.Maybe.Maybe Payment_method_details_card)
+  , chargePayment_method_detailsCard :: (GHC.Maybe.Maybe Payment_method_details_card)
   -- | card_present: 
-  , chargePayment_method_detailsNonNullableCard_present :: (GHC.Maybe.Maybe Payment_method_details_card_present)
+  , chargePayment_method_detailsCard_present :: (GHC.Maybe.Maybe Payment_method_details_card_present)
   -- | cashapp: 
-  , chargePayment_method_detailsNonNullableCashapp :: (GHC.Maybe.Maybe Payment_method_details_cashapp)
+  , chargePayment_method_detailsCashapp :: (GHC.Maybe.Maybe Payment_method_details_cashapp)
   -- | crypto: 
-  , chargePayment_method_detailsNonNullableCrypto :: (GHC.Maybe.Maybe Payment_method_details_crypto)
+  , chargePayment_method_detailsCrypto :: (GHC.Maybe.Maybe Payment_method_details_crypto)
   -- | customer_balance: 
-  , chargePayment_method_detailsNonNullableCustomer_balance :: (GHC.Maybe.Maybe Payment_method_details_customer_balance)
+  , chargePayment_method_detailsCustomer_balance :: (GHC.Maybe.Maybe Payment_method_details_customer_balance)
   -- | eps: 
-  , chargePayment_method_detailsNonNullableEps :: (GHC.Maybe.Maybe Payment_method_details_eps)
+  , chargePayment_method_detailsEps :: (GHC.Maybe.Maybe Payment_method_details_eps)
   -- | fpx: 
-  , chargePayment_method_detailsNonNullableFpx :: (GHC.Maybe.Maybe Payment_method_details_fpx)
+  , chargePayment_method_detailsFpx :: (GHC.Maybe.Maybe Payment_method_details_fpx)
   -- | giropay: 
-  , chargePayment_method_detailsNonNullableGiropay :: (GHC.Maybe.Maybe Payment_method_details_giropay)
+  , chargePayment_method_detailsGiropay :: (GHC.Maybe.Maybe Payment_method_details_giropay)
   -- | grabpay: 
-  , chargePayment_method_detailsNonNullableGrabpay :: (GHC.Maybe.Maybe Payment_method_details_grabpay)
+  , chargePayment_method_detailsGrabpay :: (GHC.Maybe.Maybe Payment_method_details_grabpay)
   -- | ideal: 
-  , chargePayment_method_detailsNonNullableIdeal :: (GHC.Maybe.Maybe Payment_method_details_ideal)
+  , chargePayment_method_detailsIdeal :: (GHC.Maybe.Maybe Payment_method_details_ideal)
   -- | interac_present: 
-  , chargePayment_method_detailsNonNullableInterac_present :: (GHC.Maybe.Maybe Payment_method_details_interac_present)
+  , chargePayment_method_detailsInterac_present :: (GHC.Maybe.Maybe Payment_method_details_interac_present)
   -- | kakao_pay: 
-  , chargePayment_method_detailsNonNullableKakao_pay :: (GHC.Maybe.Maybe Payment_method_details_kakao_pay)
+  , chargePayment_method_detailsKakao_pay :: (GHC.Maybe.Maybe Payment_method_details_kakao_pay)
   -- | klarna: 
-  , chargePayment_method_detailsNonNullableKlarna :: (GHC.Maybe.Maybe Payment_method_details_klarna)
+  , chargePayment_method_detailsKlarna :: (GHC.Maybe.Maybe Payment_method_details_klarna)
   -- | konbini: 
-  , chargePayment_method_detailsNonNullableKonbini :: (GHC.Maybe.Maybe Payment_method_details_konbini)
+  , chargePayment_method_detailsKonbini :: (GHC.Maybe.Maybe Payment_method_details_konbini)
   -- | kr_card: 
-  , chargePayment_method_detailsNonNullableKr_card :: (GHC.Maybe.Maybe Payment_method_details_kr_card)
+  , chargePayment_method_detailsKr_card :: (GHC.Maybe.Maybe Payment_method_details_kr_card)
   -- | link: 
-  , chargePayment_method_detailsNonNullableLink :: (GHC.Maybe.Maybe Payment_method_details_link)
+  , chargePayment_method_detailsLink :: (GHC.Maybe.Maybe Payment_method_details_link)
   -- | mb_way: 
-  , chargePayment_method_detailsNonNullableMb_way :: (GHC.Maybe.Maybe Payment_method_details_mb_way)
+  , chargePayment_method_detailsMb_way :: (GHC.Maybe.Maybe Payment_method_details_mb_way)
   -- | mobilepay: 
-  , chargePayment_method_detailsNonNullableMobilepay :: (GHC.Maybe.Maybe Payment_method_details_mobilepay)
+  , chargePayment_method_detailsMobilepay :: (GHC.Maybe.Maybe Payment_method_details_mobilepay)
   -- | multibanco: 
-  , chargePayment_method_detailsNonNullableMultibanco :: (GHC.Maybe.Maybe Payment_method_details_multibanco)
+  , chargePayment_method_detailsMultibanco :: (GHC.Maybe.Maybe Payment_method_details_multibanco)
   -- | naver_pay: 
-  , chargePayment_method_detailsNonNullableNaver_pay :: (GHC.Maybe.Maybe Payment_method_details_naver_pay)
+  , chargePayment_method_detailsNaver_pay :: (GHC.Maybe.Maybe Payment_method_details_naver_pay)
   -- | nz_bank_account: 
-  , chargePayment_method_detailsNonNullableNz_bank_account :: (GHC.Maybe.Maybe Payment_method_details_nz_bank_account)
+  , chargePayment_method_detailsNz_bank_account :: (GHC.Maybe.Maybe Payment_method_details_nz_bank_account)
   -- | oxxo: 
-  , chargePayment_method_detailsNonNullableOxxo :: (GHC.Maybe.Maybe Payment_method_details_oxxo)
+  , chargePayment_method_detailsOxxo :: (GHC.Maybe.Maybe Payment_method_details_oxxo)
   -- | p24: 
-  , chargePayment_method_detailsNonNullableP24 :: (GHC.Maybe.Maybe Payment_method_details_p24)
+  , chargePayment_method_detailsP24 :: (GHC.Maybe.Maybe Payment_method_details_p24)
   -- | pay_by_bank: 
-  , chargePayment_method_detailsNonNullablePay_by_bank :: (GHC.Maybe.Maybe Payment_method_details_pay_by_bank)
+  , chargePayment_method_detailsPay_by_bank :: (GHC.Maybe.Maybe Payment_method_details_pay_by_bank)
   -- | payco: 
-  , chargePayment_method_detailsNonNullablePayco :: (GHC.Maybe.Maybe Payment_method_details_payco)
+  , chargePayment_method_detailsPayco :: (GHC.Maybe.Maybe Payment_method_details_payco)
   -- | paynow: 
-  , chargePayment_method_detailsNonNullablePaynow :: (GHC.Maybe.Maybe Payment_method_details_paynow)
+  , chargePayment_method_detailsPaynow :: (GHC.Maybe.Maybe Payment_method_details_paynow)
   -- | paypal: 
-  , chargePayment_method_detailsNonNullablePaypal :: (GHC.Maybe.Maybe Payment_method_details_paypal)
+  , chargePayment_method_detailsPaypal :: (GHC.Maybe.Maybe Payment_method_details_paypal)
   -- | payto: 
-  , chargePayment_method_detailsNonNullablePayto :: (GHC.Maybe.Maybe Payment_method_details_payto)
+  , chargePayment_method_detailsPayto :: (GHC.Maybe.Maybe Payment_method_details_payto)
   -- | pix: 
-  , chargePayment_method_detailsNonNullablePix :: (GHC.Maybe.Maybe Payment_method_details_pix)
+  , chargePayment_method_detailsPix :: (GHC.Maybe.Maybe Payment_method_details_pix)
   -- | promptpay: 
-  , chargePayment_method_detailsNonNullablePromptpay :: (GHC.Maybe.Maybe Payment_method_details_promptpay)
+  , chargePayment_method_detailsPromptpay :: (GHC.Maybe.Maybe Payment_method_details_promptpay)
   -- | revolut_pay: 
-  , chargePayment_method_detailsNonNullableRevolut_pay :: (GHC.Maybe.Maybe Payment_method_details_revolut_pay)
+  , chargePayment_method_detailsRevolut_pay :: (GHC.Maybe.Maybe Payment_method_details_revolut_pay)
   -- | samsung_pay: 
-  , chargePayment_method_detailsNonNullableSamsung_pay :: (GHC.Maybe.Maybe Payment_method_details_samsung_pay)
+  , chargePayment_method_detailsSamsung_pay :: (GHC.Maybe.Maybe Payment_method_details_samsung_pay)
   -- | satispay: 
-  , chargePayment_method_detailsNonNullableSatispay :: (GHC.Maybe.Maybe Payment_method_details_satispay)
+  , chargePayment_method_detailsSatispay :: (GHC.Maybe.Maybe Payment_method_details_satispay)
   -- | sepa_debit: 
-  , chargePayment_method_detailsNonNullableSepa_debit :: (GHC.Maybe.Maybe Payment_method_details_sepa_debit)
+  , chargePayment_method_detailsSepa_debit :: (GHC.Maybe.Maybe Payment_method_details_sepa_debit)
   -- | sofort: 
-  , chargePayment_method_detailsNonNullableSofort :: (GHC.Maybe.Maybe Payment_method_details_sofort)
+  , chargePayment_method_detailsSofort :: (GHC.Maybe.Maybe Payment_method_details_sofort)
   -- | stripe_account: 
-  , chargePayment_method_detailsNonNullableStripe_account :: (GHC.Maybe.Maybe Payment_method_details_stripe_account)
+  , chargePayment_method_detailsStripe_account :: (GHC.Maybe.Maybe Payment_method_details_stripe_account)
   -- | swish: 
-  , chargePayment_method_detailsNonNullableSwish :: (GHC.Maybe.Maybe Payment_method_details_swish)
+  , chargePayment_method_detailsSwish :: (GHC.Maybe.Maybe Payment_method_details_swish)
   -- | twint: 
-  , chargePayment_method_detailsNonNullableTwint :: (GHC.Maybe.Maybe Payment_method_details_twint)
+  , chargePayment_method_detailsTwint :: (GHC.Maybe.Maybe Payment_method_details_twint)
   -- | type: The type of transaction-specific details of the payment method used in the payment. See [PaymentMethod.type](https:\/\/docs.stripe.com\/api\/payment_methods\/object\#payment_method_object-type) for the full list of possible types.
   -- An additional hash is included on \`payment_method_details\` with a name matching this value.
   -- It contains information specific to the payment method.
@@ -669,203 +653,189 @@ data ChargePayment_method_detailsNonNullable = ChargePayment_method_detailsNonNu
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargePayment_method_detailsNonNullableType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , chargePayment_method_detailsType :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  -- | upi: 
+  , chargePayment_method_detailsUpi :: (GHC.Maybe.Maybe Payment_method_details_upi)
   -- | us_bank_account: 
-  , chargePayment_method_detailsNonNullableUs_bank_account :: (GHC.Maybe.Maybe Payment_method_details_us_bank_account)
+  , chargePayment_method_detailsUs_bank_account :: (GHC.Maybe.Maybe Payment_method_details_us_bank_account)
   -- | wechat: 
-  , chargePayment_method_detailsNonNullableWechat :: (GHC.Maybe.Maybe Payment_method_details_wechat)
+  , chargePayment_method_detailsWechat :: (GHC.Maybe.Maybe Payment_method_details_wechat)
   -- | wechat_pay: 
-  , chargePayment_method_detailsNonNullableWechat_pay :: (GHC.Maybe.Maybe Payment_method_details_wechat_pay)
+  , chargePayment_method_detailsWechat_pay :: (GHC.Maybe.Maybe Payment_method_details_wechat_pay)
   -- | zip: 
-  , chargePayment_method_detailsNonNullableZip :: (GHC.Maybe.Maybe Payment_method_details_zip)
+  , chargePayment_method_detailsZip :: (GHC.Maybe.Maybe Payment_method_details_zip)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargePayment_method_detailsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableStripe_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableWechat obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableZip obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullablePromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableStripe_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableWechat obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNonNullableZip obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargePayment_method_detailsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargePayment_method_detailsNonNullable" (\obj -> ((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure ChargePayment_method_detailsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_credit_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "affirm")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alma")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billie")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "blik")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashapp")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "crypto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fpx")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "grabpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interac_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kakao_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "konbini")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kr_card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mb_way")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mobilepay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "naver_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nz_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pay_by_bank")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paynow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pix")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "promptpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "revolut_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "samsung_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "satispay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "stripe_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "swish")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "twint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "zip"))}
--- | Create a new 'ChargePayment_method_detailsNonNullable' with all required fields.
-mkChargePayment_method_detailsNonNullable :: ChargePayment_method_detailsNonNullable
-mkChargePayment_method_detailsNonNullable = ChargePayment_method_detailsNonNullable{chargePayment_method_detailsNonNullableAch_credit_transfer = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAch_debit = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAcss_debit = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAffirm = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAfterpay_clearpay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAlipay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAlma = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAmazon_pay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableAu_becs_debit = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableBacs_debit = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableBancontact = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableBillie = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableBlik = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableBoleto = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableCard = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableCard_present = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableCashapp = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableCrypto = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableCustomer_balance = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableEps = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableFpx = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableGiropay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableGrabpay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableIdeal = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableInterac_present = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableKakao_pay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableKlarna = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableKonbini = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableKr_card = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableLink = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableMb_way = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableMobilepay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableMultibanco = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableNaver_pay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableNz_bank_account = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableOxxo = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableP24 = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullablePay_by_bank = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullablePayco = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullablePaynow = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullablePaypal = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullablePayto = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullablePix = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullablePromptpay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableRevolut_pay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableSamsung_pay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableSatispay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableSepa_debit = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableSofort = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableStripe_account = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableSwish = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableTwint = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableType = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableUs_bank_account = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableWechat = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableWechat_pay = GHC.Maybe.Nothing,
-                                                                                    chargePayment_method_detailsNonNullableZip = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON ChargePayment_method_details
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsStripe_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsWechat obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsZip obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_credit_transfer" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAch_credit_transfer obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ach_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAch_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("acss_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAcss_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("affirm" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAffirm obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("afterpay_clearpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAfterpay_clearpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alipay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAlipay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("alma" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAlma obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amazon_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAmazon_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("au_becs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsAu_becs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bacs_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBacs_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("bancontact" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBancontact obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("billie" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBillie obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("blik" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBlik obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("boleto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsBoleto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCard obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("card_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCard_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("cashapp" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCashapp obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("crypto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCrypto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("customer_balance" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsCustomer_balance obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("eps" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsEps obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("fpx" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsFpx obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("giropay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsGiropay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("grabpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsGrabpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("ideal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsIdeal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("interac_present" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsInterac_present obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kakao_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKakao_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("klarna" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKlarna obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("konbini" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKonbini obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("kr_card" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsKr_card obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("link" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsLink obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mb_way" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsMb_way obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("mobilepay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsMobilepay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("multibanco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsMultibanco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("naver_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNaver_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("nz_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsNz_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("oxxo" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsOxxo obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("p24" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsP24 obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pay_by_bank" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPay_by_bank obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payco" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPayco obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paynow" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPaynow obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("paypal" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPaypal obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payto" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPayto obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("pix" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPix obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("promptpay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsPromptpay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("revolut_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsRevolut_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("samsung_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSamsung_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("satispay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSatispay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sepa_debit" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSepa_debit obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("sofort" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSofort obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("stripe_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsStripe_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("swish" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsSwish obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("twint" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsTwint obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("type" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsType obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("upi" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsUpi obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("us_bank_account" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsUs_bank_account obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsWechat obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("wechat_pay" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsWechat_pay obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("zip" Data.Aeson.Types.ToJSON..=)) (chargePayment_method_detailsZip obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargePayment_method_details
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargePayment_method_details" (\obj -> (((((((((((((((((((((((((((((((((((((((((((((((((((((((((GHC.Base.pure ChargePayment_method_details GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_credit_transfer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ach_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "affirm")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "alma")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amazon_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "billie")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "blik")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "cashapp")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "crypto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "customer_balance")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "fpx")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "grabpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "interac_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kakao_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "konbini")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "kr_card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "link")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mb_way")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "mobilepay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "multibanco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "naver_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "nz_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pay_by_bank")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payco")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paynow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "paypal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "pix")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "promptpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "revolut_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "samsung_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "satispay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "stripe_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "swish")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "twint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "upi")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "us_bank_account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "wechat_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "zip"))}
+-- | Create a new 'ChargePayment_method_details' with all required fields.
+mkChargePayment_method_details :: ChargePayment_method_details
+mkChargePayment_method_details = ChargePayment_method_details{chargePayment_method_detailsAch_credit_transfer = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAch_debit = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAcss_debit = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAffirm = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAfterpay_clearpay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAlipay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAlma = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAmazon_pay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsAu_becs_debit = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsBacs_debit = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsBancontact = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsBillie = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsBlik = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsBoleto = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsCard = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsCard_present = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsCashapp = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsCrypto = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsCustomer_balance = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsEps = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsFpx = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsGiropay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsGrabpay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsIdeal = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsInterac_present = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsKakao_pay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsKlarna = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsKonbini = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsKr_card = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsLink = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsMb_way = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsMobilepay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsMultibanco = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsNaver_pay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsNz_bank_account = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsOxxo = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsP24 = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsPay_by_bank = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsPayco = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsPaynow = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsPaypal = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsPayto = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsPix = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsPromptpay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsRevolut_pay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsSamsung_pay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsSatispay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsSepa_debit = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsSofort = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsStripe_account = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsSwish = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsTwint = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsType = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsUpi = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsUs_bank_account = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsWechat = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsWechat_pay = GHC.Maybe.Nothing,
+                                                              chargePayment_method_detailsZip = GHC.Maybe.Nothing}
 -- | Defines the object schema located at @components.schemas.charge.properties.refunds@ in the specification.
 -- 
 -- A list of refunds that have been applied to the charge.
-data ChargeRefundsNonNullable = ChargeRefundsNonNullable {
+data ChargeRefunds = ChargeRefunds {
   -- | data: Details about each object.
-  chargeRefundsNonNullableData :: [Refund]
+  chargeRefundsData :: [Refund]
   -- | has_more: True if this list has another page of items after this one that can be fetched.
-  , chargeRefundsNonNullableHas_more :: GHC.Types.Bool
+  , chargeRefundsHas_more :: GHC.Types.Bool
+  -- | object: String representing the object\'s type. Objects of the same type share the same value. Always has the value \`list\`.
+  , chargeRefundsObject :: Data.Text.Internal.Text
   -- | url: The URL where this list can be accessed.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeRefundsNonNullableUrl :: Data.Text.Internal.Text
+  , chargeRefundsUrl :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeRefundsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= chargeRefundsNonNullableData obj] : ["has_more" Data.Aeson.Types.ToJSON..= chargeRefundsNonNullableHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= chargeRefundsNonNullableUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= chargeRefundsNonNullableData obj] : ["has_more" Data.Aeson.Types.ToJSON..= chargeRefundsNonNullableHas_more obj] : ["url" Data.Aeson.Types.ToJSON..= chargeRefundsNonNullableUrl obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "list"] : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeRefundsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeRefundsNonNullable" (\obj -> ((GHC.Base.pure ChargeRefundsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
--- | Create a new 'ChargeRefundsNonNullable' with all required fields.
-mkChargeRefundsNonNullable :: [Refund] -- ^ 'chargeRefundsNonNullableData'
-  -> GHC.Types.Bool -- ^ 'chargeRefundsNonNullableHas_more'
-  -> Data.Text.Internal.Text -- ^ 'chargeRefundsNonNullableUrl'
-  -> ChargeRefundsNonNullable
-mkChargeRefundsNonNullable chargeRefundsNonNullableData chargeRefundsNonNullableHas_more chargeRefundsNonNullableUrl = ChargeRefundsNonNullable{chargeRefundsNonNullableData = chargeRefundsNonNullableData,
-                                                                                                                                                chargeRefundsNonNullableHas_more = chargeRefundsNonNullableHas_more,
-                                                                                                                                                chargeRefundsNonNullableUrl = chargeRefundsNonNullableUrl}
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeRefunds
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= chargeRefundsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= chargeRefundsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= chargeRefundsObject obj] : ["url" Data.Aeson.Types.ToJSON..= chargeRefundsUrl obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["data" Data.Aeson.Types.ToJSON..= chargeRefundsData obj] : ["has_more" Data.Aeson.Types.ToJSON..= chargeRefundsHas_more obj] : ["object" Data.Aeson.Types.ToJSON..= chargeRefundsObject obj] : ["url" Data.Aeson.Types.ToJSON..= chargeRefundsUrl obj] : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeRefunds
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeRefunds" (\obj -> (((GHC.Base.pure ChargeRefunds GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "has_more")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))}
+-- | Create a new 'ChargeRefunds' with all required fields.
+mkChargeRefunds :: [Refund] -- ^ 'chargeRefundsData'
+  -> GHC.Types.Bool -- ^ 'chargeRefundsHas_more'
+  -> Data.Text.Internal.Text -- ^ 'chargeRefundsObject'
+  -> Data.Text.Internal.Text -- ^ 'chargeRefundsUrl'
+  -> ChargeRefunds
+mkChargeRefunds chargeRefundsData chargeRefundsHas_more chargeRefundsObject chargeRefundsUrl = ChargeRefunds{chargeRefundsData = chargeRefundsData,
+                                                                                                             chargeRefundsHas_more = chargeRefundsHas_more,
+                                                                                                             chargeRefundsObject = chargeRefundsObject,
+                                                                                                             chargeRefundsUrl = chargeRefundsUrl}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.review.anyOf@ in the specification.
 -- 
 -- ID of the review associated with this charge if one exists.
-data ChargeReviewNonNullableVariants =
-   ChargeReviewNonNullableText Data.Text.Internal.Text
-  | ChargeReviewNonNullableReview Review
+data ChargeReviewVariants =
+   ChargeReviewText Data.Text.Internal.Text
+  | ChargeReviewReview Review
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeReviewNonNullableVariants
-    where {toJSON (ChargeReviewNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeReviewNonNullableReview a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeReviewNonNullableVariants
-    where {parseJSON val = case (ChargeReviewNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeReviewNonNullableReview Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeReviewVariants
+    where {toJSON (ChargeReviewText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeReviewReview a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeReviewVariants
+    where {parseJSON val = case (ChargeReviewText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeReviewReview Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.charge.properties.shipping.anyOf@ in the specification.
 -- 
 -- Shipping information for the charge.
-data ChargeShippingNonNullable = ChargeShippingNonNullable {
+data ChargeShipping = ChargeShipping {
   -- | address: 
-  chargeShippingNonNullableAddress :: (GHC.Maybe.Maybe Address)
+  chargeShippingAddress :: (GHC.Maybe.Maybe Address)
   -- | carrier: The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeShippingNonNullableCarrier :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeShippingCarrier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | name: Recipient name.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeShippingNonNullableName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  , chargeShippingName :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | phone: Recipient phone (including extension).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeShippingNonNullablePhone :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeShippingPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | tracking_number: The tracking number for a physical product, obtained from the delivery service. If multiple tracking numbers were generated for this purchase, please separate them with commas.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , chargeShippingNonNullableTracking_number :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , chargeShippingTracking_number :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeShippingNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableTracking_number obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullablePhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (chargeShippingNonNullableTracking_number obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeShippingNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeShippingNonNullable" (\obj -> ((((GHC.Base.pure ChargeShippingNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number"))}
--- | Create a new 'ChargeShippingNonNullable' with all required fields.
-mkChargeShippingNonNullable :: ChargeShippingNonNullable
-mkChargeShippingNonNullable = ChargeShippingNonNullable{chargeShippingNonNullableAddress = GHC.Maybe.Nothing,
-                                                        chargeShippingNonNullableCarrier = GHC.Maybe.Nothing,
-                                                        chargeShippingNonNullableName = GHC.Maybe.Nothing,
-                                                        chargeShippingNonNullablePhone = GHC.Maybe.Nothing,
-                                                        chargeShippingNonNullableTracking_number = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeShipping
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (chargeShippingAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (chargeShippingCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (chargeShippingName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (chargeShippingPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (chargeShippingTracking_number obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("address" Data.Aeson.Types.ToJSON..=)) (chargeShippingAddress obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("carrier" Data.Aeson.Types.ToJSON..=)) (chargeShippingCarrier obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("name" Data.Aeson.Types.ToJSON..=)) (chargeShippingName obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("phone" Data.Aeson.Types.ToJSON..=)) (chargeShippingPhone obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("tracking_number" Data.Aeson.Types.ToJSON..=)) (chargeShippingTracking_number obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeShipping
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeShipping" (\obj -> ((((GHC.Base.pure ChargeShipping GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "carrier")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "tracking_number"))}
+-- | Create a new 'ChargeShipping' with all required fields.
+mkChargeShipping :: ChargeShipping
+mkChargeShipping = ChargeShipping{chargeShippingAddress = GHC.Maybe.Nothing,
+                                  chargeShippingCarrier = GHC.Maybe.Nothing,
+                                  chargeShippingName = GHC.Maybe.Nothing,
+                                  chargeShippingPhone = GHC.Maybe.Nothing,
+                                  chargeShippingTracking_number = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.source_transfer.anyOf@ in the specification.
 -- 
 -- The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/destination-charges) for details.
-data ChargeSource_transferNonNullableVariants =
-   ChargeSource_transferNonNullableText Data.Text.Internal.Text
-  | ChargeSource_transferNonNullableTransfer Transfer
+data ChargeSource_transferVariants =
+   ChargeSource_transferText Data.Text.Internal.Text
+  | ChargeSource_transferTransfer Transfer
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeSource_transferNonNullableVariants
-    where {toJSON (ChargeSource_transferNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeSource_transferNonNullableTransfer a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeSource_transferNonNullableVariants
-    where {parseJSON val = case (ChargeSource_transferNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeSource_transferNonNullableTransfer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeSource_transferVariants
+    where {toJSON (ChargeSource_transferText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeSource_transferTransfer a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeSource_transferVariants
+    where {parseJSON val = case (ChargeSource_transferText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeSource_transferTransfer Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.charge.properties.status@ in the specification.
--- 
--- The status of the payment is either \`succeeded\`, \`pending\`, or \`failed\`.
-data ChargeStatus =
-   ChargeStatusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | ChargeStatusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | ChargeStatusEnumFailed -- ^ Represents the JSON value @"failed"@
-  | ChargeStatusEnumPending -- ^ Represents the JSON value @"pending"@
-  | ChargeStatusEnumSucceeded -- ^ Represents the JSON value @"succeeded"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeStatus
-    where {toJSON (ChargeStatusOther val) = val;
-           toJSON (ChargeStatusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (ChargeStatusEnumFailed) = "failed";
-           toJSON (ChargeStatusEnumPending) = "pending";
-           toJSON (ChargeStatusEnumSucceeded) = "succeeded"}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeStatus
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "failed" -> ChargeStatusEnumFailed
-                                             | val GHC.Classes.== "pending" -> ChargeStatusEnumPending
-                                             | val GHC.Classes.== "succeeded" -> ChargeStatusEnumSucceeded
-                                             | GHC.Base.otherwise -> ChargeStatusOther val)}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.transfer.anyOf@ in the specification.
 -- 
 -- ID of the transfer to the \`destination\` account (only applicable if the charge was created using the \`destination\` parameter).
@@ -883,33 +853,33 @@ instance Data.Aeson.Types.FromJSON.FromJSON ChargeTransferVariants
 -- | Defines the object schema located at @components.schemas.charge.properties.transfer_data.anyOf@ in the specification.
 -- 
 -- An optional dictionary including the account to automatically transfer to as part of a destination charge. [See the Connect documentation](https:\\\/\\\/docs.stripe.com\\\/connect\\\/destination-charges) for details.
-data ChargeTransfer_dataNonNullable = ChargeTransfer_dataNonNullable {
+data ChargeTransfer_data = ChargeTransfer_data {
   -- | amount: The amount transferred to the destination account, if specified. By default, the entire charge amount is transferred to the destination account.
-  chargeTransfer_dataNonNullableAmount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  chargeTransfer_dataAmount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | destination: ID of an existing, connected Stripe account to transfer funds to if \`transfer_data\` was specified in the charge request.
-  , chargeTransfer_dataNonNullableDestination :: (GHC.Maybe.Maybe ChargeTransfer_dataNonNullableDestinationVariants)
+  , chargeTransfer_dataDestination :: (GHC.Maybe.Maybe ChargeTransfer_dataDestinationVariants)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeTransfer_dataNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataNonNullableDestination obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataNonNullableAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataNonNullableDestination obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeTransfer_dataNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeTransfer_dataNonNullable" (\obj -> (GHC.Base.pure ChargeTransfer_dataNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
--- | Create a new 'ChargeTransfer_dataNonNullable' with all required fields.
-mkChargeTransfer_dataNonNullable :: ChargeTransfer_dataNonNullable
-mkChargeTransfer_dataNonNullable = ChargeTransfer_dataNonNullable{chargeTransfer_dataNonNullableAmount = GHC.Maybe.Nothing,
-                                                                  chargeTransfer_dataNonNullableDestination = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeTransfer_data
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataDestination obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataAmount obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (chargeTransfer_dataDestination obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeTransfer_data
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "ChargeTransfer_data" (\obj -> (GHC.Base.pure ChargeTransfer_data GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination"))}
+-- | Create a new 'ChargeTransfer_data' with all required fields.
+mkChargeTransfer_data :: ChargeTransfer_data
+mkChargeTransfer_data = ChargeTransfer_data{chargeTransfer_dataAmount = GHC.Maybe.Nothing,
+                                            chargeTransfer_dataDestination = GHC.Maybe.Nothing}
 -- | Defines the oneOf schema located at @components.schemas.charge.properties.transfer_data.anyOf.properties.destination.anyOf@ in the specification.
 -- 
 -- ID of an existing, connected Stripe account to transfer funds to if \`transfer_data\` was specified in the charge request.
-data ChargeTransfer_dataNonNullableDestinationVariants =
-   ChargeTransfer_dataNonNullableDestinationText Data.Text.Internal.Text
-  | ChargeTransfer_dataNonNullableDestinationAccount Account
+data ChargeTransfer_dataDestinationVariants =
+   ChargeTransfer_dataDestinationText Data.Text.Internal.Text
+  | ChargeTransfer_dataDestinationAccount Account
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON ChargeTransfer_dataNonNullableDestinationVariants
-    where {toJSON (ChargeTransfer_dataNonNullableDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (ChargeTransfer_dataNonNullableDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON ChargeTransfer_dataNonNullableDestinationVariants
-    where {parseJSON val = case (ChargeTransfer_dataNonNullableDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeTransfer_dataNonNullableDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON ChargeTransfer_dataDestinationVariants
+    where {toJSON (ChargeTransfer_dataDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (ChargeTransfer_dataDestinationAccount a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON ChargeTransfer_dataDestinationVariants
+    where {parseJSON val = case (ChargeTransfer_dataDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((ChargeTransfer_dataDestinationAccount Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}

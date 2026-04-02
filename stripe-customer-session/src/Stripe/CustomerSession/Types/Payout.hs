@@ -62,15 +62,15 @@ data Payout = Payout {
   -- | amount: The amount (in cents (or local equivalent)) that transfers to your bank account or debit card.
   payoutAmount :: GHC.Types.Int
   -- | application_fee: The application fee (if any) for the payout. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/instant-payouts\#monetization-and-fees) for details.
-  , payoutApplication_fee :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PayoutApplication_feeNonNullableVariants))
+  , payoutApplication_fee :: (GHC.Maybe.Maybe PayoutApplication_feeVariants)
   -- | application_fee_amount: The amount of the application fee (if any) requested for the payout. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/instant-payouts\#monetization-and-fees) for details.
-  , payoutApplication_fee_amount :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable GHC.Types.Int))
+  , payoutApplication_fee_amount :: (GHC.Maybe.Maybe GHC.Types.Int)
   -- | arrival_date: Date that you can expect the payout to arrive in the bank. This factors in delays to account for weekends or bank holidays.
   , payoutArrival_date :: GHC.Types.Int
   -- | automatic: Returns \`true\` if the payout is created by an [automated payout schedule](https:\/\/docs.stripe.com\/payouts\#payout-schedule) and \`false\` if it\'s [requested manually](https:\/\/stripe.com\/docs\/payouts\#manual-payouts).
   , payoutAutomatic :: GHC.Types.Bool
   -- | balance_transaction: ID of the balance transaction that describes the impact of this payout on your account balance.
-  , payoutBalance_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PayoutBalance_transactionNonNullableVariants))
+  , payoutBalance_transaction :: (GHC.Maybe.Maybe PayoutBalance_transactionVariants)
   -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
   , payoutCreated :: GHC.Types.Int
   -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
@@ -80,51 +80,53 @@ data Payout = Payout {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payoutDescription :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payoutDescription :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | destination: ID of the bank account or card the payout is sent to.
-  , payoutDestination :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PayoutDestinationNonNullableVariants))
+  , payoutDestination :: (GHC.Maybe.Maybe PayoutDestinationVariants)
   -- | failure_balance_transaction: If the payout fails or cancels, this is the ID of the balance transaction that reverses the initial balance transaction and returns the funds from the failed payout back in your balance.
-  , payoutFailure_balance_transaction :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PayoutFailure_balance_transactionNonNullableVariants))
+  , payoutFailure_balance_transaction :: (GHC.Maybe.Maybe PayoutFailure_balance_transactionVariants)
   -- | failure_code: Error code that provides a reason for a payout failure, if available. View our [list of failure codes](https:\/\/docs.stripe.com\/api\#payout_failures).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payoutFailure_code :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payoutFailure_code :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | failure_message: Message that provides the reason for a payout failure, if available.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payoutFailure_message :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payoutFailure_message :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | id: Unique identifier for the object.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payoutId :: Data.Text.Internal.Text
-  -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
+  -- | livemode: If the object exists in live mode, the value is \`true\`. If the object exists in test mode, the value is \`false\`.
   , payoutLivemode :: GHC.Types.Bool
   -- | metadata: Set of [key-value pairs](https:\/\/docs.stripe.com\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
-  , payoutMetadata :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Aeson.Types.Internal.Object))
+  , payoutMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object)
   -- | method: The method used to send this payout, which can be \`standard\` or \`instant\`. \`instant\` is supported for payouts to debit cards and bank accounts in certain countries. Learn more about [bank support for Instant Payouts](https:\/\/stripe.com\/docs\/payouts\/instant-payouts-banks).
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
   , payoutMethod :: Data.Text.Internal.Text
+  -- | object: String representing the object\'s type. Objects of the same type share the same value.
+  , payoutObject :: Data.Text.Internal.Text
   -- | original_payout: If the payout reverses another, this is the ID of the original payout.
-  , payoutOriginal_payout :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PayoutOriginal_payoutNonNullableVariants))
+  , payoutOriginal_payout :: (GHC.Maybe.Maybe PayoutOriginal_payoutVariants)
   -- | payout_method: ID of the v2 FinancialAccount the funds are sent to.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payoutPayout_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payoutPayout_method :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | reconciliation_status: If \`completed\`, you can use the [Balance Transactions API](https:\/\/docs.stripe.com\/api\/balance_transactions\/list\#balance_transaction_list-payout) to list all balance transactions that are paid out in this payout.
-  , payoutReconciliation_status :: PayoutReconciliation_status
+  , payoutReconciliation_status :: Data.Text.Internal.Text
   -- | reversed_by: If the payout reverses, this is the ID of the payout that reverses this payout.
-  , payoutReversed_by :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PayoutReversed_byNonNullableVariants))
+  , payoutReversed_by :: (GHC.Maybe.Maybe PayoutReversed_byVariants)
   -- | source_type: The source balance this payout came from, which can be one of the following: \`card\`, \`fpx\`, or \`bank_account\`.
   -- 
   -- Constraints:
@@ -136,7 +138,7 @@ data Payout = Payout {
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payoutStatement_descriptor :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payoutStatement_descriptor :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | status: Current status of the payout: \`paid\`, \`pending\`, \`in_transit\`, \`canceled\` or \`failed\`. A payout is \`pending\` until it\'s submitted to the bank, when it becomes \`in_transit\`. The status changes to \`paid\` if the transaction succeeds, or to \`failed\` or \`canceled\` (within 5 business days). Some payouts that fail might initially show as \`paid\`, then change to \`failed\`.
   -- 
   -- Constraints:
@@ -144,16 +146,16 @@ data Payout = Payout {
   -- * Maximum length of 5000
   , payoutStatus :: Data.Text.Internal.Text
   -- | trace_id: A value that generates from the beneficiary\'s bank that allows users to track payouts with their bank. Banks might call this a \"reference number\" or something similar.
-  , payoutTrace_id :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable PayoutTrace_idNonNullable))
+  , payoutTrace_id :: (GHC.Maybe.Maybe PayoutTrace_id)
   -- | type: Can be \`bank_account\` or \`card\`.
-  , payoutType :: PayoutType
+  , payoutType :: Data.Text.Internal.Text
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Payout
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= payoutAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee_amount obj) : ["arrival_date" Data.Aeson.Types.ToJSON..= payoutArrival_date obj] : ["automatic" Data.Aeson.Types.ToJSON..= payoutAutomatic obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= payoutCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= payoutCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payoutDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (payoutDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (payoutFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (payoutFailure_message obj) : ["id" Data.Aeson.Types.ToJSON..= payoutId obj] : ["livemode" Data.Aeson.Types.ToJSON..= payoutLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (payoutMetadata obj) : ["method" Data.Aeson.Types.ToJSON..= payoutMethod obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("original_payout" Data.Aeson.Types.ToJSON..=)) (payoutOriginal_payout obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payout_method" Data.Aeson.Types.ToJSON..=)) (payoutPayout_method obj) : ["reconciliation_status" Data.Aeson.Types.ToJSON..= payoutReconciliation_status obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reversed_by" Data.Aeson.Types.ToJSON..=)) (payoutReversed_by obj) : ["source_type" Data.Aeson.Types.ToJSON..= payoutSource_type obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (payoutStatement_descriptor obj) : ["status" Data.Aeson.Types.ToJSON..= payoutStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trace_id" Data.Aeson.Types.ToJSON..=)) (payoutTrace_id obj) : ["type" Data.Aeson.Types.ToJSON..= payoutType obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "payout"] : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= payoutAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee_amount obj) : ["arrival_date" Data.Aeson.Types.ToJSON..= payoutArrival_date obj] : ["automatic" Data.Aeson.Types.ToJSON..= payoutAutomatic obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= payoutCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= payoutCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payoutDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (payoutDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (payoutFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (payoutFailure_message obj) : ["id" Data.Aeson.Types.ToJSON..= payoutId obj] : ["livemode" Data.Aeson.Types.ToJSON..= payoutLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (payoutMetadata obj) : ["method" Data.Aeson.Types.ToJSON..= payoutMethod obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("original_payout" Data.Aeson.Types.ToJSON..=)) (payoutOriginal_payout obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payout_method" Data.Aeson.Types.ToJSON..=)) (payoutPayout_method obj) : ["reconciliation_status" Data.Aeson.Types.ToJSON..= payoutReconciliation_status obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reversed_by" Data.Aeson.Types.ToJSON..=)) (payoutReversed_by obj) : ["source_type" Data.Aeson.Types.ToJSON..= payoutSource_type obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (payoutStatement_descriptor obj) : ["status" Data.Aeson.Types.ToJSON..= payoutStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trace_id" Data.Aeson.Types.ToJSON..=)) (payoutTrace_id obj) : ["type" Data.Aeson.Types.ToJSON..= payoutType obj] : ["object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "payout"] : GHC.Base.mempty)))}
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= payoutAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee_amount obj) : ["arrival_date" Data.Aeson.Types.ToJSON..= payoutArrival_date obj] : ["automatic" Data.Aeson.Types.ToJSON..= payoutAutomatic obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= payoutCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= payoutCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payoutDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (payoutDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (payoutFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (payoutFailure_message obj) : ["id" Data.Aeson.Types.ToJSON..= payoutId obj] : ["livemode" Data.Aeson.Types.ToJSON..= payoutLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (payoutMetadata obj) : ["method" Data.Aeson.Types.ToJSON..= payoutMethod obj] : ["object" Data.Aeson.Types.ToJSON..= payoutObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("original_payout" Data.Aeson.Types.ToJSON..=)) (payoutOriginal_payout obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payout_method" Data.Aeson.Types.ToJSON..=)) (payoutPayout_method obj) : ["reconciliation_status" Data.Aeson.Types.ToJSON..= payoutReconciliation_status obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reversed_by" Data.Aeson.Types.ToJSON..=)) (payoutReversed_by obj) : ["source_type" Data.Aeson.Types.ToJSON..= payoutSource_type obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (payoutStatement_descriptor obj) : ["status" Data.Aeson.Types.ToJSON..= payoutStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trace_id" Data.Aeson.Types.ToJSON..=)) (payoutTrace_id obj) : ["type" Data.Aeson.Types.ToJSON..= payoutType obj] : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (["amount" Data.Aeson.Types.ToJSON..= payoutAmount obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("application_fee_amount" Data.Aeson.Types.ToJSON..=)) (payoutApplication_fee_amount obj) : ["arrival_date" Data.Aeson.Types.ToJSON..= payoutArrival_date obj] : ["automatic" Data.Aeson.Types.ToJSON..= payoutAutomatic obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutBalance_transaction obj) : ["created" Data.Aeson.Types.ToJSON..= payoutCreated obj] : ["currency" Data.Aeson.Types.ToJSON..= payoutCurrency obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("description" Data.Aeson.Types.ToJSON..=)) (payoutDescription obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("destination" Data.Aeson.Types.ToJSON..=)) (payoutDestination obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_balance_transaction" Data.Aeson.Types.ToJSON..=)) (payoutFailure_balance_transaction obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_code" Data.Aeson.Types.ToJSON..=)) (payoutFailure_code obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("failure_message" Data.Aeson.Types.ToJSON..=)) (payoutFailure_message obj) : ["id" Data.Aeson.Types.ToJSON..= payoutId obj] : ["livemode" Data.Aeson.Types.ToJSON..= payoutLivemode obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("metadata" Data.Aeson.Types.ToJSON..=)) (payoutMetadata obj) : ["method" Data.Aeson.Types.ToJSON..= payoutMethod obj] : ["object" Data.Aeson.Types.ToJSON..= payoutObject obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("original_payout" Data.Aeson.Types.ToJSON..=)) (payoutOriginal_payout obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("payout_method" Data.Aeson.Types.ToJSON..=)) (payoutPayout_method obj) : ["reconciliation_status" Data.Aeson.Types.ToJSON..= payoutReconciliation_status obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("reversed_by" Data.Aeson.Types.ToJSON..=)) (payoutReversed_by obj) : ["source_type" Data.Aeson.Types.ToJSON..= payoutSource_type obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("statement_descriptor" Data.Aeson.Types.ToJSON..=)) (payoutStatement_descriptor obj) : ["status" Data.Aeson.Types.ToJSON..= payoutStatus obj] : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("trace_id" Data.Aeson.Types.ToJSON..=)) (payoutTrace_id obj) : ["type" Data.Aeson.Types.ToJSON..= payoutType obj] : GHC.Base.mempty)))}
 instance Data.Aeson.Types.FromJSON.FromJSON Payout
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payout" (\obj -> (((((((((((((((((((((((((GHC.Base.pure Payout GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "arrival_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "original_payout")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payout_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reconciliation_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reversed_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "source_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trace_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Payout" (\obj -> ((((((((((((((((((((((((((GHC.Base.pure Payout GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "application_fee_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "arrival_date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "destination")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "failure_message")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "object")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "original_payout")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "payout_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "reconciliation_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "reversed_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "source_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "statement_descriptor")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "trace_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))}
 -- | Create a new 'Payout' with all required fields.
 mkPayout :: GHC.Types.Int -- ^ 'payoutAmount'
   -> GHC.Types.Int -- ^ 'payoutArrival_date'
@@ -163,190 +165,153 @@ mkPayout :: GHC.Types.Int -- ^ 'payoutAmount'
   -> Data.Text.Internal.Text -- ^ 'payoutId'
   -> GHC.Types.Bool -- ^ 'payoutLivemode'
   -> Data.Text.Internal.Text -- ^ 'payoutMethod'
-  -> PayoutReconciliation_status -- ^ 'payoutReconciliation_status'
+  -> Data.Text.Internal.Text -- ^ 'payoutObject'
+  -> Data.Text.Internal.Text -- ^ 'payoutReconciliation_status'
   -> Data.Text.Internal.Text -- ^ 'payoutSource_type'
   -> Data.Text.Internal.Text -- ^ 'payoutStatus'
-  -> PayoutType -- ^ 'payoutType'
+  -> Data.Text.Internal.Text -- ^ 'payoutType'
   -> Payout
-mkPayout payoutAmount payoutArrival_date payoutAutomatic payoutCreated payoutCurrency payoutId payoutLivemode payoutMethod payoutReconciliation_status payoutSource_type payoutStatus payoutType = Payout{payoutAmount = payoutAmount,
-                                                                                                                                                                                                          payoutApplication_fee = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutApplication_fee_amount = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutArrival_date = payoutArrival_date,
-                                                                                                                                                                                                          payoutAutomatic = payoutAutomatic,
-                                                                                                                                                                                                          payoutBalance_transaction = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutCreated = payoutCreated,
-                                                                                                                                                                                                          payoutCurrency = payoutCurrency,
-                                                                                                                                                                                                          payoutDescription = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutDestination = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutFailure_balance_transaction = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutFailure_code = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutFailure_message = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutId = payoutId,
-                                                                                                                                                                                                          payoutLivemode = payoutLivemode,
-                                                                                                                                                                                                          payoutMetadata = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutMethod = payoutMethod,
-                                                                                                                                                                                                          payoutOriginal_payout = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutPayout_method = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutReconciliation_status = payoutReconciliation_status,
-                                                                                                                                                                                                          payoutReversed_by = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutSource_type = payoutSource_type,
-                                                                                                                                                                                                          payoutStatement_descriptor = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutStatus = payoutStatus,
-                                                                                                                                                                                                          payoutTrace_id = GHC.Maybe.Nothing,
-                                                                                                                                                                                                          payoutType = payoutType}
+mkPayout payoutAmount payoutArrival_date payoutAutomatic payoutCreated payoutCurrency payoutId payoutLivemode payoutMethod payoutObject payoutReconciliation_status payoutSource_type payoutStatus payoutType = Payout{payoutAmount = payoutAmount,
+                                                                                                                                                                                                                       payoutApplication_fee = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutApplication_fee_amount = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutArrival_date = payoutArrival_date,
+                                                                                                                                                                                                                       payoutAutomatic = payoutAutomatic,
+                                                                                                                                                                                                                       payoutBalance_transaction = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutCreated = payoutCreated,
+                                                                                                                                                                                                                       payoutCurrency = payoutCurrency,
+                                                                                                                                                                                                                       payoutDescription = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutDestination = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutFailure_balance_transaction = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutFailure_code = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutFailure_message = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutId = payoutId,
+                                                                                                                                                                                                                       payoutLivemode = payoutLivemode,
+                                                                                                                                                                                                                       payoutMetadata = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutMethod = payoutMethod,
+                                                                                                                                                                                                                       payoutObject = payoutObject,
+                                                                                                                                                                                                                       payoutOriginal_payout = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutPayout_method = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutReconciliation_status = payoutReconciliation_status,
+                                                                                                                                                                                                                       payoutReversed_by = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutSource_type = payoutSource_type,
+                                                                                                                                                                                                                       payoutStatement_descriptor = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutStatus = payoutStatus,
+                                                                                                                                                                                                                       payoutTrace_id = GHC.Maybe.Nothing,
+                                                                                                                                                                                                                       payoutType = payoutType}
 -- | Defines the oneOf schema located at @components.schemas.payout.properties.application_fee.anyOf@ in the specification.
 -- 
 -- The application fee (if any) for the payout. [See the Connect documentation](https:\/\/docs.stripe.com\/connect\/instant-payouts\#monetization-and-fees) for details.
-data PayoutApplication_feeNonNullableVariants =
-   PayoutApplication_feeNonNullableText Data.Text.Internal.Text
-  | PayoutApplication_feeNonNullableApplication_fee Application_fee
+data PayoutApplication_feeVariants =
+   PayoutApplication_feeText Data.Text.Internal.Text
+  | PayoutApplication_feeApplication_fee Application_fee
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutApplication_feeNonNullableVariants
-    where {toJSON (PayoutApplication_feeNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutApplication_feeNonNullableApplication_fee a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutApplication_feeNonNullableVariants
-    where {parseJSON val = case (PayoutApplication_feeNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutApplication_feeNonNullableApplication_fee Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON PayoutApplication_feeVariants
+    where {toJSON (PayoutApplication_feeText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutApplication_feeApplication_fee a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON PayoutApplication_feeVariants
+    where {parseJSON val = case (PayoutApplication_feeText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutApplication_feeApplication_fee Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.payout.properties.balance_transaction.anyOf@ in the specification.
 -- 
 -- ID of the balance transaction that describes the impact of this payout on your account balance.
-data PayoutBalance_transactionNonNullableVariants =
-   PayoutBalance_transactionNonNullableText Data.Text.Internal.Text
-  | PayoutBalance_transactionNonNullableBalance_transaction Balance_transaction
+data PayoutBalance_transactionVariants =
+   PayoutBalance_transactionText Data.Text.Internal.Text
+  | PayoutBalance_transactionBalance_transaction Balance_transaction
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutBalance_transactionNonNullableVariants
-    where {toJSON (PayoutBalance_transactionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutBalance_transactionNonNullableBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutBalance_transactionNonNullableVariants
-    where {parseJSON val = case (PayoutBalance_transactionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutBalance_transactionNonNullableBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON PayoutBalance_transactionVariants
+    where {toJSON (PayoutBalance_transactionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutBalance_transactionBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON PayoutBalance_transactionVariants
+    where {parseJSON val = case (PayoutBalance_transactionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutBalance_transactionBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.payout.properties.destination.anyOf@ in the specification.
 -- 
 -- ID of the bank account or card the payout is sent to.
-data PayoutDestinationNonNullableVariants =
-   PayoutDestinationNonNullableText Data.Text.Internal.Text
-  | PayoutDestinationNonNullableBank_account Bank_account
-  | PayoutDestinationNonNullableCard Card
-  | PayoutDestinationNonNullableDeleted_bank_account Deleted_bank_account
-  | PayoutDestinationNonNullableDeleted_card Deleted_card
+data PayoutDestinationVariants =
+   PayoutDestinationText Data.Text.Internal.Text
+  | PayoutDestinationBank_account Bank_account
+  | PayoutDestinationCard Card
+  | PayoutDestinationDeleted_bank_account Deleted_bank_account
+  | PayoutDestinationDeleted_card Deleted_card
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutDestinationNonNullableVariants
-    where {toJSON (PayoutDestinationNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutDestinationNonNullableBank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutDestinationNonNullableCard a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutDestinationNonNullableDeleted_bank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutDestinationNonNullableDeleted_card a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutDestinationNonNullableVariants
-    where {parseJSON val = case (PayoutDestinationNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationNonNullableBank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationNonNullableCard Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationNonNullableDeleted_bank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationNonNullableDeleted_card Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")))) of
+instance Data.Aeson.Types.ToJSON.ToJSON PayoutDestinationVariants
+    where {toJSON (PayoutDestinationText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutDestinationBank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutDestinationCard a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutDestinationDeleted_bank_account a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutDestinationDeleted_card a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON PayoutDestinationVariants
+    where {parseJSON val = case (PayoutDestinationText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationBank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationCard Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationDeleted_bank_account Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutDestinationDeleted_card Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched")))) of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.payout.properties.failure_balance_transaction.anyOf@ in the specification.
 -- 
 -- If the payout fails or cancels, this is the ID of the balance transaction that reverses the initial balance transaction and returns the funds from the failed payout back in your balance.
-data PayoutFailure_balance_transactionNonNullableVariants =
-   PayoutFailure_balance_transactionNonNullableText Data.Text.Internal.Text
-  | PayoutFailure_balance_transactionNonNullableBalance_transaction Balance_transaction
+data PayoutFailure_balance_transactionVariants =
+   PayoutFailure_balance_transactionText Data.Text.Internal.Text
+  | PayoutFailure_balance_transactionBalance_transaction Balance_transaction
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutFailure_balance_transactionNonNullableVariants
-    where {toJSON (PayoutFailure_balance_transactionNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutFailure_balance_transactionNonNullableBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutFailure_balance_transactionNonNullableVariants
-    where {parseJSON val = case (PayoutFailure_balance_transactionNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutFailure_balance_transactionNonNullableBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON PayoutFailure_balance_transactionVariants
+    where {toJSON (PayoutFailure_balance_transactionText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutFailure_balance_transactionBalance_transaction a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON PayoutFailure_balance_transactionVariants
+    where {parseJSON val = case (PayoutFailure_balance_transactionText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutFailure_balance_transactionBalance_transaction Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the oneOf schema located at @components.schemas.payout.properties.original_payout.anyOf@ in the specification.
 -- 
 -- If the payout reverses another, this is the ID of the original payout.
-data PayoutOriginal_payoutNonNullableVariants =
-   PayoutOriginal_payoutNonNullableText Data.Text.Internal.Text
-  | PayoutOriginal_payoutNonNullablePayout Payout
+data PayoutOriginal_payoutVariants =
+   PayoutOriginal_payoutText Data.Text.Internal.Text
+  | PayoutOriginal_payoutPayout Payout
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutOriginal_payoutNonNullableVariants
-    where {toJSON (PayoutOriginal_payoutNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutOriginal_payoutNonNullablePayout a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutOriginal_payoutNonNullableVariants
-    where {parseJSON val = case (PayoutOriginal_payoutNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutOriginal_payoutNonNullablePayout Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON PayoutOriginal_payoutVariants
+    where {toJSON (PayoutOriginal_payoutText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutOriginal_payoutPayout a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON PayoutOriginal_payoutVariants
+    where {parseJSON val = case (PayoutOriginal_payoutText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutOriginal_payoutPayout Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
--- | Defines the enum schema located at @components.schemas.payout.properties.reconciliation_status@ in the specification.
--- 
--- If \`completed\`, you can use the [Balance Transactions API](https:\/\/docs.stripe.com\/api\/balance_transactions\/list\#balance_transaction_list-payout) to list all balance transactions that are paid out in this payout.
-data PayoutReconciliation_status =
-   PayoutReconciliation_statusOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PayoutReconciliation_statusTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PayoutReconciliation_statusEnumCompleted -- ^ Represents the JSON value @"completed"@
-  | PayoutReconciliation_statusEnumIn_progress -- ^ Represents the JSON value @"in_progress"@
-  | PayoutReconciliation_statusEnumNot_applicable -- ^ Represents the JSON value @"not_applicable"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutReconciliation_status
-    where {toJSON (PayoutReconciliation_statusOther val) = val;
-           toJSON (PayoutReconciliation_statusTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PayoutReconciliation_statusEnumCompleted) = "completed";
-           toJSON (PayoutReconciliation_statusEnumIn_progress) = "in_progress";
-           toJSON (PayoutReconciliation_statusEnumNot_applicable) = "not_applicable"}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutReconciliation_status
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "completed" -> PayoutReconciliation_statusEnumCompleted
-                                             | val GHC.Classes.== "in_progress" -> PayoutReconciliation_statusEnumIn_progress
-                                             | val GHC.Classes.== "not_applicable" -> PayoutReconciliation_statusEnumNot_applicable
-                                             | GHC.Base.otherwise -> PayoutReconciliation_statusOther val)}
 -- | Defines the oneOf schema located at @components.schemas.payout.properties.reversed_by.anyOf@ in the specification.
 -- 
 -- If the payout reverses, this is the ID of the payout that reverses this payout.
-data PayoutReversed_byNonNullableVariants =
-   PayoutReversed_byNonNullableText Data.Text.Internal.Text
-  | PayoutReversed_byNonNullablePayout Payout
+data PayoutReversed_byVariants =
+   PayoutReversed_byText Data.Text.Internal.Text
+  | PayoutReversed_byPayout Payout
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutReversed_byNonNullableVariants
-    where {toJSON (PayoutReversed_byNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (PayoutReversed_byNonNullablePayout a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutReversed_byNonNullableVariants
-    where {parseJSON val = case (PayoutReversed_byNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutReversed_byNonNullablePayout Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON PayoutReversed_byVariants
+    where {toJSON (PayoutReversed_byText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (PayoutReversed_byPayout a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON PayoutReversed_byVariants
+    where {parseJSON val = case (PayoutReversed_byText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((PayoutReversed_byPayout Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.payout.properties.trace_id.anyOf@ in the specification.
 -- 
 -- A value that generates from the beneficiary\\\'s bank that allows users to track payouts with their bank. Banks might call this a \\\"reference number\\\" or something similar.
-data PayoutTrace_idNonNullable = PayoutTrace_idNonNullable {
+data PayoutTrace_id = PayoutTrace_id {
   -- | status: Possible values are \`pending\`, \`supported\`, and \`unsupported\`. When \`payout.status\` is \`pending\` or \`in_transit\`, this will be \`pending\`. When the payout transitions to \`paid\`, \`failed\`, or \`canceled\`, this status will become \`supported\` or \`unsupported\` shortly after in most cases. In some cases, this may appear as \`pending\` for up to 10 days after \`arrival_date\` until transitioning to \`supported\` or \`unsupported\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  payoutTrace_idNonNullableStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  payoutTrace_idStatus :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | value: The trace ID value if \`trace_id.status\` is \`supported\`, otherwise \`nil\`.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , payoutTrace_idNonNullableValue :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , payoutTrace_idValue :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutTrace_idNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idNonNullableStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idNonNullableValue obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idNonNullableStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idNonNullableValue obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutTrace_idNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PayoutTrace_idNonNullable" (\obj -> (GHC.Base.pure PayoutTrace_idNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
--- | Create a new 'PayoutTrace_idNonNullable' with all required fields.
-mkPayoutTrace_idNonNullable :: PayoutTrace_idNonNullable
-mkPayoutTrace_idNonNullable = PayoutTrace_idNonNullable{payoutTrace_idNonNullableStatus = GHC.Maybe.Nothing,
-                                                        payoutTrace_idNonNullableValue = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.payout.properties.type@ in the specification.
--- 
--- Can be \`bank_account\` or \`card\`.
-data PayoutType =
-   PayoutTypeOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | PayoutTypeTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | PayoutTypeEnumBank_account -- ^ Represents the JSON value @"bank_account"@
-  | PayoutTypeEnumCard -- ^ Represents the JSON value @"card"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON PayoutType
-    where {toJSON (PayoutTypeOther val) = val;
-           toJSON (PayoutTypeTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (PayoutTypeEnumBank_account) = "bank_account";
-           toJSON (PayoutTypeEnumCard) = "card"}
-instance Data.Aeson.Types.FromJSON.FromJSON PayoutType
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "bank_account" -> PayoutTypeEnumBank_account
-                                             | val GHC.Classes.== "card" -> PayoutTypeEnumCard
-                                             | GHC.Base.otherwise -> PayoutTypeOther val)}
+instance Data.Aeson.Types.ToJSON.ToJSON PayoutTrace_id
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idValue obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("status" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idStatus obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("value" Data.Aeson.Types.ToJSON..=)) (payoutTrace_idValue obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON PayoutTrace_id
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "PayoutTrace_id" (\obj -> (GHC.Base.pure PayoutTrace_id GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "value"))}
+-- | Create a new 'PayoutTrace_id' with all required fields.
+mkPayoutTrace_id :: PayoutTrace_id
+mkPayoutTrace_id = PayoutTrace_id{payoutTrace_idStatus = GHC.Maybe.Nothing,
+                                  payoutTrace_idValue = GHC.Maybe.Nothing}

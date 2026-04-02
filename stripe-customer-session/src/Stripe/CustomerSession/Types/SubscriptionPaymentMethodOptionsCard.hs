@@ -49,9 +49,9 @@ data Subscription_payment_method_options_card = Subscription_payment_method_opti
   -- | mandate_options: 
   subscription_payment_method_options_cardMandate_options :: (GHC.Maybe.Maybe Invoice_mandate_options_card)
   -- | network: Selected network to process this Subscription on. Depends on the available networks of the card attached to the Subscription. Can be only set confirm-time.
-  , subscription_payment_method_options_cardNetwork :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_payment_method_options_cardNetworkNonNullable))
+  , subscription_payment_method_options_cardNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | request_three_d_secure: We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-  , subscription_payment_method_options_cardRequest_three_d_secure :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Subscription_payment_method_options_cardRequest_three_d_secureNonNullable))
+  , subscription_payment_method_options_cardRequest_three_d_secure :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Subscription_payment_method_options_card
@@ -64,75 +64,3 @@ mkSubscription_payment_method_options_card :: Subscription_payment_method_option
 mkSubscription_payment_method_options_card = Subscription_payment_method_options_card{subscription_payment_method_options_cardMandate_options = GHC.Maybe.Nothing,
                                                                                       subscription_payment_method_options_cardNetwork = GHC.Maybe.Nothing,
                                                                                       subscription_payment_method_options_cardRequest_three_d_secure = GHC.Maybe.Nothing}
--- | Defines the enum schema located at @components.schemas.subscription_payment_method_options_card.properties.network@ in the specification.
--- 
--- Selected network to process this Subscription on. Depends on the available networks of the card attached to the Subscription. Can be only set confirm-time.
-data Subscription_payment_method_options_cardNetworkNonNullable =
-   Subscription_payment_method_options_cardNetworkNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_payment_method_options_cardNetworkNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumAmex -- ^ Represents the JSON value @"amex"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumCartes_bancaires -- ^ Represents the JSON value @"cartes_bancaires"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumDiners -- ^ Represents the JSON value @"diners"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumDiscover -- ^ Represents the JSON value @"discover"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumEftpos_au -- ^ Represents the JSON value @"eftpos_au"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumGirocard -- ^ Represents the JSON value @"girocard"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumInterac -- ^ Represents the JSON value @"interac"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumJcb -- ^ Represents the JSON value @"jcb"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumLink -- ^ Represents the JSON value @"link"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumMastercard -- ^ Represents the JSON value @"mastercard"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumUnionpay -- ^ Represents the JSON value @"unionpay"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumUnknown -- ^ Represents the JSON value @"unknown"@
-  | Subscription_payment_method_options_cardNetworkNonNullableEnumVisa -- ^ Represents the JSON value @"visa"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_payment_method_options_cardNetworkNonNullable
-    where {toJSON (Subscription_payment_method_options_cardNetworkNonNullableOther val) = val;
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumAmex) = "amex";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumCartes_bancaires) = "cartes_bancaires";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumDiners) = "diners";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumDiscover) = "discover";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumEftpos_au) = "eftpos_au";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumGirocard) = "girocard";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumInterac) = "interac";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumJcb) = "jcb";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumLink) = "link";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumMastercard) = "mastercard";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumUnionpay) = "unionpay";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumUnknown) = "unknown";
-           toJSON (Subscription_payment_method_options_cardNetworkNonNullableEnumVisa) = "visa"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_payment_method_options_cardNetworkNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "amex" -> Subscription_payment_method_options_cardNetworkNonNullableEnumAmex
-                                             | val GHC.Classes.== "cartes_bancaires" -> Subscription_payment_method_options_cardNetworkNonNullableEnumCartes_bancaires
-                                             | val GHC.Classes.== "diners" -> Subscription_payment_method_options_cardNetworkNonNullableEnumDiners
-                                             | val GHC.Classes.== "discover" -> Subscription_payment_method_options_cardNetworkNonNullableEnumDiscover
-                                             | val GHC.Classes.== "eftpos_au" -> Subscription_payment_method_options_cardNetworkNonNullableEnumEftpos_au
-                                             | val GHC.Classes.== "girocard" -> Subscription_payment_method_options_cardNetworkNonNullableEnumGirocard
-                                             | val GHC.Classes.== "interac" -> Subscription_payment_method_options_cardNetworkNonNullableEnumInterac
-                                             | val GHC.Classes.== "jcb" -> Subscription_payment_method_options_cardNetworkNonNullableEnumJcb
-                                             | val GHC.Classes.== "link" -> Subscription_payment_method_options_cardNetworkNonNullableEnumLink
-                                             | val GHC.Classes.== "mastercard" -> Subscription_payment_method_options_cardNetworkNonNullableEnumMastercard
-                                             | val GHC.Classes.== "unionpay" -> Subscription_payment_method_options_cardNetworkNonNullableEnumUnionpay
-                                             | val GHC.Classes.== "unknown" -> Subscription_payment_method_options_cardNetworkNonNullableEnumUnknown
-                                             | val GHC.Classes.== "visa" -> Subscription_payment_method_options_cardNetworkNonNullableEnumVisa
-                                             | GHC.Base.otherwise -> Subscription_payment_method_options_cardNetworkNonNullableOther val)}
--- | Defines the enum schema located at @components.schemas.subscription_payment_method_options_card.properties.request_three_d_secure@ in the specification.
--- 
--- We strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https:\/\/docs.stripe.com\/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. Read our guide on [manually requesting 3D Secure](https:\/\/docs.stripe.com\/payments\/3d-secure\/authentication-flow\#manual-three-ds) for more information on how this configuration interacts with Radar and our SCA Engine.
-data Subscription_payment_method_options_cardRequest_three_d_secureNonNullable =
-   Subscription_payment_method_options_cardRequest_three_d_secureNonNullableOther Data.Aeson.Types.Internal.Value -- ^ This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
-  | Subscription_payment_method_options_cardRequest_three_d_secureNonNullableTyped Data.Text.Internal.Text -- ^ This constructor can be used to send values to the server which are not present in the specification yet.
-  | Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny -- ^ Represents the JSON value @"any"@
-  | Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic -- ^ Represents the JSON value @"automatic"@
-  | Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge -- ^ Represents the JSON value @"challenge"@
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Subscription_payment_method_options_cardRequest_three_d_secureNonNullable
-    where {toJSON (Subscription_payment_method_options_cardRequest_three_d_secureNonNullableOther val) = val;
-           toJSON (Subscription_payment_method_options_cardRequest_three_d_secureNonNullableTyped val) = Data.Aeson.Types.ToJSON.toJSON val;
-           toJSON (Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny) = "any";
-           toJSON (Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic) = "automatic";
-           toJSON (Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge) = "challenge"}
-instance Data.Aeson.Types.FromJSON.FromJSON Subscription_payment_method_options_cardRequest_three_d_secureNonNullable
-    where {parseJSON val = GHC.Base.pure (if | val GHC.Classes.== "any" -> Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumAny
-                                             | val GHC.Classes.== "automatic" -> Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumAutomatic
-                                             | val GHC.Classes.== "challenge" -> Subscription_payment_method_options_cardRequest_three_d_secureNonNullableEnumChallenge
-                                             | GHC.Base.otherwise -> Subscription_payment_method_options_cardRequest_three_d_secureNonNullableOther val)}

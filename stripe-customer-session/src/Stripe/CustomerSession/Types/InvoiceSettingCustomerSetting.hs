@@ -49,17 +49,17 @@ import {-# SOURCE #-} Stripe.CustomerSession.Types.PaymentMethod
 -- 
 data Invoice_setting_customer_setting = Invoice_setting_customer_setting {
   -- | custom_fields: Default custom fields to be displayed on invoices for this customer.
-  invoice_setting_customer_settingCustom_fields :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable [Invoice_setting_custom_field]))
+  invoice_setting_customer_settingCustom_fields :: (GHC.Maybe.Maybe [Invoice_setting_custom_field])
   -- | default_payment_method: ID of a payment method that\'s attached to the customer, to be used as the customer\'s default payment method for subscriptions and invoices.
-  , invoice_setting_customer_settingDefault_payment_method :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_setting_customer_settingDefault_payment_methodNonNullableVariants))
+  , invoice_setting_customer_settingDefault_payment_method :: (GHC.Maybe.Maybe Invoice_setting_customer_settingDefault_payment_methodVariants)
   -- | footer: Default footer to be displayed on invoices for this customer.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoice_setting_customer_settingFooter :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoice_setting_customer_settingFooter :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | rendering_options: Default options for invoice PDF rendering for this customer.
-  , invoice_setting_customer_settingRendering_options :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Invoice_setting_customer_settingRendering_optionsNonNullable))
+  , invoice_setting_customer_settingRendering_options :: (GHC.Maybe.Maybe Invoice_setting_customer_settingRendering_options)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
 instance Data.Aeson.Types.ToJSON.ToJSON Invoice_setting_customer_setting
@@ -76,41 +76,41 @@ mkInvoice_setting_customer_setting = Invoice_setting_customer_setting{invoice_se
 -- | Defines the oneOf schema located at @components.schemas.invoice_setting_customer_setting.properties.default_payment_method.anyOf@ in the specification.
 -- 
 -- ID of a payment method that\'s attached to the customer, to be used as the customer\'s default payment method for subscriptions and invoices.
-data Invoice_setting_customer_settingDefault_payment_methodNonNullableVariants =
-   Invoice_setting_customer_settingDefault_payment_methodNonNullableText Data.Text.Internal.Text
-  | Invoice_setting_customer_settingDefault_payment_methodNonNullablePayment_method Payment_method
+data Invoice_setting_customer_settingDefault_payment_methodVariants =
+   Invoice_setting_customer_settingDefault_payment_methodText Data.Text.Internal.Text
+  | Invoice_setting_customer_settingDefault_payment_methodPayment_method Payment_method
   deriving (GHC.Show.Show, GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_setting_customer_settingDefault_payment_methodNonNullableVariants
-    where {toJSON (Invoice_setting_customer_settingDefault_payment_methodNonNullableText a) = Data.Aeson.Types.ToJSON.toJSON a;
-           toJSON (Invoice_setting_customer_settingDefault_payment_methodNonNullablePayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_setting_customer_settingDefault_payment_methodNonNullableVariants
-    where {parseJSON val = case (Invoice_setting_customer_settingDefault_payment_methodNonNullableText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoice_setting_customer_settingDefault_payment_methodNonNullablePayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+instance Data.Aeson.Types.ToJSON.ToJSON Invoice_setting_customer_settingDefault_payment_methodVariants
+    where {toJSON (Invoice_setting_customer_settingDefault_payment_methodText a) = Data.Aeson.Types.ToJSON.toJSON a;
+           toJSON (Invoice_setting_customer_settingDefault_payment_methodPayment_method a) = Data.Aeson.Types.ToJSON.toJSON a}
+instance Data.Aeson.Types.FromJSON.FromJSON Invoice_setting_customer_settingDefault_payment_methodVariants
+    where {parseJSON val = case (Invoice_setting_customer_settingDefault_payment_methodText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Invoice_setting_customer_settingDefault_payment_methodPayment_method Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
                            {Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a;
                             Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a}}
 -- | Defines the object schema located at @components.schemas.invoice_setting_customer_setting.properties.rendering_options.anyOf@ in the specification.
 -- 
 -- Default options for invoice PDF rendering for this customer.
-data Invoice_setting_customer_settingRendering_optionsNonNullable = Invoice_setting_customer_settingRendering_optionsNonNullable {
+data Invoice_setting_customer_settingRendering_options = Invoice_setting_customer_settingRendering_options {
   -- | amount_tax_display: How line-item prices and amounts will be displayed with respect to tax on invoice PDFs.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  invoice_setting_customer_settingRendering_optionsNonNullableAmount_tax_display :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  invoice_setting_customer_settingRendering_optionsAmount_tax_display :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   -- | template: ID of the invoice rendering template to be used for this customer\'s invoices. If set, the template will be used on all invoices for this customer unless a template is set directly on the invoice.
   -- 
   -- Constraints:
   -- 
   -- * Maximum length of 5000
-  , invoice_setting_customer_settingRendering_optionsNonNullableTemplate :: (GHC.Maybe.Maybe (Stripe.CustomerSession.Common.Nullable Data.Text.Internal.Text))
+  , invoice_setting_customer_settingRendering_optionsTemplate :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
   } deriving (GHC.Show.Show
   , GHC.Classes.Eq)
-instance Data.Aeson.Types.ToJSON.ToJSON Invoice_setting_customer_settingRendering_optionsNonNullable
-    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsNonNullableAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsNonNullableTemplate obj) : GHC.Base.mempty));
-           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsNonNullableAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsNonNullableTemplate obj) : GHC.Base.mempty)))}
-instance Data.Aeson.Types.FromJSON.FromJSON Invoice_setting_customer_settingRendering_optionsNonNullable
-    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoice_setting_customer_settingRendering_optionsNonNullable" (\obj -> (GHC.Base.pure Invoice_setting_customer_settingRendering_optionsNonNullable GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_tax_display")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "template"))}
--- | Create a new 'Invoice_setting_customer_settingRendering_optionsNonNullable' with all required fields.
-mkInvoice_setting_customer_settingRendering_optionsNonNullable :: Invoice_setting_customer_settingRendering_optionsNonNullable
-mkInvoice_setting_customer_settingRendering_optionsNonNullable = Invoice_setting_customer_settingRendering_optionsNonNullable{invoice_setting_customer_settingRendering_optionsNonNullableAmount_tax_display = GHC.Maybe.Nothing,
-                                                                                                                              invoice_setting_customer_settingRendering_optionsNonNullableTemplate = GHC.Maybe.Nothing}
+instance Data.Aeson.Types.ToJSON.ToJSON Invoice_setting_customer_settingRendering_options
+    where {toJSON obj = Data.Aeson.Types.Internal.object (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsTemplate obj) : GHC.Base.mempty));
+           toEncoding obj = Data.Aeson.Encoding.Internal.pairs (GHC.Base.mconcat (Data.Foldable.concat (Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("amount_tax_display" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsAmount_tax_display obj) : Data.Maybe.maybe GHC.Base.mempty (GHC.Base.pure GHC.Base.. ("template" Data.Aeson.Types.ToJSON..=)) (invoice_setting_customer_settingRendering_optionsTemplate obj) : GHC.Base.mempty)))}
+instance Data.Aeson.Types.FromJSON.FromJSON Invoice_setting_customer_settingRendering_options
+    where {parseJSON = Data.Aeson.Types.FromJSON.withObject "Invoice_setting_customer_settingRendering_options" (\obj -> (GHC.Base.pure Invoice_setting_customer_settingRendering_options GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "amount_tax_display")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:! "template"))}
+-- | Create a new 'Invoice_setting_customer_settingRendering_options' with all required fields.
+mkInvoice_setting_customer_settingRendering_options :: Invoice_setting_customer_settingRendering_options
+mkInvoice_setting_customer_settingRendering_options = Invoice_setting_customer_settingRendering_options{invoice_setting_customer_settingRendering_optionsAmount_tax_display = GHC.Maybe.Nothing,
+                                                                                                        invoice_setting_customer_settingRendering_optionsTemplate = GHC.Maybe.Nothing}

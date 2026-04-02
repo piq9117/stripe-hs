@@ -6,33 +6,23 @@ instance Show Review
 instance Eq Review
 instance Data.Aeson.FromJSON Review
 instance Data.Aeson.ToJSON Review
-data ReviewChargeNonNullableVariants
-instance Show ReviewChargeNonNullableVariants
-instance Eq ReviewChargeNonNullableVariants
-instance Data.Aeson.FromJSON ReviewChargeNonNullableVariants
-instance Data.Aeson.ToJSON ReviewChargeNonNullableVariants
-data ReviewClosed_reasonNonNullable
-instance Show ReviewClosed_reasonNonNullable
-instance Eq ReviewClosed_reasonNonNullable
-instance Data.Aeson.FromJSON ReviewClosed_reasonNonNullable
-instance Data.Aeson.ToJSON ReviewClosed_reasonNonNullable
-data ReviewIp_address_locationNonNullable
-instance Show ReviewIp_address_locationNonNullable
-instance Eq ReviewIp_address_locationNonNullable
-instance Data.Aeson.FromJSON ReviewIp_address_locationNonNullable
-instance Data.Aeson.ToJSON ReviewIp_address_locationNonNullable
-data ReviewOpened_reason
-instance Show ReviewOpened_reason
-instance Eq ReviewOpened_reason
-instance Data.Aeson.FromJSON ReviewOpened_reason
-instance Data.Aeson.ToJSON ReviewOpened_reason
+data ReviewChargeVariants
+instance Show ReviewChargeVariants
+instance Eq ReviewChargeVariants
+instance Data.Aeson.FromJSON ReviewChargeVariants
+instance Data.Aeson.ToJSON ReviewChargeVariants
+data ReviewIp_address_location
+instance Show ReviewIp_address_location
+instance Eq ReviewIp_address_location
+instance Data.Aeson.FromJSON ReviewIp_address_location
+instance Data.Aeson.ToJSON ReviewIp_address_location
 data ReviewPayment_intentVariants
 instance Show ReviewPayment_intentVariants
 instance Eq ReviewPayment_intentVariants
 instance Data.Aeson.FromJSON ReviewPayment_intentVariants
 instance Data.Aeson.ToJSON ReviewPayment_intentVariants
-data ReviewSessionNonNullable
-instance Show ReviewSessionNonNullable
-instance Eq ReviewSessionNonNullable
-instance Data.Aeson.FromJSON ReviewSessionNonNullable
-instance Data.Aeson.ToJSON ReviewSessionNonNullable
+data ReviewSession
+instance Show ReviewSession
+instance Eq ReviewSession
+instance Data.Aeson.FromJSON ReviewSession
+instance Data.Aeson.ToJSON ReviewSession
