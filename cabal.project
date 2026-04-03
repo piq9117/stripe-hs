@@ -1,1 +1,1 @@
-packages: stripe-customer-session
+packages: packages/**/.

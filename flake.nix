@@ -30,8 +30,8 @@
             project-src = prev.fetchFromGitHub {
               owner = "piq9117";
               repo = "openapi-slice-rs";
-              rev = "af6695a241cffaf71d631bed9b5c219d71b90049";
-              hash = "sha256-Lseklak1GSvgIGWrhtpQggqDUFBsv4iQFIcV+AkStYU=";
+              rev = "5b55ef9e8686da15d93af56e3742b58fda8df61d";
+              hash = "sha256-2nczhhfS5Faj8grd7c8iVwEkuwksA5gUIMDidSAoGIU=";
             };
           in prev.rustPlatform.buildRustPackage {
           pname = "openapi-slice-rs";
@@ -47,8 +47,11 @@
         in {
         generate-api = pkgs.writeScriptBin "generate-api" ''
           GITROOT=$(git rev-parse --show-toplevel)
+
+          rm -r ./packages/*
+
           ${pkgs.hsPkgs.openapi3-code-generator}/bin/openapi3-code-generator-exe \
-          --output-dir "$GITROOT/stripe-customer-session" \
+          --output-dir "$GITROOT/packages/stripe-customer-session" \
           --module-name Stripe.CustomerSession \
           --package-name stripe-customer-session \
           "$GITROOT/api-spec/customer-session.yaml"
